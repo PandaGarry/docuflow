@@ -4,6 +4,8 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# тяжёлые промежуточные файлы (пересобираются build.sh)
-campaigns/*/audio/*.wav
-campaigns/*/out/preview_*.jpg
+# тяжёлые промежуточные файлы: пересобираются скриптами студии
+studio/assets/audio/*.wav
+studio/out/*.wav
+studio/out/preview_*.jpg
+studio/out/_*.mp4
