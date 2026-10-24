@@ -1,0 +1,9 @@
+# служебное
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# тяжёлые промежуточные файлы (пересобираются build.sh)
+campaigns/*/audio/*.wav
+campaigns/*/out/preview_*.jpg
