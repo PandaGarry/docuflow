@@ -1,0 +1,21 @@
+{
+  "id": "dad",
+  "label": "Папа",
+  "role": "отец, двигатель хаоса",
+  "desc": "a dad, 32 years old, stocky bear-like build, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, thick expressive eyebrows, warm brown eyes, light-gray crewneck sweatshirt, dark jeans, brown sneakers",
+  "height_heads": 6.5,
+  "signature_props": ["light-gray crewneck sweatshirt", "dark beard with shaved sides"],
+  "palette": {
+    "hair_beard": "#4A332A",
+    "hoodie": "#C9C7C2",
+    "jeans": "#2F3540",
+    "shoes": "#4A3A32",
+    "skin": "#E8B48F"
+  },
+  "forbidden": [
+    "no changes to beard shape or hairline",
+    "no glasses, no watch, no bag",
+    "no extra limbs or fingers"
+  ],
+  "voice": {"pitch": 0.95, "mood": "уверенный, чуть comic", "notes": "низкий, грудной"}
+}

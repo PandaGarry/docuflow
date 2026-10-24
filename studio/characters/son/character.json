@@ -1,0 +1,20 @@
+{
+  "id": "son",
+  "label": "Сын",
+  "role": "самый умный в комнате",
+  "desc": "a little boy 3.5 years old, buzz-cut light-brown hair, very big dark-brown eyes, round cheeks, tiny stature with a big head, pale mint baseball cap with a black letter P, brown hoodie with white ABC print, dark trousers, small sneakers",
+  "height_heads": 5.5,
+  "signature_props": ["pale mint cap with letter P", "brown hoodie with ABC print"],
+  "palette": {
+    "cap": "#CFE8C8",
+    "hoodie": "#6B4A3A",
+    "trousers": "#2B2F36",
+    "skin": "#E8B48F"
+  },
+  "forbidden": [
+    "no changes to cap colour or the letter P",
+    "no other text on clothes besides ABC",
+    "no extra limbs or fingers"
+  ],
+  "voice": {"pitch": 1.07, "mood": "коротко и прямо", "notes": "высокий, звонкий, без «рекламной» интонации"}
+}

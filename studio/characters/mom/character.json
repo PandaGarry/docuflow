@@ -1,0 +1,21 @@
+{
+  "id": "mom",
+  "label": "Мама",
+  "role": "единственный взрослый в комнате",
+  "desc": "a mom, 31 years old, softly rounded silhouette, long wavy light-brown hair with side-swept bangs, round friendly face, light blue-gray eyes, brown puffer vest over a white top, thin gold cross necklace, dark jeans, cozy slippers",
+  "height_heads": 6.2,
+  "signature_props": ["brown puffer vest", "thin gold cross necklace", "wavy hair with side-swept bangs"],
+  "palette": {
+    "hair": "#9A7856",
+    "vest": "#5B4034",
+    "top": "#F5F1E8",
+    "jeans": "#2F3540",
+    "skin": "#E8B48F"
+  },
+  "forbidden": [
+    "no changes to hair length or bangs direction",
+    "no earrings, no rings, no bag",
+    "necklace must stay a single thin chain with one small cross"
+  ],
+  "voice": {"pitch": 1.0, "mood": "спокойно, с усталостью в конце фразы", "notes": "средний, тёплый"}
+}

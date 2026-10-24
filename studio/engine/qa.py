@@ -163,27 +163,74 @@ def green_fringe(rgb: np.ndarray, mask: np.ndarray) -> float:
     return float((dom > 18).mean())
 
 
+def _runs(row: np.ndarray, min_frac: float = 0.06) -> int:
+    """Число «существенных» отрезков силуэта в строке.
+
+    Мелкие отрезки (прядь волос, блик, зазор у капюшона) не считаются:
+    берём только отрезки шире ``min_frac`` от ширины силуэта в этой строке.
+    """
+    r = row.astype(np.int8)
+    total = int(r.sum())
+    if total == 0:
+        return 0
+    min_w = max(4, total * min_frac)
+    runs, cur = [], 0
+    for v in r:
+        if v:
+            cur += 1
+        elif cur:
+            runs.append(cur)
+            cur = 0
+    if cur:
+        runs.append(cur)
+    return sum(1 for x in runs if x >= min_w)
+
+
 def limb_profile(mask: np.ndarray) -> dict:
-    """Профиль ширины силуэта: ищем подозрительные «лишние» выступы."""
-    rows = mask.sum(axis=1)
-    ys = np.nonzero(rows)[0]
+    """Оценка числа конечностей по «отрезкам» силуэта.
+
+    Логика: руки разведены → в зоне корпуса строка распадается на 3 отрезка
+    (рука / корпус / рука); стоя → в зоне ног 2 отрезка. Считаем медиану по
+    строкам (устойчиво к выбросам) и ловим только грубые аномалии.
+    """
+    h, w = mask.shape
+    ys = np.nonzero(mask.sum(axis=1))[0]
     if len(ys) < 10:
         return {"ok": False, "reason": "пустой силуэт"}
-    top, bottom = ys[0], ys[-1]
-    height = bottom - top
-    # зона ног — нижние 35 %
-    leg_zone = rows[int(top + 0.65 * height):bottom + 1]
-    # ноги читаются как два максимума ширины
-    peaks = 0
-    for i in range(1, len(leg_zone) - 1):
-        if leg_zone[i] > leg_zone[i - 1] and leg_zone[i] >= leg_zone[i + 1]:
-            if leg_zone[i] > max(leg_zone.max() * 0.55, 8):
-                peaks += 1
-    return {"ok": True, "leg_zone_peaks": peaks, "height": int(height)}
+    top, bottom = int(ys[0]), int(ys[-1])
+    height = max(bottom - top, 1)
+
+    if h / max(w, 1) < 1.8:
+        return {"ok": True, "portrait": True, "legs": None, "arms": None, "height": height}
+
+    def median_runs(y0: float, y1: float) -> int:
+        vals = []
+        for y in range(int(top + y0 * height), int(top + y1 * height) + 1, 4):
+            if 0 <= y < h and mask[y].any():
+                vals.append(_runs(mask[y]))
+        if not vals:
+            return 0
+        vals.sort()
+        return vals[len(vals) // 2]
+
+    legs = median_runs(0.74, 1.0)
+    arms = median_runs(0.32, 0.60)
+    return {"ok": True, "portrait": False, "legs": legs, "arms": arms, "height": height}
 
 
-def check_asset(path: str, min_h: int = 600, max_clusters: int = 22,
-                palette_dE: float = 14.0) -> Report:
+STYLE_THRESHOLDS = {
+    # плоский 2D: жёсткие пороги по кластерам цвета, широкая палитра
+    "flat": {"clusters": 22, "dE": 14.0},
+    # объёмный painterly: мягкие тени и подсветка дают много оттенков
+    "volumetric": {"clusters": 48, "dE": 18.0},
+}
+
+
+def check_asset(path: str, min_h: int = 600, max_clusters: int | None = None,
+                palette_dE: float | None = None, style: str = "volumetric") -> Report:
+    th = STYLE_THRESHOLDS.get(style, STYLE_THRESHOLDS["volumetric"])
+    max_clusters = th["clusters"] if max_clusters is None else max_clusters
+    palette_dE = th["dE"] if palette_dE is None else palette_dE
     rep = Report(path=os.path.basename(path))
     img = Image.open(path)
     w, h = img.size
@@ -232,12 +279,17 @@ def check_asset(path: str, min_h: int = 600, max_clusters: int = 22,
             f"{fringe:.1%} краевых пикселей с зелёным сдвигом")
 
     prof = limb_profile(mask)
-    if prof.get("ok"):
-        peaks = prof["leg_zone_peaks"]
-        rep.add("профиль конечностей", 1 <= peaks <= 3,
-                f"{peaks} пик(ов) ширины в зоне ног (норма 1–3)")
+    if not prof.get("ok"):
+        rep.add("конечности (грубо)", False, prof.get("reason", "не посчитан"), level="warn")
+    elif prof.get("portrait"):
+        rep.add("конечности (грубо)", None, "портретный ассет: проверяется глазами",
+                level="manual")
     else:
-        rep.add("профиль конечностей", False, prof.get("reason", "не посчитан"), level="warn")
+        legs, arms = prof["legs"], prof["arms"]
+        ok = 1 <= legs <= 3 and 1 <= arms <= 4
+        rep.add("конечности (грубо)", ok,
+                f"медиана отрезков в строке: ноги {legs} (норма 1–3), "
+                f"корпус {arms} (норма 1–4)")
 
     # палитра и «перегруз деталями»
     px = rgb[mask]
@@ -312,8 +364,7 @@ def main() -> None:
     paths = args.assets or [os.path.join(SEARCH, "style-tests"),
                             os.path.join(SEARCH, "characters"),
                             os.path.join(SEARCH, "assets")]
-    files = [f for f in collect(paths) if "style-tests" in f or "characters" in f
-             or "assets" in f]
+    files = [f for f in collect(paths) if not os.path.basename(f).startswith("_")]
     if not files:
         print("нет файлов для проверки")
         return

@@ -1,5 +1,9 @@
 # family_studio — студия семейного мультсериала
 
+> **Стиль выбран: B — стилизованный объём.** Правила — [`docs/13-STYLE-B.md`](docs/13-STYLE-B.md).
+> Мастер-ассеты героев и процесс заготовок — [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md).
+> Переезд в репозиторий `family_studio` — [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md).
+
 Репозиторий-студия: здесь лежат **не просто видео**, а полный производственный
 процесс — герои, стиль, движок анимации, сценарии серий, QA-чеклисты и
 пошаговый план. Любая серия пересобирается из исходников одной командой.
@@ -25,9 +29,30 @@ studio/
 python3 -m venv .venv
 .venv/bin/pip install pillow numpy imageio-ffmpeg fonttools brotli
 
-.venv/bin/python studio/engine/rig_demo.py   # демо «живой» анимации -> studio/out/rig-demo.mp4
-.venv/bin/python studio/engine/qa.py         # автопроверка ассетов -> studio/out/qa-report.md
+# движок анимации
+.venv/bin/python studio/engine/rig_demo.py          # демо живой анимации -> studio/out/rig-demo.mp4
+
+# заготовки ассетов: нарезка turnaround, вырезка, реестр, контакт-листы, проверка
+.venv/bin/python studio/engine/artgen.py slice
+.venv/bin/python studio/engine/artgen.py cut
+.venv/bin/python studio/engine/artgen.py registry
+.venv/bin/python studio/engine/artgen.py sheet
+.venv/bin/python studio/engine/artgen.py verify
+
+# авто-QA -> studio/out/qa-report.md
+.venv/bin/python studio/engine/qa.py --assets studio/characters
 ```
+
+## Герои: мастер-ассеты (стиль B)
+
+| Герой | Turnaround (3 вида) | Портрет-идентичность | Виды | Позы |
+|-------|--------------------|----------------------|------|------|
+| Папа | ✅ | ✅ | 3/3 | point ✅ · wave/think/carry/surprise ⏳ |
+| Мама | ✅ | ✅ | 3/3 | stern ✅ · wave/think/carry/surprise ⏳ |
+| Сын | ✅ | ✅ | 3/3 | point ✅ · wave/think/carry/surprise ⏳ |
+
+`⏳` — в `studio/characters/registry.json` уже лежат готовые промпты: каждая
+новая поза генерируется **с мастерами в референсах**, поэтому лицо не «съезжает».
 
 Демо рига — техническая сцена на процедурном «болванчике» (не финальный арт).
 Она показывает именно механику: IK-изгибы локтей, anticipation, прыжок со
@@ -40,7 +65,7 @@ python3 -m venv .venv
 |------|-----|--------|
 | 0 | Уборка репозитория, каркас студии | ✅ готово |
 | 1 | Тесты стилей (4 варианта × 2 кадра) | ✅ готово, **ждём ваш выбор** (`docs/12`) |
-| 2 | Арт-библия героев (turnaround, позы, мимика) | ⏳ после выбора стиля |
+| 2 | Арт-библия героев (turnaround, позы, мимика) | 🟡 мастера готовы, позы в работе |
 | 3 | Движок рига: скелет, IK, вторичная анимация | ✅ работает, демо собрано |
 | 4 | Липсинк и озвучка серии | ⏳ схема готова |
 | 5 | Пилотная серия 1 | ⏳ сценарий в `docs/07` |
@@ -62,7 +87,10 @@ python3 -m venv .venv
 | [`docs/09-PROMPT-COOKBOOK.md`](docs/09-PROMPT-COOKBOOK.md) | Промпты, негативы, консистентность героев |
 | [`docs/10-AUDIO.md`](docs/10-AUDIO.md) | Голоса, музыка, звук, громкость |
 | [`docs/11-LICENSING.md`](docs/11-LICENSING.md) | Лицензии и права на образы семьи |
-| [`docs/12-STYLE-TESTS.md`](docs/12-STYLE-TESTS.md) | Сравнение 4 стилей и рекомендация |
+| [`docs/12-STYLE-TESTS.md`](docs/12-STYLE-TESTS.md) | Сравнение 4 стилей (история решения) |
+| [`docs/13-STYLE-B.md`](docs/13-STYLE-B.md) | **Выбранный стиль B**: правила, риски, анимация |
+| [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md) | Заготовки: мастера, реестр, команды, добавление героя |
+| [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md) | Переезд в репозиторий `family_studio` |
 
 ## Важно
 
