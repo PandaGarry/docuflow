@@ -25,7 +25,10 @@ import timeline as tl  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCENES_DIR = os.path.join(HERE, "assets", "scenes")
-FONTS_DIR = os.path.join(HERE, "assets", "fonts")
+# шрифты общие для всех роликов репозитория
+FONTS_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "shared", "fonts"))
+if not os.path.isdir(FONTS_DIR):
+    FONTS_DIR = os.path.join(HERE, "assets", "fonts")
 OUT_DIR = os.path.join(HERE, "out")
 AUDIO_MIX = os.path.join(HERE, "audio", "mix.wav")
 
