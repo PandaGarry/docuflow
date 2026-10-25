@@ -109,6 +109,81 @@ def leg_ik(pose: RIG.Pose, skel: RIG.Skeleton, side: str,
     return pose
 
 
+def arm_ik(pose: RIG.Pose, skel: RIG.Skeleton, side: str,
+           hand_target: np.ndarray, elbow_hint=None, wrist: float = 0.0,
+           passes: int = 2) -> RIG.Pose:
+    """Довести кисть в мировую точку: IK руки по цели.
+
+    Без этого рука — маятник: жест «помаши», «покажи на», «руки в боки»
+    поставить нечем. Решение: две кости аналитически, затем перевод мировых
+    поворотов в локальные (минимальным поворотом, без скрутки).
+
+    `elbow_hint` — куда смотрит локоть (по умолчанию вниз-назад): локоть
+    задаётся полюсом, иначе рука «выворачивается».
+    """
+    tgt = np.asarray(hand_target, np.float64)
+    for _ in range(max(1, passes)):
+        fk = RIG.forward_kinematics(skel, pose)
+        sh = fk[f"upperarm.{side}"]["head"]
+        el = fk[f"forearm.{side}"]["head"]
+        wr = fk[f"hand.{side}"]["head"]
+        l1 = skel.bones[f"upperarm.{side}"].length
+        l2 = skel.bones[f"forearm.{side}"].length
+
+        if elbow_hint is None:
+            hint = sh + np.array([0.0, -0.35, -0.55]) * (1.0 if side == "L" else 1.0)
+        else:
+            hint = np.asarray(elbow_hint, np.float64)
+
+        mid, end = RIG.solve_two_bone(sh, el, wr, tgt, hint)
+
+        # мировые направления в позе покоя
+        def rest_dir(name):
+            b = skel.bones[name]
+            d = b.tail - b.head
+            return d / max(np.linalg.norm(d), 1e-12)
+
+        d_up, d_fore = rest_dir(f"upperarm.{side}"), rest_dir(f"forearm.{side}")
+
+        # --- плечо
+        rw_up = fk[f"upperarm.{side}"]["rot"]
+        cur = rw_up @ d_up
+        want = mid - sh
+        if np.linalg.norm(want) > 1e-9:
+            d_rot = RIG.rot_between(cur, want / np.linalg.norm(want))
+            rw_up_new = d_rot @ rw_up
+        else:
+            rw_up_new = rw_up
+        parent_up = fk[f"clavicle.{side}"]["rot"]
+        pose.rot[f"upperarm.{side}"] = parent_up.T @ rw_up_new
+
+        # --- предплечье (пересчитываем после поворота плеча)
+        fk = RIG.forward_kinematics(skel, pose)
+        rw_fore = fk[f"forearm.{side}"]["rot"]
+        cur2 = rw_fore @ d_fore
+        want2 = end - mid
+        if np.linalg.norm(want2) > 1e-9:
+            d2 = RIG.rot_between(cur2, want2 / np.linalg.norm(want2))
+            rw_fore_new = d2 @ rw_fore
+        else:
+            rw_fore_new = rw_fore
+        pose.rot[f"forearm.{side}"] = rw_up_new.T @ rw_fore_new
+
+        # --- кисть: разворот вокруг оси предплечья + наклон
+        pose.rot[f"hand.{side}"] = RIG.euler(0.0, wrist, 0.0)
+    return pose
+
+
+def toe_roll(pose: RIG.Pose, skel: RIG.Skeleton, side: str, angle: float) -> RIG.Pose:
+    """Перекат с пятки на носок: носок работает как отдельный шарнир.
+
+    Без этого стопа весь шаг «деревянная»: обувь поворачивается вокруг
+    щиколотки и на отрыве задирает носок в воздух.
+    """
+    pose.rot[f"toe.{side}"] = RIG.euler(angle, 0, 0)
+    return pose
+
+
 # --------------------------------------------------------------------------- #
 # ходьба
 # --------------------------------------------------------------------------- #
@@ -162,7 +237,12 @@ class Walk(Animation):
             k = phase / self.duty
             z = self.stride * (0.5 - k)
             y = self.ankle_y
-            pitch = -0.40 * RIG.Ease.in_(max(0.0, (k - 0.70) / 0.30), 2.0)
+            # отрыв пятки: пятка поднимается, носок остаётся на земле,
+            # поэтому щиколотка поднимается и чуть уходит вперёд
+            heel = RIG.Ease.in_(max(0.0, (k - 0.68) / 0.32), 2.0)
+            pitch = 0.55 * heel
+            y += 0.055 * heel
+            z += 0.02 * heel
         else:                                       # перенос
             k = (phase - self.duty) / (1 - self.duty)
             p0, p1 = -self.stride * 0.5, self.stride * 0.5
@@ -174,9 +254,8 @@ class Walk(Animation):
             h11 = k3 - k2
             z = h00 * p0 + h10 * v0n + h01 * p1 + h11 * v1n
             y = self.ankle_y + self.step_height * 0.5 * (1 - math.cos(2 * math.pi * k))
-            pitch = -0.42 * math.sin(math.pi * k) ** 1.5 * (1 - k)
+            pitch = -0.16 * math.sin(math.pi * k)
         return np.array([x, y, z]), pitch
-
 
     def pose_at(self, t: float) -> RIG.Pose:
         u = (t / self.cycle) % 1.0
@@ -215,6 +294,8 @@ class Walk(Animation):
             # цель НЕ двигается вместе с корпусом: стопа стоит на земле,
             # а приседание корпуса компенсируется сгибом колена
             leg_ik(pose, self.skel, side, tgt, foot_pitch=pitch)
+            # на отрыве пятки носок догибается — перекат, а не «деревянная» стопа
+            toe_roll(pose, self.skel, side, -max(0.0, pitch) * 0.9)
         return pose
 
 
@@ -259,6 +340,133 @@ class Idle(Animation):
             pose.euler(f"forearm.{side}", x=-0.22 - 0.02 * br)
             tgt = np.array([sgn * self.ankle_x, self.ankle_y, 0.0])
             leg_ik(pose, self.skel, side, tgt, foot_pitch=0.0)
+        return pose
+
+
+# --------------------------------------------------------------------------- #
+# вторичное движение
+# --------------------------------------------------------------------------- #
+
+class Secondary(Animation):
+    """Вторичка: голова отстаёт от корпуса (follow-through).
+
+    В живой анимации голова не едет жёстко с грудью: она запаздывает на 2–4
+    кадра и чуть «перелетает». Здесь это считается честно — берётся поза в
+    момент t − lag, и поворот шеи/головы смешивается с ней. Никакой магии:
+    то же движение, но с задержкой, поэтому на разгонах и торможениях
+    появляется естественный «хвост».
+    """
+
+    def __init__(self, base: Animation, lag: float = 0.07, gain: float = 0.65,
+                 bones=("neck", "head")):
+        self.base = base
+        self.lag = lag
+        self.gain = gain
+        self.bones = bones
+        self.duration = base.duration
+        self.loop = base.loop
+
+    def pose_at(self, t: float) -> RIG.Pose:
+        now = self.base.pose_at(t)
+        prev = self.base.pose_at(t - self.lag)
+        out = now.copy()
+        for b in self.bones:
+            a = now.rot.get(b, np.eye(3))
+            c = prev.rot.get(b, np.eye(3))
+            out.rot[b] = RIG.slerp(a, c, self.gain)
+        return out
+
+
+# --------------------------------------------------------------------------- #
+# жесты (руки по цели)
+# --------------------------------------------------------------------------- #
+
+class Gesture(Idle):
+    """Жест поверх покоя: рука доводится IK-ом до цели в мире.
+
+    Смысл: комедия играется руками — «помаши», «покажи», «руки в боки»,
+    «хлопни себя по лбу». Без IK рук эти позы поставить нечем.
+    """
+
+    def __init__(self, skel: RIG.Skeleton, *, cycle: float = 3.2):
+        super().__init__(skel, cycle=cycle)
+
+    def reach(self, pose: RIG.Pose, side: str, target, hint=None,
+              wrist: float = 0.0) -> RIG.Pose:
+        return arm_ik(pose, self.skel, side, np.asarray(target, np.float64),
+                      elbow_hint=hint, wrist=wrist)
+
+    def _shoulder(self, fk, side):
+        return fk[f"upperarm.{side}"]["head"]
+
+
+class Wave(Gesture):
+    """Машет рукой: кисть ходит дугой, корпус и голова слегка в такт."""
+
+    duration = 3.0
+
+    def __init__(self, skel, *, side: str = "L", cycle: float = 3.0,
+                 height: float = 1.60, out: float = 0.42):
+        super().__init__(skel, cycle=cycle)
+        self.side, self.height, self.out = side, height, out
+
+    def pose_at(self, t: float) -> RIG.Pose:
+        pose = super().pose_at(t)
+        sgn = 1.0 if self.side == "L" else -1.0
+        sway = math.sin(2 * math.pi * t / 0.55)          # 0.55 с на взмах
+        fk = RIG.forward_kinematics(self.skel, pose)
+        sh = fk[f"upperarm.{self.side}"]["head"]
+        target = np.array([sgn * (self.out + 0.075 * sway),
+                           self.height + 0.03 * math.cos(2 * math.pi * t / 0.55),
+                           0.10 + 0.03 * sway])
+        # полюс локтя — низко и наружу: иначе локоть уходит вверх и рука
+        # складывается над головой вместо «помахать»
+        hint = sh + np.array([sgn * 0.30, -1.10, -0.30])
+        self.reach(pose, self.side, target, hint, wrist=0.25 * sway)
+        pose.euler("spine", x=-0.03, z=-sgn * 0.04)
+        pose.euler("chest", y=sgn * 0.04)
+        pose.euler("head", x=-0.04, z=sgn * 0.05)
+        return pose
+
+
+class HandsOnHips(Gesture):
+    """Руки в боки — «ну и что это было?»."""
+
+    def __init__(self, skel, *, cycle: float = 4.0):
+        super().__init__(skel, cycle=cycle)
+
+    def pose_at(self, t: float) -> RIG.Pose:
+        pose = super().pose_at(t)
+        fk = RIG.forward_kinematics(self.skel, pose)
+        for side, sgn in (("L", 1.0), ("R", -1.0)):
+            sh = fk[f"upperarm.{side}"]["head"]
+            target = np.array([sgn * 0.245, 0.92, -0.005])
+            hint = sh + np.array([sgn * 0.80, -0.25, -0.50])
+            self.reach(pose, side, target, hint, wrist=sgn * 0.5)
+        pose.euler("spine", x=-0.02)
+        pose.euler("chest", x=-0.03)
+        pose.euler("head", x=-0.03)
+        return pose
+
+
+class PointArm(Gesture):
+    """Показывает рукой вперёд-вверх (в камеру)."""
+
+    def __init__(self, skel, *, cycle: float = 3.4, side: str = "R"):
+        super().__init__(skel, cycle=cycle)
+        self.side = side
+
+    def pose_at(self, t: float) -> RIG.Pose:
+        pose = super().pose_at(t)
+        sgn = 1.0 if self.side == "L" else -1.0
+        fk = RIG.forward_kinematics(self.skel, pose)
+        sh = fk[f"upperarm.{self.side}"]["head"]
+        breathe = 0.01 * math.sin(2 * math.pi * t / 1.6)
+        target = np.array([sgn * 0.235, sh[1] + 0.06 + breathe, 0.60])
+        hint = sh + np.array([sgn * 0.40, -0.80, -0.20])
+        self.reach(pose, self.side, target, hint, wrist=0.1)
+        pose.euler("chest", y=-sgn * 0.05)
+        pose.euler("head", y=-sgn * 0.06, x=-0.02)
         return pose
 
 

@@ -782,23 +782,61 @@ def _():
                        sk.bones[name].length) < 1e-9
 
 
-@check("анимация: шаг — стопа стоит на земле в фазе опоры, поза конечна")
+@check("риг: IK руки доводит кисть в цель")
+def _():
+    import numpy as np
+    import rig3d as RIG
+    import animation as AN
+    import body3d as B
+    sk = RIG.Skeleton.from_proportions(B.Proportions())
+    rest = RIG.forward_kinematics(sk, RIG.Pose())
+    for side, sgn in (("L", 1.0), ("R", -1.0)):
+        sh = rest[f"upperarm.{side}"]["head"]
+        for off in ([sgn * 0.05, -0.30, 0.22], [sgn * 0.25, 0.12, 0.35],
+                    [sgn * 0.30, 0.02, 0.05]):
+            tgt = sh + np.asarray(off)
+            pose = AN.arm_ik(RIG.Pose(), sk, side, tgt)
+            fk = RIG.forward_kinematics(sk, pose)
+            err = float(np.linalg.norm(fk[f"hand.{side}"]["head"] - tgt))
+            assert err < 0.01, (side, off, err)
+
+
+@check("анимация: перекат стопы — носок на земле, пока пятка поднимается")
+def _():
+    import numpy as np
+    import rig3d as RIG
+    import animation as AN
+    import body3d as B
+    sk = RIG.Skeleton.from_proportions(B.Proportions())
+    walk = AN.Walk(sk, cycle=0.92, stride=0.46, step_height=0.13)
+    ank, toes = [], []
+    for k in range(14):
+        u = 0.55 + k * 0.005                     # конец опоры: отрыв пятки
+        t = u * walk.cycle
+        fk = RIG.forward_kinematics(sk, walk.pose_at(t))
+        ank.append(float(fk["foot.L"]["head"][1]))
+        toes.append(float(fk["toe.L"]["tail"][1]))
+    assert max(ank) - min(ank) > 0.015, ("пятка должна отрываться", min(ank), max(ank))
+    assert max(toes) - min(toes) < 0.02, ("носок не должен улетать", min(toes), max(toes))
+
+
+@check("анимация: шаг — опора без скольжения, поза конечна")
 def _():
     import numpy as np
     import animation as AN
     import rig3d as RIG
     import body3d as B
     sk = RIG.Skeleton.from_proportions(B.Proportions())
-    walk = AN.Walk(sk, cycle=0.92, stride=0.5, step_height=0.12)
+    walk = AN.Walk(sk, cycle=0.92, stride=0.46, step_height=0.12)
     for side in ("L", "R"):
         ys = []
         for k in range(24):
             t = k * walk.cycle / 24
             u = (t / walk.cycle + (0.0 if side == "L" else 0.5)) % 1.0
-            if u < walk.duty - 0.02:
+            if u < walk.duty * 0.55:              # первая половина опоры: стопа лежит
                 fk = RIG.forward_kinematics(sk, walk.pose_at(t))
                 ys.append(float(fk[f"foot.{side}"]["head"][1]))
-        assert ys and (max(ys) - min(ys)) < 0.03, (side, min(ys), max(ys))
+        assert ys and (max(ys) - min(ys)) < 0.012, (side, min(ys), max(ys))
     pose = walk.pose_at(0.31)
     for name, rot in pose.rot.items():
         assert np.all(np.isfinite(rot)), name

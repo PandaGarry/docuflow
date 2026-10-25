@@ -37,11 +37,20 @@ def ffmpeg_bin() -> str:
 
 def make_anim(kind: str, skel, args):
     if kind == "walk":
-        return AN.Walk(skel, cycle=args.cycle, stride=0.46, step_height=0.13,
+        base = AN.Walk(skel, cycle=args.cycle, stride=0.46, step_height=0.13,
                        bob=0.028, sway=0.024, arm_swing=0.46)
-    if kind == "idle":
-        return AN.Idle(skel, cycle=4.2)
-    raise SystemExit(f"неизвестная анимация: {kind}")
+    elif kind == "idle":
+        base = AN.Idle(skel, cycle=4.2)
+    elif kind == "wave":
+        base = AN.Wave(skel, cycle=3.0)
+    elif kind == "hips":
+        base = AN.HandsOnHips(skel, cycle=4.0)
+    elif kind == "point":
+        base = AN.PointArm(skel, cycle=3.4)
+    else:
+        raise SystemExit(f"неизвестная анимация: {kind}")
+    # вторичка: голова запаздывает от корпуса
+    return AN.Secondary(base, lag=0.07, gain=0.55) if not args.no_secondary else base
 
 
 def camera_for(kind: str, H: float, view: str) -> R3.Camera:
@@ -56,7 +65,8 @@ def camera_for(kind: str, H: float, view: str) -> R3.Camera:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("kind", choices=["walk", "idle"])
+    ap.add_argument("kind", choices=["walk", "idle", "wave", "hips", "point"])
+    ap.add_argument("--no-secondary", action="store_true")
     ap.add_argument("--seconds", type=float, default=2.8)
     ap.add_argument("--fps", type=int, default=24)
     ap.add_argument("--size", type=int, nargs=2, default=[480, 820])
