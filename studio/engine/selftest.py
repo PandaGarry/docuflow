@@ -697,6 +697,50 @@ def _():
         assert abs(tilt) < 12.0, (t, "наклон корпуса", round(tilt, 1))
 
 
+@check("3д: объём рисуется без дырок и без «шахматки»")
+def _():
+    """Базовый инвариант 3D-рендерера: замкнутая поверхность → сплошной силуэт."""
+    import numpy as np
+    import render3d as R3
+    sph = R3.sphere(1.0, seg=32, rings=24)
+    sph.color = np.array([0.8, 0.6, 0.5])
+    cam = R3.Camera(eye=(0, 0, 4.0), target=(0, 0, 0), fov=32)
+    img = R3.render([sph], (160, 160), cam, ss=1, background=None)
+    a = img[..., 3]
+    assert a[80, 80] == 255, "центр сферы должен быть непрозрачным"
+    assert a[0, 0] == 0 and a[-1, -1] == 0, "фон должен остаться прозрачным"
+    disc = ((np.mgrid[0:160, 0:160][1] - 79.5) ** 2 +
+            (np.mgrid[0:160, 0:160][0] - 79.5) ** 2) < 55 ** 2
+    assert int((a[disc] < 250).sum()) == 0, "внутри сферы не должно быть дырок"
+
+
+@check("3д: тело собирается из пропорций и масштабируется целиком")
+def _():
+    import numpy as np
+    import body3d as B
+    import render3d as R3
+    small = B.Proportions(height=1.0)
+    big = B.Proportions(height=2.0)
+    assert abs(small.head_h * 2 - big.head_h) < 1e-9
+    parts_s = B.build_body(small, eyes=False)
+    parts_b = B.build_body(big, eyes=False)
+    vy_s = max(m.verts[:, 1].max() for m in parts_s)
+    vy_b = max(m.verts[:, 1].max() for m in parts_b)
+    # макушка масштабируется ровно с ростом (в пределах 3 %)
+    assert abs(vy_b / vy_s - 2.0) < 0.06, (vy_s, vy_b)
+    # ни одна деталь не вылезает выше макушки и ниже пола
+    assert max(vy_s, vy_b / 2) < 1.02, "геометрия выше макушки"
+    assert min(m.verts[:, 1].min() for m in parts_s) >= -0.01, "геометрия ниже пола"
+    # все замкнутые тела ориентированы наружу (иначе рисуется изнанка)
+    for m in parts_s:
+        assert m.volume() > 0, f"{m.name}: нормали внутрь"
+    # оболочка торса: одна поверхность, все вершины задействованы
+    mesh = R3.loft([{"y": 0.0, "rx": 0.1, "rz": 0.08},
+                    {"y": 0.2, "rx": 0.12, "rz": 0.09}], seg=16)
+    assert len(np.unique(mesh.tris)) == len(mesh.verts)
+    assert len(mesh.tris) > 30
+
+
 @check("арт-риг: пределы позы считаются (подъём руки ловится)")
 def _():
     import kit
