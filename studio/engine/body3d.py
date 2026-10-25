@@ -464,6 +464,15 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
     head = parts[0]
     head.color = _skin_shading(p, head.verts, skin)
 
+    # --- вихор: три пряди, зачёсанные назад над линией роста волос ---------
+    for i, dph in enumerate((-0.22, 0.0, 0.22)):
+        base = head_point(p, 0.860, math.pi / 2 + dph, 1.030)
+        blob = R3.sphere(1.0, seg=20, rings=14,
+                         scale=(0.034 * H, 0.014 * H, 0.046 * H))
+        blob = blob.transformed(R3._rot_x(-0.48) @ R3._rot_y(dph * 0.6))
+        blob.verts += base + np.array([0.0, 0.008 * H, 0.002 * H])
+        put(blob, hair, "hair")
+
     # --- нос: спинка → кончик → ноздри ------------------------------------
     nose_col = tuple(float(c) for c in np.clip(
         np.asarray(skin) * np.array([1.05, 0.94, 0.93]), 0.0, 1.0))
@@ -499,14 +508,14 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
 
     # --- глаза -------------------------------------------------------------
     if eyes:
-        t_eye, d_eye = 0.560, 0.415
+        t_eye, d_eye = 0.558, 0.420
         for side in (-1, 1):
             ph = math.pi / 2 + side * d_eye
-            put(head_spot(p, t_eye, ph, 0.056, 0.180, out=1.024, rings=5, nphi=40),
+            put(head_spot(p, t_eye, ph, 0.062, 0.196, out=1.024, rings=5, nphi=44),
                 (0.96, 0.95, 0.93), "eye")
-            put(head_spot(p, t_eye - 0.002, ph, 0.040, 0.112, out=1.034,
-                          rings=4, nphi=32), (0.30, 0.18, 0.11), "iris")
-            put(head_spot(p, t_eye - 0.002, ph, 0.020, 0.056, out=1.042,
+            put(head_spot(p, t_eye + 0.001, ph, 0.044, 0.126, out=1.034,
+                          rings=4, nphi=34), (0.30, 0.18, 0.11), "iris")
+            put(head_spot(p, t_eye + 0.001, ph, 0.022, 0.062, out=1.042,
                           rings=3, nphi=22), (0.05, 0.04, 0.04), "pupil")
             put(head_spot(p, t_eye + 0.014, ph - side * 0.040, 0.011, 0.028,
                           out=1.050, rings=2, nphi=16), (1.0, 1.0, 1.0), "glint")
@@ -542,7 +551,7 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
     pts, rad = [], []
     for u in np.linspace(-1.0, 1.0, 19):
         t = t_m + 0.030 * u * u
-        ph = math.pi / 2 + u * 0.34
+        ph = math.pi / 2 + u * 0.42
         pts.append(head_point(p, t, ph, 1.016))
         rad.append((0.0060 - 0.0038 * u * u) * H)
     put(R3.tube(np.array(pts), np.array(rad), seg=16), (0.33, 0.15, 0.14), "mouth")
@@ -550,7 +559,7 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
     lip_pts, lip_rad = [], []
     for u in np.linspace(-0.78, 0.78, 13):
         t = t_m - 0.030 + 0.022 * u * u
-        ph = math.pi / 2 + u * 0.28
+        ph = math.pi / 2 + u * 0.34
         lip_pts.append(head_point(p, t, ph, 1.032))
         lip_rad.append((0.0086 - 0.0058 * u * u) * H)
     put(R3.tube(np.array(lip_pts), np.array(lip_rad), seg=14),
@@ -716,11 +725,11 @@ def limb_parts(p: Proportions, colors: dict | None = None, joints: dict | None =
 
         # рукав «реглан»: начинается внутри торса, поэтому линия плеча
         # получается наклонной, а не полкой с шаром сверху
-        p0 = np.array([sh[0] - sgn * 0.095 * H, sh[1] - 0.034 * H,
+        p0 = np.array([sh[0] - sgn * 0.040 * H, sh[1] - 0.030 * H,
                        sh[2] - 0.004 * H])
         path, rad = smooth_path([p0, sh, el, wr],
-                                [0.052 * H * p.bulk, 0.055 * H * p.bulk,
-                                 0.038 * H * p.bulk, 0.031 * H * p.bulk],
+                                [0.048 * H * p.bulk, 0.046 * H * p.bulk,
+                                 0.036 * H * p.bulk, 0.030 * H * p.bulk],
                                 per_seg=8)
         # торцы трубы плоские: скруглённый торец вылезал бы из торса
         put(R3.tube(path, rad, seg=26, round_caps=False), top, "arm")
