@@ -29,6 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 import face as F  # noqa: E402
+import audio as A  # noqa: E402
 import scene as S  # noqa: E402
 import kit  # noqa: E402
 import library as L  # noqa: E402
@@ -530,6 +531,32 @@ def _():
                 assert cur.t0 >= prev.t1 - 1e-9, (prev, cur)
             for sp in spans:
                 assert sp.t0 >= 0 and sp.t1 <= float(shot["dur"]) + 1e-6, sp
+
+
+@check("сцена: промо валидно и рендерится покадрово")
+def _():
+    sc = S.load_scene("promo-s01")
+    assert not S.validate_scene(sc), S.validate_scene(sc)
+    assert 17.0 < S.duration(sc) < 20.0, S.duration(sc)
+    img = S.still(sc, 16.0, quality="preview")
+    assert img.size == tuple(sc["size"])
+
+
+@check("звук: трек ровно нужной длины, без клиппинга, WAV читается")
+def _():
+    import tempfile
+    import wave
+
+    mono = A.make_bed(2.5, 112.0)
+    assert abs(len(mono) / A.SR - 2.5) < 1e-6, len(mono) / A.SR
+    assert float(abs(mono).max()) <= 1.0 + 1e-6
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "bed.wav")
+        A.write_wav(path, mono)
+        with wave.open(path) as w:
+            assert w.getnchannels() == 2 and w.getframerate() == A.SR
+            dur = w.getnframes() / w.getframerate()
+            assert abs(dur - 2.5) < 1e-3, dur
 
 
 # --------------------------------------------------------------------------- #

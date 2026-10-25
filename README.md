@@ -50,6 +50,12 @@ python3 -m venv .venv
 .venv/bin/python studio/engine/scene.py validate
 .venv/bin/python studio/engine/scene.py render s01e01-shot01
 
+# промо-шортс (титры, музыка, 18 с) -> studio/out/promo-s01.mp4
+.venv/bin/python studio/engine/scene.py render promo-s01 --quality high
+.venv/bin/python studio/engine/audio.py bed --seconds 18.6 --out studio/out/promo-bed.wav
+.venv/bin/python studio/engine/audio.py mux --video studio/out/promo-s01-silent.mp4 \
+    --audio studio/out/promo-bed.wav --out studio/out/promo-s01.mp4
+
 # авторинг без кода: новая поза / эмоция
 .venv/bin/python studio/engine/kit.py pose-save lean_wall --bones "spine:-6,head:-3" --label "У стены"
 .venv/bin/python studio/engine/kit.py expr-save smug --face "lid=0.35,smile=0.35,mouth_skew=0.55"
@@ -141,7 +147,7 @@ python3 -m venv .venv
 | [`docs/07-SERIES-PLAN.md`](docs/07-SERIES-PLAN.md) | Сезон 1: 12 серий и сквозной сюжет |
 | [`docs/08-ROADMAP.md`](docs/08-ROADMAP.md) | Пошаговый план: что делаем и в каком порядке |
 | [`docs/09-PROMPT-COOKBOOK.md`](docs/09-PROMPT-COOKBOOK.md) | Промпты, негативы, консистентность героев |
-| [`docs/10-AUDIO.md`](docs/10-AUDIO.md) | Голоса, музыка, звук, громкость |
+| [`docs/10-AUDIO.md`](docs/10-AUDIO.md) | Голоса, музыка (синтез в репозитории), громкость |
 | [`docs/11-LICENSING.md`](docs/11-LICENSING.md) | Лицензии и права на образы семьи |
 | [`docs/12-STYLE-TESTS.md`](docs/12-STYLE-TESTS.md) | Сравнение 4 стилей (история решения) |
 | [`docs/13-STYLE-B.md`](docs/13-STYLE-B.md) | **Выбранный стиль B**: правила, риски, анимация |

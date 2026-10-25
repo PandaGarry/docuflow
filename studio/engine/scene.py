@@ -344,19 +344,30 @@ def _camera(canvas, camera: dict, w: int, h: int):
 
 
 def _caption(canvas, text: str, w: int, h: int) -> None:
-    from PIL import Image, ImageDraw, ImageFont
+    """Субтитр-плашка снизу: автоподбор кегля, чтобы длинная фраза не вылезала."""
+    from PIL import ImageDraw, ImageFont
 
     path = os.path.join(STUDIO, "fonts", "Nunito-700.ttf")
-    size = max(16, int(h * 0.032))
-    font = ImageFont.truetype(path, size) if os.path.exists(path) else ImageFont.load_default()
+    size = max(14, int(h * 0.028))
     d = ImageDraw.Draw(canvas)
+
+    def load(px: int):
+        return (ImageFont.truetype(path, max(px, 8))
+                if os.path.exists(path) else ImageFont.load_default())
+
+    font = load(size)
+    max_w = w * 0.90
+    while d.textbbox((0, 0), text, font=font)[2] > max_w and size > 12:
+        size = int(size * 0.93)
+        font = load(size)
+
     bbox = d.textbbox((0, 0), text, font=font)
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
     x = (w - tw) / 2
-    y = h * 0.90
+    y = h * 0.905
     pad = size * 0.45
-    d.rounded_rectangle([x - pad, y - pad * 0.6, x + tw + pad, y + th + pad * 0.9],
-                        radius=int(size * 0.5), fill=(20, 16, 14, 170))
+    d.rounded_rectangle([x - pad, y - pad * 0.55, x + tw + pad, y + th + pad * 0.85],
+                        radius=int(size * 0.5), fill=(20, 16, 14, 200))
     d.text((x, y), text, font=font, fill=(252, 248, 240, 255))
 
 
@@ -373,21 +384,92 @@ def still(scene: dict, t: float, quality: str = "high"):
 
 
 def _finish(shot: dict, scene: dict, t: float, quality: str):
-    from PIL import Image
-
     img = _compose(shot, scene, t, quality)
+    if shot.get("title"):
+        _title(img, shot["title"], img.width, img.height)
     if shot.get("caption"):
         _caption(img, str(shot["caption"]), img.width, img.height)
+
+    fade = float(shot.get("fade", 0.0))
+    if fade > 0:
+        dur = float(shot["dur"])
+        k = min(t / fade, (dur - t) / fade, 1.0)
+        if k < 1.0:
+            img = _black(img, max(k, 0.0))
     return img.convert("RGB")
 
 
-def duration(scene: dict) -> float:
-    return sum(float(s.get("dur", 0)) for s in scene["shots"])
+def _black(img, k: float):
+    """Затемнение кадра для перехода (k=0 — чёрный, 1 — как есть)."""
+    from PIL import Image
+
+    black = Image.new("RGBA", img.size, (8, 6, 5, 255))
+    return Image.blend(black, img, R.clamp(k))
+
+
+def _title(img, data: dict, w: int, h: int) -> None:
+    """Крупный титр: «стикер» с автоподбором размера, чтобы не вылезал за кадр."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    text = str(data.get("text", ""))
+    sub = str(data.get("sub", ""))
+    if not text and not sub:
+        return
+    y = float(data.get("y", 0.10))
+    size = int(h * float(data.get("size", 0.062)))
+    max_w = w * float(data.get("width", 0.86))
+
+    big_path = os.path.join(STUDIO, "fonts", "Montserrat-800.ttf")
+    sub_path = os.path.join(STUDIO, "fonts", "Nunito-700.ttf")
+
+    def load(path, px):
+        return (ImageFont.truetype(path, max(int(px), 8))
+                if os.path.exists(path) else ImageFont.load_default())
+
+    # автоподбор: уменьшаем кегль, пока строка не влезет (русский длиннее латиницы)
+    big = load(big_path, size)
+    probe = ImageDraw.Draw(img)
+    while probe.textbbox((0, 0), text, font=big)[2] > max_w and size > 12:
+        size = int(size * 0.94)
+        big = load(big_path, size)
+    small = load(sub_path, size * 0.42)
+    sub_size = size * 0.42
+    while sub and probe.textbbox((0, 0), sub, font=small)[2] > max_w and sub_size > 10:
+        sub_size *= 0.94
+        small = load(sub_path, sub_size)
+
+    box_t = probe.textbbox((0, 0), text, font=big)
+    tw, th = box_t[2] - box_t[0], box_t[3] - box_t[1]
+    box_s = probe.textbbox((0, 0), sub, font=small) if sub else (0, 0, 0, 0)
+    sw, sh = box_s[2] - box_s[0], box_s[3] - box_s[1]
+
+    pad_x, pad_y = size * 0.42, size * 0.34
+    block_w = max(tw, sw) + pad_x * 2
+    block_h = th + (sh + size * 0.34 if sub else 0) + pad_y * 2
+    x0 = (w - block_w) / 2
+    y0 = h * y
+    card = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    dc = ImageDraw.Draw(card)
+    dc.rounded_rectangle([x0, y0, x0 + block_w, y0 + block_h],
+                         radius=int(size * 0.34), fill=(253, 247, 238, 238),
+                         outline=(59, 42, 38, 60), width=max(1, int(size * 0.03)))
+    img.alpha_composite(card)
+
+    d = ImageDraw.Draw(img)
+    d.text((x0 + (block_w - tw) / 2, y0 + pad_y), text, font=big, fill=data.get("color", "#3B2A26"))
+    if sub:
+        d.text((x0 + (block_w - sw) / 2, y0 + pad_y + th + size * 0.16), sub, font=small,
+               fill=data.get("sub_color", "#7A6458"))
 
 
 # --------------------------------------------------------------------------- #
 # mp4
 # --------------------------------------------------------------------------- #
+
+
+def duration(scene: dict) -> float:
+    """Длительность сцены в секундах (сумма кадров)."""
+    return sum(float(s.get("dur", 0)) for s in scene["shots"])
 
 
 def render(scene: dict, out: str | None = None, *, quality: str = "high",
@@ -509,8 +591,10 @@ def _cmd_info(args) -> None:
     for i, shot in enumerate(scene["shots"]):
         people = ", ".join(f"{a['char']}(x={a.get('x', 0.5)})" for a in shot["actors"])
         say = " / ".join(s.get("text", "") for a in shot["actors"] for s in a.get("say", []))
+        title = (shot.get("title") or {}).get("text")
         print(f"  {i + 1}. {acc:5.2f}–{acc + shot['dur']:5.2f} с · {people}"
-              + (f" · «{say}»" if say else ""))
+              + (f" · «{say}»" if say else "")
+              + (f" · титр «{title}»" if title else ""))
         acc += float(shot["dur"])
 
 

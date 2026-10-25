@@ -15,13 +15,88 @@
 (`admin/push`) не заменяют прав приложения — Git-транспорт и REST-запись ходят
 через разные авторизации.
 
-## Что нужно от вас (одно из)
+## Как выдать права (пошагово)
 
-1. **Дать приложению доступ к `family_studio`** — Settings → Applications →
-   Arena (или установленный GitHub App) → Configure → Repository access →
-   добавить `family_studio` → **Permissions → Contents: Read and write**.
-2. **Скопировать содержимое сами** одной командой (см. ниже) — тогда доступ не
-   нужен вовсе.
+### Что именно сломано — по факту замера
+
+Приложение, которым я хожу в GitHub: **`arena-ai-coding-agent`** (установка на ваш
+аккаунт). Проверка двух репозиториев одним и тем же токеном:
+
+| Проверка | `docuflow` | `family_studio` |
+|---|---|---|
+| `POST /repos/<repo>/git/blobs` (нужен Contents: write) | ✅ `sha` вернулся | ❌ `403 Resource not accessible by integration` |
+| `git push` | ✅ | ❌ `403 Permission ... denied` |
+| `GET /repos/<repo>` (чтение) | ✅ | ✅ |
+
+Вывод: **дело не в правах вашего аккаунта** (в API у вас `admin/push`) и не в
+видимости репозитория, а в том, что токен выписан/установка ограничена
+конкретным репозиторием сессии. Поэтому починка — не «настройки репозитория», а
+привязка **Arena ↔ репозиторий** + права приложения.
+
+### Шаг 1. В Arena: подключить репозиторий к сессии (главный шаг)
+
+1. Настройки/подключения → **GitHub** → **Manage / Repository access**.
+2. Включить `family_studio` (и оставить `docuflow`), сохранить.
+3. Если пункта с репозиториями нет: **Disconnect GitHub → Connect GitHub** и в
+   окне установки выбрать **Only select repositories** → `PandaGarry/family_studio`
+   (и `PandaGarry/docuflow`).
+4. После изменения доступа **начать новую сессию/чат** — токен выписывается при
+   старте, в уже открытой сессии он останется старым.
+
+### Шаг 2. На GitHub: проверить права приложения
+
+1. Откройте `https://github.com/settings/installations`.
+2. У `arena-ai-coding-agent` → **Configure**.
+3. **Repository access**: `All repositories` *или* `Only select repositories` →
+   добавить `family_studio` → **Save**.
+4. **Permissions** (если раздел доступен): `Contents: Read and write`,
+   `Metadata: Read`, `Pull requests: Read and write`.
+5. Если GitHub показывает **«Review permission request»** — подтвердить.
+
+### Шаг 3. Если пушите сами, своим токеном
+
+Fine-grained token (рекомендуется):
+`Settings → Developer settings → Personal access tokens → Fine-grained tokens →
+Generate new token`
+
+* **Repository access** → `Only select repositories` → `family_studio`
+* **Permissions**: `Contents: Read and write`, `Metadata: Read`,
+  `Pull requests: Read and write` (и `Workflows: Read and write`, если когда-то
+  будем пушить `.github/workflows/`)
+* Срок — минимальный разумный (30–90 дней)
+
+Classic token (быстрее, но шире по правам): scope **`repo`**.
+
+⚠️ Токен **не** нужно присылать в чат: он нужен только вашей локальной git-сессии.
+Я работаю с тем, что настроено в песочнице, и пароли/токены не запрашиваю.
+
+### Шаг 4. Проверка за 30 секунд
+
+```bash
+# 1) есть ли запись у приложения (вернётся sha — значит есть)
+gh api -X POST repos/PandaGarry/family_studio/git/blobs -f content=probe -f encoding=utf-8
+
+# 2) пускает ли git-транспорт (ничего не отправит)
+git push --dry-run https://github.com/PandaGarry/family_studio.git HEAD:refs/heads/probe
+
+# 3) кто вообще авторизован
+gh auth status
+```
+
+Если (1) даёт `sha`, а (2) — `403`, значит `gh` и `git` ходят разными токенами:
+смотреть `git config --get credential.helper` и `git credential fill`.
+
+### Шаг 5. Защита ветки `main` (частая причина отказа после выдачи прав)
+
+Переезд делает `push --force` (история переписывается, чтобы в ней не осталось
+личных фото). Если на `main` включена защита:
+
+`Settings → Branches → Branch protection rules` → правило для `main` →
+либо снять правило на время переезда, либо включить **Allow force pushes**
+(для владельца). После переезда защиту можно вернуть.
+
+Если форсить `main` не хочется — скажите, и я сделаю переезд **без** force:
+пуш в отдельную ветку `migration/privacy` + PR, который вы смержите сами.
 
 ## Перенос одной командой
 
