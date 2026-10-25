@@ -280,16 +280,16 @@ def _torso_sections(p: Proportions) -> list[dict]:
     H = p.height
     hh = p.head_frac
     half_sh = p.shoulder_w * hh / 2
-    depth = (0.50 * p.chest_d + 0.30) * p.hip_w * hh / 2 * 2.0
+    depth = (0.50 * p.chest_d + 0.44) * p.hip_w * hh / 2 * 2.0
     belly = p.belly
     # (доля роста, ширина в «полу-плечах», сдвиг вперёд)
     prof = [
-        (p.hip_y - 0.030, 0.66, 0.000),
-        (p.hip_y + 0.010, 0.76, 0.006),
-        (p.hip_y + 0.070, 0.80, 0.012 * belly),
-        (p.hip_y + 0.135, 0.84, 0.014 * belly),
-        (p.hip_y + 0.200, 0.91, 0.010),
-        (p.hip_y + 0.260, 0.97, 0.004),
+        (p.hip_y - 0.030, 0.66, -0.010),          # ягодицы: назад
+        (p.hip_y + 0.010, 0.76, -0.004),
+        (p.hip_y + 0.070, 0.80, 0.010 * belly),   # живот: вперёд
+        (p.hip_y + 0.135, 0.84, 0.013 * belly),
+        (p.hip_y + 0.200, 0.91, 0.009),
+        (p.hip_y + 0.260, 0.97, 0.003),
         (p.shoulder_y - 0.030, 1.00, 0.000),
         (p.shoulder_y - 0.002, 0.93, -0.002),
         (p.shoulder_y + 0.012, 0.62, -0.006),
@@ -417,6 +417,36 @@ def torso_parts(p: Proportions, colors: dict | None = None, *,
     return parts
 
 
+
+def shoe_mesh(p: Proportions, h: float = 1.0) -> R3.Mesh:
+    """Колодка ботинка: единая оболочка от пятки к носку.
+
+    Раньше обувь была одним скруглённым параллелепипедом — в профиль она
+    читалась как «ласта». Здесь сечение меняется по длине: пятка круглая,
+    подъём высокий, носок шире и ниже; получается честный объём.
+    """
+    H = p.height
+    # (положение по длине вперёд от щиколотки, полуширина, полувысота, центр по высоте)
+    prof = [
+        (-0.055, 0.020, 0.026, 0.030),
+        (-0.045, 0.026, 0.034, 0.038),
+        (-0.028, 0.030, 0.040, 0.044),
+        (-0.005, 0.031, 0.042, 0.046),
+        (0.022, 0.031, 0.034, 0.038),
+        (0.055, 0.030, 0.026, 0.030),
+        (0.082, 0.027, 0.022, 0.026),
+        (0.098, 0.020, 0.018, 0.022),
+        (0.104, 0.010, 0.012, 0.016),
+    ]
+    sections = [{"y": -z * H * h, "rx": rx * H * h, "rz": rz * H * h,
+                 "cz": cy * H * h} for z, rx, rz, cy in prof]
+    mesh = R3.loft(sections, seg=30)
+    # (x, длина, высота) -> (x, высота, вперёд): поворот на 90° вокруг X
+    rot = np.array([[1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, -1.0, 0.0]])
+    mesh.verts = mesh.verts @ rot.T
+    mesh.normals = mesh.normals @ rot.T
+    return mesh
+
 def limb_parts(p: Proportions, colors: dict | None = None, joints: dict | None = None,
                rots: dict | None = None, rest: dict | None = None) -> list[R3.Mesh]:
     """Руки и ноги ПО ПОЗЕ: гладкая труба по суставам + жёсткие кисти и стопы.
@@ -513,9 +543,8 @@ def limb_parts(p: Proportions, colors: dict | None = None, joints: dict | None =
         rest_a = np.asarray(rest_j[f"ankle.{side}"], np.float64)
         prost = rot_foot = rots.get(side, {}).get("foot", np.eye(3))
         # стопа строится от щиколотки вниз-вперёд
-        shoe = R3.roundbox((0.096 * H, 0.062 * H, 0.172 * H),
-                           center=rest_a + np.array([0.0, -0.045 * H, 0.040 * H]),
-                           roundness=3.0, seg=28, rings=16)
+        shoe = shoe_mesh(p)
+        shoe.verts = shoe.verts + rest_a
         put(rigid(shoe, rest_a, an, rot_foot), shoes, "shoe")
 
     return parts
