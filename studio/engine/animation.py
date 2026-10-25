@@ -199,7 +199,7 @@ class Walk(Animation):
                  stride: float = 0.38, step_height: float = 0.09,
                  bob: float = 0.022, sway: float = 0.020,
                  duty: float = 0.62, arm_swing: float = 0.40,
-                 lean: float = 0.045, ground_z: float = 0.14,
+                 lean: float = 0.030, ground_z: float = 0.14,
                  crouch: float = 0.022):
         self.skel = skel
         self.duration = cycle

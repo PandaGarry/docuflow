@@ -512,9 +512,14 @@ def _normalize(v: np.ndarray) -> np.ndarray:
 
 
 def _shade(n: np.ndarray, albedo: np.ndarray, ao: np.ndarray,
-           L: Lights, view: np.ndarray) -> np.ndarray:
-    """`view` — направление из камеры в точку, одной строкой на фрагмент."""
-    """Цвет фрагментов: hemisphere + key(wrap) + fill + rim, с AO."""
+           L: Lights, view: np.ndarray, rough: np.ndarray | None = None) -> np.ndarray:
+    """`view` — направление из камеры в точку; `rough` — шероховатость 0..1.
+
+    Без блика материал читается «пластилиновым»: у кожи, губ, глаз и обуви в
+    референсе есть мягкое отражение ключевого света. Поэтому здесь
+    Blinn-Phong с шириной, зависящей от шероховатости (шерсть/худи — матовые,
+    кожа и глаза — с мягким бликом).
+    """
     n = n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-9)
     up = n[:, 1:2] * 0.5 + 0.5
     amb = (np.asarray(L.sky) * up + np.asarray(L.ground) * (1 - up)) * L.ambient
@@ -532,6 +537,20 @@ def _shade(n: np.ndarray, albedo: np.ndarray, ao: np.ndarray,
     rim = np.clip(1.0 - np.abs(n @ vdir), 0, 1) ** 3.0
     rim = (rim * L.rim_power)[:, None] * np.asarray(L.rim_color)
     lit = albedo * (amb + key + fill) + rim
+
+    if rough is not None:
+        # блик: половинный вектор между светом и наблюдателем
+        h = L.key_dir - vdir
+        h = h / max(float(np.linalg.norm(h)), 1e-9)
+        spec = np.clip(n @ h, 0.0, 1.0) ** (4.0 + 140.0 * (1.0 - rough) ** 2)
+        gain = 0.30 * (1.0 - rough) ** 1.6
+        lit = lit + (spec * gain)[:, None] * np.asarray(L.key_color)
+        # узкая «искра» от контрового света: оживляет контур головы и плеч
+        h2 = L.rim_dir - vdir
+        h2 = h2 / max(float(np.linalg.norm(h2)), 1e-9)
+        spec2 = np.clip(n @ h2, 0.0, 1.0) ** (6.0 + 160.0 * (1.0 - rough) ** 2)
+        lit = lit + (spec2 * (0.16 * (1.0 - rough) ** 2))[:, None] * np.asarray(
+            L.rim_color)
     return lit
 
 
@@ -606,6 +625,7 @@ def render(meshes: list[Mesh] | Mesh, size: tuple[int, int], camera: Camera,
     N = m.normals[tri]                                          # (M,3,3)
     C = np.broadcast_to(np.asarray(m.color, np.float64), (len(m.verts), 3))[tri]
     A = np.broadcast_to(np.asarray(m.ao, np.float64), (len(m.verts),))[tri]
+    R = np.broadcast_to(np.asarray(m.rough, np.float64), (len(m.tris),))[tri]
 
     # Перспективно-корректная глубина: интерполируем 1/w, а не z. Иначе на
     # крупных треугольниках глубина врёт сильнее, чем расстояние между
@@ -688,6 +708,7 @@ def render(meshes: list[Mesh] | Mesh, size: tuple[int, int], camera: Camera,
         nz = (N[sel_f, 0] * b0[:, None] + N[sel_f, 1] * b1[:, None] + N[sel_f, 2] * b2[:, None])
         alb = (C[sel_f, 0] * b0[:, None] + C[sel_f, 1] * b1[:, None] + C[sel_f, 2] * b2[:, None])
         ao = (A[sel_f, 0] * b0 + A[sel_f, 1] * b1 + A[sel_f, 2] * b2)
+        rg = (R[sel_f, 0] * b0 + R[sel_f, 1] * b1 + R[sel_f, 2] * b2)
 
         # ---------------------------------------------------------------- #
         # z-тест с ЧЕСТНЫМ разрешением конфликтов ВНУТРИ батча.
@@ -715,7 +736,9 @@ def render(meshes: list[Mesh] | Mesh, size: tuple[int, int], camera: Camera,
         pick = fw[first]
         gxi, gyi, iw = gxi[pick], gyi[pick], iw[pick]
         nz, alb, ao = nz[pick], alb[pick], ao[pick]
-        lit = _shade(nz, alb, ao, L, np.broadcast_to(view_dir, (len(iw), 3)))
+        rg = rg[pick]
+        lit = _shade(nz, alb, ao, L, np.broadcast_to(view_dir, (len(iw), 3)),
+                     rough=np.clip(rg, 0.0, 1.0))
         zbuf[gyi, gxi] = iw
         cbuf[gyi, gxi] = np.clip(lit, 0.0, 1.0)
         abuf[gyi, gxi] = 1.0
