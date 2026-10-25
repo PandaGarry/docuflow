@@ -369,6 +369,10 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
                           out=1.058, rings=2, nphi=16), (1.0, 1.0, 1.0), "glint")
             put(head_spot(p, t_eye + 0.075, ph, 0.036, 0.208, out=1.034,
                           rings=4, nphi=36), skin, "lid")
+            # линия ресниц: тонкая тёмная полоска по верхнему веку — без неё
+            # глаз «наклеенный», с ней появляется взгляд
+            put(head_spot(p, t_eye + 0.052, ph, 0.012, 0.198, out=1.036,
+                          rings=3, nphi=32), (0.14, 0.10, 0.09), "lash")
             put(head_spot(p, t_eye - 0.062, ph, 0.018, 0.190, out=1.030,
                           rings=3, nphi=30), skin, "lid_lo")
             put(head_spot(p, t_eye + 0.108, ph - side * 0.012, 0.028, 0.200,
