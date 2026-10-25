@@ -215,10 +215,15 @@ def validate_scene(scene: dict) -> list[str]:
 def pose_at(painter: puppet.Painter, track: list[tuple[float, str]], t: float,
             blend: float = 0.28) -> R.Skeleton:
     """Поза на момент t: ключи + плавный переход за `blend` секунд до ключа."""
+    rig_id = painter.spec.get("rig", "humanoid_v1")
+
+    def build(pid: str):
+        return painter.build(R.pose_deltas(pid, rig_id))
+
     if not track:
-        return painter.build("idle")
+        return build("idle")
     if t <= track[0][0] or len(track) == 1:
-        return painter.build(track[0][1])
+        return build(track[0][1])
 
     idx = 0
     for i, (kt, _) in enumerate(track):
@@ -226,26 +231,31 @@ def pose_at(painter: puppet.Painter, track: list[tuple[float, str]], t: float,
             idx = i
     pid_a = track[idx][1]
     if idx + 1 >= len(track):
-        return painter.build(pid_a)
+        return build(pid_a)
     pid_b = track[idx + 1][1]
     t_b = track[idx + 1][0]
     span = min(blend, max((t_b - track[idx][0]) * 0.6, 1e-3))
     k = R.clamp((t - (t_b - span)) / span)
     k = R.ease_in_out(k)
     if k <= 0.0 or pid_a == pid_b:
-        return painter.build(pid_a)
+        return build(pid_a)
 
-    sk = painter.build(pid_a)
-    a = R.pose_data(pid_a, painter.spec.get("rig", "humanoid_v1"))["bones"]
-    b = R.pose_data(pid_b, painter.spec.get("rig", "humanoid_v1"))["bones"]
-    for name, bone in sk.bones.items():
-        va = float(a.get(name, 0.0))
-        vb = float(b.get(name, 0.0))
-        bone.angle = bone.rest + math.radians(va + (vb - va) * k)
-    ra = R.pose_data(pid_a, painter.spec.get("rig", "humanoid_v1")).get("root") or (0, 0)
-    rb = R.pose_data(pid_b, painter.spec.get("rig", "humanoid_v1")).get("root") or (0, 0)
-    sk.bones["root"].origin = (ra[0] + (rb[0] - ra[0]) * k, ra[1] + (rb[1] - ra[1]) * k)
-    return sk.solve()
+    # Переход считаем между скелетами, собранными из `pose_deltas`: у зеркальных
+    # поз (`"mirror_of"`) сырой словарь хранит углы с поворотом на 180°, и
+    # интерполяция таких чисел разворачивала персонажа набок прямо в кадре.
+    sk_a = build(pid_a)
+    sk_b = build(pid_b)
+    for name, bone in sk_a.bones.items():
+        other = sk_b.bones.get(name)
+        if other is None:
+            continue
+        # кратчайший путь по кругу: 350° → 10° это +20°, а не -340°
+        diff = (other.angle - bone.angle + math.pi) % (2 * math.pi) - math.pi
+        bone.angle = bone.angle + diff * k
+    ra = sk_a.bones["root"].origin
+    rb = sk_b.bones["root"].origin
+    sk_a.bones["root"].origin = (ra[0] + (rb[0] - ra[0]) * k, ra[1] + (rb[1] - ra[1]) * k)
+    return sk_a.solve()
 
 
 def face_at(actor: dict, t: float, expr_track, spans, blinks, seed: int) -> F.Face:
@@ -295,6 +305,41 @@ def actor_spans(actor: dict) -> list:
 # --------------------------------------------------------------------------- #
 
 
+def _make_painter(spec: dict, opts: "puppet.RenderOpts", renderer: str):
+    """Выбрать рендерер персонажа.
+
+    * `"toon"`  — арт-риг: рисует нарисованный мастер (стиль B). Медленнее, но
+      это финальный вид. Требования к позам — `toon.pose_issues`.
+    * `"puppet"` — векторная кукла: только превиз, быстрый тайминг.
+    """
+    if renderer == "toon":
+        import toon
+        return toon.ToonPainter(spec, opts)
+    return puppet.Painter(spec, opts)
+
+
+def pose_problems(scene: dict) -> list[str]:
+    """Позы сцены, которые арт-риг не отрисует чисто (пределы одного рисунка)."""
+    import toon
+    issues: list[str] = []
+    cache: dict[str, object] = {}
+    for shot in scene["shots"]:
+        for actor in shot["actors"]:
+            cid = actor["char"]
+            if cid not in cache:
+                cache[cid] = toon.ArtRig(kit.load_character(cid), ss=1,
+                                         work_height=560, limb_split="whole")
+            rig = cache[cid]
+            track = _track(actor.get("pose"), "pose", float(shot["dur"]))
+            for _t, pose_id in track:
+                for msg in toon.pose_issues(
+                        rig, rig.build(R.pose_deltas(pose_id, spec.get("rig", "humanoid_v1")))):
+                    entry = f"{cid}/{pose_id}: {msg}"
+                    if entry not in issues:
+                        issues.append(entry)
+    return issues
+
+
 def _compose(shot: dict, scene: dict, t: float, quality: str) -> "object":
     from PIL import Image
 
@@ -310,7 +355,7 @@ def _compose(shot: dict, scene: dict, t: float, quality: str) -> "object":
                                  ground=float(actor.get("ground", shot.get("ground", 0.93))),
                                  offset_x=float(actor.get("x", 0.5)) - 0.5,
                                  zoom=scale, alpha=True)
-        painter = puppet.Painter(spec, opts)
+        painter = _make_painter(spec, opts, str(scene.get("renderer") or "puppet"))
         track = _track(actor.get("pose"), "pose", float(shot["dur"]))
         sk = pose_at(painter, track, t)
         R.apply_pose(sk, "breath", weight=0.55 + 0.35 * math.sin((t + float(actor.get("phase", 0))) * 2.1),

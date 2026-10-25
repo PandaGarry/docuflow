@@ -559,6 +559,155 @@ def _():
             assert abs(dur - 2.5) < 1e-3, dur
 
 
+@check("арт-риг: скелет сажается по силуэту у всех персонажей")
+def _():
+    import kit
+    import toon
+    for cid in ("dad", "mom", "son"):
+        rig = toon.ArtRig(kit.load_character(cid), work_height=600, ss=1)
+        m = rig.measure
+        # плечи, бёдра и стопы скелета совпадают с мерками арта (±3 % роста)
+        tol = 0.03 * m["h"]
+        for bone, key in (("upper_arm.r", "shoulder_y"), ("hips", "hip_y")):
+            got = rig.to_px(*rig.sk_rest.bones[bone].world_pos)[1]
+            assert abs(got - m[key]) < tol, (cid, bone, got, m[key])
+        foot = rig.to_px(*rig.sk_rest.tip("foot.r"))[1]
+        assert abs(foot - m["bottom"]) < tol, (cid, "foot", foot, m["bottom"])
+
+
+@check("арт-риг: кадр в нужном размере, на прозрачном фоне, рисунок мастера")
+def _():
+    import kit
+    import toon
+    rig = toon.MeshRig(kit.load_character("dad"), work_height=600, ss=1,
+                       grid_x=32, grid_y=48)
+    img = rig.frame(rig.build("idle"), None, size=(240, 480))
+    assert img.size == (240, 480) and img.mode == "RGBA"
+    alpha = __import__("numpy").asarray(img)[..., 3]
+    covered = float((alpha > 20).mean())
+    assert 0.2 < covered < 0.9, covered          # персонаж в кадре, фон прозрачный
+
+
+@check("арт-риг: rest-поза совпадает с рисунком мастера")
+def _():
+    """Главный инвариант: без движения арт-риг обязан отдавать сам мастер.
+
+    Любая ошибка в скиннинге (сдвинутые веса, дыры от альфы, «осколки» цвета)
+    мгновенно ломает это сравнение. Порог 4/255 — только сглаживание контура.
+    """
+    import numpy as np
+    import kit
+    import toon
+    for cid in ("dad", "mom", "son"):
+        rig = toon.ArtRig(kit.load_character(cid), work_height=560, ss=1)
+        size = rig.work_size
+        got = np.asarray(rig.frame(rig.sk_rest, None, size=size), np.float32)
+        src = np.asarray(rig.art, np.float32)
+        both = (got[..., 3] > 150) & (src[..., 3] > 150)
+        diff = np.abs(got[..., :3] - src[..., :3]).mean(axis=2)[both]
+        assert float(diff.mean()) < 4.0, (cid, "среднее расхождение", float(diff.mean()))
+        assert float(np.percentile(diff, 95)) < 14.0, cid
+        # и ни одного «дырявого» пикселя внутри плотного рисунка
+        holes = int(((got[..., 3] < 60) & (src[..., 3] > 250)).sum())
+        assert holes < 0.001 * both.sum(), (cid, "дырок", holes)
+
+
+@check("арт-риг: лицо размечено в character.json и мимика попадает в лицо")
+def _():
+    import kit
+    import toon
+    for cid in ("dad", "mom", "son"):
+        spec = kit.load_character(cid)
+        face = (spec.get("art") or {}).get("face") or {}
+        assert face.get("eye_l") and face.get("eye_r") and face.get("mouth"), cid
+        rig = toon.ArtRig(spec, work_height=560, ss=1)
+        L = rig.face_layout
+        assert L["source"] == "config", (cid, L["source"])
+        # брови выше глаз, рот ниже — иначе мимика уедет на кепку или подбородок
+        assert L["brow_v"] < L["eyes_v"] < L["mouth_v"], cid
+        # рамка лица не должна залезать на корпус (варп иначе тянет живот)
+        m = rig.measure
+        assert m["top"] - 2 <= L["cy"] - L["r"], (cid, "лицо выше макушки")
+        assert L["cy"] + L["r"] <= m["hip_y"], (cid, "рамка лица залезает на корпус")
+
+
+@check("арт-риг: кисть не «залипает» тёмным цветом штанов при шаге")
+def _():
+    """Регресс: джинсы рисовались поверх руки и оставляли на кисти осколки."""
+    import numpy as np
+    import kit
+    import toon
+    rig = toon.ArtRig(kit.load_character("dad"), work_height=560, ss=2)
+    img = rig.frame(rig.build("walk"), None, size=(320, 640))
+    a = np.asarray(img, np.float32)
+    # область кисти: вокруг конца кости кисти в позе
+    hx, hy = rig.to_px(*rig.build("walk").tip("hand.r"))
+    scale = 320 / rig.work_size[0]
+    cx, cy = hx * scale, hy * scale
+    box = a[max(int(cy) - 22, 0):int(cy) + 22, max(int(cx) - 22, 0):int(cx) + 22]
+    dark = ((box[..., 3] > 200) & (box[..., :3].max(axis=2) < 45))
+    assert dark.mean() < 0.06, ("тёмных осколков на кисти", float(dark.mean()))
+
+
+@check("арт-риг: открытый рот рисуется формой, а не растягивается варпом")
+def _():
+    """В мастере рот закрыт: тянуть из него «открытый» — значит получить смаз."""
+    import numpy as np
+    import kit
+    import toon
+    import face as F
+    spec = kit.load_character("mom")
+    rig = toon.ArtRig(spec, work_height=420, ss=1)
+    w, h = rig.work_size
+    face = spec["art"]["face"]
+    mx, my = face["mouth"][0] * w, face["mouth"][1] * h
+    aw = face["mouth_w"] * w * 0.5 * 0.7
+    bh = face["mouth_h"] * h * 0.5 * 1.6
+    yy, xx = np.mgrid[0:h, 0:w]
+    inside = ((xx - mx) / aw) ** 2 + ((yy - my) / bh) ** 2 <= 1
+
+    def mouth(expr):
+        img = rig.frame(rig.build("idle"), F.Face.from_expression(expr), size=(w, h))
+        return np.asarray(img.convert("RGB"), np.float32)[inside]
+
+    closed = mouth("neutral")
+    opened = mouth("laugh")
+    # внутри рта становится заметно темнее (нарисовано нутро)…
+    assert opened.mean() < closed.mean() - 20, (opened.mean(), closed.mean())
+    # …и появляется светлый язык/зубы, которых в закрытом рту нет
+    assert opened.max() > 200, opened.max()
+
+
+@check("сцена: переход между позами не разворачивает персонажа")
+def _():
+    """Регресс: у зеркальной позы в словаре лежат углы с поворотом на 180°,
+    и интерполяция «сырых» чисел кладёт персонажа набок."""
+    import math
+    import kit
+    import puppet
+    import scene
+    spec = kit.load_character("dad")
+    opts = puppet.RenderOpts(width=360, height=640, quality="low", ground=0.95,
+                             offset_x=0.0, zoom=0.5, alpha=True)
+    painter = scene._make_painter(spec, opts, "toon")
+    track = [(0.0, "idle"), (0.8, "walk_2"), (1.6, "idle")]
+    for t in (0.4, 0.6, 0.8, 1.1):
+        sk = scene.pose_at(painter, track, t)
+        tilt = math.degrees(sk.bones["root"].angle - sk.bones["root"].rest)
+        assert abs(tilt) < 12.0, (t, "наклон корпуса", round(tilt, 1))
+
+
+@check("арт-риг: пределы позы считаются (подъём руки ловится)")
+def _():
+    import kit
+    import toon
+    rig = toon.MeshRig(kit.load_character("dad"), work_height=600, ss=1,
+                       grid_x=24, grid_y=36)
+    assert toon.pose_issues(rig, rig.build("idle")) == []
+    issues = toon.pose_issues(rig, rig.build("celebrate"))
+    assert issues and "ракурс" in issues[0]
+
+
 # --------------------------------------------------------------------------- #
 # итог
 # --------------------------------------------------------------------------- #

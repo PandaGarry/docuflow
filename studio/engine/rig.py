@@ -662,6 +662,43 @@ def pose_data(pose_id: str, rig_id: str = "humanoid_v1") -> dict:
     return data
 
 
+def pose_deltas(pose_id: str, rig_id: str = "humanoid_v1") -> dict:
+    """Поза в «человеческих» градусах от rest, пригодная для смешивания.
+
+    `pose_data` для зеркальной позы отдаёт углы с поворотом на 180° (так устроен
+    `mirror()`: он отражает уже собранный скелет). Смешивать такие числа с
+    обычной позой нельзя — персонаж «заваливается» набок. Здесь зеркальная поза
+    пересчитывается в обычные дельты: кость меняется на парную (r↔l), угол
+    меняет знак. Это ровно то же движение, но без отражения рисунка.
+    """
+    key = ("deltas", rig_id, pose_id)
+    if key in _POSE_DATA_CACHE:
+        return _POSE_DATA_CACHE[key]
+    import library as L
+
+    raw = L.pose(pose_id)
+    src = raw.get("mirror_of")
+    if not src:
+        data = pose_data(pose_id, rig_id)
+        out = {"bones": dict(data.get("bones") or {}),
+               "root": list(data.get("root") or (0.0, 0.0))}
+    else:
+        base = pose_deltas(src, rig_id)
+        bones: dict[str, float] = {}
+        for name, deg in (base.get("bones") or {}).items():
+            if name.endswith(".r"):
+                twin = name[:-2] + ".l"
+            elif name.endswith(".l"):
+                twin = name[:-2] + ".r"
+            else:
+                twin = name
+            bones[twin] = -float(deg)
+        root = base.get("root") or (0.0, 0.0)
+        out = {"bones": bones, "root": [-float(root[0]), float(root[1])]}
+    _POSE_DATA_CACHE[key] = out
+    return out
+
+
 def apply_pose(sk: Skeleton, pose: str | dict, weight: float = 1.0,
                additive: bool = False, reset: bool = True) -> Skeleton:
     """Поставить позу из библиотеки (или словарь) на скелет.

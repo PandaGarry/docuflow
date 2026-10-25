@@ -471,10 +471,30 @@ def validate_character(spec: dict, strict: bool = True) -> list[str]:
     if not isinstance(pitch, (int, float)) or not 0.5 <= float(pitch) <= 2.0:
         problems.append(f"{cid}.voice.pitch={pitch}: ожидалось число 0.5..2.0")
 
+    art = spec.get("art") or {}
+    if art and not isinstance(art, dict):
+        problems.append(f"{cid}.art: ожидался объект")
+    face = (art or {}).get("face") or {}
+    if face:
+        for key in ("eye_l", "eye_r", "mouth"):
+            pt = face.get(key)
+            if not (isinstance(pt, (list, tuple)) and len(pt) == 2 and
+                    all(isinstance(v, (int, float)) and 0.0 <= float(v) <= 1.0 for v in pt)):
+                problems.append(f"{cid}.art.face.{key}: нужны две доли 0..1 от размера "
+                               f"мастера (x, y)")
+        if not problems:
+            ey = (float(face["eye_l"][1]) + float(face["eye_r"][1])) / 2.0
+            if not (float(face["eye_l"][1]) < float(face["mouth"][1])):
+                problems.append(f"{cid}.art.face: рот должен быть ниже глаз")
+            if abs(float(face["eye_l"][0]) - float(face["eye_r"][0])) < 0.01:
+                problems.append(f"{cid}.art.face: глаза не могут быть на одной вертикали")
+            if not 0.02 < ey < 0.6:
+                problems.append(f"{cid}.art.face: глаза слишком высоко/низко ({ey:.2f})")
+
     if strict:
         known = {"schema", "id", "label", "role", "height_heads", "rig", "proportions",
                  "identity", "hair", "palette", "wardrobe", "personality", "forbidden",
-                 "voice", "body", "notes"}
+                 "voice", "body", "notes", "art"}
         for key in set(spec) - known:
             problems.append(f"{cid}: неизвестное поле '{key}' (схема v{SCHEMA_VERSION})")
 
