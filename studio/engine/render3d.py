@@ -554,6 +554,46 @@ def _shade(n: np.ndarray, albedo: np.ndarray, ao: np.ndarray,
     return lit
 
 
+def _grade(rgb: np.ndarray, alpha: np.ndarray, *, exposure: float = 1.02,
+           bloom: float = 0.08, vignette: float = 0.12,
+           saturation: float = 1.12, contrast: float = 1.08) -> np.ndarray:
+    """Финальный грейд кадра: тональная кривая, мягкое свечение, виньетка.
+
+    Без этого честно посчитанный цвет выглядит «сырым»: света выбиваются в
+    белое, тени плоские, картинка кажется пластиковой. Кривая ACES-типа
+    (сжатие светов), слабое свечение от ярких участков и лёгкая виньетка —
+    это ровно то, что отличает «рендер» от «картинки».
+    """
+    x = np.clip(rgb * exposure, 0.0, 1.0)
+    # мягкая кино-кривая: света поджимаются, тени чуть «приподняты», середина
+    # получает небольшой S-изгиб. Без этого кадр выглядит либо «сырым», либо
+    # вымытым (ACES на уже сжатый цвет выбеливает кожу).
+    x = np.clip(x, 0.0, 1.0) ** (1.0 / 1.04)
+    lum = (0.2126 * x[..., 0] + 0.7152 * x[..., 1] + 0.0722 * x[..., 2])[..., None]
+    x = np.clip(lum + (x - lum) * saturation, 0.0, 1.0)
+    x = np.clip((x - 0.5) * contrast + 0.5, 0.0, 1.0)
+
+    if bloom > 0:
+        from PIL import Image
+        h, w = x.shape[:2]
+        lum = (0.2126 * x[..., 0] + 0.7152 * x[..., 1] + 0.0722 * x[..., 2])
+        hot = np.clip(lum - 0.78, 0.0, 1.0)[..., None] * x
+        bw, bh = max(1, w // 6), max(1, h // 6)
+        small = np.asarray(Image.fromarray((np.clip(hot, 0, 1) * 255).astype(np.uint8))
+                           .resize((bw, bh), Image.BILINEAR), np.float32) / 255.0
+        glow = np.asarray(Image.fromarray((small * 255).astype(np.uint8))
+                          .resize((w, h), Image.BILINEAR), np.float32) / 255.0
+        x = np.clip(x + glow * bloom * np.clip(alpha, 0, 1)[..., None], 0.0, 1.0)
+
+    if vignette > 0:
+        yy, xx = np.mgrid[0:x.shape[0], 0:x.shape[1]]
+        ny = (yy - x.shape[0] / 2) / max(x.shape[0] / 2, 1)
+        nx = (xx - x.shape[1] / 2) / max(x.shape[1] / 2, 1)
+        r = np.sqrt(nx * nx + ny * ny) / 1.414
+        x = x * (1.0 - vignette * r[..., None] ** 2)
+    return np.clip(x, 0.0, 1.0)
+
+
 def render(meshes: list[Mesh] | Mesh, size: tuple[int, int], camera: Camera,
            lights: Lights | None = None, *, ss: int = 2,
            background: tuple[float, float, float] | None = None,
@@ -745,6 +785,9 @@ def render(meshes: list[Mesh] | Mesh, size: tuple[int, int], camera: Camera,
 
     alpha = abuf
     rgb = cbuf
+    # финальный грейд — до квантования в 8 бит
+    rgb = _grade(rgb, alpha)
+
     if ss > 1:
         from PIL import Image
         rgb8 = (np.clip(rgb, 0, 1) * 255).astype(np.uint8)
