@@ -49,57 +49,63 @@ class Animation:
 
 def leg_ik(pose: RIG.Pose, skel: RIG.Skeleton, side: str,
            ankle_target: np.ndarray, foot_pitch: float = 0.0,
-           knee_forward: bool = True) -> RIG.Pose:
-    """Поставить стопу в мировую точку, согнув бедро и колено.
+           knee_forward: bool = True, passes: int = 3) -> RIG.Pose:
+    """Поставить стопу в мировую точку: сагиттальный IK + боковая поправка.
 
-    Решение плоское (плоскость Y-Z): для шага и приседа этого достаточно, а
-    боковые «вывороты» колена не появляются в принципе — это и есть главное
-    достоинство плоского решения.
+    Плоское решение (плоскость Y-Z) не даёт выворотов колена. Но при
+    покачивании таза бедро уезжает в сторону, и стопа скользит боком (до 6 см
+    за шаг — это видно). Поэтому после сагиттального решения добавляется
+    поворот бедра вокруг оси «вперёд» и решение повторяется: три прохода
+    сводят ошибку к миллиметрам.
     """
-    fk = RIG.forward_kinematics(skel, pose)
-    hip = fk[f"thigh.{side}"]["head"]
-    l1 = skel.bones[f"thigh.{side}"].length
-    l2 = skel.bones[f"shin.{side}"].length
-
     tgt = np.asarray(ankle_target, np.float64)
-    dy, dz = tgt[1] - hip[1], tgt[2] - hip[2]
-    d = math.hypot(dy, dz)
-    d = min(max(d, abs(l1 - l2) + 1e-3), (l1 + l2) * 0.9995)
+    lateral = 0.0
+    for _ in range(max(1, passes)):
+        fk = RIG.forward_kinematics(skel, pose)
+        hip = fk[f"thigh.{side}"]["head"]
+        l1 = skel.bones[f"thigh.{side}"].length
+        l2 = skel.bones[f"shin.{side}"].length
 
-    # угол направления на цель: 0 — вниз, >0 — назад
-    base = math.atan2(-dz, -dy)
-    cos_a = (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d)
-    a = math.acos(float(np.clip(cos_a, -1.0, 1.0)))
-    sign = -1.0 if knee_forward else 1.0
-    thigh_world = base + sign * a
+        dy, dz = tgt[1] - hip[1], tgt[2] - hip[2]
+        d = math.hypot(dy, dz)
+        d = min(max(d, abs(l1 - l2) + 1e-3), (l1 + l2) * 0.9995)
 
-    # Направление голени НЕ зеркально бедру: считаем колено по треугольнику и
-    # берём направление «колено → цель». Зеркальная формула (base − a) даёт
-    # систематический недолёт стопы на 1–3 см — стопа «плывёт» по полу.
-    knee_y = hip[1] - l1 * math.cos(thigh_world)
-    knee_z = hip[2] - l1 * math.sin(thigh_world)
-    tgt_y = hip[1] - d * math.cos(base)
-    tgt_z = hip[2] - d * math.sin(base)
-    shin_world = math.atan2(-(tgt_z - knee_z), -(tgt_y - knee_y))
+        base = math.atan2(-dz, -dy)          # направление на цель: >0 — назад
+        cos_a = (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d)
+        a = math.acos(float(np.clip(cos_a, -1.0, 1.0)))
+        sign = -1.0 if knee_forward else 1.0
+        thigh_world = base + sign * a
 
-    # ВАЖНО: кости в позе покоя не строго вертикальны, и угол между бедром и
-    # голенью в покое не равен нулю. Без этих поправок стопа не доезжает до
-    # цели на 2–4 см и «плывёт» по полу — глазом это видно сразу.
-    p1 = _pitch(skel.bones[f"thigh.{side}"].tail - skel.bones[f"thigh.{side}"].head)
-    p2 = _pitch(skel.bones[f"shin.{side}"].tail - skel.bones[f"shin.{side}"].head)
-    pelvis_pitch = _pitch(fk["pelvis"]["rot"] @ np.array([0.0, -1.0, 0.0]))
+        # направление голени НЕ зеркально бедру: колено по треугольнику, затем
+        # «колено → цель»; зеркальная формула давала недолёт стопы на 1–3 см
+        knee_y = hip[1] - l1 * math.cos(thigh_world)
+        knee_z = hip[2] - l1 * math.sin(thigh_world)
+        tgt_y = hip[1] - d * math.cos(base)
+        tgt_z = hip[2] - d * math.sin(base)
+        shin_world = math.atan2(-(tgt_z - knee_z), -(tgt_y - knee_y))
 
-    # мировой угол кости = угол её направления в покое + сумма ЛОКАЛЬНЫХ
-    # поворотов по цепочке от корня
-    thigh_local = thigh_world - p1 - pelvis_pitch
-    acc = pelvis_pitch + thigh_local          # накопленный угол в мировых осях
-    shin_local = shin_world - p2 - acc
-    acc += shin_local
-    foot_local = foot_pitch - acc
+        p1 = _pitch(skel.bones[f"thigh.{side}"].tail - skel.bones[f"thigh.{side}"].head)
+        p2 = _pitch(skel.bones[f"shin.{side}"].tail - skel.bones[f"shin.{side}"].head)
+        pelvis_pitch = _pitch(fk["pelvis"]["rot"] @ np.array([0.0, -1.0, 0.0]))
 
-    pose.rot[f"thigh.{side}"] = RIG.euler(thigh_local, 0, 0)
-    pose.rot[f"shin.{side}"] = RIG.euler(shin_local, 0, 0)
-    pose.rot[f"foot.{side}"] = RIG.euler(foot_local, 0, 0)
+        thigh_local = thigh_world - p1 - pelvis_pitch
+        acc = pelvis_pitch + thigh_local
+        shin_local = shin_world - p2 - acc
+        acc += shin_local
+        foot_local = foot_pitch - acc
+
+        pose.rot[f"thigh.{side}"] = RIG.euler(0.0, 0.0, lateral) @ \
+            RIG.euler(thigh_local, 0, 0)
+        pose.rot[f"shin.{side}"] = RIG.euler(shin_local, 0, 0)
+        pose.rot[f"foot.{side}"] = RIG.euler(foot_local, 0, 0)
+
+        fk2 = RIG.forward_kinematics(skel, pose)
+        ex = float(tgt[0] - fk2[f"foot.{side}"]["head"][0])
+        if abs(ex) < 5e-4:
+            break
+        hip2 = fk2[f"thigh.{side}"]["head"]
+        L = float(np.linalg.norm(fk2[f"foot.{side}"]["head"] - hip2))
+        lateral += math.asin(float(np.clip(ex / max(L, 1e-3), -0.5, 0.5)))
     return pose
 
 
@@ -138,20 +144,39 @@ class Walk(Animation):
         self.shoulder_y = float(fk0["upperarm.L"]["head"][1])
 
     def foot_target(self, side: str, u: float):
-        """Цель для стопы (мировые координаты) и наклон стопы."""
+        """Цель для стопы (мировые координаты) и наклон стопы.
+
+        Скорости на стыке фаз СШИВАЮТСЯ. Раньше перенос описывался линейно, и в
+        момент отрыва/касания скорость менялась скачком: ускорение доходило до
+        50+ м/с², стопа визуально «щёлкала». Теперь горизонталь — кубическая
+        кривая Эрмита с той же скоростью на концах, что и у опоры, а подъём —
+        косинусная арка (нулевая вертикальная скорость на земле).
+        """
+        T = self.cycle
+        Ts = self.duty * T              # длительность опоры
+        Tw = (1 - self.duty) * T        # длительность переноса
+        v_ground = self.stride / Ts     # скорость стопы на опоре, м/с
         phase = u % 1.0
         x = self.ankle_x * (1 if side == "L" else -1)
-        if phase < self.duty:                      # опора: стопа едет назад
+        if phase < self.duty:                       # опора
             k = phase / self.duty
             z = self.stride * (0.5 - k)
             y = self.ankle_y
-            pitch = -0.45 * RIG.Ease.in_(max(0.0, (k - 0.62) / 0.38), 2.0)  # отрыв пятки
-        else:                                      # перенос: дуга вперёд
+            pitch = -0.40 * RIG.Ease.in_(max(0.0, (k - 0.70) / 0.30), 2.0)
+        else:                                       # перенос
             k = (phase - self.duty) / (1 - self.duty)
-            z = self.stride * (k - 0.5)
-            y = self.ankle_y + self.step_height * math.sin(math.pi * k) ** 0.9
-            pitch = -0.55 * math.sin(math.pi * k) * (1 - k) * 2.4
+            p0, p1 = -self.stride * 0.5, self.stride * 0.5
+            v0n = v1n = -v_ground * Tw              # нормированные скорости
+            k2, k3 = k * k, k * k * k
+            h00 = 2 * k3 - 3 * k2 + 1
+            h10 = k3 - 2 * k2 + k
+            h01 = -2 * k3 + 3 * k2
+            h11 = k3 - k2
+            z = h00 * p0 + h10 * v0n + h01 * p1 + h11 * v1n
+            y = self.ankle_y + self.step_height * 0.5 * (1 - math.cos(2 * math.pi * k))
+            pitch = -0.42 * math.sin(math.pi * k) ** 1.5 * (1 - k)
         return np.array([x, y, z]), pitch
+
 
     def pose_at(self, t: float) -> RIG.Pose:
         u = (t / self.cycle) % 1.0
