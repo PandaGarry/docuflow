@@ -301,19 +301,19 @@ def _torso_sections(p: Proportions) -> list[dict]:
     return out
 
 
-def build_body(p: Proportions, *, skin=(0.86, 0.62, 0.50), top=(0.72, 0.73, 0.74),
-               bottom=(0.22, 0.26, 0.34), shoes=(0.18, 0.14, 0.12),
-               hair=(0.20, 0.14, 0.10), eyes=True,
-               top_dark=None) -> list[R3.Mesh]:
-    """Собрать блокинг: голова, волосы, нос, уши, борода, шея, торс, руки, ноги.
+def head_parts(p: Proportions, colors: dict | None = None, *,
+               skin=(0.86, 0.62, 0.50), hair=(0.20, 0.14, 0.10),
+               eyes: bool = True) -> list[R3.Mesh]:
+    """Голова и всё лицо ЖЁСТКИМ блоком (череп не гнётся).
 
-    Все размеры считаются от `Proportions`, ни одного «магического» числа в
-    метрах — при смене роста или числа голов перестраивается всё.
+    Черты сажаются по поверхности головы (`head_point`), накладками
+    (`head_shell`, `head_spot`) — поэтому границы чистые, без зубчатой кромки
+    от пересечения шаров с головой.
     """
+    if colors:
+        skin, hair = colors.get("skin", skin), colors.get("hair", hair)
     H = p.height
     hh = p.head_frac
-    if top_dark is None:
-        top_dark = tuple(c * 0.72 for c in top)
     parts: list[R3.Mesh] = []
 
     def put(m, color, name):
@@ -322,41 +322,32 @@ def build_body(p: Proportions, *, skin=(0.86, 0.62, 0.50), top=(0.72, 0.73, 0.74
         parts.append(m)
 
     def hy(t: float) -> float:
-        """Высота на относительной высоте головы t (метры)."""
         return (p.neck_y + t * hh) * H
 
-    head_front = p.head_d * hh / 2       # глубина лица от центра (метры, без H)
-
-    # --- голова ----------------------------------------------------------
     put(R3.loft(_head_sections(p), seg=56), skin, "head")
 
-    # --- волосы: накладка по черепу с ровной линией роста волос -----------
-    # линия роста волос: спереди выше (лоб), сзади ниже (затылок)
+    # волосы: линия роста спереди выше, сзади ниже; толщина растёт к макушке
     hairline = lambda ph: 0.735 - 0.105 * (1.0 - math.sin(ph)) / 2.0
-    # толщина растёт к макушке: получается объёмная причёска, а не шапочка.
-    # Одна поверхность — ни стыков, ни лишних пересечений.
+
     def hair_thickness(t: float, ph: float) -> float:
         k = float(np.clip((t - 0.66) / 0.34, 0.0, 1.0))
-        front = 0.5 + 0.5 * math.sin(ph)             # спереди объёма больше
+        front = 0.5 + 0.5 * math.sin(ph)
         return 1.035 + 0.085 * k ** 1.4 + 0.030 * k * front ** 2
 
     put(head_shell(p, t0=hairline, t1=1.0, phi0=0.0, phi1=2 * math.pi,
                    out=hair_thickness, inner=1.002, nt=14, nphi=56,
                    top_pole=True), hair, "hair")
-    # --- борода: накладка по нижней челюсти, овал лица открыт -------------
-    # верх бороды: у рта низко, к вискам поднимается (бакенбарды)
+
+    # борода: у рта низко, к вискам поднимается
     beard_top = lambda ph: 0.175 + 0.285 * (math.cos(ph) ** 2) ** 0.75
     put(head_shell(p, t0=-0.135, t1=beard_top, phi0=-2.30, phi1=2.30,
-                   out=1.055, inner=1.002, nt=12, nphi=44),
-        hair, "beard")
+                   out=1.055, inner=1.002, nt=12, nphi=44), hair, "beard")
 
-    # --- нос: небольшой объём по центру лица ------------------------------
     nose_base = head_point(p, 0.52, math.pi / 2)
     put(R3.sphere(1.0, seg=22, rings=16,
                   scale=(0.017 * H, 0.021 * H, 0.024 * H),
                   center=nose_base - np.array([0, 0, 0.013 * H])), skin, "nose")
 
-    # --- уши --------------------------------------------------------------
     for side in (-1, 1):
         ear_base = head_point(p, 0.50, 0.0 if side < 0 else math.pi)
         put(R3.sphere(1.0, seg=16, rings=12,
@@ -365,97 +356,189 @@ def build_body(p: Proportions, *, skin=(0.86, 0.62, 0.50), top=(0.72, 0.73, 0.74
             skin, "ear")
 
     if eyes:
-        t_eye, d_eye = 0.560, 0.44          # высота и разлёт глаз в радианах
+        t_eye, d_eye = 0.560, 0.44
         for side in (-1, 1):
             ph = math.pi / 2 + side * d_eye
-            # белок глаза (миндалевидная накладка)
             put(head_spot(p, t_eye, ph, 0.062, 0.200, out=1.026, rings=5, nphi=40),
                 (0.97, 0.96, 0.94), "eye")
-            # радужка почти во весь глаз — так у мастеров стиля B
             put(head_spot(p, t_eye - 0.004, ph, 0.047, 0.125, out=1.038,
                           rings=4, nphi=32), (0.32, 0.19, 0.12), "iris")
             put(head_spot(p, t_eye - 0.004, ph, 0.026, 0.066, out=1.048,
                           rings=3, nphi=22), (0.06, 0.05, 0.05), "pupil")
             put(head_spot(p, t_eye + 0.016, ph - side * 0.050, 0.013, 0.032,
                           out=1.058, rings=2, nphi=16), (1.0, 1.0, 1.0), "glint")
-            # верхнее веко: кожная накладка ПЕРЕД глазом, срезает его верх
             put(head_spot(p, t_eye + 0.075, ph, 0.036, 0.208, out=1.034,
                           rings=4, nphi=36), skin, "lid")
-            # нижнее веко — узкая полоска под глазом
             put(head_spot(p, t_eye - 0.062, ph, 0.018, 0.190, out=1.030,
                           rings=3, nphi=30), skin, "lid_lo")
-            # бровь: толстая, с наклоном наружу
             put(head_spot(p, t_eye + 0.108, ph - side * 0.012, 0.028, 0.200,
                           out=1.042, rings=4, nphi=30), hair, "brow")
 
-    # --- рот: пока «линия губ» (мимика и вижемы — отдельным этапом) --------
     put(head_spot(p, 0.300, math.pi / 2, 0.0110, 0.200, out=1.028, rings=3,
                   nphi=28), (0.36, 0.17, 0.15), "mouth")
+    return parts
 
-    # --- шея --------------------------------------------------------------
-    put(R3.tube([(0, p.shoulder_y * H - 0.02 * H, -0.004 * H),
-                 (0, p.neck_y * H + 0.04 * H, -0.002 * H)],
-                [0.052 * H * p.bulk, 0.044 * H * p.bulk], seg=24), skin, "neck")
 
-    # --- торс -------------------------------------------------------------
-    torso_secs = _torso_sections(p)
-    put(R3.loft(torso_secs, seg=56), top, "torso")
-    # горловина: узкое кольцо-«планка» отделяет голову от туловища
-    collar_r = torso_secs[-1]["rx"] * 0.52
-    put(R3.loft([{"y": torso_secs[-1]["y"] - 0.012 * H, "rx": collar_r, "rz": collar_r * 0.86},
-                 {"y": torso_secs[-1]["y"] + 0.020 * H, "rx": collar_r * 0.96,
-                  "rz": collar_r * 0.82},
-                 {"y": torso_secs[-1]["y"] + 0.040 * H, "rx": collar_r * 0.80,
-                  "rz": collar_r * 0.70}], seg=40), top_dark, "collar")
-    # пояс худи — тёмная полоса по низу торса
-    put(R3.loft([{"y": torso_secs[0]["y"] - 0.012 * H, "rx": torso_secs[0]["rx"] * 1.02,
-                  "rz": torso_secs[0]["rz"] * 1.02},
-                 {"y": torso_secs[0]["y"] + 0.028 * H, "rx": torso_secs[1]["rx"] * 1.01,
-                  "rz": torso_secs[1]["rz"] * 1.01}], seg=48), top_dark, "hem")
+def torso_parts(p: Proportions, colors: dict | None = None, *,
+                top=(0.72, 0.73, 0.74)) -> list[R3.Mesh]:
+    """Торс одной оболочкой + планка горловины и пояс (тёмные вставки)."""
+    if colors:
+        top = colors.get("top", top)
+    top_dark = (colors or {}).get("top_dark") or tuple(c * 0.72 for c in top)
+    H = p.height
+    secs = _torso_sections(p)
+    parts = [R3.loft(secs, seg=56)]
+    parts[0].color = np.asarray(top, np.float64)
+    parts[0].name = "torso"
 
-    # --- руки и ноги ------------------------------------------------------
-    sh_y = (p.shoulder_y - 0.006) * H
-    sh_x = p.shoulder_w * hh * 0.37 * H
-    arm = p.arm_len * H
-    hip_x = p.hip_w * hh * 0.27 * H
+    collar_r = secs[-1]["rx"] * 0.52
+    collar = R3.loft([
+        {"y": secs[-1]["y"] - 0.012 * H, "rx": collar_r, "rz": collar_r * 0.86},
+        {"y": secs[-1]["y"] + 0.020 * H, "rx": collar_r * 0.96, "rz": collar_r * 0.82},
+        {"y": secs[-1]["y"] + 0.040 * H, "rx": collar_r * 0.80, "rz": collar_r * 0.70},
+    ], seg=40)
+    collar.color = np.asarray(top_dark, np.float64)
+    collar.name = "collar"
+    parts.append(collar)
 
-    for side in (-1, 1):
-        sx = side * sh_x
-        # дельтовидная «шапка» — закрывает стык руки и торса
+    hem = R3.loft([
+        {"y": secs[0]["y"] - 0.012 * H, "rx": secs[0]["rx"] * 1.02,
+         "rz": secs[0]["rz"] * 1.02},
+        {"y": secs[0]["y"] + 0.028 * H, "rx": secs[1]["rx"] * 1.01,
+         "rz": secs[1]["rz"] * 1.01},
+    ], seg=48)
+    hem.color = np.asarray(top_dark, np.float64)
+    hem.name = "hem"
+    parts.append(hem)
+    return parts
+
+
+def limb_parts(p: Proportions, colors: dict | None = None, joints: dict | None = None,
+               rots: dict | None = None, rest: dict | None = None) -> list[R3.Mesh]:
+    """Руки и ноги ПО ПОЗЕ: гладкая труба по суставам + жёсткие кисти и стопы.
+
+    Труба строится через сплайн (см. `character.smooth_path`), поэтому локоть и
+    колено на сгибе получают дугу и сохраняют объём — вместо «шарнира из двух
+    цилиндров» и щели между ними.
+    """
+    from character import rigid, smooth_path
+
+    colors = colors or {}
+    skin = colors.get("skin", (0.86, 0.62, 0.50))
+    top = colors.get("top", (0.72, 0.73, 0.74))
+    top_dark = colors.get("top_dark") or tuple(c * 0.72 for c in top)
+    bottom = colors.get("bottom", (0.22, 0.26, 0.34))
+    shoes = colors.get("shoes", (0.18, 0.14, 0.12))
+
+    if joints is None:
+        import rig3d
+        sk = rig3d.Skeleton.from_proportions(p)
+        fk = rig3d.forward_kinematics(sk, rig3d.Pose())
+        joints = {}
+        for side in ("L", "R"):
+            joints[f"shoulder.{side}"] = fk[f"upperarm.{side}"]["head"]
+            joints[f"elbow.{side}"] = fk[f"forearm.{side}"]["head"]
+            joints[f"wrist.{side}"] = fk[f"hand.{side}"]["head"]
+            joints[f"hand_end.{side}"] = fk[f"hand.{side}"]["tail"]
+            joints[f"hip.{side}"] = fk[f"thigh.{side}"]["head"]
+            joints[f"knee.{side}"] = fk[f"shin.{side}"]["head"]
+            joints[f"ankle.{side}"] = fk[f"foot.{side}"]["head"]
+            joints[f"toe.{side}"] = fk[f"toe.{side}"]["head"]
+            joints[f"toe_end.{side}"] = fk[f"toe.{side}"]["tail"]
+    rest_j = rest if rest is not None else joints
+    rots = rots or {}
+
+    H = p.height
+    hh = p.head_frac
+    parts: list[R3.Mesh] = []
+
+    def put(m, color, name):
+        if m is None:
+            return
+        m.color = np.asarray(color, np.float64)
+        m.name = name
+        parts.append(m)
+
+    for side in ("L", "R"):
+        sgn = 1.0 if side == "L" else -1.0
+        sh = np.asarray(joints[f"shoulder.{side}"], np.float64)
+        el = np.asarray(joints[f"elbow.{side}"], np.float64)
+        wr = np.asarray(joints[f"wrist.{side}"], np.float64)
+
+        # дельтовидная шапка на самом плече (шар — от поворота не зависит)
         put(R3.sphere(1.0, seg=26, rings=18,
-                      scale=(0.048 * H * p.bulk, 0.045 * H * p.bulk,
-                             0.046 * H * p.bulk),
-                      center=(sx * 0.86, sh_y - 0.010 * H, 0.002 * H)), top,
-            "deltoid")
-        elbow = (sx * 1.12, sh_y - arm * 0.52, 0.004 * H)
-        wrist = (sx * 1.18, sh_y - arm, 0.014 * H)
-        put(R3.tube([(sx, sh_y, 0.0), (sx * 1.04, sh_y - 0.10 * H, 0.0),
-                     elbow, wrist],
-                    [0.050 * H * p.bulk, 0.046 * H * p.bulk,
-                     0.038 * H * p.bulk, 0.031 * H * p.bulk], seg=28), top, "arm")
-        put(R3.tube([(wrist[0] * 0.99, wrist[1] + 0.020 * H, wrist[2]),
-                     (wrist[0] * 1.01, wrist[1] - 0.012 * H, wrist[2] + 0.002 * H)],
-                    [0.035 * H * p.bulk, 0.033 * H * p.bulk], seg=24), top_dark,
-            "cuff")
-        put(R3.sphere(1.0, seg=22, rings=16,
-                      scale=(0.030 * H, p.hand_len * H * 0.55,
-                             0.024 * H * p.bulk),
-                      center=(wrist[0] * 1.01, wrist[1] - p.hand_len * H * 0.44,
-                              wrist[2] + 0.003 * H)), skin, "hand")
+                      scale=(0.050 * H * p.bulk, 0.047 * H * p.bulk,
+                             0.048 * H * p.bulk),
+                      center=sh + (el - sh) * 0.10), top, "deltoid")
 
-        hx = side * hip_x
-        knee = (hx * 1.05, 0.255 * H, 0.006 * H)
-        ankle = (hx * 1.07, 0.085 * H, -0.002 * H)
-        put(R3.tube([(hx, p.hip_y * H + 0.05 * H, 0.0), (hx, p.hip_y * H, 0.0),
-                     knee, ankle],
-                    [0.062 * H * p.bulk, 0.064 * H * p.bulk,
-                     0.050 * H * p.bulk, 0.036 * H * p.bulk], seg=28), bottom,
-            "leg")
-        put(R3.roundbox((0.096 * H, 0.062 * H, 0.172 * H),
-                        center=(hx * 1.07, 0.031 * H, 0.036 * H),
-                        roundness=3.0, seg=28, rings=16), shoes, "shoe")
+        # плечо → локоть → запястье, сглаженной трубой
+        path, rad = smooth_path([sh - (el - sh) * 0.12, sh, el, wr],
+                                [0.052 * H * p.bulk, 0.050 * H * p.bulk,
+                                 0.038 * H * p.bulk, 0.031 * H * p.bulk],
+                                per_seg=7)
+        put(R3.tube(path, rad, seg=26), top, "arm")
+
+        # манжета рукава — ориентируется по предплечью
+        fdir = wr - el
+        fdir /= max(np.linalg.norm(fdir), 1e-9)
+        cuff = R3.tube([wr - fdir * 0.028 * H, wr + fdir * 0.004 * H],
+                       [0.035 * H * p.bulk, 0.033 * H * p.bulk], seg=22)
+        put(cuff, top_dark, "cuff")
+
+        # кисть — жёстко на кости кисти
+        rest_w = np.asarray(rest_j[f"wrist.{side}"], np.float64)
+        fdir_rest = np.asarray(rest_j[f"wrist.{side}"]) - np.asarray(
+            rest_j[f"elbow.{side}"])
+        fdir_rest = fdir_rest / max(np.linalg.norm(fdir_rest), 1e-9)
+        hand = R3.sphere(1.0, seg=22, rings=16,
+                         scale=(0.030 * H, p.hand_len * H * 0.55, 0.024 * H * p.bulk),
+                         center=rest_w + fdir_rest * (p.hand_len * H * 0.42))
+        hrot = rots.get(side, {}).get("hand", np.eye(3))
+        put(rigid(hand, rest_w, wr, hrot), skin, "hand")
+
+        # --- нога ---
+        hip = np.asarray(joints[f"hip.{side}"], np.float64)
+        kn = np.asarray(joints[f"knee.{side}"], np.float64)
+        an = np.asarray(joints[f"ankle.{side}"], np.float64)
+        leg_path, leg_rad = smooth_path(
+            [hip + (hip - kn) * 0.10, hip, kn, an],
+            [0.064 * H * p.bulk, 0.062 * H * p.bulk, 0.050 * H * p.bulk,
+             0.036 * H * p.bulk], per_seg=7)
+        put(R3.tube(leg_path, leg_rad, seg=26), bottom, "leg")
+
+        rest_a = np.asarray(rest_j[f"ankle.{side}"], np.float64)
+        prost = rot_foot = rots.get(side, {}).get("foot", np.eye(3))
+        # стопа строится от щиколотки вниз-вперёд
+        shoe = R3.roundbox((0.096 * H, 0.062 * H, 0.172 * H),
+                           center=rest_a + np.array([0.0, -0.045 * H, 0.040 * H]),
+                           roundness=3.0, seg=28, rings=16)
+        put(rigid(shoe, rest_a, an, rot_foot), shoes, "shoe")
 
     return parts
+
+
+def build_body(p: Proportions, *, skin=(0.86, 0.62, 0.50), top=(0.72, 0.73, 0.74),
+               bottom=(0.22, 0.26, 0.34), shoes=(0.18, 0.14, 0.12),
+               hair=(0.20, 0.14, 0.10), eyes=True,
+               top_dark=None) -> list[R3.Mesh]:
+    """Сборка в ПОЗЕ ПОКОЯ (для проверок пропорций и турнэраунда)."""
+    colors = dict(skin=skin, top=top, bottom=bottom, shoes=shoes, hair=hair)
+    if top_dark is not None:
+        colors["top_dark"] = top_dark
+    parts = (head_parts(p, colors, eyes=eyes) + torso_parts(p, colors)
+             + limb_parts(p, colors))
+    parts.append(_neck_rest(p, skin))
+    return parts
+
+
+def _neck_rest(p: Proportions, skin) -> R3.Mesh:
+    H = p.height
+    m = R3.tube([(0, p.shoulder_y * H - 0.02 * H, -0.004 * H),
+                 (0, p.neck_y * H + 0.06 * H, -0.002 * H)],
+                [0.056 * H * p.bulk, 0.045 * H * p.bulk], seg=24)
+    m.color = np.asarray(skin, np.float64)
+    m.name = "neck"
+    return m
 
 
 def turnaround(p: Proportions, out_prefix: str, size=(420, 700), ss=2,

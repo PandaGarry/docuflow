@@ -741,6 +741,89 @@ def _():
     assert len(mesh.tris) > 30
 
 
+@check("риг: длины костей не меняются ни в какой позе")
+def _():
+    import numpy as np
+    import rig3d as RIG
+    import body3d as B
+    p = B.Proportions()
+    sk = RIG.Skeleton.from_proportions(p)
+    assert len(sk.order) >= 18, "скелет должен быть полноценным (18–22 кости)"
+    assert not sk.check(), sk.check()
+    rng = np.random.default_rng(3)
+    for _k in range(12):
+        pose = RIG.Pose()
+        for name in sk.order:
+            pose.rot[name] = RIG.euler(*(rng.normal(0, 0.6, 3)))
+        pose.root_offset = rng.normal(0, 0.05, 3)
+        fk = RIG.forward_kinematics(sk, pose)
+        for name in sk.order:
+            got = np.linalg.norm(fk[name]["tail"] - fk[name]["head"])
+            want = sk.bones[name].length
+            assert abs(got - want) < 1e-9, (name, got, want)
+            assert np.all(np.isfinite(fk[name]["head"])), name
+
+
+@check("риг: IK ставит стопу точно в цель и не ломает ногу")
+def _():
+    import numpy as np
+    import rig3d as RIG
+    import animation as AN
+    import body3d as B
+    sk = RIG.Skeleton.from_proportions(B.Proportions())
+    for target in ([0.11, 0.15, 0.22], [0.11, 0.20, -0.15], [0.11, 0.30, 0.05]):
+        pose = AN.leg_ik(RIG.Pose(), sk, "L", np.array(target), foot_pitch=0.0)
+        fk = RIG.forward_kinematics(sk, pose)
+        got = fk["foot.L"]["head"]
+        err = float(np.linalg.norm(got - np.array(target)))
+        assert err < 0.02, (target, got, err)
+        for name in ("thigh.L", "shin.L"):
+            assert abs(np.linalg.norm(fk[name]["tail"] - fk[name]["head"]) -
+                       sk.bones[name].length) < 1e-9
+
+
+@check("анимация: шаг — стопа стоит на земле в фазе опоры, поза конечна")
+def _():
+    import numpy as np
+    import animation as AN
+    import rig3d as RIG
+    import body3d as B
+    sk = RIG.Skeleton.from_proportions(B.Proportions())
+    walk = AN.Walk(sk, cycle=0.92, stride=0.5, step_height=0.12)
+    for side in ("L", "R"):
+        ys = []
+        for k in range(24):
+            t = k * walk.cycle / 24
+            u = (t / walk.cycle + (0.0 if side == "L" else 0.5)) % 1.0
+            if u < walk.duty - 0.02:
+                fk = RIG.forward_kinematics(sk, walk.pose_at(t))
+                ys.append(float(fk[f"foot.{side}"]["head"][1]))
+        assert ys and (max(ys) - min(ys)) < 0.03, (side, min(ys), max(ys))
+    pose = walk.pose_at(0.31)
+    for name, rot in pose.rot.items():
+        assert np.all(np.isfinite(rot)), name
+
+
+@check("персонаж: геометрия собирается в любой позе и не разваливается")
+def _():
+    import numpy as np
+    import rig3d as RIG
+    import character as CH
+    c = CH.Character(CH.B.Proportions())
+    for pose in (RIG.Pose(),
+                 RIG.Pose().euler("upperarm.L", z=1.3).euler("thigh.R", x=-0.8),
+                 RIG.Pose().euler("spine", x=-0.5).euler("head", y=0.6)):
+        parts = c.build(pose)
+        assert parts, "нет мешей"
+        for m in parts:
+            assert np.all(np.isfinite(m.verts)), m.name
+            assert np.all(np.isfinite(m.normals)), m.name
+        # привязка: веса нормированы
+        w, names = c.torso_w[0]
+        assert np.allclose(w.sum(axis=1), 1.0, atol=1e-6)
+        assert len(names) <= 4
+
+
 @check("арт-риг: пределы позы считаются (подъём руки ловится)")
 def _():
     import kit
