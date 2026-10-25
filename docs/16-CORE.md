@@ -26,6 +26,7 @@
 | `studio/engine/puppet.py` | **процедурная кукла** | кадр персонажа из JSON: поза + эмоция + одежда |
 | `studio/engine/artgen.py` | арт-пайплайн | нарезка мастеров, хромакей, реестр, проверка |
 | `studio/engine/selftest.py` | тесты ядра | 36 проверок за ~0.4 с |
+| `studio/tools/migrate_repo.sh` | переезд репозитория | `filter-branch` фото из истории + проверка + push |
 | `studio/engine/bench.py` | бюджеты производительности | мс на кадр/позу/липсинк + точность IK (`--assert`) |
 | `studio/engine/core_demo.py` | демо-ролик ядра | позы + эмоции + липсинк + вторичная анимация → mp4 |
 
@@ -189,6 +190,28 @@ python studio/engine/kit.py plan mom --poses idle,scold --exprs calm,anger --wri
 
 `plan --write` положит `studio/out/plans/plan-mom.json` — список ассетов с
 ключами и промптами; удобно отдавать в пакетную генерацию.
+
+### «Хочу поменять библиотеку из кода» (авторинг)
+
+Все правки идут через `library.py` — он проверяет данные и пишет JSON атомарно
+(`.tmp` + `os.replace`), поэтому оборванная запись не оставит битый источник правды:
+
+```python
+import library as L
+
+L.save_pose("lean_wall", {"spine": -6, "head": -3},
+            root=[0.0, 0.05], label="У стены", tags=["street"], expression="calm")
+
+L.save_expression("smug", {"lid": 0.35, "smile": 0.35, "mouth_skew": 0.55},
+                  label="Самодовольный")
+
+L.delete_pose("lean_wall")
+```
+
+Что проверяется до записи: id по формату `[a-z0-9_]`, имена костей против профиля
+скелета, углы в `-360..360`, `mirror_of` без своих костей, имена параметров лица
+против `params` и значения в их `min..max`. Ошибка — исключение, а не «тихо
+пропустили».
 
 ---
 

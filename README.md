@@ -45,6 +45,10 @@ python3 -m venv .venv
 # живая анимация: позы, эмоции, липсинк -> studio/out/core-demo.mp4
 .venv/bin/python studio/engine/core_demo.py
 
+# авторинг без кода: новая поза / эмоция
+.venv/bin/python studio/engine/kit.py pose-save lean_wall --bones "spine:-6,head:-3" --label "У стены"
+.venv/bin/python studio/engine/kit.py expr-save smug --face "lid=0.35,smile=0.35,mouth_skew=0.55"
+
 # проверки ядра (36 штук, ~0.4 с) и бюджеты производительности
 .venv/bin/python studio/engine/selftest.py
 .venv/bin/python studio/engine/bench.py --assert
