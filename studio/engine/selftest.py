@@ -19,6 +19,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import sys
@@ -28,6 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 import face as F  # noqa: E402
+import scene as S  # noqa: E402
 import kit  # noqa: E402
 import library as L  # noqa: E402
 import puppet  # noqa: E402
@@ -457,6 +459,77 @@ def _():
     finally:
         if os.path.isdir(tmp_dir):
             shutil.rmtree(tmp_dir)
+
+
+# --------------------------------------------------------------------------- #
+# сцены
+# --------------------------------------------------------------------------- #
+
+
+@check("сцена: образец валиден и считается по времени")
+def _():
+    sc = S.load_scene("s01e01-shot01")
+    problems = S.validate_scene(sc)
+    assert not problems, problems
+    assert abs(S.duration(sc) - 6.4) < 1e-6, S.duration(sc)
+    img = S.still(sc, 0.0, quality="preview")
+    assert img.size == tuple(sc["size"]), img.size
+    assert img.mode == "RGB"
+
+
+@check("сцена: кадр детерминирован")
+def _():
+    sc = S.load_scene("s01e01-shot01")
+    a = S.still(sc, 2.4, quality="preview").tobytes()
+    b = S.still(sc, 2.4, quality="preview").tobytes()
+    assert a == b, "два рендера одного кадра различаются"
+
+
+@check("сцена: валидатор ловит ошибки данных")
+def _():
+    sc = S.load_scene("s01e01-shot01")
+    bad = json.loads(json.dumps(sc))
+    bad["shots"][0]["actors"][0]["pose"] = [["0.0", "no_such_pose"]]
+    assert any("no_such_pose" in p for p in S.validate_scene(bad))
+    bad = json.loads(json.dumps(sc))
+    bad["shots"][0]["actors"][0]["char"] = "no_such_char"
+    assert any("no_such_char" in p for p in S.validate_scene(bad))
+    bad = json.loads(json.dumps(sc))
+    bad["shots"][0]["actors"][0]["x"] = 1.7
+    assert any("x=" in p for p in S.validate_scene(bad))
+    bad = json.loads(json.dumps(sc))
+    bad["fps"] = 5
+    assert any("fps" in p for p in S.validate_scene(bad))
+    bad = json.loads(json.dumps(sc))
+    bad["shots"] = []
+    assert any("shots" in p for p in S.validate_scene(bad))
+
+
+@check("сцена: поза на ключе берётся ровно, между ключами — смесь")
+def _():
+    spec = kit.load_character("dad")
+    p_ = puppet.Painter(spec, puppet.RenderOpts(width=200, height=320, quality="preview"))
+    track = [(0.0, "idle"), (1.0, "hands_on_hips")]
+    at0 = S.pose_at(p_, track, 0.0)
+    exact = p_.build("idle")
+    assert abs(at0.tip("hand.r")[0] - exact.tip("hand.r")[0]) < 1e-9
+    mid = S.pose_at(p_, track, 0.5)
+    a = S.pose_at(p_, track, 0.0).tip("hand.r")[0]
+    b = p_.build("hands_on_hips").tip("hand.r")[0]
+    got = mid.tip("hand.r")[0]
+    assert min(a, b) - 1e-6 <= got <= max(a, b) + 1e-6, (a, got, b)
+
+
+@check("сцена: реплики не накладываются друг на друга")
+def _():
+    sc = S.load_scene("s01e01-shot01")
+    for shot in sc["shots"]:
+        for actor in shot["actors"]:
+            spans = S.actor_spans(actor)
+            for prev, cur in zip(spans, spans[1:]):
+                assert cur.t0 >= prev.t1 - 1e-9, (prev, cur)
+            for sp in spans:
+                assert sp.t0 >= 0 and sp.t1 <= float(shot["dur"]) + 1e-6, sp
 
 
 # --------------------------------------------------------------------------- #

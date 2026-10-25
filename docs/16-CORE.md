@@ -24,6 +24,8 @@
 | `studio/engine/rig.py` | скелет и движение | FK, IK (руки/ноги), позы, зеркало, пружины, кривые |
 | `studio/engine/kit.py` | **персонаж и промпты** | схема, промпт-сборка, ключи ассетов, устаревание, CLI |
 | `studio/engine/puppet.py` | **процедурная кукла** | кадр персонажа из JSON: поза + эмоция + одежда |
+| `studio/engine/scene.py` | **сцены как данные** | несколько персонажей, камера, реплики, субтитры → кадры → mp4 |
+| `studio/scenes/*.json` | сценарии кадров | актёры, позы/эмоции по времени, реплики, камера |
 | `studio/engine/artgen.py` | арт-пайплайн | нарезка мастеров, хромакей, реестр, проверка |
 | `studio/engine/selftest.py` | тесты ядра | 36 проверок за ~0.4 с |
 | `studio/tools/migrate_repo.sh` | переезд репозитория | `filter-branch` фото из истории + проверка + push |
@@ -43,8 +45,10 @@ character.json + library/*.json
         │
         ├── face.Face ──────────► параметры лица (эмоция + визема + мигание)
         │
-        └── puppet.Painter ─────► кадр: персонаж в позе, с эмоцией, в одежде
-                                   └── core_demo.py → mp4
+        ├── puppet.Painter ─────► кадр: персонаж в позе, с эмоцией, в одежде
+        │                          └── core_demo.py → mp4
+        │
+        └── scene.still/render ─► сцена: N персонажей + камера + субтитры → mp4
 ```
 
 ---
@@ -215,6 +219,51 @@ L.delete_pose("lean_wall")
 
 ---
 
+## 2.5. Сцены: серия как данные, а не как скрипт
+
+`scene.py` собирает кадр из нескольких персонажей, ведёт камеру и субтитры.
+Сценарий кадра — JSON (`studio/scenes/*.json`):
+
+```json
+{
+  "id": "s01e01-shot01", "fps": 24, "size": [540, 960], "background": "studio",
+  "shots": [{
+    "dur": 3.6, "caption": "Первая коробка не влезла",
+    "camera": {"zoom": 1.0, "focus": 0.5, "y": 0.45},
+    "actors": [{
+      "char": "dad", "x": 0.29, "scale": 0.84, "z": 2, "seed": 3,
+      "pose": [["0.0", "idle"], ["0.9", "idle_shift"], ["2.3", "hands_on_hips"]],
+      "expr": [["0.0", "calm"], ["1.0", "proud"]],
+      "say":  [{"text": "Так. Коробки в машине.", "cps": 13.0},
+               {"text": "Всё под контролем!", "cps": 13.0}]
+    }]
+  }]
+}
+```
+
+Важные решения:
+
+* **Реплики без `start`** ставятся подряд после предыдущей (+`gap`). Так
+  наложение двух фраз невозможно по построению — а если `start` указан вручную
+  и фразы пересекаются или не влезают в кадр, `validate` это скажет.
+* **Позы — ключи по времени**, между ключами плавный переход (`ease_in_out`).
+  На самом ключе поза берётся ровно (проверяется тестом), а не «почти».
+* **Липсинк считается из текста**, длина реплики — от числа символов и `cps`.
+* **Камера** (`zoom`, `focus`, `y`) применяется после композитинга, субтитры
+  рисуются после камеры — иначе наезд срезал бы текст.
+* **Кадр детерминирован**: `scene.still(scene, t)` на одинаковых данных даёт
+  одинаковые байты (тест).
+
+```bash
+python studio/engine/scene.py list                       # что есть
+python studio/engine/scene.py info s01e01-shot01         # тайминг и реплики
+python studio/engine/scene.py validate                   # все сцены
+python studio/engine/scene.py still s01e01-shot01 --t 1.6 --out out/frame.png
+python studio/engine/scene.py render s01e01-shot01 --quality preview
+```
+
+---
+
 ## 3. Пропорции: рост в головах вместо сантиметров
 
 `height_heads` в `character.json` — буквально «сколько голов в росте».
@@ -344,6 +393,11 @@ python studio/engine/kit.py pose-save lean_wall --bones "spine:-6,head:-3" --lab
 python studio/engine/kit.py expr-save smug --face "lid=0.35,smile=0.35,mouth_skew=0.55"
 python studio/engine/kit.py rig --bones      # профиль скелета + проверка симметрии
 
+# сцены (несколько персонажей, камера, субтитры)
+python studio/engine/scene.py list
+python studio/engine/scene.py validate
+python studio/engine/scene.py render s01e01-shot01 --quality high
+
 # анимация и проверки
 python studio/engine/core_demo.py --char dad     # mp4 с позами, эмоциями и липсинком
 python studio/engine/selftest.py                 # 36 проверок ядра
@@ -375,6 +429,9 @@ python studio/engine/qa.py --assets studio/characters
   меняет промпт, ключи стабильны и чувствительны к правкам;
 - **кукла:** кадр не пустой, одежда реально меняет картинку, хромакей ровный,
   все эмоции дают разные кадры;
+- **сцены:** образец валиден, кадр детерминирован, поза на ключе берётся точно,
+  между ключами — смесь, реплики не накладываются и не вылезают за кадр,
+  валидатор ловит неизвестную позу/персонажа/эмоцию, fps и пустые shots;
 - создание нового персонажа с нуля и его удаление.
 
 ### `bench.py` — бюджеты и точность

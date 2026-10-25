@@ -19,6 +19,7 @@ studio/
   library/            библиотеки-данные: позы, эмоции, гардероб, причёски, скелеты
   engine/             ядро: kit, puppet, face, rig, artgen, core_demo, selftest, QA
   out/                результаты: превизы, демо-ролики, отчёты
+  scenes/             сцены-данные: актёры, позы/эмоции по времени, реплики, камера
   episodes/           сценарии серий (shot list в JSON) + собранные mp4
   assets/             фоны, реквизит, звук
   fonts/              Montserrat + Nunito (латиница + кириллица, OFL)
@@ -44,6 +45,10 @@ python3 -m venv .venv
 
 # живая анимация: позы, эмоции, липсинк -> studio/out/core-demo.mp4
 .venv/bin/python studio/engine/core_demo.py
+
+# сцена из нескольких персонажей: камера, реплики, субтитры -> mp4
+.venv/bin/python studio/engine/scene.py validate
+.venv/bin/python studio/engine/scene.py render s01e01-shot01
 
 # авторинг без кода: новая поза / эмоция
 .venv/bin/python studio/engine/kit.py pose-save lean_wall --bones "spine:-6,head:-3" --label "У стены"

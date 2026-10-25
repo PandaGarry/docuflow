@@ -85,6 +85,11 @@ class RenderOpts:
     background: str = "studio"      # studio | chroma | none
     shadow: bool = True
     grain: float = 0.7
+    # смещение и зум для сцен: доли кадра (0.5 = центр, 1.0 = целая ширина/высота)
+    offset_x: float = 0.0
+    offset_y: float = 0.0
+    zoom: float = 1.0
+    alpha: bool = False             # вернуть RGBA-слой (для сцен с несколькими персонажами)
     quality: str = "high"           # preview | high | final (задаёт ss, если ss не задан вручную)
 
     def __post_init__(self) -> None:
@@ -280,9 +285,9 @@ class Painter:
         units_w = max(x1 - x0, 1e-6)
         avail_h = H * (o.ground - o.margin - 0.02)
         avail_w = W * (1 - 2 * o.margin)
-        self.k = min(avail_h / units_h, avail_w / units_w)
-        self.ox = W / 2 - (x0 + x1) / 2 * self.k
-        self.oy = H * o.ground - y1 * self.k
+        self.k = min(avail_h / units_h, avail_w / units_w) * o.zoom
+        self.ox = W / 2 - (x0 + x1) / 2 * self.k + o.offset_x * W
+        self.oy = H * o.ground - y1 * self.k + o.offset_y * H
 
         img = self._background(background) if background != "none" else Image.new("RGBA", (W, H), (0, 0, 0, 0))
         if o.shadow:
@@ -292,8 +297,10 @@ class Painter:
             self._caption(img, caption)
         # суперсэмплинг кратен 2 → reduce (box-фильтр) точнее и в разы быстрее LANCZOS
         if o.ss >= 2 and img.width == o.width * o.ss and img.height == o.height * o.ss:
-            return img.reduce(o.ss).convert("RGB")
-        return img.resize((o.width, o.height), Image.LANCZOS).convert("RGB")
+            img = img.reduce(o.ss)
+        else:
+            img = img.resize((o.width, o.height), Image.LANCZOS)
+        return img if o.alpha else img.convert("RGB")
 
     # --- фон и тень ------------------------------------------------------ #
     def _shadow(self, img: Image.Image, sk: R.Skeleton) -> None:
@@ -1042,6 +1049,13 @@ class Painter:
 # --------------------------------------------------------------------------- #
 # публичные функции
 # --------------------------------------------------------------------------- #
+
+
+def background(width: int, height: int, ground: float = 0.93, mode: str = "studio"):
+    """Фон кадра без персонажа — для сцен, где персонажей несколько."""
+    if mode == "chroma":
+        return Image.new("RGBA", (width, height), (0, 177, 64, 255))
+    return _background_cache(width, height, ground).copy()
 
 
 def render(spec: dict, pose: str = "idle", expression: str = "neutral",
