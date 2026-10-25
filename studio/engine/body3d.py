@@ -325,10 +325,10 @@ def _torso_sections(p: Proportions) -> list[dict]:
     belly = p.belly
     # (доля роста, ширина в «полу-плечах», сдвиг вперёд)
     prof = [
-        (p.hip_y - 0.055, 1.04, -0.004, 0.94),   # край худи — по линии бёдер
-        (p.hip_y - 0.035, 1.00, -0.006, 0.94),
-        (p.hip_y - 0.010, 0.90, -0.010, 0.93),
-        (p.hip_y + 0.020, 0.90, -0.008, 0.93),   # ягодицы
+        (p.hip_y - 0.055, 0.99, -0.004, 1.06),   # край худи — по линии бёдер
+        (p.hip_y - 0.035, 0.97, -0.006, 1.05),
+        (p.hip_y - 0.010, 0.94, -0.010, 1.00),
+        (p.hip_y + 0.020, 0.90, -0.008, 0.97),   # ягодицы
         (p.hip_y + 0.080, 0.875, 0.010 * belly, 0.95),   # живот
         (p.hip_y + 0.130, 0.865, 0.008 * belly, 0.97),
         (p.hip_y + 0.180, 0.915, 0.004, 0.99),
@@ -605,12 +605,14 @@ def torso_parts(p: Proportions, colors: dict | None = None, *,
 
     # --- таз: единый объём джинсов, из которого выходят обе ноги ----------
     pelvis = R3.loft([
-        {"y": (p.hip_y - 0.105) * H, "rx": 0.040 * H, "rz": 0.052 * H, "cz": -0.004 * H},
-        {"y": (p.hip_y - 0.070) * H, "rx": 0.052 * H, "rz": 0.060 * H, "cz": -0.004 * H},
-        {"y": (p.hip_y - 0.010) * H, "rx": 0.056 * H, "rz": 0.062 * H, "cz": -0.004 * H},
-        {"y": (p.hip_y + 0.040) * H, "rx": 0.050 * H, "rz": 0.058 * H, "cz": -0.004 * H},
+        {"y": (p.hip_y - 0.175) * H, "rx": 0.058 * H, "rz": 0.040 * H, "cz": -0.002 * H},
+        {"y": (p.hip_y - 0.135) * H, "rx": 0.086 * H, "rz": 0.053 * H, "cz": -0.004 * H},
+        {"y": (p.hip_y - 0.075) * H, "rx": 0.100 * H, "rz": 0.060 * H, "cz": -0.004 * H},
+        {"y": (p.hip_y - 0.015) * H, "rx": 0.103 * H, "rz": 0.062 * H, "cz": -0.004 * H},
+        {"y": (p.hip_y + 0.050) * H, "rx": 0.097 * H, "rz": 0.059 * H, "cz": -0.004 * H},
     ], seg=44)
-    pelvis.color = np.asarray(colors.get("bottom", (0.22, 0.26, 0.34)), np.float64)
+    pelvis.color = np.asarray((colors or {}).get("bottom", (0.22, 0.26, 0.34)),
+                              np.float64)
     pelvis.name = "pelvis"
     parts.append(pelvis)
 
@@ -791,8 +793,8 @@ def limb_parts(p: Proportions, colors: dict | None = None, joints: dict | None =
         kn = np.asarray(joints[f"knee.{side}"], np.float64)
         an = np.asarray(joints[f"ankle.{side}"], np.float64)
         leg_path, leg_rad = smooth_path(
-            [hip + (hip - kn) * 0.02, hip, kn, an],
-            [0.044 * H * p.bulk, 0.049 * H * p.bulk, 0.043 * H * p.bulk,
+            [hip - (hip - kn) * 0.34, hip, kn, an],
+            [0.038 * H * p.bulk, 0.043 * H * p.bulk, 0.042 * H * p.bulk,
              0.033 * H * p.bulk], per_seg=7)
         put(R3.tube(leg_path, leg_rad, seg=26, round_caps=False), bottom, "leg")
 
