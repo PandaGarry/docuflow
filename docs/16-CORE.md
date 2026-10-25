@@ -1,0 +1,318 @@
+# 16 · Ядро студии: персонажи, позы, эмоции, одежда
+
+Этот документ — карта ядра. Он про то, **как менять персонажей и сцены, не трогая
+код**, и как всем этим пользоваться из скриптов.
+
+Коротко: всё, что можно захотеть поменять (поза, эмоция, вещь одежды, причёска,
+комплект, пропорции, лицо), лежит в JSON. Код читает эти файлы и не содержит
+зашитых имён и цветов.
+
+---
+
+## 1. Из чего состоит ядро
+
+| Файл | Роль | Что внутри |
+|------|------|-----------|
+| `studio/characters/<id>/character.json` | **личность персонажа** | пропорции, лицо, причёска, гардероб, запреты, голос |
+| `studio/library/rigs.json` | скелеты | кости, rest-позы, длины, ширины |
+| `studio/library/poses.json` | **26 поз** | отклонения углов от rest + англ. описание для промпта |
+| `studio/library/expressions.json` | **26 эмоций + 9 визем** | 20 числовых параметров лица и их диапазоны |
+| `studio/library/wardrobe.json` | **гардероб** | слоты, вещи: промпт + параметры процедурной отрисовки |
+| `studio/library/hairstyles.json` | причёски и бороды | промпт + форма для отрисовки |
+| `studio/engine/library.py` | доступ к библиотекам | загрузка, разрешение ссылок, валидация |
+| `studio/engine/face.py` | **лицо как параметры** | эмоции, смешивание, виземы, липсинк, микромимика |
+| `studio/engine/rig.py` | скелет и движение | FK, IK (руки/ноги), позы, зеркало, пружины, кривые |
+| `studio/engine/kit.py` | **персонаж и промпты** | схема, промпт-сборка, ключи ассетов, устаревание, CLI |
+| `studio/engine/puppet.py` | **процедурная кукла** | кадр персонажа из JSON: поза + эмоция + одежда |
+| `studio/engine/artgen.py` | арт-пайплайн | нарезка мастеров, хромакей, реестр, проверка |
+| `studio/engine/selftest.py` | тесты ядра | 26 проверок за ~2 с |
+
+### Поток данных
+
+```
+character.json + library/*.json
+        │
+        ├── kit.build_prompt ──────────► генерация арта (мастера в референсах)
+        │                                 └── artgen.py → нарезка → QA → реестр
+        │
+        ├── rig.build_humanoid ──► скелет с нужным ростом в головах
+        │        └── apply_pose / hand_ik / look_at / mirror
+        │
+        ├── face.Face ──────────► параметры лица (эмоция + визема + мигание)
+        │
+        └── puppet.Painter ─────► кадр: персонаж в позе, с эмоцией, в одежде
+                                   └── core_demo.py → mp4
+```
+
+---
+
+## 2. Быстрый старт по сценариям
+
+### «Хочу посмотреть персонажа в другой позе»
+
+```bash
+python studio/engine/puppet.py preview --char dad --pose think --expr smirk
+# → studio/out/puppet-dad-think-smirk.png
+```
+
+Мгновенно, без генерации, лицо то же — потому что это один и тот же JSON.
+
+### «Хочу сменить одежду»
+
+```bash
+# 1) посмотреть, как выглядит другой комплект (секунды, без генерации)
+python studio/engine/puppet.py preview --char dad --top shirt_blue --bottom trousers_dark
+
+# 2) сделать комплект постоянным
+python studio/engine/kit.py wear dad --set work --top shirt_blue --bottom trousers_dark --shoes boots_black
+
+# 3) увидеть, какие готовые ассеты теперь устарели
+python studio/engine/kit.py stale
+```
+
+`kit.py wear` меняет `wardrobe.sets`, пересчитывает отпечаток внешности и печатает
+список ассетов, которые надо перегенерировать (у них изменился ключ).
+
+### «Хочу новую позу»
+
+Дописать объект в `studio/library/poses.json`:
+
+```json
+"lean_on_wall": {
+  "label": "Опирается на стену",
+  "tags": ["pose", "street"],
+  "prompt": "leaning back against a wall, one foot crossed over the other",
+  "bones": {"upper_arm.r": -12, "forearm.r": -46, "spine": -6, "head": -3}
+}
+```
+
+`bones` — отклонения от rest-позы в градусах (0 = вправо, +90 = вниз).
+Проверить: `python studio/engine/library.py` → должно быть «✓ библиотеки в порядке».
+
+Чтобы не считать углы в голове, удобно снять позу со скелета:
+
+```python
+import rig as R
+sk = R.apply_pose(R.build_humanoid(6.0), "wave")   # или соберите вручную
+print(sk.capture())        # {'upper_arm.r': -95.0, ...} — готово для poses.json
+```
+
+### «Хочу новую эмоцию»
+
+Дописать в `studio/library/expressions.json`:
+
+```json
+"smug": {"label": "Самодовольный", "face": {"brow_raise": 0.5, "lid": 0.35,
+  "smile": 0.35, "mouth_skew": 0.55, "cheek_raise": 0.2}}
+```
+
+Параметры лица (`params` в том же файле): `brow_raise`, `brow_angle`,
+`brow_pinch`, `eye_open`, `squint`, `lid`, `pupil`, `look_x`, `look_y`,
+`mouth_open`, `mouth_wide`, `smile`, `mouth_skew`, `teeth`, `tongue`,
+`cheek_raise`, `blush`, `sweat`, `tears`, `nose_wrinkle`.
+
+Одна и та же эмоция работает в двух местах: в кукле (рисуется) и в промпте
+(описывается словами) — поэтому арт и превиз не расходятся.
+
+### «Хочу новую причёску»
+
+`studio/library/hairstyles.json` → `styles`. Меняется у персонажа:
+
+```bash
+python studio/engine/kit.py hair dad --style buzz --color "#3A2A22"
+```
+
+⚠️ Причёска меняет силуэт головы: после смены перегенерируйте `master/face.png` и
+head-ассеты, затем `qa.py`. Это единственная правка, которая не «бесплатна».
+
+### «Хочу нового персонажа»
+
+```bash
+python studio/engine/kit.py new uncle --label Дядя --from dad --height 6.3
+```
+
+Создаст `studio/characters/uncle/character.json` (пропорции, гардероб и запреты
+наследуются от шаблона). Дальше:
+
+```bash
+# 1) сгенерировать master/turnaround.png и master/face.png по промпту:
+python studio/engine/kit.py prompt uncle --pose idle --expr neutral --camera full
+python studio/engine/kit.py prompt uncle --pose idle --expr neutral --camera close
+
+# 2) нарезать, вырезать, обновить реестр, проверить
+python studio/engine/artgen.py slice
+python studio/engine/artgen.py cut
+python studio/engine/artgen.py registry
+python studio/engine/artgen.py verify
+
+# 3) посмотреть куклу — до всякой генерации
+python studio/engine/kit.py sheet uncle
+```
+
+### «Хочу промпт под конкретную сцену»
+
+```bash
+python studio/engine/kit.py prompt mom --pose scold --expr anger --camera full --set kitchen
+python studio/engine/kit.py plan mom --poses idle,scold --exprs calm,anger --write
+```
+
+`plan --write` положит `studio/out/plans/plan-mom.json` — список ассетов с
+ключами и промптами; удобно отдавать в пакетную генерацию.
+
+---
+
+## 3. Пропорции: рост в головах вместо сантиметров
+
+`height_heads` в `character.json` — буквально «сколько голов в росте».
+Голова при этом **не масштабируется**, под неё подгоняется тело:
+
+```python
+R.build_humanoid(6.5)                     # взрослый
+R.build_humanoid(4.6, {"leg": 0.86, "arm": 0.9, "head": 1.2})   # ребёнок
+```
+
+Поэтому папа, мама и сын выглядят как разные люди, а не как один персонаж
+с разным масштабом. Тест это фиксирует: `stature / head_diameter == height_heads`.
+
+Дополнительно у каждого персонажа есть множители `proportions`: `leg`, `arm`,
+`torso`, `head` (влияют на скелет) и `belly` (влияет на силуэт в кукле).
+
+---
+
+## 4. Лицо: почему это отдельный модуль
+
+Перегенерировать арт на каждую эмоцию — дорого и рискованно (лицо «уезжает»).
+Поэтому лицо параметрическое:
+
+```python
+import face as F
+f = F.Face.from_expression("panic")            # готовая эмоция
+f = f.with_viseme("A", 0.8)                    # губы говорят, брови на месте
+f = f.with_blink(0.0)                          # закрытые глаза
+f = f.blend(F.Face.from_expression("sad"), 0.4)  # смесь
+```
+
+Таймлайн и липсинк:
+
+```python
+tl = F.FaceTimeline.from_expressions([(0.0, "calm"), (1.2, "think"), (2.6, "panic")])
+spans = F.lip_sync("Так. Коробки в машине.", start=0.5, duration=2.0)
+face = F.face_at(t, timeline=tl, spans=spans, blink=1.0, micro=1.0, seed=7)
+```
+
+`micro_face` добавляет 2–4 % дрожания зрачков и бровей — на крупном плане лицо
+перестаёт быть маской. `core_demo.py` собирает из этого ролик.
+
+---
+
+## 5. Скелет и движение
+
+```python
+sk = R.build_humanoid(6.0)                 # собрать по профилю
+R.apply_pose(sk, "wave")                   # поза из библиотеки
+R.apply_pose(sk, "breath", weight=0.5, additive=True)   # поверх — дыхание
+R.hand_ik(sk, "r", (1.6, -1.4))            # дотянуть кисть до точки
+R.foot_ik(sk, "l", (-0.3, 3.4))            # поставить стопу
+R.look_at(sk, (0.0, -1.0), weight=0.8, max_deg=25)      # взгляд в собеседника
+sk.mirror()                                # отразить позу
+sk.capture()                               # снять позу как delta-углы
+sk.to_dict() / R.Skeleton.from_dict(d)     # сериализация (для сцен и сохранений)
+```
+
+Двухзвенный IK считает позиции локтя и выбирает сторону по полюсному вектору,
+поэтому локоть не выворачивается и кисть попадает точно в цель (проверено тестом).
+
+---
+
+## 6. Промпты и ключи ассетов
+
+Промпт собирается из частей, а не пишется руками:
+
+```
+стиль → персонаж (тело + волосы + борода + одежда) → требование идентичности
+→ поза → эмоция (словами из параметров) → камера → анти-анатомия
+→ запреты персонажа → хромакей
+```
+
+Ключ ассета — sha256 от персонажа, одежды, позы, эмоции и камеры:
+
+```python
+import kit
+spec = kit.load_character("dad")
+kit.asset_key(spec, pose="wave", expression="joy")            # '6dd34e2f5957'
+kit.asset_key(spec, pose="wave", expression="joy", outfit={"top": "shirt_blue"})
+```
+
+Сменили худи на рубашку → все зависящие ассеты помечаются устаревшими
+(`kit.py stale`, `artgen.py verify`). Это и есть «корректность» в работе с артом:
+ничего не забывается и не перегенерируется вслепую.
+
+---
+
+## 7. Команды одним списком
+
+```bash
+# персонажи и библиотеки
+python studio/engine/kit.py list [chars|poses|expressions|wardrobe|hair]
+python studio/engine/kit.py show dad [--json]
+python studio/engine/kit.py validate
+python studio/engine/kit.py stale
+
+# одежда и причёска
+python studio/engine/kit.py wear dad --set street --top shirt_blue --outer jacket_denim
+python studio/engine/kit.py hair mom --style bun
+
+# промпты и планы
+python studio/engine/kit.py prompt dad --pose wave --expr joy --camera full
+python studio/engine/kit.py plan dad --poses idle,wave --exprs calm,joy --write
+
+# новый персонаж
+python studio/engine/kit.py new uncle --label Дядя --from dad --height 6.3
+
+# превиз без генерации
+python studio/engine/puppet.py preview --char son --pose wave --expr joy
+python studio/engine/kit.py sheet dad       # сетка 6 поз × 6 эмоций
+python studio/engine/kit.py faces dad       # крупные планы всех эмоций
+
+# анимация и проверки
+python studio/engine/core_demo.py --char dad     # mp4 с позами, эмоциями и липсинком
+python studio/engine/selftest.py                 # 26 проверок ядра
+python studio/engine/artgen.py registry && python studio/engine/artgen.py verify
+python studio/engine/qa.py --assets studio/characters
+```
+
+---
+
+## 8. Что уже проверяется автоматически
+
+`selftest.py` (26 проверок):
+
+- библиотеки: ссылки, зеркала, наличие базовых поз/эмоций/вещей;
+- рост в головах для 3 разных значений и влияние пропорций;
+- позы: `wave` поднимает кисть, `point` вытягивает руку, зеркало симметрично;
+- IK попадает в цель, `look_at` поворачивает голову, сериализация сохраняет позу;
+- лицо: эмоции меняют параметры, клампятся в диапазоны, визема не трогает брови,
+  липсинк укладывается в длительность, мигание закрывает глаза;
+- персонажи: схема, промпты (без двойных отрицаний и русского текста), одежда
+  меняет промпт, ключи стабильны и чувствительны к правкам;
+- кукла: кадр не пустой, одежда реально меняет картинку, хромакей ровный,
+  все эмоции дают разные кадры;
+- создание нового персонажа с нуля и его удаление.
+
+---
+
+## 9. Границы и что дальше
+
+**Честно:** кукла — это превиз и fallback, а не финальный арт. Финальные кадры
+дают мастер-ассеты + генерация, кукла нужна, чтобы за секунды проверить позу,
+эмоцию, одежду и тайминг, не тратя генерации.
+
+Следующие шаги, которые ложатся на это ядро без переделок:
+
+1. **timeline.py** — сцены как данные: реплики, позы, эмоции, камера, реквизит.
+2. **render.py** — сборка кадра из арт-слоёв (мастера) с ригом и 2.5D-деформацией.
+3. **audio.py** — TTS по голосам из `character.json` + музыка + `loudnorm`.
+4. **props.py** — реквизит (коробки, паспорт, лампа) как отдельные ассеты с якорями
+   к костям (`attach: "hand.r"`).
+5. **expressions → арт** — генерация набора рта/глаз по параметрам для крупных
+   планов, чтобы липсинк был «нарисованным», а не процедурным.

@@ -84,6 +84,10 @@ class Bone:
     angle: float = 0.0          # радианы, 0 = вправо
     origin: tuple[float, float] = (0.0, 0.0)
     scale: tuple[float, float] = (1.0, 1.0)
+    # статика: rest-угол (поза сборки), группа пропорций и толщина для рендера
+    rest: float = 0.0
+    group: str = "root"
+    width: float = 1.0
     # мировые значения — заполняются в solve()
     world_pos: tuple[float, float] = (0.0, 0.0)
     world_angle: float = 0.0
@@ -146,6 +150,66 @@ class Skeleton:
     def set_pose(self, name: str, angle: float) -> None:
         self.bones[name].angle = angle
 
+    def reset_pose(self) -> "Skeleton":
+        """Вернуть все кости в rest-позу (поза сборки)."""
+        for b in self.bones.values():
+            b.angle = b.rest
+            b.origin = (0.0, 0.0) if b.name == "root" else b.origin
+        self.solve()
+        return self
+
+    def capture(self, round_to: int = 1) -> dict[str, float]:
+        """Снять текущую позу как отклонения от rest в ГРАДУСАХ (для сохранения)."""
+        out: dict[str, float] = {}
+        for name, b in self.bones.items():
+            delta = math.degrees(b.angle - b.rest)
+            if abs(delta) >= 10 ** (-round_to):
+                out[name] = round(delta, round_to)
+        return out
+
+    def mirror(self) -> "Skeleton":
+        """Зеркалить текущую позу (стороны меняются, углы отражаются)."""
+        pairs = [(n, n[:-2] + ".l" if n.endswith(".r") else n[:-2] + ".r")
+                 for n in self.bones if n.endswith((".r", ".l"))]
+        snapshot = {n: self.bones[n].angle - self.bones[n].rest for n, _ in pairs}
+        for n, other in pairs:
+            if other in self.bones:
+                self.bones[n].angle = self.bones[n].rest - snapshot[other]
+        self.solve()
+        return self
+
+    def to_dict(self) -> dict:
+        return {"bones": [
+            {"name": b.name, "parent": b.parent, "length": b.length,
+             "angle": b.angle, "origin": list(b.origin), "scale": list(b.scale),
+             "rest": b.rest, "group": b.group, "width": b.width}
+            for b in (self.bones[n] for n in self.order)]}
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Skeleton":
+        sk = cls()
+        for b in data["bones"]:
+            sk.add(Bone(b["name"], b.get("parent"), b.get("length", 0.0),
+                        b.get("angle", 0.0), tuple(b.get("origin", (0, 0))),
+                        tuple(b.get("scale", (1, 1))), b.get("rest", 0.0),
+                        b.get("group", "root"), b.get("width", 1.0)))
+        sk.solve()
+        return sk
+
+    def bounds(self) -> tuple[float, float, float, float]:
+        """Габариты скелета в его единицах: (x0, y0, x1, y1) по костям и стопам."""
+        xs, ys = [], []
+        for name in self.order:
+            b = self.bones[name]
+            xs.append(b.world_pos[0])
+            ys.append(b.world_pos[1])
+            tx, ty = self.tip(name)
+            xs.append(tx)
+            ys.append(ty)
+        if not xs:
+            return 0.0, 0.0, 0.0, 0.0
+        return min(xs), min(ys), max(xs), max(ys)
+
     def blend_pose(self, pose: dict[str, float], k: float,
                    easing: str = "ease") -> None:
         """Смешать текущие углы с целевой позой на долю k."""
@@ -158,42 +222,44 @@ class Skeleton:
 def solve_ik2(root: tuple[float, float],
               target: tuple[float, float],
               l1: float, l2: float,
-              pole: tuple[float, float] = (0.0, -1.0)) -> tuple[float, float, float]:
+              pole: tuple[float, float] = (0.0, 1.0)) -> tuple[float, float, float]:
     """Двухзвенный IK.
 
-    Возвращает (угол_первого_звена, угол_второго_звена, достижимая_дальность).
-    Поле pole задаёт, в какую сторону выгибается «локоть»/«колено»
-    (0,-1) — вниз (рука), (0, 1) — вверх.
+    Возвращает (угол_первого_звена, угол_второго_звена, достижимость 0..1).
+    Углы мировые, в радианах, 0 = вправо, +pi/2 = вниз.
 
-    Углы — мировые, в радианах, 0 = вправо.
+    Реализация через позицию локтя: считаем два положения локтя (по часовой и
+    против), выбираем то, что лежит со стороны полюсного вектора, и направляем
+    второе звено ровно в цель. Так не бывает «вывернутых» локтей и промахов,
+    которые возникали при знаковой формуле.
     """
     (x0, y0) = root
     dx, dy = target[0] - x0, target[1] - y0
     dist = math.hypot(dx, dy)
-    reach = l1 + l2
+    reach = max(l1 + l2, 1e-6)
     if dist < 1e-6:
         return 0.0, 0.0, 0.0
-    # за пределами досягаемости — тянемся по прямой, «не выворачиваясь»
-    dist_c = clamp(dist, abs(l1 - l2) + 1e-4, reach - 1e-4)
 
-    base_angle = math.atan2(dy, dx)
+    d = clamp(dist, abs(l1 - l2) + 1e-4, reach - 1e-4)
+    base = math.atan2(dy, dx)
+    cos_a = (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d)
+    a = math.acos(clamp(cos_a, -1.0, 1.0))
 
-    # закон косинусов: угол между первым звеном и направлением на цель
-    cos_a = (l1 * l1 + dist_c * dist_c - l2 * l2) / (2 * l1 * dist_c)
-    a1 = math.acos(clamp(cos_a, -1.0, 1.0))
-    # угол между звеном 1 и звеном 2
-    cos_b = (l1 * l1 + l2 * l2 - dist_c * dist_c) / (2 * l1 * l2)
-    b = math.acos(clamp(cos_b, -1.0, 1.0))
+    candidates = []
+    for sign in (1.0, -1.0):
+        ang = base + sign * a
+        ex, ey = x0 + math.cos(ang) * l1, y0 + math.sin(ang) * l1
+        # насколько локоть «с той же стороны» от линии до цели, что и полюс
+        cross_line = dx * (ey - y0) - dy * (ex - x0)
+        cross_pole = dx * pole[1] - dy * pole[0]
+        alignment = cross_line * cross_pole
+        err = math.hypot(target[0] - ex, target[1] - ey)
+        candidates.append((alignment, -err, ang, (ex, ey)))
 
-    # выбор стороны сгиба по полюсному вектору
-    pole_angle = math.atan2(pole[1], pole[0])
-    side = 1.0
-    if math.cos(pole_angle - (base_angle + a1)) >= math.cos(pole_angle - (base_angle - a1)):
-        side = -1.0
-
-    angle1 = base_angle + side * a1
-    angle2 = angle1 + side * (math.pi - b)
-    return angle1, angle2, dist / reach
+    candidates.sort(key=lambda c: (c[0], c[1]), reverse=True)
+    _align, _neg_err, a1, elbow = candidates[0]
+    a2 = math.atan2(target[1] - elbow[1], target[0] - elbow[0])
+    return a1, a2, min(dist / reach, 1.0)
 
 
 # --------------------------------------------------------------------------- #
@@ -379,3 +445,189 @@ def visemes_for_text(text: str) -> list[tuple[str, int]]:
         elif ch in " ,.!?…—":
             out.append(("M", 2))     # пауза = закрытый рот
     return out
+
+
+# --------------------------------------------------------------------------- #
+# сборка человечка из профиля (данные, а не хардкод)
+# --------------------------------------------------------------------------- #
+
+
+def head_diameter(sk: Skeleton) -> float:
+    """Диаметр головы в единицах скелета (то, в чём меряется рост «в головах»)."""
+    b = sk.bones.get("head")
+    return 2.0 * b.length * HEAD_RADIUS_K if b else 1.0
+
+
+HEAD_RADIUS_K = 1.05      # радиус черепа относительно длины кости головы (см. puppet)
+
+
+def build_humanoid(height_heads: float = 6.5,
+                   proportions: dict | None = None,
+                   rig_id: str = "humanoid_v1") -> Skeleton:
+    """Собрать скелет по профилю `library/rigs.json`.
+
+    Главное правило: **голова не масштабируется** — она задаёт единицу. Тело
+    подгоняется так, чтобы рост в головах был ровно `height_heads`. Поэтому
+    ребёнок (5.5 голов) автоматически получает крупную голову и короткие ноги,
+    а взрослый (6.5) — обычные пропорции, без ручной подгонки длин.
+
+    proportions — множители групп: {"leg": 1.05, "arm": 0.95, "torso": 1.0, "head": 0.95}.
+    """
+    import library as L
+
+    profile = L.rig_profile(rig_id)
+    props = {"leg": 1.0, "arm": 1.0, "torso": 1.0, "head": 1.0}
+    props.update({k: float(v) for k, v in (proportions or {}).items()
+                  if k in ("leg", "arm", "torso", "head")})
+
+    def assemble(body_scale: float) -> Skeleton:
+        sk = Skeleton()
+        for spec in profile["bones"]:
+            group = spec.get("group", "root")
+            mult = props.get(group, 1.0) if group in props else 1.0
+            if group != "head":
+                mult *= body_scale
+            rest = math.radians(spec.get("rest", 0.0))
+            origin = spec.get("origin", (0.0, 0.0))
+            sk.add(Bone(
+                name=spec["name"], parent=spec.get("parent"),
+                length=spec.get("length", 0.0) * mult,
+                angle=rest,
+                origin=(origin[0] * mult, origin[1] * mult),
+                rest=rest, group=group, width=spec.get("width", 1.0),
+            ))
+        sk.solve()
+        return sk
+
+    # тело линейно зависит от body_scale, поэтому двух замеров достаточно
+    h1 = stature(assemble(1.0))
+    h2 = stature(assemble(2.0))
+    slope = h2 - h1
+    target = max(head_diameter(assemble(1.0)) * height_heads, 1e-6)
+    body_scale = 1.0 + (target - h1) / slope if abs(slope) > 1e-9 else 1.0
+    body_scale = clamp(body_scale, 0.25, 4.0)
+    return assemble(body_scale)
+
+
+def stature(sk: Skeleton) -> float:
+    """Рост персонажа в единицах скелета: от ступней до макушки.
+
+    Y растёт вниз, поэтому низ — максимум Y, верх — конец кости `head` минус
+    полголовы (череп выше оси кости).
+    """
+    ys = []
+    for name in sk.order:
+        ys.append(sk.bones[name].world_pos[1])
+        ys.append(sk.tip(name)[1])
+    if not ys:
+        return 1e-6
+    bottom = max(ys)
+    top = min(ys)
+    if "head" in sk.bones:
+        top = sk.tip("head")[1] - sk.bones["head"].length * HEAD_RADIUS_K
+    return max(bottom - top, 1e-6)
+
+
+def apply_pose(sk: Skeleton, pose: str | dict, weight: float = 1.0,
+               additive: bool = False, reset: bool = True) -> Skeleton:
+    """Поставить позу из библиотеки (или словарь) на скелет.
+
+    pose   — id позы ('wave') либо {"bones": {...}, "root": [dx, dy]}.
+    weight — сила позы 0..1, удобно для переходов между позами.
+    additive — наложить поверх текущей позы (для дыхания и «слоёв»).
+    reset  — сначала вернуть rest-позу, чтобы поза не «накапливалась».
+    """
+    import library as L
+
+    data = L.pose(pose) if isinstance(pose, str) else pose
+    if reset and not additive:
+        sk.reset_pose()
+
+    for name, degrees in (data.get("bones") or {}).items():
+        b = sk.bones.get(name)
+        if b is None:
+            raise KeyError(f"в скелете нет кости '{name}' (поза просит её повернуть)")
+        delta = math.radians(float(degrees)) * weight
+        b.angle = (b.angle + delta) if additive else (b.rest + delta)
+
+    root = data.get("root")
+    if root and weight > 0:
+        rb = sk.bones.get("root")
+        if rb is not None:
+            dx, dy = root
+            if additive or not reset:
+                rb.origin = (rb.origin[0] + dx * weight, rb.origin[1] + dy * weight)
+            else:
+                rb.origin = (dx * weight, dy * weight)
+    sk.solve()
+    return sk
+
+
+def pose_graph(sk: Skeleton, poses: Sequence[str], k: float) -> Skeleton:
+    """Переход между позами: k=0 — первая, k=1 — последняя (по индексу в списке)."""
+    import library as L
+
+    if not poses:
+        return sk
+    n = len(poses) - 1
+    pos = clamp(k) * n
+    i = min(int(pos), max(n - 1, 0))
+    local = pos - i
+    a = L.pose(poses[i])
+    b = L.pose(poses[min(i + 1, n)])
+
+    def val(p: dict, bone: str) -> float:
+        return float((p.get("bones") or {}).get(bone, 0.0))
+
+    for name, bb in sk.bones.items():
+        bb.angle = bb.rest + math.radians(lerp(val(a, name), val(b, name), local))
+    ra = a.get("root", [0.0, 0.0])
+    rb_ = b.get("root", [0.0, 0.0])
+    sk.bones["root"].origin = (lerp(ra[0], rb_[0], local), lerp(ra[1], rb_[1], local))
+    sk.solve()
+    return sk
+
+
+def look_at(sk: Skeleton, target: tuple[float, float], weight: float = 1.0,
+            max_deg: float = 18.0, bones: Sequence[str] = ("neck", "head")) -> Skeleton:
+    """Повернуть шею/голову в сторону цели (взгляд в собеседника, на предмет)."""
+    for name in bones:
+        b = sk.bones.get(name)
+        if b is None:
+            continue
+        sk.solve()                     # мировые координаты актуальны на каждом шаге
+        want = math.atan2(target[1] - b.world_pos[1], target[0] - b.world_pos[0])
+        delta = math.atan2(math.sin(want - b.world_angle), math.cos(want - b.world_angle))
+        limit = math.radians(max_deg)
+        delta = clamp(delta, -limit, limit)
+        b.angle += delta * weight
+    sk.solve()
+    return sk
+
+
+def foot_ik(sk: Skeleton, side: str, target: tuple[float, float],
+            pole: tuple[float, float] = (1.0, 0.0)) -> Skeleton:
+    """Поставить стопу в точку: колено считается IK (не «ломается» при шаге и приседе)."""
+    sk.solve()
+    thigh = sk.bones[f"thigh.{side}"]
+    shin = sk.bones[f"shin.{side}"]
+    root = thigh.world_pos
+    a1, a2, _ = solve_ik2(root, target, thigh.length, shin.length, pole=pole)
+    thigh.angle = a1 - sk.parent_world(thigh.name)[1]
+    shin.angle = a2 - a1
+    return sk.solve()
+
+
+def hand_ik(sk: Skeleton, side: str, target: tuple[float, float],
+            pole: tuple[float, float] | None = None) -> Skeleton:
+    """Дотянуть кисть до цели: локоть решается IK. Цель — мировые координаты."""
+    sk.solve()
+    upper = sk.bones[f"upper_arm.{side}"]
+    fore = sk.bones[f"forearm.{side}"]
+    if pole is None:
+        pole = (0.0, 1.0) if side == "r" else (0.0, -1.0)
+    a1, a2, _ = solve_ik2(upper.world_pos, target, upper.length, fore.length, pole=pole)
+    upper.angle = a1 - sk.parent_world(upper.name)[1]
+    sk.solve()
+    fore.angle = a2 - a1
+    return sk.solve()

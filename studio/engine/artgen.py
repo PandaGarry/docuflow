@@ -6,8 +6,9 @@
    `master/turnaround.png` (три вида в ряд) и `master/face.png` (портрет).
    Всё остальное — производные, которые генерируются с мастерами в референсах.
 2. **Реестр вместо памяти.** `characters/registry.json` хранит для каждого
-   героя промпт-шаблон, мастер-файлы, палитру и список производных ассетов.
-   Любой ассет можно пересобрать из реестра.
+   героя мастер-файлы, отпечаток внешности и список производных ассетов —
+   с промптом и ключом (поза × эмоция × ракурс × комплект одежды).
+   Ключ позволяет понять, какие ассеты устарели после правки персонажа.
 3. **Всё проверяется.** После нарезки/вырезки ассет автоматически идёт в
    `qa.check_asset`; красный вердикт = ассет не попадает в рендер.
 
@@ -16,7 +17,7 @@
   python studio/engine/artgen.py cut        # chroma key + despill для всех PNG
   python studio/engine/artgen.py sheet      # contact-sheet производных ассетов
   python studio/engine/artgen.py registry   # пересобрать characters/registry.json
-  python studio/engine/artgen.py verify     # проверка целостности пайплайна
+  python studio/engine/artgen.py verify     # проверка целостности + что устарело
 """
 
 from __future__ import annotations
@@ -127,62 +128,65 @@ def slice_turnaround(path: str, views: tuple = ("front", "three_quarter", "side"
 # реестр персонажей
 # --------------------------------------------------------------------------- #
 
-BASE_PROMPT = (
-    "Modern stylized volumetric 3D cartoon style (sculpted forms, soft painterly "
-    "textures, appealing caricature proportions). Character: {desc}. "
-    "POSE: {pose}. EXPRESSION: {expr}. CAMERA: {camera}. "
-    "Exactly two arms, two legs, one head, two eyes, five fingers per open palm, "
-    "no extra limbs, no duplicate features. Perfectly flat chroma key green "
-    "background (#00B140), even studio lighting, no text, no watermark."
-)
-
+# Набор заготовок: (папка/имя, поза, эмоция, ракурс).
+# Промпты и ключи собирает kit.py — единый источник правды для арта и куклы.
 DEFAULT_DERIVATIVES = [
-    # (имя, поза, эмоция, ракурс)
-    ("pose/idle", "relaxed standing, arms hanging naturally", "neutral, calm", "full body, front"),
-    ("pose/wave", "right arm raised and waving, left arm relaxed", "happy, wide smile", "full body, front"),
-    ("pose/point", "right index finger pointing straight at the camera, other hand on hip",
-     "cheeky confident smirk, one eyebrow raised", "full body, front"),
-    ("pose/surprise", "both arms thrown up, leaning slightly back", "shocked, eyes wide, mouth open",
-     "full body, front"),
-    ("pose/think", "one hand on chin, head tilted", "curious, thinking", "full body, three-quarter"),
-    ("pose/carry", "both arms forward carrying a box", "focused, slight strain", "full body, front"),
-    ("face/talk_A", "head and shoulders", "talking, mouth open wide", "close-up, front"),
-    ("face/talk_O", "head and shoulders", "talking, round mouth", "close-up, front"),
-    ("face/blink", "head and shoulders", "eyes closed, relaxed", "close-up, front"),
+    ("pose/idle", "idle", "calm", "full"),
+    ("pose/wave", "wave", "joy", "full"),
+    ("pose/point", "point", "smirk", "full"),
+    ("pose/surprise", "surprise", "surprise", "full"),
+    ("pose/think", "think", "think", "full"),
+    ("pose/carry", "carry", "focused", "full"),
+    ("pose/slump", "slump", "tired", "full"),
+    ("pose/walk", "walk", "calm", "full"),
+    ("face/talk_A", "idle", "talk_a", "close"),
+    ("face/talk_O", "idle", "talk_o", "close"),
+    ("face/blink", "idle", "blink", "close"),
+    ("face/joy", "idle", "joy", "close"),
 ]
 
 
 def build_registry() -> dict:
-    reg: dict = {"style": "B-volumetric", "version": 2, "characters": {}}
-    for path in sorted(glob.glob(os.path.join(CHARACTERS, "*"))):
-        if not os.path.isdir(path):
-            continue
-        name = os.path.basename(path)
-        master_dir = os.path.join(path, "master")
-        manifesto = os.path.join(path, "character.json")
-        info = {}
-        if os.path.exists(manifesto):
-            with open(manifesto, encoding="utf-8") as f:
-                info = json.load(f)
+    """Собрать characters/registry.json из character.json + библиотек."""
+    import kit
+
+    reg: dict = {"style": "B-volumetric", "schema": 3,
+                 "generated_by": "artgen.py", "characters": {}}
+    for char_id in kit.list_characters():
+        spec = kit.load_character(char_id)
+        char_dir = kit.character_dir(char_id)
         entry = {
-            "name": name,
-            "label": info.get("label", name),
-            "desc": info.get("desc", ""),
+            "name": char_id,
+            "label": spec.get("label", char_id),
+            "desc": kit.character_text(spec),
+            "schema": spec.get("schema"),
+            "height_heads": spec.get("height_heads"),
+            "outfit_default": (spec.get("wardrobe") or {}).get("default"),
+            "outfits": sorted((spec.get("wardrobe") or {}).get("sets", {})),
+            "hair": spec.get("hair"),
             "master": {
-                "turnaround": _rel(os.path.join(master_dir, "turnaround.png")),
-                "face": _rel(os.path.join(master_dir, "face.png")),
+                "turnaround": _rel(os.path.join(char_dir, "master", "turnaround.png")),
+                "face": _rel(os.path.join(char_dir, "master", "face.png")),
             },
+            "identity_fingerprint": kit.spec_fingerprint(spec),
+            "master_fingerprint": kit.master_fingerprint(char_id),
             "derivatives": [],
         }
-        for dname, pose, expr, cam in DEFAULT_DERIVATIVES:
+        for asset, pose, expr, camera in DEFAULT_DERIVATIVES:
+            path = os.path.join(char_dir, f"{asset}.png")
             entry["derivatives"].append({
-                "asset": dname,
-                "file": _rel(os.path.join(path, f"{dname}.png")),
-                "status": "ready" if os.path.exists(os.path.join(path, f"{dname}.png")) else "todo",
-                "prompt": BASE_PROMPT.format(desc=entry["desc"], pose=pose, expr=expr, camera=cam),
+                "asset": asset,
+                "file": _rel(path),
+                "status": "ready" if os.path.exists(path) else "todo",
+                "pose": pose,
+                "expression": expr,
+                "camera": camera,
+                "key": kit.asset_key(spec, pose=pose, expression=expr, camera=camera,
+                                     set_name=entry["outfit_default"]),
+                "prompt": kit.build_prompt(spec, pose=pose, expression=expr, camera=camera,
+                                           set_name=entry["outfit_default"]),
             })
-        entry["fingerprint"] = _fingerprint(os.path.join(master_dir, "turnaround.png"))
-        reg["characters"][name] = entry
+        reg["characters"][char_id] = entry
     return reg
 
 
@@ -270,21 +274,31 @@ def cmd_registry() -> None:
 
 
 def cmd_verify() -> None:
+    import kit
     reg_path = os.path.join(CHARACTERS, "registry.json")
     if not os.path.exists(reg_path):
         cmd_registry()
+    problems = kit.validate_all()
+    for problem in problems:
+        print("  ✗", problem)
+    problems = len(problems)
+    for item in kit.stale_assets():
+        print(f"  ⚠️ {item['character']}/{item['asset']}: {item['reason']}")
     with open(reg_path, encoding="utf-8") as f:
         reg = json.load(f)
-    problems = 0
     for name, c in reg["characters"].items():
         fp = _fingerprint(os.path.join(STUDIO, c["master"]["turnaround"]))
-        if fp != c["fingerprint"]:
+        if fp != c.get("master_fingerprint"):
             print(f"  ⚠️ {name}: мастер изменился после сборки реестра — пересоберите registry")
             problems += 1
         for d in c["derivatives"]:
             if d["status"] == "ready":
-                p = os.path.join(STUDIO, d["file"])
-                rep = qa.check_asset(p, min_h=300)
+                asset_path = os.path.join(STUDIO, d["file"])
+                if not os.path.exists(asset_path):
+                    print(f"  ❌ {name}/{d['asset']}: файла нет, хотя статус ready")
+                    problems += 1
+                    continue
+                rep = qa.check_asset(asset_path, min_h=300)
                 if not rep.ok:
                     print(f"  ❌ {name}/{d['asset']}: QA не пройден")
                     problems += 1

@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "comment": "Гардероб: слоты и вещи. Вещь несёт и prompt-фрагмент (для генерации арта), и параметры процедурной отрисовки (мгновенная смена одежды без генерации).",
+  "slots": {
+    "top": {
+      "label": "Верх",
+      "required": true
+    },
+    "bottom": {
+      "label": "Низ",
+      "required": true
+    },
+    "shoes": {
+      "label": "Обувь",
+      "required": true
+    },
+    "outer": {
+      "label": "Верхняя одежда",
+      "required": false,
+      "layer": 3
+    },
+    "headwear": {
+      "label": "Головное",
+      "required": false,
+      "layer": 9
+    },
+    "accessory": {
+      "label": "Аксессуар",
+      "required": false,
+      "layer": 8
+    }
+  },
+  "layers": {
+    "comment": "порядок отрисовки: меньше число — ближе к телу",
+    "bottom": 1,
+    "top": 2,
+    "outer": 3,
+    "shoes": 4,
+    "accessory": 8,
+    "headwear": 9
+  },
+  "items": {
+    "hoodie_gray": {
+      "label": "Серое худи",
+      "slots": [
+        "top"
+      ],
+      "prompt": "light-gray crewneck sweatshirt",
+      "draw": {
+        "color": "#C9C7C2",
+        "shade": "#A9A7A3",
+        "sleeve": "long",
+        "collar": "crew",
+        "bulk": 1.12
+      }
+    },
+    "hoodie_brown": {
+      "label": "Коричневое худи с принтом ABC",
+      "slots": [
+        "top"
+      ],
+      "prompt": "brown hoodie with a white 'ABC' print and a hood",
+      "draw": {
+        "color": "#7A5238",
+        "shade": "#5E3F2B",
+        "sleeve": "long",
+        "collar": "hood",
+        "bulk": 1.16,
+        "print": "ABC"
+      }
+    },
+    "tshirt_white": {
+      "label": "Белая футболка",
+      "slots": [
+        "top"
+      ],
+      "prompt": "plain white t-shirt",
+      "draw": {
+        "color": "#F6F3EE",
+        "shade": "#DBD6CF",
+        "sleeve": "short",
+        "collar": "crew",
+        "bulk": 1.0
+      }
+    },
+    "top_white_fitted": {
+      "label": "Белый облегающий топ",
+      "slots": [
+        "top"
+      ],
+      "prompt": "fitted white top",
+      "draw": {
+        "color": "#F3EFE8",
+        "shade": "#D8D2C9",
+        "sleeve": "none",
+        "collar": "crew",
+        "bulk": 0.94
+      }
+    },
+    "shirt_blue": {
+      "label": "Синяя рубашка",
+      "slots": [
+        "top"
+      ],
+      "prompt": "light blue button-up shirt with rolled sleeves",
+      "draw": {
+        "color": "#7FA3C4",
+        "shade": "#6286A6",
+        "sleeve": "long",
+        "collar": "shirt",
+        "bulk": 1.04
+      }
+    },
+    "sweater_mustard": {
+      "label": "Горчичный свитер",
+      "slots": [
+        "top"
+      ],
+      "prompt": "mustard yellow knit sweater",
+      "draw": {
+        "color": "#E0A93F",
+        "shade": "#BE8A2C",
+        "sleeve": "long",
+        "collar": "crew",
+        "bulk": 1.18
+      }
+    },
+    "pajama_top": {
+      "label": "Пижамная куртка",
+      "slots": [
+        "top"
+      ],
+      "prompt": "striped pajama shirt",
+      "draw": {
+        "color": "#C8D6E8",
+        "shade": "#A9BAD0",
+        "sleeve": "long",
+        "collar": "shirt",
+        "bulk": 1.1,
+        "pattern": "stripes"
+      }
+    },
+    "apron": {
+      "label": "Фартук",
+      "slots": [
+        "outer"
+      ],
+      "prompt": "kitchen apron over clothes",
+      "draw": {
+        "color": "#8AA88A",
+        "shade": "#6E8C6E",
+        "sleeve": "none",
+        "collar": "none",
+        "bulk": 0.0
+      }
+    },
+    "jeans_dark": {
+      "label": "Тёмные джинсы",
+      "slots": [
+        "bottom"
+      ],
+      "prompt": "dark jeans",
+      "draw": {
+        "color": "#2F3540",
+        "shade": "#232833",
+        "length": "long",
+        "bulk": 1.0
+      }
+    },
+    "trousers_dark": {
+      "label": "Тёмные брюки",
+      "slots": [
+        "bottom"
+      ],
+      "prompt": "dark trousers",
+      "draw": {
+        "color": "#3C3A3E",
+        "shade": "#2B2A2D",
+        "length": "long",
+        "bulk": 1.02
+      }
+    },
+    "sweatpants_gray": {
+      "label": "Серые спортивные",
+      "slots": [
+        "bottom"
+      ],
+      "prompt": "gray sweatpants",
+      "draw": {
+        "color": "#9A9A9C",
+        "shade": "#7E7E80",
+        "length": "long",
+        "bulk": 1.14
+      }
+    },
+    "shorts_beige": {
+      "label": "Бежевые шорты",
+      "slots": [
+        "bottom"
+      ],
+      "prompt": "beige shorts",
+      "draw": {
+        "color": "#D8C7A8",
+        "shade": "#BAA986",
+        "length": "shorts",
+        "bulk": 1.04
+      }
+    },
+    "pajama_bottom": {
+      "label": "Пижамные штаны",
+      "slots": [
+        "bottom"
+      ],
+      "prompt": "striped pajama pants",
+      "draw": {
+        "color": "#C8D6E8",
+        "shade": "#A9BAD0",
+        "length": "long",
+        "bulk": 1.08,
+        "pattern": "stripes"
+      }
+    },
+    "sneakers_brown": {
+      "label": "Коричневые кроссовки",
+      "slots": [
+        "shoes"
+      ],
+      "prompt": "brown sneakers",
+      "draw": {
+        "color": "#4A3A32",
+        "shade": "#332721",
+        "sole": "#E8E2D6"
+      }
+    },
+    "slippers_home": {
+      "label": "Домашние тапочки",
+      "slots": [
+        "shoes"
+      ],
+      "prompt": "soft home slippers",
+      "draw": {
+        "color": "#B98E8E",
+        "shade": "#9A7070",
+        "sole": "#E8E2D6"
+      }
+    },
+    "boots_black": {
+      "label": "Чёрные ботинки",
+      "slots": [
+        "shoes"
+      ],
+      "prompt": "black lace-up boots",
+      "draw": {
+        "color": "#2A2A2C",
+        "shade": "#1B1B1D",
+        "sole": "#4A4A4C"
+      }
+    },
+    "vest_puffer_brown": {
+      "label": "Коричневый пуховый жилет",
+      "slots": [
+        "outer"
+      ],
+      "prompt": "brown quilted puffer vest",
+      "draw": {
+        "color": "#7C5A44",
+        "shade": "#5E4230",
+        "sleeve": "none",
+        "collar": "stand",
+        "bulk": 1.3,
+        "quilt": true
+      }
+    },
+    "jacket_denim": {
+      "label": "Джинсовая куртка",
+      "slots": [
+        "outer"
+      ],
+      "prompt": "denim jacket",
+      "draw": {
+        "color": "#5C7590",
+        "shade": "#445A72",
+        "sleeve": "long",
+        "collar": "shirt",
+        "bulk": 1.14
+      }
+    },
+    "coat_winter": {
+      "label": "Зимнее пальто",
+      "slots": [
+        "outer"
+      ],
+      "prompt": "warm winter coat",
+      "draw": {
+        "color": "#4E5A4E",
+        "shade": "#3A443A",
+        "sleeve": "long",
+        "collar": "stand",
+        "bulk": 1.34
+      }
+    },
+    "hoodie_open_gray": {
+      "label": "Расстёгнутое худи",
+      "slots": [
+        "outer"
+      ],
+      "prompt": "open gray zip hoodie worn over a t-shirt",
+      "draw": {
+        "color": "#B5B3AE",
+        "shade": "#96948F",
+        "sleeve": "long",
+        "collar": "hood",
+        "bulk": 1.1
+      }
+    },
+    "cap_mint": {
+      "label": "Мятная кепка с «P»",
+      "slots": [
+        "headwear"
+      ],
+      "prompt": "mint-green baseball cap with a black letter 'P'",
+      "draw": {
+        "color": "#9FD3C0",
+        "shade": "#7FB8A3",
+        "brim": true,
+        "text": "P"
+      }
+    },
+    "cap_black": {
+      "label": "Чёрная кепка",
+      "slots": [
+        "headwear"
+      ],
+      "prompt": "plain black baseball cap",
+      "draw": {
+        "color": "#2C2C30",
+        "shade": "#1C1C20",
+        "brim": true
+      }
+    },
+    "beanie": {
+      "label": "Шапка",
+      "slots": [
+        "headwear"
+      ],
+      "prompt": "knit beanie",
+      "draw": {
+        "color": "#8A6A5A",
+        "shade": "#6C4F42",
+        "brim": false
+      }
+    },
+    "scarf": {
+      "label": "Шарф",
+      "slots": [
+        "accessory"
+      ],
+      "prompt": "chunky knit scarf",
+      "draw": {
+        "color": "#C05A4E",
+        "shade": "#9E4238",
+        "wrap": true
+      }
+    },
+    "glasses": {
+      "label": "Очки",
+      "slots": [
+        "accessory"
+      ],
+      "prompt": "thin round eyeglasses",
+      "draw": {
+        "color": "#3B2A26",
+        "frames": true
+      }
+    },
+    "backpack": {
+      "label": "Рюкзак",
+      "slots": [
+        "accessory"
+      ],
+      "prompt": "small backpack",
+      "draw": {
+        "color": "#5A6E8A",
+        "shade": "#42566E",
+        "straps": true
+      }
+    },
+    "necklace_cross": {
+      "label": "Тонкая цепочка с крестиком",
+      "slots": [
+        "accessory"
+      ],
+      "prompt": "thin gold chain with a single small cross pendant",
+      "draw": {
+        "color": "#C9A227",
+        "chain": true,
+        "pendant": "cross"
+      }
+    }
+  }
+}

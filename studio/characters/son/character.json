@@ -1,20 +1,87 @@
 {
+  "schema": 3,
   "id": "son",
   "label": "Сын",
   "role": "самый умный в комнате",
-  "desc": "a little boy 3.5 years old, buzz-cut light-brown hair, very big dark-brown eyes, round cheeks, tiny stature with a big head, pale mint baseball cap with a black letter P, brown hoodie with white ABC print, dark trousers, small sneakers",
-  "height_heads": 5.5,
-  "signature_props": ["pale mint cap with letter P", "brown hoodie with ABC print"],
+  "height_heads": 4.4,
+  "rig": "humanoid_v1",
+  "proportions": {
+    "leg": 0.86,
+    "arm": 0.9,
+    "torso": 0.94,
+    "head": 1.2,
+    "belly": 1.02
+  },
+  "identity": {
+    "desc": "a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands",
+    "skin": "#F0BE9B",
+    "eye": "#4A2E22",
+    "jaw": 0.94,
+    "eye_spread": 1.06,
+    "locked": [
+      "eye size",
+      "head-to-body ratio",
+      "cap colour",
+      "the letter P on the cap"
+    ]
+  },
+  "hair": {
+    "style": "under_cap",
+    "facial_hair": "none",
+    "color": "#6B4A3A"
+  },
   "palette": {
-    "cap": "#CFE8C8",
-    "hoodie": "#6B4A3A",
-    "trousers": "#2B2F36",
-    "skin": "#E8B48F"
+    "skin": "#F0BE9B",
+    "hair": "#6B4A3A",
+    "eye": "#4A2E22",
+    "cap": "#9FD3C0",
+    "hoodie": "#7A5238",
+    "trousers": "#2B2F36"
+  },
+  "wardrobe": {
+    "default": "home",
+    "sets": {
+      "home": {
+        "top": "hoodie_brown",
+        "bottom": "trousers_dark",
+        "shoes": "sneakers_brown",
+        "headwear": "cap_mint"
+      },
+      "street": {
+        "top": "hoodie_brown",
+        "bottom": "trousers_dark",
+        "shoes": "sneakers_brown",
+        "outer": "jacket_denim",
+        "headwear": "cap_mint"
+      },
+      "pajama": {
+        "top": "tshirt_white",
+        "bottom": "pajama_bottom",
+        "shoes": "slippers_home"
+      },
+      "nocap": {
+        "top": "hoodie_brown",
+        "bottom": "trousers_dark",
+        "shoes": "slippers_home"
+      }
+    }
+  },
+  "personality": {
+    "default_expression": "calm",
+    "signature": [
+      "deadpan",
+      "think"
+    ],
+    "catchphrase": "Понятно."
   },
   "forbidden": [
     "no changes to cap colour or the letter P",
     "no other text on clothes besides ABC",
     "no extra limbs or fingers"
   ],
-  "voice": {"pitch": 1.07, "mood": "коротко и прямо", "notes": "высокий, звонкий, без «рекламной» интонации"}
+  "voice": {
+    "pitch": 1.07,
+    "mood": "коротко и прямо",
+    "notes": "высокий, звонкий, без «рекламной» интонации"
+  }
 }

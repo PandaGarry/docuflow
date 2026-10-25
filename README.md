@@ -15,8 +15,10 @@ docs/                 документация студии (читать по �
 studio/
   reference/          референсы реальной семьи (для дизайна героев)
   style-tests/        тесты стилей: A / B / C / D — выбрать один
-  characters/         арт-библия героев: turnaround, позы, мимика, палитра
-  engine/             движок: риг, IK, рендер, липсинк, QA
+  characters/         персонажи: character.json + мастера + производные ассеты
+  library/            библиотеки-данные: позы, эмоции, гардероб, причёски, скелеты
+  engine/             ядро: kit, puppet, face, rig, artgen, core_demo, selftest, QA
+  out/                результаты: превизы, демо-ролики, отчёты
   episodes/           сценарии серий (shot list в JSON) + собранные mp4
   assets/             фоны, реквизит, звук
   fonts/              Montserrat + Nunito (латиница + кириллица, OFL)
@@ -29,8 +31,22 @@ studio/
 python3 -m venv .venv
 .venv/bin/pip install pillow numpy imageio-ffmpeg fonttools brotli
 
-# движок анимации
-.venv/bin/python studio/engine/rig_demo.py          # демо живой анимации -> studio/out/rig-demo.mp4
+# ядро: персонажи, позы, эмоции, одежда — всё в JSON (docs/16-CORE.md)
+.venv/bin/python studio/engine/kit.py list chars
+.venv/bin/python studio/engine/kit.py show dad
+.venv/bin/python studio/engine/kit.py validate
+.venv/bin/python studio/engine/kit.py prompt dad --pose wave --expr joy
+
+# превиз без генерации: поза + эмоция + одежда за секунду
+.venv/bin/python studio/engine/puppet.py preview --char dad --pose think --expr smirk
+.venv/bin/python studio/engine/kit.py sheet dad     # 6 поз × 6 эмоций
+.venv/bin/python studio/engine/kit.py faces dad     # крупные планы всех эмоций
+
+# живая анимация: позы, эмоции, липсинк -> studio/out/core-demo.mp4
+.venv/bin/python studio/engine/core_demo.py
+
+# проверки ядра (26 штук, ~2 с)
+.venv/bin/python studio/engine/selftest.py
 
 # заготовки ассетов: нарезка turnaround, вырезка, реестр, контакт-листы, проверка
 .venv/bin/python studio/engine/artgen.py slice
@@ -39,7 +55,8 @@ python3 -m venv .venv
 .venv/bin/python studio/engine/artgen.py sheet
 .venv/bin/python studio/engine/artgen.py verify
 
-# авто-QA -> studio/out/qa-report.md
+# демо старого рига и авто-QA
+.venv/bin/python studio/engine/rig_demo.py          # -> studio/out/rig-demo.mp4
 .venv/bin/python studio/engine/qa.py --assets studio/characters
 ```
 
@@ -53,6 +70,25 @@ python3 -m venv .venv
 
 `⏳` — в `studio/characters/registry.json` уже лежат готовые промпты: каждая
 новая поза генерируется **с мастерами в референсах**, поэтому лицо не «съезжает».
+
+## Ядро: гибкость без перегенерации
+
+Персонаж — это `character.json`, а не набор картинок. Из него выводится всё:
+промпт для арта, скелет с нужными пропорциями, лицо, одежда.
+
+- **26 поз** (`library/poses.json`), **26 эмоций** (`library/expressions.json`),
+  **30+ вещей** (`library/wardrobe.json`), **11 причёсок** — всё данные.
+- **Лицо — 20 параметров**, а не картинка: эмоции смешиваются, липсинк идёт из
+  текста, микромимика не даёт лицу «застыть».
+- **Одежда меняется за секунду** — и в промпте (перегенерация), и в кукле
+  (мгновенный превиз).
+- **Ключи ассетов**: после правки одежды/причёски `kit.py stale` показывает, что
+  именно устарело. Ничего не перегенерируется вслепую.
+- **Кукла** (`puppet.py`) рисует кадр из JSON: 6×6 поз/эмоций на одном листе,
+  хромакей-фон, любая смена одежды — без обращения к модели.
+
+Полная карта ядра, API и рецепты («новая поза», «новый персонаж», «сменить
+одежду») — [`docs/16-CORE.md`](docs/16-CORE.md).
 
 Демо рига — техническая сцена на процедурном «болванчике» (не финальный арт).
 Она показывает именно механику: IK-изгибы локтей, anticipation, прыжок со
@@ -89,6 +125,7 @@ python3 -m venv .venv
 | [`docs/11-LICENSING.md`](docs/11-LICENSING.md) | Лицензии и права на образы семьи |
 | [`docs/12-STYLE-TESTS.md`](docs/12-STYLE-TESTS.md) | Сравнение 4 стилей (история решения) |
 | [`docs/13-STYLE-B.md`](docs/13-STYLE-B.md) | **Выбранный стиль B**: правила, риски, анимация |
+| [`docs/16-CORE.md`](docs/16-CORE.md) | **Ядро**: персонажи, позы, эмоции, одежда, API, CLI |
 | [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md) | Заготовки: мастера, реестр, команды, добавление героя |
 | [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md) | Переезд в репозиторий `family_studio` |
 

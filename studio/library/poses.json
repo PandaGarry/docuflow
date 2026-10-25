@@ -1,0 +1,485 @@
+{
+  "version": 3,
+  "comment": "Позы = отклонения от rest в градусах. Авторятся в WORLD-углах (0=вправо, 90=вниз): world = локальный − 90 для рук, world = локальный для ног. Пересчёт делает скрипт, руками углы не правим.",
+  "poses": {
+    "idle": {
+      "label": "Стоит спокойно",
+      "tags": [
+        "loop",
+        "base"
+      ],
+      "bones": {
+        "upper_arm.r": 0.0,
+        "forearm.r": 8,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "spine": -1
+      },
+      "prompt": "standing relaxed, arms hanging naturally at the sides"
+    },
+    "idle_shift": {
+      "label": "Стоит, переносит вес на одну ногу",
+      "tags": [
+        "loop",
+        "base"
+      ],
+      "bones": {
+        "upper_arm.r": -2.0,
+        "forearm.r": 12,
+        "upper_arm.l": 4.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": 4,
+        "thigh.l": -3,
+        "spine": -3,
+        "chest": 2,
+        "head": 2
+      },
+      "prompt": "standing with weight shifted onto one leg, relaxed"
+    },
+    "breath": {
+      "label": "Дыхание поверх любой позы (аддитивно)",
+      "tags": [
+        "additive",
+        "loop"
+      ],
+      "additive": true,
+      "bones": {
+        "chest": -1.5,
+        "neck": 1.0,
+        "head": -1.0
+      },
+      "prompt": "subtle breathing motion"
+    },
+    "wave": {
+      "label": "Машет рукой",
+      "tags": [
+        "greeting",
+        "friendly"
+      ],
+      "bones": {
+        "upper_arm.r": -97.0,
+        "forearm.r": -30,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": -6,
+        "hand.l": 0,
+        "chest": -2,
+        "head": 4
+      },
+      "prompt": "right arm raised high and waving, left arm relaxed"
+    },
+    "point": {
+      "label": "Указывает пальцем в камеру",
+      "tags": [
+        "emphasis"
+      ],
+      "bones": {
+        "upper_arm.r": -54.0,
+        "forearm.r": -10,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": -2,
+        "head": 3
+      },
+      "prompt": "right arm extended, index finger pointing at the camera"
+    },
+    "point_up": {
+      "label": "Палец вверх (идея)",
+      "tags": [
+        "idea"
+      ],
+      "bones": {
+        "upper_arm.r": -142.0,
+        "forearm.r": -10,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "head": -3
+      },
+      "prompt": "right arm raised, index finger pointing up"
+    },
+    "point_aside": {
+      "label": "Показывает в сторону",
+      "tags": [
+        "emphasis"
+      ],
+      "bones": {
+        "upper_arm.r": -68.0,
+        "forearm.r": -4,
+        "upper_arm.l": 2.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": -4,
+        "head": -5
+      },
+      "prompt": "right arm extended to the side, presenting something"
+    },
+    "think": {
+      "label": "Думает, рука у подбородка",
+      "tags": [
+        "thinking"
+      ],
+      "bones": {
+        "upper_arm.r": 28.0,
+        "forearm.r": -170,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "head": 7,
+        "spine": -2
+      },
+      "prompt": "hand raised to the chin, head tilted, thinking"
+    },
+    "surprise": {
+      "label": "Всплеск рук от неожиданности",
+      "tags": [
+        "reaction",
+        "big"
+      ],
+      "bones": {
+        "upper_arm.r": -134.0,
+        "forearm.r": -16,
+        "upper_arm.l": -226.0,
+        "forearm.l": 16,
+        "hand.r": 0,
+        "hand.l": 0,
+        "spine": 3,
+        "head": 5
+      },
+      "prompt": "both arms thrown up, leaning slightly back"
+    },
+    "carry": {
+      "label": "Несёт коробку перед собой",
+      "tags": [
+        "prop"
+      ],
+      "bones": {
+        "upper_arm.r": 16.0,
+        "forearm.r": -80,
+        "upper_arm.l": -16.0,
+        "forearm.l": 80,
+        "hand.r": 0,
+        "hand.l": 0,
+        "spine": 2
+      },
+      "prompt": "both arms bent forward, carrying a box in front of the chest"
+    },
+    "hands_on_hips": {
+      "label": "Руки в боки",
+      "tags": [
+        "attitude"
+      ],
+      "bones": {
+        "upper_arm.r": -14.0,
+        "forearm.r": 90,
+        "upper_arm.l": 14.0,
+        "forearm.l": -90,
+        "hand.r": -15,
+        "hand.l": 15
+      },
+      "prompt": "hands on hips, elbows out"
+    },
+    "stern": {
+      "label": "Строгий взгляд, руки в боки",
+      "tags": [
+        "attitude",
+        "mom"
+      ],
+      "bones": {
+        "upper_arm.r": -14.0,
+        "forearm.r": 90,
+        "upper_arm.l": 14.0,
+        "forearm.l": -90,
+        "hand.r": -15,
+        "hand.l": 15,
+        "chest": -3,
+        "head": 5,
+        "spine": -2
+      },
+      "prompt": "hands on hips, chin up, stern stance"
+    },
+    "shrug": {
+      "label": "Пожимает плечами",
+      "tags": [
+        "reaction"
+      ],
+      "bones": {
+        "upper_arm.r": -24.0,
+        "forearm.r": -56,
+        "upper_arm.l": 24.0,
+        "forearm.l": 56,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": 2,
+        "head": 4
+      },
+      "prompt": "shoulders raised, palms turned up"
+    },
+    "facepalm": {
+      "label": "Фейспалм",
+      "tags": [
+        "reaction",
+        "comedy"
+      ],
+      "bones": {
+        "upper_arm.r": 30.0,
+        "forearm.r": -170,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "head": 10,
+        "spine": -4
+      },
+      "prompt": "one hand covering the face in despair"
+    },
+    "thumbs_up": {
+      "label": "Большой палец вверх",
+      "tags": [
+        "approval"
+      ],
+      "bones": {
+        "upper_arm.r": -24.0,
+        "forearm.r": -118,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": -2,
+        "head": -2
+      },
+      "prompt": "right hand giving a thumbs up"
+    },
+    "slump": {
+      "label": "Ссутулился, устал",
+      "tags": [
+        "mood",
+        "tired"
+      ],
+      "bones": {
+        "upper_arm.r": 6.0,
+        "forearm.r": 10,
+        "upper_arm.l": -6.0,
+        "forearm.l": -10,
+        "hand.r": 0,
+        "hand.l": 0,
+        "spine": -5,
+        "chest": 4,
+        "neck": 5,
+        "head": 6,
+        "thigh.r": 2,
+        "thigh.l": -2
+      },
+      "prompt": "slouched, shoulders dropped, tired"
+    },
+    "walk": {
+      "label": "Шаг (фаза 1)",
+      "tags": [
+        "locomotion"
+      ],
+      "bones": {
+        "upper_arm.r": -14.0,
+        "forearm.r": 14,
+        "upper_arm.l": 18.0,
+        "forearm.l": -14,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": -14.0,
+        "shin.r": 20,
+        "thigh.l": 16.0,
+        "shin.l": -22,
+        "spine": 2,
+        "head": -1
+      },
+      "prompt": "mid-stride walking pose"
+    },
+    "walk_2": {
+      "label": "Шаг (фаза 2, зеркало)",
+      "tags": [
+        "locomotion"
+      ],
+      "mirror_of": "walk",
+      "prompt": "mid-stride walking pose, opposite leg"
+    },
+    "run": {
+      "label": "Бежит",
+      "tags": [
+        "locomotion",
+        "big"
+      ],
+      "bones": {
+        "upper_arm.r": -28.0,
+        "forearm.r": -60,
+        "upper_arm.l": 32.0,
+        "forearm.l": 24,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": -30.0,
+        "shin.r": 68,
+        "thigh.l": 28.0,
+        "shin.l": -66,
+        "spine": 5,
+        "head": -3
+      },
+      "prompt": "running, legs wide apart, arms pumping"
+    },
+    "jump": {
+      "label": "В прыжке, ноги поджаты",
+      "tags": [
+        "locomotion",
+        "big"
+      ],
+      "bones": {
+        "upper_arm.r": -146.0,
+        "forearm.r": -14,
+        "upper_arm.l": -214.0,
+        "forearm.l": -14,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": -22.0,
+        "shin.r": 80,
+        "thigh.l": 8.0,
+        "shin.l": 24,
+        "spine": 3
+      },
+      "root": [
+        0.0,
+        -0.55
+      ],
+      "prompt": "jumping, knees tucked up, arms raised"
+    },
+    "crouch": {
+      "label": "Присел / подкрадывается",
+      "tags": [
+        "locomotion"
+      ],
+      "bones": {
+        "upper_arm.r": -6.0,
+        "forearm.r": -30,
+        "upper_arm.l": 6.0,
+        "forearm.l": 30,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": -28.0,
+        "shin.r": 66,
+        "thigh.l": 28.0,
+        "shin.l": -66,
+        "spine": -6,
+        "chest": 3,
+        "head": 3
+      },
+      "root": [
+        0.0,
+        0.3
+      ],
+      "prompt": "crouching low, knees bent"
+    },
+    "sit": {
+      "label": "Сидит (для профиля/дивана)",
+      "tags": [
+        "pose",
+        "prop"
+      ],
+      "bones": {
+        "upper_arm.r": -16.0,
+        "forearm.r": 28,
+        "upper_arm.l": 16.0,
+        "forearm.l": -28,
+        "hand.r": 0,
+        "hand.l": 0,
+        "thigh.r": -82.0,
+        "shin.r": 80,
+        "thigh.l": 82.0,
+        "shin.l": -80,
+        "spine": -2
+      },
+      "root": [
+        0.0,
+        0.62
+      ],
+      "prompt": "sitting, thighs horizontal"
+    },
+    "hold_phone": {
+      "label": "Держит телефон перед лицом",
+      "tags": [
+        "prop",
+        "everyday"
+      ],
+      "bones": {
+        "upper_arm.r": 24.0,
+        "forearm.r": -134,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "head": 4
+      },
+      "prompt": "holding a phone up in front of the face"
+    },
+    "knock": {
+      "label": "Стучит в дверь",
+      "tags": [
+        "prop",
+        "action"
+      ],
+      "bones": {
+        "upper_arm.r": -44.0,
+        "forearm.r": -40,
+        "upper_arm.l": 0.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": -2
+      },
+      "prompt": "right hand raised, knocking on a door"
+    },
+    "scold": {
+      "label": "Отчитывает, палец вверх",
+      "tags": [
+        "attitude"
+      ],
+      "bones": {
+        "upper_arm.r": -48.0,
+        "forearm.r": -64,
+        "upper_arm.l": 2.0,
+        "forearm.l": -8,
+        "hand.r": 0,
+        "hand.l": 0,
+        "chest": -2,
+        "head": 6
+      },
+      "prompt": "index finger raised, scolding"
+    },
+    "celebrate": {
+      "label": "Празднует, руки вверх",
+      "tags": [
+        "big",
+        "positive"
+      ],
+      "bones": {
+        "upper_arm.r": -176.0,
+        "forearm.r": -12,
+        "upper_arm.l": -220.0,
+        "forearm.l": -12,
+        "hand.r": 0,
+        "hand.l": 0,
+        "spine": -3,
+        "head": -4
+      },
+      "root": [
+        0.0,
+        -0.12
+      ],
+      "prompt": "both arms up in celebration, jumping slightly"
+    }
+  }
+}

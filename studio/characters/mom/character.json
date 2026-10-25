@@ -1,21 +1,89 @@
 {
+  "schema": 3,
   "id": "mom",
   "label": "Мама",
   "role": "единственный взрослый в комнате",
-  "desc": "a mom, 31 years old, softly rounded silhouette, long wavy light-brown hair with side-swept bangs, round friendly face, light blue-gray eyes, brown puffer vest over a white top, thin gold cross necklace, dark jeans, cozy slippers",
-  "height_heads": 6.2,
-  "signature_props": ["brown puffer vest", "thin gold cross necklace", "wavy hair with side-swept bangs"],
+  "height_heads": 5.7,
+  "rig": "humanoid_v1",
+  "proportions": {
+    "leg": 1.0,
+    "arm": 0.98,
+    "torso": 1.0,
+    "head": 1.0,
+    "belly": 1.05
+  },
+  "identity": {
+    "desc": "a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines",
+    "skin": "#E8B48F",
+    "eye": "#73879A",
+    "jaw": 0.98,
+    "eye_spread": 1.02,
+    "locked": [
+      "face shape",
+      "eye colour",
+      "hair length",
+      "bangs direction"
+    ]
+  },
+  "hair": {
+    "style": "long_wavy_bangs",
+    "facial_hair": "none",
+    "color": "#9A7856"
+  },
   "palette": {
+    "skin": "#E8B48F",
     "hair": "#9A7856",
+    "eye": "#73879A",
     "vest": "#5B4034",
     "top": "#F5F1E8",
-    "jeans": "#2F3540",
-    "skin": "#E8B48F"
+    "jeans": "#2F3540"
+  },
+  "wardrobe": {
+    "default": "home",
+    "sets": {
+      "home": {
+        "top": "top_white_fitted",
+        "bottom": "jeans_dark",
+        "shoes": "slippers_home",
+        "outer": "vest_puffer_brown",
+        "accessory": "necklace_cross"
+      },
+      "street": {
+        "top": "shirt_blue",
+        "bottom": "jeans_dark",
+        "shoes": "boots_black",
+        "outer": "coat_winter",
+        "accessory": "necklace_cross"
+      },
+      "pajama": {
+        "top": "pajama_top",
+        "bottom": "pajama_bottom",
+        "shoes": "slippers_home"
+      },
+      "kitchen": {
+        "top": "top_white_fitted",
+        "bottom": "jeans_dark",
+        "shoes": "slippers_home",
+        "outer": "apron"
+      }
+    }
+  },
+  "personality": {
+    "default_expression": "calm",
+    "signature": [
+      "deadpan",
+      "annoyed"
+    ],
+    "catchphrase": "Ты серьёзно?"
   },
   "forbidden": [
     "no changes to hair length or bangs direction",
     "no earrings, no rings, no bag",
     "necklace must stay a single thin chain with one small cross"
   ],
-  "voice": {"pitch": 1.0, "mood": "спокойно, с усталостью в конце фразы", "notes": "средний, тёплый"}
+  "voice": {
+    "pitch": 1.0,
+    "mood": "спокойно, с усталостью в конце фразы",
+    "notes": "средний, тёплый"
+  }
 }
