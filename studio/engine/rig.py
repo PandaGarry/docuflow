@@ -100,13 +100,53 @@ class Skeleton:
     def __init__(self, bones: Iterable[Bone] | None = None):
         self.bones: dict[str, Bone] = {}
         self.order: list[str] = []
+        self.rig_id: str = "humanoid_v1"   # профиль, по которому собран скелет
+        self._dirty = True
         for b in bones or []:
             self.add(b)
 
     def add(self, bone: Bone) -> "Skeleton":
+        if bone.name in self.bones:
+            raise ValueError(f"кость '{bone.name}' уже есть в скелете")
+        if bone.parent is not None and bone.parent == bone.name:
+            raise ValueError(f"кость '{bone.name}' не может быть родителем самой себе")
         self.bones[bone.name] = bone
         self.order.append(bone.name)
+        self._dirty = True
         return self
+
+    def _topo(self) -> list[str]:
+        """Порядок костей «родитель раньше ребёнка».
+
+        Раньше порядок был порядком добавления: если родитель добавлялся позже,
+        FK молча считался по устаревшим мировым координатам. Теперь порядок
+        вычисляется, а битые ссылки и циклы — это ошибка, а не тихий баг.
+        """
+        if not self._dirty:
+            return self.order
+        resolved: list[str] = []
+        state: dict[str, int] = {}          # 0 — в процессе, 1 — готово
+
+        def visit(name: str, chain: tuple[str, ...]) -> None:
+            if state.get(name) == 1:
+                return
+            if name in chain:
+                raise ValueError("цикл в иерархии костей: " + " → ".join(chain + (name,)))
+            state[name] = 0
+            parent = self.bones[name].parent
+            if parent is not None:
+                if parent not in self.bones:
+                    raise ValueError(
+                        f"у кости '{name}' родитель '{parent}', которого нет в скелете")
+                visit(parent, chain + (name,))
+            state[name] = 1
+            resolved.append(name)
+
+        for name in list(self.bones):
+            visit(name, ())
+        self.order = resolved
+        self._dirty = False
+        return self.order
 
     def bone(self, name: str) -> Bone:
         return self.bones[name]
@@ -127,7 +167,7 @@ class Skeleton:
 
     def solve(self) -> "Skeleton":
         """FK-проход: мировые позиции из локальных поз."""
-        for name in self.order:
+        for name in self._topo():
             b = self.bones[name]
             (px, py), pa, ps = self.parent_world(name)
             cos_a, sin_a = math.cos(pa), math.sin(pa)
@@ -168,13 +208,55 @@ class Skeleton:
         return out
 
     def mirror(self) -> "Skeleton":
-        """Зеркалить текущую позу (стороны меняются, углы отражаются)."""
-        pairs = [(n, n[:-2] + ".l" if n.endswith(".r") else n[:-2] + ".r")
-                 for n in self.bones if n.endswith((".r", ".l"))]
-        snapshot = {n: self.bones[n].angle - self.bones[n].rest for n, _ in pairs}
-        for n, other in pairs:
-            if other in self.bones:
-                self.bones[n].angle = self.bones[n].rest - snapshot[other]
+        """Зеркалить позу относительно вертикальной оси — математически точно.
+
+        Отражение в мировых углах: ``world → π − world`` (ось X меняется знаком).
+        Пары .r/.l при этом меняются местами, то есть правая рука повторяет то,
+        что делала левая. Углы пересчитываются в локальные сверху вниз — поэтому
+        результат не зависит от того, симметричны ли rest-углы профиля скелета
+        (у ног они, например, разные: 92° и 88°).
+
+        Двойное зеркало возвращает исходную позу (проверяется в selftest).
+        """
+        self.solve()
+        topo = self._topo()
+        world = {n: b.world_angle for n, b in self.bones.items()}
+
+        def partner(name: str) -> str:
+            if name.endswith(".r") and name[:-2] + ".l" in self.bones:
+                return name[:-2] + ".l"
+            if name.endswith(".l") and name[:-2] + ".r" in self.bones:
+                return name[:-2] + ".r"
+            return name
+
+        target = {n: math.pi - world[partner(n)] for n in self.bones}
+        for name in topo:                       # локальные углы из целевых мировых
+            bone = self.bones[name]
+            parent_world = target[bone.parent] if bone.parent in target else 0.0
+            bone.angle = target[name] - parent_world
+
+        root = self.bones.get("root")
+        if root is not None:
+            root.origin = (-root.origin[0], root.origin[1])
+        return self.solve()
+
+    def mirrored(self) -> "Skeleton":
+        """Копия с зеркальной позой (исходник не меняется)."""
+        return Skeleton.from_dict(self.to_dict()).mirror()
+
+    def blend_to(self, pose: str | dict, k: float) -> "Skeleton":
+        """Плавно перевести текущую позу в заданную (k=0 — как было, k=1 — поза)."""
+        import library as L
+        data = L.pose(pose) if isinstance(pose, str) else pose
+        bones = data.get("bones") or {}
+        f = clamp(k)
+        for name, b in self.bones.items():
+            target = b.rest + math.radians(float(bones.get(name, 0.0)))
+            b.angle = lerp(b.angle, target, f)
+        root = self.bones.get("root")
+        if root is not None and data.get("root"):
+            root.origin = (lerp(root.origin[0], data["root"][0], f),
+                           lerp(root.origin[1], data["root"][1], f))
         self.solve()
         return self
 
@@ -240,8 +322,12 @@ def solve_ik2(root: tuple[float, float],
     if dist < 1e-6:
         return 0.0, 0.0, 0.0
 
-    d = clamp(dist, abs(l1 - l2) + 1e-4, reach - 1e-4)
     base = math.atan2(dy, dx)
+    if dist >= reach - 1e-4:
+        # цель дальше руки: обе кости встают по направлению на цель (прямая рука)
+        return base, base, 1.0
+
+    d = clamp(dist, abs(l1 - l2) + 1e-4, reach - 1e-4)
     cos_a = (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d)
     a = math.acos(clamp(cos_a, -1.0, 1.0))
 
@@ -259,7 +345,7 @@ def solve_ik2(root: tuple[float, float],
     candidates.sort(key=lambda c: (c[0], c[1]), reverse=True)
     _align, _neg_err, a1, elbow = candidates[0]
     a2 = math.atan2(target[1] - elbow[1], target[0] - elbow[0])
-    return a1, a2, min(dist / reach, 1.0)
+    return a1, a2, dist / reach
 
 
 # --------------------------------------------------------------------------- #
@@ -293,13 +379,14 @@ class Track:
             return self.keys[0].value
         if t >= self.keys[-1].t:
             return self.keys[-1].value
-        for k0, k1 in zip(self.keys, self.keys[1:]):
-            if k0.t <= t <= k1.t:
-                span = max(k1.t - k0.t, 1e-6)
-                k = (t - k0.t) / span
-                f = EASINGS.get(k1.ease, ease_in_out)(k)
-                return lerp(k0.value, k1.value, f)
-        return self.keys[-1].value
+        import bisect
+        times = [k.t for k in self.keys]          # ключи отсортированы
+        i = bisect.bisect_right(times, t) - 1
+        i = max(0, min(i, len(self.keys) - 2))
+        k0, k1 = self.keys[i], self.keys[i + 1]
+        span = max(k1.t - k0.t, 1e-6)
+        f = EASINGS.get(k1.ease, ease_in_out)((t - k0.t) / span)
+        return lerp(k0.value, k1.value, f)
 
 
 # --------------------------------------------------------------------------- #
@@ -335,12 +422,23 @@ class Spring:
         self.x = clamp(self.x, -self.limit, self.limit)
         return self.x
 
-    def run(self, frames: int, fps: int, drives: Sequence[float]) -> list[float]:
+    def run(self, frames: int, fps: int, drives: Sequence[float],
+            substeps: int | None = None) -> list[float]:
+        """Прогнать пружину по кадрам.
+
+        Интеграция фиксированным шагом ≤ 1/120 с: при 24 fps и при 60 fps
+        поведение одинаковое, а не «разъезжается» от частоты кадров.
+        """
         dt = 1.0 / fps
+        n = substeps or max(1, math.ceil(dt / (1.0 / 120.0)))
+        sub = dt / n
         out = []
         for i in range(frames):
             d = drives[i] if i < len(drives) else 0.0
-            out.append(self.step(dt, d))
+            x = self.x
+            for _ in range(n):
+                x = self.step(sub, d)
+            out.append(x)
         return out
 
 
@@ -482,6 +580,7 @@ def build_humanoid(height_heads: float = 6.5,
 
     def assemble(body_scale: float) -> Skeleton:
         sk = Skeleton()
+        sk.rig_id = rig_id
         for spec in profile["bones"]:
             group = spec.get("group", "root")
             mult = props.get(group, 1.0) if group in props else 1.0
@@ -528,6 +627,41 @@ def stature(sk: Skeleton) -> float:
     return max(bottom - top, 1e-6)
 
 
+_POSE_DATA_CACHE: dict[tuple[str, str], dict] = {}
+
+
+def _rig_of(sk: Skeleton) -> str:
+    return getattr(sk, "rig_id", "humanoid_v1")
+
+
+def pose_data(pose_id: str, rig_id: str = "humanoid_v1") -> dict:
+    """Точные данные позы: {"bones": {кость: градусы}, "root": [dx, dy]}.
+
+    Зеркальные позы (`mirror_of`) считаются на настоящем скелете и потому
+    отражаются без перекоса. Результат не зависит от роста: это углы.
+    """
+    key = (rig_id, pose_id)
+    if key in _POSE_DATA_CACHE:
+        return _POSE_DATA_CACHE[key]
+
+    import library as L
+
+    raw = L.pose(pose_id)
+    if raw.get("mirror_of"):
+        src = pose_data(raw["mirror_of"], rig_id)
+        sk = build_humanoid(6.0, rig_id=rig_id)
+        apply_pose(sk, src)
+        sk.mirror()
+        data = {"bones": sk.capture(round_to=3),
+                "root": [round(v, 4) for v in sk.bones["root"].origin],
+                "mirror_of": raw["mirror_of"]}
+    else:
+        data = {"bones": {k: float(v) for k, v in (raw.get("bones") or {}).items()},
+                "root": list(raw.get("root") or (0.0, 0.0))}
+    _POSE_DATA_CACHE[key] = data
+    return data
+
+
 def apply_pose(sk: Skeleton, pose: str | dict, weight: float = 1.0,
                additive: bool = False, reset: bool = True) -> Skeleton:
     """Поставить позу из библиотеки (или словарь) на скелет.
@@ -537,9 +671,15 @@ def apply_pose(sk: Skeleton, pose: str | dict, weight: float = 1.0,
     additive — наложить поверх текущей позы (для дыхания и «слоёв»).
     reset  — сначала вернуть rest-позу, чтобы поза не «накапливалась».
     """
-    import library as L
+    if isinstance(pose, dict) and pose.get("mirror_of"):
+        # зеркальную позу строим на скелете: точное отражение зависит от rest-углов
+        apply_pose(sk, pose_data(pose["mirror_of"], _rig_of(sk)), weight=weight,
+                   additive=additive, reset=reset)
+        if weight >= 0.999:
+            return sk.mirror()
+        return sk
 
-    data = L.pose(pose) if isinstance(pose, str) else pose
+    data = pose_data(pose) if isinstance(pose, str) else pose
     if reset and not additive:
         sk.reset_pose()
 
@@ -565,16 +705,15 @@ def apply_pose(sk: Skeleton, pose: str | dict, weight: float = 1.0,
 
 def pose_graph(sk: Skeleton, poses: Sequence[str], k: float) -> Skeleton:
     """Переход между позами: k=0 — первая, k=1 — последняя (по индексу в списке)."""
-    import library as L
-
     if not poses:
         return sk
     n = len(poses) - 1
     pos = clamp(k) * n
     i = min(int(pos), max(n - 1, 0))
     local = pos - i
-    a = L.pose(poses[i])
-    b = L.pose(poses[min(i + 1, n)])
+    rig_id = _rig_of(sk)
+    a = pose_data(poses[i], rig_id)
+    b = pose_data(poses[min(i + 1, n)], rig_id)
 
     def val(p: dict, bone: str) -> float:
         return float((p.get("bones") or {}).get(bone, 0.0))

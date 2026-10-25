@@ -74,12 +74,101 @@ def _():
     assert len(L.hair_styles()) >= 8
 
 
-@check("библиотеки: mirror_of даёт зеркальные углы")
+@check("библиотеки: mirror_of разрешается в точное зеркало")
 def _():
-    walk = L.pose("walk")
-    mirrored = L.pose("walk_2")
-    r = walk["bones"]["upper_arm.r"]
-    assert mirrored["bones"]["upper_arm.l"] == -r, mirrored["bones"]
+    src = R.pose_data("wave")
+    mirrored = R.pose_data("wave_left")
+    assert mirrored.get("mirror_of") == "wave"
+    sk = R.apply_pose(R.build_humanoid(6.0), src)
+    ref = sk.tip("hand.l")
+    sk2 = R.apply_pose(R.build_humanoid(6.0), mirrored)
+    got = sk2.tip("hand.r")
+    assert abs(got[0] + ref[0]) < 1e-6 and abs(got[1] - ref[1]) < 1e-6, (got, ref)
+
+
+@check("библиотеки: валидатор ловит битую позу")
+def _():
+    table = L.load("poses")
+    table["poses"]["zz_broken"] = {"label": "сломано", "bones": {"no_such_bone": 5}}
+    try:
+        problems = L.validate()
+    finally:
+        del table["poses"]["zz_broken"]
+        L.clear_cache()
+    assert any("zz_broken" in p for p in problems), problems
+
+
+@check("библиотеки: валидатор ловит несимметричный rest-скелет")
+def _():
+    rigs = L.load("rigs")
+    bones = rigs["rigs"]["humanoid_v1"]["bones"]
+    original = next(b for b in bones if b["name"] == "upper_arm.l")["rest"]
+    next(b for b in bones if b["name"] == "upper_arm.l")["rest"] = original + 12
+    try:
+        problems = L.validate()
+    finally:
+        next(b for b in bones if b["name"] == "upper_arm.l")["rest"] = original
+        L.clear_cache()
+    assert any("upper_arm.l" in p and "зеркал" in p for p in problems), problems
+
+
+@check("библиотеки: валидатор ловит эмоцию вне диапазона")
+def _():
+    expr = L.load("expressions")
+    expr["expressions"]["zz_bad"] = {"label": "плохо", "face": {"smile": 5}}
+    try:
+        problems = L.validate()
+    finally:
+        del expr["expressions"]["zz_bad"]
+        L.clear_cache()
+    assert any("zz_bad" in p for p in problems), problems
+
+
+@check("авторинг: поза сохраняется, читается и удаляется")
+def _():
+    entry = L.save_pose("zz_roundtrip", {"head": 7, "spine": -3}, root=[0.0, 0.1],
+                        label="круговая", tags=["test"])
+    assert entry["bones"]["head"] == 7
+    L.clear_cache()
+    assert "zz_roundtrip" in L.poses(), "поза не попала в файл"
+    assert R.pose_data("zz_roundtrip")["bones"]["head"] == 7
+    assert L.delete_pose("zz_roundtrip"), "не удалилась"
+    L.clear_cache()
+    assert "zz_roundtrip" not in L.poses()
+
+
+@check("авторинг: мусор в позе отклоняется")
+def _():
+    for bad in (("BadId", {}), ("ok_id", {"no_such": 1}), ("ok_id", {"head": 999})):
+        try:
+            L.save_pose(bad[0], bad[1], write=False)
+        except ValueError:
+            continue
+        raise AssertionError(f"приняли плохую позу: {bad}")
+    try:
+        L.save_pose("zz_mirror", {"head": 1}, mirror_of="wave", write=False)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("зеркальная поза приняла свои кости")
+
+
+@check("авторинг: эмоция проверяется по параметрам и диапазонам")
+def _():
+    assert L.save_expression("zz_expr", {"smile": 0.5}, write=False)["face"]["smile"] == 0.5
+    for bad in ({"nope": 0.5}, {"smile": 9}):
+        try:
+            L.save_expression("zz_expr", bad, write=False)
+        except ValueError:
+            continue
+        raise AssertionError(f"приняли плохую эмоцию: {bad}")
+    L.clear_cache()
+
+
+@check("библиотеки: после откатов валидатор чист")
+def _():
+    problems = L.validate()
+    assert not problems, problems[:5]
 
 
 # --------------------------------------------------------------------------- #
@@ -119,14 +208,46 @@ def _():
     assert hand > shoulder + 1.2, f"кисть {hand:.2f}, плечо {shoulder:.2f}"
 
 
-@check("пикл: зеркалирование симметрично")
+@check("пикл: зеркалирование точное (руки меняются местами)")
 def _():
     sk = R.apply_pose(R.build_humanoid(6.0), "wave")
-    xr = sk.tip("hand.r")
+    xr, xl = sk.tip("hand.r"), sk.tip("hand.l")
     sk.mirror()
-    xl = sk.tip("hand.l")
-    # допуск 8 %: у плеч разные rest-углы и смещения, идеальной симметрии нет
-    assert abs(xr[0] + xl[0]) < 0.25 and abs(xr[1] - xl[1]) < 0.25, (xr, xl)
+    nr, nl = sk.tip("hand.r"), sk.tip("hand.l")
+    # после зеркала правая кисть — там, где была левая (и наоборот), с точностью float
+    assert abs(nr[0] + xl[0]) < 1e-9 and abs(nr[1] - xl[1]) < 1e-9, (nr, xl)
+    assert abs(nl[0] + xr[0]) < 1e-9 and abs(nl[1] - xr[1]) < 1e-9, (nl, xr)
+
+
+@check("пикл: двойное зеркало = исходная поза")
+def _():
+    sk = R.apply_pose(R.build_humanoid(5.2), "think")
+    before = {n: (b.world_angle, b.world_pos) for n, b in sk.bones.items()}
+    sk.mirror().mirror()
+    for name, (angle, pos) in before.items():
+        assert abs(sk.bones[name].world_angle - angle) < 1e-9, name
+        assert abs(sk.bones[name].world_pos[0] - pos[0]) < 1e-9, name
+        assert abs(sk.bones[name].world_pos[1] - pos[1]) < 1e-9, name
+
+
+@check("пикл: зеркало корпуса отражает наклон")
+def _():
+    sk = R.build_humanoid(6.0)
+    sk.bones["spine"].angle -= 0.2            # наклон в сторону
+    sk.solve()
+    lean_before = sk.bones["head"].world_pos[0]
+    sk.mirror()
+    assert abs(sk.bones["head"].world_pos[0] + lean_before) < 1e-9, (lean_before, sk.bones["head"].world_pos)
+
+
+@check("пикл: зеркальная поза словарём применяется как зеркало")
+def _():
+    src = R.pose_data("wave")
+    sk_src = R.apply_pose(R.build_humanoid(6.0), src)
+    hand_l = sk_src.tip("hand.l")
+    sk = R.apply_pose(R.build_humanoid(6.0), {"mirror_of": "wave"})
+    assert abs(sk.tip("hand.r")[0] + hand_l[0]) < 1e-6
+    assert abs(sk.tip("hand.r")[1] - hand_l[1]) < 1e-6
 
 
 @check("пикл: capture → from_dict сохраняет позу")

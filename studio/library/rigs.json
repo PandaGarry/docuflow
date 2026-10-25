@@ -165,7 +165,7 @@
           "name": "foot.l",
           "parent": "shin.l",
           "length": 0.2,
-          "rest": 88.0,
+          "rest": 270.0,
           "group": "leg",
           "width": 0.3
         }

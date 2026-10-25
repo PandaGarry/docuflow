@@ -41,6 +41,7 @@ import copy
 import glob
 import hashlib
 import json
+import math
 import os
 import sys
 
@@ -428,9 +429,54 @@ def validate_character(spec: dict, strict: bool = True) -> list[str]:
             if meta.get("required") and slot not in items:
                 problems.append(f"{cid}.{set_name}: нет обязательного слота '{slot}'")
 
-    expr = (spec.get("personality") or {}).get("default_expression", "neutral")
+    rig_id = spec.get("rig", "humanoid_v1")
+    try:
+        L.rig_profile(rig_id)
+    except KeyError as exc:
+        problems.append(f"{cid}: {exc}")
+
+    belly = float((spec.get("proportions") or {}).get("belly", 1.0))
+    if not 0.4 <= belly <= 2.0:
+        problems.append(f"{cid}: proportions.belly={belly} вне 0.4..2.0")
+    bulk = float((spec.get("body") or {}).get("bulk", 1.0))
+    if not 0.5 <= bulk <= 2.0:
+        problems.append(f"{cid}: body.bulk={bulk} вне 0.5..2.0")
+
+    identity = spec.get("identity") or {}
+    if strict and not identity.get("locked"):
+        problems.append(f"{cid}: identity.locked пуст — нечем защищать лицо при генерации")
+    for key in ("skin", "eye"):
+        color = identity.get(key)
+        if color and not L.HEX_RE.match(str(color)):
+            problems.append(f"{cid}.identity.{key}: цвет не #RRGGBB ({color})")
+    for key in ("skin", "hair", "eye"):
+        color = (spec.get("palette") or {}).get(key)
+        if not color:
+            problems.append(f"{cid}.palette: нет обязательного цвета '{key}'")
+        elif not L.HEX_RE.match(str(color)):
+            problems.append(f"{cid}.palette.{key}: цвет не #RRGGBB ({color})")
+    hair_color = (spec.get("hair") or {}).get("color")
+    if hair_color and not L.HEX_RE.match(str(hair_color)):
+        problems.append(f"{cid}.hair.color: цвет не #RRGGBB ({hair_color})")
+
+    pers = spec.get("personality") or {}
+    expr = pers.get("default_expression", "neutral")
     if expr not in L.expression_table():
         problems.append(f"{cid}: default_expression '{expr}' не найдена")
+    for sig in pers.get("signature", []) or []:
+        if sig not in L.expression_table():
+            problems.append(f"{cid}: signature '{sig}' — такой эмоции нет")
+
+    pitch = (spec.get("voice") or {}).get("pitch", 1.0)
+    if not isinstance(pitch, (int, float)) or not 0.5 <= float(pitch) <= 2.0:
+        problems.append(f"{cid}.voice.pitch={pitch}: ожидалось число 0.5..2.0")
+
+    if strict:
+        known = {"schema", "id", "label", "role", "height_heads", "rig", "proportions",
+                 "identity", "hair", "palette", "wardrobe", "personality", "forbidden",
+                 "voice", "body", "notes"}
+        for key in set(spec) - known:
+            problems.append(f"{cid}: неизвестное поле '{key}' (схема v{SCHEMA_VERSION})")
 
     for key, color in (spec.get("palette") or {}).items():
         if isinstance(color, str) and color.startswith("#") and not L.HEX_RE.match(color):
@@ -785,6 +831,113 @@ def _cmd_faces(args) -> None:
     print("✓", path, img.size)
 
 
+def _parse_pairs(text: str, sep: str) -> dict[str, float]:
+    """'spine:-6, head:4' → {'spine': -6.0, 'head': 4.0} с внятными ошибками."""
+    out: dict[str, float] = {}
+    for chunk in (text or "").split(","):
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        if sep not in chunk:
+            raise SystemExit(f"не разобрать '{chunk}': нужен формат имя{sep}значение")
+        name, value = chunk.split(sep, 1)
+        try:
+            out[name.strip()] = float(value)
+        except ValueError:
+            raise SystemExit(f"'{value.strip()}' — не число (в '{chunk}')")
+    return out
+
+
+def _cmd_pose(args) -> None:
+    """Отрисовать один кадр процедурной куклы — быстрый контроль позы/эмоции."""
+    import puppet
+
+    spec = load_character(args.char)
+    try:
+        L.pose(args.pose)
+    except KeyError as exc:
+        raise SystemExit(str(exc))
+    if args.expr not in L.expression_table():
+        raise SystemExit(f"нет эмоции '{args.expr}'; есть: {', '.join(sorted(L.expression_table()))}")
+
+    outfit = {k: v for k, v in {"top": args.top, "bottom": args.bottom, "shoes": args.shoes,
+                                "outer": args.outer, "headwear": args.headwear,
+                                "accessory": args.accessory}.items() if v}
+    opts = puppet.RenderOpts(width=args.width, height=args.height, quality=args.quality)
+    img = puppet.render(spec, pose=args.pose, expression=args.expr, outfit=outfit or None,
+                        set_name=args.set_name, opts=opts, background=args.background,
+                        caption=args.caption)
+    os.makedirs(OUT, exist_ok=True)
+    path = args.out or os.path.join(OUT, f"pose-{args.char}-{args.pose}-{args.expr}.png")
+    img.save(path)
+    print("✓", path, img.size)
+
+
+def _cmd_pose_save(args) -> None:
+    """Сохранить позу в библиотеку: снял углы — и она доступна везде по id."""
+    bones = _parse_pairs(args.bones, ":")
+    root = None
+    if args.root:
+        parts = [p for p in args.root.replace(";", ",").split(",") if p.strip()]
+        if len(parts) != 2:
+            raise SystemExit("--root ожидает два числа: 'dx,dy'")
+        try:
+            root = [float(parts[0]), float(parts[1])]
+        except ValueError:
+            raise SystemExit("--root: оба значения должны быть числами")
+    tags = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
+    try:
+        entry = L.save_pose(args.id, bones, root=root, label=args.label or "",
+                            tags=tags, expression=args.expr,
+                            mirror_of=args.mirror_of, write=not args.dry_run)
+    except ValueError as exc:
+        raise SystemExit(str(exc))
+    print(("✓ сохранено: " if not args.dry_run else "· проверено (dry-run): ") + args.id)
+    print(json.dumps(entry, ensure_ascii=False))
+    if not args.dry_run:
+        print(f"дальше: kit.py pose <char> --pose {args.id} --expr joy --out studio/out/check.png")
+        mine = [a for a in stale_assets() if a["asset"].endswith(args.id)]
+        if mine:
+            print(f"⚠️ устарели ассеты с этой позой: {', '.join(a['asset'] for a in mine)}")
+
+
+def _cmd_expr_save(args) -> None:
+    """Сохранить эмоцию: набор параметров лица с проверкой диапазонов."""
+    face = _parse_pairs(args.face, "=")
+    if not face:
+        raise SystemExit('нужен --face "smile=0.8,brow_raise=0.3"')
+    try:
+        entry = L.save_expression(args.id, face, label=args.label or "",
+                                  write=not args.dry_run)
+    except ValueError as exc:
+        raise SystemExit(str(exc))
+    print(("✓ сохранено: " if not args.dry_run else "· проверено (dry-run): ") + args.id)
+    print(json.dumps(entry, ensure_ascii=False))
+    if not args.dry_run:
+        print("дальше: kit.py faces <char> --out studio/out/faces.png")
+
+
+def _cmd_rig(args) -> None:
+    """Показать профиль скелета и проверить его симметрию."""
+    import rig as R
+
+    profile = L.rig_profile(args.rig)
+    sk = R.build_humanoid(args.height, rig_id=args.rig)
+    print(f"{args.rig}: {profile.get('label', '')} — {len(sk.bones)} костей")
+    print(f"рост {args.height} голов · диаметр головы {R.head_diameter(sk):.3f} ед. · "
+          f"рост {R.stature(sk):.3f} ед.")
+    if args.bones:
+        print(f"{'кость':13s} {'родитель':11s} {'длина':>7s} {'rest°':>7s}  группа")
+        for name in sk.order:
+            b = sk.bones[name]
+            print(f"{name:13s} {b.parent or '—':11s} {b.length:7.3f} "
+                  f"{math.degrees(b.rest):7.1f}  {b.group}")
+    issues = [x for x in L.validate(args.rig) if x.startswith(f"rigs.{args.rig}")]
+    print("✓ rest-поза симметрична" if not issues else f"✗ проблем: {len(issues)}")
+    for issue in issues:
+        print("  ", issue)
+
+
 def _cmd_migrate(args) -> None:
     changed = 0
     for cid in list_characters():
@@ -874,6 +1027,44 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--cell", type=int, default=230)
     p.add_argument("--out", default=None)
     p.set_defaults(func=_cmd_faces)
+
+    p = sub.add_parser("pose")
+    p.add_argument("char")
+    p.add_argument("--pose", default="idle")
+    p.add_argument("--expr", default="neutral")
+    p.add_argument("--set", dest="set_name", default=None)
+    p.add_argument("--width", type=int, default=540)
+    p.add_argument("--height", type=int, default=960)
+    p.add_argument("--quality", default="high", choices=["preview", "high", "final"])
+    p.add_argument("--background", default=None)
+    p.add_argument("--caption", default=None)
+    outfit_args(p)
+    p.add_argument("--out", default=None)
+    p.set_defaults(func=_cmd_pose)
+
+    p = sub.add_parser("pose-save")
+    p.add_argument("id")
+    p.add_argument("--bones", default="", help='"spine:-6,head:4"')
+    p.add_argument("--root", default=None, help='"dx,dy" в единицах скелета')
+    p.add_argument("--label", default="")
+    p.add_argument("--tags", default="")
+    p.add_argument("--expr", default=None)
+    p.add_argument("--mirror-of", dest="mirror_of", default=None)
+    p.add_argument("--dry-run", action="store_true")
+    p.set_defaults(func=_cmd_pose_save)
+
+    p = sub.add_parser("expr-save")
+    p.add_argument("id")
+    p.add_argument("--face", default="", help='"smile=0.8,brow_raise=0.3"')
+    p.add_argument("--label", default="")
+    p.add_argument("--dry-run", action="store_true")
+    p.set_defaults(func=_cmd_expr_save)
+
+    p = sub.add_parser("rig")
+    p.add_argument("--rig", default="humanoid_v1")
+    p.add_argument("--height", type=float, default=6.0)
+    p.add_argument("--bones", action="store_true")
+    p.set_defaults(func=_cmd_rig)
 
     p = sub.add_parser("migrate")
     p.set_defaults(func=_cmd_migrate)

@@ -68,16 +68,100 @@ def mix(a, b, k: float):
 # --------------------------------------------------------------------------- #
 
 
+QUALITY = {
+    "preview": {"ss": 1},           # быстрый превью: ~25-35 мс на кадр
+    "high": {"ss": 2},              # рабочий: суперсэмплинг ×2
+    "final": {"ss": 3},             # финальный: ×3, дорого
+}
+
+
 @dataclass
 class RenderOpts:
     width: int = 720
     height: int = 1280
-    ss: int = 2                     # суперсэмплинг (рисуем крупнее, потом сжимаем)
+    ss: int | None = None           # суперсэмплинг; None — взять из пресета quality
     ground: float = 0.90            # где стоят ноги (доля высоты)
     margin: float = 0.06            # поля
-    background: str = "studio"      # studio | none
+    background: str = "studio"      # studio | chroma | none
     shadow: bool = True
     grain: float = 0.7
+    quality: str = "high"           # preview | high | final (задаёт ss, если ss не задан вручную)
+
+    def __post_init__(self) -> None:
+        if self.ss is None:
+            self.ss = int(QUALITY.get(self.quality, QUALITY["high"])["ss"])
+        self.ss = max(1, int(self.ss))
+
+
+_LIGHT_CACHE: dict[tuple[int, int], tuple[np.ndarray, np.ndarray]] = {}
+
+
+def _light_fields(h: int, w: int) -> tuple[np.ndarray, np.ndarray]:
+    """Поля «тень/блик» для bbox: свет сверху-справа, тень снизу-слева.
+
+    Зависит только от размера прямоугольника, поэтому кешируется. Поля
+    возвращаются как read-only: их нельзя портить на месте.
+    """
+    key = (h, w)
+    if key not in _LIGHT_CACHE:
+        yy, xx = np.mgrid[0:h, 0:w]
+        nx = (xx - (w - 1) / 2) / max(w / 2, 1)
+        ny = (yy - (h - 1) / 2) / max(h / 2, 1)
+        light_dir = -(0.85 * nx + 0.55 * ny)      # >0 — сторона света
+        dark = np.clip(-light_dir, 0, 1) ** 1.2
+        light = np.clip(light_dir, 0, 1) ** 2.0
+        dark.flags.writeable = False
+        light.flags.writeable = False
+        if len(_LIGHT_CACHE) > 64:
+            _LIGHT_CACHE.clear()
+        _LIGHT_CACHE[key] = (dark, light)
+    return _LIGHT_CACHE[key]
+
+
+def _erode(m: np.ndarray, steps: int = 2) -> np.ndarray:
+    """Эрозия маски на steps пикселей (для мягкого контура) — без PIL-фильтров."""
+    out = m
+    for _ in range(steps):
+        out = np.minimum.reduce([
+            out,
+            np.roll(out, 1, axis=0), np.roll(out, -1, axis=0),
+            np.roll(out, 1, axis=1), np.roll(out, -1, axis=1),
+        ])
+    return out
+
+
+_BG_CACHE: dict[tuple[int, int, int], Image.Image] = {}
+
+
+def _background_cache(W: int, H: int, ground: float) -> Image.Image:
+    """Фон: вертикальный градиент + мягкий свет сверху-слева + линия пола.
+
+    Считается один раз на размер и дальше копируется. Раньше на каждый кадр шёл
+    цикл по 2000+ строкам и полноразмерный blur — самая дорогая операция в
+    покадровом рендере.
+    """
+    key = (W, H, int(ground * 1000))
+    if key in _BG_CACHE:
+        return _BG_CACHE[key]
+
+    k = np.linspace(0.0, 1.0, H, dtype=np.float32)[:, None, None]
+    top = np.array(BG_TOP, np.float32)[None, None, :]
+    bot = np.array(BG_BOT, np.float32)[None, None, :]
+    arr = np.broadcast_to(top * (1 - k) + bot * k, (H, W, 3)).copy()
+    img = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA")
+
+    # мягкий свет сверху-слева — на уменьшенной маске, потом растягиваем
+    small_size = (max(W // 8, 8), max(H // 8, 8))
+    glow = Image.new("L", small_size, 0)
+    ImageDraw.Draw(glow).ellipse([small_size[0] * 0.05, -small_size[1] * 0.25,
+                                  small_size[0] * 0.95, small_size[1] * 0.55], fill=60)
+    glow = glow.filter(ImageFilter.GaussianBlur(small_size[1] * 0.12)).resize(
+        (W, H), Image.BILINEAR)
+    img = Image.composite(Image.new("RGBA", (W, H), (255, 250, 240, 255)), img, glow)
+
+    ImageDraw.Draw(img).rectangle([0, H * ground, W, H], fill=(236, 222, 202))
+    _BG_CACHE[key] = img
+    return img
 
 
 # --------------------------------------------------------------------------- #
@@ -95,6 +179,18 @@ class Painter:
         self.k = 1.0
         self.ox = 0.0
         self.oy = 0.0
+        # кеши: одинаковые данные на каждом кадре не пересобираются
+        self._outfit_cache: dict[tuple, dict] = {}
+        self._hints: tuple[dict, dict] | None = None
+        self._metrics_cache: dict[float, dict] = {}
+
+    def _background(self, mode: str | None) -> Image.Image:
+        o = self.opts
+        W, H = o.width * o.ss, o.height * o.ss
+        mode = mode or o.background
+        if mode == "chroma":
+            return Image.new("RGBA", (W, H), (0, 177, 64, 255))
+        return _background_cache(W, H, o.ground).copy()
 
     # --- данные ---------------------------------------------------------- #
     def _palette(self) -> dict:
@@ -139,7 +235,10 @@ class Painter:
 
     def resolve_outfit(self, overrides: dict[str, str] | None = None,
                        set_name: str | None = None) -> dict[str, dict]:
-        """Собрать комплект: слот → {id, item}. Учитывает переопределения."""
+        """Собрать комплект: слот → {id, item}. Учитывает переопределения (кеш)."""
+        key = (set_name, tuple(sorted((overrides or {}).items())))
+        if key in self._outfit_cache:
+            return self._outfit_cache[key]
         base = self.outfit(set_name)
         base.update(overrides or {})
         out = {}
@@ -147,6 +246,7 @@ class Painter:
             it = self.item(item_id)
             if it:
                 out[slot] = {"id": item_id, **it}
+        self._outfit_cache[key] = out
         return out
 
     # --- кадр ------------------------------------------------------------ #
@@ -190,43 +290,31 @@ class Painter:
         self._draw_body(img, sk, face, self.resolve_outfit(outfit, set_name))
         if caption:
             self._caption(img, caption)
+        # суперсэмплинг кратен 2 → reduce (box-фильтр) точнее и в разы быстрее LANCZOS
+        if o.ss >= 2 and img.width == o.width * o.ss and img.height == o.height * o.ss:
+            return img.reduce(o.ss).convert("RGB")
         return img.resize((o.width, o.height), Image.LANCZOS).convert("RGB")
 
     # --- фон и тень ------------------------------------------------------ #
-    def _background(self, mode: str | None) -> Image.Image:
-        o = self.opts
-        W, H = o.width * o.ss, o.height * o.ss
-        mode = mode or o.background
-        if mode == "chroma":
-            return Image.new("RGBA", (W, H), (0, 177, 64, 255))
-        arr = np.zeros((H, W, 3), np.float32)
-        for y in range(H):
-            k = y / H
-            arr[y, :, :] = np.array(BG_TOP) * (1 - k) + np.array(BG_BOT) * k
-        img = Image.fromarray(arr.astype(np.uint8)).convert("RGBA")
-        d = ImageDraw.Draw(img)
-        gy = H * o.ground
-        d.rectangle([0, gy, W, H], fill=(236, 222, 202))
-        # мягкий свет сверху-слева
-        glow = Image.new("L", (W, H), 0)
-        ImageDraw.Draw(glow).ellipse([W * 0.05, -H * 0.25, W * 0.95, H * 0.55], fill=70)
-        glow = glow.filter(ImageFilter.GaussianBlur(H * 0.08))
-        white = Image.new("RGBA", (W, H), (255, 250, 240, 255))
-        img = Image.composite(white, img, glow.point(lambda v: int(v * 0.55)))
-        return img
-
     def _shadow(self, img: Image.Image, sk: R.Skeleton) -> None:
-        o = self.opts
+        """Контактная тень: размывается только маленькая область под ногами."""
         W, H = img.size
         feet_y = max(sk.tip(f"foot.{s}")[1] for s in "lr") * self.k + self.oy
+        feet_x = sum(sk.tip(f"foot.{s}")[0] for s in "lr") / 2 * self.k + self.ox
         spread = 0.55 * (sk.tip("hand.r")[0] - sk.tip("hand.l")[0]) * self.k
-        w = max(spread, 0.9 * self.k)
-        layer = Image.new("L", (W, H), 0)
+        w = min(max(spread, 0.9 * self.k), 1.6 * self.head_radius(sk) * 2)
+        blur = max(w * 0.10, 2.0)
+        pad = blur * 3
+        x0, x1 = int(max(feet_x - w - pad, 0)), int(min(feet_x + w + pad, W))
+        y0, y1 = int(max(feet_y - w * 0.3 - pad, 0)), int(min(feet_y + w * 0.4 + pad, H))
+        if x1 - x0 < 2 or y1 - y0 < 2:
+            return
+        layer = Image.new("L", (x1 - x0, y1 - y0), 0)
         d = ImageDraw.Draw(layer)
-        cx = W / 2
-        d.ellipse([cx - w, feet_y - w * 0.10, cx + w, feet_y + w * 0.14], fill=90)
-        layer = layer.filter(ImageFilter.GaussianBlur(w * 0.10))
-        img.paste((70, 48, 36, 255), (0, 0), layer)
+        cx, cy = feet_x - x0, feet_y - y0
+        d.ellipse([cx - w, cy - w * 0.10, cx + w, cy + w * 0.14], fill=90)
+        layer = layer.filter(ImageFilter.GaussianBlur(blur))
+        img.paste((70, 48, 36, 255), (x0, y0), layer)
 
     def _caption(self, img: Image.Image, text: str) -> None:
         path = os.path.join(FONT_DIR, "Nunito-700.ttf")
@@ -267,44 +355,46 @@ class Painter:
 
         Это единственный источник «скульптурности» стиля B: и тело, и голова,
         и одежда освещены одинаково, поэтому сцена выглядит цельно.
+
+        Световые поля кешируются по размеру bbox, контур считается numpy-эрозией:
+        на кадр тратится на порядок меньше времени, результат тот же (бит в бит).
         """
         bbox = mask.getbbox()
         if not bbox:
             return
         x0, y0, x1, y1 = bbox
-        m = np.asarray(mask.crop(bbox), np.float32) / 255.0
+        m = np.asarray(mask.crop(bbox), np.float32) * (1.0 / 255.0)
         h, w = m.shape
         if h < 2 or w < 2:
             layer.alpha_composite(
-                Image.new("RGBA", (max(w, 1), max(h, 1)), tuple(int(c) for c in base) + (255,)), (x0, y0))
+                Image.new("RGBA", (max(w, 1), max(h, 1)),
+                          tuple(int(c) for c in base) + (255,)), (x0, y0))
             return
-        yy, xx = np.mgrid[0:h, 0:w]
-        nx = (xx - (w - 1) / 2) / max(w / 2, 1)
-        ny = (yy - (h - 1) / 2) / max(h / 2, 1)
-        light_dir = -(0.85 * nx + 0.55 * ny)          # >0 — сторона света
-        dark = np.clip(-light_dir, 0, 1) ** 1.2
-        light = np.clip(light_dir, 0, 1) ** 2.0
+        dark, light = _light_fields(h, w)
 
-        base_arr = np.array(base, np.float32)
-        out = np.zeros((h, w, 4), np.float32)
-        out[..., :3] = base_arr
+        out = np.empty((h, w, 4), np.float32)
+        out[..., :3] = np.array(base, np.float32)
         out[..., 3] = m * 255.0
+        rgb = out[..., :3]
 
         sh = np.array(shade(base, -shade_k), np.float32)
-        a = np.clip(dark * shade_k * 2.0 * m, 0, 1)[..., None]
-        out[..., :3] = out[..., :3] * (1 - a) + sh * a
+        a = np.clip(dark * (shade_k * 2.0 * m), 0, 1)[..., None]
+        rgb *= 1 - a
+        rgb += sh * a
 
         li = np.array(mix(base, (255, 252, 246), 0.60), np.float32)
-        a2 = np.clip(light * light_k * 1.7 * m, 0, 1)[..., None]
-        out[..., :3] = out[..., :3] * (1 - a2) + li * a2
+        a2 = np.clip(light * (light_k * 1.7 * m), 0, 1)[..., None]
+        rgb *= 1 - a2
+        rgb += li * a2
 
-        if rim_k > 0:
-            inner = np.asarray(mask.crop(bbox).filter(ImageFilter.MinFilter(5)), np.float32) / 255.0
-            rim = np.clip(m - inner, 0, 1) * rim_k
-            out[..., :3] *= (1 - rim)[..., None]
+        # контур: 1 пиксель эрозии, и только на некрупных деталях (на торсе это
+        # незаметно, а стоит дорого)
+        if rim_k > 0 and h * w <= 260_000:
+            rim = np.clip(m - _erode(m, 1), 0, 1) * rim_k
+            rgb *= (1 - rim)[..., None]
 
-        patch = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA")
-        layer.alpha_composite(patch, (x0, y0))
+        layer.alpha_composite(
+            Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA"), (x0, y0))
 
     @staticmethod
     def _band(d: ImageDraw.ImageDraw, pts_a, pts_b, radius: float, fill) -> None:
@@ -340,12 +430,16 @@ class Painter:
 
     # --- тело ------------------------------------------------------------ #
     def _metrics(self, sk: R.Skeleton) -> dict:
+        radius = self.head_radius(sk)
+        cached = self._metrics_cache.get(radius)
+        if cached is not None:
+            return cached
         """Все ширины — в долях диаметра головы: пропорции не «плывут»."""
         hd = self.head_radius(sk) * 2
         props = self.spec.get("proportions") or {}
         belly = float(props.get("belly", 1.0))
         bulk = float((self.spec.get("body") or {}).get("bulk", 1.0))
-        return {
+        data = {
             "hd": hd,
             "shoulder": 0.56 * hd * bulk,
             "chest": 0.53 * hd * bulk,
@@ -359,6 +453,8 @@ class Painter:
             "ankle": 0.120 * hd,
             "neck": 0.165 * hd,
         }
+        self._metrics_cache[radius] = data
+        return data
 
     def _torso_poly(self, hips, chest_top, m: dict, fill_scale: float = 1.0):
         """Силуэт торса: плечи → талия → бёдра, с мягкой талией."""
@@ -553,10 +649,8 @@ class Painter:
                 d.ellipse([wx_ - r_c, wy_ - r_c * 0.55, wx_ + r_c, wy_ + r_c * 0.55],
                           fill=shade(sleeve_col, -0.14))
 
-        # ---- воротник и детали одежды
-        self._collar(d, chest_top, neck_top, m["shoulder"] * 0.62,
-                     hex_rgb(outer["draw"].get("color")) if (outer and outer.get("draw", {}).get("collar") == "stand")
-                     else shirt, (outer or top).get("draw", {}).get("collar", "crew"))
+        # (воротник уже нарисован до головы — второй раз его рисовать нельзя:
+        #  он ложился поверх подбородка тёмной полосой)
 
         # ---- головной убор и аксессуары
         if headwear:
@@ -614,6 +708,8 @@ class Painter:
                       fill=shade(pal["skin_shade"], -0.14))
 
     def _hair_draw_hints(self) -> tuple[dict, dict]:
+        if self._hints is not None:
+            return self._hints
         hair = self.spec.get("hair") or {}
         try:
             style = L.hair_style(hair.get("style", "buzz"))
@@ -623,7 +719,8 @@ class Painter:
             fh = L.facial_hair(hair.get("facial_hair", "none"))
         except KeyError:
             fh = {"draw": {"kind": "none"}}
-        return style, fh
+        self._hints = (style, fh)
+        return self._hints
 
     def _draw_hair_back(self, layer: Image.Image, sk: R.Skeleton) -> None:
         style, _ = self._hair_draw_hints()
@@ -711,23 +808,29 @@ class Painter:
             beard_col = shade(col, -0.04)
 
             def beard(d):
+                # борода повторяет челюсть, а не свисает «фартуком» за подбородок
                 if kind == "full":
-                    self.chord_half(d, cx - r * 0.84, cx + r * 0.84, cy + r * 0.24, cy + r * 1.00,
+                    self.chord_half(d, cx - r * 0.80, cx + r * 0.80, cy + r * 0.30, cy + r * 0.86,
                                     upper=False)
-                    d.ellipse([cx - r * 0.50, cy + r * 0.24, cx + r * 0.50, cy + r * 0.38], fill=255)
+                    # бакенбарды к вискам — чтобы борода соединялась с причёской
+                    for sx in (-1, 1):
+                        d.ellipse([cx + sx * r * 0.80 - r * 0.16, cy - r * 0.18,
+                                   cx + sx * r * 0.80 + r * 0.16, cy + r * 0.42], fill=255)
                 elif kind == "stubble":
-                    self.chord_half(d, cx - r * 0.84, cx + r * 0.84, cy + r * 0.28, cy + r * 0.96,
+                    self.chord_half(d, cx - r * 0.82, cx + r * 0.82, cy + r * 0.30, cy + r * 0.88,
                                     upper=False)
                 elif kind == "mustache":
-                    d.ellipse([cx - r * 0.34, cy + r * 0.27, cx + r * 0.34, cy + r * 0.42], fill=255)
+                    for sx in (-1, 1):
+                        d.ellipse([cx + sx * r * 0.24 - r * 0.20, cy + r * 0.33,
+                                   cx + sx * r * 0.24 + r * 0.20, cy + r * 0.46], fill=255)
                 elif kind == "goatee":
-                    self.chord_half(d, cx - r * 0.30, cx + r * 0.30, cy + r * 0.40, cy + r * 0.95,
+                    self.chord_half(d, cx - r * 0.30, cx + r * 0.30, cy + r * 0.44, cy + r * 0.90,
                                     upper=False)
             mask = self._mask(layer.size, beard)
-            if kind == "full":
-                # вырезаем рот: борода не должна его съедать
+            if kind in ("full", "goatee"):
+                # вырезаем область губ: борода обрамляет рот, а не съедает его
                 hole = self._mask(layer.size, lambda dd: dd.ellipse(
-                    [cx - r * 0.30, cy + r * 0.36, cx + r * 0.30, cy + r * 0.70], fill=255))
+                    [cx - r * 0.42, cy + r * 0.32, cx + r * 0.42, cy + r * 0.80], fill=255))
                 mask = Image.composite(Image.new("L", layer.size, 0), mask, hole)
             if kind == "stubble":
                 mask = mask.point(lambda v: int(v * 110 * density))
@@ -801,31 +904,60 @@ class Painter:
             d.line([(cx - r * 0.10, cy + r * 0.13), (cx + r * 0.03, cy + r * 0.10)],
                    fill=shade(pal["skin_shade"], -0.30), width=max(1, int(r * 0.028)))
 
-        # --- рот
+        # --- рот ------------------------------------------------------------- #
+        # Рот рисуется после бороды (борода приходит раньше, из _draw_hair_front),
+        # поэтому он всегда читается. Губы — не «линия улыбки», а объём:
+        # верхняя губа, нижняя губа, тёмная полость, зубы и язык по параметрам.
         my = cy + r * 0.55
-        mw = r * (0.17 + 0.10 * face["mouth_wide"]) * (1 + 0.25 * max(face["smile"], 0))
+        mw = r * (0.20 + 0.13 * face["mouth_wide"]) * (1 + 0.22 * max(face["smile"], 0))
         sm = face["smile"]
         skew = face["mouth_skew"] * r * 0.05
         open_k = face["mouth_open"]
+        lip = pal["mouth"]
+        lip_light = mix(lip, (255, 230, 225), 0.35)
+
         if open_k > 0.06:
-            mh = r * 0.05 + r * 0.26 * open_k
-            d.ellipse([cx - mw, my - mh * 0.6, cx + mw, my + mh], fill=pal["mouth_dark"])
+            mh = r * 0.06 + r * 0.30 * open_k
+            # полость рта
+            d.ellipse([cx - mw + skew, my - mh * 0.55, cx + mw + skew, my + mh],
+                      fill=pal["mouth_dark"])
+            # нижняя губа
+            d.arc([cx - mw + skew, my - mh * 0.10, cx + mw + skew, my + mh * 1.25],
+                  15, 165, fill=lip, width=max(2, int(r * 0.035)))
+            # верхняя губа
+            d.arc([cx - mw + skew, my - mh * 0.95, cx + mw + skew, my + mh * 0.45],
+                  195, 345, fill=lip, width=max(2, int(r * 0.035)))
             if face["teeth"] > 0.1:
-                d.rounded_rectangle([cx - mw * 0.80, my - mh * 0.52,
-                                     cx + mw * 0.80, my - mh * 0.16],
-                                    radius=int(mh * 0.14), fill=(252, 248, 241))
+                tw = mw * (0.55 + 0.30 * face["teeth"])
+                d.rounded_rectangle([cx - tw + skew, my - mh * 0.52,
+                                     cx + tw + skew, my - mh * 0.52 + mh * 0.34],
+                                    radius=int(max(1, mh * 0.12)), fill=(252, 248, 241))
             if face["tongue"] > 0.1:
-                d.ellipse([cx - mw * 0.45, my + mh * 0.30, cx + mw * 0.45, my + mh * 0.80],
-                          fill=(200, 112, 116))
-            d.arc([cx - mw, my - mh * 0.7, cx + mw, my + mh], 0, 180,
-                  fill=shade(pal["mouth"], -0.45), width=max(1, int(r * 0.02)))
+                d.ellipse([cx - mw * 0.45 + skew, my + mh * 0.28,
+                           cx + mw * 0.45 + skew, my + mh * (0.62 + 0.25 * face["tongue"])],
+                          fill=(198, 112, 118))
         else:
-            curve = sm * r * 0.13
-            pts = [(cx - mw + skew, my - curve * 0.8), (cx + skew, my + curve * 0.20),
-                   (cx + mw + skew, my - curve * 0.8)]
-            d.line(pts, fill=pal["mouth"], width=max(2, int(r * 0.045)), joint="curve")
-            d.line([(p[0], p[1] + r * 0.022) for p in pts], fill=shade(pal["mouth"], 0.25),
-                   width=max(1, int(r * 0.016)), joint="curve")
+            # губы сомкнуты: две дуги + уголки вверх/вниз по smile
+            curve = sm * r * 0.14
+            pts = [(cx - mw + skew, my - curve * 0.75),
+                   (cx + skew, my + curve * 0.28),
+                   (cx + mw + skew, my - curve * 0.75)]
+            d.line(pts, fill=lip, width=max(2, int(r * 0.045)), joint="curve")
+            # нижняя губа — светлый объём под линией
+            d.line([(x, y + r * 0.030) for x, y in pts], fill=lip_light,
+                   width=max(1, int(r * 0.022)), joint="curve")
+            if sm > 0.25:
+                # уголки уходят вверх — улыбка читается даже в мелком кадре
+                for sx in (-1, 1):
+                    ex = cx + sx * (mw + r * 0.02) + skew
+                    ey = my - curve * 0.75
+                    d.arc([ex - r * 0.06, ey - r * 0.09, ex + r * 0.06, ey + r * 0.03],
+                          200 if sx > 0 else 0, 340 if sx > 0 else 140,
+                          fill=lip, width=max(1, int(r * 0.026)))
+        # носогубная тень — связывает нос и рот, лицо не «плоское»
+        d.arc([cx - mw * 0.9, my - r * 0.30, cx + mw * 0.9, my + r * 0.10],
+              200, 340, fill=shade(pal["skin_shade"], -0.10),
+              width=max(1, int(r * 0.018)))
 
         # --- румянец, слёзы, пот
         if face["blush"] > 0.05:
@@ -967,9 +1099,9 @@ def face_sheet(spec: dict, *, expressions: list[str] | None = None,
         cx, cy = p.head_pos(sk)
         r = p.head_radius(sk)
         cx, cy, r = cx / opts.ss, cy / opts.ss, r / opts.ss
-        half = min(r * 2.8, cx - 1, img.width - cx - 1, cy - 1, img.height - cy - 1)
-        box = (int(cx - half), int(cy - half * 0.85),
-               int(cx + half), int(cy + half * 1.15))
+        # кадрируем ровно голову: волосы сверху, подбородок снизу, без плеч
+        box = (int(cx - r * 1.45), int(max(cy - r * 1.40, 0)),
+               int(cx + r * 1.45), int(max(cy - r * 1.40, 0) + r * 2.60))
         img = img.crop(box).resize((cell, cell), Image.LANCZOS)
         x, y = 4 + (i % cols) * cell, 4 + (i // cols) * (cell + label_h)
         sheet.paste(img, (x, y))

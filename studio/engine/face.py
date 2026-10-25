@@ -216,14 +216,28 @@ class FaceTimeline:
 # --------------------------------------------------------------------------- #
 
 
+_MICRO_PHASES: dict[int, tuple[float, float, float]] = {}
+
+
+def _micro_phases(seed: int) -> tuple[float, float, float]:
+    """Случайные фазы для микромимики — считаются один раз на seed.
+
+    Раньше Random создавался на каждый кадр: 1350 кадров = 1350 объектов зря.
+    """
+    if seed not in _MICRO_PHASES:
+        rnd = random.Random(seed * 7919 + 13)
+        _MICRO_PHASES[seed] = (rnd.uniform(0, math.tau), rnd.uniform(0, math.tau),
+                               rnd.uniform(0, math.tau))
+    return _MICRO_PHASES[seed]
+
+
 def micro_face(t: float, seed: int = 0, strength: float = 1.0) -> dict[str, float]:
     """Небольшие постоянные колебания: зрачки, брови, губы.
 
     Это не «дрожь»: амплитуды маленькие (2–4 %), зато лицо перестаёт выглядеть
     застывшим на крупном плане.
     """
-    rnd = random.Random(seed * 7919 + 13)
-    p1, p2, p3 = (rnd.uniform(0, math.tau) for _ in range(3))
+    p1, p2, p3 = _micro_phases(seed)
     s = strength
     return {
         "look_x": 0.06 * s * math.sin(t * 0.9 + p1) + 0.02 * s * math.sin(t * 2.7 + p2),
@@ -255,51 +269,93 @@ def lip_sync(text: str,
     """Разложить реплику на виземы по времени.
 
     Длительность важнее «правильной» фонетики: если известна длина аудио, виземы
-    растягиваются на неё, иначе считаются по скорости речи.
+    ровно заполняют её без щелей и наложений; иначе длительность считается по
+    числу букв и скорости речи (а не по числу визем — так точнее).
+
+    Гарантии (проверяются в selftest):
+    * первый интервал начинается ровно в ``start``;
+    * последний заканчивается ровно в ``start + duration``;
+    * интервалы не пересекаются и не имеют щелей;
+    * каждый интервал не короче ``min_hold`` (если это позволяет длительность).
     """
     from rig import visemes_for_text
-    seq = [(v, w) for v, w in visemes_for_text(text) if v in visemes()]
+    table = visemes()
+    seq = [(v, w) for v, w in visemes_for_text(text) if v in table]
     if not seq:
         return []
-    total_w = sum(w for _, w in seq)
+
     if duration is None:
-        duration = max(len(seq) / chars_per_sec, min_hold * len(seq))
+        letters = sum(1 for ch in text if ch.isalpha())
+        duration = max(letters / chars_per_sec, min_hold * len(seq))
+    duration = max(duration, 1e-3)
+
+    n = len(seq)
+    total_w = sum(w for _, w in seq) or 1.0
+    if duration <= min_hold * n:
+        holds = [duration / n] * n                  # очень короткая реплика
+    else:
+        free = duration - min_hold * n
+        holds = [min_hold + free * w / total_w for _, w in seq]
+
     spans: list[VisemeSpan] = []
-    t = start
-    for v, w in seq:
-        dt = max(duration * w / total_w, min_hold)
-        spans.append(VisemeSpan(t, t + dt, v))
-        t += dt
-    # подгоняем конец ровно под duration
-    shift = (start + duration) - (spans[-1].t1 if spans else start + duration)
-    if abs(shift) > 1e-6 and spans:
-        k = duration / max(spans[-1].t1 - start, 1e-6)
-        for s in spans:
-            s.t0 = start + (s.t0 - start) * k
-            s.t1 = start + (s.t1 - start) * k
+    t = float(start)
+    for (v, _w), hold in zip(seq, holds):
+        spans.append(VisemeSpan(t, t + hold, v))
+        t += hold
+    # компенсация накопленной ошибки float — конец должен совпасть точно
+    spans[-1].t1 = float(start) + duration
     return spans
 
 
+class LipSync:
+    """Готовая дорожка визем с поиском за O(log n) — для покадрового рендера."""
+
+    def __init__(self, spans: Sequence[VisemeSpan] | None = None):
+        self.spans: list[VisemeSpan] = sorted(spans or [], key=lambda s: s.t0)
+        self._starts = [s.t0 for s in self.spans]
+        self.start = self._starts[0] if self.spans else 0.0
+        self.end = self.spans[-1].t1 if self.spans else 0.0
+
+    @classmethod
+    def from_text(cls, text: str, **kwargs) -> "LipSync":
+        return cls(lip_sync(text, **kwargs))
+
+    def at(self, t: float) -> tuple[str, float]:
+        """(визема, вес) в момент t. Вес плавно спадает к краям интервала."""
+        if not self.spans:
+            return "M", 0.0
+        import bisect
+        i = bisect.bisect_right(self._starts, t) - 1
+        if i < 0:
+            return "M", 0.0
+        s = self.spans[i]
+        if t > s.t1:
+            return "M", 0.0
+        span = max(s.t1 - s.t0, 1e-6)
+        edge = min((t - s.t0) / span, (s.t1 - t) / span)
+        return s.viseme, min(1.0, 0.35 + edge * 1.4)
+
+    def __len__(self) -> int:
+        return len(self.spans)
+
+
 def viseme_at(spans: Sequence[VisemeSpan], t: float) -> tuple[str, float]:
-    """Визема и её вес в момент t (вес плавно спадает к концу — нет «судороги»)."""
-    for s in spans:
-        if s.t0 <= t <= s.t1:
-            span = max(s.t1 - s.t0, 1e-6)
-            edge = min((t - s.t0) / span, (s.t1 - t) / span)
-            return s.viseme, min(1.0, 0.35 + edge * 1.4)
-    return "M", 0.0
+    """Визема и её вес в момент t (совместимость со старым API)."""
+    if isinstance(spans, LipSync):
+        return spans.at(t)
+    return LipSync(spans).at(t)
 
 
 def face_at(t: float,
             timeline: FaceTimeline | None = None,
-            spans: Sequence[VisemeSpan] | None = None,
+            spans: "LipSync | Sequence[VisemeSpan] | None" = None,
             blink: float = 1.0,
             micro: float = 1.0,
             seed: int = 0) -> Face:
     """Итоговое лицо кадра: эмоция + липсинк + мигание + микромимика."""
     face = timeline.at(t) if timeline else Face.neutral()
     if spans:
-        v, w = viseme_at(spans, t)
+        v, w = spans.at(t) if isinstance(spans, LipSync) else viseme_at(spans, t)
         if w > 0:
             face = face.with_viseme(v, w)
     face = face.with_blink(blink)

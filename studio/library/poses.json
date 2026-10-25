@@ -480,6 +480,14 @@
         -0.12
       ],
       "prompt": "both arms up in celebration, jumping slightly"
+    },
+    "wave_left": {
+      "label": "Машет левой (зеркало wave)",
+      "mirror_of": "wave",
+      "tags": [
+        "greeting",
+        "mirror"
+      ]
     }
   }
 }
