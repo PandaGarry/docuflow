@@ -195,94 +195,91 @@ def front_spec() -> dict:
 
 
 # --------------------------------------------------------------------------- #
-# профиль-«шаг»: ноги разведены, поэтому каждая вырезается отдельно
+# профиль-«шаг»: ноги стоят прямо, поэтому их можно ПОВОРАЧИВАТЬ
 # --------------------------------------------------------------------------- #
-# Замеры по master-side-spread.png (ноги расходятся от паха на y≈1010).
+# Раньше здесь был рисунок в позе шага: ноги нарисованы под углом, и поворот
+# такой «косой» ноги вокруг бедра складывал её узлом. Теперь заготовка —
+# ровная стойка (master-side-stand.png): бедро и голень вертикальны, значит
+# поворот вокруг шарнира даёт честный мах вперёд-назад.
 SPREAD_J = {
-    "hip": ((392, 975), None),
-    "spine": ((360, 880), None),
+    "hip": ((392, 845), None),
+    "spine": ((360, 800), None),
     "chest": ((352, 500), "spine"),
     "neck": ((352, 330), "chest"),
-    "shoulder": ((300, 392), "chest"),
-    "elbow": ((300, 640), "shoulder"),
-    "wrist": ((350, 862), "elbow"),
-    "hip_near": ((430, 985), None),
-    "knee_near": ((516, 1150), "hip_near"),
-    "ankle_near": ((575, 1270), "knee_near"),
-    "hip_far": ((352, 985), None),
-    "knee_far": ((228, 1130), "hip_far"),
-    "ankle_far": ((160, 1272), "knee_far"),
+    "shoulder": ((320, 400), "chest"),
+    "elbow": ((320, 650), "shoulder"),
+    "wrist": ((392, 786), "elbow"),
+    "hip_near": ((400, 845), "hip"),
+    "knee_near": ((378, 1150), "hip_near"),
+    "ankle_near": ((390, 1300), "knee_near"),
+    "hip_far": ((360, 845), "hip"),
+    "knee_far": ((360, 1150), "hip_far"),
+    "ankle_far": ((384, 1300), "knee_far"),
 }
 
 SPREAD_HEAD = [(0.380, 0.030), (0.545, 0.018), (0.650, 0.043), (0.685, 0.128),
                (0.660, 0.193), (0.610, 0.229), (0.560, 0.253), (0.440, 0.257),
                (0.385, 0.236), (0.352, 0.179), (0.355, 0.093)]
-SPREAD_TORSO = [(0.320, 0.300), (0.400, 0.240), (0.545, 0.236), (0.677, 0.273),
-                (0.712, 0.357), (0.705, 0.500), (0.680, 0.632), (0.500, 0.700),
-                (0.360, 0.700), (0.310, 0.560), (0.300, 0.400)]
-SPREAD_HAND = [(0.440, 0.596), (0.545, 0.592), (0.562, 0.646), (0.532, 0.697),
-               (0.458, 0.700), (0.428, 0.650)]
-
-
-def _leg(hip, knee, ankle, foot_box, z):
-    """Нога: бедро, голень и стопа отдельными частями с кругами на сгибах."""
-    return {
-        "thigh": {"shape": {"capsule": [list(hip), list(knee),
-                                        foot_box[0] // 2 + 40,
-                                        foot_box[0] // 2 + 30],
-                            "disc_at": list(hip), "disc_r": 62},
-                  "joint": "hip", "z": z},
-        "shin": {"shape": {"capsule": [list(knee), list(ankle), 52, 44],
-                           "disc_at": list(knee), "disc_r": 48},
-                 "joint": "knee", "z": z + 1},
-        "foot": {"shape": {"poly": foot_box[1], "disc_at": list(ankle),
-                           "disc_r": 38},
-                 "joint": "ankle", "z": z + 2},
-    }
-
-
-# Край свитера: он не должен поворачиваться вместе с бедром, иначе между
-# ног уезжает тёмный клин.
-CROTCH = [(0.440, 0.690), (0.600, 0.690), (0.596, 0.726),
-          (0.520, 0.716), (0.470, 0.724)]
+SPREAD_TORSO = [(0.330, 0.290), (0.420, 0.235), (0.560, 0.235), (0.660, 0.280),
+                (0.700, 0.380), (0.690, 0.520), (0.670, 0.628), (0.500, 0.640),
+                (0.350, 0.630), (0.330, 0.520), (0.320, 0.380)]
+# Кисть висит ПЕРЕД бедром. Если она останется в маске ноги, при махе уедет
+# вместе с бедром. Поэтому из ноги её вычитаем и рисуем с предплечьем.
+# Кисть висит до y≈0.70 — замер по коже (770..978 px). Раньше маска
+# обрывалась на 0.648, и кисть отрезало посередине.
+SPREAD_HAND = [(0.440, 0.545), (0.648, 0.548), (0.652, 0.702),
+               (0.470, 0.706), (0.438, 0.620)]
+# Из бедра вычитаем ЧУТЬ МЕНЬШЕ, чем рисуем кистью: тогда под кистью остаётся
+# перекрытие и не появляется светлая щель на месте ладони.
+SPREAD_HAND_SUB = [(0.470, 0.578), (0.622, 0.582), (0.628, 0.676),
+                   (0.492, 0.682), (0.466, 0.610)]
 
 
 def spread_spec() -> dict:
     J = {k: v[0] for k, v in SPREAD_J.items()}
     joints = {k: {"pos": list(v[0]), "parent": v[1]} for k, v in SPREAD_J.items()}
-    foot_near = [(0.672, 0.908), (0.965, 0.918), (0.975, 0.952),
-                 (0.800, 0.972), (0.680, 0.972)]
-    foot_far = [(0.075, 0.918), (0.300, 0.912), (0.318, 0.948),
-                (0.230, 0.968), (0.080, 0.962)]
     parts = {
-        # дальняя нога — своя геометрия, а не затемнённая копия
-        "far_thigh": {"shape": {"capsule": [list(J["hip_far"]), list(J["knee_far"]), 78, 66],
-                                "disc_at": list(J["hip_far"]), "disc_r": 62},
-                      "joint": "hip_far", "z": 1, "dark": 0.20},
-        "far_shin": {"shape": {"capsule": [list(J["knee_far"]), list(J["ankle_far"]), 52, 44],
-                               "disc_at": list(J["knee_far"]), "disc_r": 48},
-                     "joint": "knee_far", "z": 2, "dark": 0.20},
-        "far_foot": {"shape": {"poly": foot_far, "disc_at": list(J["ankle_far"]),
-                               "disc_r": 38},
-                     "joint": "ankle_far", "z": 3, "dark": 0.20},
-        "near_thigh": {"shape": {"capsule": [list(J["hip_near"]), list(J["knee_near"]), 78, 66],
-                                 "disc_at": list(J["hip_near"]), "disc_r": 62},
-                       "joint": "hip_near", "z": 4},
-        "near_shin": {"shape": {"capsule": [list(J["knee_near"]), list(J["ankle_near"]), 52, 44],
-                                "disc_at": list(J["knee_near"]), "disc_r": 48},
-                      "joint": "knee_near", "z": 5},
-        "near_foot": {"shape": {"poly": foot_near, "disc_at": list(J["ankle_near"]),
-                                "disc_r": 38},
-                      "joint": "ankle_near", "z": 6},
+        # дальняя нога и рука — копии ближних, затемнённые, под торсом
+        "far_thigh": {"from": "thigh", "joint": "hip_far", "z": 1,
+                      "dark": 0.12, "dx": -8},
+        "far_shin": {"from": "shin", "joint": "knee_far", "z": 2,
+                     "dark": 0.12, "dx": -6},
+        "far_foot": {"from": "foot", "joint": "ankle_far", "z": 3,
+                     "dark": 0.12, "dx": -6},
+        "far_arm_up": {"from": "arm_up", "joint": "shoulder_far", "z": 0,
+                       "dark": 0.22, "dx": -8},
+        "far_arm_fo": {"from": "arm_fo", "joint": "elbow_far", "z": 0,
+                       "dark": 0.22, "dx": -8},
+        # нога: полоса по высоте = сам силуэт рисунка, с кругом на сгибах
+        # Таз — неподвижный кусок джинсов под свитером. Он закрывает пах,
+        # из которого расходятся ноги, и не даёт светлой дыры при махе.
+        "pelvis": {"shape": {"band": [0.562, 0.640]}, "joint": "hip", "z": 5},
+        # Бедро начинается ровно от шарнира: кусок ВЫШЕ шарнира при повороте
+        # уезжал вбок и давал уступ на джинсах.
+        "thigh": {"shape": {"band": [0.598, 0.832],
+                            "disc_at": list(J["hip_near"]), "disc_r": 70,
+                            "clip_below": 0.598},
+                  "joint": "hip_near", "z": 4, "subtract": [SPREAD_HAND_SUB]},
+        "shin": {"shape": {"band": [0.790, 0.950],
+                           "disc_at": list(J["knee_near"]), "disc_r": 52},
+                 "joint": "knee_near", "z": 5},
+        "foot": {"shape": {"band": [0.930, 1.0],
+                           "disc_at": list(J["ankle_near"]), "disc_r": 42},
+                 "joint": "ankle_near", "z": 6},
         "torso": {"shape": SPREAD_TORSO, "joint": "spine", "z": 8},
         "head": {"shape": SPREAD_HEAD, "joint": "neck", "z": 9},
-        "arm_up": {"shape": {"capsule": [list(J["shoulder"]), list(J["elbow"]), 62, 54],
+        "arm_up": {"shape": {"capsule": [list(J["shoulder"]), list(J["elbow"]), 62, 56],
                              "disc_at": list(J["shoulder"]), "disc_r": 56},
-                   "joint": "shoulder", "z": 10},
-        "arm_fo": {"shape": {"capsule": [list(J["elbow"]), list(J["wrist"]), 50, 46],
-                             "extra": [SPREAD_HAND]},
-                   "joint": "elbow", "z": 11},
+                   "joint": "shoulder", "z": 10, "subtract": [SPREAD_TORSO]},
+        "arm_fo": {"shape": {"capsule": [list(J["elbow"]), list(J["wrist"]), 54, 46]},
+                   "joint": "elbow", "z": 11, "extra": [SPREAD_HAND]},
     }
+    # дальняя рука должна рисоваться под торсом, а не поверх
+    parts["far_arm_up"]["z"] = 0
+    # в рисунке есть только одна рука — вторая создаётся из неё же
+    joints["shoulder_far"] = {"pos": list(J["shoulder"]), "parent": "chest"}
+    joints["elbow_far"] = {"pos": list(J["elbow"]), "parent": "shoulder_far"}
+    joints["wrist_far"] = {"pos": list(J["wrist"]), "parent": "elbow_far"}
     return {"frame": [W, H], "anchor": [J["hip"][0] / W, J["hip"][1] / H],
             "joints": norm(joints), "parts": parts}
 

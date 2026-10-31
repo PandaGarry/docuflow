@@ -52,6 +52,15 @@ class Part:
 drawing_ref: dict = {}
 
 
+def _finish(m: Image.Image, shape, h: int, feather: float) -> Image.Image:
+    """Общая доработка маски: обрезка выше шарнира и перо по краю."""
+    if isinstance(shape, dict) and "clip_below" in shape:
+        mm = np.asarray(m).copy()
+        mm[:int(shape["clip_below"] * h)] = 0
+        m = Image.fromarray(mm)
+    return m.filter(ImageFilter.GaussianBlur(feather)) if feather else m
+
+
 def _shape_mask(size: tuple[int, int], shape, feather: float = 1.5) -> Image.Image:
     """Маска по фигуре: полигон (доли кадра) или капсула (пиксели).
 
@@ -98,6 +107,12 @@ def _shape_mask(size: tuple[int, int], shape, feather: float = 1.5) -> Image.Ima
             if "disc_at" in shape:
                 (cx, cy), r = shape["disc_at"], shape.get("disc_r", 46)
                 d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=255)
+            if "clip_below" in shape:
+                # всё выше линии шарнира вырезаем: кусок над шарниром при
+                # повороте вылезает наружу «клапаном»
+                mm2 = np.asarray(m).copy()
+                mm2[:int(shape["clip_below"] * h)] = 0
+                m.paste(Image.fromarray(mm2))
             # перо по краю обязательно: иначе на сгибе видна жёсткая ступень
             return m.filter(ImageFilter.GaussianBlur(feather)) if feather else m
     elif isinstance(shape, dict) and "poly" in shape:
