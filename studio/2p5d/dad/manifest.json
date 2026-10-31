@@ -865,18 +865,6 @@
     "w": 768,
     "h": 1389
    },
-   "confused": {
-    "file": "studio/2p5d/dad/emotions/front/confused.png",
-    "head_w": 587,
-    "x0": 0,
-    "x1": 767,
-    "y0": 6,
-    "y1": 1393,
-    "cx": 383.5,
-    "cy": 699.5,
-    "w": 768,
-    "h": 1388
-   },
    "tired": {
     "file": "studio/2p5d/dad/emotions/front/tired.png",
     "head_w": 641,
@@ -888,18 +876,6 @@
     "cy": 697.5,
     "w": 768,
     "h": 1384
-   },
-   "wink": {
-    "file": "studio/2p5d/dad/emotions/front/wink.png",
-    "head_w": 609,
-    "x0": 0,
-    "x1": 767,
-    "y0": 6,
-    "y1": 1392,
-    "cx": 383.5,
-    "cy": 699.0,
-    "w": 768,
-    "h": 1387
    }
   },
   "three-quarter": {
@@ -915,17 +891,41 @@
     "w": 768,
     "h": 1384
    },
-   "happy": {
-    "file": "studio/2p5d/dad/emotions/three-quarter/happy.png",
-    "head_w": 768,
+   "laugh": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/laugh.png",
+    "head_w": 747,
     "x0": 0,
     "x1": 767,
-    "y0": 0,
-    "y1": 1399,
+    "y0": 6,
+    "y1": 1389,
     "cx": 383.5,
-    "cy": 699.5,
+    "cy": 697.5,
     "w": 768,
-    "h": 1400
+    "h": 1384
+   },
+   "angry": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/angry.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
+   "annoyed": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/annoyed.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
    },
    "surprised": {
     "file": "studio/2p5d/dad/emotions/three-quarter/surprised.png",
@@ -951,6 +951,18 @@
     "w": 768,
     "h": 1391
    },
+   "scared": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/scared.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
    "thinking": {
     "file": "studio/2p5d/dad/emotions/three-quarter/thinking.png",
     "head_w": 732,
@@ -962,6 +974,54 @@
     "cy": 700.0,
     "w": 768,
     "h": 1387
+   },
+   "smirk": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/smirk.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
+   "confused": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/confused.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
+   "tired": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/tired.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
+   "wink": {
+    "file": "studio/2p5d/dad/emotions/three-quarter/wink.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
    }
   },
   "side": {
@@ -987,6 +1047,30 @@
     "cx": 331.5,
     "cy": 695.0,
     "w": 652,
+    "h": 1379
+   },
+   "surprised": {
+    "file": "studio/2p5d/dad/emotions/side/surprised.png",
+    "head_w": 525,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "sad": {
+    "file": "studio/2p5d/dad/emotions/side/sad.png",
+    "head_w": 522,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
     "h": 1379
    }
   },
