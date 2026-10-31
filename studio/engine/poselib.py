@@ -69,6 +69,10 @@ def anchors_body(img: Image.Image) -> dict:
             head_w = int(seg[1] - seg[0] + 1)
             head_y = y
             head_cx = float((seg[0] + seg[1]) / 2)
+    # центр корпуса — по нему ставим персонажа в кадр: голова и торс не
+    # гуляют от взмаха рук, в отличие от центра всего силуэта
+    band = (ys > top + 0.22 * H) & (ys < top + 0.62 * H)
+    body_cx = float(np.median(xs[band])) if band.any() else float(np.median(xs))
     # подошвы: центр низа
     low = np.where(m[bot - 2])[0]
     foot_cx = float((low.min() + low.max()) / 2) if len(low) else (xs.min() + xs.max()) / 2
@@ -80,6 +84,7 @@ def anchors_body(img: Image.Image) -> dict:
         "head_cx": head_cx,
         "foot_y": bot,
         "foot_cx": foot_cx,
+        "body_cx": body_cx,
         "width_px": int(xs.max() - xs.min() + 1),
     }
 
@@ -175,6 +180,7 @@ class Frame:
         if "head_cx" in a:
             a["head_cx"] = w - a["head_cx"]
             a["foot_cx"] = w - a.get("foot_cx", a["head_cx"])
+            a["body_cx"] = w - a.get("body_cx", a["head_cx"])
         if "cx" in a:
             a["cx"] = w - a["cx"]
         return Frame(self.key + ":mirror", img, a)

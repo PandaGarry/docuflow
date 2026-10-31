@@ -233,6 +233,8 @@ POSES: list[PoseSpec] = [
     # ---- быт ----
     PoseSpec("sit", "sitting on an invisible chair, knees bent, hands on the knees",
              "daily"),
+    PoseSpec("sit-floor", "sitting on the floor with his legs stretched forward, "
+                          "leaning back on his hands", "daily"),
     PoseSpec("sit-lean", "sitting and leaning forward with elbows on the knees",
              "daily"),
     PoseSpec("crouch", "crouching down low on the haunches, hands on the knees",

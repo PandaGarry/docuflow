@@ -12,6 +12,7 @@
    "head_cx": 379.5,
    "foot_y": 1387,
    "foot_cx": 378.0,
+   "body_cx": 379.0,
    "width_px": 746
   },
   "three-quarter": {
@@ -23,6 +24,7 @@
    "head_cx": 363.0,
    "foot_y": 1390,
    "foot_cx": 423.5,
+   "body_cx": 357.0,
    "width_px": 682
   },
   "side": {
@@ -34,6 +36,7 @@
    "head_cx": 179.0,
    "foot_y": 1381,
    "foot_cx": 220.0,
+   "body_cx": 159.0,
    "width_px": 319
   },
   "back": {
@@ -45,6 +48,7 @@
    "head_cx": 377.0,
    "foot_y": 1380,
    "foot_cx": 377.5,
+   "body_cx": 377.0,
    "width_px": 744
   },
   "idle": {
@@ -56,6 +60,7 @@
    "head_cx": 370.0,
    "foot_y": 1391,
    "foot_cx": 369.5,
+   "body_cx": 369.0,
    "width_px": 726
   },
   "idle-shift": {
@@ -67,6 +72,7 @@
    "head_cx": 312.0,
    "foot_y": 1388,
    "foot_cx": 191.0,
+   "body_cx": 311.0,
    "width_px": 620
   },
   "idle-hands-back": {
@@ -78,6 +84,7 @@
    "head_cx": 324.5,
    "foot_y": 1389,
    "foot_cx": 323.5,
+   "body_cx": 323.0,
    "width_px": 633
   },
   "wave": {
@@ -89,6 +96,7 @@
    "head_cx": 365.5,
    "foot_y": 1387,
    "foot_cx": 365.5,
+   "body_cx": 365.0,
    "width_px": 733
   },
   "point": {
@@ -100,6 +108,7 @@
    "head_cx": 380.5,
    "foot_y": 1387,
    "foot_cx": 378.5,
+   "body_cx": 361.0,
    "width_px": 739
   },
   "thumbs-up": {
@@ -111,6 +120,7 @@
    "head_cx": 333.0,
    "foot_y": 1387,
    "foot_cx": 334.5,
+   "body_cx": 347.0,
    "width_px": 702
   },
   "thumbs-down": {
@@ -122,6 +132,7 @@
    "head_cx": 352.5,
    "foot_y": 1387,
    "foot_cx": 358.0,
+   "body_cx": 374.0,
    "width_px": 724
   },
   "reach-out": {
@@ -133,6 +144,7 @@
    "head_cx": 343.5,
    "foot_y": 1387,
    "foot_cx": 342.5,
+   "body_cx": 353.0,
    "width_px": 710
   },
   "facepalm": {
@@ -144,6 +156,7 @@
    "head_cx": 444.5,
    "foot_y": 1387,
    "foot_cx": 378.5,
+   "body_cx": 362.0,
    "width_px": 726
   },
   "hands-hips": {
@@ -155,6 +168,7 @@
    "head_cx": 376.0,
    "foot_y": 1389,
    "foot_cx": 375.5,
+   "body_cx": 376.0,
    "width_px": 741
   },
   "shrug": {
@@ -166,6 +180,7 @@
    "head_cx": 385.5,
    "foot_y": 1385,
    "foot_cx": 384.5,
+   "body_cx": 385.0,
    "width_px": 758
   },
   "cross-arms": {
@@ -177,6 +192,7 @@
    "head_cx": 267.0,
    "foot_y": 1393,
    "foot_cx": 267.5,
+   "body_cx": 269.0,
    "width_px": 526
   },
   "open-palms": {
@@ -188,6 +204,7 @@
    "head_cx": 385.5,
    "foot_y": 1390,
    "foot_cx": 385.5,
+   "body_cx": 385.0,
    "width_px": 756
   },
   "walk-contact": {
@@ -199,6 +216,7 @@
    "head_cx": 128.0,
    "foot_y": 539,
    "foot_cx": 177.5,
+   "body_cx": 111.0,
    "width_px": 216
   },
   "walk-down": {
@@ -210,6 +228,7 @@
    "head_cx": 110.5,
    "foot_y": 539,
    "foot_cx": 115.0,
+   "body_cx": 82.0,
    "width_px": 167
   },
   "walk-passing": {
@@ -221,6 +240,7 @@
    "head_cx": 85.0,
    "foot_y": 539,
    "foot_cx": 85.0,
+   "body_cx": 73.0,
    "width_px": 138
   },
   "walk-up": {
@@ -232,6 +252,7 @@
    "head_cx": 106.5,
    "foot_y": 539,
    "foot_cx": 157.0,
+   "body_cx": 98.0,
    "width_px": 226
   },
   "walk-contact-R": {
@@ -243,6 +264,7 @@
    "head_cx": 121.0,
    "foot_y": 551,
    "foot_cx": 179.5,
+   "body_cx": 108.0,
    "width_px": 218
   },
   "walk-down-R": {
@@ -254,6 +276,7 @@
    "head_cx": 95.5,
    "foot_y": 539,
    "foot_cx": 110.5,
+   "body_cx": 83.0,
    "width_px": 154
   },
   "walk-passing-R": {
@@ -265,6 +288,7 @@
    "head_cx": 87.5,
    "foot_y": 553,
    "foot_cx": 97.5,
+   "body_cx": 80.0,
    "width_px": 147
   },
   "walk-up-R": {
@@ -276,6 +300,7 @@
    "head_cx": 96.5,
    "foot_y": 550,
    "foot_cx": 145.5,
+   "body_cx": 94.0,
    "width_px": 220
   },
   "run-contact": {
@@ -287,6 +312,7 @@
    "head_cx": 144.0,
    "foot_y": 495,
    "foot_cx": 196.0,
+   "body_cx": 127.0,
    "width_px": 276
   },
   "run-down": {
@@ -298,6 +324,7 @@
    "head_cx": 177.0,
    "foot_y": 494,
    "foot_cx": 100.5,
+   "body_cx": 136.0,
    "width_px": 280
   },
   "run-passing": {
@@ -309,6 +336,7 @@
    "head_cx": 143.0,
    "foot_y": 489,
    "foot_cx": 19.5,
+   "body_cx": 123.0,
    "width_px": 258
   },
   "run-contact-R": {
@@ -320,6 +348,7 @@
    "head_cx": 150.0,
    "foot_y": 495,
    "foot_cx": 196.0,
+   "body_cx": 128.0,
    "width_px": 273
   },
   "run-down-R": {
@@ -331,6 +360,7 @@
    "head_cx": 172.0,
    "foot_y": 495,
    "foot_cx": 52.5,
+   "body_cx": 145.0,
    "width_px": 259
   },
   "run-passing-R": {
@@ -342,6 +372,7 @@
    "head_cx": 153.5,
    "foot_y": 495,
    "foot_cx": 19.0,
+   "body_cx": 134.0,
    "width_px": 278
   },
   "sit": {
@@ -353,6 +384,7 @@
    "head_cx": 329.5,
    "foot_y": 1387,
    "foot_cx": 328.0,
+   "body_cx": 329.0,
    "width_px": 649
   },
   "crouch": {
@@ -364,6 +396,7 @@
    "head_cx": 344.5,
    "foot_y": 1306,
    "foot_cx": 343.0,
+   "body_cx": 345.0,
    "width_px": 677
   }
  },

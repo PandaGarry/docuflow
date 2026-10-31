@@ -21,7 +21,7 @@ HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[1] / "engine"))
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 import poselib as pl
 
@@ -32,13 +32,17 @@ CYCLES = {
         "keys": ["walk-contact", "walk-down", "walk-passing", "walk-up",
                  "walk-contact-R", "walk-down-R", "walk-passing-R", "walk-up-R"],
         "fps": 12,
-        "speed": 26.0,      # px/кадр прокрутки фона: шаг ~2.2 кадра на ключ
+        "speed": 26.0,      # px/кадр прокрутки фона
+        "lift": {},
     },
     "run": {
         "keys": ["run-contact", "run-down", "run-passing",
                  "run-contact-R", "run-down-R", "run-passing-R"],
         "fps": 14,
         "speed": 64.0,
+        # В беге фаза проноса — это полёт, обе ноги над землёй. Без подъёма
+        # фигура «приклеена» к полу и бег читается как быстрый шаг.
+        "lift": {"run-passing": 42, "run-passing-R": 42},
     },
 }
 
@@ -52,12 +56,15 @@ def ground(fig: Image.Image, x_center: float, y_ground: float) -> tuple[Image.Im
     return fig, 0.0
 
 
-def compose(frames: list[pl.Frame], fps: int, speed: float) -> list[np.ndarray]:
+def compose(frames: list[pl.Frame], fps: int, speed: float,
+            lift: dict | None = None, keys: list[str] | None = None) -> list[np.ndarray]:
+    lift = lift or {}
+    keys = keys or [""] * len(frames)
     master = frames[0]
     # один масштаб на весь клип
     scale = BODY_H / max(f.anchor.get("height_px", f.img.height) for f in frames)
     out = []
-    for i, fr in enumerate(frames):
+    for i, (fr, key) in enumerate(zip(frames, keys)):
         canvas = Image.new("RGB", (W, H), (236, 234, 229))
         d = ImageDraw.Draw(canvas)
         # пол и «полосы» — чтобы читалась скорость
@@ -71,12 +78,25 @@ def compose(frames: list[pl.Frame], fps: int, speed: float) -> list[np.ndarray]:
         img = fr.img
         w, h = int(img.width * scale), int(img.height * scale)
         small = img.resize((w, h), Image.LANCZOS)
-        foot_x = fr.anchor.get("foot_cx", img.width / 2) * scale
+        # ставим по центру корпуса: взмах руки и вынос ноги не сдвигают
+        # персонажа в кадре (раньше центрировали по стопам — «плавало»)
+        body_x = fr.anchor.get("body_cx", img.width / 2) * scale
         foot_y = fr.anchor.get("foot_y", img.height) * scale
         cx = W * 0.42
+        rise = lift.get(key, 0) * scale / (BODY_H / 700)
+        x = int(cx - body_x)
+        y = int(GROUND - foot_y - rise)
+
+        # мягкая тень привязывает к полу; в полёте она слабеет и отрывается
+        sw = int(img.width * scale * 0.55)
+        sh_h = 16
+        shadow = Image.new("L", (sw, sh_h), 0)
+        ImageDraw.Draw(shadow).ellipse([0, 0, sw, sh_h], fill=90 if not rise else 40)
+        shadow = shadow.filter(ImageFilter.GaussianBlur(6))
+        canvas.paste((168, 163, 154), (int(cx - sw / 2), GROUND - sh_h // 2 - 4), shadow)
+
         # маска — явно канал альфы: с RGBA-маской PIL кладёт картинку целиком
-        canvas.paste(small, (int(cx - foot_x), int(GROUND - foot_y)),
-                     small.getchannel("A"))
+        canvas.paste(small, (x, y), small.getchannel("A"))
         out.append(np.asarray(canvas))
     return out
 
@@ -92,7 +112,8 @@ def main(char_key: str, cycle: str, out: Path | None = None) -> Path:
         if fr is None:
             raise SystemExit(f"нет кадра {k}")
         frames.append(fr)
-    imgs = compose(frames, spec["fps"], spec["speed"])
+    imgs = compose(frames, spec["fps"], spec["speed"], spec.get("lift"),
+                   spec["keys"])
     # два круга подряд, чтобы видеть стык
     imgs = imgs * 2
     out = out or (ROOT / "studio" / "out" / f"{char_key}-{cycle}.mp4")
