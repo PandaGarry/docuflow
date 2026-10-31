@@ -67,8 +67,14 @@ def trim(img: Image.Image, pad: int = 6) -> Image.Image:
     ys, xs = np.where(a > 8)
     if not len(ys):
         return img
-    return img.crop((int(xs.min()) - pad, int(ys.min()) - pad,
-                     int(xs.max()) + pad + 1, int(ys.max()) + pad + 1))
+    # Координаты обязательно зажимаем в границы картинки: PIL при
+    # отрицательном сдвиге дополняет кадр чёрным (0,0,0,0), а чёрное прозрачное
+    # потом «оживает» при повторном хромакее и даёт чёрную рамку вокруг кадра.
+    x0 = max(int(xs.min()) - pad, 0)
+    y0 = max(int(ys.min()) - pad, 0)
+    x1 = min(int(xs.max()) + pad + 1, img.width)
+    y1 = min(int(ys.max()) + pad + 1, img.height)
+    return img.crop((x0, y0, x1, y1))
 
 
 # --------------------------------------------------------------------------- #

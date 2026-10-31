@@ -213,13 +213,19 @@ POSES: list[PoseSpec] = [
     PoseSpec("run-contact", "running to the right, front leg landing under the "
                             "body, back leg kicked up behind, arms bent and pumping, "
                             "leaning forward", "run", "full side profile view"),
+    PoseSpec("run-down", "running to the right, weight compressing onto the landing "
+                         "leg, body at its lowest, arms bent and pumping", "run",
+             "full side profile view"),
     PoseSpec("run-passing", "running to the right, both feet off the ground "
-                            "mid-stride, arms bent and pumping, leaning forward",
-             "run", "full side profile view"),
+                            "mid-stride, knees bent, arms bent and pumping, leaning "
+                            "forward", "run", "full side profile view"),
     PoseSpec("run-contact-R", "running to the right with the other leg leading: front "
                               "leg landing under the body, back leg kicked up behind, "
                               "arms bent and pumping, leaning forward", "run",
              "full side profile view"),
+    PoseSpec("run-down-R", "running to the right with the other leg leading: weight "
+                           "compressing onto the landing leg, body at its lowest, "
+                           "arms pumping", "run", "full side profile view"),
     PoseSpec("run-passing-R", "running to the right with the other leg leading: both "
                               "feet off the ground mid-stride, arms bent and pumping, "
                               "leaning forward", "run", "full side profile view"),

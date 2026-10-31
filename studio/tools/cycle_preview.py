@@ -35,9 +35,10 @@ CYCLES = {
         "speed": 26.0,      # px/кадр прокрутки фона: шаг ~2.2 кадра на ключ
     },
     "run": {
-        "keys": ["run-contact", "run-contact-R", "run-passing", "run-passing-R"],
-        "fps": 12,
-        "speed": 60.0,
+        "keys": ["run-contact", "run-down", "run-passing",
+                 "run-contact-R", "run-down-R", "run-passing-R"],
+        "fps": 14,
+        "speed": 64.0,
     },
 }
 
@@ -73,7 +74,9 @@ def compose(frames: list[pl.Frame], fps: int, speed: float) -> list[np.ndarray]:
         foot_x = fr.anchor.get("foot_cx", img.width / 2) * scale
         foot_y = fr.anchor.get("foot_y", img.height) * scale
         cx = W * 0.42
-        canvas.paste(small, (int(cx - foot_x), int(GROUND - foot_y)), small)
+        # маска — явно канал альфы: с RGBA-маской PIL кладёт картинку целиком
+        canvas.paste(small, (int(cx - foot_x), int(GROUND - foot_y)),
+                     small.getchannel("A"))
         out.append(np.asarray(canvas))
     return out
 

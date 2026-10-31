@@ -21,6 +21,21 @@ from PIL import Image
 import characters as ch
 import cutout as C
 
+
+def load_cut(path) -> Image.Image:
+    """Открыть кадр и вырезать фон — один раз.
+
+    Кадры библиотеки уже лежат с альфой (RGBA). Повторный хромакей им вреден:
+    у прозрачных пикселей цвет не определён, и «зелёность» считается по мусору.
+    Поэтому кеим только картинки без альфы (мастера, сырые листы).
+    """
+    img = Image.open(path)
+    if img.mode == "RGBA":
+        a = np.asarray(img)[..., 3]
+        if (a < 10).any():
+            return C.trim(img)
+    return C.trim(C.key_green(img))
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -112,19 +127,19 @@ def build_manifest(char_key: str, *, write: bool = True) -> dict:
     for key in body_keys:
         path = ch.pose_path(char, key)
         if path.exists():
-            img = C.trim(C.key_green(Image.open(path)))
+            img = load_cut(path)
             out["poses"][key] = {"file": str(path.relative_to(ROOT)),
                                  **anchors_body(img)}
     for emo in ch.EMOTIONS:
         path = ch.emotion_path(char, emo)
         if path.exists():
-            img = C.trim(C.key_green(Image.open(path)))
+            img = load_cut(path)
             out["emotions"][emo] = {"file": str(path.relative_to(ROOT)),
                                     **anchors_head(img)}
     for v in ch.VISEMES:
         path = ch.viseme_path(char, v)
         if path.exists():
-            img = C.trim(C.key_green(Image.open(path)))
+            img = load_cut(path)
             out["visemes"][v] = {"file": str(path.relative_to(ROOT)),
                                  **anchors_head(img)}
 
@@ -182,10 +197,10 @@ class Library:
                     "visemes": ch.viseme_path}[kind](self.char, key)
             if not path.exists():
                 return None
-            img = C.trim(C.key_green(Image.open(path)))
+            img = load_cut(path)
             anchor = anchors_body(img) if kind == "poses" else anchors_head(img)
         else:
-            img = C.trim(C.key_green(Image.open(ROOT / rec["file"])))
+            img = load_cut(ROOT / rec["file"])
             anchor = {k: v for k, v in rec.items() if k != "file"}
         return Frame(f"{kind}:{key}", img, anchor)
 
@@ -236,11 +251,11 @@ def contact_sheet(char_key: str, *, cell_h: int = 420,
     for key in [p.key for p in ch.POSES]:
         p = ch.pose_path(char, key)
         if p.exists():
-            tiles.append(C.trim(C.key_green(Image.open(p))))
+            tiles.append(load_cut(p))
     for emo in ch.EMOTIONS:
         p = ch.emotion_path(char, emo)
         if p.exists():
-            tiles.append(C.trim(C.key_green(Image.open(p))))
+            tiles.append(load_cut(p))
     if not tiles:
         raise SystemExit(f"у {char_key} нет кадров")
     tiles = [t.resize((max(int(t.width * cell_h / t.height), 1), cell_h),
@@ -255,7 +270,7 @@ def contact_sheet(char_key: str, *, cell_h: int = 420,
     for r in rows:
         x = 10
         for t in r:
-            sheet.paste(t, (x, y), t)
+            sheet.paste(t, (x, y), t.getchannel("A") if t.mode == "RGBA" else None)
             x += t.width + 20
         y += cell_h + 20
     out = path or (ROOT / "studio" / "out" / f"{char_key}-library.png")

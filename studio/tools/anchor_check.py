@@ -61,7 +61,7 @@ def build(char_key: str, cell: int = 560, per_row: int = 7) -> Path:
             cx = c * cell + cell // 2
             x = int(cx - foot_x)
             y = int(ground - h)
-            sheet.paste(small, (x, y), small)
+            sheet.paste(small, (x, y), small.getchannel("A") if small.mode == "RGBA" else None)
             draw.text((c * cell + 8, y0 - 16), key, fill=(90, 88, 84))
     out = ROOT / "studio" / "out" / f"{char_key}-anchor-check.png"
     sheet.save(out)
