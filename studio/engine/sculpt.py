@@ -161,8 +161,8 @@ def _sleeve_field(p: B.Proportions, joints: dict, side: str, *,
     inner = np.array([sgn * 0.018 * H, sh[1] - 0.105 * H, 0.0])
     pts = [inner, sh + out, sh + (el - sh) * 0.30 + out,
            sh + (el - sh) * 0.62 + out, el + out,
-           el + (wr - el) * 0.45 + out, wr + out,
-           wr + out + (wr - el) * 0.06]
+           el + (wr - el) * 0.45 + out, wr + out - (wr - el) * 0.10,
+           wr + out - (wr - el) * 0.19]
     ts = np.array([0.00, 0.22, 0.38, 0.52, 0.66, 0.80, 0.90, 1.00])
     rad = 0.0520 * H * p.bulk * (1.0 - 0.26 * ts ** 0.9)
     rad[0] = 0.040 * H * p.bulk          # тонкий «корень» рукава в глубине торса
@@ -176,10 +176,10 @@ def _sleeve_field(p: B.Proportions, joints: dict, side: str, *,
         # манжета
         axis = (wr - el) / max(np.linalg.norm(wr - el), 1e-9)
         cuff_a = wr + out - axis * 0.030 * H
-        f = S.smooth_union(f, S.chain([cuff_a, wr + out + axis * 0.008 * H],
+        f = S.smooth_union(f, S.chain([cuff_a, wr + out - axis * 0.012 * H],
                                       [0.029 * H * p.bulk, 0.027 * H * p.bulk],
                                       k=0.006), k=0.008)
-        f = S.wrinkles(f, inner, wr + out, 0.0004 * p.bulk, freq=(3.0, 2.0),
+        f = S.wrinkles(f, inner, wr + out - (wr - el) * 0.06, 0.0004 * p.bulk, freq=(3.0, 2.0),
                        seed=7 + int(sgn))
     return f
 

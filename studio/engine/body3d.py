@@ -521,8 +521,12 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
                           out=1.050, rings=2, nphi=16), (1.0, 1.0, 1.0), "glint")
             put(head_spot(p, t_eye + 0.066, ph, 0.034, 0.190, out=1.030,
                           rings=4, nphi=36), skin, "lid")
-            put(head_spot(p, t_eye + 0.046, ph, 0.010, 0.186, out=1.032,
-                          rings=3, nphi=32), (0.13, 0.09, 0.08), "lash")
+            # ресничная линия: чуть уже века, иначе её внутренний конец
+            # заворачивает на переносицу и читается «чёрной закорючкой»
+            # ресничная линия — короткая и сдвинута НАРУЖУ. Внутренний конец
+            # у переносицы заворачивал на нос и читался чёрной закорючкой.
+            put(head_spot(p, t_eye + 0.050, ph + side * 0.022, 0.008, 0.120,
+                          out=1.038, rings=3, nphi=28), (0.16, 0.11, 0.10), "lash")
             put(head_spot(p, t_eye - 0.058, ph, 0.014, 0.180, out=1.026,
                           rings=3, nphi=30), skin, "lid_lo")
 
@@ -539,31 +543,38 @@ def head_parts(p: Proportions, colors: dict | None = None, *,
     # --- усы: две дуги над верхней губой (накладка-«пластырь» не годится) ---
     for s_ in (-1, 1):
         pts, rad = [], []
-        for u in np.linspace(0.0, 1.0, 9):
-            ph = math.pi / 2 + s_ * (0.020 + 0.400 * u)
-            t = 0.386 - 0.026 * u - 0.012 * u * u
-            pts.append(head_point(p, t, ph, 1.046))
-            rad.append((0.0102 - 0.0070 * u) * H)
+        # усы: тонкая дуга над губой. Толстые усы сливались с ртом и давали
+        # «тёмный овал» вместо улыбки — на крупном плане это главная ошибка.
+        for u in np.linspace(0.0, 1.0, 11):
+            ph = math.pi / 2 + s_ * (0.016 + 0.320 * u)
+            t = 0.362 - 0.026 * u - 0.018 * u * u
+            pts.append(head_point(p, t, ph, 1.044))
+            rad.append((0.0076 - 0.0056 * u) * H)
         put(R3.tube(np.array(pts), np.array(rad), seg=14), hair, "beard")
 
     # --- рот: улыбка линией, нижняя губа, без «наклеенного» пятна ----------
-    t_m = 0.300
+    # Линия рта: дуга, у которой КРАЯ ВЫШЕ центра — это и читается как улыбка.
+    # Раньше края были ниже (t рос к концам), поэтому вместо улыбки получался
+    # «карп»: тёмный овал с опущенными уголками.
+    t_m = 0.312
     pts, rad = [], []
-    for u in np.linspace(-1.0, 1.0, 19):
-        t = t_m + 0.030 * u * u
-        ph = math.pi / 2 + u * 0.42
-        pts.append(head_point(p, t, ph, 1.016))
-        rad.append((0.0060 - 0.0038 * u * u) * H)
-    put(R3.tube(np.array(pts), np.array(rad), seg=16), (0.33, 0.15, 0.14), "mouth")
+    for u in np.linspace(-1.0, 1.0, 21):
+        t = t_m - 0.028 * u * u          # края выше центра
+        ph = math.pi / 2 + u * 0.40
+        pts.append(head_point(p, t, ph, 1.020))
+        rad.append((0.0038 - 0.0016 * u * u) * H)
+    put(R3.tube(np.array(pts), np.array(rad), seg=18), (0.30, 0.12, 0.12), "mouth")
 
+    # Нижняя губа — НЕ отдельное розовое пятно: в этой стилистике розовая
+    # губа сразу читается как открытый рот. Только объём чуть темнее кожи.
     lip_pts, lip_rad = [], []
-    for u in np.linspace(-0.78, 0.78, 13):
-        t = t_m - 0.030 + 0.022 * u * u
-        ph = math.pi / 2 + u * 0.34
-        lip_pts.append(head_point(p, t, ph, 1.032))
-        lip_rad.append((0.0086 - 0.0058 * u * u) * H)
-    put(R3.tube(np.array(lip_pts), np.array(lip_rad), seg=14),
-        (0.74, 0.47, 0.44), "lip")
+    for u in np.linspace(-0.62, 0.62, 15):
+        t = t_m - 0.030 - 0.010 * u * u
+        ph = math.pi / 2 + u * 0.22
+        lip_pts.append(head_point(p, t, ph, 1.020))
+        lip_rad.append((0.0050 - 0.0028 * u * u) * H)
+    skin_lip = tuple(float(c) * 0.92 for c in skin)
+    put(R3.tube(np.array(lip_pts), np.array(lip_rad), seg=14), skin_lip, "lip")
 
     # штриховка волос и бороды — иначе они читаются как литой шлем
     for m in parts:
