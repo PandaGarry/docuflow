@@ -36,6 +36,15 @@ TOL_HEAD = 0.12          # ширина головы — на 12 %
 MIN_ALPHA = 0.15         # доля непрозрачных пикселей
 EDGE_MARGIN = 2          # зазор сверху до края кадра
 GREEN_TOL = 0.005        # доля оставшихся зелёных пикселей
+HAIR_IOU_MIN = 0.85      # совпадение силуэта причёски с эталоном ракурса
+
+
+def _hair_mask(a: np.ndarray, cut: float) -> np.ndarray:
+    """Тёмные волосы выше линии бровей."""
+    lum = a[..., :3].astype(np.float32).mean(axis=2)
+    m = (lum < 118) & (a[..., 3] > 40)
+    m[int(cut):, :] = False
+    return m
 
 
 def _stats(path: Path) -> dict:
@@ -59,12 +68,30 @@ def _stats(path: Path) -> dict:
     green_px = int((al & (gi[..., 1] - gi[..., 0] > 30)
                     & (gi[..., 1] - gi[..., 2] > 40)).sum())
     return {
+        "arr": a,
         "head_w": head_w,
         "bbox_h": h,
         "alpha_frac": float(al.mean()),
         "top_margin": int(ys.min()),
         "green_frac": green_px / al.size,
     }
+
+
+def hair_iou(path: Path, ref_path: Path, cut_frac: float = 0.135) -> float:
+    """Совпадение силуэта причёски с эталонным портретом ракурса.
+
+    Метрика, а не правка: причёска должна быть одинаковой во всех кадрах, но
+    генератор её перерисовывает. Число показывает, насколько кадр «уехал»;
+    кадры ниже порога уходят на пересъёмку.
+    """
+    a = np.asarray(C.key_green(Image.open(path).convert("RGB")))
+    b = np.asarray(C.key_green(Image.open(ref_path).convert("RGB")))
+    if a.shape != b.shape:
+        return -1.0
+    h = a.shape[0]
+    ma, mb = _hair_mask(a, cut_frac * h), _hair_mask(b, cut_frac * h)
+    union = (ma | mb).sum()
+    return float((ma & mb).sum() / union) if union else 1.0
 
 
 def check_frame(path: Path, ref: dict) -> list[str]:
@@ -98,7 +125,7 @@ def main(char_key: str, *, write: bool = True) -> int:
              "Каждый кадр сверяется с нейтральным портретом своего ракурса. "
              "Пересобирается командой `python studio/tools/qa_mimic.py "
              f"{char_key}`.", ""]
-    problems = total = 0
+    problems = total = pending = 0
     for kind, items, folder in (("эмоции", ch.EMOTIONS, "emotions"),
                                 ("виземы", ch.VISEMES, "visemes")):
         for view in ch.VIEWS:
@@ -119,19 +146,27 @@ def main(char_key: str, *, write: bool = True) -> int:
                     continue
                 total += 1
                 bad = check_frame(path, ref)
+                iou = hair_iou(path, ref_path)
+                note = ""
+                if 0 <= iou < HAIR_IOU_MIN:
+                    # не брак, но кадр заметно ушёл от канона причёски:
+                    # такие уходят в очередь на пересъёмку
+                    note = f"к пересъёмке: причёска IoU {iou:.2f}"
+                    pending += 1
                 if bad:
                     problems += 1
-                rows.append(f"| {key} | {'ok' if not bad else 'БРАК'} | "
-                            f"{'; '.join(bad)} |")
+                status = "БРАК" if bad else ("переснять" if note else "ok")
+                rows.append(f"| {key} | {status} | {'; '.join(bad + ([note] if note else []))} |")
             if rows:
                 lines += [f"## {kind} · {view}", "",
                           "| кадр | статус | замечания |", "|---|---|---|", *rows, ""]
-    lines.insert(3, f"Проверено кадров: **{total}**, с замечаниями: **{problems}**.")
+    lines.insert(3, f"Проверено кадров: **{total}**, брак: **{problems}**, "
+                    f"к пересъёмке (причёска): **{pending}**.")
     lines.insert(4, "")
     if write:
         out.write_text("\n".join(lines) + "\n")
         print(out)
-    print(f"проверено {total}, замечаний {problems}")
+    print(f"проверено {total}, брак {problems}, к пересъёмке {pending}")
     return problems
 
 

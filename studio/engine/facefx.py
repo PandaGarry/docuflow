@@ -104,6 +104,7 @@ def landmarks_px(lm: dict, img: tuple[int, int] | Image.Image) -> dict:
         return (bx + pair[0] * bw, by + pair[1] * bh)
 
     eyes = [pt(e) for e in lm.get("eyes", [])]
+    brows = [pt(e) for e in lm.get("brows", [])]
     mouth = pt(lm.get("mouth", [0.5, 0.37]))
     e_w = lm.get("eye_w", 0.09) * w
     e_h = lm.get("eye_h", 0.04) * w
@@ -111,6 +112,7 @@ def landmarks_px(lm: dict, img: tuple[int, int] | Image.Image) -> dict:
         "eyes": eyes,
         "eye_w": e_w,
         "eye_h": e_h,
+        "brows": brows,
         "ipd": (abs(eyes[1][0] - eyes[0][0]) if len(eyes) > 1 else 0.0),
         "mid": (sum(p[0] for p in eyes) / max(len(eyes), 1),
                 sum(p[1] for p in eyes) / max(len(eyes), 1)),
@@ -164,6 +166,10 @@ def blink(base: Image.Image, closed: Image.Image, *, lm: dict,
     Не смешивать кадры: полупрозрачное наложение двух разных век даёт смаз.
     Правильнее «напускать» закрытое веко сверху вниз с мягкой границей — так
     это и выглядит на видео: сначала кожа века, потом смыкание.
+
+    Берём при этом не весь овал глаза, а только РАЗНИЦУ между открытым и
+    закрытым кадром: у генератора тон кожи вокруг глаза немного другой, и
+    сплошной овал оставлял светлое пятно вокруг глаза.
     """
     if amount <= 0.01:
         return base
@@ -171,18 +177,25 @@ def blink(base: Image.Image, closed: Image.Image, *, lm: dict,
     if closed.size != base.size:
         closed = to_canvas(closed, base.size)
     aligned, _, _ = align_to(closed, base, lm)
+
+    b = np.asarray(base.convert("RGBA"), np.float32)
+    c = np.asarray(aligned.convert("RGBA"), np.float32)
+    diff = np.abs(b[..., :3] - c[..., :3]).mean(axis=2)
+    changed = np.clip((diff - 10.0) / 12.0, 0.0, 1.0)
+
     out = base.copy()
     w, h = base.size
     yy, xx = np.mgrid[0:h, 0:w]
     for (cx, cy) in px["eyes"]:
-        rx = max(px["eye_w"] * 0.86, 5)
-        ry = max(px["eye_h"] * 1.25, 4)
+        rx = max(px["eye_w"] * 0.95, 5)
+        ry = max(px["eye_h"] * 1.45, 4)
         cover_y = cy - ry + 2.0 * ry * (1.0 - float(amount))
-        edge = max(ry * 0.28, 1.5)
+        edge = max(ry * 0.3, 1.5)
         vert = np.clip((yy - (cover_y - edge)) / edge, 0.0, 1.0)
-        oval = np.clip((1.0 - (((xx - cx) / rx) ** 2 + ((yy - cy) / ry) ** 2)) * 4.0, 0, 1)
-        mask = Image.fromarray((np.clip(vert * oval, 0, 1) * 255).astype(np.uint8), "L")
-        mask = mask.filter(ImageFilter.GaussianBlur(1.6))
+        oval = np.clip((1.0 - (((xx - cx) / rx) ** 2 + ((yy - cy) / ry) ** 2)) * 3.0, 0, 1)
+        mask_arr = np.clip(changed * vert * oval, 0.0, 1.0)
+        mask = Image.fromarray((mask_arr * 255).astype(np.uint8), "L")
+        mask = mask.filter(ImageFilter.GaussianBlur(1.4))
         patch = Image.new("RGBA", base.size, (0, 0, 0, 0))
         patch.paste(aligned, (0, 0), mask)
         out.alpha_composite(patch)
@@ -313,4 +326,70 @@ def breathe(base: Image.Image, t: float, *, amp: float = 0.006) -> Image.Image:
     dy = math.sin(2 * math.pi * t / 4.0) * amp * base.height
     out = Image.new("RGBA", base.size, (0, 0, 0, 0))
     out.alpha_composite(base, (0, int(dy)))
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# неизменность причёски
+# --------------------------------------------------------------------------- #
+
+def _hair_mask(img: Image.Image, cut_y: float) -> np.ndarray:
+    """Тёмные волосы выше линии глаз."""
+    a = np.asarray(img.convert("RGBA"))
+    lum = a[..., :3].astype(np.float32).mean(axis=2)
+    m = (lum < 118) & (a[..., 3] > 40)
+    m[int(cut_y):, :] = False
+    return m
+
+
+def _dilate(mask: np.ndarray, r: int) -> np.ndarray:
+    out = mask.copy()
+    for dy in range(-r, r + 1):
+        for dx in range(-r, r + 1):
+            if dy * dy + dx * dx > r * r:
+                continue
+            out |= np.roll(np.roll(mask, dy, axis=0), dx, axis=1)
+    return out
+
+
+def keep_hair(emotion: Image.Image, canon: Image.Image, lm: dict,
+              *, grow: int = 4, feather: float = 3.0) -> Image.Image:
+    """Вернуть причёску канона на кадр эмоции.
+
+    Генератор при каждой правке перерисовывает волосы: силуэт причёски
+    расходится с эталоном на 10–40 % (замер по IoU маски волос). Для сериала
+    это недопустимо — причёска должна быть одинаковой в каждом кадре.
+
+    ВНИМАНИЕ: способ рабочий только частично. Причёски канона и кадра не
+    совпадают пиксель в пиксель (разная линия роста волос), и на границе
+    остаётся тонкая серая линия. В конвейере НЕ используется; вместо этого
+    расхождение причёски измеряется в `qa_mimic` (IoU), а кадры с сильным
+    расхождением перегенерируются.
+
+    Ключевой момент: НЕЛЬЗЯ резать по горизонтали. Прямая линия проходит по
+    коже лба, и шов видно (тон кожи у кадров чуть разный). Поэтому маска —
+    объединение волос канона и волос кадра, слегка раздутое и размытое: шов
+    идёт по естественному контуру волос, где тёмное переходит в светлое.
+    """
+    if emotion.size != canon.size:
+        canon = to_canvas(canon, emotion.size)
+    px = landmarks_px(lm, emotion)
+    if not px["eyes"]:
+        return emotion
+    # строго выше бровей: брови — тоже тёмные. Если пустить маску ниже,
+    # перенос стирает выражение и оставляет бледное эхо бровей канона
+    if px["brows"]:
+        cut = min(y for (_, y) in px["brows"]) - 1.2 * px["eye_h"]
+    else:
+        cut = min(y for (_, y) in px["eyes"]) - 3.6 * px["eye_h"]
+    union = _hair_mask(canon, cut) | _hair_mask(emotion, cut)
+    union = _dilate(union, grow)
+    union[int(cut):, :] = False
+    mask = Image.fromarray((union * 255).astype(np.uint8), "L")
+    if feather:
+        mask = mask.filter(ImageFilter.GaussianBlur(feather))
+    out = emotion.copy()
+    patch = Image.new("RGBA", emotion.size, (0, 0, 0, 0))
+    patch.paste(canon, (0, 0), mask)
+    out.alpha_composite(patch)
     return out

@@ -865,6 +865,18 @@
     "w": 768,
     "h": 1389
    },
+   "confused": {
+    "file": "studio/2p5d/dad/emotions/front/confused.png",
+    "head_w": 643,
+    "x0": 0,
+    "x1": 767,
+    "y0": 4,
+    "y1": 1399,
+    "cx": 383.5,
+    "cy": 701.5,
+    "w": 768,
+    "h": 1396
+   },
    "tired": {
     "file": "studio/2p5d/dad/emotions/front/tired.png",
     "head_w": 641,
@@ -876,6 +888,18 @@
     "cy": 697.5,
     "w": 768,
     "h": 1384
+   },
+   "wink": {
+    "file": "studio/2p5d/dad/emotions/front/wink.png",
+    "head_w": 643,
+    "x0": 0,
+    "x1": 767,
+    "y0": 4,
+    "y1": 1399,
+    "cx": 383.5,
+    "cy": 701.5,
+    "w": 768,
+    "h": 1396
    }
   },
   "three-quarter": {
@@ -1049,6 +1073,42 @@
     "w": 652,
     "h": 1379
    },
+   "laugh": {
+    "file": "studio/2p5d/dad/emotions/side/laugh.png",
+    "head_w": 523,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "angry": {
+    "file": "studio/2p5d/dad/emotions/side/angry.png",
+    "head_w": 524,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "annoyed": {
+    "file": "studio/2p5d/dad/emotions/side/annoyed.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
    "surprised": {
     "file": "studio/2p5d/dad/emotions/side/surprised.png",
     "head_w": 525,
@@ -1064,6 +1124,42 @@
    "sad": {
     "file": "studio/2p5d/dad/emotions/side/sad.png",
     "head_w": 522,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "thinking": {
+    "file": "studio/2p5d/dad/emotions/side/thinking.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "smirk": {
+    "file": "studio/2p5d/dad/emotions/side/smirk.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "confused": {
+    "file": "studio/2p5d/dad/emotions/side/confused.png",
+    "head_w": 527,
     "x0": 6,
     "x1": 674,
     "y0": 6,
