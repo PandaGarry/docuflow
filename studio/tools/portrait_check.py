@@ -54,6 +54,29 @@ def measure(path: Path) -> dict:
     }
 
 
+def head_iou(a: Path, b: Path) -> float:
+    """Совпадение силуэта головы с опорным кадром ракурса.
+
+    Масштаб лица проверяется по глазам, а РАКУРС — только силуэтом: если
+    попросить 3/4, а придёт фронт, межзрачковое расстояние может сойтись, а
+    голова будет другой формы. Сравниваем верхнюю часть содержимого.
+    """
+    from cutout import key_green
+    m1 = np.asarray(key_green(Image.open(a).convert("RGB")))[..., 3] > 40
+    m2 = np.asarray(key_green(Image.open(b).convert("RGB")))[..., 3] > 40
+    out = []
+    for m in (m1, m2):
+        ys, xs = np.where(m)
+        if not len(ys):
+            return 0.0
+        y0, y1 = ys.min(), ys.min() + int((ys.max() - ys.min()) * 0.45) + 1
+        crop = m[y0:y1, xs.min():xs.max() + 1]
+        out.append(Image.fromarray(crop.astype(np.uint8) * 255).resize((200, 200)))
+    x1 = np.asarray(out[0]) > 127
+    x2 = np.asarray(out[1]) > 127
+    return float((x1 & x2).sum() / max(1, (x1 | x2).sum()))
+
+
 def eye_scale(char: ch.Character, view: str, path: Path) -> float | None:
     """Межзрачковое расстояние в долях высоты содержимого."""
     try:
@@ -86,6 +109,8 @@ def check(char_key: str) -> int:
                 m = measure(path)
                 m["ipd"] = eye_scale(char, view, path)
                 m["key"] = key
+                ref = char.dir / "emotions" / view / "neutral.png"
+                m["iou"] = head_iou(path, ref) if ref.exists() else None
                 rows.append(m)
             if not rows:
                 continue
@@ -103,6 +128,8 @@ def check(char_key: str) -> int:
                     why.append(f"заполнение {r['fill']:.2f} против {med:.2f}")
                 if r["ipd"] and ipd_med and abs(r["ipd"] / ipd_med - 1) > 0.15:
                     why.append(f"масштаб лица x{r['ipd'] / ipd_med:.2f}")
+                if r.get("iou") is not None and r["iou"] < 0.86:
+                    why.append(f"силуэт не как у ракурса (IoU {r['iou']:.2f})")
                 if why:
                     bad += 1
                     print(f"  ✗ {r['key']:10s} {r['size']} — " + ", ".join(why))
