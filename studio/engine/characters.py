@@ -271,17 +271,40 @@ def pose_prompt(char: "Character", key: str) -> str:
     return char.prompt(POSE_BY_KEY[key].action, POSE_BY_KEY[key].view)
 
 
-def emotion_prompt(char: "Character", emo: str) -> str:
-    return char.prompt(
-        f"head-and-shoulders portrait, expression: {_EMO_TEXT[emo]}, looking at "
-        f"the camera, shoulders visible", "front view")
+# Рамка портрета. Отдельным текстом, потому что общий `prompt()` требует
+# «всю фигуру от волос до обуви» — и это прямо противоречит портрету.
+# Первая попытка виземов с этим противоречием дала в одном наборе и мелкие
+# фигурки в полный рост, и крупные лица, и горизонтальные кадры.
+PORTRAIT = ("close-up portrait framing: vertical portrait composition, from the "
+            "chest up, the head fills about 65% of the frame height, centered")
+
+_VIEW_TEXT = {
+    "front": "front view, looking straight at the camera",
+    "three-quarter": "three-quarter view turned about 35 degrees, looking at the camera",
+    "side": "pure side profile view facing right",
+    "back": "view from behind",
+}
 
 
-def viseme_prompt(char: "Character", v: str) -> str:
-    return char.prompt(
-        f"head-and-shoulders portrait, mouth shape for the sound form "
-        f"{_VIS_TEXT[v]}, neutral expression, looking at the camera",
-        "front view")
+def portrait_prompt(char: "Character", action: str, view: str = "front") -> str:
+    """Портрет головы и плеч: канон + рамка + ракурс + фон/свет/стиль."""
+    return (
+        f"Stylized 3D cartoon character: {char.build} {char.name}, {char.age}. "
+        f"Face: {char.face}. Hair: {char.hair}. Outfit: {char.outfit}. "
+        f"{action}. {PORTRAIT}, {_VIEW_TEXT[view]}. "
+        f"Flat chroma-key green background ({BG_HEX}), {LIGHT}. {STYLE}."
+    )
+
+
+def emotion_prompt(char: "Character", emo: str, view: str = "front") -> str:
+    return portrait_prompt(
+        char, f"Facial expression: {_EMO_TEXT[emo]}, neutral pose", view)
+
+
+def viseme_prompt(char: "Character", v: str, view: str = "front") -> str:
+    return portrait_prompt(
+        char, f"Mouth shape for the sound form {_VIS_TEXT[v]}, neutral expression",
+        view)
 
 
 _EMO_TEXT = {

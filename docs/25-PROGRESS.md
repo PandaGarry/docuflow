@@ -4,9 +4,9 @@ _обновлено: 2026-10-31_
 
 Файл пересобирается командой `python studio/tools/build_manifest.py <персонаж> --progress`.
 
-## father of the family (`dad`) — 77/115 кадров
+## father of the family (`dad`) — 86/115 кадров
 
-позы 33/49 · эмоции 39/39 · виземы 5/27
+позы 33/49 · эмоции 39/39 · виземы 14/27
 
 - [x] **Ракурсы** [x x x x] — **front**, **three-quarter**, **side**, **back**
 - [ ] **Стойки** [x x x  ] — **idle**, **idle-shift**, **idle-hands-back**, idle-tired
@@ -17,8 +17,8 @@ _обновлено: 2026-10-31_
 - [x] **Эмоции** (front) [13/13] — **neutral**, **happy**, **laugh**, **angry**, **annoyed**, **surprised**, **sad**, **scared**, **thinking**, **smirk**, **confused**, **tired**, **wink**
 - [x] **Эмоции** (three-quarter) [13/13] — **neutral**, **happy**, **laugh**, **angry**, **annoyed**, **surprised**, **sad**, **scared**, **thinking**, **smirk**, **confused**, **tired**, **wink**
 - [x] **Эмоции** (side) [13/13] — **neutral**, **happy**, **laugh**, **angry**, **annoyed**, **surprised**, **sad**, **scared**, **thinking**, **smirk**, **confused**, **tired**, **wink**
-- [ ] **Виземы** (front) [5/9] — **rest**, **A**, **E**, I, **O**, U, **M**, F, S
-- [ ] **Виземы** (three-quarter) [0/9] — rest, A, E, I, O, U, M, F, S
+- [ ] **Виземы** (front) [8/9] — **rest**, **A**, **E**, **I**, **O**, U, **M**, **F**, **S**
+- [ ] **Виземы** (three-quarter) [6/9] — **rest**, **A**, **E**, **I**, **O**, U, **M**, F, S
 - [ ] **Виземы** (side) [0/9] — rest, A, E, I, O, U, M, F, S
 
-**Всего: 77/115 кадров.**
+**Всего: 86/115 кадров.**
