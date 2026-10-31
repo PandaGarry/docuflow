@@ -25,6 +25,8 @@ import shutil
 import sys
 import traceback
 
+import numpy as np
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
@@ -35,6 +37,11 @@ import kit  # noqa: E402
 import library as L  # noqa: E402
 import puppet  # noqa: E402
 import rig as R  # noqa: E402
+import body3d as B3  # noqa: E402
+import character as CH  # noqa: E402
+import rig3d as R3D  # noqa: E402
+import sdf as SDF  # noqa: E402
+import sculpt as SCL  # noqa: E402
 
 VERBOSE = "-v" in sys.argv
 RESULTS: list[tuple[str, bool, str]] = []
@@ -871,6 +878,103 @@ def _():
     assert toon.pose_issues(rig, rig.build("idle")) == []
     issues = toon.pose_issues(rig, rig.build("celebrate"))
     assert issues and "ракурс" in issues[0]
+
+
+# --------------------------------------------------------------------------- #
+# SDF-ядро (этап P2): поле, мешер, скульптурное тело
+# --------------------------------------------------------------------------- #
+
+
+@check("SDF: сфера — точный объём, замкнутость и лицевая сторона наружу")
+def _():
+    m = SDF.mesh_from_sdf(SDF.sphere((0, 0, 0), 0.5), (-0.7,) * 3, (0.7,) * 3,
+                          res=(56,) * 3)
+    st = SDF.stats(m)
+    assert st["closed"], f"незамкнутых рёбер: {st['edges_not_2']}"
+    assert st["outward"], "треугольники смотрят внутрь"
+    exact = 4 / 3 * np.pi * 0.5 ** 3
+    assert abs(st["volume"] / exact - 1) < 0.02, f"объём {st['volume']:.4f}"
+
+
+@check("SDF: гладкое объединение не рвёт поверхность, вычитание не «съедает» мир")
+def _():
+    f = SDF.smooth_subtract(SDF.sphere((0, 0, 0), 0.5),
+                            SDF.sphere((0, 0, 0.45), 0.2), 0.02)
+    # внутри выреза — снаружи материала (плюс), вдали — тоже плюс,
+    # внутри тела — минус. Старая реализация давала минус везде.
+    assert f(np.array([[0, 0, 0.45]]))[0] > 0, "вырез не вырезан"
+    assert f(np.array([[0, 0, -0.40]]))[0] < 0, "тело исчезло"
+    assert f(np.array([[2, 2, 2]]))[0] > 0, "поле ушло в минус вдали от тела"
+    # габарит = тело + пара ячеек запаса; раздувание полем давало единицы метров
+    lo, hi = SDF.auto_bounds(f, (0, 0, 0), 1.0, res=32)
+    assert hi[0] - lo[0] < 1.35, f"габарит раздут: {lo}..{hi}"
+
+
+@check("SDF: loft точно следует профилю, round_cap не раздувает тело")
+def _():
+    prof = [(0.0, 0.10, 0.08), (0.10, 0.09, 0.07), (0.20, 0.06, 0.05)]
+    f = SDF.loft(prof, round_cap=0.01)
+    # на середине высоты радиус должен совпасть с профилем (±2 мм)
+    y = 0.10
+    x = np.linspace(0.0, 0.3, 400)
+    vals = f(np.stack([x, np.full_like(x, y), np.zeros_like(x)], axis=-1))
+    hit = x[np.where((vals[:-1] < 0) & (vals[1:] >= 0))[0][0]]
+    assert abs(hit - 0.09) < 0.003, f"радиус {hit:.4f} вместо 0.090"
+
+
+@check("SDF: профиль лофта сглаживается без выбросов за опорные значения")
+def _():
+    prof = np.array([[0.0, 0.10, 0.08, 0.0],
+                     [0.10, 0.20, 0.16, 0.0],
+                     [0.20, 0.10, 0.08, 0.0]], float)
+    dense = SDF._mono_profile(prof, sub=8)
+    assert dense[:, 1].max() <= 0.2001, "профиль выбросило выше опорного"
+    assert dense[:, 1].min() >= 0.0999, "профиль провалился ниже опорного"
+
+
+@check("SDF: скульптурное тело — замкнутые меши, руки не внутри торса")
+def _():
+    p = B3.Proportions()
+    ch = CH.Character(p)
+    fk = R3D.forward_kinematics(ch.skel, R3D.Pose())
+    joints = ch._joints(fk)
+    hood = SCL.hoodie_field(p, joints)
+    jeans = SCL.jeans_field(p, joints)
+    for name, field, center in (("худи", hood, (0, p.height * 0.6, 0)),
+                                ("джинсы", jeans, (0, p.height * 0.3, 0))):
+        lo, hi = SDF.auto_bounds(field, center, p.height * 1.05, res=40)
+        res = np.maximum(np.ceil((hi - lo) / 0.012).astype(int) + 1, 8)
+        st = SDF.stats(SDF.mesh_from_sdf(field, lo, hi, res, name=name))
+        assert st["closed"], f"{name}: незамкнутый меш"
+        assert st["outward"], f"{name}: нормали внутрь"
+    # рукав должен быть ВНЕ корпуса: если запястье внутри поля одного торса,
+    # значит руки утонули в теле (это и была ошибка с «мешком»)
+    torso_only = SCL.hoodie_field(p, joints, with_sleeves=False)
+    wr = np.asarray(joints["wrist.L"], float)
+    assert torso_only(np.array([wr]))[0] > 0, "запястье внутри корпуса худи"
+    el = np.asarray(joints["elbow.L"], float) + np.array([0.045, 0.0, 0.0])
+    assert torso_only(np.array([el]))[0] > 0, "локоть утонул в корпусе"
+
+
+@check("SDF: складки ткани дают заданную амплитуду, а не «пилу»")
+def _():
+    arm = SDF.sweep([(0, -0.3, 0), (0, 0.0, 0), (0, 0.3, 0)],
+                    [0.05, 0.055, 0.04])
+    wav = SDF.waves_around(arm, (0, -0.2, 0), (0, 0.25, 0), n=6, amp=0.004,
+                           taper=(0.02, 0.9))
+    y = 0.05
+    th = np.linspace(0, 2 * np.pi, 96)
+    rr = np.linspace(0.0, 0.09, 300)
+    prof = []
+    for a in th:
+        pts = np.stack([rr * np.cos(a), np.full_like(rr, y), rr * np.sin(a)], axis=-1)
+        v = wav(pts)
+        idx = np.where((v[:-1] < 0) & (v[1:] >= 0))[0]
+        if len(idx):
+            prof.append(rr[idx[0]])
+    prof = np.array(prof)
+    swing = prof.max() - prof.min()
+    assert 0.003 < swing < 0.011, f"размах складок {swing * 1000:.1f} мм"
 
 
 # --------------------------------------------------------------------------- #

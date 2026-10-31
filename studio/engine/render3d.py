@@ -476,7 +476,10 @@ class Lights:
     sky: tuple = (0.86, 0.90, 1.0)           # «небо» сверху
     ground: tuple = (0.62, 0.56, 0.52)       # отражения снизу
     wrap: float = 0.38                        # мягкость терминатора
-    ambient: float = 0.30
+    ambient: float = 0.34
+    # мягкий «фонарь от камеры»: без него вид сзади уходил в чёрный силуэт,
+    # хотя сцена та же. Это не заливка в упор — всего 18% яркости ключевого.
+    camera_fill: float = 0.20
 
 
 # --------------------------------------------------------------------------- #
@@ -534,9 +537,12 @@ def _shade(n: np.ndarray, albedo: np.ndarray, ao: np.ndarray,
     key = lam(L.key_dir)[:, None] * np.asarray(L.key_color) * L.key_power
     fill = lam(L.fill_dir)[:, None] * np.asarray(L.fill_color) * L.fill_power
     vdir = _normalize(view[0])
+    # view — направление ИЗ камеры в точку, значит свет «у камеры» = −view.
+    # (Перепутанный знак давал ровно обратное: вид сзади чернел.)
+    cam_light = lam(-vdir)[:, None] * np.asarray(L.key_color) * L.camera_fill
     rim = np.clip(1.0 - np.abs(n @ vdir), 0, 1) ** 3.0
     rim = (rim * L.rim_power)[:, None] * np.asarray(L.rim_color)
-    lit = albedo * (amb + key + fill) + rim
+    lit = albedo * (amb + key + fill + cam_light) + rim
 
     if rough is not None:
         # блик: половинный вектор между светом и наблюдателем

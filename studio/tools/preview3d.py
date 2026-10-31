@@ -25,6 +25,7 @@ import animation as AN          # noqa: E402
 import body3d as B              # noqa: E402
 import character as CH          # noqa: E402
 import render3d as R3           # noqa: E402
+import sculpt as SC             # noqa: E402
 
 
 def ffmpeg_bin() -> str:
@@ -75,10 +76,24 @@ def main() -> None:
                     default="three_quarter")
     ap.add_argument("--cycle", type=float, default=0.92)
     ap.add_argument("--out", default="studio/out/preview.mp4")
+    ap.add_argument("--core", choices=["tube", "sculpt"], default="tube",
+                    help="tube — прежняя сборка тела; sculpt — SDF-тело (P2)")
+    ap.add_argument("--cell", type=float, default=0.008,
+                    help="шаг сетки SDF-поля, м (только для --core sculpt)")
     args = ap.parse_args()
 
     p = B.Proportions()
     ch = CH.Character(p)
+    use_sculpt = args.core == "sculpt"
+
+    if use_sculpt:
+        # тело из SDF собирается заметно дольше поячеечно, поэтому предсоберём
+        # его один раз в позе покоя, а дальше пересобираем на каждой позе
+        import rig3d as RIG
+        rest = RIG.Pose()
+        ch.build = lambda pose=None: SC.sculpt_character(
+            ch, pose or rest, cell=args.cell)          # type: ignore[assignment]
+
     anim = make_anim(args.kind, ch.skel, args)
     cam = camera_for(args.kind, p.height, args.view)
     n = int(round(args.seconds * args.fps))
