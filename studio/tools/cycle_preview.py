@@ -43,6 +43,7 @@ CYCLES = {
         "keys": ["walk-contact", "walk-down", "walk-passing", "walk-up",
                  "walk-contact-R", "walk-down-R", "walk-passing-R", "walk-up-R"],
         "fps": 12,
+        "sub": 3,            # между ключами 3 промежуточных кадра → 24 к/с
         "timing": {"contact": 2, "down": 2, "passing": 1, "up": 1},
         "step": 0.26,        # длина шага из замеров кадров, в долях роста
         "bob": {"contact": 0.0, "down": -8.0, "passing": 4.0, "up": 6.0},
@@ -51,6 +52,7 @@ CYCLES = {
         "keys": ["run-contact", "run-down", "run-passing",
                  "run-contact-R", "run-down-R", "run-passing-R"],
         "fps": 12,
+        "sub": 3,
         "timing": {"contact": 2, "down": 1, "passing": 2},
         "step": 0.40,
         # в беге фаза проноса — это полёт: тело выше всего, тень отрывается
@@ -86,11 +88,13 @@ def ground(fig: Image.Image, x_center: float, y_ground: float) -> tuple[Image.Im
 
 
 def align_sprites(frames: list[pl.Frame]) -> tuple[list[Image.Image], tuple[int, int]]:
-    """Положить кадры на общий холст по якорям: стопа на низу, корпус по центру.
+    """Положить кадры на общий холст по ГОЛОВЕ, а не по центру корпуса.
 
-    Нужно для промежуточных кадров: оптический поток считает смещение по
-    картинке, и если один кадр шире другого на 4 px, «движение» уйдёт в
-    горизонтальный сдвиг всего тела вместо движения ног.
+    Каждый кадр библиотеки нарисован отдельно, и центр корпуса в нём гуляет на
+    30–40 px: если ставить по нему, персонаж в видео дрожит и «дышит» вбок.
+    Голова при ходьбе на месте стоит, поэтому регистрируем по ней: центр головы
+    каждого кадра попадает в одну точку холста. Ноги при этом встают сами —
+    на контакте стопа впереди, в проносе сзади, как и должно быть.
     """
     placed = []
     for fr in frames:
@@ -98,15 +102,16 @@ def align_sprites(frames: list[pl.Frame]) -> tuple[list[Image.Image], tuple[int,
         scale = BODY_H / fr.anchor.get("height_px", img.height)
         size = (max(int(img.width * scale), 2), max(int(img.height * scale), 2))
         small = img.convert("RGBA").resize(size, Image.LANCZOS)
-        placed.append((small,
-                       fr.anchor.get("body_cx", img.width / 2) * scale,
-                       fr.anchor.get("foot_y", img.height) * scale))
+        hx = fr.anchor.get("head_cx", img.width / 2) * scale
+        hy = fr.anchor.get("head_cy", img.height * 0.1) * scale
+        placed.append((small, hx, hy))
     w = int(max(p[0].width for p in placed)) + 8
     h = int(max(p[0].height for p in placed)) + 8
+    head_y = 0.22 * h
     out = []
-    for small, bx, by in placed:
+    for small, hx, hy in placed:
         canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-        canvas.alpha_composite(small, (int(w / 2 - bx), int(h - 4 - by)))
+        canvas.alpha_composite(small, (int(w / 2 - hx), int(head_y - hy)))
         out.append(canvas)
     return out, (w, h)
 
@@ -176,7 +181,7 @@ def main(char_key: str, cycle: str, out: Path | None = None,
     import imageio.v2 as imageio
 
     spec = CYCLES[cycle]
-    sub = spec.get("sub", 1) if sub is None else sub
+    sub = spec.get("sub", 3) if sub is None else sub
     lib = pl.Library(char_key)
     frames = []
     for k in spec["keys"]:
@@ -219,7 +224,7 @@ def main(char_key: str, cycle: str, out: Path | None = None,
     imgs = compose([r[0] for r in ribbon], [r[1] for r in ribbon], fps, speed)
     imgs = imgs * 2
     out = out or (ROOT / "studio" / "out" / f"{char_key}-{cycle}.mp4")
-    w = imageio.get_writer(out, fps=fps, quality=8, macro_block_size=8)
+    w = imageio.get_writer(out, fps=fps, quality=9, macro_block_size=1)
     for im in imgs:
         w.append_data(im)
     w.close()

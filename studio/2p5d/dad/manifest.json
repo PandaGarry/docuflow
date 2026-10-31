@@ -507,87 +507,91 @@
   },
   "walk-contact": {
    "file": "studio/2p5d/dad/poses/walk-contact.png",
-   "height_px": 540,
-   "head_top": 0,
-   "head_w": 103,
-   "head_cy": 75.0,
-   "head_cx": 128.0,
-   "foot_y": 539,
-   "foot_cx": 177.5,
-   "body_cx": 111.0,
-   "plant_cx": 179.0,
+   "height_px": 1362,
+   "head_top": 6,
+   "head_w": 250,
+   "head_cy": 198.0,
+   "head_cx": 306.5,
+   "foot_y": 1367,
+   "foot_cx": 421.5,
+   "body_cx": 295.0,
+   "plant_cx": 463.0,
    "feet": [
     {
-     "cx": 36.0,
-     "bottom": 531
+     "cx": 93.5,
+     "bottom": 1336
     },
     {
-     "cx": 179.0,
-     "bottom": 539
+     "cx": 463.0,
+     "bottom": 1367
     }
    ],
-   "width_px": 216
+   "width_px": 587
   },
   "walk-down": {
    "file": "studio/2p5d/dad/poses/walk-down.png",
-   "height_px": 540,
-   "head_top": 0,
-   "head_w": 108,
-   "head_cy": 80.0,
-   "head_cx": 110.5,
-   "foot_y": 539,
-   "foot_cx": 115.0,
-   "body_cx": 82.0,
-   "plant_cx": 78.5,
+   "height_px": 1377,
+   "head_top": 6,
+   "head_w": 250,
+   "head_cy": 199.0,
+   "head_cx": 270.5,
+   "foot_y": 1382,
+   "foot_cx": 312.0,
+   "body_cx": 252.0,
+   "plant_cx": 274.5,
    "feet": [
     {
-     "cx": 78.5,
-     "bottom": 539
+     "cx": 89.0,
+     "bottom": 1329
+    },
+    {
+     "cx": 274.5,
+     "bottom": 1382
     }
    ],
-   "width_px": 167
+   "width_px": 412
   },
   "walk-passing": {
    "file": "studio/2p5d/dad/poses/walk-passing.png",
-   "height_px": 540,
-   "head_top": 0,
-   "head_w": 99,
-   "head_cy": 72.0,
-   "head_cx": 85.0,
-   "foot_y": 539,
-   "foot_cx": 85.0,
-   "body_cx": 73.0,
-   "plant_cx": 69.5,
+   "height_px": 1374,
+   "head_top": 7,
+   "head_w": 249,
+   "head_cy": 197.0,
+   "head_cx": 244.0,
+   "foot_y": 1380,
+   "foot_cx": 286.0,
+   "body_cx": 238.0,
+   "plant_cx": 193.0,
    "feet": [
     {
-     "cx": 69.5,
-     "bottom": 539
+     "cx": 193.0,
+     "bottom": 1380
     }
    ],
-   "width_px": 138
+   "width_px": 510
   },
   "walk-up": {
    "file": "studio/2p5d/dad/poses/walk-up.png",
-   "height_px": 539,
-   "head_top": 1,
-   "head_w": 102,
-   "head_cy": 74.0,
-   "head_cx": 106.5,
-   "foot_y": 539,
-   "foot_cx": 157.0,
-   "body_cx": 98.0,
-   "plant_cx": 173.5,
+   "height_px": 1347,
+   "head_top": 6,
+   "head_w": 251,
+   "head_cy": 199.0,
+   "head_cx": 317.0,
+   "foot_y": 1352,
+   "foot_cx": 435.5,
+   "body_cx": 282.0,
+   "plant_cx": 477.0,
    "feet": [
     {
-     "cx": 25.5,
-     "bottom": 529
+     "cx": 93.0,
+     "bottom": 1328
     },
     {
-     "cx": 173.5,
-     "bottom": 539
+     "cx": 477.0,
+     "bottom": 1352
     }
    ],
-   "width_px": 226
+   "width_px": 601
   },
   "walk-contact-R": {
    "file": "studio/2p5d/dad/poses/walk-contact-R.png",
@@ -633,22 +637,22 @@
   },
   "walk-passing-R": {
    "file": "studio/2p5d/dad/poses/walk-passing-R.png",
-   "height_px": 554,
-   "head_top": 0,
-   "head_w": 98,
-   "head_cy": 71.0,
-   "head_cx": 87.5,
-   "foot_y": 553,
-   "foot_cx": 97.5,
-   "body_cx": 80.0,
-   "plant_cx": 79.5,
+   "height_px": 1375,
+   "head_top": 6,
+   "head_w": 249,
+   "head_cy": 196.0,
+   "head_cx": 241.0,
+   "foot_y": 1380,
+   "foot_cx": 283.0,
+   "body_cx": 222.0,
+   "plant_cx": 187.0,
    "feet": [
     {
-     "cx": 79.5,
-     "bottom": 553
+     "cx": 187.0,
+     "bottom": 1380
     }
    ],
-   "width_px": 147
+   "width_px": 382
   },
   "walk-up-R": {
    "file": "studio/2p5d/dad/poses/walk-up-R.png",
@@ -1018,6 +1022,29 @@
    ],
    "width_px": 597
   },
+  "carry": {
+   "file": "studio/2p5d/dad/poses/carry.png",
+   "height_px": 1382,
+   "head_top": 6,
+   "head_w": 255,
+   "head_cy": 350.0,
+   "head_cx": 323.0,
+   "foot_y": 1387,
+   "foot_cx": 321.5,
+   "body_cx": 322.0,
+   "plant_cx": 223.5,
+   "feet": [
+    {
+     "cx": 223.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 420.5,
+     "bottom": 1387
+    }
+   ],
+   "width_px": 634
+  },
   "eat": {
    "file": "studio/2p5d/dad/poses/eat.png",
    "height_px": 1382,
@@ -1200,15 +1227,15 @@
    },
    "smirk": {
     "file": "studio/2p5d/dad/emotions/front/smirk.png",
-    "head_w": 572,
+    "head_w": 643,
     "x0": 0,
     "x1": 767,
-    "y0": 6,
-    "y1": 1394,
+    "y0": 4,
+    "y1": 1399,
     "cx": 383.5,
-    "cy": 700.0,
+    "cy": 701.5,
     "w": 768,
-    "h": 1389
+    "h": 1396
    },
    "confused": {
     "file": "studio/2p5d/dad/emotions/front/confused.png",
@@ -1310,15 +1337,15 @@
    },
    "surprised": {
     "file": "studio/2p5d/dad/emotions/three-quarter/surprised.png",
-    "head_w": 717,
+    "head_w": 747,
     "x0": 0,
     "x1": 767,
     "y0": 6,
-    "y1": 1383,
+    "y1": 1389,
     "cx": 383.5,
-    "cy": 694.5,
+    "cy": 697.5,
     "w": 768,
-    "h": 1378
+    "h": 1384
    },
    "sad": {
     "file": "studio/2p5d/dad/emotions/three-quarter/sad.png",
