@@ -49,6 +49,9 @@ class Part:
     dark: float = 0.0         # затемнение (для дальней стороны)
 
 
+drawing_ref: dict = {}
+
+
 def _shape_mask(size: tuple[int, int], shape, feather: float = 1.5) -> Image.Image:
     """Маска по фигуре: полигон (доли кадра) или капсула (пиксели).
 
@@ -73,6 +76,48 @@ def _shape_mask(size: tuple[int, int], shape, feather: float = 1.5) -> Image.Ima
             cx, cy = ax + (bx - ax) * t, ay + (by - ay) * t
             rr = r + (r2 - r) * t
             d.ellipse((cx - rr, cy - rr, cx + rr, cy + rr), fill=255)
+    elif isinstance(shape, dict) and "rect" in shape:
+        x0, y0, x1, y1 = shape["rect"]
+        d.rectangle((x0 * w, y0 * h, x1 * w, y1 * h), fill=255)
+    elif isinstance(shape, dict) and "band" in shape:
+        # Полоса по высоте: маска = сам силуэт рисунка в этих строках.
+        # Капсула шире или уже реальной ноги, и на сгибе открывалась щель.
+        # Силуэт же совпадает с рисунком по определению, поэтому в покое
+        # собранный кадр равен мастеру пиксель в пиксель.
+        y0, y1 = shape["band"]
+        a = np.asarray(drawing_ref.get("alpha")) if drawing_ref else None
+        if a is None:
+            m.paste(255, (0, int(y0 * h), w, int(y1 * h)))
+        else:
+            mm = np.zeros((h, w), np.uint8)
+            mm[int(y0 * h):int(y1 * h)] = (a[int(y0 * h):int(y1 * h)] > 40) * 255
+            m.paste(Image.fromarray(mm))
+            # Круг вокруг шарнира: он вращается вместе с частью и поэтому
+            # выглядит неподвижным. Прямой срез на сгибе давал видимую
+            # «ступеньку» — полосу джинсов поперёк колена.
+            if "disc_at" in shape:
+                (cx, cy), r = shape["disc_at"], shape.get("disc_r", 46)
+                d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=255)
+            # перо по краю обязательно: иначе на сгибе видна жёсткая ступень
+            return m.filter(ImageFilter.GaussianBlur(feather)) if feather else m
+    elif isinstance(shape, dict) and "poly" in shape:
+        d.polygon([(x * w, y * h) for x, y in shape["poly"]], fill=255)
+        if "disc_at" in shape:
+            (cx, cy), r = shape["disc_at"], shape.get("disc_r", 46)
+            d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=255)
+        return m.filter(ImageFilter.GaussianBlur(feather)) if feather else m
+    elif isinstance(shape, dict) and "capsule" in shape and "disc_at" in shape:
+        (ax, ay), (bx, by), r = shape["capsule"][:3]
+        r2 = shape["capsule"][3] if len(shape["capsule"]) > 3 else r
+        n = max(2, int(math.hypot(bx - ax, by - ay) / max(1.0, min(r, r2) * 0.25)))
+        for i in range(n + 1):
+            t = i / n
+            cx, cy = ax + (bx - ax) * t, ay + (by - ay) * t
+            rr = r + (r2 - r) * t
+            d.ellipse((cx - rr, cy - rr, cx + rr, cy + rr), fill=255)
+        (dx, dy), dr = shape["disc_at"], shape.get("disc_r", 46)
+        d.ellipse((dx - dr, dy - dr, dx + dr, dy + dr), fill=255)
+        return m.filter(ImageFilter.GaussianBlur(feather)) if feather else m
     elif isinstance(shape, dict) and "disc" in shape:
         (cx, cy), r = shape["disc"]
         d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=255)
@@ -204,6 +249,7 @@ class Puppet:
                     z=p.get("z", 0), dark=0.0)
                 continue
             src = _inpaint(drawing, p.get("holes", []))
+            drawing_ref["alpha"] = np.asarray(drawing.convert("RGBA"))[..., 3]
             mask = _shape_mask(drawing.size, p.get("shape", p.get("poly")),
                                p.get("feather", 1.5))
             # Порядок важен: сначала вычитаем, потом добавляем.

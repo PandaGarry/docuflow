@@ -182,11 +182,17 @@ def main() -> int:
     made = []
     if what == "all":
         import imageio.v2 as imageio
-        import cycle_preview as cp
+        import stride_cycle as sc
         parts: list[np.ndarray] = []
         for cyc in ("walk", "run"):
-            path = cp.main(key, cyc)
-            parts += [np.asarray(f) for f in imageio.get_reader(path)]
+            frames, fps = sc.build(cyc)
+            out_cyc = OUT / f"{key}-{cyc}.mp4"
+            w = imageio.get_writer(out_cyc, fps=fps, quality=9, macro_block_size=1)
+            for f in frames:
+                w.append_data(np.asarray(f))
+            w.close()
+            print(f"{out_cyc}  цикл {sc.CYCLES[cyc]['cycle_s']} с")
+            parts += [np.asarray(f) for f in frames]
         made.append(save(gestures(key) + emotions(key) + parts,
                          OUT / f"{key}-motion-test.mp4"))
         return 0
@@ -198,12 +204,17 @@ def main() -> int:
     if what in ("emotions", "all"):
         made.append(save(emotions(key), OUT / f"{key}-reel-emotions.mp4"))
     if what in ("cycles", "all"):
-        import cycle_preview as cp
+        import stride_cycle as sc
+        import imageio.v2 as imageio
         for cyc in ("walk", "run"):
-            try:
-                made.append(cp.main(key, cyc))
-            except SystemExit as e:  # нет кадров цикла — это ещё не ошибка сборки
-                print(f"{cyc}: пропущен ({e})")
+            frames, fps = sc.build(cyc)
+            out_cyc = OUT / f"{key}-{cyc}.mp4"
+            w = imageio.get_writer(out_cyc, fps=fps, quality=9, macro_block_size=1)
+            for f in frames:
+                w.append_data(np.asarray(f))
+            w.close()
+            print(f"{out_cyc}  цикл {sc.CYCLES[cyc]['cycle_s']} с")
+            made.append(out_cyc)
     if not made:
         print("нечего собирать: gestures | emotions | cycles | all")
         return 1
