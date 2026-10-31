@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "comment": "Причёски и растительность на лице. Смена причёски — отдельный сценарий: она меняет силуэт головы, поэтому требует перегенерации головы с мастером в референсах и проверки QA.",
+  "styles": {
+    "spiky_fade": {"label": "Ёжик с выбритыми висками", "gender": "m",
+      "prompt": "short dark-brown hair with shaved faded sides and a spiky top",
+      "draw": {"shape": "spiky", "volume": 1.0, "sides": "faded", "bangs": "up"}},
+    "buzz": {"label": "Короткий ёжик", "gender": "m", "prompt": "very short buzz cut hair",
+      "draw": {"shape": "round", "volume": 0.55, "sides": "short", "bangs": "none"}},
+    "side_part": {"label": "Пробор набок", "gender": "any",
+      "prompt": "neat side-parted hair",
+      "draw": {"shape": "round", "volume": 0.85, "sides": "short", "bangs": "side"}},
+    "long_wavy_bangs": {"label": "Длинные волнистые с косой чёлкой", "gender": "f",
+      "prompt": "long wavy light-brown hair with side-swept bangs",
+      "draw": {"shape": "long_wavy", "volume": 1.25, "sides": "long", "bangs": "side"}},
+    "long_straight": {"label": "Длинные прямые", "gender": "f",
+      "prompt": "long straight hair",
+      "draw": {"shape": "long", "volume": 1.1, "sides": "long", "bangs": "none"}},
+    "bun": {"label": "Пучок", "gender": "f", "prompt": "hair tied in a neat bun",
+      "draw": {"shape": "bun", "volume": 0.95, "sides": "short", "bangs": "none"}},
+    "ponytail": {"label": "Хвост", "gender": "any", "prompt": "hair in a high ponytail",
+      "draw": {"shape": "ponytail", "volume": 1.0, "sides": "short", "bangs": "none"}},
+    "bob": {"label": "Каре", "gender": "any", "prompt": "short bob haircut",
+      "draw": {"shape": "bob", "volume": 1.05, "sides": "short", "bangs": "straight"}},
+    "curly": {"label": "Кудри", "gender": "any", "prompt": "voluminous curly hair",
+      "draw": {"shape": "curly", "volume": 1.3, "sides": "short", "bangs": "none"}},
+    "bald": {"label": "Лысина", "gender": "m", "prompt": "bald head",
+      "draw": {"shape": "bald", "volume": 0.0, "sides": "none", "bangs": "none"}},
+    "under_cap": {"label": "Волосы под кепкой (не видны)", "gender": "any",
+      "prompt": "short hair mostly hidden under a cap",
+      "draw": {"shape": "hidden", "volume": 0.35, "sides": "short", "bangs": "hidden"}}
+  },
+  "facial_hair": {
+    "none": {"label": "Без бороды", "prompt": "clean shaven", "draw": {"kind": "none"}},
+    "full_beard": {"label": "Полная борода", "prompt": "full neat dark beard and mustache",
+      "draw": {"kind": "full", "density": 1.0}},
+    "stubble": {"label": "Щетина", "prompt": "short stubble beard", "draw": {"kind": "stubble", "density": 0.5}},
+    "mustache": {"label": "Усы", "prompt": "thick mustache", "draw": {"kind": "mustache", "density": 0.8}},
+    "goatee": {"label": "Эспаньолка", "prompt": "small goatee beard", "draw": {"kind": "goatee", "density": 0.7}}
+  }
+}

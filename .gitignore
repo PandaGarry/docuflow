@@ -1,0 +1,16 @@
+# служебное
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# тяжёлые промежуточные файлы: пересобираются скриптами студии
+studio/assets/audio/*.wav
+studio/out/*.wav
+studio/out/preview_*.jpg
+studio/out/_*.mp4
+studio/out/*-silent.mp4
+
+# личные референсы семьи: только локально (см. studio/reference/README.md)
+studio/reference/*
+!studio/reference/README.md

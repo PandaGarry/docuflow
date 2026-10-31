@@ -1,0 +1,110 @@
+{
+  "schema": 3,
+  "id": "dad",
+  "label": "Папа",
+  "role": "отец, двигатель хаоса",
+  "height_heads": 5.9,
+  "rig": "humanoid_v1",
+  "proportions": {
+    "leg": 1.0,
+    "arm": 1.02,
+    "torso": 1.04,
+    "head": 1.0,
+    "belly": 1.06
+  },
+  "identity": {
+    "desc": "a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes",
+    "skin": "#E8B48F",
+    "eye": "#5B3A29",
+    "jaw": 1.04,
+    "eye_spread": 1.0,
+    "locked": [
+      "face shape",
+      "eye colour",
+      "beard shape",
+      "hairline",
+      "ear shape"
+    ]
+  },
+  "hair": {
+    "style": "spiky_fade",
+    "facial_hair": "full_beard",
+    "color": "#4A332A"
+  },
+  "palette": {
+    "skin": "#E8B48F",
+    "hair": "#4A332A",
+    "eye": "#5B3A29",
+    "hoodie": "#C9C7C2",
+    "jeans": "#2F3540",
+    "shoes": "#4A3A32"
+  },
+  "wardrobe": {
+    "default": "home",
+    "sets": {
+      "home": {
+        "top": "hoodie_gray",
+        "bottom": "jeans_dark",
+        "shoes": "sneakers_brown"
+      },
+      "street": {
+        "top": "hoodie_gray",
+        "bottom": "jeans_dark",
+        "shoes": "sneakers_brown",
+        "outer": "jacket_denim"
+      },
+      "work": {
+        "top": "shirt_blue",
+        "bottom": "trousers_dark",
+        "shoes": "boots_black"
+      },
+      "pajama": {
+        "top": "tshirt_white",
+        "bottom": "sweatpants_gray",
+        "shoes": "slippers_home"
+      },
+      "kitchen": {
+        "top": "hoodie_gray",
+        "bottom": "jeans_dark",
+        "shoes": "slippers_home",
+        "outer": "apron"
+      }
+    }
+  },
+  "personality": {
+    "default_expression": "calm",
+    "signature": [
+      "smirk",
+      "surprise"
+    ],
+    "catchphrase": "Я всё продумал."
+  },
+  "forbidden": [
+    "no changes to beard shape or hairline",
+    "no glasses, no watch, no bag",
+    "no extra limbs or fingers"
+  ],
+  "voice": {
+    "pitch": 0.95,
+    "mood": "уверенный, чуть comic",
+    "notes": "низкий, грудной"
+  },
+  "art": {
+    "face": {
+      "eye_l": [
+        0.427,
+        0.125
+      ],
+      "eye_r": [
+        0.573,
+        0.125
+      ],
+      "mouth": [
+        0.5,
+        0.1712
+      ],
+      "mouth_w": 0.132,
+      "mouth_h": 0.0237
+    }
+  }
+}

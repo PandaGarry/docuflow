@@ -1,0 +1,29 @@
+{
+ "char": "dad",
+ "outfit": "shirt",
+ "outfit_prompt": "blue-and-white checked flannel shirt with rolled sleeves, dark navy straight-leg jeans, dark brown leather boots",
+ "masters": {
+  "front": {
+   "file": "/home/user/docuflow/studio/2p5d/dad-shirt/master-front-v2.png",
+   "reference": "/home/user/docuflow/studio/2p5d/dad/master-front-v2.png",
+   "prompt": "Keep this exact character: same face, same hair, same beard, same body build and proportions, same head size, same soft studio lighting, same flat chroma-key green background. Change ONLY the clothes: blue-and-white checked flannel shirt with rolled sleeves, dark navy straight-leg jeans, dark brown leather boots. Same pose, same framing, full body visible from hair to shoes."
+  },
+  "three-quarter": {
+   "file": "/home/user/docuflow/studio/2p5d/dad-shirt/master-three-quarter-v2.png",
+   "reference": "/home/user/docuflow/studio/2p5d/dad/master-three-quarter-v2.png",
+   "prompt": "Keep this exact character: same face, same hair, same beard, same body build and proportions, same head size, same soft studio lighting, same flat chroma-key green background. Change ONLY the clothes: blue-and-white checked flannel shirt with rolled sleeves, dark navy straight-leg jeans, dark brown leather boots. Same pose, same framing, full body visible from hair to shoes."
+  },
+  "side": {
+   "file": "/home/user/docuflow/studio/2p5d/dad-shirt/master-side-v2.png",
+   "reference": "/home/user/docuflow/studio/2p5d/dad/master-side-v2.png",
+   "prompt": "Keep this exact character: same face, same hair, same beard, same body build and proportions, same head size, same soft studio lighting, same flat chroma-key green background. Change ONLY the clothes: blue-and-white checked flannel shirt with rolled sleeves, dark navy straight-leg jeans, dark brown leather boots. Same pose, same framing, full body visible from hair to shoes."
+  }
+ },
+ "poses": [
+  "idle",
+  "wave",
+  "point",
+  "phone"
+ ],
+ "note": "Кадры делаются правкой референса: сначала мастер, потом кадры."
+}

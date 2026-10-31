@@ -1,0 +1,449 @@
+{
+  "style": "B-volumetric",
+  "schema": 3,
+  "generated_by": "artgen.py",
+  "characters": {
+    "dad": {
+      "name": "dad",
+      "label": "Папа",
+      "desc": "a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers",
+      "schema": 3,
+      "height_heads": 5.9,
+      "outfit_default": "home",
+      "outfits": [
+        "home",
+        "kitchen",
+        "pajama",
+        "street",
+        "work"
+      ],
+      "hair": {
+        "style": "spiky_fade",
+        "facial_hair": "full_beard",
+        "color": "#4A332A"
+      },
+      "master": {
+        "turnaround": "characters/dad/master/turnaround.png",
+        "face": "characters/dad/master/face.png"
+      },
+      "identity_fingerprint": "b570ed78fb3cd6b3",
+      "master_fingerprint": "f56006775e73e3c9",
+      "derivatives": [
+        {
+          "asset": "pose/idle",
+          "file": "characters/dad/pose/idle.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "calm",
+          "camera": "full",
+          "key": "6f8208567f62",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/wave",
+          "file": "characters/dad/pose/wave.png",
+          "status": "todo",
+          "pose": "wave",
+          "expression": "joy",
+          "camera": "full",
+          "key": "95933c49fd86",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm raised high and waving, left arm relaxed. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/point",
+          "file": "characters/dad/pose/point.png",
+          "status": "ready",
+          "pose": "point",
+          "expression": "smirk",
+          "camera": "full",
+          "key": "1c4fafdd2cca",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm extended, index finger pointing at the camera. EXPRESSION: warm smile, one-sided lopsided smirk. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/surprise",
+          "file": "characters/dad/pose/surprise.png",
+          "status": "todo",
+          "pose": "surprise",
+          "expression": "surprise",
+          "camera": "full",
+          "key": "6ded31fc10bd",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms thrown up, leaning slightly back. EXPRESSION: eyebrows raised high, eyes wide open, mouth slightly open. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/think",
+          "file": "characters/dad/pose/think.png",
+          "status": "todo",
+          "pose": "think",
+          "expression": "think",
+          "camera": "full",
+          "key": "5256fe8c685d",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: hand raised to the chin, head tilted, thinking. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/carry",
+          "file": "characters/dad/pose/carry.png",
+          "status": "todo",
+          "pose": "carry",
+          "expression": "focused",
+          "camera": "full",
+          "key": "3922998bb451",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms bent forward, carrying a box in front of the chest. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/slump",
+          "file": "characters/dad/pose/slump.png",
+          "status": "todo",
+          "pose": "slump",
+          "expression": "tired",
+          "camera": "full",
+          "key": "581ac161b280",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: slouched, shoulders dropped, tired. EXPRESSION: heavy eyelids. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/walk",
+          "file": "characters/dad/pose/walk.png",
+          "status": "todo",
+          "pose": "walk",
+          "expression": "calm",
+          "camera": "full",
+          "key": "a39908f68719",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: mid-stride walking pose. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_A",
+          "file": "characters/dad/face/talk_A.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_a",
+          "camera": "close",
+          "key": "d0141d160911",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_O",
+          "file": "characters/dad/face/talk_O.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_o",
+          "camera": "close",
+          "key": "fd8e9428a882",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/blink",
+          "file": "characters/dad/face/blink.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "blink",
+          "camera": "close",
+          "key": "02942a8638a7",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: eyes closed. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/joy",
+          "file": "characters/dad/face/joy.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "joy",
+          "camera": "close",
+          "key": "cae06665c9d3",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a dad, 32 years old, stocky bear-like build, broad shoulders, round friendly face, strong jaw, big ears, thick expressive eyebrows, warm brown eyes, short dark-brown hair with shaved faded sides and a spiky top, full neat dark beard and mustache, wearing dark jeans, light-gray crewneck sweatshirt, brown sneakers. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to beard shape or hairline; glasses; watch; bag; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        }
+      ]
+    },
+    "mom": {
+      "name": "mom",
+      "label": "Мама",
+      "desc": "a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant",
+      "schema": 3,
+      "height_heads": 5.7,
+      "outfit_default": "home",
+      "outfits": [
+        "home",
+        "kitchen",
+        "pajama",
+        "street"
+      ],
+      "hair": {
+        "style": "long_wavy_bangs",
+        "facial_hair": "none",
+        "color": "#9A7856"
+      },
+      "master": {
+        "turnaround": "characters/mom/master/turnaround.png",
+        "face": "characters/mom/master/face.png"
+      },
+      "identity_fingerprint": "4a1584e0cbe1f011",
+      "master_fingerprint": "6a0c7477453f16be",
+      "derivatives": [
+        {
+          "asset": "pose/idle",
+          "file": "characters/mom/pose/idle.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "calm",
+          "camera": "full",
+          "key": "3343f636103c",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/wave",
+          "file": "characters/mom/pose/wave.png",
+          "status": "todo",
+          "pose": "wave",
+          "expression": "joy",
+          "camera": "full",
+          "key": "fda95ce55b96",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm raised high and waving, left arm relaxed. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/point",
+          "file": "characters/mom/pose/point.png",
+          "status": "todo",
+          "pose": "point",
+          "expression": "smirk",
+          "camera": "full",
+          "key": "158aa82346c2",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm extended, index finger pointing at the camera. EXPRESSION: warm smile, one-sided lopsided smirk. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/surprise",
+          "file": "characters/mom/pose/surprise.png",
+          "status": "todo",
+          "pose": "surprise",
+          "expression": "surprise",
+          "camera": "full",
+          "key": "2dc6d0e84278",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms thrown up, leaning slightly back. EXPRESSION: eyebrows raised high, eyes wide open, mouth slightly open. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/think",
+          "file": "characters/mom/pose/think.png",
+          "status": "todo",
+          "pose": "think",
+          "expression": "think",
+          "camera": "full",
+          "key": "4164448e7803",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: hand raised to the chin, head tilted, thinking. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/carry",
+          "file": "characters/mom/pose/carry.png",
+          "status": "todo",
+          "pose": "carry",
+          "expression": "focused",
+          "camera": "full",
+          "key": "cedac589e21e",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms bent forward, carrying a box in front of the chest. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/slump",
+          "file": "characters/mom/pose/slump.png",
+          "status": "todo",
+          "pose": "slump",
+          "expression": "tired",
+          "camera": "full",
+          "key": "615d7140ff8a",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: slouched, shoulders dropped, tired. EXPRESSION: heavy eyelids. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/walk",
+          "file": "characters/mom/pose/walk.png",
+          "status": "todo",
+          "pose": "walk",
+          "expression": "calm",
+          "camera": "full",
+          "key": "712d30b20bc3",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: mid-stride walking pose. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_A",
+          "file": "characters/mom/face/talk_A.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_a",
+          "camera": "close",
+          "key": "3aa4b718f9b6",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_O",
+          "file": "characters/mom/face/talk_O.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_o",
+          "camera": "close",
+          "key": "a44592267ce7",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/blink",
+          "file": "characters/mom/face/blink.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "blink",
+          "camera": "close",
+          "key": "4928579bbf73",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: eyes closed. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/joy",
+          "file": "characters/mom/face/joy.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "joy",
+          "camera": "close",
+          "key": "df62d0a196e5",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a mom, 31 years old, softly rounded silhouette, round friendly face, light blue-gray eyes, small nose, warm smile lines, long wavy light-brown hair with side-swept bangs, clean shaven, wearing dark jeans, fitted white top, brown quilted puffer vest, soft home slippers, thin gold chain with a single small cross pendant. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to hair length or bangs direction; earrings; rings; bag; necklace must stay a single thin chain with one small cross. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        }
+      ]
+    },
+    "son": {
+      "name": "son",
+      "label": "Сын",
+      "desc": "a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'",
+      "schema": 3,
+      "height_heads": 4.4,
+      "outfit_default": "home",
+      "outfits": [
+        "home",
+        "nocap",
+        "pajama",
+        "street"
+      ],
+      "hair": {
+        "style": "under_cap",
+        "facial_hair": "none",
+        "color": "#6B4A3A"
+      },
+      "master": {
+        "turnaround": "characters/son/master/turnaround.png",
+        "face": "characters/son/master/face.png"
+      },
+      "identity_fingerprint": "48412ff5ac0ec86e",
+      "master_fingerprint": "98fbed26d27b2a94",
+      "derivatives": [
+        {
+          "asset": "pose/idle",
+          "file": "characters/son/pose/idle.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "calm",
+          "camera": "full",
+          "key": "9092acbdcbe7",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/wave",
+          "file": "characters/son/pose/wave.png",
+          "status": "todo",
+          "pose": "wave",
+          "expression": "joy",
+          "camera": "full",
+          "key": "f567a6ecac0c",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm raised high and waving, left arm relaxed. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/point",
+          "file": "characters/son/pose/point.png",
+          "status": "ready",
+          "pose": "point",
+          "expression": "smirk",
+          "camera": "full",
+          "key": "b90de98c169a",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: right arm extended, index finger pointing at the camera. EXPRESSION: warm smile, one-sided lopsided smirk. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/surprise",
+          "file": "characters/son/pose/surprise.png",
+          "status": "todo",
+          "pose": "surprise",
+          "expression": "surprise",
+          "camera": "full",
+          "key": "d0784c86669f",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms thrown up, leaning slightly back. EXPRESSION: eyebrows raised high, eyes wide open, mouth slightly open. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/think",
+          "file": "characters/son/pose/think.png",
+          "status": "todo",
+          "pose": "think",
+          "expression": "think",
+          "camera": "full",
+          "key": "8ce77731f807",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: hand raised to the chin, head tilted, thinking. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/carry",
+          "file": "characters/son/pose/carry.png",
+          "status": "todo",
+          "pose": "carry",
+          "expression": "focused",
+          "camera": "full",
+          "key": "cc168633ab31",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: both arms bent forward, carrying a box in front of the chest. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/slump",
+          "file": "characters/son/pose/slump.png",
+          "status": "todo",
+          "pose": "slump",
+          "expression": "tired",
+          "camera": "full",
+          "key": "23f4f1431a00",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: slouched, shoulders dropped, tired. EXPRESSION: heavy eyelids. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "pose/walk",
+          "file": "characters/son/pose/walk.png",
+          "status": "todo",
+          "pose": "walk",
+          "expression": "calm",
+          "camera": "full",
+          "key": "1848c1372ad4",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: mid-stride walking pose. EXPRESSION: calm neutral face. CAMERA: full body shot, straight-on front view, character fully in frame, feet visible. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_A",
+          "file": "characters/son/face/talk_A.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_a",
+          "camera": "close",
+          "key": "375276e4a2b0",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/talk_O",
+          "file": "characters/son/face/talk_O.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "talk_o",
+          "camera": "close",
+          "key": "3d96f6a17c62",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth wide open. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/blink",
+          "file": "characters/son/face/blink.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "blink",
+          "camera": "close",
+          "key": "d9641d14d1de",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: eyes closed. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        },
+        {
+          "asset": "face/joy",
+          "file": "characters/son/face/joy.png",
+          "status": "todo",
+          "pose": "idle",
+          "expression": "joy",
+          "camera": "close",
+          "key": "483c42426ec1",
+          "prompt": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline. Character: a little boy 3.5 years old, very big dark-brown eyes, round cheeks, tiny body with an oversized head, small hands, short hair mostly hidden under a cap, clean shaven, wearing dark trousers, brown hoodie with a white 'ABC' print and a hood, brown sneakers, mint-green baseball cap with a black letter 'P'. Keep the character exactly as in the provided reference sheets: same face, same facial features, same hair colour, same body proportions. POSE: standing relaxed, arms hanging naturally at the sides. EXPRESSION: mouth slightly open, big happy smile, teeth visible. CAMERA: close-up of head and shoulders, front view. Exactly two arms, two legs, one head, two eyes, five fingers per open palm, no extra limbs, no duplicate features, no floating objects. Do not change or add: changes to cap colour or the letter P; other text on clothes besides ABC; extra limbs or fingers. Perfectly flat chroma key green background (#00B140), even studio lighting, no text, no watermark, no shadow on the background."
+        }
+      ]
+    }
+  }
+}
