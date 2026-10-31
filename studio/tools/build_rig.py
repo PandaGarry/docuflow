@@ -280,6 +280,65 @@ def spread_spec() -> dict:
     joints["shoulder_far"] = {"pos": list(J["shoulder"]), "parent": "chest"}
     joints["elbow_far"] = {"pos": list(J["elbow"]), "parent": "shoulder_far"}
     joints["wrist_far"] = {"pos": list(J["wrist"]), "parent": "elbow_far"}
+    # Заплатки на сгибах: круг ткани, вырезанный вокруг самого сустава.
+    # Круг вращается вместе с частью и центрирован на шарнире, поэтому стык
+    # двух кусков (бедро–голень) он закрывает всегда, а его собственное
+    # вращение незаметно: это однородная джинсовая ткань.
+    patches = [
+        {"joint": "knee_near", "r": 52, "z": 6, "sample":
+            [J["knee_near"][0] / W, J["knee_near"][1] / H]},
+        {"joint": "knee_far", "r": 52, "z": 2, "dark": 0.12, "sample":
+            [J["knee_far"][0] / W, (J["knee_far"][1] + 4) / H]},
+        {"joint": "hip_near", "r": 66, "z": 4.5, "sample":
+            [J["hip_near"][0] / W, (J["hip_near"][1] + 30) / H]},
+    ]
+    return {"frame": [W, H], "anchor": [J["hip"][0] / W, J["hip"][1] / H],
+            "joints": norm(joints), "parts": parts, "patches": patches}
+
+
+# --------------------------------------------------------------------------- #
+# профиль с разведёнными ногами — для ДЕФОРМАЦИИ (не нарезки)
+# --------------------------------------------------------------------------- #
+# Здесь нужны честные маски обеих ног: деформация смешивает их по весу,
+# поэтому дальняя нога должна иметь свою форму, а не быть копией ближней.
+WARP_J = {
+    "hip": ((392, 975), None),
+    "spine": ((360, 880), None),
+    "chest": ((352, 500), "spine"),
+    "neck": ((352, 330), "chest"),
+    "shoulder": ((300, 392), "chest"),
+    "elbow": ((300, 640), "shoulder"),
+    "wrist": ((350, 862), "elbow"),
+    "hip_near": ((430, 985), "hip"),
+    "knee_near": ((516, 1150), "hip_near"),
+    "ankle_near": ((575, 1270), "knee_near"),
+    "hip_far": ((352, 985), "hip"),
+    "knee_far": ((228, 1130), "hip_far"),
+    "ankle_far": ((160, 1272), "knee_far"),
+}
+
+
+def warp_spec() -> dict:
+    J = {k: v[0] for k, v in WARP_J.items()}
+    joints = {k: {"pos": list(v[0]), "parent": v[1]} for k, v in WARP_J.items()}
+    parts = {
+        "thigh": {"shape": {"capsule": [list(J["hip_near"]), list(J["knee_near"]), 76, 64]},
+                  "joint": "hip_near", "z": 4},
+        "shin": {"shape": {"capsule": [list(J["knee_near"]), list(J["ankle_near"]), 52, 46]},
+                 "joint": "knee_near", "z": 5},
+        "foot": {"shape": {"band": [0.912, 1.0]}, "joint": "ankle_near", "z": 6},
+        "far_thigh": {"shape": {"capsule": [list(J["hip_far"]), list(J["knee_far"]), 76, 64]},
+                      "joint": "hip_far", "z": 1},
+        "far_shin": {"shape": {"capsule": [list(J["knee_far"]), list(J["ankle_far"]), 52, 46]},
+                     "joint": "knee_far", "z": 2},
+        "far_foot": {"shape": {"band": [0.912, 1.0]}, "joint": "ankle_far", "z": 3},
+        "torso": {"shape": SPREAD_TORSO, "joint": "spine", "z": 8},
+        "head": {"shape": SPREAD_HEAD, "joint": "neck", "z": 9},
+        "arm_up": {"shape": {"capsule": [list(J["shoulder"]), list(J["elbow"]), 62, 56]},
+                   "joint": "shoulder", "z": 10},
+        "arm_fo": {"shape": {"capsule": [list(J["elbow"]), list(J["wrist"]), 54, 46]},
+                   "joint": "elbow", "z": 11},
+    }
     return {"frame": [W, H], "anchor": [J["hip"][0] / W, J["hip"][1] / H],
             "joints": norm(joints), "parts": parts}
 
@@ -288,7 +347,7 @@ def main() -> int:
     key = sys.argv[1] if len(sys.argv) > 1 else "dad"
     d = ROOT / "studio" / "2p5d" / key
     for view, fn in (("side", side_spec), ("front", front_spec),
-                     ("stride", spread_spec)):
+                     ("stride", spread_spec), ("warp", warp_spec)):
         out = d / f"rig-{view}.json"
         out.write_text(json.dumps(fn(), ensure_ascii=False, indent=1))
         print(out)
