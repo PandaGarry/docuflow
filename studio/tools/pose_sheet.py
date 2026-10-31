@@ -19,7 +19,7 @@ from PIL import Image
 
 import cutout as C
 
-MASTER = HERE.parents[1] / "2p5d" / "dad" / "master-front.png"
+MASTER = HERE.parents[1] / "2p5d" / "dad" / "master-front-v2.png"
 OUT = HERE.parents[1] / "out"
 
 POSES = {
