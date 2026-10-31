@@ -325,9 +325,45 @@ def pose_path(char: "Character", key: str) -> Path:
     return p
 
 
-def emotion_path(char: "Character", emo: str) -> Path:
-    return char.dir / "emotions" / f"{emo}.png"
+VIEWS = ("front", "three-quarter", "side", "back")
 
 
-def viseme_path(char: "Character", v: str) -> Path:
-    return char.dir / "visemes" / f"{v}.png"
+def _sheet_path(folder: Path, name: str, view: str) -> Path:
+    """Кадр мимики по ракурсу: emotions/<ракурс>/<эмоция>.png.
+
+    Раньше файлы лежали плоско и были только фронтальными. Старый плоский
+    файл считаем фронтом — чтобы не переименовывать уже сделанное.
+    """
+    p = folder / view / f"{name}.png"
+    if p.exists():
+        return p
+    flat = folder / f"{name}.png"
+    if view == "front" and flat.exists():
+        return flat
+    return p
+
+
+def emotion_path(char: "Character", emo: str, view: str = "front") -> Path:
+    return _sheet_path(char.dir / "emotions", emo, view)
+
+
+def viseme_path(char: "Character", v: str, view: str = "front") -> Path:
+    return _sheet_path(char.dir / "visemes", v, view)
+
+
+def head_box(img, anchor: dict) -> tuple[int, int, int, int] | None:
+    """Прямоугольник головы на кадре позы (для подмены одежды).
+
+    Одежда будет меняться, а лицо — нет. Поэтому при смене костюма тело
+    перегенерируется, а голова берётся из канона и вставляется по этому
+    прямоугольнику. Считаем от якорей: центр головы, её ширина, верх.
+    """
+    hw, hc = anchor.get("head_w"), anchor.get("head_cx")
+    if not hw or hc is None:
+        return None
+    top = anchor.get("head_top", 0)
+    cy = anchor.get("head_cy", top + hw * 0.6)
+    left = int(max(hc - hw * 0.78, 0))
+    right = int(min(hc + hw * 0.78, img.width))
+    bottom = int(min(cy + hw * 0.62, img.height))
+    return left, int(top), right, bottom

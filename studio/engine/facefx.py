@@ -33,126 +33,90 @@ import poselib as pl
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def load_landmarks(char_key: str) -> dict:
+def load_landmarks(char_key: str, view: str = "front") -> dict:
     """Размеченные якоря лица (studio/2p5d/<персонаж>/face.json).
 
     Автопоиск зрачков по тёмным пятнам на этих портретах не работает: в тёмные
     пятна попадают брови и борода (interpupillary «гулял» от 16 до 400 px).
-    Поэтому лицо размечается ОДИН раз руками по сетке, а дальше все слои
-    выравниваются по этой разметке. Разметка — часть канона персонажа.
+    Поэтому лицо размечается ОДИН раз руками по сетке, отдельно для каждого
+    ракурса, а дальше все слои выравниваются по этой разметке.
     """
     p = ROOT / "studio" / "2p5d" / char_key / "face.json"
-    return json.loads(p.read_text()) if p.exists() else {}
+    if not p.exists():
+        return {}
+    data = json.loads(p.read_text())
+    views = data.get("views", {})
+    if view in views:
+        return views[view]
+    return data if "eyes" in data else {}
 
 
-def landmarks_px(lm: dict, size: tuple[int, int]) -> dict:
-    """Перевести доли в пиксели конкретного кадра."""
-    w, h = size
-    e = lm.get("eyes", {})
-    m = lm.get("mouth", {})
-    return {
-        "L": (e["L"][0] * w, e["L"][1] * h),
-        "R": (e["R"][0] * w, e["R"][1] * h),
-        "ipd": e.get("ipd", 0.25) * w,
-        "eye_w": e.get("eye_w", 0.09) * w,
-        "eye_h": e.get("eye_h", 0.04) * w,
-        "mid": ((e["L"][0] + e["R"][0]) / 2 * w, e["L"][1] * h),
-        "mouth": (m.get("cx", 0.5) * w, m.get("cy", 0.37) * h),
-        "mouth_w": m.get("w", 0.18) * w,
-        "mouth_h": m.get("h", 0.055) * w,
-    }
+_BBOX_CACHE: dict = {}
 
 
-# --------------------------------------------------------------------------- #
-# якоря лица
-# --------------------------------------------------------------------------- #
+def portrait_bbox(img: Image.Image) -> tuple[int, int, int, int]:
+    """Рамка содержимого портрета.
 
-def _dark_map(rgb: np.ndarray) -> np.ndarray:
-    """Маска тёмных пикселей: зрачки и брови темнее всего на лице."""
-    lum = rgb.astype(np.float32).mean(axis=2)
-    return lum < 90
-
-
-def find_eyes(img: Image.Image, *, search_top: float = 0.18,
-              search_bottom: float = 0.55) -> dict:
-    """Найти центры зрачков.
-
-    Ищем тёмные пятна в средней трети головы: брови выше, борода ниже, зрачки
-    между ними. Из тёмных пикселей берём кластеры и отбираем пару, у которой
-    центры на одной высоте и между ними есть зазор — это и есть глаза.
+    Кадры эмоций приходят разного размера (768x1400, 768x1390, 681x1385),
+    поэтому доли от размера картинки НЕ работают: одна и та же разметка
+    попадала на щёку вместо глаза. Разметка задана в долях от рамки
+    содержимого — она у всех кадров одна.
     """
-    a = np.asarray(img.convert("RGBA"))
-    rgb, alpha = a[..., :3], a[..., 3] > 40
-    ys, xs = np.where(alpha)
-    if not len(ys):
-        return {}
-    top, bot = ys.min(), ys.max()
-    h = bot - top + 1
-    d = _dark_map(rgb) & alpha
-    d[: int(top + search_top * h), :] = False
-    d[int(top + search_bottom * h):, :] = False
+    key = id(img)
+    if key in _BBOX_CACHE:
+        return _BBOX_CACHE[key]
+    a = np.asarray(img.convert("RGBA"))[..., 3] > 40
+    ys, xs = np.where(a)
+    box = (int(xs.min()), int(ys.min()), int(xs.max() - xs.min() + 1),
+           int(ys.max() - ys.min() + 1)) if len(xs) else (0, 0, img.width, img.height)
+    _BBOX_CACHE[key] = box
+    return box
 
-    # кластеризация по сетке 4 px (без scipy)
-    scale = 4
-    hh, ww = d.shape
-    ch, cw = hh // scale, ww // scale
-    small = d[: ch * scale, : cw * scale].reshape(ch, scale, cw, scale).any(axis=(1, 3))
-    seen = np.zeros_like(small)
-    blobs = []
-    from collections import deque
-    for sy in range(ch):
-        for sx in range(cw):
-            if not small[sy, sx] or seen[sy, sx]:
-                continue
-            q = deque([(sy, sx)])
-            seen[sy, sx] = True
-            pts = []
-            while q:
-                y, x = q.popleft()
-                pts.append((y, x))
-                for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    ny, nx = y + dy, x + dx
-                    if 0 <= ny < ch and 0 <= nx < cw and small[ny, nx] and not seen[ny, nx]:
-                        seen[ny, nx] = True
-                        q.append((ny, nx))
-            if len(pts) >= 6:                     # мелкие блики не считаем
-                py = [p[0] for p in pts]
-                px = [p[1] for p in pts]
-                blobs.append({
-                    "cx": (min(px) + max(px) + 1) * scale / 2,
-                    "cy": (min(py) + max(py) + 1) * scale / 2,
-                    "w": (max(px) - min(px) + 1) * scale,
-                    "h": (max(py) - min(py) + 1) * scale,
-                    "area": len(pts) * scale * scale,
-                })
-    if len(blobs) < 2:
-        return {}
-    # пара: похожий размер, одна высота, максимальная площадь суммарно
-    best, best_score = None, -1e9
-    for i in range(len(blobs)):
-        for j in range(i + 1, len(blobs)):
-            a1, b1 = blobs[i], blobs[j]
-            if a1["cx"] > b1["cx"]:
-                a1, b1 = b1, a1
-            gap = b1["cx"] - a1["cx"]
-            if gap < 0.06 * ww or gap > 0.75 * ww:
-                continue
-            size_ratio = min(a1["area"], b1["area"]) / max(a1["area"], b1["area"])
-            dy = abs(a1["cy"] - b1["cy"])
-            score = size_ratio * 2 - dy / (0.2 * h) + (a1["area"] + b1["area"]) / (h * ww)
-            if score > best_score:
-                best_score = score
-                best = (a1, b1)
-    if best is None:
-        return {}
-    left, right = best
+
+def to_canvas(img: Image.Image, canvas: tuple[int, int]) -> Image.Image:
+    """Привести портрет к общему холсту по рамке содержимого.
+
+    Кадры эмоций отличаются размером на 5–15 px, и простое наложение падает с
+    несовпадением форм. Масштабируем по высоте содержимого и ставим по центру:
+    так все портреты одного персонажа совпадают пиксель в пиксель.
+    """
+    bx, by, bw, bh = portrait_bbox(img)
+    cw, ch = canvas
+    k = ch / bh
+    crop = img.crop((bx, by, bx + bw, by + bh))
+    new = crop.resize((max(int(bw * k), 1), ch), Image.LANCZOS)
+    out = Image.new("RGBA", canvas, (0, 0, 0, 0))
+    out.alpha_composite(new, (int(cw / 2 - new.width / 2), 0))
+    return out
+
+
+def landmarks_px(lm: dict, img: tuple[int, int] | Image.Image) -> dict:
+    """Перевести доли от рамки содержимого в пиксели конкретного кадра."""
+    if isinstance(img, Image.Image):
+        size = img.size
+        bx, by, bw, bh = portrait_bbox(img)
+    else:
+        size = img
+        bx, by, bw, bh = 0, 0, size[0], size[1]
+    w, h = size
+
+    def pt(pair):
+        return (bx + pair[0] * bw, by + pair[1] * bh)
+
+    eyes = [pt(e) for e in lm.get("eyes", [])]
+    mouth = pt(lm.get("mouth", [0.5, 0.37]))
+    e_w = lm.get("eye_w", 0.09) * w
+    e_h = lm.get("eye_h", 0.04) * w
     return {
-        "L": (left["cx"], left["cy"]),
-        "R": (right["cx"], right["cy"]),
-        "ipd": right["cx"] - left["cx"],
-        "eye_w": (left["w"] + right["w"]) / 2,
-        "eye_h": (left["h"] + right["h"]) / 2,
-        "mid": ((left["cx"] + right["cx"]) / 2, (left["cy"] + right["cy"]) / 2),
+        "eyes": eyes,
+        "eye_w": e_w,
+        "eye_h": e_h,
+        "ipd": (abs(eyes[1][0] - eyes[0][0]) if len(eyes) > 1 else 0.0),
+        "mid": (sum(p[0] for p in eyes) / max(len(eyes), 1),
+                sum(p[1] for p in eyes) / max(len(eyes), 1)),
+        "mouth": mouth,
+        "mouth_w": lm.get("mouth_w", 0.18) * w,
+        "mouth_h": lm.get("mouth_h", 0.055) * w,
     }
 
 
@@ -166,7 +130,7 @@ def align_to(frame: Image.Image, ref: Image.Image, lm: dict) -> tuple[Image.Imag
     Оба кадра сняты в одном формате, поэтому разметка одна и та же — масштаб
     фактически 1:1; функция оставлена на случай кадров другого размера.
     """
-    e_ref = landmarks_px(lm, ref.size)
+    e_ref = landmarks_px(lm, ref)
     if frame.size == ref.size:
         return frame, e_ref, e_ref
     k = ref.size[0] / frame.size[0]
@@ -203,16 +167,16 @@ def blink(base: Image.Image, closed: Image.Image, *, lm: dict,
     """
     if amount <= 0.01:
         return base
-    px = landmarks_px(lm, base.size)
+    px = landmarks_px(lm, base)
+    if closed.size != base.size:
+        closed = to_canvas(closed, base.size)
     aligned, _, _ = align_to(closed, base, lm)
     out = base.copy()
     w, h = base.size
-    for side in ("L", "R"):
-        cx, cy = px[side]
+    yy, xx = np.mgrid[0:h, 0:w]
+    for (cx, cy) in px["eyes"]:
         rx = max(px["eye_w"] * 0.86, 5)
         ry = max(px["eye_h"] * 1.25, 4)
-        # мягкая граница века: при amount=1 покрыт весь овал
-        yy, xx = np.mgrid[0:h, 0:w]
         cover_y = cy - ry + 2.0 * ry * (1.0 - float(amount))
         edge = max(ry * 0.28, 1.5)
         vert = np.clip((yy - (cover_y - edge)) / edge, 0.0, 1.0)
@@ -232,42 +196,20 @@ def blink(base: Image.Image, closed: Image.Image, *, lm: dict,
 def look(base: Image.Image, lm: dict, dx: float = 0.0,
          dy: float = 0.0) -> Image.Image:
     """Сдвинуть зрачки внутри глаз: `dx`, `dy` — в долях ширины глаза."""
-    eyes = landmarks_px(lm, base.size)
+    px = landmarks_px(lm, base)
     out = base.copy()
     a = np.asarray(base.convert("RGBA"))
-    for side in ("L", "R"):
-        cx, cy = eyes[side]
-        r = max(eyes["eye_h"] * 0.42, 2)
-        # зрачок: тёмное пятно вокруг центра
+    for (cx, cy) in px["eyes"]:
+        r = max(px["eye_h"] * 0.42, 2)
         x0, y0 = int(cx - r), int(cy - r)
         x1, y1 = int(cx + r), int(cy + r)
         if x1 <= x0 or y1 <= y0:
             continue
-        patch = a[y0:y1, x0:x1].copy()
-        canvas = Image.fromarray(patch, "RGBA")
-        dest = (int(x0 + dx * eyes["eye_w"]), int(y0 + dy * eyes["eye_h"]))
+        canvas = Image.fromarray(a[y0:y1, x0:x1].copy(), "RGBA")
+        dest = (int(x0 + dx * px["eye_w"]), int(y0 + dy * px["eye_h"]))
         mask = _ellipse_mask((x1 - x0, y1 - y0), r, r, r, r, feather=1.5)
         out.paste(canvas, dest, mask)
     return out
-
-
-# --------------------------------------------------------------------------- #
-# проверка
-# --------------------------------------------------------------------------- #
-
-def report(char_key: str) -> str:
-    """Якоря лица персонажа — для проверки глазами по сетке."""
-    lm = load_landmarks(char_key)
-    if not lm:
-        return "нет face.json — разметить лицо по сетке"
-    lib = pl.Library(char_key)
-    fr = lib.emotion("neutral")
-    if fr is None:
-        return "нет neutral.png"
-    px = landmarks_px(lm, fr.img.size)
-    return (f"кадр {fr.img.size}: глаза L={tuple(round(v) for v in px['L'])} "
-            f"R={tuple(round(v) for v in px['R'])} ipd={px['ipd']:.0f} "
-            f"рот={tuple(round(v) for v in px['mouth'])} w={px['mouth_w']:.0f}")
 
 
 # --------------------------------------------------------------------------- #
@@ -289,7 +231,7 @@ def estimate_shift(base: Image.Image, target: Image.Image, lm: dict) -> tuple[fl
     кольцо — граница между двумя версиями лица. Здесь считаем сдвиг по области
     щёк и носа и возвращаем его, чтобы наложение было точным.
     """
-    px = landmarks_px(lm, base.size)
+    px = landmarks_px(lm, base)
     (ex, ey) = px["mid"]
     w, h = base.size
     r = int(min(w, h) * 0.16)
@@ -330,11 +272,13 @@ def morph_mouth(base: Image.Image, target: Image.Image, lm: dict,
     оставляем из базы. Маска — разность кадров, сглаженная и ограниченная
     овалом вокруг рта по разметке.
     """
-    px = landmarks_px(lm, base.size)
+    px = landmarks_px(lm, base)
     cx, cy = px["mouth"]
-    rx = px["mouth_w"] * 0.92
+    rx = px["mouth_w"] * (1.15 if len(px["eyes"]) == 1 else 0.92)
     ry = px["mouth_h"] * 2.0
 
+    if target.size != base.size:
+        target = to_canvas(target, base.size)
     b = np.asarray(base.convert("RGBA"), np.float32)
     t = np.asarray(target.convert("RGBA"), np.float32)
     diff = np.abs(b[..., :3] - t[..., :3]).mean(axis=2)

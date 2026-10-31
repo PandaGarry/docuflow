@@ -162,7 +162,9 @@ def build_manifest(char_key: str, *, write: bool = True) -> dict:
     """Пройти по папкам персонажа, посчитать якоря, собрать manifest.json."""
     char = ch.CHARACTERS[char_key]
     out: dict = {"character": char_key, "height_heads": char.height_heads,
-                 "bg": ch.BG_HEX, "poses": {}, "emotions": {}, "visemes": {}}
+                 "bg": ch.BG_HEX, "poses": {},
+                 "emotions": {v: {} for v in ch.VIEWS},
+                 "visemes": {v: {} for v in ch.VIEWS}}
 
     body_keys = [p.key for p in ch.POSES]
     for key in body_keys:
@@ -171,18 +173,21 @@ def build_manifest(char_key: str, *, write: bool = True) -> dict:
             img = load_cut(path)
             out["poses"][key] = {"file": str(path.relative_to(ROOT)),
                                  **anchors_body(img)}
-    for emo in ch.EMOTIONS:
-        path = ch.emotion_path(char, emo)
-        if path.exists():
-            img = load_cut(path)
-            out["emotions"][emo] = {"file": str(path.relative_to(ROOT)),
-                                    **anchors_head(img)}
-    for v in ch.VISEMES:
-        path = ch.viseme_path(char, v)
-        if path.exists():
-            img = load_cut(path)
-            out["visemes"][v] = {"file": str(path.relative_to(ROOT)),
-                                 **anchors_head(img)}
+    for view in ch.VIEWS:
+        if view == "back":
+            continue          # у спины нет лица: мимика к ней не относится
+        for emo in ch.EMOTIONS:
+            path = ch.emotion_path(char, emo, view)
+            if path.exists():
+                img = load_cut(path)
+                out["emotions"][view][emo] = {
+                    "file": str(path.relative_to(ROOT)), **anchors_head(img)}
+        for v in ch.VISEMES:
+            path = ch.viseme_path(char, v, view)
+            if path.exists():
+                img = load_cut(path)
+                out["visemes"][view][v] = {
+                    "file": str(path.relative_to(ROOT)), **anchors_head(img)}
 
     if write:
         mp = char.dir / "manifest.json"
@@ -232,11 +237,18 @@ class Library:
         self.manifest = json.loads(mp.read_text()) if mp.exists() else {}
         self._cache: dict[str, Frame] = {}
 
-    def _load(self, kind: str, key: str) -> Frame | None:
-        rec = self.manifest.get(kind, {}).get(key)
+    def _load(self, kind: str, key: str, view: str = "front") -> Frame | None:
+        rec = self.manifest.get(kind, {})
+        if kind in ("emotions", "visemes"):
+            rec = rec.get(view, {}).get(key)
+        else:
+            rec = rec.get(key)
         if rec is None:
-            path = {"poses": ch.pose_path, "emotions": ch.emotion_path,
-                    "visemes": ch.viseme_path}[kind](self.char, key)
+            if kind == "poses":
+                path = ch.pose_path(self.char, key)
+            else:
+                path = {"emotions": ch.emotion_path,
+                        "visemes": ch.viseme_path}[kind](self.char, key, view)
             if not path.exists():
                 return None
             img = load_cut(path)
@@ -257,28 +269,28 @@ class Library:
         fr = self._cache[k]
         return fr.flipped() if facing == "left" else fr
 
-    def emotion(self, key: str) -> Frame | None:
-        k = f"emotions:{key}"
+    def emotion(self, key: str, view: str = "front") -> Frame | None:
+        k = f"emotions:{view}:{key}"
         if k not in self._cache:
-            fr = self._load("emotions", key)
+            fr = self._load("emotions", key, view)
             if fr is None:
                 return None
             self._cache[k] = fr
         return self._cache[k]
 
-    def viseme(self, key: str) -> Frame | None:
-        k = f"visemes:{key}"
+    def viseme(self, key: str, view: str = "front") -> Frame | None:
+        k = f"visemes:{view}:{key}"
         if k not in self._cache:
-            fr = self._load("visemes", key)
+            fr = self._load("visemes", key, view)
             if fr is None:
                 return None
             self._cache[k] = fr
         return self._cache[k]
 
-    def face(self) -> dict:
-        """Разметка лица персонажа (канон, см. docs/27-FACE.md)."""
+    def face(self, view: str = "front") -> dict:
+        """Разметка лица персонажа для ракурса (канон, см. docs/27-FACE.md)."""
         import facefx
-        return facefx.load_landmarks(self.key)
+        return facefx.load_landmarks(self.key, view)
 
     def missing(self) -> dict[str, list[str]]:
         """Чего не хватает — чтобы добивать библиотеку по списку, а не на глаз."""

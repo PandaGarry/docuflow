@@ -40,17 +40,21 @@ def write_progress(keys: list[str]) -> Path:
         lib = pl.Library(key)
         man = lib.manifest
         done_p = len(man.get("poses", {}))
-        done_e = len(man.get("emotions", {}))
-        done_v = len(man.get("visemes", {}))
+        emo = man.get("emotions", {})
+        vis = man.get("visemes", {})
+        done_e = sum(len(v) for v in emo.values())
+        done_v = sum(len(v) for v in vis.values())
+        face_views = [v for v in ch.VIEWS if v != "back"]
         total_done += done_p + done_e + done_v
-        total_all += len(ch.POSES) + len(ch.EMOTIONS) + len(ch.VISEMES)
+        total_all += (len(ch.POSES) + len(ch.EMOTIONS) * len(face_views)
+                      + len(ch.VISEMES) * len(face_views))
         lines.append(f"## {char.name} (`{key}`) — "
                      f"{done_p + done_e + done_v}/"
                      f"{len(ch.POSES) + len(ch.EMOTIONS) + len(ch.VISEMES)} кадров")
         lines.append("")
         lines.append(f"позы {done_p}/{len(ch.POSES)} · "
-                     f"эмоции {done_e}/{len(ch.EMOTIONS)} · "
-                     f"виземы {done_v}/{len(ch.VISEMES)}")
+                     f"эмоции {done_e}/{len(ch.EMOTIONS) * len(face_views)} · "
+                     f"виземы {done_v}/{len(ch.VISEMES) * len(face_views)}")
         lines.append("")
         for g, title in GROUPS.items():
             items = [p for p in ch.POSES if p.group == g]
@@ -65,10 +69,12 @@ def write_progress(keys: list[str]) -> Path:
                          f" **{title}** [{marks}] — {names}")
         for kind, items, label in (("emotions", ch.EMOTIONS, "Эмоции"),
                                    ("visemes", ch.VISEMES, "Виземы")):
-            have = man.get(kind, {})
-            names = ", ".join(f"**{i}**" if i in have else i for i in items)
-            lines.append(f"- [{'x' if len(have) == len(items) else ' '}] **{label}** "
-                         f"[{len(have)}/{len(items)}] — {names}")
+            for view in face_views:
+                have = man.get(kind, {}).get(view, {})
+                names = ", ".join(f"**{i}**" if i in have else i for i in items)
+                lines.append(
+                    f"- [{'x' if len(have) == len(items) else ' '}] **{label}** "
+                    f"({view}) [{len(have)}/{len(items)}] — {names}")
         lines.append("")
     lines.append(f"**Всего: {total_done}/{total_all} кадров.**")
     PROG.write_text("\n".join(lines) + "\n")
@@ -80,9 +86,11 @@ if __name__ == "__main__":
         raise SystemExit("укажи персонажа: dad / mom / son")
     key = sys.argv[1]
     man = pl.build_manifest(key)
-    print(f"{key}: поз {len(man['poses'])}/{len(ch.POSES)}, "
-          f"эмоций {len(man['emotions'])}/{len(ch.EMOTIONS)}, "
-          f"виземов {len(man['visemes'])}/{len(ch.VISEMES)}")
+    emo = {v: len(d) for v, d in man["emotions"].items()}
+    vis = {v: len(d) for v, d in man["visemes"].items()}
+    print(f"{key}: поз {len(man['poses'])}/{len(ch.POSES)}")
+    print(f"  эмоции по ракурсам: {emo}")
+    print(f"  виземы по ракурсам: {vis}")
     lib = pl.Library(key)
     miss = lib.missing()
     for kind, items in miss.items():
