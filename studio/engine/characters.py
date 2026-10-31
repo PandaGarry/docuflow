@@ -192,12 +192,37 @@ POSES: list[PoseSpec] = [
                         "body at its highest, front leg reaching forward, arms "
                         "swinging", "walk", "full side profile view"),
 
+    # вторая половина цикла: та же фаза, но впереди другая нога
+    PoseSpec("walk-contact-R", "walking to the right, with the OTHER leg forward: "
+                               "front foot planted with the heel down, back leg "
+                               "stretched with the toe on the ground, arms swinging "
+                               "in opposition", "walk", "full side profile view"),
+    PoseSpec("walk-down-R", "walking to the right with the other leg leading: weight "
+                            "dropping onto the bent front leg, body at its lowest, "
+                            "back foot lifting, arms swinging", "walk",
+             "full side profile view"),
+    PoseSpec("walk-passing-R", "walking to the right with the other leg leading: back "
+                               "knee lifted and passing under the body, supporting "
+                               "leg straight, arms close to the body", "walk",
+             "full side profile view"),
+    PoseSpec("walk-up-R", "walking to the right with the other leg leading: pushing "
+                          "up off the supporting leg, body at its highest, front leg "
+                          "reaching forward, arms swinging", "walk",
+             "full side profile view"),
+
     PoseSpec("run-contact", "running to the right, front leg landing under the "
                             "body, back leg kicked up behind, arms bent and pumping, "
                             "leaning forward", "run", "full side profile view"),
     PoseSpec("run-passing", "running to the right, both feet off the ground "
                             "mid-stride, arms bent and pumping, leaning forward",
              "run", "full side profile view"),
+    PoseSpec("run-contact-R", "running to the right with the other leg leading: front "
+                              "leg landing under the body, back leg kicked up behind, "
+                              "arms bent and pumping, leaning forward", "run",
+             "full side profile view"),
+    PoseSpec("run-passing-R", "running to the right with the other leg leading: both "
+                              "feet off the ground mid-stride, arms bent and pumping, "
+                              "leaning forward", "run", "full side profile view"),
 
     # ---- быт ----
     PoseSpec("sit", "sitting on an invisible chair, knees bent, hands on the knees",
