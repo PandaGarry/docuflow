@@ -275,6 +275,11 @@ class Library:
             self._cache[k] = fr
         return self._cache[k]
 
+    def face(self) -> dict:
+        """Разметка лица персонажа (канон, см. docs/27-FACE.md)."""
+        import facefx
+        return facefx.load_landmarks(self.key)
+
     def missing(self) -> dict[str, list[str]]:
         """Чего не хватает — чтобы добивать библиотеку по списку, а не на глаз."""
         have = self.manifest

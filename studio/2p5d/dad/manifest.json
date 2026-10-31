@@ -827,7 +827,116 @@
    "cy": 698.5,
    "w": 768,
    "h": 1386
+  },
+  "thinking": {
+   "file": "studio/2p5d/dad/emotions/thinking.png",
+   "head_w": 768,
+   "x0": 0,
+   "x1": 767,
+   "y0": 7,
+   "y1": 1394,
+   "cx": 383.5,
+   "cy": 700.5,
+   "w": 768,
+   "h": 1388
+  },
+  "smirk": {
+   "file": "studio/2p5d/dad/emotions/smirk.png",
+   "head_w": 572,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1394,
+   "cx": 383.5,
+   "cy": 700.0,
+   "w": 768,
+   "h": 1389
+  },
+  "confused": {
+   "file": "studio/2p5d/dad/emotions/confused.png",
+   "head_w": 587,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1393,
+   "cx": 383.5,
+   "cy": 699.5,
+   "w": 768,
+   "h": 1388
+  },
+  "tired": {
+   "file": "studio/2p5d/dad/emotions/tired.png",
+   "head_w": 641,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1389,
+   "cx": 383.5,
+   "cy": 697.5,
+   "w": 768,
+   "h": 1384
+  },
+  "wink": {
+   "file": "studio/2p5d/dad/emotions/wink.png",
+   "head_w": 609,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1392,
+   "cx": 383.5,
+   "cy": 699.0,
+   "w": 768,
+   "h": 1387
   }
  },
- "visemes": {}
+ "visemes": {
+  "A": {
+   "file": "studio/2p5d/dad/visemes/A.png",
+   "head_w": 643,
+   "x0": 0,
+   "x1": 767,
+   "y0": 4,
+   "y1": 1399,
+   "cx": 383.5,
+   "cy": 701.5,
+   "w": 768,
+   "h": 1396
+  },
+  "E": {
+   "file": "studio/2p5d/dad/visemes/E.png",
+   "head_w": 643,
+   "x0": 0,
+   "x1": 767,
+   "y0": 4,
+   "y1": 1399,
+   "cx": 383.5,
+   "cy": 701.5,
+   "w": 768,
+   "h": 1396
+  },
+  "O": {
+   "file": "studio/2p5d/dad/visemes/O.png",
+   "head_w": 643,
+   "x0": 0,
+   "x1": 767,
+   "y0": 4,
+   "y1": 1399,
+   "cx": 383.5,
+   "cy": 701.5,
+   "w": 768,
+   "h": 1396
+  },
+  "M": {
+   "file": "studio/2p5d/dad/visemes/M.png",
+   "head_w": 643,
+   "x0": 0,
+   "x1": 767,
+   "y0": 4,
+   "y1": 1399,
+   "cx": 383.5,
+   "cy": 701.5,
+   "w": 768,
+   "h": 1396
+  }
+ }
 }
