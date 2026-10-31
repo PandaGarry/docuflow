@@ -43,20 +43,25 @@ CYCLES = {
         "keys": ["walk-contact", "walk-down", "walk-passing", "walk-up",
                  "walk-contact-R", "walk-down-R", "walk-passing-R", "walk-up-R"],
         "fps": 12,
-        "sub": 3,            # между ключами 3 промежуточных кадра → 24 к/с
+        "sub": 0,            # без морфинга: ключи играются «на двойках»
         "timing": {"contact": 2, "down": 2, "passing": 1, "up": 1},
         "step": 0.26,        # длина шага из замеров кадров, в долях роста
-        "bob": {"contact": 0.0, "down": -8.0, "passing": 4.0, "up": 6.0},
+        # При ходьбе хотя бы одна стопа на полу всегда: подъём/опускание тела
+        # уже есть в рисунке. Раньше «down» давал -8 px, и сапог проваливался
+        # под линию пола — в ролике это читалось как прыжки по ступенькам.
+        "bob": {"contact": 0.0, "down": 0.0, "passing": 0.0, "up": 0.0},
     },
     "run": {
         "keys": ["run-contact", "run-down", "run-passing",
                  "run-contact-R", "run-down-R", "run-passing-R"],
         "fps": 12,
-        "sub": 3,
+        "sub": 0,
         "timing": {"contact": 2, "down": 1, "passing": 2},
         "step": 0.40,
-        # в беге фаза проноса — это полёт: тело выше всего, тень отрывается
-        "bob": {"contact": 0.0, "down": -10.0, "passing": 26.0},
+        # в беге фаза проноса — это полёт: тело выше всего, тень отрывается.
+        # Остальные фазы — ровно на полу, опускать тело нельзя: стопа уйдёт
+        # под линию пола.
+        "bob": {"contact": 0.0, "down": 0.0, "passing": 26.0},
     },
 }
 
@@ -105,14 +110,22 @@ def align_sprites(frames: list[pl.Frame]) -> tuple[list[Image.Image], tuple[int,
         hx = fr.anchor.get("head_cx", img.width / 2) * scale
         hy = fr.anchor.get("head_cy", img.height * 0.1) * scale
         placed.append((small, hx, hy))
+    # Высота холста считается от головы ВНИЗ: если брать просто максимум
+    # высоты кадра, сапоги уходят за нижний край и обрезаются — в ролике это
+    # выглядело как «пропали ноги».
+    head_y = 0.22 * max(p[0].height for p in placed)
+    head_y = max(head_y, 40.0)
     w = int(max(p[0].width for p in placed)) + 8
-    h = int(max(p[0].height for p in placed)) + 8
-    head_y = 0.22 * h
+    bottom = max(head_y + (p[0].height - p[2]) for p in placed)
+    h = int(bottom + 8)
     out = []
     for small, hx, hy in placed:
         canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
         canvas.alpha_composite(small, (int(w / 2 - hx), int(head_y - hy)))
-        out.append(canvas)
+        # Обрезка по содержимому: низ холста = подошва. Иначе постановка на пол
+        # шла по низу ПУСТОГО холста, и персонаж висел или проваливался.
+        box = canvas.getbbox()
+        out.append(canvas.crop(box) if box else canvas)
     return out, (w, h)
 
 
@@ -181,7 +194,7 @@ def main(char_key: str, cycle: str, out: Path | None = None,
     import imageio.v2 as imageio
 
     spec = CYCLES[cycle]
-    sub = spec.get("sub", 3) if sub is None else sub
+    sub = spec.get("sub", 0) if sub is None else sub
     lib = pl.Library(char_key)
     frames = []
     for k in spec["keys"]:
@@ -222,7 +235,11 @@ def main(char_key: str, cycle: str, out: Path | None = None,
     # иначе при вставке промежуточных пол поедет в (sub+1) раз быстрее
     speed = spec["step"] * BODY_H / max(len(ribbon) // 2, 1)
     imgs = compose([r[0] for r in ribbon], [r[1] for r in ribbon], fps, speed)
+    # «На двойках»: каждый нарисованный кадр держится два кадра видео — так
+    # рисуют мультсериалы. Частоту при этом НАДО удвоить, иначе ролик играет
+    # вдвое медленнее задуманного (раньше так и было).
     imgs = imgs * 2
+    fps = fps * 2
     out = out or (ROOT / "studio" / "out" / f"{char_key}-{cycle}.mp4")
     w = imageio.get_writer(out, fps=fps, quality=9, macro_block_size=1)
     for im in imgs:
