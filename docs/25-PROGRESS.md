@@ -4,7 +4,7 @@ _обновлено: 2026-10-31_
 
 Файл пересобирается командой `python studio/tools/build_manifest.py <персонаж> --progress`.
 
-## father of the family (`dad`) — 72/71 кадров
+## father of the family (`dad`) — 72/115 кадров
 
 позы 33/49 · эмоции 35/39 · виземы 4/27
 

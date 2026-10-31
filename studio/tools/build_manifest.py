@@ -48,9 +48,10 @@ def write_progress(keys: list[str]) -> Path:
         total_done += done_p + done_e + done_v
         total_all += (len(ch.POSES) + len(ch.EMOTIONS) * len(face_views)
                       + len(ch.VISEMES) * len(face_views))
+        total_char = (len(ch.POSES) + len(ch.EMOTIONS) * len(face_views)
+                      + len(ch.VISEMES) * len(face_views))
         lines.append(f"## {char.name} (`{key}`) — "
-                     f"{done_p + done_e + done_v}/"
-                     f"{len(ch.POSES) + len(ch.EMOTIONS) + len(ch.VISEMES)} кадров")
+                     f"{done_p + done_e + done_v}/{total_char} кадров")
         lines.append("")
         lines.append(f"позы {done_p}/{len(ch.POSES)} · "
                      f"эмоции {done_e}/{len(ch.EMOTIONS) * len(face_views)} · "
