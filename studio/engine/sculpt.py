@@ -98,6 +98,7 @@ def hoodie_field(p: B.Proportions, joints: dict | None = None,
     """Худи: торс и рукава — одно поле, без шва на плече."""
     H = p.height
     prof = _hoodie_profile(p)
+    body_half = max(row[1] for row in prof)
     body = S.loft(prof, power=1.25, round_cap=0.016 * H)
 
     # подол — резинка: то же сечение, чуть шире, с мягкой кромкой
@@ -110,14 +111,15 @@ def hoodie_field(p: B.Proportions, joints: dict | None = None,
 
     y_top, rx_t, rz_t, cz_t = prof[-1]
 
-    # капюшон: лежит на спине «полумесяцем» по линии плеч, а не шариком.
-    # Три сплюснутых эллипсоида вдоль плеч дают именно эту форму.
-    y_h = (p.shoulder_y + 0.010) * H
-    for t, rx in ((-0.62, 0.30), (0.0, 0.44), (0.62, 0.30)):
+    # капюшон: лежит на спине «полумесяцем» по линии плеч. Ширина берётся от
+    # полуширины КОРПУСА, а не от радиуса ворота: на радиусе ворота капюшон
+    # получается узким «плавником» посередине спины.
+    y_h = (p.shoulder_y + 0.004) * H
+    for t, share in ((-0.66, 0.46), (0.0, 0.62), (0.66, 0.46)):
         body = S.smooth_union(
             body,
-            _ell(y_h - abs(t) * 0.016 * H, rx * rx_t, 0.050 * H, 0.040 * H,
-                 cx=t * rx_t, cz=cz_t - 0.058 * H),
+            _ell(y_h - abs(t) * 0.012 * H, share * body_half, 0.046 * H, 0.036 * H,
+                 cx=t * body_half * 0.52, cz=cz_t - 0.052 * H),
             k=0.030)
 
     # ворот: плотное кольцо у шеи

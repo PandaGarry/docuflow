@@ -466,17 +466,17 @@ class Lights:
 
     key_dir: tuple = (-0.45, 0.75, 0.65)     # от камеры слева сверху
     key_color: tuple = (1.0, 0.97, 0.92)
-    key_power: float = 0.86
+    key_power: float = 0.62
     fill_dir: tuple = (0.75, 0.15, 0.35)     # холодный подсвет справа
     fill_color: tuple = (0.62, 0.72, 0.95)
-    fill_power: float = 0.26
+    fill_power: float = 0.20
     rim_dir: tuple = (0.35, 0.55, -0.75)     # контровой сзади
     rim_color: tuple = (1.0, 0.96, 0.88)
-    rim_power: float = 0.34
+    rim_power: float = 0.26
     sky: tuple = (0.86, 0.90, 1.0)           # «небо» сверху
     ground: tuple = (0.62, 0.56, 0.52)       # отражения снизу
     wrap: float = 0.38                        # мягкость терминатора
-    ambient: float = 0.34
+    ambient: float = 0.30
     # мягкий «фонарь от камеры»: без него вид сзади уходил в чёрный силуэт,
     # хотя сцена та же. Это не заливка в упор — всего 18% яркости ключевого.
     camera_fill: float = 0.20
