@@ -78,16 +78,18 @@ def report(char_key: str, write: bool = False) -> str:
         return f"{char_key}: нет кадров"
     ref = measure(master) if master.exists() else None
     lines = [f"# QA кадров: {char.name} ({char_key})", "",
-             "| кадр | H px | ширина/H | голова | грудь | таз | фон | край |",
-             "|---|---|---|---|---|---|---|---|"]
+             "| кадр | H px | ΔH | ширина/H | голова | грудь | таз | фон | край |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for f in files:
         m = measure(f)
         if "error" in m:
             lines.append(f"| {m['file']} | — | — | — | — | — | — | ошибка |")
             continue
         flag = lambda ok: "ok" if ok else "!"
+        dh = (m["H"] - ref["H"]) / ref["H"] if ref else 0.0
         lines.append(
-            f"| {m['file']} | {m['H']} | {m['w_over_h']:.2f} "
+            f"| {m['file']} | {m['H']} | {dh * 100:+.1f}% "
+            f"| {m['w_over_h']:.2f} "
             f"| {m['head_w']:.3f} {flag(abs(m['head_w'] - ref['head_w']) < 0.012) if ref else ''} "
             f"| {m['chest_w']:.3f} | {m['hip_w']:.3f} "
             f"| {flag(m['bg_ok'])} | {flag(not m['touches_edge'])} |")

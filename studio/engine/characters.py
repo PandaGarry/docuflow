@@ -276,8 +276,20 @@ _VIS_TEXT = {
 }
 
 
+VIEW_MASTERS = {"front": "master-front-v2.png",
+                "three-quarter": "master-three-quarter-v2.png",
+                "side": "master-side-v2.png",
+                "back": "master-back-v2.png"}
+
+
 def pose_path(char: "Character", key: str) -> Path:
-    return char.dir / "poses" / f"{key}.png"
+    """Путь кадра позы. Ракурсы берутся из мастеров — не дублируем файлы."""
+    p = char.dir / "poses" / f"{key}.png"
+    if p.exists():
+        return p
+    if key in VIEW_MASTERS:
+        return char.dir / VIEW_MASTERS[key]
+    return p
 
 
 def emotion_path(char: "Character", emo: str) -> Path:
