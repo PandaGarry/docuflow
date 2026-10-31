@@ -1282,6 +1282,18 @@
     "w": 768,
     "h": 1396
    },
+   "U": {
+    "file": "studio/2p5d/dad/visemes/front/U.png",
+    "head_w": 643,
+    "x0": 0,
+    "x1": 767,
+    "y0": 4,
+    "y1": 1399,
+    "cx": 383.5,
+    "cy": 701.5,
+    "w": 768,
+    "h": 1396
+   },
    "M": {
     "file": "studio/2p5d/dad/visemes/front/M.png",
     "head_w": 643,
@@ -1380,6 +1392,18 @@
     "w": 768,
     "h": 1384
    },
+   "U": {
+    "file": "studio/2p5d/dad/visemes/three-quarter/U.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
    "M": {
     "file": "studio/2p5d/dad/visemes/three-quarter/M.png",
     "head_w": 747,
@@ -1391,9 +1415,106 @@
     "cy": 697.5,
     "w": 768,
     "h": 1384
+   },
+   "F": {
+    "file": "studio/2p5d/dad/visemes/three-quarter/F.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
+   },
+   "S": {
+    "file": "studio/2p5d/dad/visemes/three-quarter/S.png",
+    "head_w": 747,
+    "x0": 0,
+    "x1": 767,
+    "y0": 6,
+    "y1": 1389,
+    "cx": 383.5,
+    "cy": 697.5,
+    "w": 768,
+    "h": 1384
    }
   },
-  "side": {},
+  "side": {
+   "rest": {
+    "file": "studio/2p5d/dad/visemes/side/rest.png",
+    "head_w": 526,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "A": {
+    "file": "studio/2p5d/dad/visemes/side/A.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "E": {
+    "file": "studio/2p5d/dad/visemes/side/E.png",
+    "head_w": 526,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "I": {
+    "file": "studio/2p5d/dad/visemes/side/I.png",
+    "head_w": 526,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1385,
+    "cx": 340.0,
+    "cy": 695.5,
+    "w": 669,
+    "h": 1380
+   },
+   "O": {
+    "file": "studio/2p5d/dad/visemes/side/O.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   },
+   "U": {
+    "file": "studio/2p5d/dad/visemes/side/U.png",
+    "head_w": 527,
+    "x0": 6,
+    "x1": 674,
+    "y0": 6,
+    "y1": 1384,
+    "cx": 340.0,
+    "cy": 695.0,
+    "w": 669,
+    "h": 1379
+   }
+  },
   "back": {}
  }
 }

@@ -1,6 +1,7 @@
 """Проверка лица: моргание, взгляд, речь из базы + слоёв.
 
     python studio/tools/face_preview.py dad
+    python studio/tools/face_preview.py dad side
 
 Собирает studio/out/dad-face.mp4: нейтрально → моргание → фраза из виземов →
 смайл, всё на статичной базе. Это проверка слоёв, а не сцены.
@@ -24,12 +25,17 @@ ROOT = HERE.parents[2]
 FPS = 12
 
 
-def frames_for(char_key: str) -> list[np.ndarray]:
+VIEWS = ("front", "three-quarter", "side")
+# Профиль требует переноса челюсти, фронт и 3/4 — только изменившихся пикселей.
+MODE = {"front": "diff", "three-quarter": "diff", "side": "jaw"}
+
+
+def frames_for(char_key: str, view: str = "front") -> list[np.ndarray]:
     lib = pl.Library(char_key)
-    lm = lib.face()
+    lm = lib.face(view)
     if not lm:
         raise SystemExit(f"нет face.json у {char_key}: разметь лицо по сетке")
-    base = lib.emotion("neutral").img
+    base = lib.emotion("neutral", view).img
     size = base.size
 
     def fit(img: Image.Image) -> Image.Image:
@@ -40,8 +46,11 @@ def frames_for(char_key: str) -> list[np.ndarray]:
         canvas.alpha_composite(img, (0, 0))
         return canvas
 
-    closed = fit(lib.emotion("eyes-closed").img) if lib.emotion("eyes-closed") else base
-    smile = fit(lib.emotion("happy").img) if lib.emotion("happy") else base
+    ec = lib.emotion("eyes-closed", view)
+    hp = lib.emotion("happy", view)
+    closed = fit(ec.img) if ec else base
+    smile = fit(hp.img) if hp else base
+    mode = MODE.get(view, "diff")
 
     out: list[Image.Image] = []
 
@@ -57,10 +66,10 @@ def frames_for(char_key: str) -> list[np.ndarray]:
         add(facefx.blink(base, closed, lm=lm, amount=a))
     # фраза «мама мыла» — формы M A M A
     for v in ("M", "A", "M", "A", "O", "U"):
-        fr = lib.viseme(v)
+        fr = lib.viseme(v, view)
         if fr is None:
             continue
-        add(facefx.morph_mouth(base, fit(fr.img), lm=lm), 1)
+        add(facefx.morph_mouth(base, fit(fr.img), lm=lm, mode=mode), 1)
         add(base, 1)
     # смайл держим
     add(smile, 6)
@@ -77,11 +86,12 @@ def frames_for(char_key: str) -> list[np.ndarray]:
     return flats
 
 
-def main(char_key: str = "dad") -> Path:
+def main(char_key: str = "dad", view: str = "front") -> Path:
     import imageio.v2 as imageio
 
-    frames = frames_for(char_key)
-    out = ROOT / "studio" / "out" / f"{char_key}-face.mp4"
+    frames = frames_for(char_key, view)
+    suffix = "" if view == "front" else f"-{view}"
+    out = ROOT / "studio" / "out" / f"{char_key}-face{suffix}.mp4"
     w = imageio.get_writer(out, fps=FPS, quality=8, macro_block_size=2)
     for f in frames:
         w.append_data(f)
@@ -90,4 +100,5 @@ def main(char_key: str = "dad") -> Path:
 
 
 if __name__ == "__main__":
-    print(main(sys.argv[1] if len(sys.argv) > 1 else "dad"))
+    print(main(sys.argv[1] if len(sys.argv) > 1 else "dad",
+               sys.argv[2] if len(sys.argv) > 2 else "front"))

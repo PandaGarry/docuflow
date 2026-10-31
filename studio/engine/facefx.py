@@ -275,8 +275,34 @@ def align_shift(target: Image.Image, dx: float, dy: float) -> Image.Image:
     return Image.fromarray(out, "RGBA")
 
 
+def _align_mouth(base: Image.Image, target: Image.Image, cx: float, cy: float,
+                 hw: float, hh: float, max_shift: int = 28) -> Image.Image:
+    """Сдвинуть донора так, чтобы его рот встал на рот базы."""
+    import cv2
+    x0, x1 = int(max(0, cx - hw)), int(min(base.width, cx + hw))
+    y0, y1 = int(max(0, cy - hh)), int(min(base.height, cy + hh))
+    if x1 - x0 < 16 or y1 - y0 < 16:
+        return target
+    b = np.asarray(base.convert("L"), np.float32)[y0:y1, x0:x1]
+    t = np.asarray(target.convert("L"), np.float32)[y0:y1, x0:x1]
+    try:
+        (dx, dy), _ = cv2.phaseCorrelate(b, t)
+    except Exception:
+        return target
+    dx, dy = float(np.clip(dx, -max_shift, max_shift)), float(np.clip(dy, -max_shift, max_shift))
+    if abs(dx) < 1.5 and abs(dy) < 1.5:
+        return target
+    arr = np.asarray(target.convert("RGBA"))
+    M = np.float32([[1, 0, dx], [0, 1, dy]])
+    out = cv2.warpAffine(arr, M, (target.width, target.height),
+                         flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT,
+                         borderValue=(0, 0, 0, 0))
+    return Image.fromarray(out, "RGBA")
+
+
 def morph_mouth(base: Image.Image, target: Image.Image, lm: dict,
-                amount: float = 1.0, *, threshold: float = 12.0) -> Image.Image:
+                amount: float = 1.0, *, threshold: float = 12.0,
+                mode: str = "diff") -> Image.Image:
     """Подмешать форму рта из визема, не трогая остальное лицо.
 
     Просто «наложить овал вокруг рта» не годится: генератор рисует слегка
@@ -292,6 +318,28 @@ def morph_mouth(base: Image.Image, target: Image.Image, lm: dict,
 
     if target.size != base.size:
         target = to_canvas(target, base.size)
+    # Донор почти всегда нарисован со сдвигом: рот открыт, челюсть опущена,
+    # и весь рот уехал на 5–25 px. Если этого не учесть, зубы лягут мимо губ
+    # (проверено на профиле). Сдвиг ищем фазовой корреляцией по окну рта.
+    target = _align_mouth(base, target, cx, cy, rx * 2.2, ry * 2.2)
+    if mode == "jaw":
+        b = np.asarray(base.convert("RGBA"), np.float32)
+        t = np.asarray(target.convert("RGBA"), np.float32)
+        h, w = b.shape[:2]
+        yy, xx = np.mgrid[0:h, 0:w]
+        # пятно от рта до подбородка: закрывает опущенную челюсть
+        jx, jy = cx, cy + ry * 0.55
+        rx2, ry2 = rx * 1.5, ry * 1.7
+        m = np.clip((1.0 - (((xx - jx) / rx2) ** 2 + ((yy - jy) / ry2) ** 2)) * 2.0,
+                    0.0, 1.0) * float(amount)
+        mask = Image.fromarray((m * 255).astype(np.uint8), "L")
+        mask = mask.filter(ImageFilter.GaussianBlur(9.0))
+        patch = Image.new("RGBA", base.size, (0, 0, 0, 0))
+        patch.paste(target.convert("RGBA"), (0, 0), mask)
+        out = base.copy()
+        out.alpha_composite(patch)
+        return out
+
     b = np.asarray(base.convert("RGBA"), np.float32)
     t = np.asarray(target.convert("RGBA"), np.float32)
     diff = np.abs(b[..., :3] - t[..., :3]).mean(axis=2)
