@@ -595,45 +595,49 @@
   },
   "walk-contact-R": {
    "file": "studio/2p5d/dad/poses/walk-contact-R.png",
-   "height_px": 552,
-   "head_top": 0,
-   "head_w": 99,
-   "head_cy": 73.0,
-   "head_cx": 121.0,
-   "foot_y": 551,
-   "foot_cx": 179.5,
-   "body_cx": 108.0,
-   "plant_cx": 173.5,
+   "height_px": 1373,
+   "head_top": 6,
+   "head_w": 249,
+   "head_cy": 196.0,
+   "head_cx": 276.0,
+   "foot_y": 1378,
+   "foot_cx": 318.5,
+   "body_cx": 257.0,
+   "plant_cx": 281.0,
    "feet": [
     {
-     "cx": 37.0,
-     "bottom": 543
+     "cx": 89.5,
+     "bottom": 1337
     },
     {
-     "cx": 173.5,
-     "bottom": 551
+     "cx": 281.0,
+     "bottom": 1378
     }
    ],
-   "width_px": 218
+   "width_px": 417
   },
   "walk-down-R": {
    "file": "studio/2p5d/dad/poses/walk-down-R.png",
-   "height_px": 540,
-   "head_top": 0,
-   "head_w": 100,
-   "head_cy": 75.0,
-   "head_cx": 95.5,
-   "foot_y": 539,
-   "foot_cx": 110.5,
-   "body_cx": 83.0,
-   "plant_cx": 77.5,
+   "height_px": 1375,
+   "head_top": 7,
+   "head_w": 250,
+   "head_cy": 198.0,
+   "head_cx": 294.5,
+   "foot_y": 1381,
+   "foot_cx": 335.5,
+   "body_cx": 275.0,
+   "plant_cx": 299.5,
    "feet": [
     {
-     "cx": 77.5,
-     "bottom": 539
+     "cx": 93.0,
+     "bottom": 1326
+    },
+    {
+     "cx": 299.5,
+     "bottom": 1381
     }
    ],
-   "width_px": 154
+   "width_px": 436
   },
   "walk-passing-R": {
    "file": "studio/2p5d/dad/poses/walk-passing-R.png",
@@ -656,164 +660,156 @@
   },
   "walk-up-R": {
    "file": "studio/2p5d/dad/poses/walk-up-R.png",
-   "height_px": 551,
-   "head_top": 0,
-   "head_w": 98,
-   "head_cy": 71.0,
-   "head_cx": 96.5,
-   "foot_y": 550,
-   "foot_cx": 145.5,
-   "body_cx": 94.0,
-   "plant_cx": 167.5,
+   "height_px": 1374,
+   "head_top": 7,
+   "head_w": 249,
+   "head_cy": 197.0,
+   "head_cx": 311.0,
+   "foot_y": 1380,
+   "foot_cx": 422.5,
+   "body_cx": 292.0,
+   "plant_cx": 379.0,
    "feet": [
     {
-     "cx": 25.5,
-     "bottom": 542
+     "cx": 91.5,
+     "bottom": 1335
     },
     {
-     "cx": 167.5,
-     "bottom": 550
+     "cx": 379.0,
+     "bottom": 1380
     }
    ],
-   "width_px": 220
+   "width_px": 484
   },
   "run-contact": {
    "file": "studio/2p5d/dad/poses/run-contact.png",
-   "height_px": 496,
-   "head_top": 0,
-   "head_w": 99,
-   "head_cy": 120.0,
-   "head_cx": 144.0,
-   "foot_y": 495,
-   "foot_cx": 196.0,
-   "body_cx": 127.0,
-   "plant_cx": 213.0,
+   "height_px": 1335,
+   "head_top": 6,
+   "head_w": 249,
+   "head_cy": 196.0,
+   "head_cx": 364.0,
+   "foot_y": 1340,
+   "foot_cx": 492.5,
+   "body_cx": 341.0,
+   "plant_cx": 543.0,
    "feet": [
     {
-     "cx": 15.5,
-     "bottom": 460
-    },
-    {
-     "cx": 213.0,
-     "bottom": 495
+     "cx": 543.0,
+     "bottom": 1340
     }
    ],
-   "width_px": 276
+   "width_px": 685
   },
   "run-down": {
    "file": "studio/2p5d/dad/poses/run-down.png",
-   "height_px": 495,
-   "head_top": 0,
-   "head_w": 115,
-   "head_cy": 122.0,
-   "head_cx": 177.0,
-   "foot_y": 494,
-   "foot_cx": 100.5,
-   "body_cx": 136.0,
-   "plant_cx": 87.0,
+   "height_px": 1336,
+   "head_top": 7,
+   "head_w": 251,
+   "head_cy": 200.0,
+   "head_cx": 376.0,
+   "foot_y": 1342,
+   "foot_cx": 140.5,
+   "body_cx": 348.0,
+   "plant_cx": 96.0,
    "feet": [
     {
-     "cx": 87.0,
-     "bottom": 494
+     "cx": 96.0,
+     "bottom": 1342
     },
     {
-     "cx": 183.0,
-     "bottom": 482
+     "cx": 604.0,
+     "bottom": 1268
     }
    ],
-   "width_px": 280
+   "width_px": 721
   },
   "run-passing": {
    "file": "studio/2p5d/dad/poses/run-passing.png",
-   "height_px": 490,
-   "head_top": 0,
-   "head_w": 99,
-   "head_cy": 48.0,
-   "head_cx": 143.0,
-   "foot_y": 489,
-   "foot_cx": 19.5,
-   "body_cx": 123.0,
-   "plant_cx": 33.0,
+   "height_px": 1184,
+   "head_top": 6,
+   "head_w": 249,
+   "head_cy": 197.0,
+   "head_cx": 354.0,
+   "foot_y": 1189,
+   "foot_cx": 608.5,
+   "body_cx": 327.0,
+   "plant_cx": 549.5,
    "feet": [
     {
-     "cx": 33.0,
-     "bottom": 489
+     "cx": 143.5,
+     "bottom": 1171
     },
     {
-     "cx": 186.0,
-     "bottom": 479
+     "cx": 549.5,
+     "bottom": 1189
     }
    ],
-   "width_px": 258
+   "width_px": 682
   },
   "run-contact-R": {
    "file": "studio/2p5d/dad/poses/run-contact-R.png",
-   "height_px": 495,
-   "head_top": 1,
-   "head_w": 97,
-   "head_cy": 117.0,
-   "head_cx": 150.0,
-   "foot_y": 495,
-   "foot_cx": 196.0,
-   "body_cx": 128.0,
-   "plant_cx": 214.5,
+   "height_px": 1329,
+   "head_top": 6,
+   "head_w": 250,
+   "head_cy": 195.0,
+   "head_cx": 382.5,
+   "foot_y": 1334,
+   "foot_cx": 552.0,
+   "body_cx": 345.0,
+   "plant_cx": 591.0,
    "feet": [
     {
-     "cx": 14.5,
-     "bottom": 460
-    },
-    {
-     "cx": 214.5,
-     "bottom": 495
+     "cx": 591.0,
+     "bottom": 1334
     }
    ],
-   "width_px": 273
+   "width_px": 726
   },
   "run-down-R": {
    "file": "studio/2p5d/dad/poses/run-down-R.png",
-   "height_px": 496,
-   "head_top": 0,
-   "head_w": 113,
-   "head_cy": 123.0,
-   "head_cx": 172.0,
-   "foot_y": 495,
-   "foot_cx": 52.5,
-   "body_cx": 145.0,
-   "plant_cx": 54.5,
+   "height_px": 1335,
+   "head_top": 6,
+   "head_w": 251,
+   "head_cy": 199.0,
+   "head_cx": 368.0,
+   "foot_y": 1340,
+   "foot_cx": 140.5,
+   "body_cx": 339.0,
+   "plant_cx": 98.5,
    "feet": [
     {
-     "cx": 54.5,
-     "bottom": 495
+     "cx": 98.5,
+     "bottom": 1340
     },
     {
-     "cx": 193.0,
-     "bottom": 485
+     "cx": 498.0,
+     "bottom": 1264
     }
    ],
-   "width_px": 259
+   "width_px": 696
   },
   "run-passing-R": {
    "file": "studio/2p5d/dad/poses/run-passing-R.png",
-   "height_px": 496,
-   "head_top": 0,
-   "head_w": 100,
-   "head_cy": 48.0,
-   "head_cx": 153.5,
-   "foot_y": 495,
-   "foot_cx": 19.0,
-   "body_cx": 134.0,
-   "plant_cx": 31.5,
+   "height_px": 1192,
+   "head_top": 6,
+   "head_w": 245,
+   "head_cy": 196.0,
+   "head_cx": 357.0,
+   "foot_y": 1197,
+   "foot_cx": 44.0,
+   "body_cx": 319.0,
+   "plant_cx": 106.5,
    "feet": [
     {
-     "cx": 31.5,
-     "bottom": 495
+     "cx": 106.5,
+     "bottom": 1197
     },
     {
-     "cx": 201.5,
-     "bottom": 477
+     "cx": 526.5,
+     "bottom": 1147
     }
    ],
-   "width_px": 278
+   "width_px": 672
   },
   "sit": {
    "file": "studio/2p5d/dad/poses/sit.png",

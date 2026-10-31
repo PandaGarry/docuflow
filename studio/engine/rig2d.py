@@ -120,6 +120,25 @@ def _inpaint(img: Image.Image, holes: list) -> Image.Image:
     return Image.fromarray(out, "RGBA")
 
 
+def pad_around_pivot(piece: Image.Image,
+                     pivot: tuple[float, float]) -> tuple[Image.Image, tuple[float, float]]:
+    """Расширить кусок так, чтобы поворот вокруг шарнира его не обрезал.
+
+    Кусок вырезается по своему bounding box, а `Image.rotate` крутит внутри
+    того же холста — при повороте на 60–90° половина руки уходила за край и
+    просто исчезала. Поэтому холст куска расширяется до радиуса от шарнира до
+    самого дальнего угла, и шарнир встаёт в центр.
+    """
+    px, py = pivot
+    w, h = piece.size
+    r = max(math.hypot(px, py), math.hypot(w - px, py),
+            math.hypot(px, h - py), math.hypot(w - px, h - py))
+    side = int(math.ceil(r)) + 2
+    out = Image.new("RGBA", (side * 2, side * 2), (0, 0, 0, 0))
+    out.alpha_composite(piece, (int(side - px), int(side - py)))
+    return out, (float(side), float(side))
+
+
 def _crop_alpha(img: Image.Image, mask: Image.Image) -> Image.Image:
     """Вырезать часть: умножить альфу картинки на маску."""
     a = np.asarray(img.convert("RGBA")).astype(np.float32)
@@ -187,6 +206,16 @@ class Puppet:
             src = _inpaint(drawing, p.get("holes", []))
             mask = _shape_mask(drawing.size, p.get("shape", p.get("poly")),
                                p.get("feather", 1.5))
+            # Порядок важен: сначала вычитаем, потом добавляем.
+            # Капсула плеча захватывает часть груди; если её не вычесть, при
+            # подъёме руки вместе с рукавом поворачивался кусок торса —
+            # получалась «плита» свитера. Вырезаем середину груди, а круг на
+            # плече добавляем ПОСЛЕ — он нужен целым, он закрывает стык.
+            for sub in p.get("subtract", []):
+                m = np.asarray(mask).copy()
+                s_mask = np.asarray(_shape_mask(drawing.size, sub, 0))
+                m[s_mask > 127] = 0
+                mask = Image.fromarray(m)
             for extra in p.get("extra", []):
                 mask = Image.fromarray(np.maximum(
                     np.asarray(mask), np.asarray(_shape_mask(
@@ -197,10 +226,12 @@ class Puppet:
                 continue
             piece = piece.crop(bbox)
             jx, jy = spec["joints"][p["joint"]]["pos"]
+            pivot = (jx * drawing.width - bbox[0], jy * drawing.height - bbox[1])
+            piece, pivot = pad_around_pivot(piece, pivot)
             self.parts[name] = Part(
                 name=name,
                 img=piece,
-                pivot=(jx * drawing.width - bbox[0], jy * drawing.height - bbox[1]),
+                pivot=pivot,
                 z=p.get("z", 0),
                 dark=p.get("dark", 0.0),
             )

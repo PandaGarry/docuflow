@@ -99,11 +99,20 @@ def transition(a: Image.Image, b: Image.Image, frames: int) -> list[Image.Image]
     return [ib.blend(a, b, (k + 1) / (frames + 1)) for k in range(frames)]
 
 
-def gestures(char_key: str, keys: list[str] | None = None) -> list[np.ndarray]:
-    """Позы в ленте: держание → плавный переход → следующая поза."""
+def gestures(char_key: str, keys: list[str] | None = None,
+             mode: str = "cut") -> list[np.ndarray]:
+    """Позы в ленте: держание → смена позы.
+
+    По умолчанию смена — **склейка**, а не смешивание. Почему: каждая поза
+    нарисована отдельно, и у неё своё лицо и своя складка на свитере. Любой
+    морфинг между двумя такими рисунками даёт «двойную экспозицию» — два рта,
+    две руки. В мультсериалах поза меняется склейкой или рисуется движением,
+    а не растворяется. Морфинг оставлен флагом `morph` — он годится только
+    для пары кадров, снятых с одного мастера.
+    """
     lib = pl.Library(char_key)
     keys = keys or [k for k in GESTURES if lib.pose(k) is not None]
-    hold = int(0.5 * FPS)
+    hold = int(0.7 * FPS)
     trans = int(0.42 * FPS)
     out: list[np.ndarray] = []
     placed = [(k, place(lib.pose(k), head_reg=True)) for k in keys]
@@ -111,8 +120,11 @@ def gestures(char_key: str, keys: list[str] | None = None) -> list[np.ndarray]:
         for _ in range(hold):
             out.append(compose(sprite, key, "держание"))
         nxt_key, nxt = placed[(i + 1) % len(placed)]
-        for f in transition(sprite, nxt, trans):
-            out.append(compose(f, f"{key} → {nxt_key}", "переход"))
+        if mode == "morph":
+            for f in transition(sprite, nxt, trans):
+                out.append(compose(f, f"{key} → {nxt_key}", "переход"))
+        else:
+            out.append(compose(nxt, f"{key} → {nxt_key}", "склейка"))
     return out
 
 
@@ -122,10 +134,10 @@ def emotions(char_key: str) -> list[np.ndarray]:
     views = ["front", "three-quarter", "side"]
     frames: list[tuple[str, Image.Image]] = []
     for view in views:
-        for key in [k for k in EMOTIONS
-                    if (char.dir / "emotions" / view / f"{key}.png").exists()]:
-            img = Image.open(char.dir / "emotions" / view / f"{key}.png").convert("RGBA")
-            frames.append((f"{view}/{key}", img))
+        for ek in [k for k in EMOTIONS
+                   if (char.dir / "emotions" / view / f"{k}.png").exists()]:
+            img = Image.open(char.dir / "emotions" / view / f"{ek}.png").convert("RGBA")
+            frames.append((f"{view}/{ek}", img))
     if not frames:
         return []
     # портреты уже одного размера и одной рамки — только масштаб под кадр
@@ -168,8 +180,21 @@ def main() -> int:
     what = sys.argv[2] if len(sys.argv) > 2 else "all"
     OUT.mkdir(parents=True, exist_ok=True)
     made = []
+    if what == "all":
+        import imageio.v2 as imageio
+        import cycle_preview as cp
+        parts: list[np.ndarray] = []
+        for cyc in ("walk", "run"):
+            path = cp.main(key, cyc)
+            parts += [np.asarray(f) for f in imageio.get_reader(path)]
+        made.append(save(gestures(key) + emotions(key) + parts,
+                         OUT / f"{key}-motion-test.mp4"))
+        return 0
     if what in ("gestures", "all"):
         made.append(save(gestures(key), OUT / f"{key}-reel-gestures.mp4"))
+    if what == "morph":
+        made.append(save(gestures(key, mode="morph"),
+                         OUT / f"{key}-reel-gestures-morph.mp4"))
     if what in ("emotions", "all"):
         made.append(save(emotions(key), OUT / f"{key}-reel-emotions.mp4"))
     if what in ("cycles", "all"):
