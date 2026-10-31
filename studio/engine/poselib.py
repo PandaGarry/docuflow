@@ -73,6 +73,28 @@ def anchors_body(img: Image.Image) -> dict:
     # гуляют от взмаха рук, в отличие от центра всего силуэта
     band = (ys > top + 0.22 * H) & (ys < top + 0.62 * H)
     body_cx = float(np.median(xs[band])) if band.any() else float(np.median(xs))
+    # опорная стопа: у земли в нижних 12 % силуэта ищем кластеры (стопы) и
+    # берём тот, что ниже всего — он и стоит на полу. Нужен для «локтя стопы»:
+    # в анимации опорная стопа не должна ездить по полу.
+    low_mask = ys > bot - 0.12 * H
+    plant_x = None
+    feet = []
+    if low_mask.any():
+        lx = np.sort(xs[low_mask])
+        gaps = np.where(np.diff(lx) > 4)[0]
+        segs, s0 = [], lx[0]
+        for g in gaps:
+            segs.append((int(s0), int(lx[g])))
+            s0 = lx[g + 1]
+        segs.append((int(s0), int(lx[-1])))
+        segs = [sg for sg in segs if sg[1] - sg[0] > 6]
+        for x0, x1 in segs:
+            col = m[:, x0:x1 + 1]
+            yy = np.where(col.any(axis=1))[0]
+            feet.append({"cx": (x0 + x1) / 2, "bottom": int(yy.max()) if len(yy) else bot})
+        if feet:
+            plant_x = float(max(feet, key=lambda f: f["bottom"])["cx"])
+
     # подошвы: центр низа
     low = np.where(m[bot - 2])[0]
     foot_cx = float((low.min() + low.max()) / 2) if len(low) else (xs.min() + xs.max()) / 2
@@ -85,6 +107,8 @@ def anchors_body(img: Image.Image) -> dict:
         "foot_y": bot,
         "foot_cx": foot_cx,
         "body_cx": body_cx,
+        "plant_cx": plant_x,
+        "feet": feet,
         "width_px": int(xs.max() - xs.min() + 1),
     }
 
@@ -103,12 +127,24 @@ def _central_segment(row: np.ndarray, cx: float) -> tuple[int, int] | None:
 
 
 def anchors_head(img: Image.Image) -> dict:
-    """Якоря портрета: центр и размер головы в кадре."""
+    """Якоря портрета: центр и размер головы в кадре.
+
+    Портрет — это голова и плечи, поэтому голова занимает кадр гораздо крупнее,
+    чем на полном росте. Чтобы вклеить мимику в полный кадр, нужен масштаб:
+    `head_w` портрета к `head_w` позы. Пишем его здесь, а не считаем на глаз.
+    """
     m = _mask(img)
     ys, xs = np.where(m)
     if not len(ys):
         return {}
+    h = int(ys.max() - ys.min() + 1)
+    head_w = 0
+    for y in range(int(ys.min()), int(ys.min() + 0.55 * h)):
+        row = np.where(m[y])[0]
+        if len(row):
+            head_w = max(head_w, int(row.max() - row.min() + 1))
     return {
+        "head_w": head_w,
         "x0": int(xs.min()), "x1": int(xs.max()),
         "y0": int(ys.min()), "y1": int(ys.max()),
         "cx": float((xs.min() + xs.max()) / 2),

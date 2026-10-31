@@ -57,7 +57,16 @@ def ground(fig: Image.Image, x_center: float, y_ground: float) -> tuple[Image.Im
 
 
 def compose(frames: list[pl.Frame], fps: int, speed: float,
-            lift: dict | None = None, keys: list[str] | None = None) -> list[np.ndarray]:
+            lift: dict | None = None, keys: list[str] | None = None,
+            foot_lock: bool = False, stride: float = 0.34) -> list[np.ndarray]:
+    """Кадр за кадром.
+
+    `foot_lock` — попытка «запереть» опорную стопу. По умолчанию ВЫКЛЮЧЕНО:
+    опорная стопа в кадрах генератора стоит где попало (179 px в контакте,
+    78 px в фазе down на одном цикле), и привязка к её якорю даёт рывки —
+    персонаж прыгает по кадру. Стабильная посадка по центру корпуса
+    (`body_cx`) выглядит ровно: корпус стоит, фон едет.
+    """
     lift = lift or {}
     keys = keys or [""] * len(frames)
     master = frames[0]
@@ -80,11 +89,20 @@ def compose(frames: list[pl.Frame], fps: int, speed: float,
         small = img.resize((w, h), Image.LANCZOS)
         # ставим по центру корпуса: взмах руки и вынос ноги не сдвигают
         # персонажа в кадре (раньше центрировали по стопам — «плавало»)
-        body_x = fr.anchor.get("body_cx", img.width / 2) * scale
         foot_y = fr.anchor.get("foot_y", img.height) * scale
         cx = W * 0.42
         rise = lift.get(key, 0) * scale / (BODY_H / 700)
-        x = int(cx - body_x)
+        n = len(frames)
+        if foot_lock and fr.anchor.get("plant_cx") is not None:
+            half = max(n // 2, 1)
+            t = i % half                       # позиция внутри половины цикла
+            # цель: опорная стопа уезжает назад на один шаг за половину
+            span = stride * BODY_H
+            target = cx + 0.5 * span - (span * t / max(half - 1, 1))
+            x = int(target - fr.anchor["plant_cx"] * scale)
+        else:
+            body_x = fr.anchor.get("body_cx", img.width / 2) * scale
+            x = int(cx - body_x)
         y = int(GROUND - foot_y - rise)
 
         # мягкая тень привязывает к полу; в полёте она слабеет и отрывается

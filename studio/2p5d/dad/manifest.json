@@ -13,6 +13,17 @@
    "foot_y": 1387,
    "foot_cx": 378.0,
    "body_cx": 379.0,
+   "plant_cx": 280.5,
+   "feet": [
+    {
+     "cx": 280.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 477.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 746
   },
   "three-quarter": {
@@ -25,6 +36,17 @@
    "foot_y": 1390,
    "foot_cx": 423.5,
    "body_cx": 357.0,
+   "plant_cx": 435.5,
+   "feet": [
+    {
+     "cx": 242.0,
+     "bottom": 1375
+    },
+    {
+     "cx": 435.5,
+     "bottom": 1390
+    }
+   ],
    "width_px": 682
   },
   "side": {
@@ -37,6 +59,13 @@
    "foot_y": 1381,
    "foot_cx": 220.0,
    "body_cx": 159.0,
+   "plant_cx": 186.5,
+   "feet": [
+    {
+     "cx": 186.5,
+     "bottom": 1381
+    }
+   ],
    "width_px": 319
   },
   "back": {
@@ -49,6 +78,17 @@
    "foot_y": 1380,
    "foot_cx": 377.5,
    "body_cx": 377.0,
+   "plant_cx": 280.5,
+   "feet": [
+    {
+     "cx": 280.5,
+     "bottom": 1380
+    },
+    {
+     "cx": 474.5,
+     "bottom": 1380
+    }
+   ],
    "width_px": 744
   },
   "idle": {
@@ -61,6 +101,17 @@
    "foot_y": 1391,
    "foot_cx": 369.5,
    "body_cx": 369.0,
+   "plant_cx": 265.5,
+   "feet": [
+    {
+     "cx": 265.5,
+     "bottom": 1391
+    },
+    {
+     "cx": 472.0,
+     "bottom": 1391
+    }
+   ],
    "width_px": 726
   },
   "idle-shift": {
@@ -73,6 +124,17 @@
    "foot_y": 1388,
    "foot_cx": 191.0,
    "body_cx": 311.0,
+   "plant_cx": 210.5,
+   "feet": [
+    {
+     "cx": 210.5,
+     "bottom": 1388
+    },
+    {
+     "cx": 403.0,
+     "bottom": 1367
+    }
+   ],
    "width_px": 620
   },
   "idle-hands-back": {
@@ -85,6 +147,17 @@
    "foot_y": 1389,
    "foot_cx": 323.5,
    "body_cx": 323.0,
+   "plant_cx": 225.5,
+   "feet": [
+    {
+     "cx": 225.5,
+     "bottom": 1389
+    },
+    {
+     "cx": 422.5,
+     "bottom": 1389
+    }
+   ],
    "width_px": 633
   },
   "wave": {
@@ -97,6 +170,17 @@
    "foot_y": 1387,
    "foot_cx": 365.5,
    "body_cx": 365.0,
+   "plant_cx": 267.5,
+   "feet": [
+    {
+     "cx": 267.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 464.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 733
   },
   "point": {
@@ -109,6 +193,17 @@
    "foot_y": 1387,
    "foot_cx": 378.5,
    "body_cx": 361.0,
+   "plant_cx": 280.5,
+   "feet": [
+    {
+     "cx": 280.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 477.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 739
   },
   "thumbs-up": {
@@ -121,6 +216,17 @@
    "foot_y": 1387,
    "foot_cx": 334.5,
    "body_cx": 347.0,
+   "plant_cx": 236.5,
+   "feet": [
+    {
+     "cx": 236.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 433.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 702
   },
   "thumbs-down": {
@@ -133,6 +239,17 @@
    "foot_y": 1387,
    "foot_cx": 358.0,
    "body_cx": 374.0,
+   "plant_cx": 258.5,
+   "feet": [
+    {
+     "cx": 258.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 455.5,
+     "bottom": 1386
+    }
+   ],
    "width_px": 724
   },
   "reach-out": {
@@ -145,6 +262,17 @@
    "foot_y": 1387,
    "foot_cx": 342.5,
    "body_cx": 353.0,
+   "plant_cx": 244.5,
+   "feet": [
+    {
+     "cx": 244.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 441.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 710
   },
   "facepalm": {
@@ -157,6 +285,17 @@
    "foot_y": 1387,
    "foot_cx": 378.5,
    "body_cx": 362.0,
+   "plant_cx": 280.5,
+   "feet": [
+    {
+     "cx": 280.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 477.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 726
   },
   "hands-hips": {
@@ -169,6 +308,17 @@
    "foot_y": 1389,
    "foot_cx": 375.5,
    "body_cx": 376.0,
+   "plant_cx": 278.0,
+   "feet": [
+    {
+     "cx": 278.0,
+     "bottom": 1389
+    },
+    {
+     "cx": 474.0,
+     "bottom": 1389
+    }
+   ],
    "width_px": 741
   },
   "shrug": {
@@ -181,6 +331,17 @@
    "foot_y": 1385,
    "foot_cx": 384.5,
    "body_cx": 385.0,
+   "plant_cx": 286.5,
+   "feet": [
+    {
+     "cx": 286.5,
+     "bottom": 1385
+    },
+    {
+     "cx": 483.5,
+     "bottom": 1385
+    }
+   ],
    "width_px": 758
   },
   "cross-arms": {
@@ -193,6 +354,17 @@
    "foot_y": 1393,
    "foot_cx": 267.5,
    "body_cx": 269.0,
+   "plant_cx": 374.0,
+   "feet": [
+    {
+     "cx": 160.5,
+     "bottom": 1392
+    },
+    {
+     "cx": 374.0,
+     "bottom": 1393
+    }
+   ],
    "width_px": 526
   },
   "open-palms": {
@@ -205,6 +377,17 @@
    "foot_y": 1390,
    "foot_cx": 385.5,
    "body_cx": 385.0,
+   "plant_cx": 278.0,
+   "feet": [
+    {
+     "cx": 278.0,
+     "bottom": 1390
+    },
+    {
+     "cx": 492.0,
+     "bottom": 1390
+    }
+   ],
    "width_px": 756
   },
   "walk-contact": {
@@ -217,6 +400,17 @@
    "foot_y": 539,
    "foot_cx": 177.5,
    "body_cx": 111.0,
+   "plant_cx": 179.0,
+   "feet": [
+    {
+     "cx": 36.0,
+     "bottom": 531
+    },
+    {
+     "cx": 179.0,
+     "bottom": 539
+    }
+   ],
    "width_px": 216
   },
   "walk-down": {
@@ -229,6 +423,13 @@
    "foot_y": 539,
    "foot_cx": 115.0,
    "body_cx": 82.0,
+   "plant_cx": 78.5,
+   "feet": [
+    {
+     "cx": 78.5,
+     "bottom": 539
+    }
+   ],
    "width_px": 167
   },
   "walk-passing": {
@@ -241,6 +442,13 @@
    "foot_y": 539,
    "foot_cx": 85.0,
    "body_cx": 73.0,
+   "plant_cx": 69.5,
+   "feet": [
+    {
+     "cx": 69.5,
+     "bottom": 539
+    }
+   ],
    "width_px": 138
   },
   "walk-up": {
@@ -253,6 +461,17 @@
    "foot_y": 539,
    "foot_cx": 157.0,
    "body_cx": 98.0,
+   "plant_cx": 173.5,
+   "feet": [
+    {
+     "cx": 25.5,
+     "bottom": 529
+    },
+    {
+     "cx": 173.5,
+     "bottom": 539
+    }
+   ],
    "width_px": 226
   },
   "walk-contact-R": {
@@ -265,6 +484,17 @@
    "foot_y": 551,
    "foot_cx": 179.5,
    "body_cx": 108.0,
+   "plant_cx": 173.5,
+   "feet": [
+    {
+     "cx": 37.0,
+     "bottom": 543
+    },
+    {
+     "cx": 173.5,
+     "bottom": 551
+    }
+   ],
    "width_px": 218
   },
   "walk-down-R": {
@@ -277,6 +507,13 @@
    "foot_y": 539,
    "foot_cx": 110.5,
    "body_cx": 83.0,
+   "plant_cx": 77.5,
+   "feet": [
+    {
+     "cx": 77.5,
+     "bottom": 539
+    }
+   ],
    "width_px": 154
   },
   "walk-passing-R": {
@@ -289,6 +526,13 @@
    "foot_y": 553,
    "foot_cx": 97.5,
    "body_cx": 80.0,
+   "plant_cx": 79.5,
+   "feet": [
+    {
+     "cx": 79.5,
+     "bottom": 553
+    }
+   ],
    "width_px": 147
   },
   "walk-up-R": {
@@ -301,6 +545,17 @@
    "foot_y": 550,
    "foot_cx": 145.5,
    "body_cx": 94.0,
+   "plant_cx": 167.5,
+   "feet": [
+    {
+     "cx": 25.5,
+     "bottom": 542
+    },
+    {
+     "cx": 167.5,
+     "bottom": 550
+    }
+   ],
    "width_px": 220
   },
   "run-contact": {
@@ -313,6 +568,17 @@
    "foot_y": 495,
    "foot_cx": 196.0,
    "body_cx": 127.0,
+   "plant_cx": 213.0,
+   "feet": [
+    {
+     "cx": 15.5,
+     "bottom": 460
+    },
+    {
+     "cx": 213.0,
+     "bottom": 495
+    }
+   ],
    "width_px": 276
   },
   "run-down": {
@@ -325,6 +591,17 @@
    "foot_y": 494,
    "foot_cx": 100.5,
    "body_cx": 136.0,
+   "plant_cx": 87.0,
+   "feet": [
+    {
+     "cx": 87.0,
+     "bottom": 494
+    },
+    {
+     "cx": 183.0,
+     "bottom": 482
+    }
+   ],
    "width_px": 280
   },
   "run-passing": {
@@ -337,6 +614,17 @@
    "foot_y": 489,
    "foot_cx": 19.5,
    "body_cx": 123.0,
+   "plant_cx": 33.0,
+   "feet": [
+    {
+     "cx": 33.0,
+     "bottom": 489
+    },
+    {
+     "cx": 186.0,
+     "bottom": 479
+    }
+   ],
    "width_px": 258
   },
   "run-contact-R": {
@@ -349,6 +637,17 @@
    "foot_y": 495,
    "foot_cx": 196.0,
    "body_cx": 128.0,
+   "plant_cx": 214.5,
+   "feet": [
+    {
+     "cx": 14.5,
+     "bottom": 460
+    },
+    {
+     "cx": 214.5,
+     "bottom": 495
+    }
+   ],
    "width_px": 273
   },
   "run-down-R": {
@@ -361,6 +660,17 @@
    "foot_y": 495,
    "foot_cx": 52.5,
    "body_cx": 145.0,
+   "plant_cx": 54.5,
+   "feet": [
+    {
+     "cx": 54.5,
+     "bottom": 495
+    },
+    {
+     "cx": 193.0,
+     "bottom": 485
+    }
+   ],
    "width_px": 259
   },
   "run-passing-R": {
@@ -373,6 +683,17 @@
    "foot_y": 495,
    "foot_cx": 19.0,
    "body_cx": 134.0,
+   "plant_cx": 31.5,
+   "feet": [
+    {
+     "cx": 31.5,
+     "bottom": 495
+    },
+    {
+     "cx": 201.5,
+     "bottom": 477
+    }
+   ],
    "width_px": 278
   },
   "sit": {
@@ -385,6 +706,17 @@
    "foot_y": 1387,
    "foot_cx": 328.0,
    "body_cx": 329.0,
+   "plant_cx": 186.5,
+   "feet": [
+    {
+     "cx": 186.5,
+     "bottom": 1387
+    },
+    {
+     "cx": 469.5,
+     "bottom": 1387
+    }
+   ],
    "width_px": 649
   },
   "crouch": {
@@ -397,9 +729,105 @@
    "foot_y": 1306,
    "foot_cx": 343.0,
    "body_cx": 345.0,
+   "plant_cx": 182.0,
+   "feet": [
+    {
+     "cx": 182.0,
+     "bottom": 1306
+    },
+    {
+     "cx": 507.0,
+     "bottom": 1306
+    }
+   ],
    "width_px": 677
   }
  },
- "emotions": {},
+ "emotions": {
+  "neutral": {
+   "file": "studio/2p5d/dad/emotions/neutral.png",
+   "head_w": 643,
+   "x0": 0,
+   "x1": 767,
+   "y0": 4,
+   "y1": 1399,
+   "cx": 383.5,
+   "cy": 701.5,
+   "w": 768,
+   "h": 1396
+  },
+  "happy": {
+   "file": "studio/2p5d/dad/emotions/happy.png",
+   "head_w": 710,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1395,
+   "cx": 383.5,
+   "cy": 700.5,
+   "w": 768,
+   "h": 1390
+  },
+  "laugh": {
+   "file": "studio/2p5d/dad/emotions/laugh.png",
+   "head_w": 552,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1392,
+   "cx": 383.5,
+   "cy": 699.0,
+   "w": 768,
+   "h": 1387
+  },
+  "angry": {
+   "file": "studio/2p5d/dad/emotions/angry.png",
+   "head_w": 575,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1388,
+   "cx": 383.5,
+   "cy": 697.0,
+   "w": 768,
+   "h": 1383
+  },
+  "annoyed": {
+   "file": "studio/2p5d/dad/emotions/annoyed.png",
+   "head_w": 537,
+   "x0": 0,
+   "x1": 767,
+   "y0": 7,
+   "y1": 1397,
+   "cx": 383.5,
+   "cy": 702.0,
+   "w": 768,
+   "h": 1391
+  },
+  "surprised": {
+   "file": "studio/2p5d/dad/emotions/surprised.png",
+   "head_w": 546,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1396,
+   "cx": 383.5,
+   "cy": 701.0,
+   "w": 768,
+   "h": 1391
+  },
+  "sad": {
+   "file": "studio/2p5d/dad/emotions/sad.png",
+   "head_w": 555,
+   "x0": 0,
+   "x1": 767,
+   "y0": 6,
+   "y1": 1391,
+   "cx": 383.5,
+   "cy": 698.5,
+   "w": 768,
+   "h": 1386
+  }
+ },
  "visemes": {}
 }
