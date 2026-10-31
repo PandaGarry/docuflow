@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -36,10 +37,14 @@ class Character:
     hair: str
     outfit: str
     palette: dict[str, str] = field(default_factory=dict)
+    # Костюм: ключ из outfits.json. Пусто — каноническая одежда.
+    outfit_key: str = ""
+    # Папка персонажа: dad, dad-hoodie-black...
+    dir_key: str = ""
 
     @property
     def dir(self) -> Path:
-        return CHARS / self.key
+        return CHARS / (self.dir_key or self.key)
 
     def prompt(self, action: str, view: str = "front view") -> str:
         """Собрать промпт кадра: канон + действие + вид + стиль."""
@@ -349,6 +354,30 @@ def pose_path(char: "Character", key: str) -> Path:
 
 
 VIEWS = ("front", "three-quarter", "side", "back")
+
+
+def outfits(char_key: str) -> dict:
+    """Костюмы персонажа: ключ → описание одежды и палитра."""
+    p = CHARS / char_key / "outfits.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+def dressed(char_key: str, outfit_key: str) -> "Character":
+    """Копия канона в другой одежде — со своей папкой кадров.
+
+    Зачем так: одежда меняется, а библиотека кадров большая. Держим костюм
+    отдельным набором кадров (`studio/2p5d/dad-<костюм>/`), который
+    собирается только из тех кадров, что нужны конкретной серии. Пересъёмки
+    всей библиотеки при этом не требуется: у каждого костюма своя папка, и
+    кадры в ней делаются правкой мастера этого костюма.
+    """
+    base = {"dad": DAD, "mom": MOM, "son": SON}[char_key]
+    o = outfits(char_key).get(outfit_key)
+    if not o:
+        raise KeyError(f"нет костюма {outfit_key!r} в outfits.json у {char_key}")
+    from dataclasses import replace
+    return replace(base, outfit=o["prompt"], palette=o.get("palette", base.palette),
+                   outfit_key=outfit_key, dir_key=f"{char_key}-{outfit_key}")
 
 
 def _sheet_path(folder: Path, name: str, view: str) -> Path:
