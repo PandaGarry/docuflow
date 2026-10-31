@@ -1,0 +1,97 @@
+{
+ "character": "dad",
+ "height_heads": 6.0,
+ "bg": "#00b140",
+ "poses": {
+  "wave": {
+   "file": "studio/2p5d/dad/poses/wave.png",
+   "height_px": 1382,
+   "head_top": 6,
+   "head_w": 256,
+   "head_cy": 350.0,
+   "head_cx": 365.5,
+   "foot_y": 1387,
+   "foot_cx": 365.5,
+   "width_px": 733
+  },
+  "point": {
+   "file": "studio/2p5d/dad/poses/point.png",
+   "height_px": 1382,
+   "head_top": 6,
+   "head_w": 258,
+   "head_cy": 350.0,
+   "head_cx": 380.5,
+   "foot_y": 1387,
+   "foot_cx": 378.5,
+   "width_px": 739
+  },
+  "thumbs-up": {
+   "file": "studio/2p5d/dad/poses/thumbs-up.png",
+   "height_px": 1382,
+   "head_top": 6,
+   "head_w": 259,
+   "head_cy": 350.0,
+   "head_cx": 333.0,
+   "foot_y": 1387,
+   "foot_cx": 334.5,
+   "width_px": 702
+  },
+  "hands-hips": {
+   "file": "studio/2p5d/dad/poses/hands-hips.png",
+   "height_px": 1384,
+   "head_top": 6,
+   "head_w": 251,
+   "head_cy": 351.0,
+   "head_cx": 376.0,
+   "foot_y": 1389,
+   "foot_cx": 375.5,
+   "width_px": 741
+  },
+  "shrug": {
+   "file": "studio/2p5d/dad/poses/shrug.png",
+   "height_px": 1380,
+   "head_top": 6,
+   "head_w": 448,
+   "head_cy": 350.0,
+   "head_cx": 386.5,
+   "foot_y": 1385,
+   "foot_cx": 385.5,
+   "width_px": 758
+  },
+  "cross-arms": {
+   "file": "studio/2p5d/dad/poses/cross-arms.png",
+   "height_px": 1388,
+   "head_top": 6,
+   "head_w": 265,
+   "head_cy": 352.0,
+   "head_cx": 267.0,
+   "foot_y": 1393,
+   "foot_cx": 267.5,
+   "width_px": 526
+  },
+  "open-palms": {
+   "file": "studio/2p5d/dad/poses/open-palms.png",
+   "height_px": 1385,
+   "head_top": 6,
+   "head_w": 258,
+   "head_cy": 351.0,
+   "head_cx": 385.5,
+   "foot_y": 1390,
+   "foot_cx": 385.5,
+   "width_px": 756
+  },
+  "walk-contact": {
+   "file": "studio/2p5d/dad/poses/walk-contact.png",
+   "height_px": 1354,
+   "head_top": 6,
+   "head_w": 250,
+   "head_cy": 198.0,
+   "head_cx": 295.5,
+   "foot_y": 1359,
+   "foot_cx": 400.5,
+   "width_px": 571
+  }
+ },
+ "emotions": {},
+ "visemes": {}
+}
