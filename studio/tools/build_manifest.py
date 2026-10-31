@@ -95,7 +95,7 @@ if __name__ == "__main__":
     miss = lib.missing()
     for kind, items in miss.items():
         if items:
-            print(f"  нет {kind}: {', '.join(items)}")
+            print(f"  нет {kind} ({len(items)}): {', '.join(items)}")
     if "--sheet" in sys.argv:
         print("лист:", pl.contact_sheet(key))
     if "--progress" in sys.argv:

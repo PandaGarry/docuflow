@@ -295,11 +295,19 @@ class Library:
     def missing(self) -> dict[str, list[str]]:
         """Чего не хватает — чтобы добивать библиотеку по списку, а не на глаз."""
         have = self.manifest
-        return {
+        miss: dict[str, list[str]] = {
             "poses": [p.key for p in ch.POSES if p.key not in have.get("poses", {})],
-            "emotions": [e for e in ch.EMOTIONS if e not in have.get("emotions", {})],
-            "visemes": [v for v in ch.VISEMES if v not in have.get("visemes", {})],
         }
+        # мимика по ракурсам: «нет эмоций» без ракурса ничего не говорит
+        for kind, items in (("emotions", ch.EMOTIONS), ("visemes", ch.VISEMES)):
+            for view in ch.VIEWS:
+                if view == "back":
+                    continue
+                got = have.get(kind, {}).get(view, {})
+                left = [i for i in items if i not in got]
+                if left:
+                    miss[f"{kind}:{view}"] = left
+        return miss
 
 
 def contact_sheet(char_key: str, *, cell_h: int = 420,
