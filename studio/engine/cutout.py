@@ -44,21 +44,114 @@ from PIL import Image
 
 def key_green(img: Image.Image, *,
               soft: float = 0.16, despill: float = 0.55) -> Image.Image:
-    """Вырезать зелёный фон: мягкая альфа по «зелёности» + подавление ободка."""
+    """Вырезать зелёный фон: мягкая альфа по «зелёности» + подавление ободка.
+
+    Прежняя формула сравнивала G со средним (R+B)/2 и топила в полупрозрачность
+    любую тёмную ткань, где G случайно на пару единиц выше: на джинсах появлялись
+    сине-зелёные пятна, а по краю ноги — цветной ободок. Здесь зелёность
+    считается как G минус МАКСИМУМ из R и B (у фона это 0.33, у джинсов 0.06),
+    и пиксель вообще не может стать прозрачным, если он тёмный: у тёмной ткани
+    G низкий по определению.
+    """
     rgb = np.asarray(img.convert("RGB"), np.float32) / 255.0
     r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
-    # «зелёность»: насколько канал G доминирует над средним из R и B
-    greenness = g - (r + b) * 0.5
-    # фон — заметно зелёный; тело — нет. Порог с мягким переходом.
-    alpha = np.clip(1.0 - (greenness - soft * 0.15) / max(soft, 1e-6), 0.0, 1.0)
-    alpha[greenness < 0.02] = 1.0
+    # Фон — насыщенный зелёный: G далеко впереди и R, и B одновременно.
+    # Берём МИНИМУМ из двух разниц: у фона это ~0.33 и ~0.33, у джинсов
+    # (даже сине-зелёных в тени) — около нуля или минус. Прошлые формулы
+    # смотрели только «G против среднего» и топили тёмную ткань.
+    s = np.minimum(g - r, g - b)
+    alpha = np.clip((0.30 - s) / 0.10, 0.0, 1.0)
+    # совсем тёмные пиксели — это ткань, а не хромакей (у фона G высокий)
+    alpha = np.where(g < 0.45, np.maximum(alpha, np.where(s > 0.28, 0.0, 1.0)),
+                     alpha)
+    alpha = np.where((g < 0.45) & (s < 0.28), 1.0, alpha)
 
-    # убрать зелёный ободок: на кромке подтягиваем G к среднему R и B
-    spill = np.clip(g - np.maximum(r, b), 0.0, 1.0) * despill
+    # убрать зелёный ободок: на кромке подтягиваем G к максимуму R и B
+    spill = np.clip(s, 0.0, 1.0) * despill
     g2 = g - spill
     out = np.stack([r, g2, b], axis=-1)
     rgba = np.dstack([np.clip(out, 0.0, 1.0), alpha]).astype(np.float32)
     return Image.fromarray((rgba * 255).astype(np.uint8), "RGBA")
+
+
+def kill_blue_rim(img: Image.Image, thr: float = 22.0) -> Image.Image:
+    """Убить цветной «контурный свет» на ткани: сводим аномальную хрому в серый.
+
+    Генератор иногда подсвечивает край дальней ноги синим или бирюзовым — на
+    светлом фоне это читается цветной каймой, а на джинсах ещё и «шумным»
+    пятном. У обычного денима разница каналов небольшая, поэтому всё, что
+    уходит от красного больше чем на thr, тянем к яркости — получается
+    нейтральная тень, как и должно быть на дальней ноге.
+    """
+    a = np.asarray(img, np.float32).copy()
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    lum = 0.3 * r + 0.6 * g + 0.1 * b
+    # насколько пиксель «цветнее» нормы
+    ex = np.maximum(np.maximum(b - r, g - r) - thr, 0.0)
+    k = np.clip(ex / 40.0, 0.0, 1.0)
+    a[..., 0] = r * (1 - k) + lum * k
+    a[..., 1] = g * (1 - k) + lum * k
+    a[..., 2] = b * (1 - k) + lum * k
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+
+
+def flatten_bad_patch(img: Image.Image, thr: float = 14.0,
+                      sigma: float = 6.0) -> Image.Image:
+    """Разгладить «шумное пятно» от генератора на ткани.
+
+    Модель иногда рисует на дальней ноге пятнистую цветную подсветку. Менять
+    цвет мало: остаётся крапчатая яркость. Поэтому пиксели с аномальной хромой
+    не перекрашиваем, а заменяем сильно размытой версией — пятно превращается
+    в ровную тень, а силуэт и складки рядом не страдают.
+    """
+    import cv2
+    a = np.asarray(img, np.float32)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]
+    ex = np.maximum(np.maximum(b - r, g - r) - thr, 0.0)
+    mask = (ex > 4).astype(np.float32)
+    if mask.sum() < 50:
+        return img
+    mask = cv2.dilate(mask, np.ones((9, 9), np.uint8))
+    mask = cv2.GaussianBlur(mask, (0, 0), 4)[..., None]
+    blur = cv2.GaussianBlur(np.ascontiguousarray(a[..., :3]), (0, 0), sigma)
+    rgb = a[..., :3] * (1 - mask) + blur * mask
+    out = a.copy()
+    out[..., :3] = rgb
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGBA")
+
+
+def tighten(img: Image.Image, erode: int = 1, min_area: int = 3000,
+            feather: float = 0.8) -> Image.Image:
+    """Убрать «ободок» хромакея и мусорные островки фона.
+
+    Кромка после хромакея полупрозрачная и подкрашена цветом фона — на светлом
+    фоне это читается синей каймой вокруг джинсов. Поэтому альфу поджимаем на
+    пиксель-два (эрозия) и снова чуть размываем, чтобы край остался гладким, а
+    цвет под кромкой берём из самого силуэта.
+    """
+    import cv2
+    a = np.asarray(img)
+    alpha = a[..., 3].astype(np.uint8)
+    # мусор: мелкие островки фона, оставшиеся после порога
+    n, lab, stats, _ = cv2.connectedComponentsWithStats((alpha > 40).astype(np.uint8), 8)
+    clean = np.zeros_like(alpha)
+    for i in range(1, n):
+        if stats[i, cv2.CC_STAT_AREA] >= min_area:
+            clean[lab == i] = alpha[lab == i]
+    if erode > 0:
+        k = np.ones((2 * erode + 1, 2 * erode + 1), np.uint8)
+        core = cv2.erode((clean > 128).astype(np.uint8), k)
+        core = cv2.GaussianBlur(core * 255, (0, 0), feather)
+        # альфа не может стать шире исходной
+        clean = np.minimum(clean, core)
+    out = a.copy()
+    out[..., 3] = clean
+    # цвет под кромкой: растягиваем цвета силуэта наружу, чтобы не просвечивал фон
+    mask = (clean > 8).astype(np.uint8)
+    fixed = cv2.inpaint(np.ascontiguousarray(a[..., :3]),
+                        (1 - mask) * 0, 3, cv2.INPAINT_TELEA)
+    out[..., :3] = np.where(mask[..., None] > 0, a[..., :3], fixed)
+    return Image.fromarray(out, "RGBA")
 
 
 def trim(img: Image.Image, pad: int = 6) -> Image.Image:

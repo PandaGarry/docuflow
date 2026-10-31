@@ -51,7 +51,10 @@ FPS = 24
 
 
 def cut(name: str) -> Image.Image:
-    return cutout.key_green(Image.open(POSES / f"{name}.png").convert("RGB"))
+    raw = cutout.key_green(Image.open(POSES / f"{name}.png").convert("RGB"))
+    raw = cutout.kill_blue_rim(raw)
+    raw = cutout.flatten_bad_patch(raw)
+    return cutout.tighten(raw)
 
 
 def body_box(img: Image.Image) -> tuple[int, int, int, int]:
