@@ -27,24 +27,52 @@ import poselib as pl
 
 ROOT = HERE.parents[2]
 
+# Тайминг и скорость больше НЕ задаются «на глаз».
+#
+# Скорость земли обязана совпадать со скоростью ног, иначе персонаж
+# «едет на скутере»: стопа стоит на месте, а пол под ней уезжает. Поэтому:
+#   скорость = длина шага / длительность полуцикла,
+# где длина шага берётся из самих кадров (расстояние между стопами в контакте,
+# в долях роста), а длительность — из таблицы тайминга.
+#
+# `timing` — сколько кадров держится каждая фаза. Держим по-мультяшному:
+# контакт дольше (вес и удар), пронос короче (он быстрый).
 CYCLES = {
     "walk": {
         "keys": ["walk-contact", "walk-down", "walk-passing", "walk-up",
                  "walk-contact-R", "walk-down-R", "walk-passing-R", "walk-up-R"],
         "fps": 12,
-        "speed": 26.0,      # px/кадр прокрутки фона
-        "lift": {},
+        "timing": {"contact": 2, "down": 2, "passing": 1, "up": 1},
+        "step": 0.26,        # длина шага из замеров кадров, в долях роста
+        "bob": {"contact": 0.0, "down": -8.0, "passing": 4.0, "up": 6.0},
     },
     "run": {
         "keys": ["run-contact", "run-down", "run-passing",
                  "run-contact-R", "run-down-R", "run-passing-R"],
-        "fps": 14,
-        "speed": 64.0,
-        # В беге фаза проноса — это полёт, обе ноги над землёй. Без подъёма
-        # фигура «приклеена» к полу и бег читается как быстрый шаг.
-        "lift": {"run-passing": 42, "run-passing-R": 42},
+        "fps": 12,
+        "timing": {"contact": 2, "down": 1, "passing": 2},
+        "step": 0.40,
+        # в беге фаза проноса — это полёт: тело выше всего, тень отрывается
+        "bob": {"contact": 0.0, "down": -10.0, "passing": 26.0},
     },
 }
+
+
+def phase_of(key: str) -> str:
+    """«run-contact-R» → «contact». Нужно, чтобы тайминг не дублировать."""
+    base = key.lower().split("-")
+    for ph in ("contact", "down", "passing", "up"):
+        if ph in base:
+            return ph
+    return base[-1]
+
+
+def timeline(spec: dict) -> list[str]:
+    """Развернуть фазы в покадровый список с учётом держаний."""
+    out: list[str] = []
+    for key in spec["keys"]:
+        out += [key] * spec["timing"].get(phase_of(key), 1)
+    return out
 
 W, H = 720, 900          # кадр 4:5, под вертикаль 9:16 обрежем в монтаже
 GROUND = H - 130
@@ -58,7 +86,8 @@ def ground(fig: Image.Image, x_center: float, y_ground: float) -> tuple[Image.Im
 
 def compose(frames: list[pl.Frame], fps: int, speed: float,
             lift: dict | None = None, keys: list[str] | None = None,
-            foot_lock: bool = False, stride: float = 0.34) -> list[np.ndarray]:
+            foot_lock: bool = False, stride: float = 0.34,
+            per_frame=None) -> list[np.ndarray]:
     """Кадр за кадром.
 
     `foot_lock` — попытка «запереть» опорную стопу. По умолчанию ВЫКЛЮЧЕНО:
@@ -68,12 +97,21 @@ def compose(frames: list[pl.Frame], fps: int, speed: float,
     (`body_cx`) выглядит ровно: корпус стоит, фон едет.
     """
     lift = lift or {}
-    keys = keys or [""] * len(frames)
-    master = frames[0]
-    # один масштаб на весь клип
-    scale = BODY_H / max(f.anchor.get("height_px", f.img.height) for f in frames)
+    by_key = {f.key.split(":")[-1]: f for f in frames}
+    keys = keys or [list(by_key)[0]] * len(frames)
+    # Масштаб ПО КАДРУ, а не один на клип.
+    #
+    # Кадры нарезаны с листов и нарисованы разной высоты (540 и 552 px при
+    # одном персонаже). При общей шкале это даёт «дыхание» размера: фигура на
+    # 2 % раздувается и сдувается между фазами — со стороны выглядит как
+    # пульсация, а не как бег.
+    # Нормировка по ширине головы не годится: в фазе «down» рука перекрывает
+    # голову, и замер даёт +16 %. Поэтому приводим каждый кадр к одному росту
+    # на экране; покачивание добавляет отдельная кривая `bob`.
+    base_scale = BODY_H / max(f.anchor.get("height_px", f.img.height) for f in frames)
     out = []
-    for i, (fr, key) in enumerate(zip(frames, keys)):
+    for i, key in enumerate(keys):
+        fr = by_key.get(key) or by_key[list(by_key)[0]]
         canvas = Image.new("RGB", (W, H), (236, 234, 229))
         d = ImageDraw.Draw(canvas)
         # пол и «полосы» — чтобы читалась скорость
@@ -85,14 +123,17 @@ def compose(frames: list[pl.Frame], fps: int, speed: float,
                    fill=(196, 191, 182), width=4)
         # персонаж
         img = fr.img
+        scale = BODY_H / fr.anchor.get("height_px", fr.img.height)
         w, h = int(img.width * scale), int(img.height * scale)
         small = img.resize((w, h), Image.LANCZOS)
         # ставим по центру корпуса: взмах руки и вынос ноги не сдвигают
         # персонажа в кадре (раньше центрировали по стопам — «плавало»)
         foot_y = fr.anchor.get("foot_y", img.height) * scale
         cx = W * 0.42
-        rise = lift.get(key, 0) * scale / (BODY_H / 700)
-        n = len(frames)
+        rise = 0.0
+        if per_frame is not None:
+            rise = per_frame[i] * scale / (BODY_H / 700)
+        n = len(keys)
         if foot_lock and fr.anchor.get("plant_cx") is not None:
             half = max(n // 2, 1)
             t = i % half                       # позиция внутри половины цикла
@@ -130,15 +171,23 @@ def main(char_key: str, cycle: str, out: Path | None = None) -> Path:
         if fr is None:
             raise SystemExit(f"нет кадра {k}")
         frames.append(fr)
-    imgs = compose(frames, spec["fps"], spec["speed"], spec.get("lift"),
-                   spec["keys"])
-    # два круга подряд, чтобы видеть стык
+
+    # покадровая лента: фаза повторяется столько раз, сколько задано в тайминге
+    seq = timeline(spec)
+    half = len(seq) // 2
+    # скорость земли: за полуцикл пол должен уехать ровно на длину шага —
+    # иначе стопа скользит по полу
+    speed = spec["step"] * BODY_H / max(half, 1)
+    imgs = compose(frames, spec["fps"], speed, spec.get("lift"), seq,
+                   per_frame=[spec["bob"].get(phase_of(k), 0.0) for k in seq])
     imgs = imgs * 2
     out = out or (ROOT / "studio" / "out" / f"{char_key}-{cycle}.mp4")
     w = imageio.get_writer(out, fps=spec["fps"], quality=8, macro_block_size=8)
     for im in imgs:
         w.append_data(im)
     w.close()
+    print(f"{out}  кадров {len(imgs)}, полуцикл {half}, "
+          f"земля {speed * spec['fps']:.0f} px/с")
     return out
 
 
