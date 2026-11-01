@@ -1,0 +1,452 @@
+{
+  "version": 1,
+  "comment": "Эмоции как параметры лица. Отрисовываются процедурно (face.py + puppet.py), поэтому смена выражения НЕ требует новой генерации арта. Диапазоны: большинство -1..1, «открытость» 0..1.",
+  "params": {
+    "brow_raise": {
+      "min": -1,
+      "max": 1,
+      "desc": "высота бровей: -1 нахмурены, +1 вздёрнуты"
+    },
+    "brow_angle": {
+      "min": -1,
+      "max": 1,
+      "desc": "наклон: +1 внутренние концы вверх (грусть/мольба), -1 вниз (злость)"
+    },
+    "brow_pinch": {
+      "min": 0,
+      "max": 1,
+      "desc": "сведены к центру"
+    },
+    "eye_open": {
+      "min": 0,
+      "max": 1.4,
+      "desc": "1 = норма, 0 = закрыты"
+    },
+    "squint": {
+      "min": 0,
+      "max": 1,
+      "desc": "прищур от удовольствия"
+    },
+    "lid": {
+      "min": 0,
+      "max": 1,
+      "desc": "верхнее веко опущено (усталость/скепсис)"
+    },
+    "pupil": {
+      "min": 0.6,
+      "max": 1.4,
+      "desc": "размер зрачка"
+    },
+    "look_x": {
+      "min": -1,
+      "max": 1,
+      "desc": "куда смотрит по горизонтали"
+    },
+    "look_y": {
+      "min": -1,
+      "max": 1,
+      "desc": "куда смотрит по вертикали"
+    },
+    "mouth_open": {
+      "min": 0,
+      "max": 1,
+      "desc": "раскрытие рта"
+    },
+    "mouth_wide": {
+      "min": -1,
+      "max": 1,
+      "desc": "ширина рта: -1 поджат, +1 широкий"
+    },
+    "smile": {
+      "min": -1,
+      "max": 1,
+      "desc": "уголки: +1 вверх, -1 вниз"
+    },
+    "mouth_skew": {
+      "min": -1,
+      "max": 1,
+      "desc": "асимметрия (усмешка)"
+    },
+    "teeth": {
+      "min": 0,
+      "max": 1,
+      "desc": "видны зубы"
+    },
+    "tongue": {
+      "min": 0,
+      "max": 1,
+      "desc": "высунутый язык"
+    },
+    "blush": {
+      "min": 0,
+      "max": 1,
+      "desc": "румянец"
+    },
+    "sweat": {
+      "min": 0,
+      "max": 1,
+      "desc": "капля пота"
+    },
+    "tears": {
+      "min": 0,
+      "max": 1,
+      "desc": "слёзы"
+    },
+    "nose_wrinkle": {
+      "min": 0,
+      "max": 1,
+      "desc": "сморщенный нос (брезгливость)"
+    },
+    "cheek_raise": {
+      "min": 0,
+      "max": 1,
+      "desc": "щёки подняты (улыбка Дюшена)"
+    }
+  },
+  "expressions": {
+    "neutral": {
+      "label": "Нейтрально",
+      "face": {}
+    },
+    "calm": {
+      "label": "Спокойствие",
+      "face": {
+        "smile": 0.15,
+        "lid": 0.12,
+        "brow_raise": 0.05
+      }
+    },
+    "joy": {
+      "label": "Радость",
+      "face": {
+        "smile": 0.85,
+        "mouth_open": 0.28,
+        "eye_open": 0.95,
+        "squint": 0.35,
+        "brow_raise": 0.45,
+        "teeth": 0.5,
+        "cheek_raise": 0.4,
+        "blush": 0.15
+      }
+    },
+    "grin": {
+      "label": "Ухмылка до ушей",
+      "face": {
+        "smile": 1.0,
+        "mouth_wide": 0.55,
+        "teeth": 0.8,
+        "squint": 0.25,
+        "brow_raise": 0.3
+      }
+    },
+    "laugh": {
+      "label": "Смеётся",
+      "face": {
+        "smile": 1.0,
+        "mouth_open": 0.72,
+        "mouth_wide": 0.4,
+        "eye_open": 0.0,
+        "squint": 0.9,
+        "teeth": 0.6,
+        "brow_raise": 0.5,
+        "blush": 0.2
+      }
+    },
+    "smirk": {
+      "label": "Ухмылка (одна бровь)",
+      "face": {
+        "smile": 0.55,
+        "mouth_skew": 0.75,
+        "brow_raise": 0.35,
+        "squint": 0.3,
+        "look_x": 0.15
+      }
+    },
+    "surprise": {
+      "label": "Удивление",
+      "face": {
+        "brow_raise": 1.0,
+        "eye_open": 1.3,
+        "pupil": 1.1,
+        "mouth_open": 0.5,
+        "mouth_wide": -0.3,
+        "smile": 0.05
+      }
+    },
+    "shock": {
+      "label": "Шок",
+      "face": {
+        "brow_raise": 1.0,
+        "eye_open": 1.4,
+        "pupil": 0.7,
+        "mouth_open": 0.85,
+        "mouth_wide": -0.5,
+        "smile": -0.2,
+        "sweat": 0.6
+      }
+    },
+    "fear": {
+      "label": "Испуг",
+      "face": {
+        "brow_raise": 0.7,
+        "brow_angle": 0.6,
+        "eye_open": 1.3,
+        "pupil": 0.65,
+        "mouth_open": 0.45,
+        "mouth_wide": 0.35,
+        "smile": -0.5,
+        "sweat": 0.4
+      }
+    },
+    "anger": {
+      "label": "Злость",
+      "face": {
+        "brow_raise": -0.8,
+        "brow_angle": -0.9,
+        "brow_pinch": 0.8,
+        "eye_open": 0.85,
+        "mouth_wide": -0.35,
+        "smile": -0.7,
+        "teeth": 0.35,
+        "blush": 0.25
+      }
+    },
+    "annoyed": {
+      "label": "Раздражение",
+      "face": {
+        "brow_raise": -0.35,
+        "brow_angle": -0.5,
+        "brow_pinch": 0.4,
+        "lid": 0.45,
+        "mouth_wide": -0.3,
+        "smile": -0.3,
+        "look_x": -0.2
+      }
+    },
+    "disgust": {
+      "label": "Брезгливость",
+      "face": {
+        "brow_raise": -0.4,
+        "brow_pinch": 0.5,
+        "lid": 0.35,
+        "nose_wrinkle": 0.8,
+        "mouth_wide": -0.4,
+        "smile": -0.45,
+        "mouth_skew": 0.3
+      }
+    },
+    "sad": {
+      "label": "Грусть",
+      "face": {
+        "brow_angle": 0.75,
+        "brow_raise": 0.25,
+        "eye_open": 0.8,
+        "lid": 0.3,
+        "smile": -0.55,
+        "look_y": 0.45,
+        "mouth_wide": -0.2
+      }
+    },
+    "cry": {
+      "label": "Плачет",
+      "face": {
+        "brow_angle": 0.9,
+        "brow_raise": 0.3,
+        "eye_open": 0.45,
+        "smile": -0.7,
+        "mouth_open": 0.35,
+        "mouth_wide": 0.1,
+        "tears": 1.0,
+        "blush": 0.35
+      }
+    },
+    "think": {
+      "label": "Думает",
+      "face": {
+        "brow_raise": 0.3,
+        "brow_pinch": 0.25,
+        "look_x": 0.5,
+        "look_y": -0.4,
+        "mouth_wide": -0.2,
+        "mouth_skew": 0.25,
+        "lid": 0.15
+      }
+    },
+    "confused": {
+      "label": "Не понимает",
+      "face": {
+        "brow_raise": 0.55,
+        "brow_angle": -0.45,
+        "brow_pinch": 0.3,
+        "eye_open": 1.1,
+        "mouth_skew": -0.5,
+        "mouth_wide": -0.3,
+        "look_x": -0.3
+      }
+    },
+    "tired": {
+      "label": "Устал",
+      "face": {
+        "lid": 0.7,
+        "eye_open": 0.7,
+        "brow_angle": 0.4,
+        "smile": -0.15,
+        "look_y": 0.2
+      }
+    },
+    "sleepy": {
+      "label": "Засыпает",
+      "face": {
+        "eye_open": 0.15,
+        "lid": 1.0,
+        "mouth_open": 0.18,
+        "brow_raise": -0.2,
+        "look_y": 0.5
+      }
+    },
+    "deadpan": {
+      "label": "Каменное лицо",
+      "face": {
+        "lid": 0.55,
+        "smile": -0.05,
+        "brow_raise": -0.1,
+        "mouth_wide": -0.25
+      }
+    },
+    "proud": {
+      "label": "Гордость",
+      "face": {
+        "brow_raise": 0.4,
+        "smile": 0.45,
+        "lid": 0.25,
+        "look_y": -0.25,
+        "mouth_wide": 0.1
+      }
+    },
+    "guilty": {
+      "label": "Виноват",
+      "face": {
+        "brow_angle": 0.65,
+        "brow_raise": 0.35,
+        "look_y": 0.6,
+        "smile": -0.25,
+        "mouth_wide": -0.35,
+        "sweat": 0.35
+      }
+    },
+    "panic": {
+      "label": "Паника",
+      "face": {
+        "brow_raise": 0.85,
+        "brow_angle": 0.3,
+        "eye_open": 1.35,
+        "pupil": 0.65,
+        "mouth_open": 0.7,
+        "mouth_wide": 0.45,
+        "smile": -0.4,
+        "sweat": 0.8
+      }
+    },
+    "cringe": {
+      "label": "Кринж",
+      "face": {
+        "brow_raise": -0.3,
+        "brow_pinch": 0.55,
+        "lid": 0.5,
+        "mouth_skew": 0.45,
+        "smile": -0.35,
+        "eye_open": 0.85
+      }
+    },
+    "skeptic": {
+      "label": "Скепсис",
+      "face": {
+        "brow_raise": 0.4,
+        "brow_angle": -0.35,
+        "lid": 0.4,
+        "mouth_skew": 0.3,
+        "smile": -0.1,
+        "look_x": 0.2
+      }
+    },
+    "focused": {
+      "label": "Сосредоточен",
+      "face": {
+        "brow_pinch": 0.5,
+        "lid": 0.2,
+        "mouth_wide": -0.3,
+        "smile": 0.0,
+        "brow_raise": -0.2
+      }
+    },
+    "talk_a": {
+      "label": "Говорит «а»",
+      "face": {
+        "mouth_open": 0.75,
+        "mouth_wide": 0.3,
+        "teeth": 0.35,
+        "brow_raise": 0.15
+      }
+    },
+    "talk_o": {
+      "label": "Говорит «о»",
+      "face": {
+        "mouth_open": 0.6,
+        "mouth_wide": -0.4,
+        "brow_raise": 0.1
+      }
+    },
+    "blink": {
+      "label": "Моргает",
+      "face": {
+        "eye_open": 0.0,
+        "smile": 0.08
+      }
+    }
+  },
+  "visemes": {
+    "comment": "Положение рта для липсинка; переопределяют параметры рта в кадре",
+    "M": {
+      "mouth_open": 0.0,
+      "mouth_wide": -0.1,
+      "smile": 0.05
+    },
+    "A": {
+      "mouth_open": 0.75,
+      "mouth_wide": 0.3,
+      "teeth": 0.35
+    },
+    "O": {
+      "mouth_open": 0.6,
+      "mouth_wide": -0.4
+    },
+    "U": {
+      "mouth_open": 0.35,
+      "mouth_wide": -0.55
+    },
+    "E": {
+      "mouth_open": 0.45,
+      "mouth_wide": 0.45,
+      "teeth": 0.3
+    },
+    "I": {
+      "mouth_open": 0.3,
+      "mouth_wide": 0.55,
+      "teeth": 0.55
+    },
+    "F": {
+      "mouth_open": 0.1,
+      "mouth_wide": -0.2,
+      "teeth": 0.15
+    },
+    "L": {
+      "mouth_open": 0.25,
+      "mouth_wide": 0.1,
+      "tongue": 0.25
+    },
+    "C": {
+      "mouth_open": 0.18,
+      "mouth_wide": 0.0
+    }
+  }
+}

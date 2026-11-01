@@ -1,0 +1,19 @@
+{
+ "_note": "Костюмы папы. Каждый костюм — своя папка кадров, набор собирается по потребности серии. Канон (без костюма) — одежда ниже из characters.py",
+ "casual": {
+  "prompt": "light warm-gray crewneck sweatshirt with raglan sleeve seams and ribbed cuffs and hem, dark navy straight-leg jeans, dark brown leather boots",
+  "palette": {"sweater": "#c9c7c2", "jeans": "#2b3242", "boots": "#4a3527"}
+ },
+ "shirt": {
+  "prompt": "blue-and-white checked flannel shirt with rolled sleeves, dark navy straight-leg jeans, dark brown leather boots",
+  "palette": {"shirt": "#5b7aa8", "jeans": "#2b3242", "boots": "#4a3527"}
+ },
+ "jumper": {
+  "prompt": "dark charcoal knitted sweater with a crew neck, dark grey chinos, dark brown leather boots",
+  "palette": {"sweater": "#3c3f45", "chinos": "#6a675f", "boots": "#4a3527"}
+ },
+ "weekend": {
+  "prompt": "olive green hooded sweatshirt with a kangaroo pocket, sand-beige cargo trousers, dark brown leather boots",
+  "palette": {"hoodie": "#5c6647", "trousers": "#b7a68a", "boots": "#4a3527"}
+ }
+}
