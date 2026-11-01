@@ -840,6 +840,45 @@ def cmd_verify(args):
 # --------------------------------------------------------- консистентность
 
 
+def cmd_review(args):
+    """Выгружает канон героев в CSV для согласования (Google Sheets / Excel).
+
+    Формат плоский: раздел, поле, значение, статус, комментарий. Ничего не
+    выдумывает — берёт identity.json как есть, чтобы таблица не разъехалась с
+    кодом.
+    """
+    import csv
+    canon = identity()
+    series = canon.get("series") or {}
+    rows = [
+        ("Серия", "Название", series.get("title") or "—", "рабочее", "нужно финальное"),
+        ("Серия", "Премиса", series.get("premise") or "—", "обсуждается", ""),
+        ("Серия", "Границы мира", "квартира и двор", "вопрос", "входят ли работа и школа"),
+        ("Серия", "Двигатель серии", (canon.get("engine") or {}).get("formula", ""), "предложено", ""),
+    ]
+    for cid in ("dad", "mom", "son"):
+        ch = canon["characters"][cid]
+        pres = ch.get("presentation") or {}
+        rows += [
+            (ch["label"], "Роль", ch.get("role", ""), "в каноне", ""),
+            (ch["label"], "Короткая роль", pres.get("role_short", ""), "предложено", ""),
+            (ch["label"], "Хочет", pres.get("want", ""), "предложено", ""),
+            (ch["label"], "Мешает", pres.get("obstacle", ""), "предложено", ""),
+            (ch["label"], "Тик", pres.get("tick", ""), "предложено", ""),
+            (ch["label"], "Фраза", pres.get("quote", ""), "предложено", ""),
+            (ch["label"], "Цвет", pres.get("color", ""), "предложено", ""),
+            (ch["label"], "Рост", f"{ch.get('height_heads')} головы", "зафиксировано",
+             "менять нельзя"),
+        ]
+    out = args.out
+    os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
+    with open(out, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Раздел", "Поле", "Значение", "Статус", "Ваш комментарий"])
+        w.writerows(rows)
+    print(f"{out}  ({len(rows)} строк)")
+
+
 def cmd_check(args):
     if not campaign().get("posts"):
         print("  skip кампания не собрана (нет campaign-*.json) — проверяю только канон")
@@ -955,6 +994,10 @@ def main(argv=None):
     p = sub.add_parser("verify", help="проверить размеры, вес и безопасные зоны")
     p.add_argument("files", nargs="+")
     p.set_defaults(func=cmd_verify)
+
+    p = sub.add_parser("review", help="выгрузить канон героев в CSV для согласования")
+    p.add_argument("--out", default="studio/promo/canon/review-characters.csv")
+    p.set_defaults(func=cmd_review)
 
     p = sub.add_parser("check", help="проверить данные кампании и канона")
     p.set_defaults(func=cmd_check)
