@@ -68,7 +68,7 @@ QA, добавляется в `cutouts.json`. Порядок именно так
 # 1. плата: фон + герои из мастеров (общий случай)
 .venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
     --cast dad:hips,mom:stern,son:point \
-    --bg studio/promo/plates/room-living-empty.png \
+    --bg <плата.png> \
     --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
 
 # 2. плоская студия (без фона-файла): бумага + шалфейная панель
@@ -98,7 +98,7 @@ QA, добавляется в `cutouts.json`. Порядок именно так
 `verify`:
 
 ```bash
-studio/promo/batch1.sh
+.venv/bin/python studio/engine/promo_scene.py cards
 ```
 
 Кадр собирается детерминированно: один и тот же мастер + одни и те же параметры

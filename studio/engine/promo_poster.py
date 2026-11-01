@@ -215,24 +215,40 @@ def head_disc(plate, key, diameter, cx, cy, ring=None, ring_w=None, bg=PAPER, zo
                                       width=ring_w or max(3, d // 40))
 
 
+def brand_text():
+    """Подпись бренда. Пока название сериала не выбрано — подписи нет."""
+    from promo_scene import identity
+    series = identity().get("series") or {}
+    title = series.get("brand_line") or series.get("title")
+    return title or ""
+
+
 def wordmark(plate, x, y, color=INK, size=None, tracking=None):
+    text = brand_text()
+    if not text:
+        return
     H = plate.height
     size = size or H * 0.017
     f = fnt(size)
-    tracked(ImageDraw.Draw(plate), (x, y), "«ПЕРЕЕЗД» · С1", f, color,
+    tracked(ImageDraw.Draw(plate), (x, y), text, f, color,
             tracking if tracking is not None else size * 0.28)
 
 
 # ------------------------------------------------------------------ режимы
 def m_announce(W=1080, H=1350):
-    """Анонс: горчичный плакат, крупное имя, трио по нижнему краю."""
+    """Анонс: горчичный плакат, крупное имя, трио по нижнему краю.
+
+    Текст заголовка берётся из canon/identity.json (series.title); пока название
+    не выбрано, режим не используется.
+    """
+    title = brand_text() or "НАЗВАНИЕ"
     plate = ground(W, H, MUSTARD, "#E0A63C")
     d = ImageDraw.Draw(plate)
     k = fnt(H * 0.023)
     tracked(d, (W * 0.09, H * 0.095), "МУЛЬТСЕРИАЛ", k, INK, H * 0.006)
-    f = fit("ПЕРЕЕЗД", W * 0.82, H * 0.155)
-    tw = tracked(d, (W * 0.088, H * 0.245), "ПЕРЕЕЗД", f, INK, H * 0.004)
-    remember("ПЕРЕЕЗД", W * 0.088, H * 0.245, tw, f.size)
+    f = fit(title, W * 0.82, H * 0.155)
+    tw = tracked(d, (W * 0.088, H * 0.245), title, f, INK, H * 0.004)
+    remember(title, W * 0.088, H * 0.245, tw, f.size)
     d.rectangle([W * 0.09, H * 0.268, W * 0.09 + W * 0.20, H * 0.268 + H * 0.010], fill=CORAL)
     sub = fnt(H * 0.026)
     d.text((W * 0.09, H * 0.322), "12 серий по 40 секунд", font=sub, fill=INK)
@@ -297,8 +313,9 @@ def m_portrait(W=1080, H=1080, key="dad:front", name="ПАПА", tag="он вс�
     tw = tracked(d, (W / 2, H * 0.845), name, f, INK, H * 0.012, anchor="ms")
     remember(name, W / 2 - tw / 2, H * 0.845, tw, f.size)
     tracked(d, (W / 2, H * 0.895), tag.upper(), fnt(H * 0.026), MUTED, H * 0.004, anchor="ms")
-    tracked(d, (W / 2, H * 0.955), "«ПЕРЕЕЗД» · С1", fnt(H * 0.019), "#B08D7C", H * 0.005,
-            anchor="ms")
+    if brand_text():
+        tracked(d, (W / 2, H * 0.955), brand_text(), fnt(H * 0.019), "#B08D7C", H * 0.005,
+                anchor="ms")
     return plate
 
 
@@ -337,7 +354,9 @@ def m_meme(W=1080, H=1080, key="dad:shrug", line="«ТУТ ВСЁ ВЛЕЗЕТ»
     plate = ground(W, H, MUSTARD, "#E3A63B")
     hero(plate, key, h_frac=0.74, base_frac=1.0, x_frac=0.66, align="center")
     d = ImageDraw.Draw(plate)
-    tracked(d, (W * 0.075, H * 0.10), "ПЕРЕЕЗД · МЕМ", fnt(H * 0.02), "#7A4E2D", H * 0.005)
+    if brand_text():
+        tracked(d, (W * 0.075, H * 0.10), brand_text().upper() + " · МЕМ", fnt(H * 0.02),
+                "#7A4E2D", H * 0.005)
     f = fit(line, W * 0.85, H * 0.115)
     d.text((W * 0.072, H * 0.235), line, font=f, fill=INK, anchor="ls")
     remember(line, W * 0.072, H * 0.235, f.getlength(line), f.size)

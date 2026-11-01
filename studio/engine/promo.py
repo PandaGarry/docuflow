@@ -77,6 +77,9 @@ def formats():
 
 
 def campaign():
+    """Календарь кампании. Пока премиса и стиль не выбраны, файла может не быть."""
+    if not os.path.exists(CAMPAIGN):
+        return {}
     return load(CAMPAIGN)
 
 
@@ -432,13 +435,17 @@ def cmd_prompt(args):
 
 
 def cmd_briefs(args):
+    if not campaign().get("posts"):
+        print("кампания ещё не собрана: сначала название и стиль "
+              "(docs/40-CHARACTERS.md), потом календарь")
+        return 1
     os.makedirs(BRIEFS, exist_ok=True)
     canon = identity()
     fmts = formats()["formats"]
     camp = campaign()
     book = cutout_book()
     made = 0
-    for post in camp["posts"]:
+    for post in camp.get("posts", []):
         spec = fmts[post["format"]]
         cast = post.get("cast") or []
         copy = post.get("copy", {})
@@ -530,11 +537,15 @@ def cmd_briefs(args):
 
 
 def cmd_copy(args):
-    os.makedirs(COPY, exist_ok=True)
     camp = campaign()
-    limits = camp.get("channel_limits", {})
+    if not camp.get("posts"):
+        print("кампания ещё не собрана: сначала название и стиль "
+              "(docs/40-CHARACTERS.md)")
+        return 1
+    os.makedirs(COPY, exist_ok=True)
+    limits = camp.get("channel_limits", {}) or {}
     groups = {}
-    for post in camp["posts"]:
+    for post in camp.get("posts", []):
         if args.channel != "all" and post["channel"] != args.channel:
             continue
         groups.setdefault(post["week"], []).append(post)
@@ -830,10 +841,12 @@ def cmd_verify(args):
 
 
 def cmd_check(args):
+    if not campaign().get("posts"):
+        print("  skip кампания не собрана (нет campaign-*.json) — проверяю только канон")
     canon = identity()
     fmts = formats()["formats"]
     camp = campaign()
-    limits = camp.get("channel_limits", {})
+    limits = camp.get("channel_limits", {}) or {}
     problems = 0
 
     def bad(msg):
@@ -842,7 +855,7 @@ def cmd_check(args):
         print(f"  FAIL {msg}")
 
     ids = set()
-    for post in camp["posts"]:
+    for post in camp.get("posts", []):
         pid = post.get("id", "?")
         if pid in ids:
             bad(f"{pid}: повтор id")
@@ -871,8 +884,10 @@ def cmd_check(args):
             if word in (copy.get("headline", "") + body).lower():
                 bad(f"{pid}: канцелярит/штамп «{word}» — см. docs/32-TONE-AND-COPY.md")
 
-    weeks = sorted({p["week"] for p in camp["posts"]})
-    print(f"  ok   постов {len(camp['posts'])}, недели {weeks[0]:+d}…{weeks[-1]:+d}")
+    posts = camp.get("posts", [])
+    if posts:
+        weeks = sorted({p["week"] for p in posts})
+        print(f"  ok   постов {len(posts)}, недели {weeks[0]:+d}…{weeks[-1]:+d}")
     print(f"  ok   героев в замке {len(canon['characters'])}, форматов {len(fmts)}")
     for path in ("promo/refs/identity-sheet.png", "promo/refs/family-lineup.png"):
         if not os.path.exists(os.path.join(STUDIO, path)):
@@ -883,10 +898,14 @@ def cmd_check(args):
 
 def cmd_plan(args):
     camp = campaign()
+    if not camp.get("posts"):
+        print("кампания ещё не собрана: сначала название и стиль "
+              "(docs/40-CHARACTERS.md)")
+        return 1
     print(f"# {camp['meta']['title']}\n")
     print("| id | нед. | день | канал | формат | герои | заголовок | статус |")
     print("|----|------|------|-------|--------|-------|-----------|--------|")
-    for post in sorted(camp["posts"], key=lambda p: p["id"]):
+    for post in sorted(camp.get("posts", []), key=lambda p: p["id"]):
         cast = "+".join(c[0].upper() for c in post["cast"])
         print(f"| {post['id']} | {post['week']:+d} | {post.get('day', '—')} | "
               f"{post.get('channel_label', post['channel'])} | {post['format']} | {cast} | "
@@ -924,7 +943,7 @@ def main(argv=None):
     p.add_argument("--kicker", default="")
     p.add_argument("--title", default="")
     p.add_argument("--sub", default="")
-    p.add_argument("--brand", default="«ПЕРЕЕЗД» · С1")
+    p.add_argument("--brand", default="")
     p.add_argument("--no-brand", action="store_true")
     p.add_argument("--anchor", default="bottom", choices=["bottom", "top"])
     p.add_argument("--safe", type=int, default=None)

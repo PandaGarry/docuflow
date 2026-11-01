@@ -213,7 +213,8 @@ _Как выглядит промо-кадр: слои, форматы, безо
 канона, поэтому в круге оказывается ровно голова, а не «примерно верх картинки».
 
 Зачем это нужно: пока серии не готовы, сообщество заполняется героями и тоном, а
-не анонсами. План — `docs/36-WARMUP.md`.
+не анонсами. Пока название и стиль не выбраны, плакаты не собираем: сначала
+`docs/40-CHARACTERS.md`.
 
 ## Как собрать креатив
 
@@ -225,7 +226,7 @@ _Как выглядит промо-кадр: слои, форматы, безо
 # 2. плата: фон + герои из мастеров (никакой генерации персонажей)
 .venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
     --cast dad:hips,mom:stern,son:point \
-    --bg studio/promo/plates/room-living-empty.png \
+    --bg <плата.png> \
     --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
 # 3. типографика поверх арта
 .venv/bin/python studio/engine/promo.py compose studio/promo/renders/P01-art.png \

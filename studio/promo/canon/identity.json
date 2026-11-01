@@ -2,13 +2,14 @@
   "schema": 1,
   "comment": "ЗАМОК ИДЕНТИЧНОСТИ. Единственный источник текста о героях для промо-генераций. Менять одежду можно — менять пропорции, лицо и постоянные элементы нельзя. Правки здесь автоматически попадают во все промпты и брифы (studio/engine/promo.py).",
   "series": {
-    "title": "ПЕРЕЕЗД",
-    "title_full": "«Переезд» — семейный мультсериал",
+    "title": null,
+    "title_full": null,
     "season": 1,
-    "tagline": "Папа всё продумал. Дважды.",
+    "tagline": null,
     "format": "вертикальные шортсы 35–45 с, 9:16, 30 fps",
     "age": "12+",
-    "brand_line": "«ПЕРЕЕЗД» · СЕЗОН 1"
+    "brand_line": null,
+    "status": "название не выбрано: сначала стиль и премisa, см. docs/40-CHARACTERS.md"
   },
   "style_block": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline, soft rim light, warm skin with subtle subsurface scattering on cheeks and ears.",
   "light_block": "Lighting: soft key light from upper-left, gentle rim light 20–30 %, soft shadow falloff, no spotlights, no lens flares, no vignette.",

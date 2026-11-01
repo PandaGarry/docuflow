@@ -142,7 +142,7 @@ def cover(img, W, H, focus=None):
     return img.crop((left, top, left + W, top + H))
 
 
-def studio_background(W, H, band="right", floor=True, band_h=0.86):
+def studio_background(W, H, band="right", floor=True, band_h=0.86, floor_line=True):
     """Фон студии: бумага + шалфейная панель, как на мастер-листах."""
     bg = Image.new("RGB", (W, H), PAPER)
     grad = Image.new("L", (1, H), 0)
@@ -164,26 +164,39 @@ def studio_background(W, H, band="right", floor=True, band_h=0.86):
         grad = grad.resize((W, H))
         warm = Image.new("RGB", (W, H), "#E7DCC8")
         bg = Image.composite(warm, bg, grad)
-        d = ImageDraw.Draw(bg)
-        d.line([0, floor_y, W, floor_y], fill="#DCCFB6", width=2)
+        if floor_line:
+            d = ImageDraw.Draw(bg)
+            d.line([0, floor_y, W, floor_y], fill="#DCCFB6", width=2)
     return bg
 
 
-def contact_shadow(plate, cx, base_y, width, strength=1.0):
-    """Мягкая тень под подошвами: эллипс с размытием, вписанный по альфе.
-
-    Раньше здесь был Image.composite — он давал видимую «плиту» с жёсткими
-    краями. Правильный способ — paste с L-маской: она и есть прозрачность.
-    """
-    w = max(60, int(width * 0.60))
-    h = max(18, int(width * 0.14))
-    pad = h  # поле вокруг эллипса: иначе размытие обрезается и даёт прямые края
+def _shadow_ellipse(plate, cx, base_y, w, h, blur, opacity, color="#3A2A20"):
+    """Один слой тени. Поле вокруг эллипса обязательно: иначе blur обрезается."""
+    w, h = max(8, int(w)), max(6, int(h))
+    pad = max(6, int(blur * 2.2))
     mask = Image.new("L", (w + pad * 2, h + pad * 2), 0)
     ImageDraw.Draw(mask).ellipse([pad, pad, pad + w - 1, pad + h - 1], fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(max(4, h // 3)))
-    mask = mask.point(lambda v: int(v * 0.42 * strength))
-    plate.paste(Image.new("RGB", mask.size, "#4A3628"),
-                (int(cx - mask.width / 2), int(base_y - mask.height * 0.55)), mask)
+    mask = mask.filter(ImageFilter.GaussianBlur(blur))
+    mask = mask.point(lambda v: int(v * opacity))
+    plate.paste(Image.new("RGB", mask.size, color),
+                (int(cx - mask.width / 2), int(base_y - h / 2 - pad)), mask)
+
+
+def contact_shadow(plate, cx, base_y, width, strength=1.0):
+    """Тень контакта, два слоя.
+
+    Одна широкая размытая тень не держит фигуру: герой «висит» над полом.
+    Нужны две — узкое плотное пятно прямо под стопами (контакт) и мягкое
+    окружение вокруг (ambient occlusion). Тогда фигура стоит, а не наклеена.
+    """
+    # 1. контакт: узко, плотно, почти без размытия
+    _shadow_ellipse(plate, cx, base_y + width * 0.012,
+                    width * 0.46, width * 0.085, max(3, width * 0.012),
+                    0.55 * strength)
+    # 2. окружение: шире, светлее, сильно размыто
+    _shadow_ellipse(plate, cx, base_y + width * 0.03,
+                    width * 0.86, width * 0.16, max(10, width * 0.05),
+                    0.22 * strength)
 
 
 def place(plate, figs, heads, base_y, dad_h, gap_frac=0.055, min_scale=0.35):
@@ -222,13 +235,13 @@ def place(plate, figs, heads, base_y, dad_h, gap_frac=0.055, min_scale=0.35):
 
 
 def build(fmt, cast, bg_path=None, band="right", focus=None, dad_frac=0.80,
-          baseline=0.90, floor=True):
+          baseline=0.90, floor=True, floor_line=True):
     spec = formats()[fmt]
     W, H = spec["w"], spec["h"]
     if bg_path:
         plate = cover(Image.open(bg_path).convert("RGB"), W, H, focus)
     else:
-        plate = studio_background(W, H, band=band, floor=floor)
+        plate = studio_background(W, H, band=band, floor=floor, floor_line=floor_line)
     figs = [(cutout(key), cutouts()[key]["char"]) for key in cast]
     heads = canon_heads()
     dad_h = H * dad_frac
@@ -300,11 +313,26 @@ def cmd_lineup(args):
 
 
 def cmd_cards(args):
-    """Три карточки героев: арт-плата под типографику, герой — из мастера."""
-    jobs = [("P02", "dad:front", "right"), ("P03", "mom:front", "left"), ("P04", "son:front", "right")]
-    for pid, key, band in jobs:
-        out = os.path.join(OUT, f"{pid}-art.png")
-        plate = build("square", [key], band=band, dad_frac=0.84, baseline=0.92, floor=False)
+    """Карточки героев: фигура стоит на полу студии, подпись внизу.
+
+    Пол обязателен: без линии горизонта и градиента фигура «летит» над бумагой,
+    даже если тень есть.
+    """
+    labels = {cid: ch["label"] for cid, ch in identity()["characters"].items()}
+    jobs = [("dad", "dad:front"), ("mom", "mom:front"), ("son", "son:front")]
+    os.makedirs(OUT, exist_ok=True)
+    for cid, key in jobs:
+        plate = build("post-4x5", [key], band="none", dad_frac=0.76, baseline=0.88,
+                      floor=True, floor_line=False)
+        d = ImageDraw.Draw(plate)
+        name = labels[cid].upper()
+        f = ImageFont.truetype(FONT, int(plate.height * 0.052))
+        d.text((plate.width * 0.085, plate.height * 0.945), name, font=f,
+               fill=INK, anchor="ls")
+        d.rectangle([plate.width * 0.085, plate.height * 0.962,
+                     plate.width * 0.085 + plate.width * 0.13,
+                     plate.height * 0.962 + plate.height * 0.006], fill="#FF6054")
+        out = os.path.join(OUT, f"card-{cid}.png")
         plate.save(out)
         print(f"{out}  ({plate.width}×{plate.height})  {key}")
 

@@ -8,13 +8,11 @@ canon/identity.json   замок идентичности: пропорции, �
 canon/formats.json    форматы площадок: размеры, safe-зоны, «мёртвые» области, шрифты
 canon/cutouts.json    кадры героев из мастеров — единственный источник героев в кадре
 plates/               пустые фоны (генерируются без людей)
-campaign-s1.json      календарь кампании и тексты постов (единственный источник)
 refs/                 сгенерировано: карточки героев, линейка семьи, лист идентичности
 briefs/               сгенерировано: бриф на каждый пост (кадры из мастеров + команда сборки)
 copies/               сгенерировано: подборки текстов по каналам
 renders/              готовые креативы: <ID>-art.png (плата) и <ID>-<формат>.png (финал)
 renders/rejected/     запись о забракованной первой партии (почему так нельзя)
-batch1.sh             сборка партии 1 одной командой (детерминированно, из мастеров)
 ```
 
 ## Быстрый старт
@@ -33,7 +31,7 @@ python3 -m venv .venv
 # 2б. плата: фон + герои из мастеров
 .venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
     --cast dad:hips,mom:stern,son:point \
-    --bg studio/promo/plates/room-living-empty.png \
+    --bg <плата.png> \
     --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
 
 # 2в. доказательство, что герой не перерисован
@@ -83,11 +81,10 @@ python3 -m venv .venv
 5. **Заголовок проверяется по safe-зонам и `ui`-прямоугольникам** площадки.
 6. **Кадр без PASS от `verify` и `proof` не публикуется.**
 
-Подробно: [`docs/31-PROMO-PLAN.md`](../../docs/31-PROMO-PLAN.md),
-[`docs/32-TONE-AND-COPY.md`](../../docs/32-TONE-AND-COPY.md),
+Подробно: [`docs/34-IDENTITY-LOCK.md`](../../docs/34-IDENTITY-LOCK.md),
 [`docs/33-PROMO-ART.md`](../../docs/33-PROMO-ART.md),
 [`docs/34-IDENTITY-LOCK.md`](../../docs/34-IDENTITY-LOCK.md),
-[`docs/35-CAMPAIGN-S1.md`](../../docs/35-CAMPAIGN-S1.md).
+[`docs/40-CHARACTERS.md`](../../docs/40-CHARACTERS.md).
 
 ## Плакаты прогрева
 
@@ -99,14 +96,5 @@ python3 -m venv .venv
 ```
 
 Режимы: `announce`, `quote`, `silhouette`, `portrait`, `faces`, `meme`. Стратегия
-и подводки — `docs/36-WARMUP.md` и `copies/warmup.md`.
+и подводки — `docs/40-CHARACTERS.md`.
 
-## Партия 1 одной командой
-
-```bash
-studio/promo/batch1.sh     # P01, P02–P04, P05, P08, P10 + proof + verify + контакт-лист
-```
-
-Скрипт ничего не генерирует: он режет мастеров, ставит фигуры на линию подошв,
-добавляет типографику и в конце печатает метрики сходства и результат `verify`.
-Контакт-лист партии: `renders/_batch-proof.png` (`promo_scene.py sheet`).

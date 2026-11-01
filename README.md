@@ -75,7 +75,7 @@ python3 -m venv .venv
 # промо: кадр из мастеров + типографика + проверка
 .venv/bin/python studio/engine/promo_scene.py list               # какие кадры есть
 .venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
-    --cast dad:hips,mom:stern,son:point --bg studio/promo/plates/room-living-empty.png \
+    --cast dad:hips,mom:stern,son:point --bg <плата.png> \
     --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
 .venv/bin/python studio/engine/promo_scene.py proof dad:front    # «мастер = кадр»
 .venv/bin/python studio/engine/promo.py compose studio/promo/renders/P01-art.png \
@@ -155,40 +155,29 @@ python3 -m venv .venv
 
 | Что | Где |
 |-----|-----|
-| Стратегия, каналы, воронка, KPI, риски | [`docs/31-PROMO-PLAN.md`](docs/31-PROMO-PLAN.md) |
-| Голос, формулы заголовков, структура постов | [`docs/32-TONE-AND-COPY.md`](docs/32-TONE-AND-COPY.md) |
+| Библия персонажей: кто они и как их показывать | [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) |
 | Арт-дирекшн: слои, safe-зоны, типографика | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) |
 | Замок идентичности: почему героя не генерируем | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) |
-| Календарь на 8 недель и брифы | [`docs/35-CAMPAIGN-S1.md`](docs/35-CAMPAIGN-S1.md) |
-| Прогрев сообщества до премьеры | [`docs/36-WARMUP.md`](docs/36-WARMUP.md) |
+
 
 Сборка кадра — две команды:
 
 ```bash
-# фон + герои из мастеров
+# карточки героев: фигура стоит на полу, подпись внизу
+.venv/bin/python studio/engine/promo_scene.py cards
+
+# любой кадр из мастеров: фон-плата + фигуры на общей линии подошв
 .venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
-    --cast dad:hips,mom:stern,son:point \
-    --bg studio/promo/plates/room-living-empty.png \
-    --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
-
-# типографика и проверка
-.venv/bin/python studio/engine/promo.py compose studio/promo/renders/P01-art.png \
-    --format post-4x5 --kicker "СЕЗОН 1" --title "Мультсериал про свою семью" \
-    --out studio/promo/renders/P01-post-4x5.png
-.venv/bin/python studio/engine/promo.py verify studio/promo/renders/P01-post-4x5.png
+    --cast dad:hips,mom:stern,son:point --bg <плата.png> \
+    --dad 0.50 --baseline 0.64 --out studio/promo/renders/x-art.png
 ```
 
-Плакаты прогрева (9 кадров без обещаний серий) собираются отдельным движком:
+Плакаты собираются отдельным движком — но запускать их есть смысл после того, как
+выбраны название и стиль (`docs/40-CHARACTERS.md`):
 
 ```bash
-.venv/bin/python studio/engine/promo_poster.py all     # announce, quote, silhouette, portrait, faces, meme
 .venv/bin/python studio/engine/promo_poster.py list    # что умеет
-```
-
-Вся партия 1 собирается одной командой:
-
-```bash
-studio/promo/batch1.sh   # P01, P02–P04, P05, P08, P10 + proof + verify + контакт-лист
+.venv/bin/python studio/engine/promo_poster.py all     # пачка
 ```
 
 Доказательство, что герой не перерисован: `promo_scene.py proof dad:front` —
@@ -232,11 +221,10 @@ studio/promo/batch1.sh   # P01, P02–P04, P05, P08, P10 + proof + verify + ко
 | [`docs/16-CORE.md`](docs/16-CORE.md) | **Ядро**: персонажи, позы, эмоции, одежда, API, CLI |
 | [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md) | Заготовки: мастера, реестр, команды, добавление героя |
 | [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md) | Переезд в репозиторий `family_studio` |
-| [`docs/31-PROMO-PLAN.md`](docs/31-PROMO-PLAN.md) | Промо-кампания: каналы, воронка, KPI, риски |
-| [`docs/32-TONE-AND-COPY.md`](docs/32-TONE-AND-COPY.md) | Голос проекта, формулы заголовков, структура постов |
+| [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) | Персонажи: канон, роли, что решаем до промо |
 | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) | Арт-дирекшн промо: слои, форматы, типографика, приёмка |
 | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) | Замок идентичности: как не потерять лицо и пропорции |
-| [`docs/35-CAMPAIGN-S1.md`](docs/35-CAMPAIGN-S1.md) | Календарь кампании S1 и брифы по постам |
+
 
 ## Приватность
 
