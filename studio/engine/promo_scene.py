@@ -182,6 +182,30 @@ def _shadow_ellipse(plate, cx, base_y, w, h, blur, opacity, color="#3A2A20"):
                 (int(cx - mask.width / 2), int(base_y - h / 2 - pad)), mask)
 
 
+def floor_overlay(plate, floor_y, height_frac=0.14):
+    """Светлая плоскость пола поверх фона: градиент без жёсткой линии.
+
+    Рисуется уже после стены, но до героя — тогда подошвы и тень ложатся на пол,
+    а не поверх плашки цвета.
+    """
+    W, H = plate.size
+    floor_y = int(floor_y)
+    grad = Image.new("L", (1, H), 0)
+    for y in range(H):
+        if y >= floor_y:
+            t = (y - floor_y) / max(1, H - floor_y)
+            grad.putpixel((0, y), int(52 * t))
+    warm = Image.new("RGB", plate.size, "#E7DCC8")
+    return Image.composite(warm, plate, grad.resize(plate.size))
+
+
+def _scaled(key, target_h):
+    """Вырезка героя, растянутая до нужной высоты."""
+    fig = cutout(key)
+    k = target_h / fig.height
+    return fig.resize((max(1, int(fig.width * k)), max(1, int(target_h))), Image.LANCZOS)
+
+
 def contact_shadow(plate, cx, base_y, width, strength=1.0):
     """Тень контакта, два слоя.
 
@@ -312,26 +336,72 @@ def cmd_lineup(args):
     print(f"{args.out}  ({plate.width}×{plate.height})  {', '.join(cast)}")
 
 
-def cmd_cards(args):
-    """Карточки героев: фигура стоит на полу студии, подпись внизу.
+def fit_font(text, max_w, size, min_size=16):
+    """Кегль, при котором строка влезает в max_w."""
+    while size > min_size:
+        f = ImageFont.truetype(FONT, int(size))
+        if f.getlength(text) <= max_w:
+            return f
+        size -= 2
+    return ImageFont.truetype(FONT, int(min_size))
 
-    Пол обязателен: без линии горизонта и градиента фигура «летит» над бумагой,
-    даже если тень есть.
+
+def cmd_cards(args):
+    """Карточки героев: имя, роль, фраза, кадр из мастера на полу.
+
+    Данные берутся из canon/identity.json (characters[*].presentation), поэтому
+    правка текста в одном месте меняет все карточки.
     """
-    labels = {cid: ch["label"] for cid, ch in identity()["characters"].items()}
+    W, H = formats()["post-4x5"]["w"], formats()["post-4x5"]["h"]
+    characters = identity()["characters"]
     jobs = [("dad", "dad:front"), ("mom", "mom:front"), ("son", "son:front")]
     os.makedirs(OUT, exist_ok=True)
+    floor_y = H * 0.885
+
     for cid, key in jobs:
-        plate = build("post-4x5", [key], band="none", dad_frac=0.76, baseline=0.88,
-                      floor=True, floor_line=False)
+        ch = characters[cid]
+        pres = ch.get("presentation", {})
+        color = pres.get("color", "#F0BB4C")
+
+        # 1. стена цвета героя на фоне бумаги, без пола
+        panel_x = W * 0.54
+        plate = studio_background(W, H, band="none", floor=False)
+        ImageDraw.Draw(plate).rectangle([int(panel_x), 0, W, int(floor_y)], fill=color)
+
+        # 2. пол поверх стены — и только потом герой
+        plate = floor_overlay(plate, floor_y)
+
+        # 3. герой стоит на линии пола
+        fig = _scaled(key, H * 0.70)
+        max_w = (W - panel_x) * 0.96          # фигура не должна резаться краем кадра
+        if fig.width > max_w:
+            k = max_w / fig.width
+            fig = fig.resize((int(max_w), max(1, int(fig.height * k))), Image.LANCZOS)
+        base = int(floor_y + H * 0.004)
+        fx = int(panel_x + (W - panel_x) / 2 - fig.width / 2)
+        contact_shadow(plate, fx + fig.width / 2, base, fig.width)
+        plate.paste(fig, (fx, base - fig.height), fig)
         d = ImageDraw.Draw(plate)
-        name = labels[cid].upper()
-        f = ImageFont.truetype(FONT, int(plate.height * 0.052))
-        d.text((plate.width * 0.085, plate.height * 0.945), name, font=f,
-               fill=INK, anchor="ls")
-        d.rectangle([plate.width * 0.085, plate.height * 0.962,
-                     plate.width * 0.085 + plate.width * 0.13,
-                     plate.height * 0.962 + plate.height * 0.006], fill="#FF6054")
+
+        # 4. текст
+        x = int(W * 0.075)
+        name = ch["label"].upper()
+        f_name = fit_font(name, W * 0.44, H * 0.115)
+        d.text((x, H * 0.265), name, font=f_name, fill=INK, anchor="ls")
+
+        f_role = fit_font(pres.get("role_short", "").upper(), W * 0.44, H * 0.030)
+        d.text((x, H * 0.320), pres.get("role_short", "").upper(), font=f_role,
+               fill="#8A6A5E", anchor="ls")
+
+        d.rectangle([x, H * 0.355, x + W * 0.10, H * 0.355 + H * 0.008], fill=color)
+
+        quote = pres.get("quote", "")
+        if quote:
+            d.text((x, H * 0.615), "«", font=ImageFont.truetype(FONT, int(H * 0.11)),
+                   fill=color, anchor="ls")
+            f_q = fit_font(quote, W * 0.44, H * 0.056)
+            d.text((x, H * 0.735), quote, font=f_q, fill=INK, anchor="ls")
+
         out = os.path.join(OUT, f"card-{cid}.png")
         plate.save(out)
         print(f"{out}  ({plate.width}×{plate.height})  {key}")
@@ -339,22 +409,18 @@ def cmd_cards(args):
 
 def cmd_sheet(args):
     """Контакт-лист карточек героев."""
-    items = [("dad", "ПАПА"), ("mom", "МАМА"), ("son", "СЫН")]
-    H, gap, lbl, pad = 760, 26, 84, 26
+    items = ["dad", "mom", "son"]
+    H, gap = 820, 24
     tiles = []
-    for cid, name in items:
+    for cid in items:
         path = os.path.join(OUT, f"card-{cid}.png")
         if not os.path.exists(path):
             raise SystemExit(f"нет карточки: {path} — запустите `promo_scene.py cards`")
         im = Image.open(path).convert("RGB")
         w = int(im.width * H / im.height)
-        im = im.resize((w, H), Image.LANCZOS)
-        t = Image.new("RGB", (w, H + lbl), PAPER)
-        t.paste(im, (0, 0))
-        ImageDraw.Draw(t).text((16, H + 20), name, font=ImageFont.truetype(FONT, 30), fill=INK)
-        tiles.append(t)
+        tiles.append(im.resize((w, H), Image.LANCZOS))
     W = sum(t.width for t in tiles) + gap * (len(tiles) + 1)
-    sheet = Image.new("RGB", (W, H + lbl + gap * 2), INK)
+    sheet = Image.new("RGB", (W, H + gap * 2), INK)
     x = gap
     for t in tiles:
         sheet.paste(t, (x, gap))

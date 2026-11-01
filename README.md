@@ -155,7 +155,8 @@ python3 -m venv .venv
 
 | Что | Где |
 |-----|-----|
-| Библия персонажей: кто они и как их показывать | [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) |
+| Персонажи: канон, решения, этапы | [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) |
+| Библия персонажей: роли, тики, фразы, цвета | [`docs/41-CHARACTERS-BIBLE.md`](docs/41-CHARACTERS-BIBLE.md) |
 | Арт-дирекшн: слои, safe-зоны, типографика | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) |
 | Замок идентичности: почему героя не генерируем | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) |
 
@@ -222,6 +223,7 @@ python3 -m venv .venv
 | [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md) | Заготовки: мастера, реестр, команды, добавление героя |
 | [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md) | Переезд в репозиторий `family_studio` |
 | [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) | Персонажи: канон, роли, что решаем до промо |
+| [`docs/41-CHARACTERS-BIBLE.md`](docs/41-CHARACTERS-BIBLE.md) | Библия персонажей: двигатель серии, тики, фразы, цвета |
 | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) | Арт-дирекшн промо: слои, форматы, типографика, приёмка |
 | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) | Замок идентичности: как не потерять лицо и пропорции |
 

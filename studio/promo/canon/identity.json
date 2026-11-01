@@ -2,14 +2,16 @@
   "schema": 1,
   "comment": "ЗАМОК ИДЕНТИЧНОСТИ. Единственный источник текста о героях для промо-генераций. Менять одежду можно — менять пропорции, лицо и постоянные элементы нельзя. Правки здесь автоматически попадают во все промпты и брифы (studio/engine/promo.py).",
   "series": {
-    "title": null,
+    "title": "Семья",
     "title_full": null,
     "season": 1,
     "tagline": null,
     "format": "вертикальные шортсы 35–45 с, 9:16, 30 fps",
     "age": "12+",
     "brand_line": null,
-    "status": "название не выбрано: сначала стиль и премisa, см. docs/40-CHARACTERS.md"
+    "status": "рабочее название; заказчик думает над финальным",
+    "premise": "бытовая семейная комедия: обычная семья, обычная квартира, обычные дела",
+    "premise_note": "стартуем с быта; фантастика/мистика не исключены, но не вводятся до утверждения"
   },
   "style_block": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline, soft rim light, warm skin with subtle subsurface scattering on cheeks and ears.",
   "light_block": "Lighting: soft key light from upper-left, gentle rim light 20–30 %, soft shadow falloff, no spotlights, no lens flares, no vignette.",
@@ -76,7 +78,16 @@
           "promo/refs/dad-front.png"
         ]
       },
-      "lock_line": "Keep dad's silhouette EXACTLY as in the reference: wide heavy-set torso, broad shoulders, thick forearms, SHORT legs, large head. Do not slim him down, do not lengthen his legs."
+      "lock_line": "Keep dad's silhouette EXACTLY as in the reference: wide heavy-set torso, broad shoulders, thick forearms, SHORT legs, large head. Do not slim him down, do not lengthen his legs.",
+      "presentation": {
+        "color": "#F0BB4C",
+        "role_short": "двигатель хаоса",
+        "want": "чтобы всё работало по его плану",
+        "obstacle": "реальность, у которой свой план",
+        "tick": "берётся за дело со словами «я всё продумал»",
+        "quote": "Я всё продумал.",
+        "bad_day": "всё почти получилось"
+      }
     },
     "mom": {
       "label": "Мама",
@@ -127,7 +138,16 @@
           "promo/refs/mom-front.png"
         ]
       },
-      "lock_line": "Keep mom's silhouette EXACTLY as in the reference: softly rounded, half a head shorter than dad, small hands, long wavy hair down to the chest. Do not make her taller or slimmer."
+      "lock_line": "Keep mom's silhouette EXACTLY as in the reference: softly rounded, half a head shorter than dad, small hands, long wavy hair down to the chest. Do not make her taller or slimmer.",
+      "presentation": {
+        "color": "#FF6054",
+        "role_short": "единственный взрослый",
+        "want": "спокойный вечер без приключений",
+        "obstacle": "папа с очередной идеей",
+        "tick": "задаёт один вопрос, после которого план рассыпается",
+        "quote": "Ты серьёзно?",
+        "bad_day": "она была права"
+      }
     },
     "son": {
       "label": "Сын",
@@ -177,7 +197,26 @@
           "promo/refs/son-front.png"
         ]
       },
-      "lock_line": "Keep the boy's proportions EXACTLY as in the reference: oversized head, tiny body, short arms and legs, tummy forward. Do not age him up, do not lengthen his limbs."
+      "lock_line": "Keep the boy's proportions EXACTLY as in the reference: oversized head, tiny body, short arms and legs, tummy forward. Do not age him up, do not lengthen his limbs.",
+      "presentation": {
+        "color": "#8AA88A",
+        "role_short": "самый умный в комнате",
+        "want": "чтобы его не трогали",
+        "obstacle": "родители, которым он нужен как свидетель",
+        "tick": "отвечает одним словом и уходит",
+        "quote": "Понятно.",
+        "bad_day": "он всё видел"
+      }
     }
+  },
+  "engine": {
+    "formula": "папа берётся за бытовое дело → мама предупреждает → сын комментирует → всё возвращается как было",
+    "status_quo": "к концу серии квартира в том же состоянии, что и в начале",
+    "episode_seed": "одно обычное дело: розетка, шкаф, посудомойка, доставка, школа, сосед, ремонт",
+    "no_go": [
+      "не строим шутку на переезде и коробках: премиса другая",
+      "не даём героям новую биографию без утверждения",
+      "не вводим фантастику или мистику до отдельного решения"
+    ]
   }
 }

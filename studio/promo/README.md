@@ -84,7 +84,8 @@ python3 -m venv .venv
 Подробно: [`docs/34-IDENTITY-LOCK.md`](../../docs/34-IDENTITY-LOCK.md),
 [`docs/33-PROMO-ART.md`](../../docs/33-PROMO-ART.md),
 [`docs/34-IDENTITY-LOCK.md`](../../docs/34-IDENTITY-LOCK.md),
-[`docs/40-CHARACTERS.md`](../../docs/40-CHARACTERS.md).
+[`docs/40-CHARACTERS.md`](../../docs/40-CHARACTERS.md),
+[`docs/41-CHARACTERS-BIBLE.md`](../../docs/41-CHARACTERS-BIBLE.md).
 
 ## Плакаты прогрева
 
