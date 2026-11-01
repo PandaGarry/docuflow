@@ -1,0 +1,960 @@
+{
+  "schema": 1,
+  "meta": {
+    "title": "Кампания сезона 1 «Переезд»",
+    "premiere": "2026-11-16",
+    "weeks": "2 недели прогрева · премьера · 5 недель ритма · финал сезона",
+    "owner": "студия",
+    "comment": "Единственный источник календаря и текстов. Брифы (studio/promo/briefs) и подборки текстов (studio/promo/copies) собираются из этого файла командой promo.py. Правки — только здесь.",
+    "strategy": "docs/31-PROMO-PLAN.md",
+    "tone": "docs/32-TONE-AND-COPY.md",
+    "art": "docs/33-PROMO-ART.md",
+    "identity": "docs/34-IDENTITY-LOCK.md"
+  },
+  "channel_limits": {
+    "telegram": 1024,
+    "vk": 4000,
+    "youtube": 1500
+  },
+  "posts": [
+    {
+      "id": "P01",
+      "week": -2,
+      "day": "Пн",
+      "date_hint": "02.11",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "announce",
+      "goal": "знакомство: кто мы и что делаем",
+      "status": "art",
+      "scene": "warm cream living room in a new flat, tall stack of half-unpacked cardboard moving boxes, daylight from a window",
+      "action": "the three of them standing together next to the boxes: dad grinning with his hands on his hips, mom with her arms crossed raising one eyebrow, the boy looking straight into the camera",
+      "art_note": "Ключевой кадр кампании. Трио в полный рост, лица в верхних двух третях, снизу спокойная зона под заголовок. Проверить: лица не меньше 12 % высоты кадра у каждого.",
+      "copy": {
+        "headline": "Мы делаем мультсериал про свою семью",
+        "body": "Папа уверен, что всё контролирует. Мама — единственный взрослый в комнате. Сыну три с половиной, и он обычно прав.\n\nДвенадцать коротких серий про переезд: коробки, шкаф с лишним винтом, соседи и одна криво повешенная рамка. Показываем, как это собирается, — герои, кадры, провалы на монтаже.",
+        "cta": "Премьера 16 ноября. Подпишитесь, чтобы не искать первую серию потом.",
+        "hashtags": [
+          "#мультсериал",
+          "#переезд",
+          "#анимация"
+        ]
+      },
+      "art_cast": [
+        "dad:hips",
+        "mom:stern",
+        "son:point"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "dad 0.50 · baseline 0.64 — низ кадра остаётся под заголовок",
+      "art_dad": 0.5,
+      "art_baseline": 0.64
+    },
+    {
+      "id": "P02",
+      "week": -2,
+      "day": "Ср",
+      "date_hint": "04.11",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "square",
+      "cast": [
+        "dad"
+      ],
+      "kind": "character-card",
+      "goal": "представить героя №1",
+      "status": "art",
+      "scene": "warm cream studio backdrop with a sage-green vertical panel on the right",
+      "action": "dad standing at ease, thumbs hooked into his jeans pockets, self-satisfied smirk, one eyebrow raised, looking straight into the camera",
+      "art_note": "Карточка героя: одно лицо читаемо, шутка в подписи. Свет как в каноне, без новых аксессуаров.",
+      "copy": {
+        "headline": "Папа. Я всё продумал.",
+        "body": "32 года, широкий, борода, серое худи. Делает быстро, переделывает дважды. Считает, что контролирует процесс, — и это главный источник движения в сериале.\n\nЛюбимая поза: руки на поясе, грудь вперёд, лицо человека, у которого всё по плану.",
+        "cta": "Герой №1. Кто следующий — угадаете?",
+        "hashtags": [
+          "#персонаж",
+          "#мультсериал"
+        ]
+      },
+      "art_cast": [
+        "dad:front"
+      ],
+      "art_bg": null,
+      "art_layout": "карточка: студия, шалфей справа",
+      "art_dad": 0.84,
+      "art_baseline": 0.92
+    },
+    {
+      "id": "P03",
+      "week": -2,
+      "day": "Чт",
+      "date_hint": "05.11",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "square",
+      "cast": [
+        "mom"
+      ],
+      "kind": "character-card",
+      "goal": "представить героя №2",
+      "status": "art",
+      "scene": "warm cream studio backdrop with a sage-green vertical panel on the left",
+      "action": "mom standing with her arms crossed, one eyebrow up, calm deadpan look straight into the camera",
+      "art_note": "Карточка героя. Жилет и цепочка — постоянные элементы: без них кадр не годится.",
+      "copy": {
+        "headline": "Мама. Ты серьёзно?",
+        "body": "31 год. Коричневый жилет, длинные волосы, одна фраза — и все замолчали.\n\nВ этом сериале терпение — расходуемый ресурс. К концу серии у мамы его обычно остаётся ровно на один взгляд в камеру.",
+        "cta": "Герой №2. Остался самый младший.",
+        "hashtags": [
+          "#персонаж",
+          "#мультсериал"
+        ]
+      },
+      "art_cast": [
+        "mom:front"
+      ],
+      "art_bg": null,
+      "art_layout": "карточка: студия, шалфей слева",
+      "art_dad": 0.84,
+      "art_baseline": 0.92
+    },
+    {
+      "id": "P04",
+      "week": -2,
+      "day": "Пт",
+      "date_hint": "06.11",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "square",
+      "cast": [
+        "son"
+      ],
+      "kind": "character-card",
+      "goal": "представить героя №3",
+      "status": "art",
+      "scene": "warm cream studio backdrop with a sage-green vertical panel on the right",
+      "action": "the boy standing with his hands on his hips, deadpan look up into the camera, cap low over his eyebrows",
+      "art_note": "Карточка героя. Кепка с буквой P и ABC — канон, проверять читаемость букв.",
+      "copy": {
+        "headline": "Сын. Понятно.",
+        "body": "Три с половиной. Мятная кепка с буквой P, коричневое худи ABC. Говорит мало, попадает в точку.\n\nОбычно он прав. Взрослые обычно не слушают.",
+        "cta": "Все трое на месте. Дальше — сам сериал.",
+        "hashtags": [
+          "#персонаж",
+          "#мультсериал"
+        ]
+      },
+      "art_cast": [
+        "son:front"
+      ],
+      "art_bg": null,
+      "art_layout": "карточка: студия, шалфей справа",
+      "art_dad": 0.84,
+      "art_baseline": 0.92
+    },
+    {
+      "id": "P05",
+      "week": -2,
+      "day": "Сб",
+      "date_hint": "07.11",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "backstage",
+      "goal": "доверие: показать процесс, а не только результат",
+      "status": "brief",
+      "scene": "flat warm cream backdrop (#FFF8EC), no props, three characters in a row",
+      "action": "the three of them standing in a relaxed A-pose in a row, neutral calm expressions, looking into the camera",
+      "art_note": "Кадр-бекстейдж: ровная линейка героев, как лист поворотов. Подходит для разбора пропорций.",
+      "copy": {
+        "headline": "Как герои не «съезжают» между кадрами",
+        "body": "Сначала рисуется лист поворотов: один и тот же человек спереди, в три четверти и в профиль. Потом каждая новая поза рисуется только с этого листа, а не «с нуля» по описанию.\n\nИначе в первом кадре у героя один живот, во втором — другой, а в третьем он внезапно спортивный. Проверено на собственном браке.",
+        "cta": "Если интересно — разберём по шагам, как собирается серия.",
+        "hashtags": [
+          "#бекстейдж",
+          "#анимация",
+          "#мультсериал"
+        ],
+        "kicker": "Линейка сезона"
+      },
+      "qa_note": "Готово. Ровная линейка героев, порядок и относительный рост по канону. Принято.",
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": null,
+      "art_layout": "фигуры на одной линии, подписи под ногами: папа 5,9 · мама 5,7 · сын 4,4",
+      "art_dad": 0.665,
+      "art_baseline": 0.775,
+      "art_mode": "lineup"
+    },
+    {
+      "id": "P06",
+      "week": -1,
+      "day": "Пн",
+      "date_hint": "09.11",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad"
+      ],
+      "kind": "teaser",
+      "goal": "тизер: крючок без спойлера",
+      "status": "brief",
+      "scene": "living room of a new flat, cardboard moving boxes stacked in a tower, warm evening light",
+      "action": "dad standing on top of a taped moving box, arms spread wide, proud grin",
+      "art_note": "Тизер-кадр: один герой, читается за 0.5 секунды. Не давать текста на арте — надписи слоем.",
+      "copy": {
+        "headline": "Первые пять секунд",
+        "body": "Папа обещает распаковать всё за вечер. Дальше — сорок секунд, которые вы уже видели в своей жизни.",
+        "cta": "Премьера 16 ноября, серия 1 — «Коробки».",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "dad:carry"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "папа с коробкой; тизер без спойлера",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P07",
+      "week": -1,
+      "day": "Ср",
+      "date_hint": "11.11",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "yt-thumb",
+      "cast": [
+        "dad"
+      ],
+      "kind": "meme",
+      "goal": "охват: мем-кадр, которым хочется поделиться",
+      "status": "brief",
+      "scene": "living room crowded with stacked moving boxes, single warm lamp, evening",
+      "action": "dad sitting on a half-unpacked box, elbows on knees, overconfident smirk straight into the camera",
+      "art_note": "Мем-кадр: папа в центре, слева треть кадра свободна под надпись. Эмоция — самоуверенность, не усталость.",
+      "copy": {
+        "headline": "Я всё продумал",
+        "body": "Стадия переезда, на которой коробки уже победили, но об этом ещё никто не сказал вслух.",
+        "cta": "Отметьте того, кто «всё продумал».",
+        "hashtags": [
+          "#мем",
+          "#переезд",
+          "#ремонт"
+        ]
+      },
+      "art_cast": [
+        "dad:sit"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "мем: папа на коробке, взгляд в камеру",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P08",
+      "week": -1,
+      "day": "Чт",
+      "date_hint": "12.11",
+      "channel": "vk",
+      "channel_label": "VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "date-announce",
+      "goal": "зафиксировать дату премьеры в календаре зрителя",
+      "status": "brief",
+      "scene": "doorway of a new flat, cardboard boxes behind, warm cream walls with sage wainscot",
+      "action": "the three of them standing in the doorway of the new flat, looking into the camera with calm confident faces",
+      "art_note": "Афиша даты: трио, много воздуха внизу под дату и заголовок.",
+      "copy": {
+        "headline": "16 ноября — премьера",
+        "body": "Сезон 1: «Переезд». Двенадцать серий по 40 секунд. Одна квартира, один шкаф с лишним винтом и семья, которая всё это переживёт.\n\nСерии выходят по понедельникам. Первая — про коробки, которые «распакуются за вечер».",
+        "cta": "Подпишитесь на сообщество — так первая серия найдётся сама.",
+        "hashtags": [
+          "#мультсериал",
+          "#переезд",
+          "#премьера",
+          "#анимация"
+        ]
+      },
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "афиша даты: трио, воздух снизу под дату",
+      "art_dad": 0.62,
+      "art_baseline": 0.8
+    },
+    {
+      "id": "P09",
+      "week": -1,
+      "day": "Сб",
+      "date_hint": "14.11",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "square",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "poll",
+      "goal": "вовлечение: комментарии до премьеры",
+      "status": "brief",
+      "scene": "warm cream studio backdrop, soft shadow on the floor",
+      "action": "portrait trio: dad pointing at himself with a confident grin, mom rolling her eyes, the boy raising his hand",
+      "art_note": "Кадр под опрос: три разных реакции в одном кадре — это и есть шутка.",
+      "copy": {
+        "headline": "Кто в вашей семье двигатель хаоса?",
+        "body": "Голосуем. Правильный ответ мы покажем в первой серии, но вы и так знаете.",
+        "cta": "Папа · Мама · Сын · Кот",
+        "hashtags": [
+          "#опрос",
+          "#семья"
+        ]
+      },
+      "art_cast": [
+        "dad:hips",
+        "mom:stern",
+        "son:point"
+      ],
+      "art_bg": null,
+      "art_layout": "три разные реакции в одном кадре",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P10",
+      "week": 0,
+      "day": "Пн",
+      "date_hint": "16.11",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad"
+      ],
+      "kind": "premiere",
+      "goal": "просмотры первой серии",
+      "status": "brief",
+      "scene": "living room with unpacked boxes, warm daylight, sage-green sofa in the background",
+      "action": "dad standing triumphantly on a still-taped moving box, chest out, arms crossed, proud grin",
+      "art_note": "Превью премьеры. Один герой, один объект-конфликт (коробка под ногами), эмоция читается на 120 px.",
+      "copy": {
+        "headline": "Серия 1. Коробки",
+        "body": "Папа уверяет, что распакует всё за вечер. Через сорок секунд он стоит на нераспакованной коробке и объясняет, что так и задумано.",
+        "cta": "Смотреть серию — ссылка в описании канала.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#премьера"
+        ]
+      },
+      "art_cast": [
+        "dad:hips"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 1: папа на коробке (позу «стоит на коробке» при необходимости рисуем в библиотеку)",
+      "art_dad": 0.52,
+      "art_baseline": 0.74
+    },
+    {
+      "id": "P11",
+      "week": 0,
+      "day": "Вт",
+      "date_hint": "17.11",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "carousel",
+      "goal": "показать «три взгляда» — фишку сериала",
+      "status": "brief",
+      "scene": "same living room corner with a pile of moving boxes, three-quarter shot of the group",
+      "action": "the three of them reacting to the same pile of boxes: dad confident, mom unimpressed, the boy curious",
+      "art_note": "Обложка карусели из трёх кадров: один фон, три реакции, разный кроп по герою.",
+      "copy": {
+        "headline": "Один переезд, три взгляда",
+        "body": "Папа: «Я всё продумал».\nМама: «Ты серьёзно?».\nСын: «Понятно».\n\nВ каждой серии одна и та же ситуация показана три раза — с трёх точек зрения. Поэтому в сорок секунд помещается три шутки.",
+        "cta": "Чья версия событий вам ближе?",
+        "hashtags": [
+          "#мультсериал",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "dad:hips",
+        "mom:stern",
+        "son:point"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "карусель: один фон, три кропа по герою",
+      "art_dad": 0.62,
+      "art_baseline": 0.8
+    },
+    {
+      "id": "P12",
+      "week": 0,
+      "day": "Ср",
+      "date_hint": "18.11",
+      "channel": "vk",
+      "channel_label": "VK + Telegram",
+      "format": "yt-thumb",
+      "cast": [
+        "dad"
+      ],
+      "kind": "meme",
+      "goal": "охват через узнаваемую бытовую ситуацию",
+      "status": "brief",
+      "scene": "living room at night, boxes everywhere, one warm floor lamp, sage-green sofa",
+      "action": "dad lying on the sofa among unpacked boxes, one sock on the floor, giving a tired thumbs-up",
+      "art_note": "Мем: усталость после самоуверенности — контраст с P07. Тот же фон, другое состояние.",
+      "copy": {
+        "headline": "Когда распаковал всё за вечер",
+        "body": "Технически — распаковал. Одна коробка. И то не до конца.",
+        "cta": "Поделитесь с тем, кто недавно переехал.",
+        "hashtags": [
+          "#мем",
+          "#переезд",
+          "#коробки"
+        ]
+      },
+      "art_cast": [
+        "dad:sit"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "мем: усталость после самоуверенности",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P13",
+      "week": 0,
+      "day": "Пт",
+      "date_hint": "20.11",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "backstage",
+      "goal": "доверие и удержание: как устроено производство",
+      "status": "brief",
+      "scene": "flat warm cream backdrop, characters in a row, soft studio light",
+      "action": "the three of them standing in a row in neutral A-pose, calm expressions",
+      "art_note": "Бекстейдж-кадр под текст о конвейере. Ровные позы, ничего лишнего.",
+      "copy": {
+        "headline": "Одна серия — один рабочий день",
+        "body": "Сценарий на 40 секунд → раскадровка из 6–10 планов → кадры из библиотеки поз и эмоций → монтаж, звук, титры.\n\nГерои не перерисовываются заново в каждой серии: одежда и позы — это данные. Поэтому новый костюм меняется за вечер, а не за неделю.",
+        "cta": "Что показать подробнее — монтаж или мимику?",
+        "hashtags": [
+          "#бекстейдж",
+          "#анимация"
+        ]
+      },
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": null,
+      "art_layout": "бекстейдж: ровные позы на студии",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P14",
+      "week": 1,
+      "day": "Пн",
+      "date_hint": "23.11",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad"
+      ],
+      "kind": "episode",
+      "goal": "просмотры серии 2",
+      "status": "brief",
+      "scene": "half-assembled wardrobe cabinet in the middle of a living room, tools on the floor",
+      "action": "dad holding a screwdriver and one single leftover screw between two fingers, proud confident face",
+      "art_note": "Превью серии 2: конфликт = один лишний винт. Винт должен читаться, иначе шутка теряется.",
+      "copy": {
+        "headline": "Серия 2. Шкаф",
+        "body": "Сборка за двадцать минут. Остался один винт. Папа клянётся, что так и надо.",
+        "cta": "Смотреть серию 2.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#шкаф"
+        ]
+      },
+      "art_cast": [
+        "dad:count-one"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 2: винт в руке — предмет отдельным слоем",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P15",
+      "week": 1,
+      "day": "Ср",
+      "date_hint": "25.11",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "yt-thumb",
+      "cast": [
+        "dad"
+      ],
+      "kind": "meme",
+      "goal": "охват: универсальная бытовая шутка",
+      "status": "brief",
+      "scene": "living room, unpacked boxes and a half-built cabinet, warm daylight",
+      "action": "dad holding one extra screw up to the light, examining it like a jewel, dead serious face",
+      "art_note": "Мем: предмет крупно + лицо. Слева свободная треть под надпись.",
+      "copy": {
+        "headline": "Лишний винт",
+        "body": "В инструкции 24 шага и 16 винтов. На столе 25 винтов. Вопросов больше, чем ответов.",
+        "cta": "У вас тоже остаётся «запасная» деталь?",
+        "hashtags": [
+          "#мем",
+          "#ремонт",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "dad:point"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "мем: винт крупно, лицо уверенное",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P16",
+      "week": 1,
+      "day": "Пт",
+      "date_hint": "27.11",
+      "channel": "vk",
+      "channel_label": "VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad"
+      ],
+      "kind": "quote",
+      "goal": "цитата-пересылка + подписка",
+      "status": "brief",
+      "scene": "living room, dad sitting on a box holding a paper instruction sheet",
+      "action": "dad holding the instruction sheet upside down, explaining something very seriously to the camera, free hand raised",
+      "art_note": "Кадр-цитата: место под текст внизу, лицо в верхней половине.",
+      "copy": {
+        "headline": "«Тут написано: соберите вдвоём»",
+        "body": "«Значит, я и инструкция». Папа объясняет, почему шкаф собирается именно так, а не как в схеме.\n\nСерия 2 уже вышла. Серия 3 — в понедельник.",
+        "cta": "Подписывайтесь на сообщество, серии выходят по понедельникам.",
+        "hashtags": [
+          "#цитата",
+          "#мультсериал"
+        ]
+      },
+      "art_cast": [
+        "dad:shrug"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "цитата: «я и инструкция»",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P17",
+      "week": 2,
+      "day": "Пн",
+      "date_hint": "30.11",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad"
+      ],
+      "kind": "episode",
+      "goal": "просмотры серии 3",
+      "status": "brief",
+      "scene": "living room, sofa seen from a low angle, dust under it, sage-green rug",
+      "action": "dad lying flat on the floor reaching under the sofa, only his upper body and one arm visible, determined face",
+      "art_note": "Превью серии 3: необычный ракурс — снизу. Голова и рука читаются, тело уходит под диван.",
+      "copy": {
+        "headline": "Серия 3. Под диваном",
+        "body": "Сын потерял машинку. Папа полез доставать и нашёл три пульта, носок и чужой паспорт.",
+        "cta": "Смотреть серию 3.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#диван"
+        ]
+      },
+      "art_cast": [
+        "dad:crouch"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 3: папа лезет под диван",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P18",
+      "week": 2,
+      "day": "Чт",
+      "date_hint": "03.12",
+      "channel": "telegram",
+      "channel_label": "Telegram",
+      "format": "square",
+      "cast": [
+        "son"
+      ],
+      "kind": "interactive",
+      "goal": "комментарии: интерактив по предмету серии",
+      "status": "brief",
+      "scene": "living room floor next to the sofa, warm daylight, three TV remotes on the rug",
+      "action": "the boy crouching in front of the sofa holding three TV remotes, deadpan look into the camera",
+      "art_note": "Интерактив: предмет в руках крупно, лицо ребёнка в центре. Реквизит — только если он читается.",
+      "copy": {
+        "headline": "Что страшнее найти под диваном?",
+        "body": "Три пульта от техники, которой у вас нет. Носок. Чужой паспорт.\n\nПапа нашёл всё три. Мы до сих пор не понимаем, как.",
+        "cta": "Пишите в комментариях свою находку.",
+        "hashtags": [
+          "#интерактив",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "son:point"
+      ],
+      "art_bg": null,
+      "art_layout": "интерактив: ребёнок с пультами (реквизит слоем)",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P19",
+      "week": 3,
+      "day": "Пн",
+      "date_hint": "07.12",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "episode",
+      "goal": "просмотры серии 4",
+      "status": "brief",
+      "scene": "stairwell doorway of an apartment building, cream walls, warm afternoon light",
+      "action": "the three of them standing in a doorway staring at a piece of paper, confused faces, dad holding the paper",
+      "art_note": "Превью серии 4: трио + бумага. Три разных выражения — читается даже без текста.",
+      "copy": {
+        "headline": "Серия 4. Паспорт",
+        "body": "Семья едет разбираться по адресу из найденного паспорта. Адрес оказывается их собственным.",
+        "cta": "Смотреть серию 4.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#паспорт"
+        ]
+      },
+      "art_cast": [
+        "dad:three-quarter",
+        "mom:three-quarter",
+        "son:three-quarter"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 4: трио в три четверти",
+      "art_dad": 0.62,
+      "art_baseline": 0.8
+    },
+    {
+      "id": "P20",
+      "week": 3,
+      "day": "Сб",
+      "date_hint": "12.12",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "teaser-final",
+      "goal": "удержание до финала сезона",
+      "status": "brief",
+      "scene": "living room, family trying to pose for a photo, wall behind them still empty",
+      "action": "the three of them posing for a family photo, everyone looking in a different direction, dad blinking, mom mid-sentence, the boy looking away",
+      "art_note": "Тизер финала: «неудачное семейное фото» — универсальная эмоция. Важно: все три лица видны и не перекрыты.",
+      "copy": {
+        "headline": "Финал сезона — про семейное фото",
+        "body": "Двенадцать серий, одна стена и одна рамка. К финалу выясняется, что доделать нужно ровно одно дело.\n\nДальше — серии про соседей, ужин и стол, собранный вверх ногами.",
+        "cta": "Подпишитесь, чтобы не пропустить финал.",
+        "hashtags": [
+          "#мультсериал",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "тизер финала: неудачное семейное фото",
+      "art_dad": 0.6,
+      "art_baseline": 0.78
+    },
+    {
+      "id": "P21",
+      "week": 4,
+      "day": "Пн",
+      "date_hint": "14.12",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad"
+      ],
+      "kind": "episode",
+      "goal": "просмотры серии 5",
+      "status": "brief",
+      "scene": "apartment corridor, door with a small flat number plate, warm hallway light",
+      "action": "dad standing in front of the neighbour's door holding a plate of something, extremely polite smile, one fist raised to knock",
+      "art_note": "Превью серии 5: гость с тарелкой + преувеличенно вежливое лицо. Соседа в кадр не ставим — он не в замке идентичности.",
+      "copy": {
+        "headline": "Серия 5. Соседи",
+        "body": "Папа хочет произвести впечатление на новых соседей. Сосед оказывается тем самым человеком, чей паспорт они нашли под диваном.",
+        "cta": "Смотреть серию 5.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#соседи"
+        ]
+      },
+      "art_cast": [
+        "dad:wave"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 5: вежливое лицо перед дверью соседа",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P22",
+      "week": 4,
+      "day": "Чт",
+      "date_hint": "17.12",
+      "channel": "vk",
+      "channel_label": "VK",
+      "format": "post-4x5",
+      "cast": [
+        "mom"
+      ],
+      "kind": "social-proof",
+      "goal": "соцдоказательство и подписка",
+      "status": "brief",
+      "scene": "living room, mom sitting on the sage-green sofa with a cup, boxes half gone",
+      "action": "mom sitting on the sofa with a cup, one eyebrow raised, deadpan look into the camera",
+      "art_note": "Кадр под подборку комментариев. Мама — «голос разума», поэтому лицо спокойное, не злое.",
+      "copy": {
+        "headline": "«Это про меня»",
+        "body": "Под каждой серией в комментариях появляется одна и та же фраза. Мы считаем её лучшим отзывом, на который рассчитывали.\n\nСпасибо, что узнаёте себя в коробках.",
+        "cta": "Подписывайтесь — серии выходят по понедельникам.",
+        "hashtags": [
+          "#отзыв",
+          "#мультсериал"
+        ]
+      },
+      "art_cast": [
+        "mom:stern"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "соцдоказательство: мама — голос разума",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P23",
+      "week": 5,
+      "day": "Пн",
+      "date_hint": "21.12",
+      "channel": "youtube",
+      "channel_label": "YouTube Shorts + VK + Telegram",
+      "format": "shorts-cover",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "episode",
+      "goal": "просмотры серии 6",
+      "status": "brief",
+      "scene": "kitchen in the new flat, boxes used as a table, evening light",
+      "action": "dad carrying a very tall stack of pizza boxes, mom and the boy in the background looking at him",
+      "art_note": "Превью серии 6: гэг на предмете (стопка пицц). Стопка не должна закрывать лицо папы.",
+      "copy": {
+        "headline": "Серия 6. Ужин",
+        "body": "Мама готовит, папа помогает. Пиццу заказали «на всякий случай» — привезли двенадцать. Стола пока нет.",
+        "cta": "Смотреть серию 6.",
+        "hashtags": [
+          "#shorts",
+          "#мультсериал",
+          "#пицца"
+        ]
+      },
+      "art_cast": [
+        "dad:carry"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "серия 6: стопка пицц (реквизит слоем)",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P24",
+      "week": 5,
+      "day": "Пт",
+      "date_hint": "25.12",
+      "channel": "telegram",
+      "channel_label": "Telegram + VK",
+      "format": "post-4x5",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "ugc",
+      "goal": "UGC и финальный охват сезона",
+      "status": "brief",
+      "scene": "living room wall, empty frame hanging slightly crooked, family standing in front of it",
+      "action": "the three of them standing in front of an empty picture frame on the wall, calm proud faces, dad pointing at the frame",
+      "art_note": "Кадр-эпилог сезона. Пустая рамка — «нить» в следующий сезон. Рамка читается как объект, а не декор.",
+      "copy": {
+        "headline": "Пришлите свою самую неудачную семейную фотографию",
+        "body": "Финал сезона — про то, как вся семья пытается встать в кадр и ни у кого не получается. У нас есть ровно такой же кадр в архиве.\n\nСобираем галерею: присылайте свои попытки — в комментариях или в личку сообщества. Публикуем с вашего разрешения и без имён.",
+        "cta": "Фото — в комментарии. Разрешение на публикацию обязательно.",
+        "hashtags": [
+          "#семейноефото",
+          "#мультсериал",
+          "#переезд"
+        ]
+      },
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": "promo/plates/room-living-empty.png",
+      "art_layout": "эпилог сезона: пустая рамка на стене",
+      "art_dad": 0.6,
+      "art_baseline": 0.78
+    },
+    {
+      "id": "P25",
+      "week": -2,
+      "day": "Пн",
+      "date_hint": "02.11",
+      "channel": "telegram",
+      "channel_label": "Аватар канала",
+      "format": "avatar",
+      "cast": [
+        "son"
+      ],
+      "kind": "branding",
+      "goal": "узнаваемость в списке чатов",
+      "status": "brief",
+      "scene": "flat warm cream backdrop (#FFF8EC)",
+      "action": "tight close-up portrait of the boy, cap and big eyes, calm confident look straight into the camera",
+      "art_note": "Аватар: одно лицо в круге, обрезка по r=320. Без текста — надпись не читается в 40 px.",
+      "copy": {
+        "headline": "Аватар канала",
+        "body": "Одно лицо крупно, без надписей: в списке чатов иконка 40 px, текст в ней не читается.",
+        "cta": "Проверить в мобильном списке чатов.",
+        "hashtags": []
+      },
+      "art_cast": [
+        "son:point"
+      ],
+      "art_bg": null,
+      "art_layout": "аватар: кроп лица из мастер-портрета characters/son/master/face.png",
+      "art_dad": 0.8,
+      "art_baseline": 0.9
+    },
+    {
+      "id": "P26",
+      "week": -2,
+      "day": "Пн",
+      "date_hint": "02.11",
+      "channel": "vk",
+      "channel_label": "Обложка сообщества VK",
+      "format": "vk-cover",
+      "cast": [
+        "dad",
+        "mom",
+        "son"
+      ],
+      "kind": "branding",
+      "goal": "оформление сообщества под сериал",
+      "status": "brief",
+      "scene": "flat cream studio backdrop with a sage-green band along the bottom",
+      "action": "the three of them standing in a row in the centre of a wide banner, calm friendly expressions",
+      "art_note": "Обложка 4:1: трио по центру, аватар сообщества закроет левые 280 px, кнопки — правые 280 px.",
+      "copy": {
+        "headline": "Обложка сообщества",
+        "body": "Трио по центру, свободные края под аватар и кнопки интерфейса.",
+        "cta": "—",
+        "hashtags": []
+      },
+      "qa_note": "Не сделано: лимит генераций на заход (10 картинок). Перенос на следующий заход.",
+      "art_cast": [
+        "dad:front",
+        "mom:front",
+        "son:front"
+      ],
+      "art_bg": null,
+      "art_layout": "обложка VK: трио в ряд на плоском фоне",
+      "art_dad": 0.62,
+      "art_baseline": 0.86
+    }
+  ]
+}

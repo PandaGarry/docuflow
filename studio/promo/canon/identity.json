@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "comment": "ЗАМОК ИДЕНТИЧНОСТИ. Единственный источник текста о героях для промо-генераций. Менять одежду можно — менять пропорции, лицо и постоянные элементы нельзя. Правки здесь автоматически попадают во все промпты и брифы (studio/engine/promo.py).",
+  "series": {
+    "title": "ПЕРЕЕЗД",
+    "title_full": "«Переезд» — семейный мультсериал",
+    "season": 1,
+    "tagline": "Папа всё продумал. Дважды.",
+    "format": "вертикальные шортсы 35–45 с, 9:16, 30 fps",
+    "age": "12+",
+    "brand_line": "«ПЕРЕЕЗД» · СЕЗОН 1"
+  },
+  "style_block": "Modern stylized volumetric 3D cartoon style: sculpted soft forms, painterly textures, appealing caricature proportions, clean silhouette, no harsh outline, soft rim light, warm skin with subtle subsurface scattering on cheeks and ears.",
+  "light_block": "Lighting: soft key light from upper-left, gentle rim light 20–30 %, soft shadow falloff, no spotlights, no lens flares, no vignette.",
+  "cast_rules": {
+    "left_to_right": [
+      "dad",
+      "mom",
+      "son"
+    ],
+    "max_in_frame": 3,
+    "group_reference": "promo/refs/family-lineup.png",
+    "rule": "В групповом кадре порядок всегда слева направо: папа, мама, сын. Высоты — по линейке семьи, не «на глаз». Больше трёх героев в кадр не ставим: лица мельчают и перестают читаться в превью."
+  },
+  "text_policy": "DO NOT render any text, letters, captions, logos, watermarks or UI. Keep the cap letter P and the ABC print on the boy's hoodie only, exactly as in the reference. All headlines are added later as our own typographic layer.",
+  "negative": "no extra limbs, no extra fingers, no duplicate hands, no merged fingers, no distorted face, no changed hairstyle, no changed beard shape, no glasses, no watch, no jewellery except mom's thin gold chain with one small cross, no logo, no watermark, no signature, no text, no letters, no captions, no handwriting on cardboard boxes, no shipping labels, no printed labels, no barcodes, no speech bubbles, no photographic realism, no flat 2D vector look, no harsh black outlines, no heavy outlines, no neon colours, no busy background, no chromatic aberration, no depth-of-field blur on faces",
+  "characters": {
+    "dad": {
+      "label": "Папа",
+      "role": "отец, двигатель хаоса",
+      "height_heads": 5.9,
+      "identity_block": "DAD — a 32-year-old father with a stocky, bear-like build, broad shoulders, thick forearms, short legs and a large head. Round friendly face, strong square-ish jaw, big ears, thick expressive eyebrows, warm brown eyes (#5B3A29). Short dark-brown hair (#4A332A) with shaved faded sides and a spiky top. Full neat dark beard and moustache; the beard line runs along the cheekbones. Permanent outfit unless stated otherwise: light-gray crewneck sweatshirt (#C9C7C2), dark jeans (#2F3540), brown sneakers (#4A3A32).",
+      "short_block": "the stocky bearded dad in the light-gray crewneck sweatshirt",
+      "locked": [
+        "телосложение: широкий, плотный, короткие ноги",
+        "высота 5.9 головы",
+        "форма бороды и линия роста волос",
+        "форма лица и ушей",
+        "цвет глаз #5B3A29, цвет волос #4A332A"
+      ],
+      "forbidden": [
+        "не менять форму бороды и виски",
+        "не менять цвет и объём волос",
+        "никаких очков, часов, сумок, украшений",
+        "не делать его худым или спортивным",
+        "не добавлять текст на одежду"
+      ],
+      "palette": {
+        "skin": "#E8B48F",
+        "skin_shade": "#D2966F",
+        "hair": "#4A332A",
+        "eye": "#5B3A29",
+        "garment": "#C9C7C2",
+        "bottom": "#2F3540",
+        "shoes": "#4A3A32"
+      },
+      "outfits": {
+        "home": "light-gray crewneck sweatshirt (#C9C7C2), dark jeans (#2F3540), brown sneakers (#4A3A32)",
+        "street": "light-gray sweatshirt under a denim jacket, dark jeans, brown sneakers",
+        "work": "light blue button-up shirt with rolled sleeves, dark trousers, black boots",
+        "kitchen": "light-gray sweatshirt under a sage-green kitchen apron, dark jeans, home slippers",
+        "pajama": "plain white t-shirt, gray sweatpants, home slippers"
+      },
+      "signature_poses": [
+        "руки на поясе, грудь вперёд, самоуверенная ухмылка",
+        "палец вверх — «я всё продумал»",
+        "ладонь у лица — «ой»"
+      ],
+      "face_anchors": "Контрольные точки: 1) линия бороды по скулам, 2) выбритые виски с чёткой границей, 3) широкая переносица и крупный нос, 4) густые брови почти без изгиба, 5) крупные уши, выступающие из-за головы.",
+      "refs": {
+        "turnaround": "characters/dad/master/turnaround.png",
+        "face": "characters/dad/master/face.png",
+        "cards": [
+          "promo/refs/dad-face.png",
+          "promo/refs/dad-front.png"
+        ]
+      },
+      "lock_line": "Keep dad's silhouette EXACTLY as in the reference: wide heavy-set torso, broad shoulders, thick forearms, SHORT legs, large head. Do not slim him down, do not lengthen his legs."
+    },
+    "mom": {
+      "label": "Мама",
+      "role": "единственный взрослый в комнате",
+      "height_heads": 5.7,
+      "identity_block": "MOM — a 31-year-old mother, softly rounded silhouette, half a head shorter than dad, round friendly face with a soft chin, large light blue-gray eyes (#73879A), small nose, warm smile lines. Long wavy chestnut-blonde hair (#9A7856) with a side-swept fringe and one loose curl that falls over the forehead. Permanent outfit unless stated otherwise: brown puffer vest (#5B4034), fitted white top (#F5F1E8), dark skinny jeans (#2F3540), beige home slippers; one thin gold chain with a single small cross.",
+      "short_block": "the mom in the brown puffer vest with long wavy hair",
+      "locked": [
+        "длина волос и направление чёлки",
+        "высота 5.7 головы, на полголовы ниже папы",
+        "цвет глаз #73879A, цвет волос #9A7856",
+        "мягкий округлый силуэт, округлый подбородок",
+        "одна тонкая цепочка с маленьким крестиком"
+      ],
+      "forbidden": [
+        "не менять длину волос и направление чёлки",
+        "никаких серёжек, колец, сумок, очков",
+        "цепочка — строго одна, крестик мелкий",
+        "не делать её выше папы",
+        "не менять цвет жилета без команды на смену костюма"
+      ],
+      "palette": {
+        "skin": "#E8B48F",
+        "skin_shade": "#D2966F",
+        "hair": "#9A7856",
+        "eye": "#73879A",
+        "outer": "#5B4034",
+        "garment": "#F5F1E8",
+        "bottom": "#2F3540"
+      },
+      "outfits": {
+        "home": "brown puffer vest (#5B4034) over a fitted white top (#F5F1E8), dark skinny jeans, beige soft home slippers (flat, not sneakers), thin gold chain with a small cross",
+        "street": "light blue button-up shirt, dark jeans, black boots, winter coat, thin gold chain with a small cross",
+        "kitchen": "fitted white top under a sage-green apron, dark jeans, home slippers",
+        "pajama": "striped pajama shirt and trousers, home slippers"
+      },
+      "signature_poses": [
+        "руки скрещены, бровь вверх — «взгляд»",
+        "ладонь к виску — «спасите»",
+        "глаза закрыты, тихий выдох"
+      ],
+      "face_anchors": "Контрольные точки: 1) косая чёлка слева направо, 2) одна свободная прядь на лбу, 3) крупные глаза с двумя бликами, 4) мягкий подбородок без ямки, 5) тонкая шея и покатые плечи.",
+      "refs": {
+        "turnaround": "characters/mom/master/turnaround.png",
+        "face": "characters/mom/master/face.png",
+        "cards": [
+          "promo/refs/mom-face.png",
+          "promo/refs/mom-front.png"
+        ]
+      },
+      "lock_line": "Keep mom's silhouette EXACTLY as in the reference: softly rounded, half a head shorter than dad, small hands, long wavy hair down to the chest. Do not make her taller or slimmer."
+    },
+    "son": {
+      "label": "Сын",
+      "role": "самый умный в комнате",
+      "height_heads": 4.4,
+      "identity_block": "SON — a 3.5-year-old boy, oversized head, tiny body, short arms and legs, tummy forward, 4.4 heads tall. Very big dark-brown eyes (#4A2E22), round plump cheeks, small nose, slightly gappy smile, eyebrows like his dad's. Mint-green baseball cap (#9FD3C0) with a black letter P on the front, brown fleece hoodie (#7A5238) with a white ABC print, dark trousers (#2B2F36), brown sneakers.",
+      "short_block": "the little boy in the mint cap with P and the brown ABC hoodie",
+      "locked": [
+        "огромная голова, короткие ручки и ножки (4.4 головы)",
+        "мятная кепка с чёрной буквой P",
+        "коричневое худи с белой надписью ABC",
+        "большие тёмно-карие глаза",
+        "пухлые щёки и щербатая улыбка"
+      ],
+      "forbidden": [
+        "не менять цвет кепки и букву P",
+        "никакого другого текста на одежде, кроме ABC",
+        "не делать его выше или пропорциональнее — он должен читаться как малыш",
+        "никаких игрушек в руках, если реквизит не задан сценой"
+      ],
+      "palette": {
+        "skin": "#F0BE9B",
+        "skin_shade": "#DCA37F",
+        "hair": "#6B4A3A",
+        "eye": "#4A2E22",
+        "cap": "#9FD3C0",
+        "garment": "#7A5238",
+        "bottom": "#2B2F36"
+      },
+      "outfits": {
+        "home": "mint-green cap with a black letter P, brown fleece hoodie with a white ABC print, dark trousers, brown sneakers",
+        "street": "mint cap with P, brown ABC hoodie under a denim jacket, dark trousers, brown sneakers",
+        "nocap": "brown ABC hoodie, dark trousers, home slippers",
+        "pajama": "plain white t-shirt, striped pajama trousers, home slippers"
+      },
+      "signature_poses": [
+        "палец в камеру",
+        "руки в бока",
+        "задумчивый подбородок, взгляд вверх"
+      ],
+      "face_anchors": "Контрольные точки: 1) кепка сидит низко, козырёк над бровями, 2) буква P по центру козырька, 3) глаза занимают треть лица, 4) щёки круглые, выходят за линию челюсти, 5) уши маленькие и низко посаженные.",
+      "refs": {
+        "turnaround": "characters/son/master/turnaround.png",
+        "face": "characters/son/master/face.png",
+        "cards": [
+          "promo/refs/son-face.png",
+          "promo/refs/son-front.png"
+        ]
+      },
+      "lock_line": "Keep the boy's proportions EXACTLY as in the reference: oversized head, tiny body, short arms and legs, tummy forward. Do not age him up, do not lengthen his limbs."
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "comment": "Форматы площадок: размер, безопасные зоны, интерфейсные «мёртвые» области и правила кадрирования для промпта. safe — отступ от края, внутрь которого не заходит ни текст, ни лицо. ui — прямоугольники, которые перекрывает интерфейс соцсети (их нельзя занимать лицом и заголовком).",
+  "theme": {
+    "paper": "#FFF8EC",
+    "ink": "#3B2A26",
+    "accent": "#FF6054",
+    "accent2": "#F0BB4C",
+    "sage": "#8AA88A",
+    "scrim": "#1A1210",
+    "fonts": {
+      "title": "Montserrat-900.ttf",
+      "kicker": "Montserrat-800.ttf",
+      "body": "Nunito-700.ttf",
+      "brand": "Montserrat-700.ttf"
+    }
+  },
+  "formats": {
+    "yt-thumb": {
+      "label": "Превью YouTube (16:9)",
+      "w": 1280,
+      "h": 720,
+      "safe": 56,
+      "ui": [
+        [
+          1080,
+          620,
+          1280,
+          720
+        ]
+      ],
+      "ui_comment": "правый нижний угол — плашка длительности",
+      "title_max_words": 4,
+      "title_max_lines": 2,
+      "title_rules": "лицо занимает 30–50 % площади, эмоция читается на 120 px, в кадре один объект-конфликт",
+      "framing": "wide horizontal shot, 16:9, characters in the middle two thirds of the frame, headroom 8 %, no cropping of heads",
+      "prompt_note": "keep the left third of the frame calm and uncluttered: the headline goes there"
+    },
+    "shorts-cover": {
+      "label": "Обложка шортса / сторис (9:16)",
+      "w": 1080,
+      "h": 1920,
+      "safe": 72,
+      "ui": [
+        [
+          0,
+          0,
+          1080,
+          220
+        ],
+        [
+          0,
+          1540,
+          1080,
+          1920
+        ],
+        [
+          0,
+          0,
+          120,
+          1920
+        ],
+        [
+          960,
+          0,
+          1080,
+          1920
+        ]
+      ],
+      "ui_comment": "верх — заголовок канала, низ — кнопки и подпись, края — свайп",
+      "title_max_words": 5,
+      "title_max_lines": 3,
+      "title_rules": "герой целиком между 18 % и 80 % высоты; заголовок в средней трети, крупно",
+      "framing": "vertical 9:16 shot, full body or waist-up of the characters inside the middle 60 % of the height, generous empty space above and below",
+      "prompt_note": "subject fully inside the middle band; the top 12 % and the bottom 20 % stay plain background"
+    },
+    "post-4x5": {
+      "label": "Пост-карточка (4:5)",
+      "w": 1080,
+      "h": 1350,
+      "safe": 64,
+      "ui": [],
+      "ui_comment": "лента Instagram/VK/Telegram: ничего не перекрывается, но низ обрезается в превью",
+      "title_max_words": 6,
+      "title_max_lines": 3,
+      "title_rules": "заголовок в нижней трети на плашке, лица — в верхних двух третях",
+      "framing": "4:5 portrait composition, characters from knees up, faces in the upper half, calm area at the bottom for a headline",
+      "prompt_note": "faces in the upper half; the bottom quarter stays calm and uncluttered for a headline"
+    },
+    "square": {
+      "label": "Квадрат — аватар, карусель, кросспост (1:1)",
+      "w": 1080,
+      "h": 1080,
+      "safe": 64,
+      "ui": [],
+      "ui_comment": "аватар обрезается в круг — важное держим в центральном круге 80 %",
+      "title_max_words": 4,
+      "title_max_lines": 2,
+      "title_rules": "симметричная композиция, центр — лицо или трио",
+      "framing": "square 1:1 composition, characters centred, symmetric, faces near the centre",
+      "prompt_note": "centred and symmetric; important elements inside the safe centre circle"
+    },
+    "vk-cover": {
+      "label": "Обложка сообщества VK (16:4)",
+      "w": 1590,
+      "h": 400,
+      "safe": 40,
+      "ui": [
+        [
+          0,
+          0,
+          280,
+          400
+        ],
+        [
+          1310,
+          0,
+          1590,
+          400
+        ]
+      ],
+      "ui_comment": "аватар сообщества слева и кнопки справа",
+      "title_max_words": 4,
+      "title_max_lines": 1,
+      "title_rules": "трио по центру, заголовок слева от центра, без мелких деталей",
+      "framing": "wide banner 4:1 composition, three characters in a row in the centre, plenty of flat background left and right",
+      "prompt_note": "characters centred in one row; flat background on both sides for the UI"
+    },
+    "avatar": {
+      "label": "Аватар канала (1:1, круг)",
+      "w": 800,
+      "h": 800,
+      "safe": 90,
+      "ui": [],
+      "ui_comment": "обрезается в круг r=400 — всё важное в круге r=320",
+      "title_max_words": 2,
+      "title_max_lines": 1,
+      "title_rules": "одно лицо крупно, без текста (или 1–2 буквы)",
+      "framing": "tight square close-up portrait, one character, head and shoulders, centred",
+      "prompt_note": "the head fills 60 % of the frame, dead centre"
+    }
+  }
+}

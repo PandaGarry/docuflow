@@ -1,0 +1,49 @@
+{
+  "format": "shorts-cover",
+  "w": 1080,
+  "h": 1920,
+  "safe": 72,
+  "anchor": "bottom",
+  "limits": [
+    120,
+    258,
+    960,
+    1502
+  ],
+  "title_box": [
+    120,
+    1071,
+    960,
+    1390
+  ],
+  "ui_zones": [
+    [
+      0,
+      0,
+      1080,
+      220
+    ],
+    [
+      0,
+      1540,
+      1080,
+      1920
+    ],
+    [
+      0,
+      0,
+      120,
+      1920
+    ],
+    [
+      960,
+      0,
+      1080,
+      1920
+    ]
+  ],
+  "source": "/home/user/docuflow/studio/promo/renders/P10-art.png",
+  "title": "Коробки",
+  "kicker": "Серия 1",
+  "plate": true
+}

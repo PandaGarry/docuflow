@@ -1,0 +1,24 @@
+{
+  "format": "square",
+  "w": 1080,
+  "h": 1080,
+  "safe": 64,
+  "anchor": "bottom",
+  "limits": [
+    64,
+    85,
+    1016,
+    995
+  ],
+  "title_box": [
+    64,
+    530,
+    1016,
+    930
+  ],
+  "ui_zones": [],
+  "source": "/home/user/docuflow/studio/promo/renders/P03-art.png",
+  "title": "Ты серьёзно?",
+  "kicker": "Мама",
+  "plate": false
+}

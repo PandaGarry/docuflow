@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "comment": "Замер пропорций и контрольные точки. Собрано promo.py refs.",
+  "characters": {
+    "dad": {
+      "label": "Папа",
+      "height_px": 625,
+      "silhouette_head_px": 132,
+      "silhouette_heads": 4.73,
+      "canon_heads": 5.9,
+      "silhouette_head_ratio": 0.2112,
+      "note": "silhouette_* — оценка по силуэту (борода/волосы/кепка её искажают). Канон — canon_heads.",
+      "front_card": "promo/refs/dad-front.png",
+      "face_card": "promo/refs/dad-face.png",
+      "locked": [
+        "телосложение: широкий, плотный, короткие ноги",
+        "высота 5.9 головы",
+        "форма бороды и линия роста волос",
+        "форма лица и ушей",
+        "цвет глаз #5B3A29, цвет волос #4A332A"
+      ]
+    },
+    "mom": {
+      "label": "Мама",
+      "height_px": 888,
+      "silhouette_head_px": 88,
+      "silhouette_heads": 10.09,
+      "canon_heads": 5.7,
+      "silhouette_head_ratio": 0.0991,
+      "note": "silhouette_* — оценка по силуэту (борода/волосы/кепка её искажают). Канон — canon_heads.",
+      "front_card": "promo/refs/mom-front.png",
+      "face_card": "promo/refs/mom-face.png",
+      "locked": [
+        "длина волос и направление чёлки",
+        "высота 5.7 головы, на полголовы ниже папы",
+        "цвет глаз #73879A, цвет волос #9A7856",
+        "мягкий округлый силуэт, округлый подбородок",
+        "одна тонкая цепочка с маленьким крестиком"
+      ]
+    },
+    "son": {
+      "label": "Сын",
+      "height_px": 641,
+      "silhouette_head_px": 215,
+      "silhouette_heads": 2.98,
+      "canon_heads": 4.4,
+      "silhouette_head_ratio": 0.3354,
+      "note": "silhouette_* — оценка по силуэту (борода/волосы/кепка её искажают). Канон — canon_heads.",
+      "front_card": "promo/refs/son-front.png",
+      "face_card": "promo/refs/son-face.png",
+      "locked": [
+        "огромная голова, короткие ручки и ножки (4.4 головы)",
+        "мятная кепка с чёрной буквой P",
+        "коричневое худи с белой надписью ABC",
+        "большие тёмно-карие глаза",
+        "пухлые щёки и щербатая улыбка"
+      ]
+    }
+  },
+  "lineup": {
+    "order": [
+      "dad",
+      "mom",
+      "son"
+    ],
+    "file": "promo/refs/family-lineup.png",
+    "sheet": "promo/refs/identity-sheet.png",
+    "scale": "канонные height_heads: папа 5.9 · мама 5.7 · сын 4.4",
+    "note": "мастера нарисованы в разном масштабе (свой лист — свой кадр), поэтому линейка нормируется по канону, а не по пикселям листа"
+  }
+}
