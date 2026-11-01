@@ -160,6 +160,7 @@ python3 -m venv .venv
 | Арт-дирекшн: слои, safe-зоны, типографика | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) |
 | Замок идентичности: почему героя не генерируем | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) |
 | Календарь на 8 недель и брифы | [`docs/35-CAMPAIGN-S1.md`](docs/35-CAMPAIGN-S1.md) |
+| Прогрев сообщества до премьеры | [`docs/36-WARMUP.md`](docs/36-WARMUP.md) |
 
 Сборка кадра — две команды:
 
@@ -175,6 +176,13 @@ python3 -m venv .venv
     --format post-4x5 --kicker "СЕЗОН 1" --title "Мультсериал про свою семью" \
     --out studio/promo/renders/P01-post-4x5.png
 .venv/bin/python studio/engine/promo.py verify studio/promo/renders/P01-post-4x5.png
+```
+
+Плакаты прогрева (9 кадров без обещаний серий) собираются отдельным движком:
+
+```bash
+.venv/bin/python studio/engine/promo_poster.py all     # announce, quote, silhouette, portrait, faces, meme
+.venv/bin/python studio/engine/promo_poster.py list    # что умеет
 ```
 
 Вся партия 1 собирается одной командой:

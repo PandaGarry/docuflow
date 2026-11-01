@@ -89,6 +89,18 @@ python3 -m venv .venv
 [`docs/34-IDENTITY-LOCK.md`](../../docs/34-IDENTITY-LOCK.md),
 [`docs/35-CAMPAIGN-S1.md`](../../docs/35-CAMPAIGN-S1.md).
 
+## Плакаты прогрева
+
+```bash
+.venv/bin/python studio/engine/promo_poster.py all     # 9 плакатов
+.venv/bin/python studio/engine/promo_poster.py sheet   # контакт-лист
+.venv/bin/python studio/engine/promo_poster.py make quote --key mom:stern \
+    --line1 "Ты" --line2 "серьёзно?" --who мама --out studio/promo/renders/x.png
+```
+
+Режимы: `announce`, `quote`, `silhouette`, `portrait`, `faces`, `meme`. Стратегия
+и подводки — `docs/36-WARMUP.md` и `copies/warmup.md`.
+
 ## Партия 1 одной командой
 
 ```bash

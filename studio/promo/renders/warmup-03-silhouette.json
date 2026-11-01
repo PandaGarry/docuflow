@@ -1,0 +1,23 @@
+{
+  "format": "post-4x5",
+  "w": 1080,
+  "h": 1350,
+  "safe": 64,
+  "anchor": "poster",
+  "limits": [
+    64,
+    64,
+    1016,
+    1286
+  ],
+  "title_box": [
+    78,
+    868,
+    959,
+    1163
+  ],
+  "ui_zones": [],
+  "source": "studio/engine/promo_poster.py",
+  "poster": "silhouette",
+  "title": "кто переезжает?"
+}
