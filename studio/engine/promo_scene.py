@@ -338,52 +338,28 @@ def cmd_cards(args):
 
 
 def cmd_sheet(args):
-    """Контакт-лист партии: кадры в два ряда с подписями."""
-    rows = [
-        [("P01", "Мультсериал про свою семью", "4:5 · Telegram + VK", "P01-post-4x5.png", 700),
-         ("P05", "Линейка семьи", "4:5 · знакомство с героями", "P05-lineup.png", 700),
-         ("P08", "Дата премьеры", "4:5 · афиша", "P08-post-4x5.png", 700)],
-        [("P02", "Папа", "1:1 · карточка", "P02-square.png", 520),
-         ("P03", "Мама", "1:1 · карточка", "P03-square.png", 520),
-         ("P04", "Сын", "1:1 · карточка", "P04-square.png", 520),
-         ("P10", "Открывашка Shorts", "9:16 · YouTube", "P10-shorts-cover.png", 520)],
-    ]
-    f1, f2 = ImageFont.truetype(FONT, 34), ImageFont.truetype(FONT, 22)
-    gap, lbl, pad = 26, 96, 34
-    built = []
-    for row in rows:
-        tiles = []
-        for pid, title, fmt, name, h in row:
-            path = os.path.join(OUT, name)
-            if not os.path.exists(path):
-                raise SystemExit(f"нет кадра: {path}")
-            im = Image.open(path).convert("RGB")
-            w = int(im.width * h / im.height)
-            im = im.resize((w, h), Image.LANCZOS)
-            t = Image.new("RGB", (w, h + lbl), PAPER)
-            t.paste(im, (0, 0))
-            d = ImageDraw.Draw(t)
-            fs, text = 34, f"{pid} · {title}"
-            while fs > 18 and d.textlength(text, font=ImageFont.truetype(FONT, fs)) > w - 26:
-                fs -= 2
-            d.text((14, h + 14 + (34 - fs) // 2), text, font=ImageFont.truetype(FONT, fs), fill=INK)
-            d.text((14, h + 58), fmt, font=f2, fill=(150, 120, 110))
-            tiles.append(t)
-        W = sum(t.width for t in tiles) + gap * (len(tiles) + 1)
-        band = Image.new("RGB", (W, tiles[0].height + gap), PAPER)
-        x = gap
-        for t in tiles:
-            band.paste(t, (x, gap))
-            x += t.width + gap
-        built.append(band)
-    W = max(b.width for b in built) + pad * 2
-    H = sum(b.height for b in built) + pad * (len(built) + 1)
-    sheet = Image.new("RGB", (W, H), INK)
-    y = pad
-    for b in built:
-        sheet.paste(b, (pad, y))
-        y += b.height + pad
-    out = args.out or os.path.join(OUT, "_batch-proof.png")
+    """Контакт-лист карточек героев."""
+    items = [("dad", "ПАПА"), ("mom", "МАМА"), ("son", "СЫН")]
+    H, gap, lbl, pad = 760, 26, 84, 26
+    tiles = []
+    for cid, name in items:
+        path = os.path.join(OUT, f"card-{cid}.png")
+        if not os.path.exists(path):
+            raise SystemExit(f"нет карточки: {path} — запустите `promo_scene.py cards`")
+        im = Image.open(path).convert("RGB")
+        w = int(im.width * H / im.height)
+        im = im.resize((w, H), Image.LANCZOS)
+        t = Image.new("RGB", (w, H + lbl), PAPER)
+        t.paste(im, (0, 0))
+        ImageDraw.Draw(t).text((16, H + 20), name, font=ImageFont.truetype(FONT, 30), fill=INK)
+        tiles.append(t)
+    W = sum(t.width for t in tiles) + gap * (len(tiles) + 1)
+    sheet = Image.new("RGB", (W, H + lbl + gap * 2), INK)
+    x = gap
+    for t in tiles:
+        sheet.paste(t, (x, gap))
+        x += t.width + gap
+    out = args.out or os.path.join(OUT, "cards-sheet.png")
     sheet.save(out)
     print(f"{out}  ({sheet.width}×{sheet.height})")
 
