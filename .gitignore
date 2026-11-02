@@ -11,8 +11,12 @@ studio/out/preview_*.jpg
 studio/out/_*.mp4
 studio/out/*-silent.mp4
 
-# промежуточные кадры и несжатый звук пилотной серии
-studio/out/letter-p/
+# out — производные результаты; в Git только актуальный ролик и постер.
+# Исходники и библиотеки персонажей хранятся вне out.
+studio/out/*
+!studio/out/README.md
+!studio/out/pilot-letter-p.mp4
+!studio/out/pilot-letter-p-poster.jpg
 
 # личные референсы семьи: только локально (см. studio/reference/README.md)
 studio/reference/*
