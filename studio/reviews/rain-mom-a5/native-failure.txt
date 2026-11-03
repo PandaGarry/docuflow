@@ -1,0 +1,16 @@
+Read blend: "/home/runner/work/docuflow/docuflow/.cache/rain-v3/source/Rain v3.3/rain_v3.2.blend"
+scripts disabled for "/home/runner/work/docuflow/docuflow/.cache/rain-v3/source/Rain v3.3/rain_v3.2.blend", skipping 'cloudrig.py'
+scripts disabled for "/home/runner/work/docuflow/docuflow/.cache/rain-v3/source/Rain v3.3/rain_v3.2.blend", skipping 'rain_shading.py'
+Traceback (most recent call last):
+  File "/home/runner/work/docuflow/docuflow/studio/tools/rain_mom_pass_a5.py", line 166, in <module>
+    main()
+  File "/home/runner/work/docuflow/docuflow/studio/tools/rain_mom_pass_a5.py", line 136, in main
+    hair=revise_groom(bpy,rig)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/rain_mom_pass_a5.py", line 47, in revise_groom
+    material=groom_material(bpy)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/rain_mom_pass_a5.py", line 26, in groom_material
+    shader.inputs['Weight'].default_value=1
+    ~~~~~~~~~~~~~^^^^^^^^^^
+KeyError: 'bpy_prop_collection[key]: key "Weight" not found'
