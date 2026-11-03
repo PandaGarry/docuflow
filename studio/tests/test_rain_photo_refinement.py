@@ -9,6 +9,7 @@ import numpy as np
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'studio/tools'))
 import rain_mom_pass_a6 as a6
+import rain_mom_pass_a7 as a7
 
 
 class PhotoGuidedRefinementTests(unittest.TestCase):
@@ -24,6 +25,15 @@ class PhotoGuidedRefinementTests(unittest.TestCase):
             for a,b in zip(polygon,polygon[1:]+polygon[:1]):edges[tuple(sorted((a,b)))]+=1
         self.assertEqual(sum(count==1 for count in edges.values()),96)
         self.assertTrue(all(count in (1,2) for count in edges.values()))
+
+    def test_a7_cap_has_lower_temple_coverage_without_lowering_center_forehead(self):
+        a=np.asarray(a6.cap_geometry()[0]);b=np.asarray(a7.cap_geometry()[0])
+        np.testing.assert_allclose(a[-96],b[-96])
+        self.assertLess(b[-96+12,2],a[-96+12,2]-.01)
+        self.assertGreater(b[-96+12,0],a[-96+12,0])
+        for polygon in a7.cap_geometry()[1]:
+            v=b[list(polygon)];n=np.cross(v[1]-v[0],v[2]-v[0])
+            self.assertGreater(np.dot(n,v.mean(axis=0)-[0,.008,1.49]),0)
 
     def test_cap_dimensions_and_finite_uv(self):
         points,_,uv=a6.cap_geometry()

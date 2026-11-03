@@ -57,3 +57,18 @@ PNG/JSON в `studio/reviews/rain-mom-a6`, packed .blend как 14-day Actions ar
 Credit: **Rain Rig (CC) Blender Foundation | studio.blender.org**.
 License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/.
 Modification notice: лицо/волосы как описано выше; endorsement не предполагается.
+
+## A6 выполнен, обнаружен локальный art-дефект
+
+Native run41641288358 success, frames commit37b55c5. 274 local tests passed;
+source topology/rest signature unchanged, neutral restore=0m, new invalid=0,
+9 blink samples finite. Цельная crown убрала бугристый стык A5, цвет более
+приглушённый, видимые изменения eyelid/lip/midface небольшие, стиль сохранён.
+Личные фотографии не читались native worker и не публиковались.
+
+При просмотре three-quarter/front виден тёмный зазор у виска и резкий переход
+crown к боковым locks. A6 не объявляется законченной причёской. Добавлен A7:
+тот же private-local workflow и лицо/материал A6; cap продлён к вискам без
+опускания central forehead hairline, верхние curtain roots сильнее погружены
+под crown и истончены для меньшей ступеньки. A6 evidence/recipe сохранены.
+A7 на момент этого checkpoint ещё не отрендерен.

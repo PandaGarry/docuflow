@@ -11,6 +11,7 @@ on:
       - 'studio/tools/rain_mom_pass_a4.py'
       - 'studio/tools/rain_mom_pass_a5.py'
       - 'studio/tools/rain_mom_pass_a6.py'
+      - 'studio/tools/rain_mom_pass_a7.py'
       - '.github/workflows/rain-study.yml'
   workflow_dispatch:
 
@@ -59,28 +60,28 @@ jobs:
           fi
           mkdir -p .cache
           set +e
-          timeout 900 python studio/tools/rain_mom_pass_a6.py > .cache/rain-native-worker.log 2>&1
+          timeout 900 python studio/tools/rain_mom_pass_a7.py > .cache/rain-native-worker.log 2>&1
           result=$?
           tail -n 80 .cache/rain-native-worker.log
           exit "$result"
       - name: Keep editable native candidate with packed textures (14 days)
         uses: actions/upload-artifact@v4
         with:
-          name: rain-mom-a6-native
+          name: rain-mom-a7-native
           path: |
-            .cache/rain-v3/rain-mom-a6.blend
-            studio/reviews/rain-mom-a6/report.json
+            .cache/rain-v3/rain-mom-a7.blend
+            studio/reviews/rain-mom-a7/report.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
       - name: Preserve bounded native diagnostic on failure
         if: failure()
         run: |
-          mkdir -p studio/reviews/rain-mom-a6
+          mkdir -p studio/reviews/rain-mom-a7
           if [ -f .cache/rain-native-worker.log ]; then
-            tail -n 100 .cache/rain-native-worker.log > studio/reviews/rain-mom-a6/native-failure.txt
+            tail -n 100 .cache/rain-native-worker.log > studio/reviews/rain-mom-a7/native-failure.txt
           else
-            echo 'Native worker did not start; inspect preceding workflow steps.' > studio/reviews/rain-mom-a6/native-failure.txt
+            echo 'Native worker did not start; inspect preceding workflow steps.' > studio/reviews/rain-mom-a7/native-failure.txt
           fi
       - name: Publish actual PNGs and inspection to the same working branch
         if: ${{ !cancelled() }}
@@ -91,8 +92,8 @@ jobs:
           gh auth setup-git
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add studio/reviews/rain-study studio/reviews/rain-mom-a6
+          git add studio/reviews/rain-study studio/reviews/rain-mom-a7
           git diff --cached --quiet && exit 0
-          git commit -m 'Publish real Rain mom A6 local-reference-guided face and coherent crown study, native expression checks and provenance'
+          git commit -m 'Publish real Rain mom A7 temple coverage and soft root correction, native expression checks and provenance'
           # A concurrent branch update fails safely; never force-push or merge it away.
           git push origin arena/4c8ed03c-docuflow
