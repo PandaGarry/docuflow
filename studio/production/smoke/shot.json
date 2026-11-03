@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "kind": "shot",
+  "shot_id": "backend-smoke-01",
+  "project_id": "family-studio-backend-probe",
+  "asset_id": "rig-probe-01",
+  "rig_id": "rig-probe-controls",
+  "purpose": "technical_smoke",
+  "frame_range": [
+    0,
+    24
+  ],
+  "tracks": [
+    {
+      "control": "arm.R.ik_target",
+      "keys": [
+        {
+          "frame": 0,
+          "value": [
+            1.38,
+            0,
+            1.78
+          ]
+        },
+        {
+          "frame": 6,
+          "value": [
+            1.14,
+            0.12,
+            2.13
+          ]
+        },
+        {
+          "frame": 12,
+          "value": [
+            1.06,
+            0.16,
+            2.3
+          ]
+        },
+        {
+          "frame": 18,
+          "value": [
+            1.23,
+            0.08,
+            2.02
+          ]
+        },
+        {
+          "frame": 23,
+          "value": [
+            1.38,
+            0,
+            1.78
+          ]
+        }
+      ]
+    },
+    {
+      "control": "jaw.open",
+      "keys": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 6,
+          "value": 0.3
+        },
+        {
+          "frame": 12,
+          "value": 1
+        },
+        {
+          "frame": 18,
+          "value": 0.3
+        },
+        {
+          "frame": 23,
+          "value": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "project"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "const": "technical_smoke"
+    },
+    "fps": {
+      "type": "object",
+      "properties": {
+        "num": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "den": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1001
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "additionalProperties": false
+    },
+    "resolution": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 64,
+        "maximum": 3840
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "audio_sample_rate": {
+      "const": 48000
+    },
+    "coordinate_system": {
+      "const": "RH_Z_UP_METERS"
+    },
+    "forward_axis": {
+      "const": "+Y"
+    },
+    "render": {
+      "type": "object",
+      "properties": {
+        "engine": {
+          "const": "CYCLES"
+        },
+        "device": {
+          "const": "CPU"
+        },
+        "samples": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "threads": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "denoise": {
+          "type": "boolean"
+        },
+        "view_transform": {
+          "enum": [
+            "AgX",
+            "Standard"
+          ]
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "engine",
+        "device",
+        "samples",
+        "threads",
+        "denoise",
+        "view_transform",
+        "seed"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "project_id",
+    "purpose",
+    "fps",
+    "resolution",
+    "audio_sample_rate",
+    "coordinate_system",
+    "forward_axis",
+    "render"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,120 @@
+{
+  "frozen_finger_negative": {
+    "mode": "direct_ir_application",
+    "scene_sha256": null,
+    "fixture_sha256": "3bbd19866a8b34d581105ba728cbd2e1f89d7ca29452b8fed99474db73764d49",
+    "scope": "actual bpy pose evaluation, no render/artistic acceptance",
+    "status": "failed",
+    "asset_id": "dad-body-rig",
+    "revision": "r2",
+    "blend_sha256": "e5bef55ae9225b67f7fa8106d88926797e0ff369d96fe3bd5413359877e1c4b2",
+    "frames_evaluated": 72,
+    "max_ik_error_m": 4.49811444739856e-05,
+    "max_bone_relative_error": 3.501814486295274e-05,
+    "contacts": {
+      "passed": true,
+      "stance_slip_m": 4.330601502859974e-06,
+      "stance_ground_error_m": 2.9966235160827637e-05,
+      "sole_penetration_m": 2.9966235160827637e-05,
+      "stance_samples": 108,
+      "limits_m": {
+        "stance_slip": 0.005,
+        "ground_error": 0.003,
+        "penetration": 0.002
+      }
+    },
+    "fingers": {
+      "passed": false,
+      "fingers": {
+        "finger.R.index": {
+          "span_m": 7.362515818476946e-07,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.middle": {
+          "span_m": 6.529467966410954e-07,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.ring": {
+          "span_m": 8.348058878236416e-07,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.pinky": {
+          "span_m": 7.398336494969731e-07,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.thumb": {
+          "span_m": 7.611270421220144e-07,
+          "min_span_m": 0.025,
+          "passed": false
+        }
+      }
+    },
+    "expected_exit_code": 1,
+    "observed_exit_code": 1,
+    "finding": "All finger curves frozen; root, wrist, head and foot motion retained. Hand-local evaluated fingertip probes correctly reject non-articulating fingers."
+  },
+  "native_replay": {
+    "direct_report": "studio/production/dad-rig-pose-report.json",
+    "replay_report": "studio/production/dad-rig-native-replay.json",
+    "frames_evaluated": 72,
+    "scene_sha256": "b27db1da6b84f5ea7b0c6b58a5f524a36860c7361ba634f55e261d310972c199",
+    "all_measurements_equal": true,
+    "applied_ir_during_replay": false
+  },
+  "render_pause_resume": {
+    "job_id": "589b03020c41fc58074be9fdb3502ff2aca44fbf045341d154bd0e265ee89c9e",
+    "pause_exit_code": 75,
+    "resume_exit_code": 0,
+    "chunks": 18,
+    "reused": 1,
+    "new": 17,
+    "completed_cache_verified": true
+  },
+  "rendered_measurements_equal_to_direct_and_native": true,
+  "full_decode": {
+    "decoded_frames": 72,
+    "dimensions": [
+      640,
+      360
+    ],
+    "fps": 24,
+    "duration_seconds": 3,
+    "bytes": 91486
+  },
+  "mislabeled_stance_native_render_negative": {
+    "observed_exit_code": 1,
+    "expected_exit_code": 1,
+    "job_id": "357fb4a1e9ebf76f721323fd04c2b1da430aa5034dcc455cfc27ce4ed4d5ce66",
+    "frames_rendered": 4,
+    "completed_chunk": true,
+    "completed_manifest_exists": false,
+    "motion_checks": {
+      "contacts": {
+        "passed": false,
+        "stance_slip_m": 0.036719173563362933,
+        "stance_ground_error_m": 0.11995592713356018,
+        "sole_penetration_m": 1.1660158634185791e-05,
+        "stance_samples": 4,
+        "limits_m": {
+          "stance_slip": 0.005,
+          "ground_error": 0.003,
+          "penetration": 0.002
+        }
+      },
+      "bones": {
+        "passed": true,
+        "relative_length_error": 3.104445466561856e-05
+      }
+    },
+    "last_failure": {
+      "status": "failed",
+      "type": "ContractError",
+      "error": "evaluated stance/finger/bone quality check failed"
+    },
+    "finding": "Actually rendered swing poses 24\u201327, deliberately labeled lifted right sole as stance. Post-render evaluated geometry gate refused completed manifest."
+  }
+}

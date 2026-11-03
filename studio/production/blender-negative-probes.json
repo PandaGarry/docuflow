@@ -1,0 +1,37 @@
+{
+  "recorded_date": "2026-11-02",
+  "scope": "real failure propagation, verified cache reuse, corrupted-copy rejection and actual encoded stream inspection; not artistic acceptance",
+  "missing_native_dependencies": {
+    "command": ".venv-blender/bin/python -m studio.pipeline.run_probe --output studio/out/blender-negative",
+    "exit_code": 1,
+    "stdout": "PROBE_START 3dfb037667c6a193622ccd539c396e7a6d9533624599d7bc596262b7422a51e2\n",
+    "stderr": "ERROR: Blender worker failed (1); see /home/user/docuflow/studio/out/blender-negative/3dfb037667c6a193622ccd539c396e7a6d9533624599d7bc596262b7422a51e2/worker.log\n",
+    "worker_error": "ImportError: libXrender.so.1",
+    "png_count": 0,
+    "success_manifest_created": false,
+    "failure_record_created": true
+  },
+  "completed_job_cache_verification": {
+    "result": "passed",
+    "command": ".venv-blender/bin/python -m studio.pipeline.run_probe --native-dir .cache/blender-native --resume",
+    "exit_code": 0,
+    "worker_report_mtime_unchanged": true,
+    "stdout": "PROBE_CACHE_VERIFIED 41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0\nPROBE_PASSED /home/user/docuflow/studio/out/blender-smoke/41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0/technical-smoke.mp4\n"
+  },
+  "tampered_copy_rejected": {
+    "result": "passed",
+    "command": ".venv-blender/bin/python -m studio.pipeline.run_probe --native-dir .cache/blender-native --resume --output .cache/blender-tamper-test",
+    "exit_code": 1,
+    "changed_artifact": "scene.blend, one byte changed; size preserved",
+    "stderr": "ERROR: artifact missing or changed: scene.blend\n",
+    "original_artifact_preserved": true
+  },
+  "actual_encoded_stream_inspection": {
+    "result": "passed",
+    "exit_code": 0,
+    "input_stream_lines": [
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 1369 kb/s, 24 fps, 24 tbr, 12288 tbn (default)",
+      "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, mono, fltp, 49 kb/s (default)"
+    ]
+  }
+}

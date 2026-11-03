@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-02",
+  "scope": "inventory only; no renderer/model/GPU smoke test performed",
+  "python": "3.11.2",
+  "platform": "Linux",
+  "machine": "x86_64",
+  "binaries_in_path": {
+    "blender": false,
+    "ffmpeg": false
+  },
+  "packages": {
+    "Pillow": null,
+    "numpy": null,
+    "imageio-ffmpeg": null,
+    "opencv-python-headless": null
+  },
+  "gpu": "not_probed",
+  "renderer_smoke_test": "not_run",
+  "aligner_model_probe": "not_run",
+  "pilot_mp4_present": false,
+  "note": "Absence from PATH is not proof of impossible installation or lack of GPU. imageio-ffmpeg may supply its own binary only after package installation/verification.",
+  "snapshot_phase": "initial_inventory_before_isolated_blender_runtime_installation"
+}

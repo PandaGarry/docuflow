@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-03",
+  "recorded_at": "2026-11-02T22:04:19.119198+00:00",
+  "scope": "technical external package preview, resource/process guards and tracker; NOT artistic/production family animation acceptance",
+  "result": "passed",
+  "tests_passed": 149,
+  "unit_suites": {
+    "planning": 28,
+    "pipeline_v1_mvp": 70,
+    "external_package_and_process_guards": 51
+  },
+  "checks": [
+    {
+      "command": "python3 -m unittest discover -s studio/tests -p test_production_status.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m unittest discover -s studio/tests -p test_pipeline.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m unittest discover -s studio/tests -p test_package_pipeline.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py validate",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py checklist --check",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m pip check",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m studio.pipeline.render_package --inputs .cache/package-short-regression --output studio/out/package-short-regression --native-dir .cache/blender-native --resume",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m compileall -q studio/pipeline studio/tests studio/tools/build_dad_blockout.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "new implementation/documentation trailing whitespace audit",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    ".github/workflows/pipeline-contracts.yml": "062204a36085875038dffc216896c5cc7c9863c34396543a83613e0647f0dd03",
+    "README.md": "8e56dd69589b6653140f868942d9b43c834c63ef24bccd90f684789040df328d",
+    "docs/34-ENGINE-ARCHITECTURE.md": "047e8c6b10436c8950f9252e1b75ff105ea9703f8cea8a0e7fdb3a8f438ac251",
+    "docs/36-PRODUCTION-TRACKER.md": "9290e96d32e49949179902a1c3b8ced9f4d82bcac1b727988f64601fffba5943",
+    "docs/37-DECISION-LOG.md": "7c24193a3395c12dfe814d6b85fc3715035d7d1813841405cf9166176a0fc3d6",
+    "docs/39-EXTERNAL-PACKAGES-AND-BOUNDED-WORKERS.md": "7b8bb058bde7fa689a83673ccde7243898efb899253565533028fdc62e507394",
+    "docs/README.md": "8ec77b62c59af554093c2dc3b1ad69d9be65b93502f803b09e56c04ee5ba14f2",
+    "studio/pipeline/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/blender_worker.py": "4c009f787f2303d3d939d6cf6cb36d1428b51eb4a73197db92dba57d5551feaa",
+    "studio/pipeline/backends/package_worker.py": "20f13b00a15ca7d86f6751abf17d322a0cc40ebca79700f3c565c48d39f0f205",
+    "studio/pipeline/backends/rig_probe.py": "d7b44b12fa61ac0d623a97206bbcdc6311b915857d0de7bb4dde584398c1d4e5",
+    "studio/pipeline/contracts.py": "8694cf4707b53c3fc1e3f226c6192048f94ac37cc88c4a6188261c4590f66c70",
+    "studio/pipeline/packages.py": "df1927740293733f3e73a849add2b207f52946598c83f76bae94b082c35e5cf6",
+    "studio/pipeline/render_package.py": "a99aae963d73f96f24bd8246e2c8bc3f928924ba373902dcf1ae8d40f94245cf",
+    "studio/pipeline/resources.py": "951da950ce37403e8e75181ce81c3ff6e5c8fec8bda1c10fc57b1b1c525b0fff",
+    "studio/pipeline/run_probe.py": "0a4dc9413268fd84262eb63c91cd66e98fc9b5daab12390462e98a54627e8ea3",
+    "studio/pipeline/timeline.py": "f4d06ca85396da68ca4a814c650619a6c4e3d7e45fcbd41faaa927bd167588a0",
+    "studio/production/blender-requirements.lock": "1275775534f5f2ebec7d54538b4869eb457f1e33baf4fa930ab9315f2a641f1b",
+    "studio/production/dad-package-integration.json": "19e9d6d1eaa1419957f4720a51a2aaf3bb316d21a44030c233b6289bccf98d9d",
+    "studio/production/dad-preview/package-r1.json": "e832944d4daf285d7a2bab53806b1257c9636ef50b2a769d3572adb91e7eb665",
+    "studio/production/dad-preview/project.json": "6651c998d2c088243732d81c0ebef18c7e9341ac040b8e269808676515afac9b",
+    "studio/production/dad-preview/shot.json": "80177226d7b180b6f8a196366b1324d660a621d7dec06e15e524b6e26c208ab6",
+    "studio/production/dad-preview-manifest.json": "159bdf134042bb0f34af691a0a2ce430d8c587eafae6bc9283761c9b2896bbb3",
+    "studio/production/dad-preview-report.json": "e581133cc8f28f39d3c3a5b72fdf48fb2867c10b62744b99698ae07585d9b310",
+    "studio/production/package-empty-log-regression.json": "ef053c2f8312bd781708c6f8076b38ac2ba95e46d73e45ecdab0fe859ae9b239",
+    "studio/production/package-short-regression-report.json": "20cc26f358f3f7852e94e2fa53dca93d4406e57130e03ee60ad8c46750efa7f2",
+    "studio/production/plan.json": "7429e6120c92a575f4672aa86e60413b43ed698273210c80b277897304d41f6b",
+    "studio/production/sandbox-native-libs.lock.json": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+    "studio/schemas/asset-package.v2.schema.json": "1ecacd3616eeeaa6934348a32420eeb394d9294a6e13b62ac3c20d9f7d306479",
+    "studio/schemas/asset.schema.json": "db1ad5f910d8900784e2b9254eb5fd1813b3924d3096bba965a1fb830d24aeb9",
+    "studio/schemas/manifest.schema.json": "1b31b7819e7196828398c2621952bdfcc1ee90149ea607a53f8b0fceef1f15b4",
+    "studio/schemas/project.schema.json": "281d300d33e9830d27bb2f99f68869c9280c31b89f11f3fe29035a61183bc5b2",
+    "studio/schemas/project.v2.schema.json": "2c27c8559dab1b63647be98c3d335ec1b47afbdab4522b0cd2315eac2e850d37",
+    "studio/schemas/render-manifest.v2.schema.json": "7e5a61ea16c661d42bb270fde34355ea885d824fbe1b6290aeda72c49ba965c7",
+    "studio/schemas/report.schema.json": "885f4b8f3a0c3d95f262a4b87ef2c78c13d8489a0c1c77832c48d7939ddfe712",
+    "studio/schemas/rig.schema.json": "e926e4954ed9e30a1f44b6ecb95072b4808733b4f458554de8ce4af87ff66382",
+    "studio/schemas/shot.schema.json": "5d1bc1a1108824cd9768942c98991469c634ca94562695ded1184fc29c412896",
+    "studio/schemas/shot.v2.schema.json": "82b594941f8f559a5d883188404e4807d6c62c6d20cc10a0e679261c9200b0a8",
+    "studio/schemas/speech.schema.json": "20673c6d80b0f5dccdefe8bb675b2085b444a38b2c0c6cb76b20cbc36bd6141a",
+    "studio/tests/test_package_pipeline.py": "aad5bbdb2f2ac2d36344af840c5758ff5a0d5485853a957fe1e11beb0b30fc3c",
+    "studio/tests/test_pipeline.py": "bf2066d335a38a0f346b52de63c3ada1a50ea711ddb59f243283d7ac4ff69ecd",
+    "studio/tests/test_production_status.py": "ae585074416911d1fb266714548bf64d7d2c0aa1775adae48fd82732a4839a00",
+    "studio/tools/build_dad_blockout.py": "f3dfc33495f756e61c0c57dff723f1341c9ab66db9f4d8d72be84f55a597dae3",
+    "studio/tools/production_status.py": "8535fcb2cf313dd43289d81d043c05c2f7b332619042c4d6908decf844dccf15"
+  },
+  "integration": {
+    "long_preview": {
+      "source": "studio/production/dad-preview-report.json",
+      "status": "passed",
+      "frames": 48,
+      "resolution": [
+        960,
+        540
+      ],
+      "job_id": "499a3dc9eb281ac1b83130cc0309787cd1014b16703b72f984946d2de65475fe",
+      "note": "Completed before permitting zero-byte diagnostic logs in manifest; producer hash preserved, artifacts revalidated by current schema."
+    },
+    "current_source_regression": {
+      "source": "studio/production/package-short-regression-report.json",
+      "status": "passed",
+      "frames": 4,
+      "job_id": "44d10281b81870110f47245477f43ae816dcb3b9e4b852188592da14cef4bc1e",
+      "note": "Actual two-chunk pause/resume plus empty diagnostic artifact; current-source cache hit and corruption rejection verified."
+    },
+    "probes": "studio/production/dad-package-integration.json"
+  },
+  "github_actions_execution": "not_run; workflow updated and local equivalent commands passed",
+  "legacy_pilot_engine_suites": "not_rerun_in_this_iteration",
+  "remaining_work": [
+    "official supported base image/native packages and integrity/security review",
+    "generic production/approval workflow, full QA and long-run stability",
+    "approved family likeness/topology/body-face rig/phone alignment/walk and 8/12/40-second scenes"
+  ]
+}

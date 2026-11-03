@@ -1,0 +1,46 @@
+{
+  "scope": "Exact native PNG archive plus labelled display board. NOT art/anatomy approval.",
+  "sources": [
+    {
+      "view": "hero",
+      "path": "studio/reviews/dad-r4/hero.png",
+      "sha256": "e6c695833973124c53a1dcb357d1800baf4c1c8e8295aa352448d9502373b5c4",
+      "native_source": "studio/out/dad-r4-review/hero.png"
+    },
+    {
+      "view": "front",
+      "path": "studio/reviews/dad-r4/front.png",
+      "sha256": "bb344b917d97988aa359dc02c965e4f74eb4a03037b84ee1dd37149ac634e3de",
+      "native_source": "studio/out/dad-r4-review/front.png"
+    },
+    {
+      "view": "hand_open",
+      "path": "studio/reviews/dad-r4/hand_open.png",
+      "sha256": "549f7e69c49c63fb9fa5eb013a5255d02b8d3eaf198ec4d12e39a689a25180a6",
+      "native_source": "studio/out/dad-r4-review/hand_open.png"
+    },
+    {
+      "view": "hand_curl",
+      "path": "studio/reviews/dad-r4/hand_curl.png",
+      "sha256": "c5376c431ab49afb41500e5e8c22e6606b07a26283ad4040289834a2c32c7b6f",
+      "native_source": "studio/out/dad-r4-review/hand_curl.png"
+    },
+    {
+      "view": "full",
+      "path": "studio/reviews/dad-r4/full.png",
+      "sha256": "c5dfb1f6b9d9f4388f66624f58e3e9473c2685e79bd3bbe47112bead40511aa9",
+      "native_source": "studio/out/dad-r4-review/full.png"
+    }
+  ],
+  "render_report_sha256": "5e77821550e3b55bc065ae40fd65124b7f37c1ff5b2fd85e50e0560651df2bfa",
+  "board": {
+    "path": "studio/reviews/dad-r4/review-board.jpg",
+    "sha256": "2a6d1d24cd8709ef15fb50da456016e3a65f7f9ee4ed04f80a78b0948fef1c92",
+    "dimensions": [
+      2192,
+      1152
+    ],
+    "operations": "Labels, Lanczos display resizing, horizontal crop of full view only. Raw originals unchanged."
+  },
+  "composer_sha256": "d11d745c25997bfcffab6a0d9cbd0c0174165202ba9eb270b488428d2b32067b"
+}

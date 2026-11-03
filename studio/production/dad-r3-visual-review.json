@@ -1,0 +1,114 @@
+{
+  "scope": "native stills; review, not approval",
+  "recipe_sha256": "df21b08dfd10275f2b84faf688854f0818016ac379eb67eba79143b2eda9ca15",
+  "renders": [
+    {
+      "revision": "r2",
+      "blend_sha256": "e5bef55ae9225b67f7fa8106d88926797e0ff369d96fe3bd5413359877e1c4b2",
+      "path": "studio/out/dad-r3-review/r2-neutral.png",
+      "sha256": "e58c22333d52f30743634a90da5f37ecee07f9f260912069f0bcaf48a7624af8",
+      "project": {
+        "schema_version": 2,
+        "kind": "project",
+        "project_id": "dad-r3-deformation-test",
+        "purpose": "rig_preview",
+        "fps": {
+          "num": 24,
+          "den": 1
+        },
+        "resolution": [
+          768,
+          576
+        ],
+        "render": {
+          "samples": 16,
+          "threads": 2,
+          "denoise": true,
+          "seed": 67
+        },
+        "resources": {
+          "chunk_frames": 4,
+          "rss_limit_mb": 1536,
+          "timeout_seconds": 180
+        },
+        "camera": {
+          "position": [
+            2.5,
+            7,
+            2.9
+          ],
+          "target": [
+            0.05,
+            0,
+            1.42
+          ],
+          "ortho_scale": 4.6
+        }
+      }
+    },
+    {
+      "revision": "r3",
+      "blend_sha256": "3dbdd14e1c9384c41291a1db40abf7c53c58d8666f0a34182dbee507e3e697a3",
+      "path": "studio/out/dad-r3-review/hand-closeup.png",
+      "sha256": "3ab2c6bf2e53a38aec5f733c4a159c6eb5e3ba7cf5ac6591f7631df8842948e6",
+      "project": {
+        "schema_version": 2,
+        "kind": "project",
+        "project_id": "dad-r3-deformation-test",
+        "purpose": "rig_preview",
+        "fps": {
+          "num": 24,
+          "den": 1
+        },
+        "resolution": [
+          768,
+          576
+        ],
+        "render": {
+          "samples": 16,
+          "threads": 2,
+          "denoise": true,
+          "seed": 67
+        },
+        "resources": {
+          "chunk_frames": 4,
+          "rss_limit_mb": 1536,
+          "timeout_seconds": 180
+        },
+        "camera": {
+          "position": [
+            1.25,
+            3,
+            1.22
+          ],
+          "target": [
+            0.76,
+            0.03,
+            1.025
+          ],
+          "ortho_scale": 0.5
+        }
+      }
+    },
+    {
+      "path": "studio/out/dad-r3-review/comparison.png",
+      "sha256": "34ac060e780ccca15a93bb96c1262ea8355afb9cdb20a82d6030587f60e58ad4",
+      "r3_neutral_sha256": "a7ba977f2dfb82eaa8c3909176af820ab8462b9dd6945e2b5ebc9d35d83e353c",
+      "note": "Same native camera, lights, resolution, samples; no face/beauty approval implied."
+    }
+  ],
+  "agent_review": {
+    "approved": false,
+    "scope": "Observed real neutral/overhead/curl, main frame 40, like-for-like comparison and hand close-up; not a complete cinematic review.",
+    "improvements": [
+      "symmetric neutral arm bend and rounded shoulder/sleeve contour",
+      "sewn five-digit hand surface rather than intersecting shells",
+      "reduced elbow collapse in tested poses"
+    ],
+    "remaining_defects": [
+      "palm is too planar/rectangular; wrist/cuff overlap needs refinement",
+      "hair clumps and beard/head silhouette remain crude and do not match the reference quality",
+      "facial acting, lip sync, natural finger posing and secondary motion are absent"
+    ]
+  }
+}

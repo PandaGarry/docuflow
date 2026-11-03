@@ -1,0 +1,2261 @@
+{
+  "status": "failed",
+  "scope": "72 animated frames; heuristic strain/IK/contact safety, NOT collision/likeness/artistic approval",
+  "fixture_sha256": "a04edd84fae53fd36152839b364f58c23c797e547fb7a20dd465e6d9de394970",
+  "max_native_weight_sum_error": 4.284083843231201e-08,
+  "blend_sha256": "18e5b240ae128c2a23fc50758d9b13c6b37e8e266621ecb5de5a70fa8bb43074",
+  "checker_sha256": "422c5e2173f26e4c25f92d8d71214b0f2a9db304f7affe92109c63415fd0314e",
+  "poses": [
+    {
+      "pose": "frame_000",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_001",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_002",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_003",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_004",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_005",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_006",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_007",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_008",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_009",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.9502521013047286,
+          "area_ratio_max": 1.0328437112865982,
+          "edge_ratio_max": 1.0328501909832906
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998647315369402,
+          "area_ratio_max": 1.0001202787612855,
+          "edge_ratio_max": 1.000105321974141
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_010",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.824169067968258,
+          "area_ratio_max": 1.114712069118403,
+          "edge_ratio_max": 1.1147342080988725
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998185043165749,
+          "area_ratio_max": 1.0001422747020083,
+          "edge_ratio_max": 1.0001304772908208
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_011",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.6569010287091441,
+          "area_ratio_max": 1.2202886714486083,
+          "edge_ratio_max": 1.220330249124534
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998380753763011,
+          "area_ratio_max": 1.0001057459599507,
+          "edge_ratio_max": 1.000081915587589
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_012",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.4714264623859152,
+          "area_ratio_max": 1.3334016872208996,
+          "edge_ratio_max": 1.3334579239214355
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998167212622326,
+          "area_ratio_max": 1.0001242868982048,
+          "edge_ratio_max": 1.0001191972133112
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_013",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.2805330184886786,
+          "area_ratio_max": 1.4455504797966703,
+          "edge_ratio_max": 1.445622612493118
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998814216513057,
+          "area_ratio_max": 1.0001178201096739,
+          "edge_ratio_max": 1.0001134497697766
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_014",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.09257063702613509,
+          "area_ratio_max": 1.552189773692807,
+          "edge_ratio_max": 1.5522803876838536
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.99982821763012,
+          "area_ratio_max": 1.00022712627269,
+          "edge_ratio_max": 1.0001511783221748
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_015",
+      "passed": false,
+      "max_ik_error_m": 4.7592591969546605e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.023200468176107963,
+          "area_ratio_max": 1.6506767510056355,
+          "edge_ratio_max": 1.6507736458568805
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998353578522846,
+          "area_ratio_max": 1.0001549021522278,
+          "edge_ratio_max": 1.000097976137799
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_016",
+      "passed": true,
+      "max_ik_error_m": 1.2060269334120895e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.05278030392698896,
+          "area_ratio_max": 1.739151657187557,
+          "edge_ratio_max": 1.7392505748926093
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998389482537761,
+          "area_ratio_max": 1.0001778311490912,
+          "edge_ratio_max": 1.0001155900269094
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_017",
+      "passed": true,
+      "max_ik_error_m": 4.330131043983853e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.056539182775602076,
+          "area_ratio_max": 1.8162593721815115,
+          "edge_ratio_max": 1.816358165386263
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9996263448652548,
+          "area_ratio_max": 1.000806320255667,
+          "edge_ratio_max": 1.0001092965423877
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_018",
+      "passed": true,
+      "max_ik_error_m": 7.54203354575752e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.0518639417408533,
+          "area_ratio_max": 1.8809461308453355,
+          "edge_ratio_max": 1.8810389334859816
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9992507426727529,
+          "area_ratio_max": 1.0005785202321895,
+          "edge_ratio_max": 1.0001755074260525
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_019",
+      "passed": false,
+      "max_ik_error_m": 2.4919731835881677e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.021863199608203487,
+          "area_ratio_max": 1.9325540911723136,
+          "edge_ratio_max": 1.9326241211499613
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997548408912452,
+          "area_ratio_max": 1.0001611299691278,
+          "edge_ratio_max": 1.0001386675514523
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_020",
+      "passed": true,
+      "max_ik_error_m": 5.048094684796246e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.05895052421890672,
+          "area_ratio_max": 1.970217261943098,
+          "edge_ratio_max": 1.9702872186624778
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.999802109095394,
+          "area_ratio_max": 1.0001697808848795,
+          "edge_ratio_max": 1.0001363978516895
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_021",
+      "passed": true,
+      "max_ik_error_m": 6.639885195745013e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07537753815335227,
+          "area_ratio_max": 1.9941612242940678,
+          "edge_ratio_max": 1.9942191150872315
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9994145796714334,
+          "area_ratio_max": 1.0001792774875942,
+          "edge_ratio_max": 1.0001803239128548
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_022",
+      "passed": true,
+      "max_ik_error_m": 7.341045228019308e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.0710906545379369,
+          "area_ratio_max": 2.0049519954427777,
+          "edge_ratio_max": 2.0050296696372083
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9989152380381804,
+          "area_ratio_max": 1.0002421592291435,
+          "edge_ratio_max": 1.0002141625601033
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_023",
+      "passed": true,
+      "max_ik_error_m": 7.278430047170965e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07135720899330279,
+          "area_ratio_max": 2.0040207863125583,
+          "edge_ratio_max": 2.0041044146787423
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9988801876487626,
+          "area_ratio_max": 1.0018924440805126,
+          "edge_ratio_max": 1.0001855506426385
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_024",
+      "passed": true,
+      "max_ik_error_m": 6.557274903956695e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07569382157691672,
+          "area_ratio_max": 1.9934592897438441,
+          "edge_ratio_max": 1.9935527918028886
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9990128342210701,
+          "area_ratio_max": 1.0005058340566357,
+          "edge_ratio_max": 1.0001424676665875
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_025",
+      "passed": true,
+      "max_ik_error_m": 5.4373657267917355e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.06565634813115984,
+          "area_ratio_max": 1.9759646031843112,
+          "edge_ratio_max": 1.9760666034052725
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9990805355996629,
+          "area_ratio_max": 1.0003925060106502,
+          "edge_ratio_max": 1.0002891363380568
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_026",
+      "passed": true,
+      "max_ik_error_m": 4.0211450949787764e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.04271039253206094,
+          "area_ratio_max": 1.954659058103971,
+          "edge_ratio_max": 1.98251722437178
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997722450378032,
+          "area_ratio_max": 1.0002876811959012,
+          "edge_ratio_max": 1.00015584920534
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_027",
+      "passed": false,
+      "max_ik_error_m": 2.5294166990412765e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.02219551806408838,
+          "area_ratio_max": 1.9328462145836227,
+          "edge_ratio_max": 2.0118485238975405
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997347694893041,
+          "area_ratio_max": 1.000306464631252,
+          "edge_ratio_max": 1.0002641482840966
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_028",
+      "passed": false,
+      "max_ik_error_m": 1.8153626682777e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.01531229234983928,
+          "area_ratio_max": 1.9138262714360166,
+          "edge_ratio_max": 2.0356400202819094
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997561850680551,
+          "area_ratio_max": 1.0002391714595746,
+          "edge_ratio_max": 1.0002158866906063
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_029",
+      "passed": true,
+      "max_ik_error_m": 1.7090638016652918e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.02797666694433561,
+          "area_ratio_max": 1.9006696687545832,
+          "edge_ratio_max": 2.0521989005487455
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997467554358703,
+          "area_ratio_max": 1.000248927539464,
+          "edge_ratio_max": 1.000209429514097
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_030",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9991722033862716,
+          "area_ratio_max": 1.000519028384649,
+          "edge_ratio_max": 1.0001902803810145
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_031",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9808854500875652,
+          "area_ratio_max": 1.0332924544989481,
+          "edge_ratio_max": 1.0190030104001184
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_032",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9292040446449604,
+          "area_ratio_max": 1.123981777710502,
+          "edge_ratio_max": 1.0718273780371836
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_033",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.8527927603234337,
+          "area_ratio_max": 1.2592755788300838,
+          "edge_ratio_max": 1.1512606114553658
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_034",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.760517078835149,
+          "area_ratio_max": 1.4265905168748674,
+          "edge_ratio_max": 1.2502794811879865
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_035",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.6558100709299739,
+          "area_ratio_max": 1.6126004561413299,
+          "edge_ratio_max": 1.3618028239188655
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_036",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.5466679961893517,
+          "area_ratio_max": 1.8034337817892478,
+          "edge_ratio_max": 1.4782249807181467
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_037",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.4405018831200738,
+          "area_ratio_max": 1.9882906817464487,
+          "edge_ratio_max": 1.5915225814168348
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_038",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.344558182290104,
+          "area_ratio_max": 2.15312442262613,
+          "edge_ratio_max": 1.6939956103888274
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_039",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.26643063821200247,
+          "area_ratio_max": 2.285842031692188,
+          "edge_ratio_max": 1.7774184379709057
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_040",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.21400210710828835,
+          "area_ratio_max": 2.3745316726358023,
+          "edge_ratio_max": 1.834096616194594
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_041",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19441574697506017,
+          "area_ratio_max": 2.406904626926792,
+          "edge_ratio_max": 1.854919861515983
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_042",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19441574697506017,
+          "area_ratio_max": 2.406904626926792,
+          "edge_ratio_max": 1.854919861515983
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_043",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19441574697506017,
+          "area_ratio_max": 2.406904626926792,
+          "edge_ratio_max": 1.854919861515983
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_044",
+      "passed": true,
+      "max_ik_error_m": 1.644364574478018e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.033560457948903416,
+          "area_ratio_max": 1.8958588912665857,
+          "edge_ratio_max": 2.057970569852505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19441574697506017,
+          "area_ratio_max": 2.406904626926792,
+          "edge_ratio_max": 1.854919861515983
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_045",
+      "passed": true,
+      "max_ik_error_m": 1.685054511923912e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.029791897757746957,
+          "area_ratio_max": 1.8990667355068374,
+          "edge_ratio_max": 2.0541194165524344
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.1946169383507185,
+          "area_ratio_max": 2.4074345363013605,
+          "edge_ratio_max": 1.8547462114702697
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_046",
+      "passed": false,
+      "max_ik_error_m": 1.7551113703525377e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.020000733383396634,
+          "area_ratio_max": 1.9081157713978125,
+          "edge_ratio_max": 2.042961543222342
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19477068734378555,
+          "area_ratio_max": 2.4073428471390392,
+          "edge_ratio_max": 1.8547761041875548
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_047",
+      "passed": false,
+      "max_ik_error_m": 1.8886021158797155e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.013752864803128092,
+          "area_ratio_max": 1.9217205948887683,
+          "edge_ratio_max": 2.0256630201925914
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19448938425760123,
+          "area_ratio_max": 2.4072248068181947,
+          "edge_ratio_max": 1.8547681309102908
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_048",
+      "passed": true,
+      "max_ik_error_m": 2.88553128001902e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.028360466086000458,
+          "area_ratio_max": 1.9383679067900788,
+          "edge_ratio_max": 2.004729086812342
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.19434594190959342,
+          "area_ratio_max": 2.4070101836580373,
+          "edge_ratio_max": 1.8549306437128905
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_049",
+      "passed": true,
+      "max_ik_error_m": 4.118738099859696e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.04423019420882036,
+          "area_ratio_max": 1.9563112844057584,
+          "edge_ratio_max": 1.9801752515336264
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.20289155750448382,
+          "area_ratio_max": 2.393339610337646,
+          "edge_ratio_max": 1.8459734091202684
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_050",
+      "passed": true,
+      "max_ik_error_m": 5.3061158210115716e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.06303077290228629,
+          "area_ratio_max": 1.9737606973156954,
+          "edge_ratio_max": 1.9738281499115051
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.22624541266282935,
+          "area_ratio_max": 2.3539731042014296,
+          "edge_ratio_max": 1.8206433144954017
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_051",
+      "passed": true,
+      "max_ik_error_m": 6.277039823530659e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07813183502445815,
+          "area_ratio_max": 1.988852359474398,
+          "edge_ratio_max": 1.9889634310225204
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.26255692258709573,
+          "area_ratio_max": 2.2928827839380665,
+          "edge_ratio_max": 1.7816087995571535
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_052",
+      "passed": true,
+      "max_ik_error_m": 7.034358890483026e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07281357581236807,
+          "area_ratio_max": 2.000013677738098,
+          "edge_ratio_max": 2.0000809009908505
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.30969641698200795,
+          "area_ratio_max": 2.212331787207751,
+          "edge_ratio_max": 1.7313168958735972
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_053",
+      "passed": true,
+      "max_ik_error_m": 7.36017512391104e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07091013671393841,
+          "area_ratio_max": 2.005522686844343,
+          "edge_ratio_max": 2.0055969684255577
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.3659892536538892,
+          "area_ratio_max": 2.1169821305567447,
+          "edge_ratio_max": 1.6713349234665376
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_054",
+      "passed": true,
+      "max_ik_error_m": 7.266920949275288e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.07133671497558704,
+          "area_ratio_max": 2.0041340782939994,
+          "edge_ratio_max": 2.004218795027287
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.428480359857214,
+          "area_ratio_max": 2.0090274834463377,
+          "edge_ratio_max": 1.6044096230211227
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_055",
+      "passed": true,
+      "max_ik_error_m": 6.682052865666787e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.0750802110061045,
+          "area_ratio_max": 1.9947917426569095,
+          "edge_ratio_max": 1.9948531035773975
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.495792972894634,
+          "area_ratio_max": 1.89228009090713,
+          "edge_ratio_max": 1.5323558729333528
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_056",
+      "passed": true,
+      "max_ik_error_m": 5.4994289376786065e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.06651674306997618,
+          "area_ratio_max": 1.976716118758846,
+          "edge_ratio_max": 1.976785255124106
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.5659418275772778,
+          "area_ratio_max": 1.770306979497145,
+          "edge_ratio_max": 1.4576541551869746
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_057",
+      "passed": true,
+      "max_ik_error_m": 3.66212490913656e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.03831812709454152,
+          "area_ratio_max": 1.9495532588385935,
+          "edge_ratio_max": 1.9496490287054822
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.6367217127635725,
+          "area_ratio_max": 1.6461624415196192,
+          "edge_ratio_max": 1.3822142067361947
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_058",
+      "passed": false,
+      "max_ik_error_m": 1.7945756164458257e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.015712534065934782,
+          "area_ratio_max": 1.9132100308823594,
+          "edge_ratio_max": 1.9133175883431344
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.7063401213273223,
+          "area_ratio_max": 1.5235552495494755,
+          "edge_ratio_max": 1.3081883833357055
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_059",
+      "passed": true,
+      "max_ik_error_m": 6.921903591035234e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.06848560349111162,
+          "area_ratio_max": 1.8676869389183899,
+          "edge_ratio_max": 1.8677821370958203
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.7717833858801909,
+          "area_ratio_max": 1.4058137908446915,
+          "edge_ratio_max": 1.2377435686702856
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_060",
+      "passed": true,
+      "max_ik_error_m": 4.178302604325063e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.052660049825689205,
+          "area_ratio_max": 1.813612338988315,
+          "edge_ratio_max": 1.8137204782038756
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.8321328976512055,
+          "area_ratio_max": 1.2966174531655785,
+          "edge_ratio_max": 1.173032965455441
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_061",
+      "passed": true,
+      "max_ik_error_m": 1.2777656663995783e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.037672036291271346,
+          "area_ratio_max": 1.7513228897087854,
+          "edge_ratio_max": 1.7514247681957495
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.8867065996847783,
+          "area_ratio_max": 1.1989354485129662,
+          "edge_ratio_max": 1.1156224489395048
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_062",
+      "passed": false,
+      "max_ik_error_m": 7.590192821004869e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.019945841811286828,
+          "area_ratio_max": 1.6813451898879646,
+          "edge_ratio_max": 1.6814461630322328
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9329635383868895,
+          "area_ratio_max": 1.117083103232113,
+          "edge_ratio_max": 1.0678806646178378
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_063",
+      "passed": false,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.018184806253610984,
+          "area_ratio_max": 1.6044004203197773,
+          "edge_ratio_max": 1.6044976444477084
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9687850163244719,
+          "area_ratio_max": 1.0545440455927177,
+          "edge_ratio_max": 1.0314318136274625
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_064",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.14742536226099406,
+          "area_ratio_max": 1.5213491627935767,
+          "edge_ratio_max": 1.5214411161267658
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9919362304442899,
+          "area_ratio_max": 1.01425116940418,
+          "edge_ratio_max": 1.0082896441559923
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_065",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.301757656426998,
+          "area_ratio_max": 1.4333025223690339,
+          "edge_ratio_max": 1.4333800889801533
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9996825687104784,
+          "area_ratio_max": 1.0002539115493359,
+          "edge_ratio_max": 1.0001289020328932
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_066",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.4573708034727562,
+          "area_ratio_max": 1.3418133113052242,
+          "edge_ratio_max": 1.3418747830288646
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998434252116227,
+          "area_ratio_max": 1.0001635707317516,
+          "edge_ratio_max": 1.000146720552893
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_067",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.6099246276672647,
+          "area_ratio_max": 1.2493277327271077,
+          "edge_ratio_max": 1.2493719608164298
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998436083755892,
+          "area_ratio_max": 1.0001228454718354,
+          "edge_ratio_max": 1.0000939061970797
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_068",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.7532270949739956,
+          "area_ratio_max": 1.1598941607700435,
+          "edge_ratio_max": 1.159920860895641
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998528041103856,
+          "area_ratio_max": 1.0001212480596406,
+          "edge_ratio_max": 1.0000943273636254
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_069",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.8773061855632492,
+          "area_ratio_max": 1.0804287997048951,
+          "edge_ratio_max": 1.0804439835744368
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998955116157399,
+          "area_ratio_max": 1.0001485740128242,
+          "edge_ratio_max": 1.000100569241692
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_070",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.9663467108232806,
+          "area_ratio_max": 1.0222371750611876,
+          "edge_ratio_max": 1.0222426765995167
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998922140463723,
+          "area_ratio_max": 1.000113052862423,
+          "edge_ratio_max": 1.0000903245302404
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "frame_071",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    }
+  ],
+  "contacts": {
+    "passed": true,
+    "stance_slip_m": 0.0,
+    "stance_ground_error_m": 2.3274768068404228e-07,
+    "sole_penetration_m": 3.5477597748467815e-08,
+    "stance_samples": 144,
+    "limits_m": {
+      "stance_slip": 0.005,
+      "ground_error": 0.003,
+      "penetration": 0.002
+    }
+  },
+  "limits": {
+    "min_area_ratio": 0.025,
+    "max_area_ratio": 6,
+    "max_edge_ratio": 3,
+    "max_ik_error_m": 0.005
+  },
+  "review_renders": []
+}

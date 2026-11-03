@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "kind": "project",
+  "project_id": "dad-external-preview",
+  "purpose": "rig_preview",
+  "fps": {
+    "num": 24,
+    "den": 1
+  },
+  "resolution": [
+    960,
+    540
+  ],
+  "render": {
+    "samples": 4,
+    "threads": 2,
+    "denoise": true,
+    "seed": 41
+  },
+  "resources": {
+    "chunk_frames": 4,
+    "rss_limit_mb": 1536,
+    "timeout_seconds": 180
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "kind": {
+      "const": "project"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "const": "rig_preview"
+    },
+    "fps": {
+      "type": "object",
+      "properties": {
+        "num": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "den": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1001
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "additionalProperties": false
+    },
+    "resolution": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 64,
+        "maximum": 1920
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "render": {
+      "type": "object",
+      "properties": {
+        "samples": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "threads": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "denoise": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "samples",
+        "threads",
+        "denoise",
+        "seed"
+      ],
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "chunk_frames": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "rss_limit_mb": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 3072
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1800
+        }
+      },
+      "required": [
+        "chunk_frames",
+        "rss_limit_mb",
+        "timeout_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "camera": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "target": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "ortho_scale": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "position",
+        "target",
+        "ortho_scale"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "project_id",
+    "purpose",
+    "fps",
+    "resolution",
+    "render",
+    "resources"
+  ],
+  "additionalProperties": false
+}

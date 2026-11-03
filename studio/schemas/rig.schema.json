@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "rig"
+    },
+    "rig_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bindings": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "OBJECT_LOCATION",
+              "SHAPE_KEY",
+              "ARMATURE"
+            ]
+          },
+          "object": {
+            "type": "string",
+            "minLength": 1
+          },
+          "shape_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "type",
+          "object"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "SHAPE_KEY"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "shape_key"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "rig_id",
+    "revision",
+    "asset_id",
+    "bindings"
+  ],
+  "additionalProperties": false
+}

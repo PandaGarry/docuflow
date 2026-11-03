@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "asset"
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "const": "synthetic_rig_probe"
+    },
+    "approved_for_character_production": {
+      "const": false
+    },
+    "coordinate_system": {
+      "const": "RH_Z_UP_METERS"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "procedural"
+        },
+        "generator": {
+          "const": "rig_probe_v1"
+        },
+        "license": {
+          "const": "project-original"
+        }
+      },
+      "required": [
+        "type",
+        "generator",
+        "license"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "asset_id",
+    "revision",
+    "role",
+    "approved_for_character_production",
+    "coordinate_system",
+    "source"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "kind": "quality_report",
+  "scope": "technical_smoke_only",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "native_source_png_sequence",
+      "passed": true,
+      "detail": "24 PNGs at [1920, 1080]"
+    },
+    {
+      "id": "minimum_24_native_1080p_frames",
+      "passed": true,
+      "detail": "G1 runtime smoke target, NOT character quality approval"
+    },
+    {
+      "id": "headless_cycles_cpu",
+      "passed": true,
+      "detail": "Blender 4.5.0, background=True"
+    },
+    {
+      "id": "evaluated_ik_endpoint",
+      "passed": true,
+      "detail": "max 0.00000018 m; smoke tolerance 0.005 m"
+    },
+    {
+      "id": "evaluated_bone_lengths",
+      "passed": true,
+      "detail": "max relative error 0.000000315"
+    },
+    {
+      "id": "evaluated_skin_moved",
+      "passed": true,
+      "detail": "mesh vertex span 0.665380 m"
+    },
+    {
+      "id": "evaluated_shape_key_moved",
+      "passed": true,
+      "detail": "jaw mesh centroid span 0.190000 m"
+    },
+    {
+      "id": "raw_render_varies",
+      "passed": true,
+      "detail": "raw render hashes recorded BEFORE labels; at least 12 distinct images"
+    },
+    {
+      "id": "ffmpeg_full_video_decode",
+      "passed": true,
+      "detail": "24 decoded frames, expected 24, PTS [0, 1]…[22, 23]"
+    },
+    {
+      "id": "encoded_resolution",
+      "passed": true,
+      "detail": "['1920x1080']"
+    },
+    {
+      "id": "encoded_timebase",
+      "passed": true,
+      "detail": "['1/24']"
+    },
+    {
+      "id": "aac_native_48khz_mono",
+      "passed": true,
+      "detail": "48000 Hz, 1 channel, 16-bit decode"
+    },
+    {
+      "id": "aac_duration_padding",
+      "passed": true,
+      "detail": "48128 decoded samples; 48000 input; AAC tail padding <1024 allowed"
+    },
+    {
+      "id": "diagnostic_audio_not_silent",
+      "passed": true,
+      "detail": "synthetic test tone, not dialogue"
+    }
+  ],
+  "metrics": {
+    "recorded_at": "2026-11-02T21:14:48.424445+00:00",
+    "blender": "4.5.0",
+    "blender_build_hash": "8cb6b388974a",
+    "worker_exit_code": 0,
+    "wall_seconds": 875.2084,
+    "worker_wall_seconds": 871.3495,
+    "peak_worker_rss_bytes": 2724827136,
+    "max_child_rss_bytes": 2724827136,
+    "render_samples": 4,
+    "denoise": true,
+    "max_ik_error_m": 1.7881393432617188e-07,
+    "max_bone_relative_error": 3.147742240194873e-07,
+    "arm_vertex_span_m": 0.6653797573521902,
+    "jaw_centroid_span_m": 0.18999993801116943,
+    "color_management": {
+      "view_transform": "AgX",
+      "ocio_sha256": "aa4142b29b5a472aa5cb895020aa8cb673c95a31660eeee451f8a820694d3b16"
+    },
+    "runtime": {
+      "bpy_module_sha256": "812a7217e4aad144ec76bc8d202c1fb0ce1af0ff6f04192a3fc2acd7f040c336",
+      "ocio_sha256": "aa4142b29b5a472aa5cb895020aa8cb673c95a31660eeee451f8a820694d3b16",
+      "python": "3.11.2",
+      "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+      "libc": [
+        "glibc",
+        "2.36"
+      ],
+      "packages": {
+        "attrs": "26.1.0",
+        "bpy": "4.5.0",
+        "certifi": "2026.10.23",
+        "charset-normalizer": "3.5.2",
+        "Cython": "3.3.1",
+        "idna": "3.20",
+        "imageio-ffmpeg": "0.6.0",
+        "jsonschema": "4.25.1",
+        "jsonschema-specifications": "2025.9.1",
+        "numpy": "1.26.4",
+        "pillow": "11.3.0",
+        "psutil": "7.0.0",
+        "referencing": "0.37.0",
+        "requests": "2.34.2",
+        "rpds-py": "2026.9.1",
+        "typing_extensions": "4.16.0",
+        "urllib3": "2.8.0",
+        "zstandard": "0.25.0"
+      },
+      "native": {
+        "provider": "isolated_distro_mirror_experiment",
+        "production_approved": false,
+        "lock_sha256": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+        "note": "Pinned mirror blobs, NOT official distro signatures or a production base image"
+      }
+    },
+    "ffmpeg_version": "ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers",
+    "encode_exit_code": 0,
+    "video_decode_exit_code": 0,
+    "audio_decode_exit_code": 0,
+    "encode_seconds": 1.8542,
+    "decoded_frames": 24,
+    "input_audio_samples": 48000,
+    "decoded_audio_samples": 48128,
+    "decoded_audio_rate": 48000,
+    "duration_seconds": 1.0,
+    "evidence_manifest": {
+      "schema_version": 1,
+      "kind": "manifest",
+      "job_id": "41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0",
+      "purpose": "technical_smoke",
+      "status": "complete",
+      "backend": "blender_bpy_subprocess",
+      "inputs_sha256": "f635e80df951cca7d685379cbc8660dd09f558c7d862c349c4f5d7aa84e46b4f",
+      "code_sha256": "638418d41b70519de0319468a72d22c737038556e8c04818d9a6508628d45a15",
+      "runtime_sha256": "bceb89537b50ec69e7e3bd066605c27701d56d3984699f46cdb4011b9fb1ab70",
+      "frame_range": [
+        0,
+        24
+      ],
+      "fps": {
+        "num": 24,
+        "den": 1
+      },
+      "resolution": [
+        1920,
+        1080
+      ],
+      "artifacts": [
+        {
+          "path": "decoded-video.framehash",
+          "sha256": "4f12b91c4992add0536c8c50e01f599918a513c273800adc9da08afe99f5dcc1",
+          "bytes": 2907,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "ffmpeg.log",
+          "sha256": "faa674a60ef58f466f8b2131cc634c5ddce9a4e1765bd389d1741d773b9afb15",
+          "bytes": 4077,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "frames/000000.png",
+          "sha256": "d00f01e8b9ae98f838e24f6dfdef8440c0338d25b903e6f43494e75a3966290a",
+          "bytes": 1423317,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000001.png",
+          "sha256": "760ee323082fcfb3a694c520d097d2fcf1c672adc50c6760aa0404eb0cc28029",
+          "bytes": 1422748,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000002.png",
+          "sha256": "1cb0dae9bd13de42170874d5cb31249d96913c8075ecc47120e465629b6cf698",
+          "bytes": 1421645,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000003.png",
+          "sha256": "dd2e054299934a0992c78bf641058fde0298a39c66cfa95bc816fd757695b5e3",
+          "bytes": 1420800,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000004.png",
+          "sha256": "6bf011d96922bcaf7c9a3ec53703a1af9acfbfc7335755e477f6628e1d78e83b",
+          "bytes": 1422172,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000005.png",
+          "sha256": "99c3cd91b3948d4dc2704d249eccacc9be36c3c25678b7f74dca3636924cffd0",
+          "bytes": 1420131,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000006.png",
+          "sha256": "2f2d04c459aacb14961684f4f3ae10e2925bc6cbb9db500ecba631bd579482fe",
+          "bytes": 1421082,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000007.png",
+          "sha256": "235f930676b6c677aa8133881fd68fddca1ac1fc0dd926e9e35d3d57b3c7b9b5",
+          "bytes": 1419888,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000008.png",
+          "sha256": "4fe0df8161f4e8ef04949fde7514572d84ec90895443773192b33d3a1ec06409",
+          "bytes": 1420082,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000009.png",
+          "sha256": "1119cf7232841a2d3ee67feeb19faacad9a6e7d1071f0781fb04915f4be6c4c6",
+          "bytes": 1421088,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000010.png",
+          "sha256": "3c2efc7e46b91491a9819397d39285abdc61901cd93e829901d8e8f158c42ffa",
+          "bytes": 1421029,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000011.png",
+          "sha256": "8559b859cfbd1fd82cd655f8cee548201ad3b42479e5e354e4d8df07643a9fd9",
+          "bytes": 1421249,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000012.png",
+          "sha256": "9bb59996765fa8b64a2d2c2d9f833426ced552452e838359642049fd3c4384bb",
+          "bytes": 1421566,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000013.png",
+          "sha256": "ba3e4fe485d90170b32d46e74586300d0dda1c440b34b73d4cd932c200f3d0b9",
+          "bytes": 1422178,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000014.png",
+          "sha256": "e1ce7092211c1ca3e9284e0edeb80136defedae5238e845f65f065082eee947c",
+          "bytes": 1421245,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000015.png",
+          "sha256": "b385d8493275b92e6a83a005bbf0ca61cee8de2b9841eb2c4d198daa5366eeb7",
+          "bytes": 1420778,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000016.png",
+          "sha256": "190e439d1f7e4a4d92d522d836b01e5ab36ee1ad927a52953580225928195cc5",
+          "bytes": 1420646,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000017.png",
+          "sha256": "155aa9e619e573b6fbed02cc6f4e54a479ceffbfec4899118a332d13d7b80fc2",
+          "bytes": 1420113,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000018.png",
+          "sha256": "714adfecb47e6b5322933c892156d07e483ad57a9c4ee06349155eadfbe1773a",
+          "bytes": 1421862,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000019.png",
+          "sha256": "ca5e9669ca9a707045ebd987f4a5643dbf9aa1fb47a1d85773d5a47f5212ec31",
+          "bytes": 1420239,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000020.png",
+          "sha256": "398b784b6f5b3f4e5d9ee9921610459eadf8e03a2908ae62b7d8337a94632336",
+          "bytes": 1420972,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000021.png",
+          "sha256": "f33dfa2c23b76a98a5fb1a7305328ff1ee4aa446c3796d4349b808ea98d3cc1f",
+          "bytes": 1422766,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000022.png",
+          "sha256": "3ccf489b3168bb161e8a5e2042164c37b3d4c1aa27a2e07ff2509d22963dfae4",
+          "bytes": 1422332,
+          "role": "render_frame"
+        },
+        {
+          "path": "frames/000023.png",
+          "sha256": "d00f01e8b9ae98f838e24f6dfdef8440c0338d25b903e6f43494e75a3966290a",
+          "bytes": 1423317,
+          "role": "render_frame"
+        },
+        {
+          "path": "input-config/asset.json",
+          "sha256": "3a4c051e3edb40da8b2aa2191d4d6a6c0ef6bff143ec626811322833dd831b2b",
+          "bytes": 326,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "input-config/project.json",
+          "sha256": "014be5f83888529c11f76512335414ef189bda7a705a746e564e613833093f6e",
+          "bytes": 472,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "input-config/rig.json",
+          "sha256": "973c5fae9823062e25756e55822a3a1831b7e81f4fcd84b38a03fa13d81d50a9",
+          "bytes": 419,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "input-config/shot.json",
+          "sha256": "2a34adf6c6bcddf3aaefd8111eaa8158162d3cb25f9f7a2ca28366607c6a7d85",
+          "bytes": 1381,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "inputs.json",
+          "sha256": "0577434987ae14a01ba71ff33539fff67ede6bde6dc800dd4bd8fbd14ffd7bdd",
+          "bytes": 2934,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "report.json",
+          "sha256": "b53b400c34b6e2168dd61cd376811610ee9ba7e6049ffac9e4ad459f87594ab0",
+          "bytes": 4916,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "scene.blend",
+          "sha256": "2ebb98aae0bd98115f6a953ef9b4c223ece32d22dafaea1e128b1cd7cfd6d824",
+          "bytes": 814633,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "technical-smoke.mp4",
+          "sha256": "c23ee8967bc9a699633f984bf5f39313401e3981644f1e92a3154b2ab8065eb7",
+          "bytes": 179499,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "test-tone.wav",
+          "sha256": "d5c1d2edf3af9399b027fd746a67aa4a4645b3bdb8daaad5721d7672a3db2900",
+          "bytes": 96044,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "worker-report.json",
+          "sha256": "31e24991a44382a5cc4784b76ca3066dbbe74efc52606af5e9d5636c3049d304",
+          "bytes": 13132,
+          "role": "smoke_evidence"
+        },
+        {
+          "path": "worker.log",
+          "sha256": "cd86f8ad33347cf10184cf05b3c4a1b01c332e2286fd2d731f021c98286a26af",
+          "bytes": 187918,
+          "role": "smoke_evidence"
+        }
+      ]
+    },
+    "manifest_sha256": "ef2e18629bfe75bd013ff24cfcb43df71c43446cd04471e7929ee3f28b8fb619",
+    "artifact_cache_directory": "studio/out/blender-smoke/41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0"
+  },
+  "limitations": [
+    "Synthetic diagnostic geometry, not a family model or approved design.",
+    "No walking, contacts, lip sync, acting, or episode generation is validated.",
+    "Low-sample CPU smoke workload is not a production render benchmark.",
+    "Native distro mirror fallback is experimental, not a signed production OS image.",
+    "One run is not a clean-machine reproducibility or long-render stability proof.",
+    "OS-provider cache identity does not fingerprint every system library; production deployment is pending.",
+    "AAC decoding may include less than 1024 trailing padding samples."
+  ]
+}

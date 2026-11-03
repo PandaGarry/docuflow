@@ -1,0 +1,51 @@
+{
+  "revision": "r3",
+  "scope": "connected hands, shoulder seam/weights and rest-pose pole calibration; unreviewed",
+  "DadSweaterR3": {
+    "vertices": 746,
+    "faces": 708,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9943502824858758
+  },
+  "DadHandR3R": {
+    "vertices": 4898,
+    "faces": 4896,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 1.0
+  },
+  "DadHandR3L": {
+    "vertices": 4898,
+    "faces": 4896,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 1.0
+  },
+  "pole_calibration": {
+    "R": {
+      "before_elbow_error_m": 0.057538351378607695,
+      "after_elbow_error_m": 2.801671558244052e-07,
+      "pole_angle_rad": 0.4344028921568926
+    },
+    "L": {
+      "before_elbow_error_m": 0.18542679866600126,
+      "after_elbow_error_m": 2.9692690336688124e-07,
+      "pole_angle_rad": 2.7071900012202406
+    }
+  },
+  "DadScalpR3": {
+    "vertices": 1344,
+    "faces": 1282,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9984399375975039
+  },
+  "bone_count": 51,
+  "unweighted_vertices": 0,
+  "hand_note": "One connected closed all-quad surface per hand; this does NOT prove no self-intersection under every curl."
+}

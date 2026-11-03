@@ -1,0 +1,68 @@
+{
+  "native_frozen_finger_negative": {
+    "mode": "direct_ir_application",
+    "scene_sha256": null,
+    "fixture_sha256": "6e8808df34af1062ec433763d2b77cbb80e9ae3f28764f7b13dfbe700c1e073a",
+    "scope": "actual bpy pose evaluation, no render/artistic acceptance",
+    "status": "failed",
+    "asset_id": "dad-body-rig",
+    "revision": "r3",
+    "blend_sha256": "3dbdd14e1c9384c41291a1db40abf7c53c58d8666f0a34182dbee507e3e697a3",
+    "frames_evaluated": 72,
+    "max_ik_error_m": 7.18159110064379e-05,
+    "max_bone_relative_error": 3.4956055953605514e-05,
+    "contacts": {
+      "passed": true,
+      "stance_slip_m": 0.0,
+      "stance_ground_error_m": 2.3274768068404228e-07,
+      "sole_penetration_m": 3.5477597748467815e-08,
+      "stance_samples": 144,
+      "limits_m": {
+        "stance_slip": 0.005,
+        "ground_error": 0.003,
+        "penetration": 0.002
+      }
+    },
+    "fingers": {
+      "passed": false,
+      "fingers": {
+        "finger.R.index": {
+          "span_m": 1.3339687476112546e-06,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.middle": {
+          "span_m": 1.313782924408846e-06,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.ring": {
+          "span_m": 1.561945409817628e-06,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.pinky": {
+          "span_m": 1.4663693900556973e-06,
+          "min_span_m": 0.025,
+          "passed": false
+        },
+        "finger.R.thumb": {
+          "span_m": 1.5128348403290853e-06,
+          "min_span_m": 0.025,
+          "passed": false
+        }
+      }
+    },
+    "expected_exit_code": 1,
+    "observed_exit_code": 1
+  },
+  "direct_native_and_rendered_measurements_equal": true,
+  "frames_compared": 72,
+  "native_replay_applied_ir": false,
+  "job_id": "cde47ecbbf149bcea2c2b86843a867df8c985a6c3a7b34104c57f006b7540917",
+  "completed_cache_verified": true,
+  "full_decode_frames": 72,
+  "video_bytes": 57997,
+  "static_extremes": "studio/production/dad-r3-extremes.json",
+  "all_frame_strain": "studio/production/dad-r3-animated-strain.json"
+}

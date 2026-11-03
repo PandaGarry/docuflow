@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "scope": "hardware inventory during the CPU smoke run, not a GPU benchmark",
+  "recorded_at": "2026-11-02T21:05:59.102519+00:00",
+  "machine": "x86_64",
+  "physical_ram_bytes": 4131278848,
+  "effective_cpu_affinity_count": 2,
+  "os_cpu_count": 2,
+  "observed_gpu_device_nodes": [],
+  "gpu_backend_tested": false,
+  "swap_total_kib": 0,
+  "smoke_configured_render_threads": 8,
+  "note": "Thread count is not allocated core count. Benchmark is low-sample technical proof, not a throughput guarantee. Peak renderer RSS is measured by the worker report, not by this inventory."
+}

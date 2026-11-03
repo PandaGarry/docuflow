@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "rig",
+  "rig_id": "rig-probe-controls",
+  "revision": "1",
+  "asset_id": "rig-probe-01",
+  "bindings": {
+    "arm.R.ik_target": {
+      "type": "OBJECT_LOCATION",
+      "object": "HandTarget"
+    },
+    "jaw.open": {
+      "type": "SHAPE_KEY",
+      "object": "Jaw",
+      "shape_key": "Open"
+    },
+    "body.armature": {
+      "type": "ARMATURE",
+      "object": "Rig"
+    }
+  }
+}

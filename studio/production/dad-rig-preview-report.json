@@ -1,0 +1,258 @@
+{
+  "schema_version": 2,
+  "kind": "package_preview_report",
+  "status": "passed",
+  "scope": "unreviewed rig blockout only",
+  "recorded_at": "2026-11-02T22:30:05.913342+00:00",
+  "job_id": "589b03020c41fc58074be9fdb3502ff2aca44fbf045341d154bd0e265ee89c9e",
+  "identity": {
+    "inputs": "167596e7a54df3012c889fb6a1892714db60799303af2ab982e5ad708f3bba34",
+    "code": "1cbb2a0b7162b518678410578713be9d7438ad9b2c5a3fbc642e0f71ff630be5",
+    "runtime": "bceb89537b50ec69e7e3bd066605c27701d56d3984699f46cdb4011b9fb1ab70"
+  },
+  "asset_id": "dad-body-rig",
+  "asset_revision": "r2",
+  "art_status": "unreviewed",
+  "motion_checks": {
+    "contacts": {
+      "passed": true,
+      "stance_slip_m": 4.330601502859974e-06,
+      "stance_ground_error_m": 2.9966235160827637e-05,
+      "sole_penetration_m": 2.9966235160827637e-05,
+      "stance_samples": 108,
+      "limits_m": {
+        "stance_slip": 0.005,
+        "ground_error": 0.003,
+        "penetration": 0.002
+      }
+    },
+    "fingers": {
+      "passed": true,
+      "fingers": {
+        "finger.R.index": {
+          "span_m": 0.12238901847271115,
+          "min_span_m": 0.025,
+          "passed": true
+        },
+        "finger.R.middle": {
+          "span_m": 0.1383117443269146,
+          "min_span_m": 0.025,
+          "passed": true
+        },
+        "finger.R.ring": {
+          "span_m": 0.13300371089831173,
+          "min_span_m": 0.025,
+          "passed": true
+        },
+        "finger.R.pinky": {
+          "span_m": 0.10647211089639236,
+          "min_span_m": 0.025,
+          "passed": true
+        },
+        "finger.R.thumb": {
+          "span_m": 0.12819878109803176,
+          "min_span_m": 0.025,
+          "passed": true
+        }
+      }
+    },
+    "bones": {
+      "passed": true,
+      "relative_length_error": 3.501814486295274e-05
+    }
+  },
+  "package_sha256": "e5bef55ae9225b67f7fa8106d88926797e0ff369d96fe3bd5413359877e1c4b2",
+  "runtime": {
+    "bpy_module_sha256": "812a7217e4aad144ec76bc8d202c1fb0ce1af0ff6f04192a3fc2acd7f040c336",
+    "ocio_sha256": "aa4142b29b5a472aa5cb895020aa8cb673c95a31660eeee451f8a820694d3b16",
+    "python": "3.11.2",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "libc": [
+      "glibc",
+      "2.36"
+    ],
+    "packages": {
+      "attrs": "26.1.0",
+      "bpy": "4.5.0",
+      "certifi": "2026.10.23",
+      "charset-normalizer": "3.5.2",
+      "Cython": "3.3.1",
+      "idna": "3.20",
+      "imageio-ffmpeg": "0.6.0",
+      "jsonschema": "4.25.1",
+      "jsonschema-specifications": "2025.9.1",
+      "numpy": "1.26.4",
+      "pillow": "11.3.0",
+      "psutil": "7.0.0",
+      "referencing": "0.37.0",
+      "requests": "2.34.2",
+      "rpds-py": "2026.9.1",
+      "typing_extensions": "4.16.0",
+      "urllib3": "2.8.0",
+      "zstandard": "0.25.0"
+    },
+    "native": {
+      "provider": "isolated_distro_mirror_experiment",
+      "production_approved": false,
+      "lock_sha256": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+      "note": "Pinned mirror blobs, NOT official distro signatures or a production base image"
+    }
+  },
+  "frame_range": [
+    0,
+    72
+  ],
+  "chunks": 18,
+  "reused_chunks_this_invocation": 1,
+  "new_chunks_this_invocation": 17,
+  "worker_processes": [
+    {
+      "pid": 12083,
+      "exit_code": 0,
+      "wall_seconds": 22.6938,
+      "observed_peak_rss_bytes": 657858560
+    },
+    {
+      "pid": 12180,
+      "exit_code": 0,
+      "wall_seconds": 22.0807,
+      "observed_peak_rss_bytes": 653021184
+    },
+    {
+      "pid": 12219,
+      "exit_code": 0,
+      "wall_seconds": 20.6436,
+      "observed_peak_rss_bytes": 652132352
+    },
+    {
+      "pid": 12250,
+      "exit_code": 0,
+      "wall_seconds": 20.9133,
+      "observed_peak_rss_bytes": 649850880
+    },
+    {
+      "pid": 12266,
+      "exit_code": 0,
+      "wall_seconds": 22.3034,
+      "observed_peak_rss_bytes": 652206080
+    },
+    {
+      "pid": 12288,
+      "exit_code": 0,
+      "wall_seconds": 21.9454,
+      "observed_peak_rss_bytes": 645902336
+    },
+    {
+      "pid": 12304,
+      "exit_code": 0,
+      "wall_seconds": 21.8567,
+      "observed_peak_rss_bytes": 653086720
+    },
+    {
+      "pid": 12605,
+      "exit_code": 0,
+      "wall_seconds": 23.5491,
+      "observed_peak_rss_bytes": 647823360
+    },
+    {
+      "pid": 13154,
+      "exit_code": 0,
+      "wall_seconds": 23.1462,
+      "observed_peak_rss_bytes": 644763648
+    },
+    {
+      "pid": 13702,
+      "exit_code": 0,
+      "wall_seconds": 23.1154,
+      "observed_peak_rss_bytes": 653578240
+    },
+    {
+      "pid": 14248,
+      "exit_code": 0,
+      "wall_seconds": 22.8798,
+      "observed_peak_rss_bytes": 650842112
+    },
+    {
+      "pid": 14770,
+      "exit_code": 0,
+      "wall_seconds": 22.5596,
+      "observed_peak_rss_bytes": 635912192
+    },
+    {
+      "pid": 15290,
+      "exit_code": 0,
+      "wall_seconds": 23.2318,
+      "observed_peak_rss_bytes": 652890112
+    },
+    {
+      "pid": 15838,
+      "exit_code": 0,
+      "wall_seconds": 24.4043,
+      "observed_peak_rss_bytes": 635830272
+    },
+    {
+      "pid": 16414,
+      "exit_code": 0,
+      "wall_seconds": 22.718,
+      "observed_peak_rss_bytes": 644448256
+    },
+    {
+      "pid": 16580,
+      "exit_code": 0,
+      "wall_seconds": 22.1466,
+      "observed_peak_rss_bytes": 652365824
+    },
+    {
+      "pid": 16603,
+      "exit_code": 0,
+      "wall_seconds": 21.8044,
+      "observed_peak_rss_bytes": 650485760
+    },
+    {
+      "pid": 17095,
+      "exit_code": 0,
+      "wall_seconds": 23.1956,
+      "observed_peak_rss_bytes": 645525504
+    }
+  ],
+  "effective_threads": [
+    2
+  ],
+  "peak_worker_rss_bytes": 657858560,
+  "peak_observed_group_rss_bytes": 657858560,
+  "max_ik_error_m": 4.49811444739856e-05,
+  "skin_vertex_span_m": 0.289096248150867,
+  "wall_seconds_this_invocation": 384.1924,
+  "media": {
+    "encode": {
+      "pid": 17616,
+      "exit_code": 0,
+      "wall_seconds": 0.7316,
+      "observed_peak_rss_bytes": 88244224
+    },
+    "decode": {
+      "pid": 17658,
+      "exit_code": 0,
+      "wall_seconds": 0.2095,
+      "observed_peak_rss_bytes": 37294080
+    },
+    "decoded_frames": 72,
+    "resolution": [
+      640,
+      360
+    ],
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "silent_preview": true
+  },
+  "limitations": [
+    "Not approved likeness/topology/face rig, walking, lip sync or artistic acting.",
+    "Preview is silent, native preview resolution, not 1080p delivery.",
+    "RSS guard is sampled, not a hard OS memory sandbox; only trusted local packages.",
+    "Native mirror remains experimental; no official production image or 960-frame stress proof."
+  ],
+  "artifact_cache_directory": "studio/out/dad-rig-preview/589b03020c41fc58074be9fdb3502ff2aca44fbf045341d154bd0e265ee89c9e",
+  "manifest_sha256": "403e724d285a7801c4f9bbac14a799f8d9bc11e221ef521c2ecc8850bfc17125"
+}

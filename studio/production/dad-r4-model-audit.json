@@ -1,0 +1,199 @@
+{
+  "revision": "r4",
+  "scope": "static form/material review, not a deformation-ready face or approval",
+  "removed_legacy_face_controls": [
+    "eye.L.blink",
+    "eye.R.blink",
+    "jaw.open"
+  ],
+  "meshes": {
+    "DadHeadR4": {
+      "vertices": 16320,
+      "faces": 16130,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9998760074395536
+    },
+    "DadHairR4": {
+      "vertices": 6720,
+      "faces": 6562,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9996952148735142
+    },
+    "DadGroomR4": {
+      "vertices": 31680,
+      "faces": 15360,
+      "components": 480,
+      "boundary_edges": 31680,
+      "nonmanifold_edges": 31680,
+      "quad_fraction": 1.0
+    },
+    "DadBeardGroomR4": {
+      "vertices": 7704,
+      "faces": 3424,
+      "components": 428,
+      "boundary_edges": 7704,
+      "nonmanifold_edges": 7704,
+      "quad_fraction": 1.0
+    },
+    "DadEarR4R": {
+      "vertices": 2368,
+      "faces": 2306,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9991326973113617
+    },
+    "DadScleraR4R": {
+      "vertices": 1824,
+      "faces": 1729,
+      "components": 1,
+      "boundary_edges": 96,
+      "nonmanifold_edges": 96,
+      "quad_fraction": 0.9994216310005783
+    },
+    "DadLidsR4R": {
+      "vertices": 864,
+      "faces": 768,
+      "components": 1,
+      "boundary_edges": 192,
+      "nonmanifold_edges": 192,
+      "quad_fraction": 1.0
+    },
+    "DadIrisR4R": {
+      "vertices": 1664,
+      "faces": 1536,
+      "components": 1,
+      "boundary_edges": 256,
+      "nonmanifold_edges": 256,
+      "quad_fraction": 1.0
+    },
+    "DadPupilR4R": {
+      "vertices": 768,
+      "faces": 673,
+      "components": 1,
+      "boundary_edges": 96,
+      "nonmanifold_edges": 96,
+      "quad_fraction": 0.9985141158989599
+    },
+    "DadBrowR4R": {
+      "vertices": 528,
+      "faces": 514,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9961089494163424
+    },
+    "DadMoustacheR4R": {
+      "vertices": 592,
+      "faces": 578,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9965397923875432
+    },
+    "DadHandR4R": {
+      "vertices": 19586,
+      "faces": 19584,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 1.0
+    },
+    "DadEarR4L": {
+      "vertices": 2368,
+      "faces": 2306,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9991326973113617
+    },
+    "DadScleraR4L": {
+      "vertices": 1824,
+      "faces": 1729,
+      "components": 1,
+      "boundary_edges": 96,
+      "nonmanifold_edges": 96,
+      "quad_fraction": 0.9994216310005783
+    },
+    "DadLidsR4L": {
+      "vertices": 864,
+      "faces": 768,
+      "components": 1,
+      "boundary_edges": 192,
+      "nonmanifold_edges": 192,
+      "quad_fraction": 1.0
+    },
+    "DadIrisR4L": {
+      "vertices": 1664,
+      "faces": 1536,
+      "components": 1,
+      "boundary_edges": 256,
+      "nonmanifold_edges": 256,
+      "quad_fraction": 1.0
+    },
+    "DadPupilR4L": {
+      "vertices": 768,
+      "faces": 673,
+      "components": 1,
+      "boundary_edges": 96,
+      "nonmanifold_edges": 96,
+      "quad_fraction": 0.9985141158989599
+    },
+    "DadBrowR4L": {
+      "vertices": 528,
+      "faces": 514,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9961089494163424
+    },
+    "DadMoustacheR4L": {
+      "vertices": 592,
+      "faces": 578,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9965397923875432
+    },
+    "DadHandR4L": {
+      "vertices": 19586,
+      "faces": 19584,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 1.0
+    },
+    "DadMouthLineR4": {
+      "vertices": 1040,
+      "faces": 1026,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9980506822612085
+    },
+    "DadLipR4": {
+      "vertices": 784,
+      "faces": 770,
+      "components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "quad_fraction": 0.9974025974025974
+    }
+  },
+  "bone_count": 51,
+  "head_scale_xyz": [
+    0.84,
+    0.88,
+    0.78
+  ],
+  "unweighted_vertices": 0,
+  "limitations": [
+    "No approved likeness or feature-film quality claim.",
+    "No mouth cavity, teeth/tongue, eyelid blink/face rig or lip sync.",
+    "Surface QA and static silhouette review do not prove anatomy in all poses."
+  ]
+}

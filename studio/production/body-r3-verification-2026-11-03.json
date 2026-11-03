@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-03",
+  "recorded_at": "2026-11-02T23:18:17.559085+00:00",
+  "scope": "R3 technical deformation experiment and explicit unapproved visual review; NOT professional beauty/likeness/acting or production G3 acceptance",
+  "result": "passed",
+  "tests_passed": 203,
+  "unit_suites": {
+    "pipeline_v1_mvp": 70,
+    "external_package_and_process_guards": 51,
+    "indexed_geometry_and_motion_gates": 35,
+    "refinement_geometry_and_fixture": 19,
+    "planning": 28
+  },
+  "checks": [
+    {
+      "command": ".cache/blender-venv/bin/python -m unittest studio.tests.test_pipeline studio.tests.test_package_pipeline studio.tests.test_rig_pipeline studio.tests.test_refinement_pipeline studio.tests.test_production_status -q",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py validate",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py checklist --check",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m pip check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m compileall -q studio/pipeline studio/authoring studio/tests studio/tools/build_dad_refined.py studio/tools/build_deformation_test.py studio/tools/check_body_extremes.py studio/tools/render_rig_review.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "source and documentation trailing whitespace audit",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m studio.pipeline.render_package --inputs studio/production/dad-refined --package studio/out/dad-refined-r3/package.json --output studio/out/dad-refined-preview --native-dir .cache/blender-native --resume",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    ".github/workflows/pipeline-contracts.yml": "422d7f4ac28d1535842ce6094a00b68b38b8d6feda6c710f4f27076e7b80f3d1",
+    "README.md": "b8240049a697de5403ebc25072b8e62e56e1e94121bcc2aee44c0c71de92238c",
+    "docs/34-ENGINE-ARCHITECTURE.md": "4a0813faddc49bef6951498147c779fe74e4bc3738fccc7025d607d8a2cdcdad",
+    "docs/36-PRODUCTION-TRACKER.md": "4c27c48a1116e059e8a725d9445386393cad2fc8127164ba4a6c9016f4af158b",
+    "docs/37-DECISION-LOG.md": "93359386bf26ffa86ccfadde5bed8f08d7ecadd4d58b7316994a233865355653",
+    "docs/39-EXTERNAL-PACKAGES-AND-BOUNDED-WORKERS.md": "a4046d583b0c5690a727cce78eba5268898343a151941ee8c14d702ad5ad1c9b",
+    "docs/40-BODY-RIG-AND-CONTACT-PROBES.md": "860e5ae5a9daaba414a6bdbdc6d91d0be5572878c5c4f08712c6a4343023ff1a",
+    "docs/41-DEFORMATION-REVIEW-R3.md": "4b4abe10a83972693ae7afb97ae2f8721590f66ca24f3ad2ad9b4a7e0f1c9dbb",
+    "docs/README.md": "5becbe1aed65aa35c2a9e6e333e461b6bda00c89e98920ac83de38e271131960",
+    "studio/authoring/mesh.py": "db3bc77a53a8530ec5780f65e4c51c86532dd9f82b5fff8435f5d3615f01d262",
+    "studio/authoring/refined_body.py": "3c7db7125e61fa64400c913d3f58d925091e0ced62d1dfb631617a55d138b926",
+    "studio/pipeline/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/blender_worker.py": "4c009f787f2303d3d939d6cf6cb36d1428b51eb4a73197db92dba57d5551feaa",
+    "studio/pipeline/backends/geometry_probes.py": "6fd7376c79cddf633bf6edd9fa558b34070c7ebfa26179d59b2d54619370c529",
+    "studio/pipeline/backends/package_worker.py": "056366b67c10e0feee8c444da0c2c2b612c321cfc25c9c404920194bf36e5eb2",
+    "studio/pipeline/backends/rig_probe.py": "d7b44b12fa61ac0d623a97206bbcdc6311b915857d0de7bb4dde584398c1d4e5",
+    "studio/pipeline/contracts.py": "8694cf4707b53c3fc1e3f226c6192048f94ac37cc88c4a6188261c4590f66c70",
+    "studio/pipeline/kinematics.py": "f79858d55d5a32a91b1256158d13e8e94e0b10bc3f63b246172dd4d92276a8f0",
+    "studio/pipeline/packages.py": "637c67fede4d32307b1b746e09a399b250780a6ecffc9df5194103543af5ae60",
+    "studio/pipeline/render_package.py": "48555c50760ca5161bfbbd6f51fee15bc029603942a818a7986fb0c5d61c4907",
+    "studio/pipeline/resources.py": "951da950ce37403e8e75181ce81c3ff6e5c8fec8bda1c10fc57b1b1c525b0fff",
+    "studio/pipeline/run_probe.py": "0a4dc9413268fd84262eb63c91cd66e98fc9b5daab12390462e98a54627e8ea3",
+    "studio/pipeline/timeline.py": "f4d06ca85396da68ca4a814c650619a6c4e3d7e45fcbd41faaa927bd167588a0",
+    "studio/production/blender-requirements.lock": "1275775534f5f2ebec7d54538b4869eb457f1e33baf4fa930ab9315f2a641f1b",
+    "studio/production/body-r2-verification-2026-11-03.json": "9d98d14f67293b9b5c7c1efa3fd449294c2858718e083f63168c98a03337a239",
+    "studio/production/dad-package-integration.json": "19e9d6d1eaa1419957f4720a51a2aaf3bb316d21a44030c233b6289bccf98d9d",
+    "studio/production/dad-preview-manifest.json": "159bdf134042bb0f34af691a0a2ce430d8c587eafae6bc9283761c9b2896bbb3",
+    "studio/production/dad-preview-report.json": "e581133cc8f28f39d3c3a5b72fdf48fb2867c10b62744b99698ae07585d9b310",
+    "studio/production/dad-preview/package-r1.json": "e832944d4daf285d7a2bab53806b1257c9636ef50b2a769d3572adb91e7eb665",
+    "studio/production/dad-preview/project.json": "6651c998d2c088243732d81c0ebef18c7e9341ac040b8e269808676515afac9b",
+    "studio/production/dad-preview/shot.json": "80177226d7b180b6f8a196366b1324d660a621d7dec06e15e524b6e26c208ab6",
+    "studio/production/dad-r3-animated-strain.json": "21543f30640f48212153cef2c62d0cb47ffa7d9c90bbeb25e126ab71b4f04c94",
+    "studio/production/dad-r3-extremes.json": "b0e68677b828c3f1f7f1d06f50401b4dcef5cdd1c72e363f1b0c8313f0970b53",
+    "studio/production/dad-r3-initial-motion-failure.json": "a9800812c576adcfab1b934c2fe3e65c76f50ac1c622a23182b620842fcfea64",
+    "studio/production/dad-r3-initial-strain-failure.json": "693227e07c82a568580bad85c9a73532b5488f1fa7bbc96aa65f0ced147ccb7a",
+    "studio/production/dad-r3-integration.json": "bcc41b1f535cbe15b951e6bb47691232d734b577826ba2922cd9c492b3b21bb6",
+    "studio/production/dad-r3-model-audit.json": "28f8a3cda59657b199f3538ec48a900ddadd7360966bed8d538a9701e558b00e",
+    "studio/production/dad-r3-native-replay.json": "5ab556493f7955c60973dfd9353201ef9772b78d3bb3ffaaef4d2d0029e8be4e",
+    "studio/production/dad-r3-pose-report.json": "cb07f365bdc664c8d76179e16aae78f7021908b0082a337a5d6d19bad20dec99",
+    "studio/production/dad-r3-preview-manifest.json": "60f2cd1cede980ac0c60078f34183524e86e05216a04ed7aa3e0cd24b1d7b0ad",
+    "studio/production/dad-r3-preview-report.json": "ff6d6c7ea8f72ee63e7944231bf9a631103d9c7c7814b912288083f38d84b649",
+    "studio/production/dad-r3-visual-review.json": "e3738c5b74b2a4404a472c061988b6936897106882adea0d485b09b3d274f2bc",
+    "studio/production/dad-refined/package-r3.json": "0add13fd541f8afc9ba0abf88a188617f0e8cb092f6b02e38cad07cf87b322fd",
+    "studio/production/dad-refined/project.json": "3fa927d8f3115451eeb7f08fbd2c44a1df313091faac6b7b64ca6633c34a555e",
+    "studio/production/dad-refined/shot.json": "0f114b098d1d0696f0e0db98875e24954fcac5b1e3dff15d3bbdc4c86eaa35a1",
+    "studio/production/dad-rig-integration.json": "c4b8b089542ebb5f49d18bbb16b91dff975d768aea8342431918a3ba7e78ce27",
+    "studio/production/dad-rig-model-audit.json": "c12162e1c2c3fc2ea57bddd4b4163fd0821116a84f8ee156bf2973bd721a7ca1",
+    "studio/production/dad-rig-native-replay.json": "5bd38be8b4a4d1295b2791999340ce8d1483c4bbbf14468bd9a2effbc74f40d4",
+    "studio/production/dad-rig-parenting-regression.json": "8bbe2bcb0be64c830a7341e6fa95efbc524fec8ac22ac7fce3ef465d37163ec4",
+    "studio/production/dad-rig-pose-report.json": "4b5c609b23670f3d5bbe2981d57d270b2437d9dd3d9d5919c118ea5a5c11f927",
+    "studio/production/dad-rig-preview-manifest.json": "403e724d285a7801c4f9bbac14a799f8d9bc11e221ef521c2ecc8850bfc17125",
+    "studio/production/dad-rig-preview-report.json": "6d8dd8c92a01d1f3ddce83d42f90a83445d5d8fd25e69ec1a125ccb02e023fcc",
+    "studio/production/dad-rig/package-r2.json": "9319016e1da772c7d44ce1fdf209e048104f26b57dcd83ecd0a5ff56e4ef73c7",
+    "studio/production/dad-rig/project.json": "4eefb89231db4e7c5a0e3ee9fd95659968be638204e0d8ffcb3943f8a1009247",
+    "studio/production/dad-rig/shot.json": "52b55c414630fafe967c956a9f0901c6915f8841560f28f3caf87232c0d3a60e",
+    "studio/production/external-package-verification-2026-11-03.json": "c971babf6529cddbfa5c3241bb27376d1c5bbc566ab71e1a0195c5d4d2467e2c",
+    "studio/production/package-empty-log-regression.json": "ef053c2f8312bd781708c6f8076b38ac2ba95e46d73e45ecdab0fe859ae9b239",
+    "studio/production/package-short-regression-report.json": "20cc26f358f3f7852e94e2fa53dca93d4406e57130e03ee60ad8c46750efa7f2",
+    "studio/production/plan.json": "3e14cccb3501ffd9749ec2fcbf5ee762344799d2a98a8d6837602f6abbb7720f",
+    "studio/production/sandbox-native-libs.lock.json": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+    "studio/schemas/asset-package.v2.schema.json": "b53451f9ad45c237d72f28f4b26dd0ffb9ead1cb116ebeb150e9f526902cc5b2",
+    "studio/schemas/asset.schema.json": "db1ad5f910d8900784e2b9254eb5fd1813b3924d3096bba965a1fb830d24aeb9",
+    "studio/schemas/manifest.schema.json": "1b31b7819e7196828398c2621952bdfcc1ee90149ea607a53f8b0fceef1f15b4",
+    "studio/schemas/project.schema.json": "281d300d33e9830d27bb2f99f68869c9280c31b89f11f3fe29035a61183bc5b2",
+    "studio/schemas/project.v2.schema.json": "9d2e7c1fc75337566eb1f627eff2365eeab8c0baec849359331ab2fe5e81cffe",
+    "studio/schemas/render-manifest.v2.schema.json": "7e5a61ea16c661d42bb270fde34355ea885d824fbe1b6290aeda72c49ba965c7",
+    "studio/schemas/report.schema.json": "885f4b8f3a0c3d95f262a4b87ef2c78c13d8489a0c1c77832c48d7939ddfe712",
+    "studio/schemas/rig.schema.json": "e926e4954ed9e30a1f44b6ecb95072b4808733b4f458554de8ce4af87ff66382",
+    "studio/schemas/shot.schema.json": "5d1bc1a1108824cd9768942c98991469c634ca94562695ded1184fc29c412896",
+    "studio/schemas/shot.v2.schema.json": "53d5edc3ad8aeb23cae6cd230130d923ee035a98b6b7b8a8161cc72d559a94cc",
+    "studio/schemas/speech.schema.json": "20673c6d80b0f5dccdefe8bb675b2085b444a38b2c0c6cb76b20cbc36bd6141a",
+    "studio/tests/test_package_pipeline.py": "aad5bbdb2f2ac2d36344af840c5758ff5a0d5485853a957fe1e11beb0b30fc3c",
+    "studio/tests/test_pipeline.py": "bf2066d335a38a0f346b52de63c3ada1a50ea711ddb59f243283d7ac4ff69ecd",
+    "studio/tests/test_production_status.py": "ae585074416911d1fb266714548bf64d7d2c0aa1775adae48fd82732a4839a00",
+    "studio/tests/test_refinement_pipeline.py": "a57f6b1d9419d37c7d39ab1d0ff3b390ae72022d34f32ba82bbddd952e480939",
+    "studio/tests/test_rig_pipeline.py": "e3623c24a749c6c2b2ed8bf96f1432df84510a751c70b06fe5f38f598496fc90",
+    "studio/tools/build_body_test.py": "c53c53c81b8dcc70db0ab8e2571ff348e39064d7fdbb6fc5d56b38dd8b0aac09",
+    "studio/tools/build_dad_blockout.py": "f3dfc33495f756e61c0c57dff723f1341c9ab66db9f4d8d72be84f55a597dae3",
+    "studio/tools/build_dad_refined.py": "7150397e22260bd7303bb97937a2ad06f980390f9958d93554e1fa792fbe34c6",
+    "studio/tools/build_dad_rig.py": "cc57838147a39d073c2641c3ce10d24c546a3d91ff58a639e8f95f39573c3c8c",
+    "studio/tools/build_deformation_test.py": "e2a68daa778ac3e5628d489a0f8abe3a2303e3195321405c091488b993f76eb5",
+    "studio/tools/check_body_extremes.py": "dd758a011a3acdcd6dc948fbef97f59271482f687d328688d1efa3084b29e591",
+    "studio/tools/check_dad_rig.py": "96580010bce31f5ddeb60e53b42daa7f01cf2dbc7bd4260c4ae4e6fd32633e86",
+    "studio/tools/production_status.py": "8535fcb2cf313dd43289d81d043c05c2f7b332619042c4d6908decf844dccf15",
+    "studio/tools/render_rig_review.py": "df21b08dfd10275f2b84faf688854f0818016ac379eb67eba79143b2eda9ca15"
+  },
+  "integration": {
+    "current_preview": {
+      "source": "studio/production/dad-r3-preview-report.json",
+      "frames": 72,
+      "resolution": [
+        640,
+        360
+      ],
+      "job_id": "cde47ecbbf149bcea2c2b86843a867df8c985a6c3a7b34104c57f006b7540917",
+      "full_manifest": "studio/production/dad-r3-preview-manifest.json"
+    },
+    "static_extremes": {
+      "source": "studio/production/dad-r3-extremes.json",
+      "cases": 17,
+      "status": "passed",
+      "scope": "heuristic safety, not full G3"
+    },
+    "all_frame_strain": {
+      "source": "studio/production/dad-r3-animated-strain.json",
+      "frames": 72,
+      "status": "passed"
+    },
+    "native_replay_and_negative": "studio/production/dad-r3-integration.json",
+    "visual_review": {
+      "source": "studio/production/dad-r3-visual-review.json",
+      "approved": false,
+      "result": "needs_art_rework"
+    },
+    "historical_r2_verification": "studio/production/body-r2-verification-2026-11-03.json"
+  },
+  "github_actions_execution": "not_run; updated workflow and local equivalents passed",
+  "legacy_pilot_engine_suites": "not_rerun_in_this_iteration",
+  "remaining_work": [
+    "palm curvature and wrist/cuff overlap; reference-matched head/hair/beard sculpt",
+    "full correctives/extreme-pose/collision review and approved gait/acting",
+    "face rig, phoneme alignment/lipsync and 8/12/40-second acceptance scenes",
+    "generic production contracts/approval workflow, supported official runtime and long-run stability"
+  ]
+}

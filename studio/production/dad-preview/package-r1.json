@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "kind": "asset_package",
+  "asset_id": "dad-blockout",
+  "revision": "r1",
+  "art_status": "unreviewed",
+  "coordinate_system": "RH_Z_UP_METERS",
+  "forward_axis": "+Y",
+  "rotation_unit": "radian",
+  "blend": {
+    "path": "studio/out/dad-blockout/dad.blend",
+    "sha256": "a2ae57516d14976d215811a3c8cd7f09a96726b33c7b3ca8c43860a5266bdb54",
+    "collection": "DadBlockout"
+  },
+  "provenance": {
+    "authoring_script": "studio/tools/build_dad_blockout.py",
+    "script_sha256": "f3dfc33495f756e61c0c57dff723f1341c9ab66db9f4d8d72be84f55a597dae3",
+    "license": "project-original"
+  },
+  "bindings": {
+    "eye.L.blink": {
+      "type": "SHAPE_KEY",
+      "object": "DadEyeL",
+      "target": "Blink"
+    },
+    "eye.R.blink": {
+      "type": "SHAPE_KEY",
+      "object": "DadEyeR",
+      "target": "Blink"
+    },
+    "arm.L.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadHandTargetL"
+    },
+    "hand.L.rotation": {
+      "type": "OBJECT_ROTATION",
+      "object": "DadHandTargetL"
+    },
+    "arm.R.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadHandTargetR"
+    },
+    "hand.R.rotation": {
+      "type": "OBJECT_ROTATION",
+      "object": "DadHandTargetR"
+    },
+    "head.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "head"
+    },
+    "jaw.open": {
+      "type": "SHAPE_KEY",
+      "object": "DadMouth",
+      "target": "Open"
+    }
+  },
+  "ik_checks": [
+    {
+      "armature": "DadRig",
+      "bone": "forearm.L",
+      "target": "DadHandTargetL"
+    },
+    {
+      "armature": "DadRig",
+      "bone": "forearm.R",
+      "target": "DadHandTargetR"
+    }
+  ]
+}

@@ -1,0 +1,554 @@
+{
+  "status": "failed",
+  "scope": "17 static poses; heuristic strain/IK/contact safety, NOT collision/likeness/artistic approval",
+  "blend_sha256": "54aa92c7f2664fcaf3ee27dc688fcf9010fe3cb0de039a6e422422c8237150f1",
+  "checker_sha256": "c43a5c948ab754585cfb90f35755d2fe5d91ef326af37d262c1fdc4f8f08db1f",
+  "poses": [
+    {
+      "pose": "neutral",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_forward",
+      "passed": false,
+      "max_ik_error_m": 1.2724719196312807e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.08856384448986357,
+          "area_ratio_max": 10.159701154381008,
+          "edge_ratio_max": 8.349597381925127
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9997978865167285,
+          "area_ratio_max": 1.000514446714383,
+          "edge_ratio_max": 1.0005004024653426
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_overhead",
+      "passed": false,
+      "max_ik_error_m": 9.695014859852272e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.040759128143882904,
+          "area_ratio_max": 9.481260303776262,
+          "edge_ratio_max": 7.7901985014732125
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.999660698453616,
+          "area_ratio_max": 1.0002937268683814,
+          "edge_ratio_max": 1.0002529835671676
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_abduction",
+      "passed": false,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.12768346071214187,
+          "area_ratio_max": 4.11819284429597,
+          "edge_ratio_max": 4.615573066384582
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9996145456142709,
+          "area_ratio_max": 1.0005067745410754,
+          "edge_ratio_max": 1.0003724694348224
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_elbow_fold",
+      "passed": false,
+      "max_ik_error_m": 2.9218270432267953e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.09347820114012964,
+          "area_ratio_max": 19.51860067938173,
+          "edge_ratio_max": 16.1567078505367
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9992196307730314,
+          "area_ratio_max": 1.000397759840955,
+          "edge_ratio_max": 1.0002617375835128
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_wrist_flexion",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998118734378708,
+          "area_ratio_max": 1.0001757661341066,
+          "edge_ratio_max": 1.0001173563412953
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_wrist_extension",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9999009031843408,
+          "area_ratio_max": 1.0001925065936752,
+          "edge_ratio_max": 1.0001698345970682
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_wrist_deviation",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998385949386877,
+          "area_ratio_max": 1.000138725214613,
+          "edge_ratio_max": 1.000108706511543
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "R_curl",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 0.194546713339478,
+          "area_ratio_max": 2.4071060005135245,
+          "edge_ratio_max": 1.8547847576697183
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        }
+      }
+    },
+    {
+      "pose": "L_forward",
+      "passed": false,
+      "max_ik_error_m": 1.2667214109780596e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.08853942751540306,
+          "area_ratio_max": 10.158842652075544,
+          "edge_ratio_max": 8.349158545846256
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.999824129529179,
+          "area_ratio_max": 1.000179880721037,
+          "edge_ratio_max": 1.0001523670424382
+        }
+      }
+    },
+    {
+      "pose": "L_overhead",
+      "passed": false,
+      "max_ik_error_m": 9.6936634906198e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.04076979738525227,
+          "area_ratio_max": 9.48065635355646,
+          "edge_ratio_max": 7.789931880414037
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9995842576012273,
+          "area_ratio_max": 1.0004147476659055,
+          "edge_ratio_max": 1.0003637398849352
+        }
+      }
+    },
+    {
+      "pose": "L_abduction",
+      "passed": false,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.12769837483815533,
+          "area_ratio_max": 4.118228925818403,
+          "edge_ratio_max": 4.615696684546144
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.999723532888988,
+          "area_ratio_max": 1.0005617203817299,
+          "edge_ratio_max": 1.000297509143283
+        }
+      }
+    },
+    {
+      "pose": "L_elbow_fold",
+      "passed": false,
+      "max_ik_error_m": 2.9224425388929756e-05,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 0.09347970249017863,
+          "area_ratio_max": 19.517092483652764,
+          "edge_ratio_max": 16.15589891522883
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9986997453858614,
+          "area_ratio_max": 1.0003895921967205,
+          "edge_ratio_max": 1.0001470852265577
+        }
+      }
+    },
+    {
+      "pose": "L_wrist_flexion",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998137484528451,
+          "area_ratio_max": 1.0004602858695255,
+          "edge_ratio_max": 1.000097403083614
+        }
+      }
+    },
+    {
+      "pose": "L_wrist_extension",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998960763298693,
+          "area_ratio_max": 1.0001313968211327,
+          "edge_ratio_max": 1.0000943109317115
+        }
+      }
+    },
+    {
+      "pose": "L_wrist_deviation",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.9998430414363471,
+          "area_ratio_max": 1.0002590834185334,
+          "edge_ratio_max": 1.0001240928156077
+        }
+      }
+    },
+    {
+      "pose": "L_curl",
+      "passed": true,
+      "max_ik_error_m": 2.094688573959557e-06,
+      "surface_metrics": {
+        "DadSweaterR3": {
+          "vertices": 2906,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadPantsR2": {
+          "vertices": 1930,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3R": {
+          "vertices": 4898,
+          "area_ratio_min": 1.0,
+          "area_ratio_max": 1.0,
+          "edge_ratio_max": 1.0
+        },
+        "DadHandR3L": {
+          "vertices": 4898,
+          "area_ratio_min": 0.1945976213365697,
+          "area_ratio_max": 2.407432581322301,
+          "edge_ratio_max": 1.8547232978352588
+        }
+      }
+    }
+  ],
+  "contacts": {
+    "passed": true,
+    "stance_slip_m": 0.0,
+    "stance_ground_error_m": 2.3274768068404228e-07,
+    "sole_penetration_m": 3.5477597748467815e-08,
+    "stance_samples": 34,
+    "limits_m": {
+      "stance_slip": 0.005,
+      "ground_error": 0.003,
+      "penetration": 0.002
+    }
+  },
+  "limits": {
+    "min_area_ratio": 0.025,
+    "max_area_ratio": 6,
+    "max_edge_ratio": 3,
+    "max_ik_error_m": 0.005
+  },
+  "review_renders": []
+}

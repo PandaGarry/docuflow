@@ -1,0 +1,53 @@
+{
+  "scope": "actual bpy pose evaluation, no render/artistic acceptance",
+  "status": "failed",
+  "asset_id": "dad-body-rig",
+  "revision": "r2",
+  "blend_sha256": "3cb09ecbb6701f930e61a77565d0e5d2560dc99563e7c96c0a5a290176b276b7",
+  "frames_evaluated": 72,
+  "max_ik_error_m": 4.49811444739856e-05,
+  "max_bone_relative_error": 3.501814486295274e-05,
+  "contacts": {
+    "passed": false,
+    "stance_slip_m": 0.1346166367082976,
+    "stance_ground_error_m": 0.0399879515171051,
+    "sole_penetration_m": 5.3360750484898745e-08,
+    "stance_samples": 108,
+    "limits_m": {
+      "stance_slip": 0.005,
+      "ground_error": 0.003,
+      "penetration": 0.002
+    }
+  },
+  "fingers": {
+    "passed": true,
+    "fingers": {
+      "finger.R.index": {
+        "span_m": 0.3502263910884324,
+        "min_span_m": 0.025,
+        "passed": true
+      },
+      "finger.R.middle": {
+        "span_m": 0.35935336485604513,
+        "min_span_m": 0.025,
+        "passed": true
+      },
+      "finger.R.ring": {
+        "span_m": 0.35625734266472125,
+        "min_span_m": 0.025,
+        "passed": true
+      },
+      "finger.R.pinky": {
+        "span_m": 0.3416004137902018,
+        "min_span_m": 0.025,
+        "passed": true
+      },
+      "finger.R.thumb": {
+        "span_m": 0.39961327103354655,
+        "min_span_m": 0.025,
+        "passed": true
+      }
+    }
+  },
+  "finding": "Foot IK target residual passed, but evaluated sole geometry failed. Unparented skinned mesh objects did not inherit rig-object translation. Fixed by object-parenting meshes to rig while preserving rest matrices."
+}
