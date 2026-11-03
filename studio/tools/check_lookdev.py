@@ -28,12 +28,13 @@ def poses():
     return result
 
 
-def run(package_path,output,render_dir=None,animation=False):
+def run(package_path,output,render_dir=None,animation=False,inputs=None):
     import bpy
     from mathutils import Vector
     from studio.pipeline.backends.geometry_probes import measure
     from studio.pipeline.backends.package_worker import stage
-    p,a,s=validate_bundle(load_json(ROOT/'studio/production/dad-lookdev/project.json'),load_json(package_path),load_json(ROOT/'studio/production/dad-lookdev/shot.json'))
+    inputs=inputs or ROOT/'studio/production/dad-lookdev'
+    p,a,s=validate_bundle(load_json(inputs/'project.json'),load_json(package_path),load_json(inputs/'shot.json'))
     bpy.ops.wm.read_factory_settings(use_empty=True)
     objects=append_package(bpy,a);bindings=bind(objects,a)
     defaults={c:[0,0,0] for c,(typ,target) in bindings.items() if typ=='POSE_ROTATION'}
@@ -50,7 +51,7 @@ def run(package_path,output,render_dir=None,animation=False):
             edges=sorted({tuple(sorted((a,b))) for t in triangles for a,b in zip(t,t[1:]+t[:1])})
             lengths=[(points[b]-points[a]).length for a,b in edges]
             if any(not math.isfinite(v) or v<=1e-12 for v in areas+lengths):raise ValueError('degenerate/nonfinite evaluated surface')
-            return {'areas':areas,'lengths':lengths,'triangles':triangles,'vertices':len(points)}
+            return {'areas':areas,'lengths':lengths,'triangles':triangles,'vertices':len(points),'points':points}
         finally:evaluated.to_mesh_clear()
 
     scene=None
@@ -76,6 +77,15 @@ def run(package_path,output,render_dir=None,animation=False):
             ratios=[x/y for x,y in zip(current['areas'],base['areas'])]
             stretches=[x/y for x,y in zip(current['lengths'],base['lengths'])]
             stats[obj.name]={'vertices':current['vertices'],'area_ratio_min':min(ratios),'area_ratio_max':max(ratios),'edge_ratio_max':max(stretches)}
+            if obj.name.startswith('DadHand'):
+                worst=max(range(len(ratios)),key=ratios.__getitem__)
+                ids=base['triangles'][worst]
+                stats[obj.name]['worst_area_triangle']={
+                    'triangle_index':worst,'vertex_indices':list(ids),
+                    'rest_points_world_m':[list(base['points'][v]) for v in ids],
+                    'posed_points_world_m':[list(current['points'][v]) for v in ids],
+                    'vertex_weights':[{obj.vertex_groups[g.group].name:g.weight for g in obj.data.vertices[v].groups} for v in ids],
+                    'rest_area_m2':base['areas'][worst],'posed_area_m2':current['areas'][worst]}
         measured=measure(objects,a,deps);geometry_rows.append({'frame':index,**measured})
         passed=max(errors)<=.005 and measured['bone_relative_length_error']<=.001 and all(v['area_ratio_min']>.025 and v['area_ratio_max']<6 and v['edge_ratio_max']<3 for v in stats.values())
         rows.append({'pose':name,'passed':passed,'max_ik_error_m':max(errors),'surface_metrics':stats})
@@ -98,19 +108,21 @@ if __name__=='__main__':
     parser.add_argument('--output',type=Path,default=ROOT/'studio/production/dad-r4-extremes.json')
     parser.add_argument('--render-dir',type=Path)
     parser.add_argument('--animation',action='store_true',help='Evaluate all fixture frames, not just static extreme cases')
+    parser.add_argument('--inputs',type=Path,default=ROOT/'studio/production/dad-lookdev')
     parser.add_argument('--worker',action='store_true')
     parser.add_argument('--native-dir',default='.cache/blender-native')
     args=parser.parse_args()
     if args.worker:
         # Successful measurement is not a passed quality gate. The coordinator
         # reads the report and returns 1 for a failed gate, not a process crash.
-        run(args.package,args.output,args.render_dir,args.animation)
+        run(args.package,args.output,args.render_dir,args.animation,args.inputs)
         raise SystemExit(0)
     from studio.pipeline.resources import run_guarded
     from studio.pipeline.render_package import worker_env
     from studio.pipeline.contracts import safe_path
     command=[sys.executable,__file__,'--worker','--package',args.package.resolve().relative_to(ROOT).as_posix(),
              '--output',args.output.resolve().relative_to(ROOT).as_posix()]
+    command.extend(['--inputs',args.inputs.resolve().relative_to(ROOT).as_posix()])
     if args.animation:command.append('--animation')
     if args.render_dir:command.extend(['--render-dir',args.render_dir.resolve().relative_to(ROOT).as_posix()])
     result=run_guarded(command,args.output.with_suffix('.log'),cwd=ROOT,
