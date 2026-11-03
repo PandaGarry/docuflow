@@ -1,21 +1,22 @@
 {
   "schema_version": 1,
   "recorded_on": "2026-11-03",
-  "recorded_at": "2026-11-03T00:20:00.854323+00:00",
-  "scope": "R4 native static look-development with explicit failed art review and native deformation regression; not production acceptance",
+  "recorded_at": "2026-11-03T00:52:29.590599+00:00",
+  "scope": "R5 technical thumb-web regression fix; unchanged R4 art/geometry; art/anatomy and production acceptance remain blocked",
   "result": "blocked",
-  "tests_passed": 222,
+  "tests_passed": 235,
   "unit_suites": {
     "pipeline_v1_mvp": 70,
     "external_package_and_process_guards": 51,
     "indexed_geometry_and_motion_gates": 35,
     "refinement_geometry_and_fixture": 19,
     "lookdev_forms_and_contracts": 19,
-    "planning": 28
+    "planning": 28,
+    "thumb_web_weight_regression": 13
   },
   "checks": [
     {
-      "command": ".cache/blender-venv/bin/python -m unittest studio.tests.test_pipeline studio.tests.test_package_pipeline studio.tests.test_rig_pipeline studio.tests.test_refinement_pipeline studio.tests.test_lookdev_pipeline studio.tests.test_production_status -q",
+      "command": ".cache/blender-venv/bin/python -m unittest studio.tests.test_pipeline studio.tests.test_package_pipeline studio.tests.test_rig_pipeline studio.tests.test_refinement_pipeline studio.tests.test_lookdev_pipeline studio.tests.test_handfix_pipeline studio.tests.test_production_status -q",
       "exit_code": 0
     },
     {
@@ -31,7 +32,7 @@
       "exit_code": 0
     },
     {
-      "command": "python3 -m compileall -q studio/authoring studio/pipeline studio/tests studio/tools/build_dad_lookdev.py studio/tools/render_lookdev.py studio/tools/check_lookdev.py studio/tools/make_lookdev_review.py",
+      "command": "python3 -m compileall -q studio/authoring studio/pipeline studio/tests studio/tools",
       "exit_code": 0
     },
     {
@@ -39,43 +40,38 @@
       "exit_code": 0
     },
     {
-      "command": ".cache/blender-venv/bin/python studio/tools/render_lookdev.py --size 1024 --samples 48 --record studio/production/dad-r4-render-report.json",
+      "command": ".cache/blender-venv/bin/python studio/tools/check_lookdev.py --package studio/out/dad-handfix-r5/package.json --inputs studio/production/dad-handfix --output studio/production/dad-r5-extremes.json",
+      "exit_code": 0,
+      "cases_passed": 17
+    },
+    {
+      "command": ".cache/blender-venv/bin/python studio/tools/check_lookdev.py --package studio/out/dad-handfix-r5/package.json --inputs studio/production/dad-handfix --animation --output studio/production/dad-r5-animated.json",
+      "exit_code": 0,
+      "cases_passed": 72
+    },
+    {
+      "command": ".cache/blender-venv/bin/python studio/tools/render_lookdev.py --package studio/out/dad-handfix-r5/package.json --output studio/out/dad-r5-review --views hand_open hand_curl --size 1024 --samples 48 --record studio/production/dad-r5-render-report.json",
       "exit_code": 0
-    },
-    {
-      "command": ".cache/blender-venv/bin/python studio/tools/make_lookdev_review.py",
-      "exit_code": 0
-    },
-    {
-      "command": ".cache/blender-venv/bin/python studio/tools/check_lookdev.py",
-      "exit_code": 1,
-      "status": "failed_quality_gate",
-      "poses_passed": 15,
-      "poses_total": 17
-    },
-    {
-      "command": ".cache/blender-venv/bin/python studio/tools/check_lookdev.py --animation --output studio/production/dad-r4-animated.json",
-      "exit_code": 1,
-      "status": "failed_quality_gate",
-      "frames_passed": 56,
-      "frames_total": 72
     }
   ],
   "source_sha256": {
     ".github/workflows/pipeline-contracts.yml": "422d7f4ac28d1535842ce6094a00b68b38b8d6feda6c710f4f27076e7b80f3d1",
-    "README.md": "b8240049a697de5403ebc25072b8e62e56e1e94121bcc2aee44c0c71de92238c",
-    "docs/26-LOG.md": "e334204c915048418f6f92384b092645a6563d431504bad7987b244602f71d60",
+    "AGENTS.md": "d40e64f8f6b772f3850c6ba0c0c2877a13f81083bc1a4b4661d57e88407f51e8",
+    "README.md": "01ae8a65dd5091ca9027f076769a3cee89835487cfa0a58c9335cfdf53fc646e",
+    "docs/26-LOG.md": "032fe00eb715609ee367b69ae57bc69c2aa055decd64fa04e340fa640aae0d9a",
     "docs/34-ENGINE-ARCHITECTURE.md": "4a0813faddc49bef6951498147c779fe74e4bc3738fccc7025d607d8a2cdcdad",
-    "docs/36-PRODUCTION-TRACKER.md": "5bcc4dee8f72b9f39e5b9abaf21a05dbc4803dafd90dc3abdc7971e63f2b2675",
-    "docs/37-DECISION-LOG.md": "ff58f020b71149a72a537a161513c4e6fe43d0663a84287fddaef2b10c425e28",
+    "docs/36-PRODUCTION-TRACKER.md": "7d4f8d43ae44a84758a30bafe39d32c1f3c6b1f5ed37e036ee411a5ed7b2ced9",
+    "docs/37-DECISION-LOG.md": "bc1b19dd9dd28c2cc27386741fd609db1d0660bb11453d00bad1a823ea3044af",
     "docs/39-EXTERNAL-PACKAGES-AND-BOUNDED-WORKERS.md": "a4046d583b0c5690a727cce78eba5268898343a151941ee8c14d702ad5ad1c9b",
     "docs/40-BODY-RIG-AND-CONTACT-PROBES.md": "860e5ae5a9daaba414a6bdbdc6d91d0be5572878c5c4f08712c6a4343023ff1a",
     "docs/41-DEFORMATION-REVIEW-R3.md": "4b4abe10a83972693ae7afb97ae2f8721590f66ca24f3ad2ad9b4a7e0f1c9dbb",
     "docs/42-LOOKDEV-REVIEW-R4.md": "2a88ea5a64d920c2b70f86481d7e2bcd0bd5027cbf6cb51f3dfb790a9b6c2b0c",
-    "docs/README.md": "8b6acae422f54591787862e5e9d61cf067a359b30a4b4e33b1edf0bcd20c420b",
+    "docs/43-THUMB-WEB-REGRESSION.md": "6ee8d5559569f28fc0a9b8a0f99f4f6b0aa6467ff2445e322c7048418091bea9",
+    "docs/README.md": "4c3f522f3b5cf901d930ea5e7b8ce78f03071b11921f26f3a99d58a7394227a3",
     "studio/authoring/lookdev.py": "8f7e120275d955bb0733f69a7ae5058abe26c23c065fbe5787d36f019d80d83f",
     "studio/authoring/mesh.py": "db3bc77a53a8530ec5780f65e4c51c86532dd9f82b5fff8435f5d3615f01d262",
     "studio/authoring/refined_body.py": "3c7db7125e61fa64400c913d3f58d925091e0ced62d1dfb631617a55d138b926",
+    "studio/authoring/refined_hands.py": "6a19c9b26f22f3e4428a2bdc84e9d00fa0c25952bfda695317e01eb031f66d92",
     "studio/pipeline/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
     "studio/pipeline/backends/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
     "studio/pipeline/backends/blender_worker.py": "4c009f787f2303d3d939d6cf6cb36d1428b51eb4a73197db92dba57d5551feaa",
@@ -92,6 +88,9 @@
     "studio/production/blender-requirements.lock": "1275775534f5f2ebec7d54538b4869eb457f1e33baf4fa930ab9315f2a641f1b",
     "studio/production/body-r2-verification-2026-11-03.json": "9d98d14f67293b9b5c7c1efa3fd449294c2858718e083f63168c98a03337a239",
     "studio/production/body-r3-verification-2026-11-03.json": "da6471b1999d785d16e5d6784cf13c870e0841791ad5ea5f24a273d039dde6cd",
+    "studio/production/dad-handfix/package-r5.json": "138775289ce05f71b4edbf52ded4533cbfa59b83444f026853db51aeb55020f7",
+    "studio/production/dad-handfix/project.json": "929fc4177ba14d230b79f4fdba40657328337fe08cbc7d0be945241b3f19d852",
+    "studio/production/dad-handfix/shot.json": "d946f13ed1759531287a3d78d18610c5815371b049c8e78e88011f68a28fb54a",
     "studio/production/dad-lookdev/package-r4.json": "fe06ad08a759d908846e6df72620111e2c908fbeeb83f76b5b993f1c19f38174",
     "studio/production/dad-lookdev/project.json": "86c4ccb5b7302d9393b2a8b6e43e4cd6783f2aea1cff6c3dca5120d7853ebabd",
     "studio/production/dad-lookdev/shot.json": "914640b7e4c64a764fbc7c0d99366466dff91134ced195b3f03c6b062e219bb2",
@@ -114,9 +113,15 @@
     "studio/production/dad-r3-visual-review.json": "e3738c5b74b2a4404a472c061988b6936897106882adea0d485b09b3d274f2bc",
     "studio/production/dad-r4-animated.json": "710943936b5fd32443aead0bcdbe4874df106d8629a292436747c913c504c148",
     "studio/production/dad-r4-extremes.json": "ce54c93ad2b51f387f73a5d01f7e2975e588e08567368539c555a1066952680d",
+    "studio/production/dad-r4-localized-extremes.json": "2632b096ad85fa696e06aee83c9696755a9efb8262771fec01716a544cc6ea13",
     "studio/production/dad-r4-model-audit.json": "0d6b785732e300b79525022769976cb0452c638019c11976785918b385ace5ed",
     "studio/production/dad-r4-render-report.json": "5e77821550e3b55bc065ae40fd65124b7f37c1ff5b2fd85e50e0560651df2bfa",
     "studio/production/dad-r4-visual-review.json": "f012f120929e14dcc8a8ece965b9fceaa1d353eee5282d176a16c45f7e2d2532",
+    "studio/production/dad-r5-animated.json": "211bb34c9df9afee678e77df3ede4d87d32b41aab048e84f3f16798bb0597d63",
+    "studio/production/dad-r5-extremes.json": "45f5bc3a21b736423120a63af604913e9df921a29cea95a6954150af09af8f16",
+    "studio/production/dad-r5-render-report.json": "b29522e01bf54ec3d42cac2a5962a743905415be74923bca25cabe3dc6a4d428",
+    "studio/production/dad-r5-visual-review.json": "ed053cf48ea95f94d3b51430919361a908a7aeefd929f02e47cea0cf5299fe54",
+    "studio/production/dad-r5-weight-audit.json": "aefff1a76a0790f560e8cad834d2d022173608ee7c2f12be73cc7bf45e972fa9",
     "studio/production/dad-refined/package-r3.json": "0add13fd541f8afc9ba0abf88a188617f0e8cb092f6b02e38cad07cf87b322fd",
     "studio/production/dad-refined/project.json": "3fa927d8f3115451eeb7f08fbd2c44a1df313091faac6b7b64ca6633c34a555e",
     "studio/production/dad-refined/shot.json": "0f114b098d1d0696f0e0db98875e24954fcac5b1e3dff15d3bbdc4c86eaa35a1",
@@ -130,10 +135,13 @@
     "studio/production/dad-rig/package-r2.json": "9319016e1da772c7d44ce1fdf209e048104f26b57dcd83ecd0a5ff56e4ef73c7",
     "studio/production/dad-rig/project.json": "4eefb89231db4e7c5a0e3ee9fd95659968be638204e0d8ffcb3943f8a1009247",
     "studio/production/dad-rig/shot.json": "52b55c414630fafe967c956a9f0901c6915f8841560f28f3caf87232c0d3a60e",
+    "studio/production/experiments/dad-r5-spatial-field-failure.json": "b73ffb23181ddc7d8743c4539611263b64b9d801ec199b865f7e41a17fa9b6f4",
+    "studio/production/experiments/package-r5-spatial-field.json": "3dbb79bfe7451f8a0e5feb3f4fb6a6c30b7e7899959836edb10ed8cf52d6892b",
     "studio/production/external-package-verification-2026-11-03.json": "c971babf6529cddbfa5c3241bb27376d1c5bbc566ab71e1a0195c5d4d2467e2c",
+    "studio/production/lookdev-r4-verification-2026-11-03.json": "0d73771e696c1a8ff5c41a96d37d6fd78876371b3ababdfff15f200fec1d91e8",
     "studio/production/package-empty-log-regression.json": "ef053c2f8312bd781708c6f8076b38ac2ba95e46d73e45ecdab0fe859ae9b239",
     "studio/production/package-short-regression-report.json": "20cc26f358f3f7852e94e2fa53dca93d4406e57130e03ee60ad8c46750efa7f2",
-    "studio/production/plan.json": "7faf415241563a6b52a50b2a023c1ef710caf86aa77ae74d756d269459888834",
+    "studio/production/plan.json": "c150ef0987c1673651c01109bace27e2558c984656c3b385e64fe136bed03738",
     "studio/production/sandbox-native-libs.lock.json": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
     "studio/reviews/dad-r4/front.png": "bb344b917d97988aa359dc02c965e4f74eb4a03037b84ee1dd37149ac634e3de",
     "studio/reviews/dad-r4/full.png": "c5dfb1f6b9d9f4388f66624f58e3e9473c2685e79bd3bbe47112bead40511aa9",
@@ -142,6 +150,9 @@
     "studio/reviews/dad-r4/hero.png": "e6c695833973124c53a1dcb357d1800baf4c1c8e8295aa352448d9502373b5c4",
     "studio/reviews/dad-r4/manifest.json": "2e57e37823bb365a1b67f524c8425a15aa5d422ba4060ef0e667b32b7e1d466f",
     "studio/reviews/dad-r4/review-board.jpg": "2a6d1d24cd8709ef15fb50da456016e3a65f7f9ee4ed04f80a78b0948fef1c92",
+    "studio/reviews/dad-r5/hand_curl.png": "aa2c813d7f22a35148daffbbad19145983c576d353ab2819971c8b2821ee7717",
+    "studio/reviews/dad-r5/hand_open.png": "c353bb09723d693dc7c922be634304e9d24d8a2c55835fa6e913d28213737975",
+    "studio/reviews/dad-r5/manifest.json": "1a8418296bb771d56fe8af5b64cb2f0940aed4b957f1794a34f26303c32933ea",
     "studio/schemas/asset-package.v2.schema.json": "b53451f9ad45c237d72f28f4b26dd0ffb9ead1cb116ebeb150e9f526902cc5b2",
     "studio/schemas/asset.schema.json": "db1ad5f910d8900784e2b9254eb5fd1813b3924d3096bba965a1fb830d24aeb9",
     "studio/schemas/manifest.schema.json": "1b31b7819e7196828398c2621952bdfcc1ee90149ea607a53f8b0fceef1f15b4",
@@ -153,6 +164,7 @@
     "studio/schemas/shot.schema.json": "5d1bc1a1108824cd9768942c98991469c634ca94562695ded1184fc29c412896",
     "studio/schemas/shot.v2.schema.json": "53d5edc3ad8aeb23cae6cd230130d923ee035a98b6b7b8a8161cc72d559a94cc",
     "studio/schemas/speech.schema.json": "20673c6d80b0f5dccdefe8bb675b2085b444a38b2c0c6cb76b20cbc36bd6141a",
+    "studio/tests/test_handfix_pipeline.py": "6fb5b5817f8b0d6f49ac7fb8a8e13cefdd77ae41fed32dde00a15439a36aa072",
     "studio/tests/test_lookdev_pipeline.py": "dae24057b535f5dd7f38d995d3f7f9136cb6bef6fc620ec211c539284113ef33",
     "studio/tests/test_package_pipeline.py": "aad5bbdb2f2ac2d36344af840c5758ff5a0d5485853a957fe1e11beb0b30fc3c",
     "studio/tests/test_pipeline.py": "bf2066d335a38a0f346b52de63c3ada1a50ea711ddb59f243283d7ac4ff69ecd",
@@ -161,45 +173,52 @@
     "studio/tests/test_rig_pipeline.py": "e3623c24a749c6c2b2ed8bf96f1432df84510a751c70b06fe5f38f598496fc90",
     "studio/tools/build_body_test.py": "c53c53c81b8dcc70db0ab8e2571ff348e39064d7fdbb6fc5d56b38dd8b0aac09",
     "studio/tools/build_dad_blockout.py": "f3dfc33495f756e61c0c57dff723f1341c9ab66db9f4d8d72be84f55a597dae3",
+    "studio/tools/build_dad_handfix.py": "5b61e50f620848cbcae0889e05900df4460acb4eac3e4b86aa8c7c808f12db9e",
     "studio/tools/build_dad_lookdev.py": "12b11a8f98b5dca403a3b322779b1ce24bbf06df959750fc7bee21830b549df9",
     "studio/tools/build_dad_refined.py": "7150397e22260bd7303bb97937a2ad06f980390f9958d93554e1fa792fbe34c6",
     "studio/tools/build_dad_rig.py": "cc57838147a39d073c2641c3ce10d24c546a3d91ff58a639e8f95f39573c3c8c",
     "studio/tools/build_deformation_test.py": "e2a68daa778ac3e5628d489a0f8abe3a2303e3195321405c091488b993f76eb5",
     "studio/tools/check_body_extremes.py": "dd758a011a3acdcd6dc948fbef97f59271482f687d328688d1efa3084b29e591",
     "studio/tools/check_dad_rig.py": "96580010bce31f5ddeb60e53b42daa7f01cf2dbc7bd4260c4ae4e6fd32633e86",
-    "studio/tools/check_lookdev.py": "046ea5b5ee35be454e4f8d9389637a526612708e70773d930650028c5b2fb8df",
+    "studio/tools/check_lookdev.py": "4cfa89a3bbf3fabad47dfc72e5f0d535ccd159e13a9d713d6775e9762f756a54",
     "studio/tools/make_lookdev_review.py": "d11d745c25997bfcffab6a0d9cbd0c0174165202ba9eb270b488428d2b32067b",
     "studio/tools/production_status.py": "8535fcb2cf313dd43289d81d043c05c2f7b332619042c4d6908decf844dccf15",
     "studio/tools/render_lookdev.py": "06bfecc15387f724e6a1e1d57f8333ae766c3b8dbca102ea64c70362f13edbd3",
     "studio/tools/render_rig_review.py": "df21b08dfd10275f2b84faf688854f0818016ac379eb67eba79143b2eda9ca15"
   },
   "integration": {
+    "revision": "r5",
+    "native_strain_gate": "passed",
+    "static_poses": 17,
+    "animated_frames": 72,
     "native_stills": {
-      "count": 5,
+      "count": 2,
       "dimensions": [
         1024,
         1024
       ],
       "samples": 48,
-      "engine": "Cycles",
-      "display_transform": "AgX",
-      "max_sampled_process_group_rss_bytes": 1427202048,
-      "report": "studio/production/dad-r4-render-report.json"
+      "report": "studio/production/dad-r5-render-report.json",
+      "same_camera_lighting_as_r4": true
     },
-    "durable_png_archive": "studio/reviews/dad-r4/manifest.json",
-    "art_review": "studio/production/dad-r4-visual-review.json",
+    "durable_png_archive": "studio/reviews/dad-r5/manifest.json",
+    "art_review": "studio/production/dad-r5-visual-review.json",
     "art_approved": false,
-    "native_strain_gate": "failed",
+    "anatomy_approved": false,
     "production_swap_allowed": false,
-    "prior_r3_receipt": "studio/production/body-r3-verification-2026-11-03.json"
+    "prior_r4_receipt": "studio/production/lookdev-r4-verification-2026-11-03.json",
+    "published_checkpoints": [
+      "b66f665",
+      "1535b22"
+    ]
   },
-  "github_actions_execution": "not_run; local tests only",
+  "github_actions_execution": "Both lightweight workflows passed on b66f665 and 1535b22; final checkpoint pending at receipt creation. No native Blender CI claim.",
   "legacy_pilot_engine_suites": "not_rerun_in_this_iteration",
   "remaining_work": [
-    "Localize/fix R4 curl area stretch under unchanged limits; 16 intermediate frames fail.",
-    "Substantially reshape palm/webbing/joints and head/eyelids/groom to match canonical art; visual review rejected.",
-    "Mouth cavity, teeth/tongue and facial rig/acting/lipsync absent.",
-    "No exhaustive anatomy/collision/walk/cloth or film-industry approval.",
-    "Production runtime supply chain, remote CI, user approval and long scenes remain open."
+    "Substantially reshape palm/webbing/joints; weight correction did not change rest anatomy.",
+    "Improve head/eyelids/groom/materials/clothing and likeness; R4 visual issues remain.",
+    "Mouth cavity, teeth/tongue, face rig/acting/lipsync absent.",
+    "No exhaustive self/inter-object collision, walking or cloth acceptance.",
+    "Production runtime supply chain and user/industry art approval remain open."
   ]
 }

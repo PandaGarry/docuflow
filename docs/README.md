@@ -23,6 +23,8 @@
    связные кисти, elbow helpers, 17 poses/72 кадра, сравнение и открытые art-дефекты.
 10. [42 · Look-development r4](42-LOOKDEV-REVIEW-R4.md):
     пять новых native кадров, самопроверка внешности и обнаруженная регрессия сгибания кисти.
+11. [43 · Исправление thumb-web regression r5](43-THUMB-WEB-REGRESSION.md):
+    локализация, отклонённый эксперимент, исправление весов и новые крупные планы.
 
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан

@@ -406,3 +406,25 @@ regression обнаружен и записан отдельно; 222 unit tests
 native gates или visual review. ART/RIG/QA и пользовательская приёмка открыты.
 Receipt R3/203 tests сохранён отдельно; remote CI/commit/push не выполнялись.
 Подробности, воспроизведение и следующий шаг — документ 42.
+
+## Итерация 2026-11-03 · Публикация и исправление thumb-web regression R5
+
+По прямому указанию пользователя работа публикуется небольшими проверяемыми
+коммитами постоянно, а не накапливается только в sandbox. Опубликованы
+`5c120fc` / `b66f665` (накопленный pipeline/кадры/история пилота), затем
+`1535b22` (локализация и честно отклонённый spatial-field experiment).
+Обе лёгкие GitHub Actions проверки прошли на b66f665 и 1535b22; они не
+запускают native Blender. Правило закреплено в AGENTS.md.
+
+Нативно локализован failing triangle у thumb/palm transition на обеих кистях.
+Первый эксперимент уменьшил max stretch, но внёс сжатие и отвергнут. Второй
+сглаживает исходные weights по реальным rest edges, оставляя geometry,
+topology, probe IDs, остальные пальцы и anchors неизменными. R5 прошёл все
+17 static poses и все 72 intermediate frames без изменения limits/fixture.
+Animated max area 1.95412, max edge 2.05797; веса исправлены у 619 vertices/hand.
+
+235 unit/process tests passed; отрендерены и просмотрены два новых native
+1024×1024 hand stills. Artistic/anatomy approval=false: видимое улучшение
+локальное, прямоугольная ладонь/трубчатые пальцы остались. Это техническое
+исправление, не законченная модель. Production default/gates не переключались.
+Подробности и воспроизведение — docs43; R4 failures/recipes сохранены.

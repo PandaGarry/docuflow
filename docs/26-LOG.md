@@ -474,3 +474,17 @@
 - Visual approval=false: форма ладони/суставов, helmet hair, веки, материалы,
   сходство и facial readiness пока не отвечают киноуровню. Зелёный R3 не
   перенесён на R4. Docs42/ADR012/evidence обновлены без закрытия production gates.
+
+## 2026-11-03 — Частые push и техническое исправление R5
+
+- Опубликованы накопленные изменения и кадры в PR #3 без force-push; сохранены
+  ранние коммиты пилота. Отдельно опубликована локализация дефекта/failed trial.
+- Ошибка локализована у thumb/palm transition. Геометрически взвешенное
+  сглаживание исходных weights исправило регрессию: 17/17 + 72/72 native pass,
+  прежние limits и те же motion tracks. 235 unit/process tests passed.
+- Новые 1024px hand PNG сохранены в studio/reviews/dad-r5 и просмотрены.
+  Художественная/анатомическая приёмка по-прежнему отрицательная; production
+  default не менялся. Новый результат не переписывает R4 failure history.
+- Правило небольших частых commit/push закреплено в AGENTS.md. Docs43,
+  tracker evidence и latest verification обновлены. Следующий приоритет —
+  сама форма ладони/webbing/суставов и затем лицо/groom, не длительность.

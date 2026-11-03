@@ -1,0 +1,18 @@
+{
+  "revision": "r5",
+  "scope": "Native close-ups after weight-only correction; no retouch, no art/anatomy approval",
+  "sources": [
+    {
+      "view": "hand_open",
+      "path": "studio/reviews/dad-r5/hand_open.png",
+      "sha256": "c353bb09723d693dc7c922be634304e9d24d8a2c55835fa6e913d28213737975"
+    },
+    {
+      "view": "hand_curl",
+      "path": "studio/reviews/dad-r5/hand_curl.png",
+      "sha256": "aa2c813d7f22a35148daffbbad19145983c576d353ab2819971c8b2821ee7717"
+    }
+  ],
+  "report": "studio/production/dad-r5-render-report.json",
+  "report_sha256": "b29522e01bf54ec3d42cac2a5962a743905415be74923bca25cabe3dc6a4d428"
+}

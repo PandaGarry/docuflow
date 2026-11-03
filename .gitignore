@@ -23,3 +23,6 @@ studio/out/*
 # личные референсы семьи: только локально (см. studio/reference/README.md)
 studio/reference/*
 !studio/reference/README.md
+
+# Native worker logs are derived; durable JSON receipts retain gate results.
+studio/production/*.log

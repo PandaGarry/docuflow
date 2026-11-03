@@ -93,7 +93,7 @@
   - Зависимости: PIPE-01.
   - Результат: quality reports и тестовые fixtures; схема approval record.
   - Готово когда: вычисление slip и временных residuals проверено на искусственных ошибках; художественное одобрение не выводится из метрик.
-  - Evidence: [studio/tools/check_body_extremes.py](../studio/tools/check_body_extremes.py), [studio/production/dad-r3-animated-strain.json](../studio/production/dad-r3-animated-strain.json), [studio/tests/test_refinement_pipeline.py](../studio/tests/test_refinement_pipeline.py), [docs/42-LOOKDEV-REVIEW-R4.md](../docs/42-LOOKDEV-REVIEW-R4.md), [studio/production/dad-r4-visual-review.json](../studio/production/dad-r4-visual-review.json).
+  - Evidence: [studio/tools/check_body_extremes.py](../studio/tools/check_body_extremes.py), [studio/production/dad-r3-animated-strain.json](../studio/production/dad-r3-animated-strain.json), [studio/tests/test_refinement_pipeline.py](../studio/tests/test_refinement_pipeline.py), [docs/42-LOOKDEV-REVIEW-R4.md](../docs/42-LOOKDEV-REVIEW-R4.md), [studio/production/dad-r4-visual-review.json](../studio/production/dad-r4-visual-review.json), [docs/43-THUMB-WEB-REGRESSION.md](../docs/43-THUMB-WEB-REGRESSION.md), [studio/production/dad-r5-extremes.json](../studio/production/dad-r5-extremes.json), [studio/production/dad-r5-animated.json](../studio/production/dad-r5-animated.json).
 
 ## P1 · Канон, модели и риги
 
@@ -109,7 +109,7 @@
   - Результат: модель папы с материалами, глазами, ртом, зубами и языком; контрольные рендеры и asset manifest.
   - Готово когда: модель узнаваема в повороте и пригодна для рига; проверены topology, scale, скрытые поверхности и provenance.
   - Нужна запись одобрения пользователем конкретной revision; молчание не считается одобрением.
-  - Evidence: [docs/42-LOOKDEV-REVIEW-R4.md](../docs/42-LOOKDEV-REVIEW-R4.md), [studio/production/dad-r4-visual-review.json](../studio/production/dad-r4-visual-review.json), [studio/reviews/dad-r4/manifest.json](../studio/reviews/dad-r4/manifest.json).
+  - Evidence: [docs/42-LOOKDEV-REVIEW-R4.md](../docs/42-LOOKDEV-REVIEW-R4.md), [studio/production/dad-r4-visual-review.json](../studio/production/dad-r4-visual-review.json), [studio/reviews/dad-r4/manifest.json](../studio/reviews/dad-r4/manifest.json), [studio/production/dad-r5-visual-review.json](../studio/production/dad-r5-visual-review.json).
 - [ ] **ART-03 — Собрать сцену и контактные поверхности**
   - Статус: **запланировано**. Ответственность: производство ассетов. Шлюз: G2.
   - Зависимости: ART-01, ENV-02.
@@ -126,7 +126,7 @@
   - Зависимости: ART-02, PIPE-01.
   - Результат: body rig package и binding; extreme-pose suite.
   - Готово когда: нет сломанных плеч/коленей и отрыва одежды; контакты и длины костей проходят G3.
-  - Evidence: [studio/tools/build_dad_refined.py](../studio/tools/build_dad_refined.py), [studio/production/dad-r3-model-audit.json](../studio/production/dad-r3-model-audit.json), [studio/production/dad-r3-extremes.json](../studio/production/dad-r3-extremes.json), [studio/production/dad-r3-visual-review.json](../studio/production/dad-r3-visual-review.json), [studio/production/dad-r4-extremes.json](../studio/production/dad-r4-extremes.json), [studio/production/dad-r4-animated.json](../studio/production/dad-r4-animated.json).
+  - Evidence: [studio/tools/build_dad_refined.py](../studio/tools/build_dad_refined.py), [studio/production/dad-r3-model-audit.json](../studio/production/dad-r3-model-audit.json), [studio/production/dad-r3-extremes.json](../studio/production/dad-r3-extremes.json), [studio/production/dad-r3-visual-review.json](../studio/production/dad-r3-visual-review.json), [studio/production/dad-r4-extremes.json](../studio/production/dad-r4-extremes.json), [studio/production/dad-r4-animated.json](../studio/production/dad-r4-animated.json), [docs/43-THUMB-WEB-REGRESSION.md](../docs/43-THUMB-WEB-REGRESSION.md), [studio/production/dad-r5-extremes.json](../studio/production/dad-r5-extremes.json), [studio/production/dad-r5-animated.json](../studio/production/dad-r5-animated.json).
 - [ ] **RIG-02 — Лицевой риг и артикуляционные формы**
   - Статус: **запланировано**. Ответственность: риг/анимация + агент. Шлюз: G4.
   - Зависимости: ART-02, PIPE-01.

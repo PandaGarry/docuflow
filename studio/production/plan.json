@@ -455,6 +455,18 @@
         {
           "kind": "file",
           "path": "studio/production/dad-r4-visual-review.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/43-THUMB-WEB-REGRESSION.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-animated.json"
         }
       ]
     },
@@ -511,6 +523,10 @@
         {
           "kind": "file",
           "path": "studio/reviews/dad-r4/manifest.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-visual-review.json"
         }
       ]
     },
@@ -641,6 +657,18 @@
         {
           "kind": "file",
           "path": "studio/production/dad-r4-animated.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/43-THUMB-WEB-REGRESSION.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-animated.json"
         }
       ]
     },
