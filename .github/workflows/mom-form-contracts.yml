@@ -5,6 +5,7 @@ on:
       - 'studio/tools/mom_*review.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_head_surface_r2.py'
       - 'studio/authoring/mom-head-form-*.json'
       - 'studio/tools/rain*.py'
       - 'studio/tests/test_mom_*.py'
@@ -15,6 +16,7 @@ on:
       - 'studio/tools/mom_*review.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_head_surface_r2.py'
       - 'studio/authoring/mom-head-form-*.json'
       - 'studio/tools/rain*.py'
       - 'studio/tests/test_mom_*.py'
@@ -39,4 +41,6 @@ jobs:
       - name: Install only numpy for the pure cage safety tests
         run: python -m pip install numpy==1.26.4
       - name: Test indexed deformation controls (not anatomy approval)
-        run: python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -v
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_surface_r2.py' -v
