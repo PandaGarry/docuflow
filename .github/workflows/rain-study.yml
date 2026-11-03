@@ -52,6 +52,7 @@ jobs:
           if [ ! -f studio/reviews/rain-study/source-face.png ]; then
             timeout 600 python studio/tools/rain_study.py
           fi
+          mkdir -p .cache
           set +e
           timeout 900 python studio/tools/rain_mom_pass_a5.py > .cache/rain-native-worker.log 2>&1
           result=$?
