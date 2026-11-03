@@ -2,7 +2,7 @@ name: Mom audit evidence contracts (not art approval)
 on:
   push:
     paths:
-      - 'studio/tools/mom_*review.py'
+      - 'studio/tools/mom_*review*.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
       - 'studio/tools/mom_face_*.py'
@@ -15,7 +15,7 @@ on:
       - '.github/workflows/mom-form-contracts.yml'
   pull_request:
     paths:
-      - 'studio/tools/mom_*review.py'
+      - 'studio/tools/mom_*review*.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
       - 'studio/tools/mom_face_*.py'
@@ -51,3 +51,4 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_head_results.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_face_controls.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_face_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r4.py' -v

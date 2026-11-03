@@ -588,3 +588,23 @@ Blink по-прежнему не принят: legacy70/30 реально даё
 ACT/MSTR constraint graph задаёт следующий разбор, не доказательство slot-bug.
 315local tests PASS, plan/checklist/diff PASS. Поддержка направления не превращена
 в formal full-character/acting approval; private images не читались/не публиковались.
+
+
+## Итерация 2026-11-03 · R4: пользователь просит ещё больше сходства
+
+Направление R2 сохраняется, но поддержка не трактуется как достаточное сходство.
+На uniform pupil-aligned canonical/R3 board рот читается ниже/уже эталона,
+нижняя челюсть квадратнее, нос требует более округлых боковых объёмов кончика.
+Это visual hypotheses, не calibrated portrait-to-3D measurement.
+
+b8978e3: fresh-source R4 recipe, delta manifest и 5 intent/safety tests.
+83controls; mouth поднят/слегка расширен, nasal tip rounded, jaw tapered.
+Eye/lid/brow targets и brow curve сохранены; neighboring cage influence не
+выдаётся за нулевое изменение всей области глаз.320local tests PASS20.141s,
+planning/checklist/diff PASS. Native41707828875 выполняется; реальный результат
+и visual review пока неизвестны. Сохранённые historical recipes не изменены.
+
+Старый planning41706573180 отменён на checkout timeout, не на проверке плана;
+параллельный41706552574 для того же248a817 успешен. Это infrastructure issue,
+не основание объявлять новый native успехом. Blink/rig migration/hair/body/
+lookdev/wardrobe не завершены; production swap=false.
