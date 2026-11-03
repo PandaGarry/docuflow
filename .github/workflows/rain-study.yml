@@ -44,6 +44,9 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_rain_study.py' -q
           python -m unittest discover -s studio/tests -p 'test_rain_face.py' -q
           python studio/tools/production_status.py validate
+      - name: Probe fresh native groom shader sockets before asset acquisition
+        run: |
+          python -c "import sys; sys.path.insert(0, 'studio/tools'); import bpy; import rain_mom_pass_a5 as a5; a5.groom_material(bpy); print('Fresh native groom shader created')"
       - name: Build actual Rain mom candidate and native expression diagnostics
         env:
           OMP_NUM_THREADS: '2'

@@ -23,7 +23,6 @@ def groom_material(bpy):
     mat=bpy.data.materials.new('MAT-mom.hair-a5');mat.use_nodes=True
     tree=mat.node_tree;nodes=tree.nodes
     shader=nodes.get('Principled BSDF')
-    shader.inputs['Weight'].default_value=1
     shader.inputs['Roughness'].default_value=.50
     shader.inputs['Specular IOR Level'].default_value=.28
     shader.inputs['Anisotropic'].default_value=.35

@@ -102,3 +102,12 @@ preserves a bounded worker stderr/stdout tail on failure in the same branch,
 while retaining the original failed job exit state. This is diagnostics, not a
 claim that the shader repair rendered successfully. Local bpy import is also
 blocked by missing libXrender; native execution remains in the Ubuntu CI worker.
+
+A5 diagnostic resolved the real exception: a **fresh** bpy 4.5 Principled node
+has no exposed `Weight` socket, unlike the legacy socket retained in the loaded
+source inspection. The attempt to set it raised KeyError. Removed that internal
+socket assumption; fresh shader uses ordinary default BSDF weighting. An explicit
+native shader-construction probe now runs before acquiring the large source.
+The earlier wording “Weight=1” described intent, not a completed native result.
+Bounded traceback is preserved as failure-legacy-weight-socket.txt. The separate
+log-capture directory error is preserved as failure-log-redirection.txt.
