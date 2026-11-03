@@ -43,3 +43,28 @@ materials, shape keys, controls и invalid drivers. Наличие нейтра�
 изменения. Сравнивать исходник и кандидат при одинаковых camera/light/settings;
 отдельно проверить выражения. Source rig, исходные файлы и прежние receipts
 не переписываются. Новые кадры публикуются в studio/reviews/rain-study.
+
+## Исходник действительно получен
+
+Native workflow 41600774038 успешно завершён. Commit 5f67176 содержит
+реальные `source-full.png`, `source-face.png` и native inspection. Официальный
+архив и .blend совпали с pinned hashes, bpy 4.5.0 открыл модель, никакой чужой
+модифицированный GLB не использован. В исходном pre-evaluation inspection
+отмечен один invalid object driver (DEF-Spine3 bbone_easeout); это не скрывается.
+
+Добавлен фактический A1 build: мягкое расширение талии (до 14%), глубины (до 9%),
+нижних щёк/подбородка; сокращение выступания носа не более 4mm; уменьшение
+толщины бровей, их тёплый цвет. Карта применяется одинаково ко всем координатам
+всех исходных shape keys и к одежде для сохранения посадки, без смены её дизайна.
+Rest bones, weights, topology и исходные драйверы не переписываются. Это не
+доказательство, что все возможные позы совместимы: нужны отдельные native checks.
+Кожа: сохранён texture pipeline, добавлены lift/peach tint с целевым #E8B48F;
+этот hex не объявляется точным экранным цветом при освещении/AgX.
+
+Новый workflow должен отрендерить A1 full/face/three-quarter и blink/smile.
+Проверка мимики использует реальные ACT controls → исходные drivers → исходные
+shape keys, не выключает drivers и не подменяет их прямым key.value. В отчёте
+сохраняются фактические responses и статус partial/blocked. Все ещё НЕ выполнено:
+полный animation sweep, phonemes, likeness approval, professional art acceptance.
+Нативный редактируемый .blend с packed textures сохраняется как Actions artifact
+на 14 дней, не засоряет Git. Небольшие PNG и receipt остаются в Git постоянно.
