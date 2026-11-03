@@ -42,6 +42,10 @@
     broad rejection, high-res eye-aligned диагностика, ошибки метода, отдельный
     native clay audit; следующий art milestone — новая голова, не новый отчёт.
 
+16. [48 · Мама: реальная primary head reconstruction R1 → R2](48-MOM-PRIMARY-HEAD.md):
+    indexed cage и external surface binding, native clay views/packed blend,
+    отклонённые R1 формы, ограничения R2, blink/smile visual failures.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)

@@ -535,3 +535,26 @@ Parent frames/receipt сохранены, geometry gzip byte-identical, 6v2frame
 Документ47/visual-review фиксируют конкретные направления reconstruction.
 **Геометрия персонажа на этом шаге не изменена; следующая задача — новая голова,
 не дополнительные отчёты или cosmetic A8.** All approval/production swap=false.
+
+
+## Итерация 2026-11-03 · Actual primary head reconstruction R1 → R2
+
+После прямого «Приступай» сделана новая геометрия, не ещё один audit прежнегоA7.
+8903503/e7f7d69: original Rain head, indexed82control cage, все25head key blocks
+перенесены. Native41692351109/ac0b09f, actual6frames и packed editable blend.
+Просмотрfcfbd0d не принимает R1: жёсткий brow profile, длинный/угловатый chin,
+несбалансированные губы. Проверка normals обнаружила ошибочный central lip
+binding к inward-facing mouth geometry. Ошибка/кадры/receipt сохранены.
+
+1d23cdc: R2 снова строится из source, не stack R1/A7.83controls, исправлены
+external lip IDs/normals, authored C1 brow arch/taper с ray projection на head,
+более мягкие jaw/chin и rounded tip. Native41694165082/6a54ee6 success, actual
+views/blink/smile просмотрены; документ48/visual-review фиксируют ограничения.
+R2 остаётся WIP, не likeness/anatomy/production acceptance. Blink/lash fail;
+symmetric smile request даёт видимую асимметрию и требует paired native diagnosis.
+
+302 local tests PASS; source topology/rest/eyes preserved, newinvalid=[], restore0.
+Эти результаты не исправляют visual failures и не доказывают готовую facial
+migration. Packed R2 binary separately downloading/reopening/rerendering next;
+на данном checkpoint результат independent reopen ещё неизвестен. Личные inputs
+не читаются и не публикуются; masters/history сохранены, production swap=false.
