@@ -5,6 +5,7 @@ on:
       - 'studio/tools/mom_*review.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_face_*.py'
       - 'studio/tools/mom_head_surface_r2.py'
       - 'studio/authoring/mom-head-form-*.json'
       - 'studio/tools/rain*.py'
@@ -16,6 +17,7 @@ on:
       - 'studio/tools/mom_*review.py'
       - 'studio/tools/mom_native_form_audit.py'
       - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_face_*.py'
       - 'studio/tools/mom_head_surface_r2.py'
       - 'studio/authoring/mom-head-form-*.json'
       - 'studio/tools/rain*.py'
@@ -45,3 +47,4 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_head_surface_r2.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_head_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_controls.py' -v

@@ -1,0 +1,80 @@
+name: Reopen real saved R3 head artifact (not art approval)
+on:
+  push:
+    branches: ['arena/4c8ed03c-docuflow']
+    paths:
+      - 'studio/tools/verify_mom_head_r3_native.py'
+      - 'studio/tools/mom_smile_pose_r3.py'
+      - '.github/workflows/mom-head-reopen-r3.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: mom-head-reopen-r3-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  reopen-saved-binary:
+    if: github.ref == 'refs/heads/arena/4c8ed03c-docuflow'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/4c8ed03c-docuflow
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
+          python -m pip install -r studio/production/blender-requirements.lock
+      - name: Download actual R3 saved binary, not a fresh reconstruction
+        uses: actions/download-artifact@v4
+        with:
+          name: mom-head-form-r3-native-wip
+          run-id: 41703583542
+          github-token: ${{ github.token }}
+          path: .cache/head-r3-artifact
+      - name: Reopen without embedded scripts, verify geometry and packed files, render neutral
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          mkdir -p .cache
+          set +e
+          timeout 480 python studio/tools/verify_mom_head_r3_native.py > .cache/mom-head-reopen.log 2>&1
+          result=$?
+          tail -n 80 .cache/mom-head-reopen.log
+          exit "$result"
+      - name: Preserve bounded failure log
+        if: failure()
+        run: |
+          mkdir -p studio/reviews/mom-head-form-r3/reopen
+          if [ -f .cache/mom-head-reopen.log ]; then
+            tail -n 100 .cache/mom-head-reopen.log > studio/reviews/mom-head-form-r3/reopen/failure.txt
+          else
+            echo 'Verification did not start; inspect preceding steps.' > studio/reviews/mom-head-form-r3/reopen/failure.txt
+          fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: mom-head-r3-reopen-receipt
+          path: studio/reviews/mom-head-form-r3/reopen/
+          retention-days: 14
+          if-no-files-found: error
+      - name: Publish only reopening evidence
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add studio/reviews/mom-head-form-r3/reopen
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish independent reopen and render verification of actual saved R3 binary'
+          git pull --rebase origin arena/4c8ed03c-docuflow
+          git push origin arena/4c8ed03c-docuflow
