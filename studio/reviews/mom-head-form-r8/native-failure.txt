@@ -1,0 +1,100 @@
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.56 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.56 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Meshes
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.56 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.56 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Mesh | Computing attributes
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.56 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.56 | Mem:5.49M, Peak:5.49M | Scene, View Layer | Updating Scene BVH | Building
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.56 | Mem:5.49M, Peak:5.49M | Scene, View Layer | Updating Scene BVH | Building BVH
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.56 | Mem:18.70M, Peak:18.70M | Scene, View Layer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.63 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.63 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Mesh | Computing normals
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.64 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.64 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Objects Flags
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.64 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Primitive Offsets
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.64 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Images
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.64 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Images | Loading TEX-rain_eyes.png
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.68 | Mem:60.68M, Peak:60.68M | Scene, View Layer | Updating Camera Volume
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.68 | Mem:60.68M, Peak:60.68M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.68 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Lights
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.68 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Lights | Computing distribution
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.68 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Integrator
+Fra:1 Mem:180.32M (Peak 243.08M) | Time:00:00.68 | Mem:61.77M, Peak:61.77M | Scene, View Layer | Updating Film
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.68 | Mem:61.69M, Peak:61.77M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.68 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Updating Baking
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.68 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Updating Device | Writing constant memory
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.68 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.68 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Sample 0/24
+Fra:1 Mem:214.10M (Peak 243.08M) | Time:00:00.88 | Remaining:00:04.73 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Sample 1/24
+Fra:1 Mem:234.36M (Peak 263.61M) | Time:00:11.39 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Sample 24/24
+Fra:1 Mem:234.36M (Peak 263.61M) | Time:00:11.39 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Finished
+Saved: '/home/runner/work/docuflow/docuflow/studio/reviews/mom-head-form-r8/clay-three-quarter.png'
+Time: 00:11.44 (Saving: 00:00.04)
+
+Fra:1 Mem:162.98M (Peak 162.98M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyes
+Fra:1 Mem:164.89M (Peak 165.03M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eye_cornea
+Fra:1 Mem:165.65M (Peak 165.65M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eye_dots
+Fra:1 Mem:172.88M (Peak 172.88M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-gums_upper
+Fra:1 Mem:188.22M (Peak 188.22M) | Time:00:00.37 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-gums_lower
+Fra:1 Mem:196.91M (Peak 197.96M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-tongue
+Fra:1 Mem:199.40M (Peak 199.40M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyebrows
+Fra:1 Mem:200.66M (Peak 200.66M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyelashes
+Fra:1 Mem:226.28M (Peak 226.28M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-head
+Fra:1 Mem:226.29M (Peak 226.29M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | StudyRim
+Fra:1 Mem:226.28M (Peak 226.29M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | StudyFill
+Fra:1 Mem:226.29M (Peak 226.29M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | StudyKey
+Fra:1 Mem:241.53M (Peak 243.08M) | Time:00:00.52 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Initializing
+Fra:1 Mem:146.12M (Peak 243.08M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Waiting for render to start
+Fra:1 Mem:146.12M (Peak 243.08M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Scene
+Fra:1 Mem:146.12M (Peak 243.08M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Shaders
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Procedurals
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Background
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Camera
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Meshes Flags
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Objects
+Fra:1 Mem:146.26M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Particle Systems
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Meshes
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:146.27M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Mesh | Computing attributes
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.54 | Mem:0.06M, Peak:0.06M | Scene, View Layer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.54 | Mem:5.49M, Peak:5.49M | Scene, View Layer | Updating Scene BVH | Building
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.54 | Mem:5.49M, Peak:5.49M | Scene, View Layer | Updating Scene BVH | Building BVH
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.54 | Mem:18.70M, Peak:18.70M | Scene, View Layer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.61 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:151.69M (Peak 243.08M) | Time:00:00.61 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Mesh | Computing normals
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.62 | Mem:33.07M, Peak:46.28M | Scene, View Layer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.62 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Objects Flags
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.62 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Primitive Offsets
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.62 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Images
+Fra:1 Mem:163.30M (Peak 243.08M) | Time:00:00.62 | Mem:44.68M, Peak:46.28M | Scene, View Layer | Updating Images | Loading TEX-rain_eyes.png
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.65 | Mem:60.68M, Peak:60.68M | Scene, View Layer | Updating Camera Volume
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.65 | Mem:60.68M, Peak:60.68M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.65 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Lights
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.65 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Lights | Computing distribution
+Fra:1 Mem:179.32M (Peak 243.08M) | Time:00:00.65 | Mem:60.77M, Peak:60.77M | Scene, View Layer | Updating Integrator
+Fra:1 Mem:180.32M (Peak 243.08M) | Time:00:00.65 | Mem:61.77M, Peak:61.77M | Scene, View Layer | Updating Film
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.65 | Mem:61.69M, Peak:61.77M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.65 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Updating Baking
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.65 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Updating Device | Writing constant memory
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.65 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:180.33M (Peak 243.08M) | Time:00:00.65 | Mem:61.78M, Peak:61.78M | Scene, View Layer | Sample 0/24
+Fra:1 Mem:214.10M (Peak 243.08M) | Time:00:00.85 | Remaining:00:04.46 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Sample 1/24
+Fra:1 Mem:234.36M (Peak 263.61M) | Time:00:11.13 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Sample 24/24
+Fra:1 Mem:234.36M (Peak 263.61M) | Time:00:11.13 | Mem:95.54M, Peak:95.54M | Scene, View Layer | Finished
+Saved: '/home/runner/work/docuflow/docuflow/studio/reviews/mom-head-form-r8/clay-profile.png'
+Time: 00:11.18 (Saving: 00:00.04)
+
+Traceback (most recent call last):
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_head_form_r8.py", line 188, in <module>
+    main()
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_head_form_r8.py", line 130, in main
+    materials=finish.apply_palette(bpy,source_data,spec['palette_srgb'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_face_paint_r8.py", line 117, in apply_palette
+    color,rough,receipt=rasterize(data['basis_vertices'],uv,verts,loops,top,bottom,palette)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_face_paint_r8.py", line 65, in rasterize
+    raise ValueError('Expected verified single-tile original UV layout')
+ValueError: Expected verified single-tile original UV layout
