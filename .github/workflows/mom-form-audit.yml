@@ -61,6 +61,13 @@ jobs:
           else
             echo 'Worker did not start; inspect preceding steps.' > studio/reviews/mom-form-audit/native-failure.txt
           fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: mom-form-audit-diagnostic-not-new-design
+          path: studio/reviews/mom-form-audit/
+          retention-days: 14
+          if-no-files-found: error
       - name: Publish diagnostic evidence, not a new accepted model
         if: ${{ !cancelled() }}
         env:
@@ -72,4 +79,7 @@ jobs:
           git add studio/reviews/mom-form-audit
           git diff --cached --quiet && exit 0
           git commit -m 'Publish unchanged Rain/A7 native clay form audit and indexed head data'
+          # Human checkpoints may arrive while Cycles renders. Rebase ONLY this
+          # unpublished bot receipt; never force-push or overwrite human work.
+          git pull --rebase origin arena/4c8ed03c-docuflow
           git push origin arena/4c8ed03c-docuflow
