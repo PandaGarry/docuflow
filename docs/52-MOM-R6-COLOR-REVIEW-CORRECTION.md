@@ -17,7 +17,12 @@ with lower chroma. Brows deeper brown. Lip roughness0.34 versus skin0.47 is
 stored as attached color alpha and connected to Roughness, **not opacity**.
 AgX/light response means palette values are not displayed-pixel guarantees.
 
-Native build/reopen and new visual review pending. The technical R5 persistence
+Native41718122007 success8m6s/publish3e38955;11actual frames and separate-process
+saved-binary reopen succeeded. Artifact13272070247 expires2026-11-17T21:10:17Z.
+Upper pigment boundary/iris improved, but lower lip is under-colored: the lower
+chart cut off needed pigment. Preserve this visible failure; R7 corrects only
+color/roughness and keeps all R6 geometry. R6 is not a finished color pass.
+[Actual review](../studio/reviews/mom-head-form-r6/comparison-identity.png). The technical R5 persistence
 pass did not establish good color, exact likeness or complete face/acting.
 Known blink failure/full facial rest migration/hair/body/wardrobe remain open;
 art/user/production-swap approvals remain false. Private inputs not read/published.
