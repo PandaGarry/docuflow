@@ -716,3 +716,25 @@ quality не заявляются; art/user/production approval=false.
 346local tests PASS17.505s,31task planning/checklist/diff PASS. Проверяются real
 recipe/frame/native/material/geometry provenance и persistence, не красота.
 README/docs53/current boards обновлены, R5/R6 ошибки сохранены.
+
+
+## Итерация 2026-11-04 · R8: больше сходства через форму и точный UV paint
+
+Пользователь просит больше профессиональной работы/сходства; это не приёмка R7.
+При повторной canonical/R7 сверке nose/mouth читаются ниже, dome плоский, anterior
+cheeks менее округлые; lip edge слишком мягкий. Manual visual hypotheses, не
+калиброванная3Dгеометрия/likeness score. Compact ears/поддержанные глаза и brows
+сохранены.930eab4: cage меняет реальную tip/ala/columella/lip/cheek/chin форму,
+83controls, maxR7difference3.47mm, sample minJac.3359. Всеoriginal keys transported.
+
+Материалы отдельно:2048px original-UV albedo+roughness, source surface/actual lip
+weights задают texel strokes. Не photo projection/paint-over и не новая голова.
+UV hash до edits/после paint/reopen, реальные EXR сохранены/reloaded/packed;
+saved state проверяет bytes и actual shader/UV links. Single-tile assumption
+проверяется fail-closed. Separate clay views не дают выдать цвет за форму.
+
+354local tests PASS18.321s,31task plan/checklist/diff PASS. Native41726684266
+выполняется, результат/visual review пока неизвестны. Ни math/UV raster tests,
+ни сохранённые материалы не доказывают finished likeness/cinema quality.
+Blink/face-ear rest migration/hair/body/wardrobe остаются открыты; production
+swap=false. Historical recipes/masters сохранены, private inputs не читались.

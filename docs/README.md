@@ -95,6 +95,10 @@ python3 studio/tools/production_status.py doctor
     форма/компактные уши R6 без изменений; актуальная коррекция цвета и
     actual native кадры/повторное открытие успешны, partial progress и честные ограничения.
 
+22. [54 · Мама R8: secondary form и original-UV paint](54-MOM-R8-FORM-AND-UV-PAINT.md):
+    реальные нос/губы/щёки,2048px albedo/roughness на исходной UV; native build
+    и separate-process saved-file проверка в работе.
+
 ## Исторические планы и технические материалы
 
 - [00 · Vision](00-VISION.md), [03 · Character bible](03-CHARACTER-BIBLE.md),

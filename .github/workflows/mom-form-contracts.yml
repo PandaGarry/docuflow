@@ -56,4 +56,5 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r5.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r6.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r7.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_paint_r8.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_color_native_results.py' -v
