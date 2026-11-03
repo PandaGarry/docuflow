@@ -1,0 +1,32 @@
+name: Mom audit evidence contracts (not art approval)
+on:
+  push:
+    paths:
+      - 'studio/tools/mom_*review.py'
+      - 'studio/tools/mom_native_form_audit.py'
+      - 'studio/tools/rain*.py'
+      - 'studio/tests/test_mom_*.py'
+      - 'studio/reviews/mom-form-audit/**'
+      - '.github/workflows/mom-form-contracts.yml'
+  pull_request:
+    paths:
+      - 'studio/tools/mom_*review.py'
+      - 'studio/tools/mom_native_form_audit.py'
+      - 'studio/tools/rain*.py'
+      - 'studio/tests/test_mom_*.py'
+      - 'studio/reviews/mom-form-audit/**'
+      - '.github/workflows/mom-form-contracts.yml'
+permissions:
+  contents: read
+jobs:
+  evidence:
+    name: Alignment, public inputs, indexed geometry and frame integrity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Stdlib audit contracts only; no renderer, no private images
+        run: python -m unittest discover -s studio/tests -p 'test_mom_*.py' -v

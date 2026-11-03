@@ -34,7 +34,7 @@
 - Новый native diagnostic worker должен показать неизменённые source и A7
   головы без волос/косметики в одинаковых front/three-quarter/profile и экспортировать
   original indexed topology/neutral/weights для точечного редактирования областей.
-  На первом checkpoint эти native кадры ещё **не получены**.
+  Native кадры получены и просмотрены; это прежняя форма, **не новый sculpt**.
 
 [Eye-aligned audit](../studio/reviews/mom-form-audit/eye-aligned-audit.png) ·
 [Whole-character audit](../studio/reviews/mom-form-audit/whole-character-audit.png) ·
@@ -99,3 +99,56 @@ Blink/smile/head turns и промежуточные кадры, затем ре
 Masters, source Rain, A1–A7 recipes/frames и failures сохраняются. Native source
 scripts disabled; личные фото остаются ignored/local. Числа/CI не заменяют
 видимую форму и художественную/пользовательскую приёмку.
+
+
+## Полученный native audit и точная граница результата
+
+[Шесть clay views: source слева / существующий A7 справа](../studio/reviews/mom-form-audit/native-v2/native-clay-audit.png) ·
+[Native receipt](../studio/reviews/mom-form-audit/native-v2/native-audit.json) ·
+[Visual review / priorities](../studio/reviews/mom-form-audit/visual-review.json).
+
+- [Run41670203671](https://github.com/PandaGarry/docuflow/actions/runs/41670203671)
+  success, published a955467. bpy4.5/Cycles CPU/AgX, six768×768 frames,24samples.
+- [Diagnostic artifact](https://github.com/PandaGarry/docuflow/actions/runs/41670203671/artifacts/13247612447),
+  10,757,459bytes, expires2026-11-17T16:05:45Z. Это PNG/JSON, **не новый .blend**;
+  исторический A7 .blend остаётся в ссылках документа46.
+- Индексированный `head-edit-data.json.gz`:6395vertices/6318polygons, world-space
+  Basis и evaluated neutral без subdivision, исходные faces/group weights,
+  shape-key names/related rest bones. Payload2.73MB, gzip853KB; CC-BY4 attribution
+  внутри. Не target mesh и не скан пользователя. Данные доступны standard
+  `gzip.open` + `json.load`, а не только внутри Blender.
+- Источник/source hash проверен; topology/group weights/key names соответствуют,
+  rest signatures одинаковы, новых invalid drivers нет; original spine invalid
+  сохранён. Это проверка соответствия, не необходимость сохранить rest в redesign.
+- **Новая геометрия не создана.** Прежняя форма Rain/A7 теперь показана отдельно
+  от волос/одежды/skin lookdev, чтобы не маскировать главную проблему.
+
+Первый worker41668827955 успешно рендерил, но не опубликовал из-за нового human
+checkpoint; исправлены reconciliation и always-retained artifact. Первый
+published audit41669360255/26ed5ad оставил шарф: его hide_render управляется
+исходным driver. Старое описание «all wardrobe hidden» **было неточным**.
+Результаты сохранены в родительской папке, не перерисованы задним числом.
+`native-v2` заглушает только этот visibility driver в disposable diagnostic
+scene, не pose/shape drivers; .blend с заглушенным driver не распространяется.
+Scarf действительно отсутствует в просмотренных v2 кадрах, geometry payload
+byte-identical. **v2 — версия диагностики, не версия нового персонажа.**
+
+### Проверки и воспроизведение
+
+286 local tests PASS (275 existing +8 image audit +3 native receipt integrity),
+plan validate/checklist/diff PASS. Отдельный lightweight
+`mom-form-contracts.yml` проверяет11audit contracts на clean checkout без bpy,
+Pillow или личных файлов; это не native render и не художественная приёмка.
+
+```bash
+python -m unittest discover -s studio/tests -p 'test_mom_*.py' -v
+# Public-image audit needs Pillow11.3:
+python studio/tools/mom_form_review.py
+# Native runtime/OS libraries as in .github/workflows/mom-form-audit.yml;
+# rebuilds exact source/A7 from pinned official asset; embedded scripts OFF:
+python studio/tools/mom_native_form_audit.py
+```
+
+Следующий художественный milestone остаётся **реально переработанная голова**,
+а не ещё один аудит/счётчик тестов. Текущий checkpoint — исправление метода и
+проверенная диагностическая база для неё, не выполнение этого milestone.

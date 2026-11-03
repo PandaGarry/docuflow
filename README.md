@@ -13,7 +13,8 @@
 
 **[Разбор и новый порядок работы](docs/47-MOM-FORM-RESET.md)** ·
 [High-res лицо / A7 / eye-aligned overlay](studio/reviews/mom-form-audit/eye-aligned-audit.png) ·
-[Общий персонаж, с оговоркой о разных позах](studio/reviews/mom-form-audit/whole-character-audit.png).
+[Общий персонаж, с оговоркой о разных позах](studio/reviews/mom-form-audit/whole-character-audit.png) ·
+[Actual native clay: source / существующий A7, три ракурса](studio/reviews/mom-form-audit/native-v2/native-clay-audit.png).
 
 Последняя оценка пользователя: персонаж далёк от эталона **по всем направлениям**.
 Это не задача одного hair-seam polish. A7 — отклонённый эксперимент, а не почти
@@ -25,8 +26,8 @@
 Новый audit сравнивает имеющиеся изображения, **не создаёт новую форму**:
 впервые используется подробный identity portrait вместо мелкого crop; выравнивание
 только uniform scale/rotation/translation. Ручные landmarks — диагностика,
-не 3D-fit/likeness score. Отдельный native worker проверяет неизменённые source/A7
-clay головы без волос. Личные фото остаются ignored/local, не в Git/CI/artifacts.
+не 3D-fit/likeness score. Отдельный native worker получил и проверил неизменённые source/A7
+clay головы без волос/одежды; **новая геометрия ещё не создана**. Личные фото остаются ignored/local, не в Git/CI/artifacts.
 
 [Исторический A7 board](studio/reviews/rain-mom-a7/comparison-reference.png) ·
 [A7 receipt](studio/reviews/rain-mom-a7/report.json) ·

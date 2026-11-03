@@ -516,3 +516,22 @@ hairless neutral clay front/three-quarter/profile и indexed head edit-data;
 Далее — проверка primary head volumes/осмысленных regions, реальная переработка
 формы с matched views, затем coherent hair/whole-body/lookdev/acting.
 Masters/source/исторические receipts не переписаны. Private photos excluded.
+
+
+### Native form diagnostic получен, не новый sculpt
+
+Run41668827955 render PASS/publication FAIL (concurrent checkpoint); cdebdf0
+добавляет безопасный rebase unpublished bot receipt и artifact retention.
+Run41669360255/26ed5ad published6clayframes и indexed6395vertex/6318face head data.
+Просмотр обнаружил scarf visibility driver: metadata all-wardrobe-hidden было
+неточным. 385f782 → run41670203671/a955467 публикует native-v2 с изолированной
+видимостью: только scarf hide_render driver muted в disposable scene, никакой
+pose/shape driver не заглушается, диагностический .blend не сохраняется.
+Parent frames/receipt сохранены, geometry gzip byte-identical, 6v2frame hashes
+и polygon/weight/key correspondence проверены. Native-v2 board просмотрен.
+
+286 local tests PASS;3native receipt integrity tests добавлены,11audit contracts
+теперь отдельный lightweight CI без bpy. Это не likeness/anatomical acceptance.
+Документ47/visual-review фиксируют конкретные направления reconstruction.
+**Геометрия персонажа на этом шаге не изменена; следующая задача — новая голова,
+не дополнительные отчёты или cosmetic A8.** All approval/production swap=false.

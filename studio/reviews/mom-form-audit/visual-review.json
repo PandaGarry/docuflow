@@ -1,0 +1,74 @@
+{
+  "status": "rejected_requires_major_rework",
+  "review_date": "2026-11-03",
+  "user_approved": false,
+  "art_approved": false,
+  "production_swap_allowed": false,
+  "new_geometry_created": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-form-audit/eye-aligned-audit.png",
+      "sha256": "4aa3f1ddd95a66c52cefb95c0a447905a5141b14e9176fa85f2ee913be3942cc"
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/whole-character-audit.png",
+      "sha256": "caa2bcbde325a5ce49efd43347a26a424b6f71f96a2329254b12639eb22b0a7f"
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/native-clay-audit.png",
+      "sha256": "b77fc7613930a24a32bfc0e40ed7556da9029d30d5d8e0241a778fdf5c83c647"
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-front.png",
+      "sha256": "91b9e79e95f3f28db47a3449b0110a50220c8e9275e613f551adef9b062e3220"
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-three-quarter.png",
+      "sha256": "6dbf6a17dc690231eccc965e4cda378f85a4f56c919320d92fc211c80b8d8ca7"
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-profile.png",
+      "sha256": "a13ad6e0bf2f02a598d726347054c5c61ba721d124b5a9e78c918b387859790c"
+    },
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288"
+    },
+    {
+      "path": "studio/characters/mom/views/side.png",
+      "sha256": "12147fb9d8101e34609734ffb26d33c8c41c70b679d6a2d3ee9dbe259fb058ae"
+    }
+  ],
+  "finding": "A7 is still dominated by source Rain primary volumes/character. Cosmetic groom/color polishing is the wrong next milestone. Current work exposes the failure and prepares indexed editing; no new likeness result has been created.",
+  "primary_form_priorities": [
+    "Rebuild lower-face length and cheek/jaw/chin relationship as a coherent volume, not further shorten it because of earlier guessed diagnoses. Validate front and profile.",
+    "Revisit lid/canthus/eye-opening width, brow shape and socket presentation together with eye globes; resizing iris alone does not address it.",
+    "Author nose bridge, tip and alar volumes in 3D; reference has rounded definition not achieved by simply compressing nose projection.",
+    "Reconstruct lip volume/corners/muzzle-chin relation. Wider mouth was not automatically closer: registered portrait shows narrower relative width.",
+    "Hair cap/plates are rejected as a final groom design; new mass/part/wave structure follows accepted primary form, not more filler clumps.",
+    "Whole body/neck/shoulder and clothing silhouette still unaccepted. Current T-pose comparison cannot justify exact anatomical dimension claims."
+  ],
+  "limits": [
+    "Pupil-based 2D registration and manual ratios are uncertain, not calibrated camera/3D targets.",
+    "Canonical skull and ear form are partly hair-occluded; do not invent exact reference measurements.",
+    "Neutral light/materials are only a diagnostic; no anatomical, acting or cinema-quality certification."
+  ],
+  "native_evidence": {
+    "run": "https://github.com/PandaGarry/docuflow/actions/runs/41670203671",
+    "commit": "a955467",
+    "frames": 6,
+    "new_design_created": false,
+    "indexed_vertices": 6395,
+    "indexed_polygons": 6318,
+    "geometry_dataset": "head-edit-data.json.gz",
+    "original_topology_weights_key_names_correspond": true,
+    "original_spine_driver_still_invalid": true
+  },
+  "diagnostic_corrections": [
+    "First worker rendered but failed publication after concurrent checkpoint; safe unpublished-receipt rebase and artifact retention added.",
+    "First published diagnostic left source scarf visible because hide_render is driven; its all-wardrobe-hidden description is inaccurate. Parent frames/report retained as history; native-v2 mutes ONLY that visibility driver in disposable diagnostic scenes and was visually checked.",
+    "native-v2 is a diagnostic version, NOT A8 or a new character iteration. Indexed geometry gzip payload verified byte-identical to first diagnostic."
+  ],
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}
