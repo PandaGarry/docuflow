@@ -83,6 +83,10 @@ python3 studio/tools/production_status.py doctor
     положение/ширина рта, округлость носа, сужение нижней челюсти; actual native
     views/reopen успешны, lip secondary planes/мимика/волосы всё ещё требуют работы.
 
+19. [51 · Мама R5: уши, форма губ и цвета по эталону](51-MOM-R5-EARS-AND-COLOR.md):
+    уменьшение/прижатие оригинальных ушей, Cupid/philtrum, attached albedo и
+    серо-голубые радужки; matched clay/color native кадры в работе.
+
 ## Исторические планы и технические материалы
 
 - [00 · Vision](00-VISION.md), [03 · Character bible](03-CHARACTER-BIBLE.md),

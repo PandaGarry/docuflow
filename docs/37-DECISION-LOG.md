@@ -630,3 +630,26 @@ art priorities конкретизированы, а не объявлено «г
 comparison bound0.3micrometre учитывает rounded7-decimal source/export и
 float32native write; observed max0.24005micrometre. Native saved/reopened exact
 geometry equality остаётся0m. Contract tests не оценивают likeness/anatomy.
+
+
+## Итерация 2026-11-03 · R5: уши и цвета лица по эталону
+
+Пользователь: «Верно + немного уменьши уши … доделай лицо … наполняй лицо
+цветами по эталону». Это поддержка R4 направления, не full art/rig approval.
+Restored checkout оказался на6c80231 без текущей работы; чистую session branch
+fast-forward доf45e00a, никаких чужих веток/перезаписи истории.
+
+b504bd7: R5 fresh-source recipe. Ears: fixed source deform-weight/lateral mask,
+10%local scale +4mm lateral tuck/1.5mm posterior, outer-X change7.74mm; лицо
+медиальнее91mm не затрагивается ear pass. Same map all25head keys. Cage lip
+peaks/philtrum/alar targets точечные, eyes/brow design без нового reset.
+Palette skin#E8B48F, iris#73879A, warm brow/coral lips/subtle blush. Attached
+POINT albedo на исходном mesh, lip-deform weights задают границу цвета.
+Никакой paint-over/face-photo projection. Existing native smile helper amount.4
+вместо1.0; новые clay+color views отделяют форму от материала/мимики.
+
+330local tests PASS15.861s,31task plan/checklist/diff PASS. Native41716230087
+выполняется, результат пока неизвестен. Pixel-color match/likeness score/
+cinema-quality acceptance не заявляются. Blink failure и full facial/ear rest
+migration остаются открыты. Следующий шаг — просмотр реальных кадров, не
+объявление готовности по sample math/tests. Historical recipes/masters frozen.
