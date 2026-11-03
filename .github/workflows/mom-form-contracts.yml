@@ -44,3 +44,4 @@ jobs:
         run: |
           python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_head_surface_r2.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_results.py' -v
