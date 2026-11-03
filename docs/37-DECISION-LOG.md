@@ -738,3 +738,16 @@ saved state проверяет bytes и actual shader/UV links. Single-tile assu
 ни сохранённые материалы не доказывают finished likeness/cinema quality.
 Blink/face-ear rest migration/hair/body/wardrobe остаются открыты; production
 swap=false. Historical recipes/masters сохранены, private inputs не читались.
+
+
+### R8 attempt1: fail-closed UV assumption, preserved actual clay evidence
+
+41726684266 failed3m29s/publish8a29124 at single-tile UV assertion. Three real
+clay frames/indexed head data exist; material/reopen did NOT run successfully.
+Preserved under reviews/mom-head-form-r8/attempt-1. No fake color/native success.
+Corrected implementation explicitly selects original render UV layer, computes
+bounded square source domain, and binds original UV→subtract origin→uniform
+scale→actual image. Does not rewrite/wrap/clip original UVs. Domain/min/max/hash
+exported; packed image and actual UV/domain shader links checked after save.
+Unit test covers translated/scaled outside0–1 layout and original-data retention.
+This is a technical retry of same R8 artistic targets, not another likeness reset.

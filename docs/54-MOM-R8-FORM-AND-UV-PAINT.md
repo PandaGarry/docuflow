@@ -30,8 +30,17 @@ before geometry edits, after painting and after saved-file reopen.
 
 This is NOT reference-photo projection, generated head replacement, face warp,
 or paint-over of rendered frames. Pure UV rasterizer samples source surface at
-texel centers; island padding protects seams. Original UVs must be single-tile
-inside0–1; unsupported layouts fail rather than silently wrap. Actual saved
+texel centers; island padding protects seams. The first actual native attempt41726684266 failed at an explicit single-tile
+UV assumption, after producing real clay views. Those frames/log/data are
+preserved under `studio/reviews/mom-head-form-r8/attempt-1/`; no colored result
+or saved-file success is claimed for that attempt.
+
+The corrected painter uses the original **render** UV layer and a bounded,
+explicit square source-domain transform in the shader. UV coordinates/layout
+are not rewritten, clipped or silently repeated. Uniform domain scale preserves
+island proportions. Source domain/min/max/UV hash are exported; actual shader
+origin/scale/UV links and packed EXR bytes are checked on reopen. Layouts with
+nonfinite coordinates or spans exceeding16UV units fail closed. Actual saved
 linear floating-point EXR files are reloaded and packed before material use.
 Native saved-state checks verify packed EXR bytes and actual image/UV shader links.
 R7 point albedo/roughness remain fallback data, not the active material source.

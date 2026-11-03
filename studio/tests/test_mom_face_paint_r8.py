@@ -63,6 +63,19 @@ class FacePaintR8Tests(unittest.TestCase):
             with self.assertRaises(ValueError):paint.rasterize(p,uv,tri,tri,np.zeros(3),np.zeros(3),self.spec['palette_srgb'],16)
         with self.assertRaises(ValueError):paint.rasterize(p,np.zeros((3,2)),tri,tri,np.zeros(3),np.zeros(3),self.spec['palette_srgb'],8192)
 
+    def test_explicit_original_uv_domain_preserves_layout_without_wrap(self):
+        p=np.array([[-.01,-.16,1.389],[.01,-.16,1.389],[.01,-.16,1.405],[-.01,-.16,1.405]])
+        uv=np.array([[0,0],[1,0],[1,1],[0,1]],dtype=float);tri=np.array([[0,1,2],[0,2,3]])
+        original=uv*2+[-.2,1.1];snapshot=original.copy()
+        a,_,_=paint.rasterize(p,uv,tri,tri,np.ones(4),np.zeros(4),self.spec['palette_srgb'],32)
+        b,_,_=paint.rasterize(p,original,tri,tri,np.ones(4),np.zeros(4),self.spec['palette_srgb'],32,domain={'origin':[-.2,1.1],'extent':2})
+        np.testing.assert_allclose(a,b,atol=1e-6)
+        np.testing.assert_array_equal(original,snapshot)
+        domain=paint.atlas_domain(original)
+        normalized=(original-domain['origin'])/domain['extent']
+        self.assertGreaterEqual(float(normalized.min()),0);self.assertLessEqual(float(normalized.max()),1)
+        with self.assertRaises(ValueError):paint.atlas_domain(np.array([[0,0],[100,1]]))
+
     def test_island_padding_does_not_wrap_at_image_border(self):
         image=np.zeros((12,12,4),dtype=np.float32);mask=np.zeros((12,12),dtype=bool)
         image[5,0]=1;mask[5,0]=True
