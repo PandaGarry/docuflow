@@ -9,24 +9,27 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущий визуальный эксперимент · Rain v3 → мама A5
+## Текущий визуальный эксперимент · Rain v3 → мама A7
 
-**[Эталон / начало прохода A2 / текущий A5](studio/reviews/rain-mom-a5/comparison-reference.png)** ·
-[Три четверти](studio/reviews/rain-mom-a5/candidate-three-quarter.png) ·
-[Профиль](studio/reviews/rain-mom-a5/candidate-profile.png) ·
-[Полный рост](studio/reviews/rain-mom-a5/candidate-full.png) ·
-[Receipt](studio/reviews/rain-mom-a5/report.json) ·
-[Visual review / blockers](studio/reviews/rain-mom-a5/visual-review.json).
+**[Канонический стиль / A5 / текущий A7](studio/reviews/rain-mom-a7/comparison-reference.png)** ·
+[Три четверти](studio/reviews/rain-mom-a7/candidate-three-quarter.png) ·
+[Профиль](studio/reviews/rain-mom-a7/candidate-profile.png) ·
+[Полный рост](studio/reviews/rain-mom-a7/candidate-full.png) ·
+[Receipt](studio/reviews/rain-mom-a7/report.json) ·
+[Visual review / blockers](studio/reviews/rain-mom-a7/visual-review.json).
 
-Настоящая Rain, не сгенерированная замена: переработаны нос/губы/нижняя челюсть,
-контур глаз/цвет iris/complexion; добавлены разделённая чёлка и длинные волнистые
-hair meshes на исходном риге. Одежда пока исходная. **Похожесть частичная,
-art approval=false**. Волосы пока грубый look study: крупные пряди, заметные
-стыки с crown, недостаточно естественный flow. Цвет/плоскости лица тоже требуют
-работы; render success/267 local tests не означают cinema-quality acceptance.
+Фото пользователя помогли ручной локальной сверке; **личные изображения не
+публикуются в Git/CI/артефактах**. Мультяшная стилизация и canonical masters
+сохранены. A6/A7 уточняют eyelid/lip/midface, приглушают цвет/фактуру волос,
+заменяют бугристый source-crown overlap цельной поверхностью и уменьшают зазор
+у виска. Это настоящая Rain с исходным ригом, не новая картинка/stand-in.
+Одежда пока исходная. **Похожесть частичная; art/production approval=false**:
+hair clumps ещё пластинчатые, швы/ступеньки особенно заметны в профиль.
 
-[Получение Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
-[Продолжение A3–A5, реальные кадры и отклонённые попытки](docs/45-RAIN-FACE-A3.md).
+[Источник Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
+[A3–A5 и отклонённые попытки](docs/45-RAIN-FACE-A3.md) ·
+[A6/A7: локальные фотоподсказки и границы результата](docs/46-RAIN-PHOTO-GUIDED-A6.md).
+275 local tests и actual native render не являются киноуровнем/приёмкой.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, CC BY 4.0.
 
 ## Актуальный план развития движка · 2026-11-03

@@ -34,6 +34,10 @@
     нос/губы/челюсть, long parted hair на настоящем Rain, rejected A4 shading,
     actual reference/A2/A5 board и отдельный visual review без art approval.
 
+14. [46 · Rain A6/A7: локальная фотосверка, мультяшный стиль](46-RAIN-PHOTO-GUIDED-A6.md):
+    privacy boundary, лицо/палитра/crown/temple fixes, actual native before/after;
+    личные фотографии не публикуются, exact likeness/art approval не заявляются.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)

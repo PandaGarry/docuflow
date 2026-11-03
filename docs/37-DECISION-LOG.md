@@ -475,3 +475,22 @@ A5 **всё ещё art/likeness/production approval=false**: больше схо
 face/skin needs work. Не выдаём bounded native success за киноуровень. Одежда и
 canonical sources сохранены. Дальше authored groom/face refinement и реальные
 intermediate/head-motion checks. Кадры, артефакт и ограничения — документ45.
+
+## Итерация 2026-11-03 · Локальные фото + cartoon references: A6/A7
+
+Пользователь дал личные фото и дополнительные cartoon references. Они помогают
+ручной сверке, не меняют стиль на фотореализм и не означают approval. Оригиналы
+локально ignored, не публикуются в Git/CI/артефактах. Canonical masters неизменны.
+
+A6 уточняет eyelid/lip/midface и muted hair palette; новую coherent crown
+привязывает к настоящему Rain DEF-Head/lattice вместо бугристого source overlap.
+Native A6 прошёл, но визуальная проверка выявила temple gap. A7 продлевает cap
+по вискам, погружает верхние curtain roots. A6 recipe/кадры сохранены отдельно.
+Native A7 run41642309803 success, actual frames1272568; 275 local tests passed,
+source topology/rest signature unchanged, neutral restore=0, new invalid=0.
+
+Art/likeness/production acceptance=false: торчащие ступеньки/швы clumps в профиль,
+регулярные пластинчатые пряди, helmet-like crown и частичная похожесть лица.
+Не выдаём локальную фотосверку за точный face fit; full animation/hair collision/
+speech не проверены. User files не включаются в публичный board, сравнение только
+с прежним canonical art и A5/A7 native frames. Evidence/границы — документ46.

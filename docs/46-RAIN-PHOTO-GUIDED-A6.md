@@ -1,4 +1,4 @@
-# 46 · Rain → мама A6: локальные фотоподсказки, мультяшный стиль сохраняется
+# 46 · Rain → мама A6/A7: локальные фотоподсказки, мультяшный стиль сохраняется
 
 2026-11-03. Пользователь передал реальные фотографии и дополнительные изображения
 в выбранной стилизации, оценив предыдущий проход как «уже неплохо». Это разрешение
@@ -72,3 +72,42 @@ crown к боковым locks. A6 не объявляется законченн
 опускания central forehead hairline, верхние curtain roots сильнее погружены
 под crown и истончены для меньшей ступеньки. A6 evidence/recipe сохранены.
 A7 на момент этого checkpoint ещё не отрендерен.
+
+## Текущий итог A7: получен и просмотрен
+
+Native run [41642309803](https://github.com/PandaGarry/docuflow/actions/runs/41642309803)
+успешен, actual frames commit **1272568**. **275 local tests passed**; native job
+отдельно выполнил 238 contract tests, shader probe, загрузку официальной Rain,
+реальную адаптацию, шесть renders и девять blink sample evaluations.
+
+- [Канонический стиль / A5 / A7](../studio/reviews/rain-mom-a7/comparison-reference.png)
+- [Три четверти](../studio/reviews/rain-mom-a7/candidate-three-quarter.png)
+- [Профиль](../studio/reviews/rain-mom-a7/candidate-profile.png)
+- [Blink](../studio/reviews/rain-mom-a7/candidate-blink.png) /
+  [smile](../studio/reviews/rain-mom-a7/candidate-smile.png)
+- [Receipt](../studio/reviews/rain-mom-a7/report.json) /
+  [отдельная visual review](../studio/reviews/rain-mom-a7/visual-review.json)
+- [Редактируемый packed .blend, ~67MB](https://github.com/PandaGarry/docuflow/actions/runs/41642309803/artifacts/13233013751)
+  — expires **2026-11-17 13:15:55 UTC**. PNG/JSON/recipes в Git остаются.
+
+Все шесть PNG hashes перепроверены после получения. Original mesh topology/rest
+rig signature сохранены; новые hair meshes отдельны, source crown скрыта,
+не удалена. Neutral restore=0m, новых invalid drivers нет, один source spine
+invalid сохраняется. 9 finite blink samples не равны полноценной facial QC.
+
+**Визуально:** A5 макушечные бугры ушли, цвет/чёлка мягче, большой чёрный зазор A6
+уменьшен. Но стыки cap/clumps остаются видимыми как швы/ступеньки в профиль,
+пряди пластинчатые и слишком регулярные, crown ещё helmet-like. Лицо сохраняет
+черты Rain и лишь частично приближено к референсам. Это **не** финальный groom,
+точная photo likeness, фотореалистичная копия или подтверждённый киноуровень.
+
+Privacy проверена: все пользовательские вложения локально ignored; tracked
+`studio/reference` содержит только README. Build не читает эти вложения; в Git,
+CI inputs, review-board и packed native scene нет их копий/crops/фотохешей.
+Публичная каноническая картинка уже была в репозитории, masters не менялись.
+Статус ART/RIG/production acceptance не переключён, одежда не переоформлялась.
+
+Пересборка текущего результата: `python studio/tools/rain_mom_pass_a7.py` в
+pinned native окружении и с official download access. Дальше: интеграция стыков,
+более естественные волны/слои и продолжение authored face refinement с проверкой
+в разных ракурсах и в движении. Не переносим успех CI на художественную оценку.
