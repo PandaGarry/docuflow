@@ -1,0 +1,112 @@
+{
+  "status": "saved_native_binary_reopened_and_rendered",
+  "new_geometry_created": false,
+  "native_blend_sha256": "138e9c592a01814027783e1a21e541cd2b188f6d400015d0c8af8c407f305b0d",
+  "verify_script_sha256": "9e040f3a56e9571f7841e07d74ee4f9ab48254535995dd9641aa5c4b93f1972e",
+  "source_report_sha256": "3bee9d2a362abdfc903d7152d3172222c61bbb67f0a33bcaa0b2afe87e2ea172",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "basis_max_coordinate_error_m": 0.0,
+  "evaluated_neutral_max_coordinate_error_m": 0.0,
+  "packed_images": [
+    {
+      "name": "TEX-rain_body_diffuse.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_body_roughness.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.000",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.002",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction_bw.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_normal.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_scarf_cavity.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_bump.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_top_bump.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_top_roughness.png",
+      "packed": true
+    }
+  ],
+  "render": {
+    "path": "studio/reviews/mom-head-form-r2/reopen/reopened-front.png",
+    "sha256": "39fdefa6c7665763b1faa68c2de9b14035680b02f1f22a4c1c69f27ea1950bd4",
+    "camera": {
+      "position": [
+        0,
+        -4,
+        1.5
+      ],
+      "target": [
+        0,
+        0,
+        1.47
+      ],
+      "ortho_scale": 0.48
+    },
+    "dimensions": [
+      768,
+      768
+    ],
+    "samples": 24
+  },
+  "reopened_vs_original_rgb_mae_255": 0.0,
+  "reopened_vs_original_rgb_p99_255": 0.0,
+  "pixel_threshold_scope": "Binary persistence/render consistency, not likeness or image beauty. Allow tiny CPU/render variation.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Reopens real uploaded binary, verifies neutral geometry/keys/weights/rest/packed textures and rerenders neutral. Known blink and asymmetric smile visual failures NOT fixed or accepted.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}
