@@ -95,3 +95,10 @@ crown для единства. Curtain locks расширены/перекрыв
 переносом всех hair shape keys. Добавлен 9-point blink sweep в текущем A5,
 но collision/dynamics/art acceptance по-прежнему не объявляются.
 Новый A5 render на момент code checkpoint ещё не получен.
+
+A5 first native run 41608190718 exited 1 before publication (no A5 output yet).
+GitHub's redirected raw log host is unavailable from this sandbox. Workflow now
+preserves a bounded worker stderr/stdout tail on failure in the same branch,
+while retaining the original failed job exit state. This is diagnostics, not a
+claim that the shader repair rendered successfully. Local bpy import is also
+blocked by missing libXrender; native execution remains in the Ubuntu CI worker.
