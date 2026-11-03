@@ -38,6 +38,10 @@
     privacy boundary, лицо/палитра/crown/temple fixes, actual native before/after;
     личные фотографии не публикуются, exact likeness/art approval не заявляются.
 
+15. [47 · Мама: A7 отклонён, primary-form reset](47-MOM-FORM-RESET.md):
+    broad rejection, high-res eye-aligned диагностика, ошибки метода, отдельный
+    native clay audit; следующий art milestone — новая голова, не новый отчёт.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)

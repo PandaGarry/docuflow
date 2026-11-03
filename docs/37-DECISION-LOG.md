@@ -494,3 +494,25 @@ Art/likeness/production acceptance=false: торчащие ступеньки/ш
 Не выдаём локальную фотосверку за точный face fit; full animation/hair collision/
 speech не проверены. User files не включаются в публичный board, сравнение только
 с прежним canonical art и A5/A7 native frames. Evidence/границы — документ46.
+
+## Итерация 2026-11-03 · A7 отклонён, не hair-seam polish
+
+Пользователь отверг текущий результат по всем направлениям и потребовал более
+профессиональную/точечную работу без спешки. Ошибка прежней подачи признана:
+дробные Gaussian/color/hair edits сохраняли Rain identity; слишком мелкий
+turnaround crop скрывал часть различий, pass тестов не был art progress.
+
+Checkpoint97bf62b: подробный `mom/master/face.png`, два ручных eye anchors,
+только similarity transform без warp; public-image overlay/whole-character
+boards + uncertainty/ratios. Последние — диагностические подсказки, не точные
+3D targets. Ни новая геометрия, ни художественное улучшение здесь не созданы.
+8 audit tests добавлены к 275: 283 local tests PASS; plan validate PASS.
+Отдельный bounded workflow `mom-form-audit.yml` запущен для actual source/A7
+hairless neutral clay front/three-quarter/profile и indexed head edit-data;
+на этом checkpoint native результат ещё не получен. Подробности — документ47.
+
+Текущий gate: `rejected_requires_major_rework`, art/user/production=false.
+Нельзя сводить продолжение к стыкам волос или спешить с косметическим A8.
+Далее — проверка primary head volumes/осмысленных regions, реальная переработка
+формы с matched views, затем coherent hair/whole-body/lookdev/acting.
+Masters/source/исторические receipts не переписаны. Private photos excluded.

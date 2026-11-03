@@ -9,27 +9,31 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущий визуальный эксперимент · Rain v3 → мама A7
+## Текущая работа · Rain → мама: A7 отклонён, переработка формы
 
-**[Канонический стиль / A5 / текущий A7](studio/reviews/rain-mom-a7/comparison-reference.png)** ·
-[Три четверти](studio/reviews/rain-mom-a7/candidate-three-quarter.png) ·
-[Профиль](studio/reviews/rain-mom-a7/candidate-profile.png) ·
-[Полный рост](studio/reviews/rain-mom-a7/candidate-full.png) ·
-[Receipt](studio/reviews/rain-mom-a7/report.json) ·
-[Visual review / blockers](studio/reviews/rain-mom-a7/visual-review.json).
+**[Разбор и новый порядок работы](docs/47-MOM-FORM-RESET.md)** ·
+[High-res лицо / A7 / eye-aligned overlay](studio/reviews/mom-form-audit/eye-aligned-audit.png) ·
+[Общий персонаж, с оговоркой о разных позах](studio/reviews/mom-form-audit/whole-character-audit.png).
 
-Фото пользователя помогли ручной локальной сверке; **личные изображения не
-публикуются в Git/CI/артефактах**. Мультяшная стилизация и canonical masters
-сохранены. A6/A7 уточняют eyelid/lip/midface, приглушают цвет/фактуру волос,
-заменяют бугристый source-crown overlap цельной поверхностью и уменьшают зазор
-у виска. Это настоящая Rain с исходным ригом, не новая картинка/stand-in.
-Одежда пока исходная. **Похожесть частичная; art/production approval=false**:
-hair clumps ещё пластинчатые, швы/ступеньки особенно заметны в профиль.
+Последняя оценка пользователя: персонаж далёк от эталона **по всем направлениям**.
+Это не задача одного hair-seam polish. A7 — отклонённый эксперимент, а не почти
+готовая мама. Требуются primary-form reconstruction головы/черт/характера,
+проверка тела/силуэта и новая конструкция причёски. Сначала neutral head в
+нескольких ракурсах, затем secondary forms/rig migration, coherent hair и lookdev;
+одежда позже. Неизменность старого rig rest не должна блокировать нужный дизайн.
 
+Новый audit сравнивает имеющиеся изображения, **не создаёт новую форму**:
+впервые используется подробный identity portrait вместо мелкого crop; выравнивание
+только uniform scale/rotation/translation. Ручные landmarks — диагностика,
+не 3D-fit/likeness score. Отдельный native worker проверяет неизменённые source/A7
+clay головы без волос. Личные фото остаются ignored/local, не в Git/CI/artifacts.
+
+[Исторический A7 board](studio/reviews/rain-mom-a7/comparison-reference.png) ·
+[A7 receipt](studio/reviews/rain-mom-a7/report.json) ·
 [Источник Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
 [A3–A5 и отклонённые попытки](docs/45-RAIN-FACE-A3.md) ·
-[A6/A7: локальные фотоподсказки и границы результата](docs/46-RAIN-PHOTO-GUIDED-A6.md).
-275 local tests и actual native render не являются киноуровнем/приёмкой.
+[История A6/A7](docs/46-RAIN-PHOTO-GUIDED-A6.md).
+Art/production approval=false. Тесты/native render не являются киноуровнем.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, CC BY 4.0.
 
 ## Актуальный план развития движка · 2026-11-03
