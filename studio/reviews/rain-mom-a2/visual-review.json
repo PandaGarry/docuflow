@@ -1,0 +1,60 @@
+{
+  "revision": "rain-mom-a2",
+  "review_date": "2026-11-03",
+  "approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "basis": "Actual native PNGs inspected against canonical mom turnaround. A2-neutral and source use identical render helper hash, cameras and lights.",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/rain-mom-a2/comparison.png",
+      "sha256": "26b7ef05725a8ec05c6a29b5c1a9a0180bc47ab537b56855fdb3bc2cd8f4675b"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a2/candidate-face.png",
+      "sha256": "dbc4c1ebc5739947790a618654bbc90d10888c8a148c1891c4e62530601e59d5"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a2/candidate-smile.png",
+      "sha256": "ffe477f2ac8e3337a841ea877b0019826c6ba54388dcbcebf7f0a9807bf8a051"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a2/candidate-blink.png",
+      "sha256": "9bebe7f4dd0e92b55d57c3f344db07d7e5f4cea958042bbb7103ed5378d17cda"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a2/source-blink.png",
+      "sha256": "7f7c653ef73f3b6229a438b06d76e5760c57004ea8fc038e394498c8c168dabe"
+    }
+  ],
+  "visible_progress": [
+    "Skin is lighter/peachier than source; not claimed as an exact on-screen hex match.",
+    "Waist is less cinched; cheeks/chin fuller; nose projection slightly reduced.",
+    "Brows thinner and warm brown instead of the dark solid source brows."
+  ],
+  "visible_limitations": [
+    "Face identity is still clearly Rain, not an exact canonical-mom likeness; eye shape, lips and facial planes need further authored work.",
+    "Haircut, hair color, stock scarf/top/jeans/shoes remain source; stock clothing design intentionally unchanged in this phase.",
+    "Closed-eye rendering has an unconvincing lower/outer eyelash contour and swollen/blank-looking lid surface. Visible in BOTH original and candidate under this actuator setup: not introduced solely by the adaptation, but not artistically accepted.",
+    "Smile actuator now genuinely moves geometry (about 6.4mm max), but expression remains too restrained for acting acceptance.",
+    "Hair specular highlights are overly white/glossy; no final look-development pass.",
+    "No complete body-pose/animation sweep, speech, phoneme timing or anatomical certification. One original invalid spine driver persists."
+  ],
+  "technical_observations": {
+    "topology_unchanged": true,
+    "rig_rest_signature_unchanged": true,
+    "new_invalid_drivers": [],
+    "neutral_head_restore_error_m": 0.0,
+    "native_controls": "Source and candidate blink/Smile drivers actuated, not direct key overrides. Actuation != visually correct performance."
+  },
+  "next_steps": [
+    "Inspect paired upper/lower eyelid controls and lash weights; do not approve the current single-upper-control blink.",
+    "Author face changes toward reference: nose/lips/orbits/cheek planes, preserving controls and comparing multiple views.",
+    "Test restrained acting and intermediate frames before considering clothing redesign."
+  ],
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41602307063",
+  "native_artifact": "https://github.com/PandaGarry/docuflow/actions/runs/41602307063/artifacts/13215237140",
+  "native_artifact_expires_at": "2026-11-17T08:21:30Z",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}

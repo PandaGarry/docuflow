@@ -90,3 +90,51 @@ blink .99999 и smile .5. Публикуются **и source, и candidate** exp
 Локальные проверки: 253 tests (включая старый pilot с отдельно установленным
 opencv-python-headless 4.10.0.84), до добавления трёх A2 solver tests. Pinned
 native lock не менялся. Исторические dad/R5 receipts и canonical art сохранены.
+
+## A2 выполнен и просмотрен
+
+Run [41602307063](https://github.com/PandaGarry/docuflow/actions/runs/41602307063)
+успешен, реальные кадры опубликованы в commit **0976a86**. Локально **256 tests
+passed**; native job отдельно выполнил 207 pipeline + 12 Rain contracts и
+planning validate, затем открыл официальный .blend, изменил и отрендерил его.
+Эти числа не являются художественным pass.
+
+- [До/после](../studio/reviews/rain-mom-a2/comparison.png)
+- [Три четверти](../studio/reviews/rain-mom-a2/candidate-three-quarter.png)
+- [Улыбка](../studio/reviews/rain-mom-a2/candidate-smile.png)
+- [Закрытие век](../studio/reviews/rain-mom-a2/candidate-blink.png)
+  и [тот же actuator setup на исходнике](../studio/reviews/rain-mom-a2/source-blink.png)
+- [Native report](../studio/reviews/rain-mom-a2/report.json)
+  и [visual review](../studio/reviews/rain-mom-a2/visual-review.json)
+- [Редактируемый .blend с packed textures, 66MB artifact](https://github.com/PandaGarry/docuflow/actions/runs/41602307063/artifacts/13215237140)
+  — expires **2026-11-17 08:21:30 UTC**. PNG/receipts в Git постоянны.
+
+Blink inputs теперь примерно -.039996m ACT local Y вместо -.1;
+Smile использует примерно .00625m ACT local Z и действительно достигает .5,
+максимальное движение candidate head ~6.40mm. Topology/rest bone signature
+сохранены, после pose restore head error=0m, новых invalid drivers нет.
+Старый spine driver остаётся invalid и в source, и в candidate.
+
+**Художественная оценка НЕ пройдена.** При закрытии век виден неубедительный
+контур ресниц/поверхности века — и на исходнике с тем же setup, и на A2.
+Нужно исследовать совместное управление upper/lower lids и привязку lashes,
+а не выдавать shape value=1 за хороший blink. Улыбка слишком сдержанная для
+актёрской приёмки. Лицо всё ещё узнаётся как Rain, не как точная каноническая
+мама; глаза/губы/плоскости лица, волосы и look-development требуют работы.
+Одежда пока не переоформлялась. Пользователь ничего из этих кадров ещё не одобрял.
+
+### Пересборка
+
+Python 3.11 + `studio/production/blender-requirements.lock`, системные библиотеки
+Ubuntu перечислены в `.github/workflows/rain-study.yml`. В среде с доступом к
+официальному Blender Studio download:
+
+```bash
+python studio/tools/rain_study.py           # genuine source inspection/baseline
+python studio/tools/rain_mom_pass_a2.py     # editable native candidate + paired stills
+```
+
+В sandbox прямой download всё ещё не подтверждён: текущие native результаты
+получены именно в GitHub-hosted worker. Исходные asset Python scripts не
+исполнялись; bundled UI не объявляется отдельно проверенным. Отчёт содержит
+hashes исходника, канона, всех трёх build/render scripts и семи individual PNG.

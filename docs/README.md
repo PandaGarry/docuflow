@@ -26,6 +26,10 @@
 11. [43 · Исправление thumb-web regression r5](43-THUMB-WEB-REGRESSION.md):
     локализация, отклонённый эксперимент, исправление весов и новые крупные планы.
 
+12. [44 · Rain v3 → мама: native appearance study](44-RAIN-MOM-STUDY.md):
+    официальный .blend, реальные before/after, изменения skin/body/face, paired
+    expression diagnostics и отдельная отрицательная художественная оценка.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)
@@ -50,7 +54,10 @@ python3 studio/tools/production_status.py doctor
 умолчанию. Проверки tracker запускаются в `.github/workflows/production-plan.yml`.
 Контрактные тесты нового MVP — отдельный `.github/workflows/pipeline-contracts.yml`;
 команда: `.cache/blender-venv/bin/python -m unittest discover -s studio/tests -p test_pipeline.py -v`.
-Ни один из этих workflows не является Blender render smoke test.
+Ни один из этих двух workflows не является Blender render smoke test.
+Отдельный `rain-study.yml` действительно запускает pinned native bpy/Cycles,
+публикует PNG и хранит редактируемый экспериментальный .blend как artifact;
+его success тоже не является художественной/анимационной приёмкой.
 
 ## Исторические планы и технические материалы
 

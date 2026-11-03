@@ -428,3 +428,29 @@ Animated max area 1.95412, max edge 2.05797; веса исправлены у 61
 локальное, прямоугольная ладонь/трубчатые пальцы остались. Это техническое
 исправление, не законченная модель. Production default/gates не переключались.
 Подробности и воспроизведение — docs43; R4 failures/recipes сохранены.
+
+## Итерация 2026-11-03 · Rain v3 → мама, реальная адаптация вместо нового блокинга
+
+Пользователь разрешил bounded experiment на готовой Rain: сначала skin/body/
+face, одежда позже. Официальный zip/.blend получен в GitHub native worker с
+точным hash verification; direct sandbox download не работает. Адаптация не
+использует чужой изменённый GLB или сгенерированное изображение.
+
+Checkpoint b2b6c25 → source 5f67176 → actual A1 f92f578/ce24c5a → calibrated A2
+bc6465a/0976a86. Все опубликованы на прежней ветке PR3. A1 ошибочная нейтральная
+«улыбка» сохранена как failed/partial evidence; A2 действительно управляет
+исходными ACT controls через оригинальные drivers, не прямой заменой key values.
+Rest-space форма и все исходные shape keys редактируются согласованно,
+rig rest/weights и топология не переписываются, источник не заменён.
+
+Новый отдельный workflow **действительно** рендерит Blender; прежние два
+лёгких CI всё ещё не являются native render tests. A2 source/candidate expressions
+и full/face/three-quarter PNG, editable packed .blend artifact сохранены.
+256 local tests passed; native rest signature/topology unchanged/new invalid=0.
+Один original spine driver invalid сохраняется, full animation pass не проведён.
+
+Art/likeness/acting acceptance=false: лицо всё ещё Rain; улучшения кожи/талии/
+щек/носа/бровей — первый проход. Closed-eye lashes/lid surface выглядят плохо
+даже в paired source setup, улыбка сдержанная. Следующий шаг — authored face
+refinement и совместная работа upper/lower lids с native intermediate checks;
+гардероб и canonical defaults пока не меняем. Подробности/ссылки — документ44.
