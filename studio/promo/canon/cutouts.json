@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "comment": "Кадры героев, вырезанные из мастеров студии. В промо-кадр герой попадает ТОЛЬКО отсюда: идентичность гарантируется пикселями мастера, а не промптом. Генерация допускается только для фона и реквизита, где идентичности нет.",
+  "rule": "Если нужного кадра нет в списке — сначала он рисуется в библиотеку (studio/2p5d, studio/characters), проверяется QA и только потом попадает сюда. Промо никогда не «додумывает» героя.",
+  "items": {
+    "dad:front": {
+      "char": "dad",
+      "file": "2p5d/dad/master-front-v2.png",
+      "kind": "chroma",
+      "label": "Папа, фронт, стойка",
+      "note": "эталон ракурса: все остальные кадры сняты правкой этого"
+    },
+    "dad:three-quarter": {
+      "char": "dad",
+      "file": "2p5d/dad/master-three-quarter-v2.png",
+      "kind": "chroma",
+      "label": "Папа, три четверти"
+    },
+    "dad:side": {
+      "char": "dad",
+      "file": "2p5d/dad/master-side-v2.png",
+      "kind": "chroma",
+      "label": "Папа, профиль"
+    },
+    "dad:hips": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/hands-hips.png",
+      "kind": "chroma",
+      "label": "Папа, руки на поясе",
+      "note": "визитная поза «я всё контролирую»"
+    },
+    "dad:point": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/point.png",
+      "kind": "chroma",
+      "label": "Папа, палец вверх"
+    },
+    "dad:wave": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/wave.png",
+      "kind": "chroma",
+      "label": "Папа, машет"
+    },
+    "dad:facepalm": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/facepalm.png",
+      "kind": "chroma",
+      "label": "Папа, ладонь у лица"
+    },
+    "dad:shrug": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/shrug.png",
+      "kind": "chroma",
+      "label": "Папа, пожимает плечами"
+    },
+    "dad:surprise": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/open-palms.png",
+      "kind": "chroma",
+      "label": "Папа, раскрытые ладони"
+    },
+    "dad:carry": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/carry.png",
+      "kind": "chroma",
+      "label": "Папа, несёт коробку"
+    },
+    "dad:sit": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/sit.png",
+      "kind": "chroma",
+      "label": "Папа, сидит"
+    },
+    "dad:crouch": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/crouch.png",
+      "kind": "chroma",
+      "label": "Папа, присел"
+    },
+    "dad:reach-up": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/reach-up.png",
+      "kind": "chroma",
+      "label": "Папа, тянется вверх (лампа)"
+    },
+    "dad:phone": {
+      "char": "dad",
+      "file": "2p5d/dad/poses/phone.png",
+      "kind": "chroma",
+      "label": "Папа, телефон"
+    },
+    "mom:stern": {
+      "char": "mom",
+      "file": "characters/mom/pose/stern.png",
+      "kind": "alpha",
+      "label": "Мама, руки скрещены",
+      "note": "визитная поза «ты серьёзно?»"
+    },
+    "mom:front": {
+      "char": "mom",
+      "file": "characters/mom/views/front.png",
+      "kind": "alpha",
+      "label": "Мама, фронт, стойка"
+    },
+    "mom:three-quarter": {
+      "char": "mom",
+      "file": "characters/mom/views/three_quarter.png",
+      "kind": "alpha",
+      "label": "Мама, три четверти"
+    },
+    "mom:side": {
+      "char": "mom",
+      "file": "characters/mom/views/side.png",
+      "kind": "alpha",
+      "label": "Мама, профиль"
+    },
+    "son:point": {
+      "char": "son",
+      "file": "characters/son/pose/point.png",
+      "kind": "alpha",
+      "label": "Сын, палец в камеру",
+      "note": "визитная поза"
+    },
+    "son:front": {
+      "char": "son",
+      "file": "characters/son/views/front.png",
+      "kind": "alpha",
+      "label": "Сын, фронт, стойка"
+    },
+    "son:three-quarter": {
+      "char": "son",
+      "file": "characters/son/views/three_quarter.png",
+      "kind": "alpha",
+      "label": "Сын, три четверти"
+    },
+    "son:side": {
+      "char": "son",
+      "file": "characters/son/views/side.png",
+      "kind": "alpha",
+      "label": "Сын, профиль"
+    }
+  }
+}

@@ -16,6 +16,7 @@ studio/
   reference/          референсы реальной семьи (для дизайна героев)
   style-tests/        тесты стилей: A / B / C / D — выбрать один
   characters/         персонажи: character.json + мастера + производные ассеты
+  promo/              промо: кадры из мастеров, форматы, брифы, тексты, креативы
   library/            библиотеки-данные: позы, эмоции, гардероб, причёски, скелеты
   engine/             ядро: kit, puppet, face, rig, artgen, core_demo, selftest, QA
   out/                результаты: превизы, демо-ролики, отчёты
@@ -71,6 +72,19 @@ python3 -m venv .venv
 .venv/bin/python studio/engine/artgen.py sheet
 .venv/bin/python studio/engine/artgen.py verify
 
+# промо: кадр из мастеров + типографика + проверка
+.venv/bin/python studio/engine/promo_scene.py list               # какие кадры есть
+.venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
+    --cast dad:hips,mom:stern,son:point --bg <плата.png> \
+    --dad 0.50 --baseline 0.64 --out studio/promo/renders/P01-art.png
+.venv/bin/python studio/engine/promo_scene.py proof dad:front    # «мастер = кадр»
+.venv/bin/python studio/engine/promo.py compose studio/promo/renders/P01-art.png \
+    --format post-4x5 --kicker "СЕЗОН 1" --title "Мультсериал про свою семью" \
+    --out studio/promo/renders/P01-post-4x5.png
+.venv/bin/python studio/engine/promo.py verify studio/promo/renders/P01-post-4x5.png
+.venv/bin/python studio/engine/promo.py briefs    # брифы на все 26 постов
+.venv/bin/python studio/engine/promo.py check     # данные кампании не разъехались
+
 # демо старого рига и авто-QA
 .venv/bin/python studio/engine/rig_demo.py          # -> studio/out/rig-demo.mp4
 .venv/bin/python studio/engine/qa.py --assets studio/characters
@@ -121,6 +135,60 @@ python3 -m venv .venv
 сквош-стретчем, вторичная анимация головы, мигание. Герои сериала будут
 собраны на этом же скелете из нарисованных слоёв.
 
+## Промо: превью, посты, реклама
+
+Промо собрано по тому же принципу, что и сериал: **данные + проверки**, а не
+«нарисовали картинку». Но есть одно правило, которое появилось после разбора
+брака первой партии:
+
+> **Герой в промо-кадре не рисуется заново. Он берётся вырезкой из мастера.**
+
+Текстовый промпт задаёт класс объекта («бородатый папа в сером худи»), а не
+конкретное лицо: каждая генерация даёт «похожего, но другого» героя. Поэтому
+модель отвечает только за фон, свет и реквизит — там, где идентичности нет.
+
+| Слой | Источник |
+|------|----------|
+| Фон, свет, реквизит | генерация (пустая плата, `studio/promo/plates/`) |
+| Герои | вырезка из мастера (`studio/promo/canon/cutouts.json`) |
+| Текст | наш слой (`promo.py compose`, Montserrat/Nunito) |
+
+| Что | Где |
+|-----|-----|
+| Персонажи: канон, решения, этапы | [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) |
+| Библия персонажей: роли, тики, фразы, цвета | [`docs/41-CHARACTERS-BIBLE.md`](docs/41-CHARACTERS-BIBLE.md) |
+| Арт-дирекшн: слои, safe-зоны, типографика | [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) |
+| Замок идентичности: почему героя не генерируем | [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) |
+
+
+Сборка кадра — две команды:
+
+```bash
+# карточки героев: фигура стоит на полу, подпись внизу
+.venv/bin/python studio/engine/promo_scene.py cards
+
+# любой кадр из мастеров: фон-плата + фигуры на общей линии подошв
+.venv/bin/python studio/engine/promo_scene.py scene --format post-4x5 \
+    --cast dad:hips,mom:stern,son:point --bg <плата.png> \
+    --dad 0.50 --baseline 0.64 --out studio/promo/renders/x-art.png
+```
+
+Плакаты собираются отдельным движком — но запускать их есть смысл после того, как
+выбраны название и стиль (`docs/40-CHARACTERS.md`):
+
+```bash
+.venv/bin/python studio/engine/promo_poster.py list    # что умеет
+.venv/bin/python studio/engine/promo_poster.py all     # пачка
+```
+
+Доказательство, что герой не перерисован: `promo_scene.py proof dad:front` —
+собирает «мастер | то же в кадре» и считает совпадение силуэта. Замер: 99,85 %
+(папа), 99,41 % (сын).
+
+Забракованная первая партия (генерация персонажей по описанию) не хранится —
+но причина брака записана в `studio/promo/renders/rejected/README.md`, чтобы
+решение не забылось.
+
 ## Статус проекта
 
 | Этап | Что | Статус |
@@ -154,6 +222,11 @@ python3 -m venv .venv
 | [`docs/16-CORE.md`](docs/16-CORE.md) | **Ядро**: персонажи, позы, эмоции, одежда, API, CLI |
 | [`docs/14-ASSET-PIPELINE.md`](docs/14-ASSET-PIPELINE.md) | Заготовки: мастера, реестр, команды, добавление героя |
 | [`docs/15-REPO-MIGRATION.md`](docs/15-REPO-MIGRATION.md) | Переезд в репозиторий `family_studio` |
+| [`docs/40-CHARACTERS.md`](docs/40-CHARACTERS.md) | Персонажи: канон, роли, что решаем до промо |
+| [`docs/41-CHARACTERS-BIBLE.md`](docs/41-CHARACTERS-BIBLE.md) | Библия персонажей: двигатель серии, тики, фразы, цвета |
+| [`docs/33-PROMO-ART.md`](docs/33-PROMO-ART.md) | Арт-дирекшн промо: слои, форматы, типографика, приёмка |
+| [`docs/34-IDENTITY-LOCK.md`](docs/34-IDENTITY-LOCK.md) | Замок идентичности: как не потерять лицо и пропорции |
+
 
 ## Приватность
 
