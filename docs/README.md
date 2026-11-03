@@ -46,6 +46,10 @@
     indexed cage и external surface binding, native clay views/packed blend,
     отклонённые R1 формы, ограничения R2, blink/smile visual failures.
 
+17. [49 · Мама R3: поддержанное направление и согласованная улыбка](49-MOM-R3-FACE-CONTROLS.md):
+    ограниченная lip refinement, paired source proof ошибки осей/сопутствующих
+    ключей, balanced native pose, reopened binary и незакрытый blink blocker.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)

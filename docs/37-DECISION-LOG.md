@@ -569,3 +569,22 @@ front пиксельно равен build PNG (RGB MAE/p99=0); embedded scripts 
 Receipt/reopened PNG опубликованы. Это native persistence pass, **не** likeness/
 blink/smile/полная facial migration acceptance.306 local tests PASS (добавлены
 4actual result/reopen integrity tests), planning/checklist/diff PASS.
+
+
+## Итерация 2026-11-03 · Пользователь поддержал R2, ограниченная доводка R3
+
+Пользователь: «Ты очень близок … выглядит очень и очень хорошо», продолжать.
+Сохранены R2пропорции/brow curve;4178e5d меняет только3lip targets на0.7–1.2mm
+и вводит consistent bilateral axis policy.7275b17 → native41703583542/57e9000:
+6candidate+3source frames. Source mixed smile reproduces asymmetry: Z/Y дают
+одинаковый Smile, но разные LipsWide/LipsUp. Common Z устраняет сильный перекос;
+это исправление постановки диагностического pose, не полная facial migration.
+
+fbd80ed → reopen41704930106/ed28afa: реальный R3binary скачан/открыт, SHA совпал,
+Basis/evaluated errors0m,17images packed, neutral pixels MAE0, smile restore0m.
+Balanced Smile .6 + LipsUp .3 с обеих сторон даёт просмотренную ровную мягкую
+улыбку. Отдельные helper/frames/receipt сохранены; native file открывается neutral.
+Blink по-прежнему не принят: legacy70/30 реально даёт EyelidsClose .7. Captured
+ACT/MSTR constraint graph задаёт следующий разбор, не доказательство slot-bug.
+315local tests PASS, plan/checklist/diff PASS. Поддержка направления не превращена
+в formal full-character/acting approval; private images не читались/не публиковались.

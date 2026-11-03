@@ -9,32 +9,32 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · Rain → мама: реальная переработка головы R2, WIP
+## Текущая работа · мама: направление R2 поддержано, точечный R3
 
-**[Эталон / отклонённый A7 / новая геометрия R2](studio/reviews/mom-head-form-r2/comparison-identity.png)** ·
-[Три одинаковых clay ракурса A7/R2](studio/reviews/mom-head-form-r2/comparison-clay.png) ·
-[Visual review / blockers](studio/reviews/mom-head-form-r2/visual-review.json) ·
-[Процесс, реальные кадры и editable .blend](docs/48-MOM-PRIMARY-HEAD.md).
+**[Улыбка: прежний перекос / новый согласованный pose](studio/reviews/mom-head-form-r3/comparison-smile.png)** ·
+[Эталон / R2 / R3](studio/reviews/mom-head-form-r3/comparison-identity.png) ·
+[R2/R3 в трёх одинаковых ракурсах](studio/reviews/mom-head-form-r3/comparison-clay.png) ·
+[Процесс / native artifact / ограничения](docs/49-MOM-R3-FACE-CONTROLS.md).
 
-В отличие от предыдущего audit, **новая геометрия создана**. Голова перестроена
-из официальной Rain, без накопления A1–A7 face fields: cheek/jaw/chin, объёмы
-носа/губ, lid aperture и brow design. R1 просмотрен и не принят: жёсткие брови,
-угловатый низ лица и ошибочная привязка lip controls к inner mouth surface.
-R2 исправляет binding, смягчает brow/jaw, меняет lip/tip volumes. Оба прохода
-имеют actual Blender frames, source recipes и native packed artifact.
+Пользователь положительно оценил R2 и попросил продолжать. Пропорции и brow
+design сохранены: R3 смягчает только три upper-lip/philtrum targets. Это не новый
+likeness reset. На исходной Rain воспроизведена причина перекоса старой улыбки:
+solver выбирал разные оси, получая одинаковый Smile, но разные LipsUp/LipsWide.
+В новой проверенной позе каналы согласованы с обеих сторон; balanced smile
+выглядит ровнее и дружелюбнее. Это **не** полный facial acting/lip-sync pass.
 
-**Это ещё не эталонная мама и не готовый риг.** Primary forms/характер требуют
-доводки; blink/lash и symmetric-smile diagnostics визуально не прошли. Исходный
-риг сохранён, но facial rest/attachment/corrective migration не завершён.
-Hair/body/skin lookdev/wardrobe здесь не переделывались: это neutral head study.
-Реальный загруженный R2 `.blend` повторно открыт с embedded scripts OFF:
-geometry/rest/packed textures проверены, neutral front пиксельно совпал с build render. Art/user/production approval=false.
+R3 `.blend` действительно скачан, повторно открыт и отрендерен: geometry error0m,
+packed textures проверены, neutral pixels совпали, после smile pose restore0m.
+**Моргание остаётся открытой задачей.** Legacy70/30 не даёт full closure key:
+EyelidsClose=.7; source lashes/constraints требуют отдельного разбора, не
+переделки понравившейся головы. Full facial migration/hair/body/lookdev/wardrobe
+не завершены. Art/production swap не включены.
 
-[Почему A7 отклонён, исправление метода](docs/47-MOM-FORM-RESET.md) ·
-[Источник Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
-[A3–A5 и failures](docs/45-RAIN-FACE-A3.md) · [История A6/A7](docs/46-RAIN-PHOTO-GUIDED-A6.md).
-Личные фото остаются ignored/local, не читаются CI/не публикуются; masters сохранены.
-306 tests/native success не являются киноуровнем или художественной приёмкой.
+[Primary head R1/R2 и failures](docs/48-MOM-PRIMARY-HEAD.md) ·
+[Почему отклонён A7](docs/47-MOM-FORM-RESET.md) ·
+[Источник Rain/A1/A2](docs/44-RAIN-MOM-STUDY.md).
+315local tests/native persistence checks не являются киноуровнем/приёмкой.
+Private inputs не читаются CI/не публикуются, masters/history сохранены.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03
