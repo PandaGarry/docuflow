@@ -85,7 +85,11 @@ python3 studio/tools/production_status.py doctor
 
 19. [51 · Мама R5: уши, форма губ и цвета по эталону](51-MOM-R5-EARS-AND-COLOR.md):
     уменьшение/прижатие оригинальных ушей, Cupid/philtrum, attached albedo и
-    серо-голубые радужки; matched clay/color native кадры в работе.
+    серо-голубые радужки; actual first-color native кадры и открытые ошибки цвета.
+
+20. [52 · Мама R6: коррекция первого цветного прохода](52-MOM-R6-COLOR-REVIEW-CORRECTION.md):
+    явная граница пигмента губ, более тёплый skin/blush и приглушённые радужки;
+    повторный native build/reopen выполняется.
 
 ## Исторические планы и технические материалы
 

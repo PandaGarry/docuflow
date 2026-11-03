@@ -653,3 +653,23 @@ POINT albedo на исходном mesh, lip-deform weights задают гра�
 cinema-quality acceptance не заявляются. Blink failure и full facial/ear rest
 migration остаются открыты. Следующий шаг — просмотр реальных кадров, не
 объявление готовности по sample math/tests. Historical recipes/masters frozen.
+
+
+### R5 native success, но первый цвет требует коррекции — R6
+
+41716230087 success9m33s/publish809bed5, artifact13270168708.11actual PNGs
+и separate-process same-worker saved-binary reopen: geometry/pixels/restore0,
+17packed images, material attribute/assignments persisted. Просмотрены реальные
+canonical/clay/color/portrait/three-view boards. Ears компактнее, но pigment
+верхней губы заходит высоко/диффузно, skin слишком pale beige, iris too blue.
+Не выдаём persistence pass за хороший цвет или завершённое сходство.
+
+a1deadc сохраняет R5 evidence/negative findings и отдельный R6recipe. Upper/
+lower source-rest external lip chart ограничивает attached pigment; paired
+peaks/central valley вместо trapezoid. Увеличены cheek/nose warmth, умеренный
+front temperature shift; gray-blue iris chroma reduced, brow deeper brown.
+Albedo alpha используется как Roughness.47skin/.34lips, не прозрачность.
+Форма/уши R5 сохранены, только lower-lip target inward/up0.7mm.335local tests
+PASS17.450s, plan/checklist/diff PASS. Native41718122007 выполняется, результат
+на checkpoint неизвестен. Личные inputs не читались/не публиковались; historical
+recipes frozen, art/production acceptance=false.

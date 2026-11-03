@@ -54,3 +54,4 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_head_r4.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_head_r4_results.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r5.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r6.py' -v
