@@ -10,6 +10,7 @@ on:
       - 'studio/tools/rain_mom_pass_a3.py'
       - 'studio/tools/rain_mom_pass_a4.py'
       - 'studio/tools/rain_mom_pass_a5.py'
+      - 'studio/tools/rain_mom_pass_a6.py'
       - '.github/workflows/rain-study.yml'
   workflow_dispatch:
 
@@ -43,10 +44,11 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_*pipeline*.py' -q
           python -m unittest discover -s studio/tests -p 'test_rain_study.py' -q
           python -m unittest discover -s studio/tests -p 'test_rain_face.py' -q
+          python -m unittest discover -s studio/tests -p 'test_rain_photo_refinement.py' -q
           python studio/tools/production_status.py validate
       - name: Probe fresh native groom shader sockets before asset acquisition
         run: |
-          python -c "import sys; sys.path.insert(0, 'studio/tools'); import bpy; import rain_mom_pass_a5 as a5; a5.groom_material(bpy); print('Fresh native groom shader created')"
+          python -c "import sys; sys.path.insert(0, 'studio/tools'); import bpy; import rain_mom_pass_a6 as a6; a6.revise_material(a6.previous.groom_material(bpy)); print('Fresh native groom shader created')"
       - name: Build actual Rain mom candidate and native expression diagnostics
         env:
           OMP_NUM_THREADS: '2'
@@ -57,28 +59,28 @@ jobs:
           fi
           mkdir -p .cache
           set +e
-          timeout 900 python studio/tools/rain_mom_pass_a5.py > .cache/rain-native-worker.log 2>&1
+          timeout 900 python studio/tools/rain_mom_pass_a6.py > .cache/rain-native-worker.log 2>&1
           result=$?
           tail -n 80 .cache/rain-native-worker.log
           exit "$result"
       - name: Keep editable native candidate with packed textures (14 days)
         uses: actions/upload-artifact@v4
         with:
-          name: rain-mom-a5-native
+          name: rain-mom-a6-native
           path: |
-            .cache/rain-v3/rain-mom-a5.blend
-            studio/reviews/rain-mom-a5/report.json
+            .cache/rain-v3/rain-mom-a6.blend
+            studio/reviews/rain-mom-a6/report.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
       - name: Preserve bounded native diagnostic on failure
         if: failure()
         run: |
-          mkdir -p studio/reviews/rain-mom-a5
+          mkdir -p studio/reviews/rain-mom-a6
           if [ -f .cache/rain-native-worker.log ]; then
-            tail -n 100 .cache/rain-native-worker.log > studio/reviews/rain-mom-a5/native-failure.txt
+            tail -n 100 .cache/rain-native-worker.log > studio/reviews/rain-mom-a6/native-failure.txt
           else
-            echo 'Native worker did not start; inspect preceding workflow steps.' > studio/reviews/rain-mom-a5/native-failure.txt
+            echo 'Native worker did not start; inspect preceding workflow steps.' > studio/reviews/rain-mom-a6/native-failure.txt
           fi
       - name: Publish actual PNGs and inspection to the same working branch
         if: ${{ !cancelled() }}
@@ -89,8 +91,8 @@ jobs:
           gh auth setup-git
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add studio/reviews/rain-study studio/reviews/rain-mom-a5
+          git add studio/reviews/rain-study studio/reviews/rain-mom-a6
           git diff --cached --quiet && exit 0
-          git commit -m 'Publish real Rain mom A5 corrected warm-brown hair and face study, native expression checks and provenance'
+          git commit -m 'Publish real Rain mom A6 local-reference-guided face and coherent crown study, native expression checks and provenance'
           # A concurrent branch update fails safely; never force-push or merge it away.
           git push origin arena/4c8ed03c-docuflow
