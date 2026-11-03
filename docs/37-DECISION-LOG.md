@@ -558,3 +558,14 @@ symmetric smile request даёт видимую асимметрию и треб
 migration. Packed R2 binary separately downloading/reopening/rerendering next;
 на данном checkpoint результат independent reopen ещё неизвестен. Личные inputs
 не читаются и не публикуются; masters/history сохранены, production swap=false.
+
+
+### Independent saved-binary verification получен
+
+Run41695889273 success / published2786ca9: скачан именно R2 artifact13260841171,
+не реконструирован новый blend. SHA138e9c59… совпал, head Basis/evaluated neutral
+errors=0m, topology/weights/keys/rest сохранены,17images packed. Reopened neutral
+front пиксельно равен build PNG (RGB MAE/p99=0); embedded scripts OFF.
+Receipt/reopened PNG опубликованы. Это native persistence pass, **не** likeness/
+blink/smile/полная facial migration acceptance.306 local tests PASS (добавлены
+4actual result/reopen integrity tests), planning/checklist/diff PASS.

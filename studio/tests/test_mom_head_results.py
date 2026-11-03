@@ -58,6 +58,24 @@ class HeadResultTests(unittest.TestCase):
         for image in registration['inputs']:
             self.assertEqual(hashlib.sha256((ROOT/image['path']).read_bytes()).hexdigest(),image['sha256'])
 
+    def test_actual_saved_binary_was_reopened_not_only_reconstructed(self):
+        folder=ROOT/'studio/reviews/mom-head-form-r2'
+        data=json.loads((folder/'reopen/verification.json').read_text())
+        report=json.loads((folder/'report.json').read_text())
+        self.assertEqual(data['status'],'saved_native_binary_reopened_and_rendered')
+        self.assertEqual(data['native_blend_sha256'],report['native_artifact']['sha256'])
+        self.assertEqual(data['source_report_sha256'],hashlib.sha256((folder/'report.json').read_bytes()).hexdigest())
+        self.assertEqual(data['verify_script_sha256'],hashlib.sha256((ROOT/'studio/tools/verify_mom_head_r2_native.py').read_bytes()).hexdigest())
+        self.assertFalse(data['embedded_python_executed']);self.assertFalse(data['art_approved'])
+        self.assertFalse(data['production_swap_allowed'])
+        self.assertEqual(data['basis_max_coordinate_error_m'],0)
+        self.assertEqual(data['evaluated_neutral_max_coordinate_error_m'],0)
+        self.assertTrue(all(i['packed'] for i in data['packed_images']))
+        self.assertGreater(len(data['packed_images']),0)
+        self.assertLessEqual(data['reopened_vs_original_rgb_mae_255'],.5)
+        image=data['render']
+        self.assertEqual(hashlib.sha256((ROOT/image['path']).read_bytes()).hexdigest(),image['sha256'])
+
 
 if __name__=='__main__':
     unittest.main()

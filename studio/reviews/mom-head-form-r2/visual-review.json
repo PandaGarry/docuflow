@@ -50,12 +50,13 @@
     "Original rest/attachments remain provisional; all old key coordinates being transported is not a complete facial rig migration."
   ],
   "technical_limits": [
-    "302 local tests passed; geometric safety and receipt integrity are separate from visible quality.",
+    "306 local tests passed; geometric safety, native persistence and receipt integrity are separate from visible quality.",
     "Source rig rest/topology and eye geometry preserved, new invalid drivers=[], neutral restore=0m, nine finite ACT blink samples; these do not certify anatomy or acting.",
-    "Saved-binary reopening verification started separately; report/frames here were produced by the build, not yet proof of successful reopen."
+    "Actual uploaded R2 blend independently reopened and rendered in run41695889273/2786ca9; geometry errors=0m, all17images packed, neutral pixel RGB MAE=0. This does not accept the known blink/asymmetric smile or likeness."
   ],
   "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41694165082",
   "native_publish_commit": "6a54ee6",
   "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
-  "license": "CC-BY-4.0"
+  "license": "CC-BY-4.0",
+  "saved_binary_verification": "studio/reviews/mom-head-form-r2/reopen/verification.json"
 }

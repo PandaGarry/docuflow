@@ -27,14 +27,14 @@ R2 исправляет binding, смягчает brow/jaw, меняет lip/tip
 доводки; blink/lash и symmetric-smile diagnostics визуально не прошли. Исходный
 риг сохранён, но facial rest/attachment/corrective migration не завершён.
 Hair/body/skin lookdev/wardrobe здесь не переделывались: это neutral head study.
-Проверка повторного открытия реального R2 `.blend` запущена отдельно, не подменяется
-PNG из процесса сборки. Art/user/production approval=false.
+Реальный загруженный R2 `.blend` повторно открыт с embedded scripts OFF:
+geometry/rest/packed textures проверены, neutral front пиксельно совпал с build render. Art/user/production approval=false.
 
 [Почему A7 отклонён, исправление метода](docs/47-MOM-FORM-RESET.md) ·
 [Источник Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
 [A3–A5 и failures](docs/45-RAIN-FACE-A3.md) · [История A6/A7](docs/46-RAIN-PHOTO-GUIDED-A6.md).
 Личные фото остаются ignored/local, не читаются CI/не публикуются; masters сохранены.
-302 tests/native success не являются киноуровнем или художественной приёмкой.
+306 tests/native success не являются киноуровнем или художественной приёмкой.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03

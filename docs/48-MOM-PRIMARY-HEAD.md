@@ -99,9 +99,14 @@ ACT/skeletal/corrective ответа; сейчас нельзя честно с�
 
 Отдельный `mom-head-reopen.yml` скачивает именно artifact41694165082, проверяет
 SHA, открывает `.blend` с embedded scripts OFF, проверяет geometry/keys/weights/
-rest/packed textures и заново рендерит neutral front. На этом checkpoint проверка
-**запущена, результат ещё не получен**. PNG из build сами по себе не доказывают
-корректное сохранение/повторное открытие файла.
+rest/packed textures и заново рендерит neutral front. [Run41695889273](https://github.com/PandaGarry/docuflow/actions/runs/41695889273)
+**success**, published2786ca9. [Reopen receipt](../studio/reviews/mom-head-form-r2/reopen/verification.json)
+и [повторно отрендеренный кадр](../studio/reviews/mom-head-form-r2/reopen/reopened-front.png)
+сохранены в Git. SHA actual downloaded `.blend` совпал, basis/evaluated neutral
+coordinate error=0m, все17image dependencies packed. Повторный front **пиксельно
+совпал** с build render (RGB MAE/p99=0; PNG bytes могут отличаться метаданными).
+Embedded scripts не запускались. Это подтверждает именно сохранённый файл,
+не новую реконструкцию из скрипта. **Acting/likeness этим не приняты.**
 
 ## Границы результата
 
@@ -123,9 +128,9 @@ Modified geometry/controls/diagnostics, CC BY4.0
 
 ## Воспроизведение и тесты
 
-302 local tests PASS (286 previous +10 cage +6 R2 surface/curve), plan/checklist/
+306 local tests PASS (286 previous +10 cage +6 R2 surface/curve +4 actual-output/reopen integrity), plan/checklist/
 diff checks PASS. Lightweight audit CI сохраняет11stdlib checks, затем ставит
-только numpy1.26.4 для16pure geometry tests; не поднимает renderer.
+только numpy1.26.4 для16pure geometry tests и4output/reopen contracts; не поднимает renderer.
 
 ```bash
 # Pinned bpy/OS deps: .github/workflows/mom-head-form-r2.yml
