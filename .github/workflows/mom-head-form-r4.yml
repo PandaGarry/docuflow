@@ -1,0 +1,100 @@
+name: Mom primary head form R4 (canonical likeness study, not art approval)
+on:
+  push:
+    branches: ['arena/4c8ed03c-docuflow']
+    paths:
+      - 'studio/tools/mom_head_form_r4.py'
+      - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_head_surface_r2.py'
+      - 'studio/tools/mom_face_controls.py'
+      - 'studio/tools/mom_face_probe.py'
+      - 'studio/tools/mom_smile_pose_r3.py'
+      - 'studio/tools/verify_mom_head_r4_native.py'
+      - 'studio/authoring/mom-head-form-r4.json'
+      - '.github/workflows/mom-head-form-r4.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: mom-head-form-r4-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  primary-head:
+    if: github.ref == 'refs/heads/arena/4c8ed03c-docuflow'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/4c8ed03c-docuflow
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
+          python -m pip install -r studio/production/blender-requirements.lock
+      - name: Source contracts and cage safety (not art approval)
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_*pipeline*.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_head_surface_r2.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_form_audit.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_native_audit_receipts.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_face_controls.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r4.py' -q
+          python studio/tools/production_status.py validate
+      - name: Rebuild original Rain head, render matched views and native ACT poses
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          mkdir -p .cache
+          set +e
+          timeout 900 python studio/tools/mom_head_form_r4.py > .cache/mom-head-form.log 2>&1
+          result=$?
+          tail -n 80 .cache/mom-head-form.log
+          exit "$result"
+      - name: Reopen the actual saved binary in a separate native process
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          python studio/tools/verify_mom_head_r4_native.py > .cache/mom-head-reopen.log 2>&1
+          tail -n 50 .cache/mom-head-reopen.log
+      - name: Keep bounded failure evidence
+        if: failure()
+        run: |
+          mkdir -p studio/reviews/mom-head-form-r4
+          if [ -f .cache/mom-head-form.log ]; then
+            tail -n 100 .cache/mom-head-form.log > studio/reviews/mom-head-form-r4/native-failure.txt
+          else
+            echo 'Native worker not started; see preceding checks.' > studio/reviews/mom-head-form-r4/native-failure.txt
+          fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: mom-head-form-r4-native-wip
+          path: |
+            .cache/rain-v3/mom-head-form-r4.blend
+            studio/reviews/mom-head-form-r4/
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+      - name: Publish actual head evidence to the current branch
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add studio/reviews/mom-head-form-r4
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish actual primary head rebuild R4, matched clay views and native diagnostics'
+          git pull --rebase origin arena/4c8ed03c-docuflow
+          git push origin arena/4c8ed03c-docuflow
