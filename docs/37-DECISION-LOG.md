@@ -673,3 +673,21 @@ Albedo alpha используется как Roughness.47skin/.34lips, не пр
 PASS17.450s, plan/checklist/diff PASS. Native41718122007 выполняется, результат
 на checkpoint неизвестен. Личные inputs не читались/не публиковались; historical
 recipes frozen, art/production acceptance=false.
+
+
+### R6 проверен; R7 — только цвет нижней губы, без нового shape reset
+
+41718122007 success8m6s/publish3e38955, artifact13272070247. Upper color border
+и muted iris стали лучше, но actual lower vermilion слишком pale: lower chart
+слишком жёстко обрезает нужную область. Нельзя объявить лицо законченным.
+R6 visible failure/recipes frozen.314d147: R7 восстанавливает lower pigment
+через original deform weights below seam, сохраняя upper chart R6. Roughness
+теперь отдельный FLOAT attribute (.39lip/.47skin), albedo alpha1. Причина
+побеления не выдаётся за доказанную alpha-bug: chart undercoverage установлен
+по геометрии/маске; отдельный roughness убирает лишнюю неоднозначность.
+
+Все R6 geometry/ear settings неизменны, source fresh rebuild.345local tests
+PASS18.599s: added actual R5/R6 geometry/attribute/material/render/binary/pose
+provenance, not likeness. Plan/checklist/diff PASS. Native41719835416 выполняется,
+результат пока неизвестен. Сохранённые lip/skin colors не означают завершённую
+facial migration/acting/hair/body/wardrobe; art/production approval=false.
