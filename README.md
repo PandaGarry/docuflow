@@ -9,33 +9,31 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама: компактнее уши, цвета лица по эталону
+## Текущая работа · мама: форма носа/щёк/губ и точнее цвет лица
 
-**[Эталон / реальная форма / текущий цвет](studio/reviews/mom-head-form-r7/comparison-identity.png)** ·
-[Уши до/после](studio/reviews/mom-head-form-r7/comparison-ears.png) ·
-[Мягкая native улыбка](studio/reviews/mom-head-form-r7/comparison-portrait.png) ·
-[Цвет в трёх ракурсах](studio/reviews/mom-head-form-r7/color-three-views.png) ·
-[Editable native artifact / результат / ограничения](docs/53-MOM-R7-LOWER-LIP-COLOR.md).
+**[Эталон / R7 / текущая R9](studio/reviews/mom-head-form-r9/comparison-identity.png)** ·
+[Форма без цветного материала](studio/reviews/mom-head-form-r9/comparison-form.png) ·
+[Три ракурса](studio/reviews/mom-head-form-r9/color-three-views.png) ·
+[Локальная доводка губы R8→R9](studio/reviews/mom-head-form-r9/comparison-lips.png) ·
+[Editable native artifact / результат / ограничения](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md).
 
-По просьбе пользователя сохранено поддержанное направление R4, оригинальные
-уши немного уменьшены/прижаты, уточнены губы/philtrum. На настоящую rigged mesh
-добавлены skin/lip/blush/brow/gray-blue iris colors; не paint-over рендера.
-Три actual native итерации R5–R7 включают разбор ошибок первого цвета. R7
-сохраняет всю форму R6, исправляет только нижнюю губу/material response.
+После R7 сделаны реальные изменения original Rain mesh: круглее/выше нос,
+уточнены положение рта и передние плоскости щёк; направление глаз/бровей и
+компактные уши сохранены. R9 локально уменьшает тяжёлую верхнюю губу после
+просмотра actual R8 frames. На исходной UV-развёртке — packed2048² albedo и
+roughness EXR; исходные UV-координаты не переписаны, paint-over кадров нет.
 
-Реальный сохранённый R7 `.blend` повторно открыт в отдельном процессе: geometry/
-pixel/restore errors0,17packed images, albedo/roughness/link сохранены. Это
-same-worker persistence pass, не artistic approval. Уши компактнее, нижняя
-губа снова кораллово-розовая; skin warmth, lip/nose secondary planes, eye/lash
-integration и canonical hair/frame ещё требуют работы. Моргание не исправлено;
-full facial migration/acting/body/wardrobe не завершены. Production swap=false.
+Native R9 build/render/reopen41728933536 SUCCESS5m2s:19packed images,
+geometry/pixel/restore errors0. Это same-worker persistence pass, не приёмка
+внешности или полной мимики. Видимый прогресс частичный: нижняя губа/свет кожи
+и линия мягкой закрытой улыбки ещё не как в эталоне. Моргание не исправлено;
+full facial migration/acting/canonical hair/body/wardrobe не завершены.
+Production swap=false. Masters/history сохранены, private inputs не читаются.
 
-[R5: уши и первый цвет с открытыми дефектами](docs/51-MOM-R5-EARS-AND-COLOR.md) ·
-[R6: upper border/iris и under-color нижней губы](docs/52-MOM-R6-COLOR-REVIEW-CORRECTION.md) ·
-[R4: приближение формы к эталону](docs/50-MOM-R4-CANONICAL-LIKENESS.md) ·
-[R3: поддержанное направление / smile controls](docs/49-MOM-R3-FACE-CONTROLS.md).
-346local tests не оценивают likeness/киноуровень. Masters/history сохранены,
-private inputs не читаются/не публикуются.
+[R8: форма и исходная UV, сохранённый failed attempt](docs/54-MOM-R8-FORM-AND-UV-PAINT.md) ·
+[R7: первый цвет губ/глаз](docs/53-MOM-R7-LOWER-LIP-COLOR.md) ·
+[R4: поддержанное приближение формы](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
+Технические тесты не оценивают likeness/киноуровень.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03

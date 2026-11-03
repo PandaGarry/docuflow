@@ -770,3 +770,25 @@ brow/ears сохранены. Upper pigment height−1.4mm с tapered corners, l
 363local tests PASS18.158s,31task plan/checklist/diff PASS. Native41728933536
 выполняется, итог пока неизвестен. Art/full face/acting/production не приняты,
 blink/face-ear rest migration/canonical hair/body/wardrobe остаются открыты.
+
+### R9 actual native result и visual review (не финальное сходство)
+
+41728933536 SUCCESS5m2s/job126240896658/publish3379741. Artifact13275788987,
+86,488,196bytes, expires2026-11-17T22:18:38Z; native SHA
+034a4c5e20c2634989782dabf6025727b0b1e7c44a4cbd6507f06343a07a9b8d.
+19packed images, actual linear2048² EXRs; geometry/pixel/restore errors0;
+original UV bytes/domain/shader links and packed EXR bytes persist on reopen.
+Same-worker separate-process verification, не independently redownloaded artifact.
+
+Просмотрены canonical/R7/R9 color, clay, same0.4smile, три ракурса и отдельный
+matched R8/R9 lip crop. Rounder/higher nose, raised mouth and cheek planes —
+actual R8 form progress retained. R9 upper lip visibly less heavy, but local
+modest correction, не full-face likeness. Lower lip remains pale/matte, skin
+lighting flat, mouth corners still tend toward pout instead of canonical gentle
+closed smile. Следующий точечный focus: closed-smile line/corners/lower-lip
+response, без сброса поддержанной формы. Full acting/blink/lash/face-ear rest
+migration/canonical hair/body/wardrobe не приняты и не завершены.
+
+369local tests PASS18.344s;31task plan/checklist/diff PASS. R8 failed first UV
+assertion/frames preserved. Native recipe/runtime/result hashes R7/R8/R9
+проверены, frozen source/history не переписаны. Art/user/production=false.

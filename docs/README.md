@@ -101,7 +101,7 @@ python3 studio/tools/production_status.py doctor
 
 23. [55 · Мама R9: доводка верхней губы по actual review](55-MOM-R9-UPPER-LIP-REFINEMENT.md):
     нос/щёки R8 сохранены, уменьшены высота/объём верхней губы и пигмента;
-    новый native build/reopen выполняется.
+    actual native build/reopen успешны; color/clay/три ракурса и lip detail просмотрены, не final approval.
 
 ## Исторические планы и технические материалы
 

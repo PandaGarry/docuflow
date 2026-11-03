@@ -1,0 +1,50 @@
+{
+  "revision": "mom-head-form-r9",
+  "status": "partial_visible_progress_not_final_likeness",
+  "new_geometry_created": true,
+  "geometry_changed_since_r7": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r9/comparison-identity.png",
+      "sha256": "dab0250974a286371246ae13d17271e014ff6083bdc51f882bf5769c3458c255"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/comparison-form.png",
+      "sha256": "88255018f9a821fab1d8f97820d0f3498c587e12707a9c880adb9770b0b81f13"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/comparison-portrait.png",
+      "sha256": "27dc65c005ede598aa5cd446af84312eba623b6d5a2e9bdda0eeca58f10f7be8"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/color-three-views.png",
+      "sha256": "f7987f9f8ed94c890a730ce5189bedd8f5db83294989916e5011d1c8a1a20e38"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/comparison-clay.png",
+      "sha256": "c0834e45097755c7556d7bf8b743919033322ec050b00b1029003fe26e77de00"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/comparison-lips.png",
+      "sha256": "6d5ed1c60990ee27599adac040ce3ef45497f1a75e5a5ca86e28c9eb43bf934e"
+    }
+  ],
+  "visual_findings": [
+    "R7/R9 matched clay shows higher/rounder nasal dome, raised mouth and fuller anterior cheek planes. These are actual mesh changes, not material-only progress.",
+    "R8/R9 matched crop confirms smaller upper-lip relief and thinner upper pigment. The change is local and modest, not a claim of complete lip correction.",
+    "Original-UV pigment is more definite and cheek/nose warmth clearer than R7. Lower lip remains too pale/matte relative to canonical beauty portrait; overall skin lighting still flatter.",
+    "Compact ears and supported eye/brow direction retained. Profile and three-quarter inspected; mouth still tends toward a pout rather than the canonical gentle closed smile.",
+    "Canonical hair/frame and full acting are absent. No exact likeness, full anatomical, cinema-quality or art acceptance inferred."
+  ],
+  "next": "Refine mouth-corner/closed-smile character and lower-lip material against canonical art; retain nose/cheek progress. Separate form, expression and lighting evaluation; address known blink/lash and face-ear rest migration before acting approval.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41728933536",
+  "artifact_id": 13275788987,
+  "artifact_expires_at": "2026-11-17T22:18:38Z",
+  "known_blink_visual_failure": true,
+  "persistence_scope": "Actual saved binary reopened in separate native process on same worker, not independently redownloaded artifact.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}
