@@ -6,6 +6,7 @@ import numpy as np
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import rain_mom_pass_a3 as face
+import rain_mom_pass_a4 as hair
 
 
 class RainFaceTests(unittest.TestCase):
@@ -54,6 +55,34 @@ class RainFaceTests(unittest.TestCase):
         p=np.array([[-1e-8,-.12,1.47],[0,-.12,1.47],[1e-8,-.12,1.47]])
         q=face.face_field(p)
         self.assertLess(np.linalg.norm(q[2]-q[0]),1e-7)
+
+
+class RainHairTests(unittest.TestCase):
+    def test_curve_interpolates_endpoints(self):
+        points=[(0,0,1.6),(.03,-.1,1.5),(.12,-.1,1.3)]
+        curve=hair.catmull_rom(points)
+        np.testing.assert_allclose(curve[0],points[0]);np.testing.assert_allclose(curve[-1],points[-1])
+
+    def test_closed_manifold_and_outward_normals(self):
+        from collections import Counter
+        points,polygons=hair.loft_geometry([(0,0,1.6),(0,0,1.4),(0,0,1.2)],[.04]*3,[.02]*3,(0,-1,0))
+        p=np.array(points)
+        self.assertTrue(np.isfinite(p).all())
+        edges=Counter()
+        for polygon in polygons:
+            for a,b in zip(polygon,polygon[1:]+polygon[:1]):edges[tuple(sorted((a,b)))]+=1
+        self.assertTrue(all(count==2 for count in edges.values()))
+        for polygon in polygons[:-2]:
+            v=p[list(polygon)]
+            n=np.cross(v[1]-v[0],v[2]-v[0])
+            center=v.mean(axis=0);center[2]=0
+            self.assertGreater(np.dot(n,center),0)
+
+    def test_broad_clump_not_round_cylinder(self):
+        points,_=hair.loft_geometry([(0,0,1.6),(0,0,1.4),(0,0,1.2)],[.05]*3,[.012]*3,(0,-1,0))
+        p=np.array(points)
+        extent=np.ptp(p,axis=0)
+        self.assertGreater(extent[0]/extent[1],3.5)
 
 
 if __name__=='__main__':

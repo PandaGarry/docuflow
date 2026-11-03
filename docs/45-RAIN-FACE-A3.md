@@ -49,3 +49,32 @@ PNG/JSON публикуются в `studio/reviews/rain-mom-a3`, editable packed
 Credit: **Rain Rig (CC) Blender Foundation | studio.blender.org**.
 License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/.
 Change notice: лицо/палитра изменены как описано выше; endorsement не предполагается.
+
+## A3 native результат
+
+Run 41606481996 успешно выполнил реальную адаптацию и render, commit da3bc8a.
+Есть actual reference/A2/A3 board, front/three-quarter/profile/full, smile/blink
+и paired source expressions. 264 local tests passed. Original topology/rest
+signature сохранены, neutral restore=0m, новых invalid drivers нет. 9 native
+blink samples/source и 9/candidate finite, **не** полный animation acceptance.
+
+Просмотр: новая форма рта/челюсти, меньший нос, более серые глаза и светлые волосы
+дают реальное отличие от A2; long/wavy silhouette и parted bangs эталона всё ещё
+отсутствуют, поэтому likeness недостаточно явная. Balanced upper/lower blink
+сводит lash contour лучше предыдущего setup, но поверхности век ещё не финальные.
+
+## A4: добавить обрамление лица, одежду не менять
+
+Чтобы не выдавать очередную перекраску за сходство, добавлен следующий native
+build: длинная волнистая hair curtain и два swept center-parted face-framing
+clumps. Это **новые редактируемые hair meshes на настоящей Rain**, не замена
+персонажа и не AI-дорисовка. Исходная crown остаётся; ponytail/strand/band лишь
+скрываются, не удаляются. Новые волосы привязаны к исходным DEF-Head/lattice.
+Веса/body/rest bones и topology всех исходных mesh сохраняются; total scene
+топология закономерно увеличивается из-за новых hair meshes. Носовая база ещё
+немного сужается с переносом всех facial corrective keys.
+
+A4 требует просмотра: совпадение стиля новых прядей/исходной crown, швы,
+пересечения с плечами/ушами/лицом, силуэт в профиль. Это groom study без hair
+simulation/collision acceptance. На момент code checkpoint A4 **не отрендерен**;
+успех/похожесть нового groom заранее не заявляется.
