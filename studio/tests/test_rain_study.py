@@ -13,6 +13,7 @@ TOOLS = Path(__file__).resolve().parents[1] / 'tools'
 sys.path.insert(0, str(TOOLS))
 import rain_study
 import rain_mom_pass
+import rain_mom_pass_a2
 
 
 class RainStudyTests(unittest.TestCase):
@@ -53,6 +54,22 @@ class RainStudyTests(unittest.TestCase):
     def test_color_conversion_is_linear(self):
         np.testing.assert_allclose(rain_mom_pass.linear_color('#FFFFFF'),(1,1,1,1))
         self.assertAlmostEqual(rain_mom_pass.linear_color('#808080')[0],.2158605,places=6)
+
+    def test_actuator_solver_handles_source_blink_gain_without_overdrive(self):
+        response=lambda x: min(1,max(0,-25*x))
+        result=rain_mom_pass_a2.solve_control(response,.99999)
+        self.assertAlmostEqual(result['input'],-.0399996,places=6)
+        self.assertAlmostEqual(result['response'],.99999,places=5)
+
+    def test_actuator_solver_finds_smile_between_coarse_samples(self):
+        result=rain_mom_pass_a2.solve_control(lambda x:min(1,max(0,80*x)),.5)
+        self.assertAlmostEqual(result['input'],.00625,places=6)
+        self.assertAlmostEqual(result['response'],.5,places=6)
+
+    def test_actuator_solver_reports_unattainable_target(self):
+        result=rain_mom_pass_a2.solve_control(lambda x:0,.5)
+        self.assertEqual(result['response'],0)
+        self.assertEqual(result['input'],0)
 
     def test_source_hash_mismatch_stops_acquisition(self):
         with tempfile.TemporaryDirectory() as directory:

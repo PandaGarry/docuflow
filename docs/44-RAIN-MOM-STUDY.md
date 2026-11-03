@@ -68,3 +68,25 @@ shape keys, не выключает drivers и не подменяет их пр
 полный animation sweep, phonemes, likeness approval, professional art acceptance.
 Нативный редактируемый .blend с packed textures сохраняется как Actions artifact
 на 14 дней, не засоряет Git. Небольшие PNG и receipt остаются в Git постоянно.
+
+## A1 опубликован, ошибки тестовых поз сохранены
+
+Run 41601612951, commit ce24c5a: actual A1 PNGs и .blend artifact, topology и
+rest rig signature сохранены; новых invalid drivers нет. После возврата в
+neutral maximum evaluated head error = 0m. Но A1 smile **НЕ удалась**: coarse
+control samples дали только 0/1, и выбор ближайшего к .5 попал в 0. Изображение
+candidate-smile поэтому идентично neutral; report честно содержит partial.
+A1 blink использовал слишком большой control input (-.1 вместо около -.04),
+так что достижение clamped shape value 1 само по себе нельзя считать хорошим
+закрытием век. Эти кадры не принимаются за корректную мимику.
+
+A2 оставляет геометрию A1, делает брови темнее (#6B4F38) и исправляет именно
+control positioning: bounded bisection внутри существующих drivers, целевые
+blink .99999 и smile .5. Публикуются **и source, и candidate** expression frames
+с одинаковым native control solver: можно отличить проблемы исходника от
+внесённых изменений. A1 files/recipe не переписываются. A2 execution на момент
+этого code checkpoint ещё не подтверждён.
+
+Локальные проверки: 253 tests (включая старый pilot с отдельно установленным
+opencv-python-headless 4.10.0.84), до добавления трёх A2 solver tests. Pinned
+native lock не менялся. Исторические dad/R5 receipts и canonical art сохранены.

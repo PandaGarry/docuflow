@@ -6,6 +6,7 @@ on:
     paths:
       - 'studio/tools/rain_study.py'
       - 'studio/tools/rain_mom_pass.py'
+      - 'studio/tools/rain_mom_pass_a2.py'
       - '.github/workflows/rain-study.yml'
   workflow_dispatch:
 
@@ -34,6 +35,11 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
           python -m pip install -r studio/production/blender-requirements.lock
+      - name: Test edit field, safe acquisition and native-control solver contracts
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_*pipeline*.py' -q
+          python -m unittest discover -s studio/tests -p 'test_rain_study.py' -q
+          python studio/tools/production_status.py validate
       - name: Build actual Rain mom candidate and native expression diagnostics
         env:
           OMP_NUM_THREADS: '2'
@@ -42,14 +48,14 @@ jobs:
           if [ ! -f studio/reviews/rain-study/source-face.png ]; then
             timeout 600 python studio/tools/rain_study.py
           fi
-          timeout 900 python studio/tools/rain_mom_pass.py
+          timeout 900 python studio/tools/rain_mom_pass_a2.py
       - name: Keep editable native candidate with packed textures (14 days)
         uses: actions/upload-artifact@v4
         with:
-          name: rain-mom-a1-native
+          name: rain-mom-a2-native
           path: |
-            .cache/rain-v3/rain-mom-a1.blend
-            studio/reviews/rain-mom-a1/report.json
+            .cache/rain-v3/rain-mom-a2.blend
+            studio/reviews/rain-mom-a2/report.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
@@ -61,8 +67,8 @@ jobs:
           gh auth setup-git
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add studio/reviews/rain-study studio/reviews/rain-mom-a1
+          git add studio/reviews/rain-study studio/reviews/rain-mom-a2
           git diff --cached --quiet && exit 0
-          git commit -m 'Publish real Rain mom A1 frames, native expression checks and provenance'
+          git commit -m 'Publish real Rain mom A2 frames, native expression checks and provenance'
           # A concurrent branch update fails safely; never force-push or merge it away.
           git push origin arena/4c8ed03c-docuflow
