@@ -19,10 +19,13 @@ class MomFormAuditTests(unittest.TestCase):
             for a,b in zip(actual,expected):self.assertAlmostEqual(a,b)
 
     def test_transform_is_similarity_not_anisotropic_or_warp(self):
-        a,b,_,_=review.similarity((2,3),(7,8))
-        self.assertAlmostEqual(a*a+b*b,b*b+a*a)
-        self.assertAlmostEqual(a*(-b)+b*a,0)
-        self.assertGreater(a*a+b*b,0)
+        t=review.similarity((2,3),(7,8))
+        origin=review.point(t,(0,0))
+        ex=[v-o for v,o in zip(review.point(t,(1,0)),origin)]
+        ey=[v-o for v,o in zip(review.point(t,(0,1)),origin)]
+        self.assertAlmostEqual(math.hypot(*ex),math.hypot(*ey))
+        self.assertAlmostEqual(sum(x*y for x,y in zip(ex,ey)),0)
+        self.assertGreater(ex[0]*ey[1]-ex[1]*ey[0],0)
 
     def test_inverse_round_trip(self):
         t=review.similarity((2,3),(7,8));a,b,c,d,e,f=review.inverse_affine(t)

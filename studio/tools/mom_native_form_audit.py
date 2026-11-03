@@ -18,7 +18,7 @@ import rain_mom_pass_a7 as a7
 base=a7.base
 study=a7.study
 ROOT=study.ROOT
-OUT=ROOT/'studio/reviews/mom-form-audit'
+OUT=ROOT/'studio/reviews/mom-form-audit/native-v2'
 VISIBLE={'GEO-rain-head','GEO-rain-eyes','GEO-rain-eye_cornea','GEO-rain-eye_dots',
          'GEO-rain-eyebrows','GEO-rain-eyelashes','GEO-rain-gums_lower',
          'GEO-rain-gums_upper','GEO-rain-tongue'}
@@ -35,9 +35,22 @@ def flat_material(bpy,name,color):
 
 def diagnostic_stage(bpy):
     scene,camera=study.stage(bpy)
+    visibility_overrides=[]
     for obj in bpy.data.objects:
         if obj.type=='LIGHT':obj.data.color=(1,1,1)
-        if obj.type=='MESH' and obj.name not in VISIBLE:obj.hide_render=True
+        if obj.type=='MESH' and obj.name not in VISIBLE:
+            # Source scarf hide_render is driven and otherwise resets on render.
+            # Mute only visibility drivers in this disposable diagnostic scene,
+            # never a pose/shape driver; no modified blend is distributed.
+            animation=obj.animation_data
+            if animation:
+                for curve in animation.drivers:
+                    if curve.data_path=='hide_render':
+                        curve.mute=True;visibility_overrides.append(obj.name)
+            obj.hide_render=True
+    bpy.context.view_layer.update()
+    unexpected=[o.name for o in bpy.data.objects if o.type=='MESH' and o.name not in VISIBLE and not o.hide_render]
+    if unexpected:raise ValueError(f'Diagnostic visibility not isolated: {unexpected}')
     scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.12,.12,.12,1)
     skin=flat_material(bpy,'Audit neutral skin',(.45,.45,.45))
     brow=flat_material(bpy,'Audit brow',(.085,.085,.085))
@@ -51,7 +64,7 @@ def diagnostic_stage(bpy):
     source=socket.links[0].from_socket
     hsv=tree.nodes.new('ShaderNodeHueSaturation');hsv.inputs['Saturation'].default_value=0
     tree.links.new(source,hsv.inputs['Color']);tree.links.new(hsv.outputs['Color'],socket)
-    return scene,camera
+    return scene,camera,visibility_overrides
 
 
 def head_data(bpy):
@@ -106,18 +119,25 @@ def main():
         geometry[label]=head_data(bpy)
         checks[label]={'rest_bone_signature':base.rig_signature(bpy.data.objects['RIG-rain']),
                        'source_rest_bone_signature':source_rest,'invalid_drivers':base.invalid_drivers(bpy)}
-        scene,camera=diagnostic_stage(bpy)
+        scene,camera,overrides=diagnostic_stage(bpy)
+        checks[label]['diagnostic_visibility_only_driver_mutes']=overrides
         for view,position in [('front',(0,-4,1.5)),('three-quarter',(2.2,-4,1.5)),('profile',(4,0,1.5))]:
             images.append(study.render(bpy,scene,camera,OUT/f'{label}-clay-{view}.png',position,(0,0,1.47),.48))
     geometry.update({'license':'CC-BY-4.0','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org',
                      'source_blend_sha256':study.sha(source),'scope':'Existing topology/neutral data for manual primary-form planning, no private photo-derived scan.'})
-    (OUT/'head-edit-data.json.gz').write_bytes(gzip.compress(json.dumps(geometry,separators=(',',':')).encode(),mtime=0))
+    geometry_file=OUT.parent/'head-edit-data.json.gz'
+    payload=gzip.compress(json.dumps(geometry,separators=(',',':')).encode(),mtime=0)
+    if payload!=geometry_file.read_bytes():
+        raise ValueError('Visibility-only audit must not silently replace existing indexed geometry')
     report={'status':'rejected_requires_major_rework','new_design_created':False,
             'source_url':study.URL,'source_blend_sha256':study.sha(source),'archive_sha256':study.ARCHIVE_SHA,
             'script_sha256':study.sha(__file__),'historical_a7_recipe_scripts':historical['scripts'],
             'blender_version':bpy.app.version_string,'embedded_python_executed':False,
             'stage':'Same camera/geometry pose per view, neutral white lights, neutral skin/brows/lashes, eye color desaturated. All hair/body/wardrobe hidden, not deleted.',
-            'checks':checks,'images':images,'geometry_file_sha256':study.sha(OUT/'head-edit-data.json.gz'),
+            'checks':checks,'images':images,'geometry_file':'studio/reviews/mom-form-audit/head-edit-data.json.gz',
+            'geometry_file_sha256':study.sha(geometry_file),
+            'diagnostic_version':2,
+            'supersedes':'Parent native-audit.json claimed wardrobe hidden but source scarf visibility driver reset it; parent frames retained as diagnostic history.',
             'art_approved':False,'production_swap_allowed':False,
             'scope':'Actual diagnostic renders of UNCHANGED source and A7. Not a new character result, not acceptance, not proof that the rig is fully functional.',
             'credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/'}
