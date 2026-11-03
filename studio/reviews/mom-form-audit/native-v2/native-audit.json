@@ -1,0 +1,186 @@
+{
+  "status": "rejected_requires_major_rework",
+  "new_design_created": false,
+  "source_url": "https://studio.blender.org/download-source/files/ee/a7/eea73e55dba1cea31c09848df6a794b2-4.zip",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "archive_sha256": "80217f163f6392dc829233d63c2cfb5e1376775bc34101ad14f39631fea70d24",
+  "script_sha256": "05ed336dac22cf2e01431cde56a50bd8ed836540134f79c86cf2409c9f95bcff",
+  "historical_a7_recipe_scripts": {
+    "rain_study.py": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+    "rain_mom_pass.py": "75707fa8e9c3c526a733773c60095c3ba273276a6c015f963e3a46600e252a69",
+    "rain_mom_pass_a2.py": "6c394cb7cd754960d091d417d632fa31ae91ecef20bb8fce2230321a76a4158d",
+    "rain_mom_pass_a3.py": "0d226c94a917c178eef80d3ec0a5594cf2044d09b91e987da9e71b9910d8fa5e",
+    "rain_mom_pass_a4.py": "aa4bf11350d4c13b4c28baa3019e05900b76ef4b0969861ae4d1b20284f91742",
+    "rain_mom_pass_a5.py": "cd7c3a5ea75241c5c5176bf12874b667622ac75039232e85bd512be292db60c5",
+    "rain_mom_pass_a6.py": "0b14206f2893590a65c280ee2a533667af28c998731869fcfaab98cb97e3ac05",
+    "rain_mom_pass_a7.py": "b55ef7252af0b0999bd8a6254690a16d1c499bb4b0238ba3fa0249066f02f8b0"
+  },
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "stage": "Same camera/geometry pose per view, neutral white lights, neutral skin/brows/lashes, eye color desaturated. All hair/body/wardrobe hidden, not deleted.",
+  "checks": {
+    "official-source": {
+      "rest_bone_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+      "source_rest_bone_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+      "invalid_drivers": [
+        "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+      ],
+      "diagnostic_visibility_only_driver_mutes": [
+        "GEO-rain-scarf"
+      ]
+    },
+    "existing-a7": {
+      "rest_bone_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+      "source_rest_bone_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+      "invalid_drivers": [
+        "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+      ],
+      "diagnostic_visibility_only_driver_mutes": [
+        "GEO-rain-scarf"
+      ]
+    }
+  },
+  "images": [
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/official-source-clay-front.png",
+      "sha256": "64cd00a48079f51f5c722eda0284e913e793701af3f8a21c536c8d58831a6850",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/official-source-clay-three-quarter.png",
+      "sha256": "6d56845ec4e27f9596802d707004d3e363f0fca45a2f05e79aef02350196ea38",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/official-source-clay-profile.png",
+      "sha256": "87363b90ddd63e135ea06294fd687408e0e823b3e177adce840f7f215a4fc74a",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-front.png",
+      "sha256": "91b9e79e95f3f28db47a3449b0110a50220c8e9275e613f551adef9b062e3220",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-three-quarter.png",
+      "sha256": "6dbf6a17dc690231eccc965e4cda378f85a4f56c919320d92fc211c80b8d8ca7",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-form-audit/native-v2/existing-a7-clay-profile.png",
+      "sha256": "a13ad6e0bf2f02a598d726347054c5c61ba721d124b5a9e78c918b387859790c",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "geometry_file": "studio/reviews/mom-form-audit/head-edit-data.json.gz",
+  "geometry_file_sha256": "a26af1afba1639a4e4b84becc3fe00a70345bf3f3f55c4019d0afd6231c8f5db",
+  "diagnostic_version": 2,
+  "supersedes": "Parent native-audit.json claimed wardrobe hidden but source scarf visibility driver reset it; parent frames retained as diagnostic history.",
+  "art_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Actual diagnostic renders of UNCHANGED source and A7. Not a new character result, not acceptance, not proof that the rig is fully functional.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}
