@@ -1,0 +1,52 @@
+{
+  "revision": "mom-head-form-r4",
+  "status": "partial_likeness_progress_requires_further_refinement",
+  "new_geometry_created": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r4/comparison-identity.png",
+      "sha256": "eddb3f05a136d4d7e8387a1da37cafaa5d20e220070f31d2804c465ce29a0b2f"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/comparison-warm.png",
+      "sha256": "8a2b0cfb3226ae1515ce701193df29bb2d77714c39f5ac31897c7e995157ec18"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/comparison-clay.png",
+      "sha256": "523bbdfbc866a639f24aa9495748c1eeec6b5b39d57bcbeddc3ce6caaf4e5720"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-three-quarter.png",
+      "sha256": "8dc44624f806d30e2828f78a15621c00ebd70316e3686282a55ed5e90895df5c"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-profile.png",
+      "sha256": "24eabbadb585face4452d4c5c0fffb314860b579df743f53ad8f24f8cd648a6b"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-blink.png",
+      "sha256": "32cda35c806e0166debee4f5b511c4ac25a333215031d8c73d22e9a81f4a8638"
+    }
+  ],
+  "visual_findings": [
+    "Neutral mouth reads higher/wider, closer to the reference placement than R3; lower jaw is less square without a new character reset. This is a visual judgment, not a calibrated similarity score.",
+    "Front/three-quarter/profile remain coherent at this checkpoint. Profile lip/chin separation retained; complete anatomical/collision certification is not claimed.",
+    "Nasal shoulders have slightly more rounded volume, but nostril/alar underside remains harder than the canonical soft button nose.",
+    "Mouth refinement is incomplete: upper lip seam/Cupid bow is too flat and philtrum lacks the reference secondary planes. The warm smile is broader and more crescent-shaped than the gentle canonical smile; equal controls do not establish matching expression.",
+    "No finished likeness claim: absence of target hair/framing/materials and incomplete eye/lash/face migration still materially limit identity."
+  ],
+  "next_art_priority": [
+    "Refine upper-lip/Cupid/seam and philtrum secondary volumes, with limited smile range rather than compensating solely through wider corners.",
+    "Refine soft alar/nostril support in side and three-quarter views; retain supported eye/brow design until a specific comparison justifies changes.",
+    "Reintroduce canonical hair framing only with actual native geometry and honest side/back evidence; do not hide facial or lash defects."
+  ],
+  "known_blink_visual_failure": true,
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41707828875",
+  "artifact_id": 13266881865,
+  "verification_scope": "Actual saved binary reopened in a second process on same worker: geometry/neutral pixels/pose restoration errors zero, 17 images packed. Not independent downloaded-artifact verification.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

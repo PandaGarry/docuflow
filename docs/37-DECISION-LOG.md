@@ -608,3 +608,25 @@ planning/checklist/diff PASS. Native41707828875 выполняется; реал
 параллельный41706552574 для того же248a817 успешен. Это infrastructure issue,
 не основание объявлять новый native успехом. Blink/rig migration/hair/body/
 lookdev/wardrobe не завершены; production swap=false.
+
+### R4 actual native результат и visual review
+
+Native41707828875 success10m47s, publishba17810, artifact13266881865
+(71,773,001bytes, expires2026-11-17T20:05:45Z). 8actual PNGs: neutral3,
+warm3, known-failing blink2. Saved binary SHA558a416a… повторно открыт в
+отдельном процессе того же worker: Basis/eval/pixel errors0,17packed images,
+pose restore0. Это same-worker saved-file verification, не independent
+artifact-download verification и не приёмка сходства.
+
+Просмотрены canonical/R3/R4 neutral+same-pose boards и три ракурса. Neutral
+mouth выше/шире, lower jaw менее квадратная: частичный visual progress без
+смены найденного персонажа. Nose tip rounder modestly; alar underside ещё
+жёсткий. Upper lip/Cupid/seam слишком плоские, philtrum underdefined; warm
+smile шире/crescent-like, сильнее canonical restrained expression. Следующие
+art priorities конкретизированы, а не объявлено «готово». Hair/framing/materials
+ещё отсутствуют; blink failure и facial migration остаются открыты.
+
+324local tests PASS22.195s,31task plan/checklist/diff PASS. Actual-basis recipe
+comparison bound0.3micrometre учитывает rounded7-decimal source/export и
+float32native write; observed max0.24005micrometre. Native saved/reopened exact
+geometry equality остаётся0m. Contract tests не оценивают likeness/anatomy.
