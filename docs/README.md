@@ -97,7 +97,11 @@ python3 studio/tools/production_status.py doctor
 
 22. [54 · Мама R8: secondary form и original-UV paint](54-MOM-R8-FORM-AND-UV-PAINT.md):
     реальные нос/губы/щёки,2048px albedo/roughness на исходной UV; native build
-    и separate-process saved-file проверка в работе.
+    и separate-process reopen успешны; upper lip всё ещё тяжёлая, локальная доводка в R9.
+
+23. [55 · Мама R9: доводка верхней губы по actual review](55-MOM-R9-UPPER-LIP-REFINEMENT.md):
+    нос/щёки R8 сохранены, уменьшены высота/объём верхней губы и пигмента;
+    новый native build/reopen выполняется.
 
 ## Исторические планы и технические материалы
 

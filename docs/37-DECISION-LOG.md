@@ -751,3 +751,22 @@ scale→actual image. Does not rewrite/wrap/clip original UVs. Domain/min/max/ha
 exported; packed image and actual UV/domain shader links checked after save.
 Unit test covers translated/scaled outside0–1 layout and original-data retention.
 This is a technical retry of same R8 artistic targets, not another likeness reset.
+
+
+### R8 actual result и локальная доводка R9 по видимому дефекту
+
+41727603994 SUCCESS5m25s/publish3637c9b; artifact13273758418 (88,237,730bytes,
+expires2026-11-17T22:10:14Z).11actual PNGs,19packed images. Basis/eval/pixel/
+pose-restore0, original UV hash unchanged, active packed EXR bytes/shader links
+survive reopen. Original render UVMap фактически вtile1003:U2.007–2.993,
+не0–1. Layout/source domain экспортированы, гипотеза заменена реальными данными.
+
+Просмотрены canonical/R7/R8 color, isolated clay и same-helper smile boards.
+Nose dome/mouth placement/anterior cheek planes — partial visible progress.
+Но более чёткий paint показывает upper vermilion too tall/heavy.98242c2: R9
+меняет лишь4upper-lip/Cupid/border targets на.8–1.2mm, остальные R8targets/
+brow/ears сохранены. Upper pigment height−1.4mm с tapered corners, lower mask
+сохранён; roughness .40upper/.34lower/.47skin. Не another broad reset.
+363local tests PASS18.158s,31task plan/checklist/diff PASS. Native41728933536
+выполняется, итог пока неизвестен. Art/full face/acting/production не приняты,
+blink/face-ear rest migration/canonical hair/body/wardrobe остаются открыты.
