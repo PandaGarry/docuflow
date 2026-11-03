@@ -47,8 +47,20 @@ R7 point albedo/roughness remain fallback data, not the active material source.
 
 ## Checkpoint
 
-Pure tests and actual native build/reopen prepared; result and visual review
-pending. Matched neutral clay views isolate geometry from material changes.
+Corrected [native41727603994](https://github.com/PandaGarry/docuflow/actions/runs/41727603994)
+SUCCESS5m25s/publish3637c9b.11actual frames,19packed images; separate-process
+same-worker saved-binary reopen passed geometry/UV/EXR-byte/shader-link/pixel/
+pose-restore checks. Actual original render UVMap occupies tile1003,
+U2.007–2.993: domain is now observed, not assumed.
+
+[Canonical / R7 / R8](../studio/reviews/mom-head-form-r8/comparison-identity.png) /
+[isolated clay form](../studio/reviews/mom-head-form-r8/comparison-form.png) /
+[actual visual review](../studio/reviews/mom-head-form-r8/visual-review.json).
+
+Visual progress in nose/mouth placement/anterior cheek volume is visible in
+clay. More definite paint reveals upper vermilion still too tall/heavy. R9 is a
+local response to that actual observation, not a new reset. R8 is not finished.
+Editable artifact13273758418 is88,237,730bytes, expires2026-11-17T22:10:14Z. Matched neutral clay views isolate geometry from material changes.
 Colored and restrained-smile views are separate. No hair/wardrobe/body reset.
 
 Known blink/lash failure and full facial/ear rest migration remain open. Positive
