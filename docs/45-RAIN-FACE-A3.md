@@ -78,3 +78,20 @@ A4 требует просмотра: совпадение стиля новых
 пересечения с плечами/ушами/лицом, силуэт в профиль. Это groom study без hair
 simulation/collision acceptance. На момент code checkpoint A4 **не отрендерен**;
 успех/похожесть нового groom заранее не заявляется.
+
+## A4 visual failure и исправление A5
+
+Run 41607338326/commit 583a08a выполнил настоящий native render, но **A4
+отклонён**: новые пряди в copied Rain material выглядят полностью чёрными,
+между back/side locks видны зазоры, пробор и crown ещё не состыкованы.
+Technical job success и finite head не отменяют очевидный визуальный fail.
+Изображения A4 сохраняются, не выдаются за готовую причёску.
+
+A5 сохраняет лицо A3/A4 и настоящую Rain. Для добавленного groom используется
+отдельный Principled shader (Weight=1) без зависимостей от source-object shader
+attributes, тёплый brown fiber variation. Материал применяется также к stock
+crown для единства. Curtain locks расширены/перекрываются, side radius увеличен,
+волны face-framing locks усилены, исходный widow peak приподнят в пробор с
+переносом всех hair shape keys. Добавлен 9-point blink sweep в текущем A5,
+но collision/dynamics/art acceptance по-прежнему не объявляются.
+Новый A5 render на момент code checkpoint ещё не получен.
