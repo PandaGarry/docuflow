@@ -1,0 +1,75 @@
+name: Mom form audit (existing A7 rejected, not a new design)
+
+on:
+  push:
+    branches: ['arena/4c8ed03c-docuflow']
+    paths:
+      - 'studio/tools/mom_form_review.py'
+      - 'studio/tools/mom_native_form_audit.py'
+      - 'studio/reviews/mom-form-audit/landmarks.json'
+      - '.github/workflows/mom-form-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mom-form-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native-form-audit:
+    if: github.ref == 'refs/heads/arena/4c8ed03c-docuflow'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/4c8ed03c-docuflow
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
+          python -m pip install -r studio/production/blender-requirements.lock
+      - name: Contracts and public-image alignment (not likeness acceptance)
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_*pipeline*.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_form_audit.py' -q
+          python studio/tools/production_status.py validate
+          python studio/tools/mom_form_review.py
+      - name: Render unchanged original and A7 clay heads; export indexed edit data
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          mkdir -p .cache
+          set +e
+          timeout 900 python studio/tools/mom_native_form_audit.py > .cache/mom-form-audit.log 2>&1
+          result=$?
+          tail -n 80 .cache/mom-form-audit.log
+          exit "$result"
+      - name: Preserve bounded diagnostic on failure
+        if: failure()
+        run: |
+          mkdir -p studio/reviews/mom-form-audit
+          if [ -f .cache/mom-form-audit.log ]; then
+            tail -n 100 .cache/mom-form-audit.log > studio/reviews/mom-form-audit/native-failure.txt
+          else
+            echo 'Worker did not start; inspect preceding steps.' > studio/reviews/mom-form-audit/native-failure.txt
+          fi
+      - name: Publish diagnostic evidence, not a new accepted model
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add studio/reviews/mom-form-audit
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish unchanged Rain/A7 native clay form audit and indexed head data'
+          git push origin arena/4c8ed03c-docuflow

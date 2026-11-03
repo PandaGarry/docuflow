@@ -1,0 +1,39 @@
+{
+  "purpose": "Manual public-image diagnostic, not a fitted 3D target, recognition, likeness score or acceptance gate.",
+  "alignment": "Two pupil centers: translation, uniform scale and rotation only. No anisotropic resize, shape warp or retouch. Individual inputs untouched.",
+  "coordinate_system": "Pixels, original image, origin top-left. Approximate manual picks; do not turn into exact anatomical ground truth.",
+  "images": {
+    "canonical_portrait": {
+      "path": "studio/characters/mom/master/face.png",
+      "role": "High-resolution existing cartoon identity portrait; not the 145px upscaled turnaround crop used in older boards.",
+      "points": {
+        "pupil_l": [282, 395], "pupil_r": [489, 395],
+        "eye_outer_l": [210, 391], "eye_inner_l": [326, 414],
+        "nasal_base_l": [339, 496], "nasal_base_r": [429, 496],
+        "subnasale": [384, 513],
+        "mouth_corner_l": [311, 562], "mouth_corner_r": [458, 562],
+        "stomion": [384, 568], "chin": [384, 675]
+      },
+      "manual_uncertainty_px": 4
+    },
+    "a7": {
+      "path": "studio/reviews/rain-mom-a7/candidate-face.png",
+      "role": "Existing actual native A7. Not new geometry. Lens/light differ from 2D canonical art; pupil gaze is not a perfect skull registration.",
+      "points": {
+        "pupil_l": [324, 356], "pupil_r": [444, 356],
+        "eye_outer_l": [278, 354], "eye_inner_l": [355, 366],
+        "nasal_base_l": [354, 419], "nasal_base_r": [415, 419],
+        "subnasale": [384, 425],
+        "mouth_corner_l": [336, 455], "mouth_corner_r": [431, 455],
+        "stomion": [384, 458], "chin": [384, 506]
+      },
+      "manual_uncertainty_px": 3
+    }
+  },
+  "limits": [
+    "References are stylized 2D images, not a calibrated multi-view scan. Camera, gaze, expression and lighting differ.",
+    "Only clearly visible features annotated. Hair-occluded skull/cheek/body contours are deliberately not invented.",
+    "Compare ratios as diagnostic clues, then inspect neutral native clay in multiple views. Do not blindly set 3D vertex targets from this single picture.",
+    "No private photographs, screenshots, filenames or photo hashes are included."
+  ]
+}
