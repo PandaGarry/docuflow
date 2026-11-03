@@ -26,7 +26,16 @@ full-character approval. Original Rain geometry/rig remains the actual asset.
 
 Fresh-source rebuild, matched three-view clay **and** color renders, native
 blink diagnostics and a separate-process saved-binary reopen are prepared.
-Native result and visual review pending at this checkpoint. The saved file
+Native41716230087 **success9m33s**, published809bed5. Eleven actual renders,
+packed binary artifact13270168708 (expires2026-11-17T20:59:18Z). Separate-process
+reopen checks passed including actual attached colors/material assignments.
+
+**Visual review requires correction:** ears are more compact as requested, but
+first upper-lip pigment is too high/diffuse, skin too pale/beige, iris too blue.
+Deform weights alone did not define a finished lip border. Do not present R5 as
+finished. R6 addresses these actual observed errors; preserve R5 evidence.
+[Actual first-color review](../studio/reviews/mom-head-form-r5/comparison-identity.png)
+/ [visual findings](../studio/reviews/mom-head-form-r5/visual-review.json). The saved file
 will be colored and neutral with front camera; original body/hair retained but
 hidden. This is still a face study, not completed hair/body/wardrobe.
 
