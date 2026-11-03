@@ -9,21 +9,25 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущий визуальный эксперимент · Rain v3 → мама
+## Текущий визуальный эксперимент · Rain v3 → мама A5
 
-**Реальные native «до/после»:** [оригинал и A2](studio/reviews/rain-mom-a2/comparison.png).
-[Три четверти](studio/reviews/rain-mom-a2/candidate-three-quarter.png) ·
-[улыбка](studio/reviews/rain-mom-a2/candidate-smile.png) ·
-[технический receipt](studio/reviews/rain-mom-a2/report.json) ·
-[честный visual review / blockers](studio/reviews/rain-mom-a2/visual-review.json).
+**[Эталон / начало прохода A2 / текущий A5](studio/reviews/rain-mom-a5/comparison-reference.png)** ·
+[Три четверти](studio/reviews/rain-mom-a5/candidate-three-quarter.png) ·
+[Профиль](studio/reviews/rain-mom-a5/candidate-profile.png) ·
+[Полный рост](studio/reviews/rain-mom-a5/candidate-full.png) ·
+[Receipt](studio/reviews/rain-mom-a5/report.json) ·
+[Visual review / blockers](studio/reviews/rain-mom-a5/visual-review.json).
 
-Настоящий официальный Rain v3 (CC BY 4.0), не процедурная замена: skin lift,
-мягче талия/щёки/подбородок, небольшой nose reduction и более тонкие брови.
-Стоковые одежда и причёска пока сохранены. **Похожесть частичная, art approval=false**;
-закрытие век/ресницы ещё требуют работы, полный rig/animation pass не выполнен.
-Нативные кадры получены в отдельном GitHub Actions Blender worker, не AI-рисунки.
-[Получение исходника, история A1/A2 и пересборка](docs/44-RAIN-MOM-STUDY.md).
-Credit: Rain Rig (CC) Blender Foundation | studio.blender.org.
+Настоящая Rain, не сгенерированная замена: переработаны нос/губы/нижняя челюсть,
+контур глаз/цвет iris/complexion; добавлены разделённая чёлка и длинные волнистые
+hair meshes на исходном риге. Одежда пока исходная. **Похожесть частичная,
+art approval=false**. Волосы пока грубый look study: крупные пряди, заметные
+стыки с crown, недостаточно естественный flow. Цвет/плоскости лица тоже требуют
+работы; render success/267 local tests не означают cinema-quality acceptance.
+
+[Получение Rain и A1/A2](docs/44-RAIN-MOM-STUDY.md) ·
+[Продолжение A3–A5, реальные кадры и отклонённые попытки](docs/45-RAIN-FACE-A3.md).
+Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, CC BY 4.0.
 
 ## Актуальный план развития движка · 2026-11-03
 

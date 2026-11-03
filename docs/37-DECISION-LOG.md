@@ -454,3 +454,24 @@ Art/likeness/acting acceptance=false: лицо всё ещё Rain; улучше�
 даже в paired source setup, улыбка сдержанная. Следующий шаг — authored face
 refinement и совместная работа upper/lower lids с native intermediate checks;
 гардероб и canonical defaults пока не меняем. Подробности/ссылки — документ44.
+
+## Итерация 2026-11-03 · Более явное сходство: A3 → A5
+
+Пользователь после A2 разрешил продолжение и потребовал более явного сходства.
+Это не approval результата. A3 меняет nose/lips/jaw/eye contour/iris/complexion,
+публикует reference/A2/A3 board и профиль, выполняет paired native blink/smile.
+A4 добавляет long parted hair на настоящую Rain, но visual fail: copied source
+shader делает новые clumps чёрными, видны gaps. Отрицательные кадры сохранены.
+
+A5 исправляет material, overlap/side coverage/waves/part. Native traceback
+выявил ещё API difference: fresh Principled не имеет exposed legacy Weight
+socket; исправлено, добавлен native shader probe и bounded failure diagnostics.
+Run41608973796 success, source-native frames f93a164. 267 local tests passed.
+Original mesh topology/rest rig unchanged, new invalid=0, 9 finite A5 blink
+samples, neutral restore=0. Added 11 hair clumps, no hair collision/dynamics claim.
+
+A5 **всё ещё art/likeness/production approval=false**: больше сходных признаков,
+но волосы грубые/пластинчатые, стыки crown/roots и упрощённые волны видны,
+face/skin needs work. Не выдаём bounded native success за киноуровень. Одежда и
+canonical sources сохранены. Дальше authored groom/face refinement и реальные
+intermediate/head-motion checks. Кадры, артефакт и ограничения — документ45.

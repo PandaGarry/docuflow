@@ -30,6 +30,10 @@
     официальный .blend, реальные before/after, изменения skin/body/face, paired
     expression diagnostics и отдельная отрицательная художественная оценка.
 
+13. [45 · Rain: сходство лица и обрамление A3–A5](45-RAIN-FACE-A3.md):
+    нос/губы/челюсть, long parted hair на настоящем Rain, rejected A4 shading,
+    actual reference/A2/A5 board и отдельный visual review без art approval.
+
 Канонический источник состояния — [plan.json](../studio/production/plan.json).
 [Первоначальный снимок окружения](../studio/production/environment.json) сделан
 до установки изолированного runtime и не равен smoke test; [результаты проверки планового пакета](../studio/production/verification.json)

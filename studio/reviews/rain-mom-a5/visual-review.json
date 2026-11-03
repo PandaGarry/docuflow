@@ -1,0 +1,62 @@
+{
+  "revision": "rain-mom-a5",
+  "review_date": "2026-11-03",
+  "approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "review_basis": "Inspected actual native reference/A2/A5 board, three-quarter, profile and blink. No generated/retouched substitute frames.",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/rain-mom-a5/comparison-reference.png",
+      "sha256": "4a127b90abba17c7c53bbb4a24e232f07d18d07c1cdf4212975ae6317c305069"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a5/candidate-face.png",
+      "sha256": "8f62d58e58a21e4287c5ea58f45372d4c78aef66499707e13928991e0988f4fe"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a5/candidate-three-quarter.png",
+      "sha256": "3a0e4e5d084f6f37877421fc97a2079e25ce6b3613d97ce6fb1aa271781ccfcc"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a5/candidate-profile.png",
+      "sha256": "5846c14b5b818d3c2b20d094e8754372f492e2b8225fd55977bc5a3a387a403c"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a5/candidate-blink.png",
+      "sha256": "3d0e28fb200bc77a5418106a531c66bd7a19843179651a46ac043db12278706e"
+    }
+  ],
+  "visible_progress": [
+    "Face no longer just recolored: nasal base reduced, lower jaw tapered/shortened, lips wider/thinner and corners lifted, iris less cyan, ears less prominent.",
+    "Long face-framing hair and center-parted silhouette now replace the source short/ponytail appearance; original Rain character/rig remains underneath.",
+    "A4 entirely-black new hair material failure repaired; six A5 native frames now show shaded warm-brown hair.",
+    "Upper/lower lid setup improves continuity of the lash edge relative to A2 single-upper closure, but is not a final acting/anatomy pass."
+  ],
+  "visible_limitations": [
+    "Hair remains an authored BLOCKOUT/LOOK STUDY: large plank-like clumps, overly regular fiber texture, visible root/crown joins, inadequate natural layered flow. Not cinema-quality grooming.",
+    "Hair appears lighter/blonder and less richly brown than canonical mom; lighting differs from reference but this is not treated as an excuse for a color/likeness acceptance.",
+    "Face still has recognizable Rain eye sockets/brow/cheek planes; nose/lip/profile identity only partially matches reference.",
+    "Reference skin has warmer/rosier variation and softer eye-region presentation; current study is not a final skin lookdev pass.",
+    "Lid surface still needs refinement, expression range is unproven beyond limited blink/smile checks.",
+    "New clumps rigidly follow original DEF-Head/lattice. No shoulder collision, hair dynamics, full-body motion or speech approval. One original invalid spine driver persists."
+  ],
+  "technical_observations": {
+    "original_mesh_topology_unchanged": true,
+    "rest_rig_signature_unchanged": true,
+    "new_invalid_drivers": [],
+    "neutral_restore_error_m": 0.0,
+    "finite_blink_samples": 9,
+    "new_hair_clumps": 11
+  },
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41608973796",
+  "native_artifact": "https://github.com/PandaGarry/docuflow/actions/runs/41608973796/artifacts/13217354395",
+  "artifact_expires_at": "2026-11-17T09:14:20Z",
+  "next_steps": [
+    "Integrate part/roots/crown rather than layering obvious clumps; reshape/taper hair into softer asymmetrical waves and bring palette closer.",
+    "Refine reference facial planes, eyelids, lip/nasal profile and skin variation in matching multi-view native renders.",
+    "Test head motion/hair shoulder clearance, intermediate facial poses and speech before considering wardrobe or production use."
+  ],
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,4 +1,4 @@
-# 45 · Rain → мама: направленная переработка лица A3
+# 45 · Rain → мама: лицо и обрамление A3–A5
 
 2026-11-03. После просмотра A2 пользователь прямо потребовал более явного
 сходства. Одобрение продолжения не означает приёмку лица/рига/production.
@@ -111,3 +111,42 @@ native shader-construction probe now runs before acquiring the large source.
 The earlier wording “Weight=1” described intent, not a completed native result.
 Bounded traceback is preserved as failure-legacy-weight-socket.txt. The separate
 log-capture directory error is preserved as failure-log-redirection.txt.
+
+## Текущий итог: A5 действительно отрендерен и просмотрен
+
+Run [41608973796](https://github.com/PandaGarry/docuflow/actions/runs/41608973796)
+**success**, frames commit **f93a164**. Предыдущие A5 failures сохранены как
+диагностика, а не скрыты. **267 local tests passed**; native job отдельно
+выполнил 230 contract tests, native shader probe и фактический Blender build.
+
+- [Эталон / A2 / A5](../studio/reviews/rain-mom-a5/comparison-reference.png)
+- [Три четверти](../studio/reviews/rain-mom-a5/candidate-three-quarter.png)
+- [Профиль](../studio/reviews/rain-mom-a5/candidate-profile.png)
+- [Полный рост](../studio/reviews/rain-mom-a5/candidate-full.png)
+- [Blink](../studio/reviews/rain-mom-a5/candidate-blink.png) /
+  [smile](../studio/reviews/rain-mom-a5/candidate-smile.png)
+- [Technical receipt](../studio/reviews/rain-mom-a5/report.json) /
+  [Visual review](../studio/reviews/rain-mom-a5/visual-review.json)
+- [Editable packed .blend artifact, ~67MB](https://github.com/PandaGarry/docuflow/actions/runs/41608973796/artifacts/13217354395)
+  — expires **2026-11-17 09:14:20 UTC**. PNG/JSON и recipes остаются в Git.
+
+Сохранены topology всех **исходных** meshes и original rest rig signature.
+Добавлено 11 новых hair clumps; total scene topology поэтому не идентична
+исходнику. После возврата из pose head error=0m, новых invalid drivers нет,
+9 A5 blink samples finite. Старый original spine invalid driver не исправлен.
+Head/weights/rig не заменены процедурной фигурой. Asset Python scripts disabled.
+Все шесть individual native PNG hashes перепроверены после получения из CI.
+
+**Визуально:** появился более близкий тип лица/обрамления вместо короткой Rain;
+чёрный shader failure устранён. **Но НЕ профессионально завершённый groom:**
+пряди слишком крупные/пластинчатые, root/crown joins видны, волны недостаточно
+естественные, цвет выглядит слишком светлым. Плоскости лица/skin/eye region
+ещё не равны эталону. Это первый editable long-hair look study, не красивый
+финал, не анатомическая/актёрская/пользовательская приёмка. Wardrobe unchanged.
+
+Следующий этап: интеграция roots/пробора/crown, более естественная асимметрия
+локонов и palette correction; затем дальнейшая авторская доводка facial planes
+и проверка head motion/shoulder clearance. Одежду пока не переоформляем.
+
+Пересборка текущей ревизии: `python studio/tools/rain_mom_pass_a5.py` в pinned
+native окружении с официальным download access; workflow содержит Ubuntu libs.
