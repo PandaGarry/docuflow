@@ -1,0 +1,53 @@
+{
+  "stage": "inspect",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "script_sha256": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+  "images": [
+    {
+      "path": "studio/reviews/rain-study/source-full.png",
+      "sha256": "7dcc96c078235085e09acaf4f43adb61e12e767e9faa3ca323517443858fd41b",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.05
+        ],
+        "target": [
+          0,
+          0,
+          0.85
+        ],
+        "ortho_scale": 1.95
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/rain-study/source-face.png",
+      "sha256": "e691404e351ee47dac79c7a40bbc82915eb6c0f19454bd452945911115948ee8",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.45
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "source_scripts_disabled": true,
+  "art_approved": false
+}
