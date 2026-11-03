@@ -9,30 +9,33 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама R4: ещё ближе к эталону, без смены направления
+## Текущая работа · мама: компактнее уши, цвета лица по эталону
 
-**[Эталон / предыдущая R3 / новая R4](studio/reviews/mom-head-form-r4/comparison-identity.png)** ·
-[Те же smile controls, R3/R4](studio/reviews/mom-head-form-r4/comparison-warm.png) ·
-[Три одинаковых ракурса](studio/reviews/mom-head-form-r4/comparison-clay.png) ·
-[Native artifact / результаты / ограничения](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
+**[Эталон / реальная форма / текущий цвет](studio/reviews/mom-head-form-r7/comparison-identity.png)** ·
+[Уши до/после](studio/reviews/mom-head-form-r7/comparison-ears.png) ·
+[Мягкая native улыбка](studio/reviews/mom-head-form-r7/comparison-portrait.png) ·
+[Цвет в трёх ракурсах](studio/reviews/mom-head-form-r7/color-three-views.png) ·
+[Editable native artifact / результат / ограничения](docs/53-MOM-R7-LOWER-LIP-COLOR.md).
 
-Пользователь поддерживает направление R2, но просит больше сходства. В R4
-рот немного поднят/расширен, кончик носа округлён, углы нижней челюсти смягчены.
-Authored eye/brow controls сохранены; новая форма построена из настоящей
-исходной Rain, без stack прошлых деформаций. Все кадры — реальные Blender renders.
+По просьбе пользователя сохранено поддержанное направление R4, оригинальные
+уши немного уменьшены/прижаты, уточнены губы/philtrum. На настоящую rigged mesh
+добавлены skin/lip/blush/brow/gray-blue iris colors; не paint-over рендера.
+Три actual native итерации R5–R7 включают разбор ошибок первого цвета. R7
+сохраняет всю форму R6, исправляет только нижнюю губу/material response.
 
-Native build и отдельное повторное открытие сохранённого `.blend` успешны:
-Basis/evaluated/pixel/restore errors0,17images packed. Это проверка сохранности,
-**не** художественная приёмка. В нейтрали рот/нижняя челюсть читаются ближе к
-эталону; Cupid/seam/philtrum и alar underside ещё требуют работы. Warm smile
-пока шире/сильнее эталонной, её нельзя выдавать за завершённое совпадение мимики.
-Моргание/ресницы не исправлены, полная facial migration/hair/body/lookdev/wardrobe
-не завершены. Production swap=false; master/history/private inputs сохранены.
+Реальный сохранённый R7 `.blend` повторно открыт в отдельном процессе: geometry/
+pixel/restore errors0,17packed images, albedo/roughness/link сохранены. Это
+same-worker persistence pass, не artistic approval. Уши компактнее, нижняя
+губа снова кораллово-розовая; skin warmth, lip/nose secondary planes, eye/lash
+integration и canonical hair/frame ещё требуют работы. Моргание не исправлено;
+full facial migration/acting/body/wardrobe не завершены. Production swap=false.
 
-[Поддержанное направление и исправление улыбки R3](docs/49-MOM-R3-FACE-CONTROLS.md) ·
-[Primary head R1/R2 и failures](docs/48-MOM-PRIMARY-HEAD.md) ·
-[Почему отклонён A7](docs/47-MOM-FORM-RESET.md).
-Тесты не являются оценкой сходства или киноуровня.
+[R5: уши и первый цвет с открытыми дефектами](docs/51-MOM-R5-EARS-AND-COLOR.md) ·
+[R6: upper border/iris и under-color нижней губы](docs/52-MOM-R6-COLOR-REVIEW-CORRECTION.md) ·
+[R4: приближение формы к эталону](docs/50-MOM-R4-CANONICAL-LIKENESS.md) ·
+[R3: поддержанное направление / smile controls](docs/49-MOM-R3-FACE-CONTROLS.md).
+346local tests не оценивают likeness/киноуровень. Masters/history сохранены,
+private inputs не читаются/не публикуются.
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03

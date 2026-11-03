@@ -691,3 +691,28 @@ PASS18.599s: added actual R5/R6 geometry/attribute/material/render/binary/pose
 provenance, not likeness. Plan/checklist/diff PASS. Native41719835416 выполняется,
 результат пока неизвестен. Сохранённые lip/skin colors не означают завершённую
 facial migration/acting/hair/body/wardrobe; art/production approval=false.
+
+
+### R7 actual native цвет и финальный checkpoint этой итерации
+
+41719835416 success8m28s/publisha5424ad, artifact13271961756 (72,722,621bytes,
+expires2026-11-17T21:21:17Z). SHA959dc66d…;11actual frames. Second-process
+same-worker reopen: Basis/evaluated/pixel/restore errors0,17images packed,
+actual albedo/separate roughness attribute/link сохранены. Не independent
+uploaded-artifact download verification. Geometry R7/R6 exactly identical,
+clay frames совпадают; только color correction. Inherited native recipe flag
+«new_geometry_created» значит source rebuild, не новая художественная форма;
+review explicitly marks geometry_changed_since_r6=false.
+
+Просмотрены current canonical/clay/color/portrait/three-view и matched ear board.
+Ears компактнее, outer-X decrease7.74mm/side; fixed ear-subset height decrease
+6.46mm. Это geometry diagnostics, не target-calibrated anatomy score. Lower
+vermilion снова pink/coral, upper pigment более очерчен, iris muted gray-blue.
+Skin/nostril warmth и light contrast ещё слабее эталона; lip/philtrum/button-nose
+secondary planes, eye/lash integration и canonical hair/frame не завершены.
+Blink known failure не скрыт и не принят. Exact likeness/finished face/cinema
+quality не заявляются; art/user/production approval=false.
+
+346local tests PASS17.505s,31task planning/checklist/diff PASS. Проверяются real
+recipe/frame/native/material/geometry provenance и persistence, не красота.
+README/docs53/current boards обновлены, R5/R6 ошибки сохранены.

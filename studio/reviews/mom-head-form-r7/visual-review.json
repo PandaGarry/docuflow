@@ -1,0 +1,64 @@
+{
+  "revision": "mom-head-form-r7",
+  "status": "compact_ears_and_current_color_pass_partial_likeness_progress",
+  "new_geometry_created": false,
+  "new_native_binary_created": true,
+  "geometry_changed_since_r6": false,
+  "user_supports_r4_direction": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r7/comparison-identity.png",
+      "sha256": "9c0c089a0256327f19efcb4a6bbe34d0b6603ff2882b29c4f7e71af803f7e72a"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/comparison-portrait.png",
+      "sha256": "c5b855f75b2a604d5a26cb14450a1647cf584eb92d51f577705f01bb9d0d8ef5"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/comparison-ears.png",
+      "sha256": "c0da682658413e2e7b46dfb074ad4e50b54efd7c0381c942ea5fb0e5770e4b35"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/color-three-views.png",
+      "sha256": "eb859e4baacb1d0b9bf4e260b801a2dda25016d6e5008d611c1a0a7c685d0a46"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-front.png",
+      "sha256": "b0734c9713ddc267e632a604847c1a9165e5c21ce2ad5eb8677fec1bd66c14ba"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-three-quarter.png",
+      "sha256": "66daee6e1d6c5db73e7478be7b3e82c8a1cb0e0305b5b7c75518e442082445a6"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-profile.png",
+      "sha256": "b8df80050343ec93bbbbbe8dd9f7ace20ee3b0860d554ecc3e604c7d55e4522d"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/candidate-blink.png",
+      "sha256": "488f7a02ebafc08178b5ac95b9d3097134a28ae6e940605cdf78cac69a19fc6d"
+    }
+  ],
+  "visual_findings": [
+    "Original ears are slightly smaller and less projecting in matched front/three-quarter/profile. Not hidden with hair; maintain the requested moderate change.",
+    "R7 restores lower lip rose/coral pigment missing in R6; upper border/Cupid color more defined than broad R5 trapezoid. Color remains softer/diffuser than canonical vermilion edge.",
+    "Gray-blue iris and warm brown brows are closer to canonical palette direction; actual original eye texture/globe geometry retained.",
+    "Skin/cheek/nostril warmth and lighting contrast remain weaker than reference. Button nose/alar shape, upper-lip/philtrum secondary planes and eyelid-lash integration are not finished.",
+    "Restrained native smile is gentler than R4, but not a complete canonical acting match. Canonical hair/frame still absent, a major visual identity difference."
+  ],
+  "ear_change": "Actual outer absolute X .1373762 to .1296386m per side; fixed subset height .0815835 to .0751230m. Geometry diagnostics, not calibrated reference-ear dimensions.",
+  "geometry_scope": "R5 modified ears and lip/philtrum; R6 changed lower lip by submillimetre offsets. R7 geometry exactly equals R6: color-only correction. Native recipe reconstructs mesh anew, but is not a new shape relative to R6.",
+  "native_runs": {
+    "r5": "https://github.com/PandaGarry/docuflow/actions/runs/41716230087",
+    "r6": "https://github.com/PandaGarry/docuflow/actions/runs/41718122007",
+    "r7": "https://github.com/PandaGarry/docuflow/actions/runs/41719835416"
+  },
+  "artifact_id": 13271961756,
+  "known_blink_visual_failure": true,
+  "verification_scope": "Actual R7 saved binary reopened in a second process on the same worker: geometry/pixels/pose restore zero,17images packed, actual albedo and separate roughness attribute/link persisted. Not an independent downloaded-artifact verification or film-quality approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

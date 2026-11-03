@@ -62,7 +62,7 @@ def main():
             'method':'Uniform pupil-anchor scale/rotation/translation. Identical R7 transform for clay/color; no anisotropic resize, face warp or retouch.',
             'limitations':['Ear subset extents describe the editable geometry, not aesthetic quality or a reference-calibrated ear size.',
                           'Reference depth/camera unknown; materials/expression/hair differ. No likeness score or exact-pixel color claim.'],
-            'new_geometry_created':True,'art_approved':False,'user_approved':False,'production_swap_allowed':False}
+            'new_geometry_created':False,'new_native_binary_created':True,'geometry_changed_since_r6':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False}
     (OUT/'image-review.json').write_text(json.dumps(record,indent=2)+'\n')
     views=Image.new('RGB',(2304,850),'#1c2530');d=ImageDraw.Draw(views)
     for i,view in enumerate(('front','three-quarter','profile')):
