@@ -9,10 +9,11 @@ def paint_samples(points,top,bottom,palette):
     p=np.asarray(points,dtype=float);x,y,z=p.T;ax=np.abs(x)
     front=smoothstep(-.04,-.11,y)
     skin=np.tile(linear(palette['skin']),(len(p),1))
-    temperature=.06*front
+    skin[:,0]*=1.18
+    temperature=.18*front
     skin=skin*(1-temperature[:,None])+linear('#F0A28C')*temperature[:,None]
     blush=.45*np.exp(-((ax-.063)/.030)**2-((z-1.430)/.027)**2)*front
-    tip=.66*np.exp(-(x/.024)**2-((z-1.430)/.020)**2)*front
+    tip=.90*np.exp(-(x/.024)**2-((z-1.428)/.016)**2)*front
     warmth=np.clip(blush+tip,0,.72)
     cheek=skin*(1-blush[:,None])+linear(palette['blush'])*blush[:,None]
     skin=cheek*(1-tip[:,None])+linear(palette['nose'])*tip[:,None]

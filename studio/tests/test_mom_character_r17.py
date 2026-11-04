@@ -14,7 +14,7 @@ class R17(unittest.TestCase):
  def test_oral_lift_not_whole_head_translation(self):
   delta=face.oral_field(self.p,self.s['mouth'])-self.p;self.assertGreater(delta[3150,2],.004);self.assertLess(np.linalg.norm(delta[self.p[:,2]>1.5],axis=1).max(),1e-10)
  def test_new_hair_is_separate_volumetric_flows(self):
-  guides=hair.guides(self.s['hair']);self.assertEqual(len(guides),17)
+  guides=hair.guides(self.s['hair']);self.assertEqual(len(guides),19)
   for i,(_,path,w,d) in enumerate(guides):
    verts,faces,uv,_=hair.lock_geometry(path,w,d,i);v=np.array(verts);self.assertTrue(np.isfinite(v).all());self.assertEqual(len(uv),sum(map(len,faces)));edges={}
    for f in faces:

@@ -82,15 +82,15 @@
   "iris": {
     "inner_radial_scale": 0.84,
     "outer_radial_scale": 0.95,
-    "catchlight_scale": 1.2,
+    "catchlight_scale": 1.5,
     "catchlight_lift_m": 0.0015
   },
   "palette_srgb": {
     "skin": "#E8B48F",
     "upper_lip": "#B55348",
     "lower_lip": "#E98576",
-    "blush": "#F49587",
-    "nose": "#E68F84",
+    "blush": "#EC806F",
+    "nose": "#CF5D49",
     "iris": "#7F9AA3",
     "brows": "#886044",
     "lashes": "#38241F",
@@ -113,9 +113,16 @@
     "outer_lift_m": 0.0035
   },
   "stage": {
-    "key_energy_w": 55,
-    "fill_energy_w": 10,
+    "key_energy_w": 65,
+    "fill_energy_w": 12,
     "rim_energy_w": 18,
     "exposure": 0
+  },
+  "preview_attempt": 2,
+  "corrective_transport": "Spatial deformation reevaluated per original corrective, not locally attenuated shared residual.",
+  "material_calibration": {
+    "skin_red_linear_gain": 1.18,
+    "temperature_mix": 0.18,
+    "nose_peak_mix": 0.9
   }
 }

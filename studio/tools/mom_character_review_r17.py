@@ -39,7 +39,7 @@ def register(entries,output,size=(700,870),target=((245,400),(455,400))):
  return inputs
 
 def main(preview=False):
- out=BASE/'preview' if preview else BASE;r=json.loads((out/'report.json').read_text())
+ out=BASE/'preview-2' if preview else BASE;r=json.loads((out/'report.json').read_text())
  for f in r['images']:
   if sha(ROOT/f['path'])!=f['sha256']:raise ValueError('Native frame modified')
  canon=ROOT/'studio/characters/mom/master/face.png';comparison_output=out/'comparison-face-hair.png'

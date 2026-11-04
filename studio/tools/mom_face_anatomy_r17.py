@@ -1,4 +1,4 @@
-"""Bounded original-surface likeness corrections; same residual on all25 keys."""
+"""Smooth original-surface corrections, reevaluated on every original corrective."""
 import gzip,json
 import numpy as np
 import mom_head_cage as model
@@ -7,7 +7,7 @@ from mom_face_anatomy_r13 import nose_residual
 
 def oral_field(p,settings):
  p=np.asarray(p,float);x,y,z=p.T;ax=abs(x);q=p.copy()
- w=(1-smoothstep(.039,.060,ax))*smoothstep(1.366,1.382,z)*(1-smoothstep(1.406,1.424,z))*smoothstep(-.070,-.120,y)
+ w=np.exp(-(x/.060)**8-((z-1.394)/.026)**8)*smoothstep(-.070,-.120,y)
  lip=np.exp(-(x/.040)**6-((z-1.394)/.016)**6)*smoothstep(-.09,-.13,y)
  q[:,2]+=settings['lift_m']*w+(settings['vertical_scale']-1)*(z-1.3928)*lip
  q[:,2]-=settings['corner_relax_m']*smoothstep(.017,.035,ax)*lip
@@ -18,7 +18,7 @@ def head_residual(p,spec):
  data=json.loads(gzip.decompress(model.DATA.read_bytes()))['official-source'];q=oral_field(p,spec['mouth'])
  x,y,z=np.asarray(p).T
  malar=np.exp(-((abs(x)-.060)/.029)**4-((z-1.438)/.024)**4)*smoothstep(-.065,-.115,y)
- q[:,1]-=.0013*malar
+ q[:,1]-=.0004*malar
  nose,weights=nose_residual(q,data,spec['nose']);q+=nose
  # Reduce the whole naris rim and its inner wall together, not only the visible
  # front skin. Smooth spatial contraction preserves wall thickness in Y.

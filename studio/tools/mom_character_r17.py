@@ -63,17 +63,15 @@ def main():
  import bpy
  global OUT
  preview='--preview' in sys.argv
- if preview:OUT=BASE/'preview'
+ if preview:OUT=BASE/'preview-2'
  OUT.mkdir(parents=True,exist_ok=True);s=json.loads(SPEC.read_text());old,before=load(bpy,s);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy)
  if build.study.sha(ROOT/s['reference']['path'])!=s['reference']['sha256']:raise ValueError('Canonical changed')
  head=bpy.data.objects['GEO-rain-head'];p=np.array(before['basis_vertices']);delta=anatomy.head_residual(p,s);tri=np.array([[f[0],f[j],f[j+1]] for f in before['polygons'] for j in range(1,len(f)-1)]);key_deltas=[]
- blocks=[build.base.transform_points(build.base.point_array(k.data),head.matrix_world) for k in head.data.shape_keys.key_blocks]
- delta,limiter=anatomy.safe_residual(blocks,delta,tri)
- print('JOINT_CORRECTIVE_LIMITER',json.dumps(limiter),flush=True)
+ limiter={'method':'Continuous spatial deformation reevaluated on each original corrective; no shared vertex-wise attenuation. Strict orientation check on every block remains enabled.'}
  def head_field(p):
-  q=p+delta;a=p[tri];b=q[tri];na=np.cross(a[:,1]-a[:,0],a[:,2]-a[:,0]);nb=np.cross(b[:,1]-b[:,0],b[:,2]-b[:,0]);valid=np.linalg.norm(na,axis=1)>1e-12
+  d=anatomy.head_residual(p,s);q=p+d;a=p[tri];b=q[tri];na=np.cross(a[:,1]-a[:,0],a[:,2]-a[:,0]);nb=np.cross(b[:,1]-b[:,0],b[:,2]-b[:,0]);valid=np.linalg.norm(na,axis=1)>1e-12
   if (np.einsum('ij,ij->i',na[valid],nb[valid])<=0).any():raise ValueError('Residual reverses original corrective triangle')
-  key_deltas.append(hashlib.sha256(delta.tobytes()).hexdigest());return q
+  key_deltas.append(hashlib.sha256(d.tobytes()).hexdigest());return q
  edits=[core.edit_blocks(bpy,head,head_field)]
  for name in ('GEO-rain-gums_lower','GEO-rain-gums_upper','GEO-rain-tongue'):edits.append(core.edit_blocks(bpy,bpy.data.objects[name],lambda p:anatomy.oral_field(p,s['mouth'])))
  eye_edits,eye=eyes(bpy,s);edits+=eye_edits
@@ -113,7 +111,7 @@ def main():
  for n,state in hidden.items():bpy.data.objects[n].hide_render=state
  newinvalid=sorted(set(build.base.invalid_drivers(bpy))-set(invalid))
  if restore>1e-7 or rest!=build.base.rig_signature(rig) or newinvalid:raise ValueError('Rig/restoration failure')
- record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'actual_landmark_deltas_m':{str(i):delta[i].tolist() for i in (3150,6375,6341,486)},'same_residual_on_all_original_head_keys':len(set(key_deltas))==1,'original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
+ record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'actual_landmark_deltas_m':{str(i):delta[i].tolist() for i in (3150,6375,6341,486)},'corrective_transport':'Smooth spatial deformation reevaluated for every original block; original key names/weights/drivers retained, corrective deltas deliberately transported.','original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
  build.study.write(OUT/'report.json',record)
 
 def verify():
