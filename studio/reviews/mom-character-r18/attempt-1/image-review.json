@@ -1,0 +1,130 @@
+{
+  "method": "Uniform eye registration, original images retained; no local feature deformation, color grading or reference projection. Compare gray anatomy independently of material.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "portrait_comparison": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -66.08695652173913,
+        -90.72463768115944
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/portrait-front.png",
+      "sha256": "f0f5328de3e980f14588fc11cbc27818c04a629434148f0264aab0b6eef04ad3",
+      "pupils_px": [
+        [
+          386.9487825356843,
+          596.4424853064652
+        ],
+        [
+          635.7081218274112,
+          596.3620981387479
+        ]
+      ],
+      "uniform_similarity": [
+        0.8441893223713922,
+        0.00027280177233072436,
+        -106.4953199541496,
+        -193.61593781805084
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-front.png",
+      "sha256": "e705e413ead0ac908eb25835d22cf112044c49eedb82a9fce759725fe360378a",
+      "pupils_px": [
+        [
+          386.93864013267,
+          596.2462686567164
+        ],
+        [
+          635.8039049235994,
+          596.3455008488964
+        ]
+      ],
+      "uniform_similarity": [
+        0.8438299607138953,
+        -0.0003364675938169116,
+        -106.71103504917619,
+        -193.00027314320346
+      ]
+    }
+  ],
+  "bare_comparison": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -91.08695652173913,
+        -140.72463768115944
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/bare-front.png",
+      "sha256": "3f690d2c3ff8175492764dddf9ca62ef7704fd6888392b80036f22deee2cc819",
+      "pupils_px": [
+        [
+          411.50555555555553,
+          508.0722222222222
+        ],
+        [
+          610.9246298788695,
+          508.1022880215343
+        ]
+      ],
+      "uniform_similarity": [
+        1.0530587203814423,
+        -0.00015876641819900108,
+        -238.42017857009645,
+        -274.96455093156453
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/bare-front.png",
+      "sha256": "4e8174e6115a58b4edd782812bc89913cb5956d5817fb1ac68bb4cf47b64536b",
+      "pupils_px": [
+        [
+          411.49931034482756,
+          508.07310344827584
+        ],
+        [
+          610.8954423592493,
+          508.0750670241287
+        ]
+      ],
+      "uniform_similarity": [
+        1.0531799080457915,
+        -1.0371307684224693e-05,
+        -238.3880752123541,
+        -275.08811658423565
+      ]
+    }
+  ]
+}

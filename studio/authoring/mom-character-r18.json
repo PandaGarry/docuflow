@@ -18,7 +18,7 @@
     "upper_lip": "#B95749",
     "lower_lip": "#E77B64",
     "blush": "#EC806F",
-    "nose": "#CF5D49",
+    "nose": "#C96057",
     "iris": "#7F9AA3",
     "brows": "#79523C",
     "lashes": "#38241F",
@@ -26,11 +26,13 @@
   },
   "fairing": {
     "cycles": 24,
-    "maximum_delta_m": 0.0035
+    "maximum_delta_m": 0.0035,
+    "ala_roundness_m": 0.0035
   },
   "smile_amount": 0.12,
   "art_approved": false,
   "user_approved": false,
   "production_swap_allowed": false,
-  "linear_albedo_energy_scale": 0.72
+  "linear_albedo_energy_scale": 0.72,
+  "attempt": 2
 }

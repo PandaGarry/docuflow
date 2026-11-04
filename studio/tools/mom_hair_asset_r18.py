@@ -18,19 +18,21 @@ def fit(name,settings):
  front=smoothstep(-.070,-.130,q[:,1]);center=np.exp(-(q[:,0]/.085)**6)
  q[:,2]+=settings['fringe_lift_m']*front*center*smoothstep(1.63,1.44,q[:,2])
  q[:,0]-=settings['part_shift_m']*smoothstep(1.48,1.63,q[:,2])*np.exp(-(q[:,0]/.09)**4)
+ q[:,0]*=1+1.2*smoothstep(1.34,settings['tip_z'],q[:,2])
  t=np.clip((1.52-q[:,2])/(1.52-settings['tip_z']),0,1);wave=.035*np.sin(1.5*np.pi*t)+.055*t**6
  q[:,0]+=np.sign(q[:,0])*wave
  q[:,1]+=.008*np.sin(2*np.pi*t)*smoothstep(.07,.12,abs(q[:,0]))
  return q,data['polygons'],data['uv'],record
 
 def material(bpy,name):
- mat=bpy.data.materials.new('Mom R18 CC0 textured hair '+name);mat.use_nodes=True;n=mat.node_tree.nodes;links=mat.node_tree.links;shader=n['Principled BSDF'];shader.inputs['Roughness'].default_value=.48;shader.inputs['Specular IOR Level'].default_value=.26
+ mat=bpy.data.materials.new('Mom R18 CC0 textured hair '+name);mat.use_nodes=True;n=mat.node_tree.nodes;links=mat.node_tree.links;shader=n['Principled BSDF'];shader.inputs['Roughness'].default_value=.60;shader.inputs['Specular IOR Level'].default_value=.08;shader.inputs['Anisotropic'].default_value=.50;shader.inputs['Anisotropic Rotation'].default_value=.25
  image=bpy.data.images.load(str((ASSETS/f'{name}.webp').resolve()),check_existing=False);image.pack();tex=n.new('ShaderNodeTexImage');tex.image=image;tex.extension='EXTEND';tex.interpolation='Linear';tex.name='CC0 original strand texture, not canonical art'
  # Source luminance still supplies fine strands. A bounded brown ramp prevents
  # pale diffuse highlights in the gray stock bob from bleaching the whole wig.
  bw=n.new('ShaderNodeRGBToBW');ramp=n.new('ShaderNodeValToRGB');ramp.name='R18 bounded warm brown, source strand luminance'
- cr=ramp.color_ramp;cr.elements.remove(cr.elements[1]);cr.elements[0].position=0;cr.elements[0].color=(*linear('#503822'),1)
- for pos,color in ((.10,'#70513A'),(.45,'#9A7856'),(1.,'#B38C65')):e=cr.elements.new(pos);e.color=(*linear(color),1)
+ cr=ramp.color_ramp;cr.elements.remove(cr.elements[1]);cr.elements[0].position=0;cr.elements[0].color=(*(linear('#503822')*.55),1)
+ for pos,color in ((.10,'#70513A'),(.45,'#9A7856'),(1.,'#B38C65')):e=cr.elements.new(pos);e.color=(*(linear(color)*.55),1)
+ bump=n.new('ShaderNodeBump');bump.inputs['Strength'].default_value=.22;bump.inputs['Distance'].default_value=.00018;links.new(bw.outputs[0],bump.inputs['Height']);links.new(bump.outputs['Normal'],shader.inputs['Normal'])
  links.new(tex.outputs['Color'],bw.inputs['Color']);links.new(bw.outputs[0],ramp.inputs[0]);links.new(ramp.outputs[0],shader.inputs['Base Color']);links.new(tex.outputs['Alpha'],shader.inputs['Alpha'])
 
  return mat

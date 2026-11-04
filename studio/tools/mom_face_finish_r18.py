@@ -11,6 +11,7 @@ def fair(p,polygons,settings):
  for _ in range(settings['cycles']):
   for c in (.45,-.46):
    total=np.zeros(len(p));np.add.at(total,a,q[b,1]);np.add.at(total,b,q[a,1]);q[:,1]+=c*w*(total/np.maximum(degree,1)-q[:,1])
+ q[:,1]-=settings['ala_roundness_m']*np.exp(-((abs(x)-.014)/.012)**4-((z-1.430)/.010)**4)*smoothstep(-.10,-.14,y)
  d=q-p;limit=settings['maximum_delta_m'];d[:,1]=limit*np.tanh(d[:,1]/limit)
  tri=np.array([[f[0],f[j],f[j+1]] for f in polygons for j in range(1,len(f)-1)]);a=p[tri];na=np.cross(a[:,1]-a[:,0],a[:,2]-a[:,0]);valid=np.linalg.norm(na,axis=1)>1e-12
  for _ in range(16):
