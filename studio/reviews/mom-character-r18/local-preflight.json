@@ -1,0 +1,175 @@
+{
+  "status": "actual_local_Blender_asset_preflight",
+  "blender": "4.5.0",
+  "original_rig_loaded": false,
+  "not_full_character_verification": true,
+  "scope": "Actual acquired mesh/UV/texture/shader construction and six foreground-eye geometry rays. No beauty render, alpha/whole eyelid/skin collision/acting certification. Does not replace native full original-rig worker.",
+  "spec_sha256": "32a3d6399c709b946b816ebb09d0b64e96f8695efbc4b650c497a41ccc60a2ca",
+  "hair_script_sha256": "3f057349f6cff3802c444588fcd0f5abff62e6e91b788126f85adf34498d34eb",
+  "groom": {
+    "object": "HAIR-mom-R18-asset-bob02",
+    "asset": "bob02",
+    "source_license": "CC0-1.0",
+    "source_commit": "a8ee33f96791ed15534246ac88cc8b20f9da8f6a",
+    "source_mesh_sha256": "a350204755e9c23d54e1c69f6ac2d30e776974e46ad2bc66cd8842a7cab45437",
+    "source_texture_sha256": "968e6c9a522ec3ab5888121ad732448f52098a273913d3ac47a0cce51e887d87",
+    "vertices": 1653,
+    "render_vertices": 1759,
+    "polygons": 1124,
+    "original_uv_sha256": "c8dfdfae8905d0ef6937e449e16b5f027a247d74b2feadbdb94c6b3c3de8d1ae",
+    "fit": {
+      "eye_z": 1.47326,
+      "crown_z": 1.65,
+      "tip_z": 1.28,
+      "half_width": 0.153,
+      "depth_scale": 1.3,
+      "fringe_lift_m": 0.095,
+      "part_shift_m": 0.04
+    },
+    "saved_appearance_state": {
+      "coordinate_sha256": "ecc118b29c61e63d966cc0deb6b8d057c83c31e83fd58569c334c7814e52224f",
+      "polygon_sha256": "967c9af94f1b7ac81e518e53bda31bad386ed689f06ff77ea0a9d6c9df5f1a74",
+      "loop_uv_sha256": "c385d7ebcca8e75f9794bcadc113909f0d42fbb003db8e182c17b7d6e60c8bf5",
+      "packed_texture_sha256": "968e6c9a522ec3ab5888121ad732448f52098a273913d3ac47a0cce51e887d87",
+      "texture_colorspace": "sRGB",
+      "brown_ramp": [
+        {
+          "position": 0.0,
+          "linear_rgba": [
+            0.044120900332927704,
+            0.021750429645180702,
+            0.008797961287200451,
+            1.0
+          ]
+        },
+        {
+          "position": 0.10000000149011612,
+          "linear_rgba": [
+            0.0891161561012268,
+            0.04525548964738846,
+            0.02327127568423748,
+            1.0
+          ]
+        },
+        {
+          "position": 0.44999998807907104,
+          "linear_rgba": [
+            0.1777287721633911,
+            0.10330142825841904,
+            0.05118243023753166,
+            1.0
+          ]
+        },
+        {
+          "position": 1.0,
+          "linear_rgba": [
+            0.24793218076229095,
+            0.14423786103725433,
+            0.07157506048679352,
+            1.0
+          ]
+        }
+      ],
+      "shader": {
+        "Roughness": 0.6000000238418579,
+        "Specular IOR Level": 0.07999999821186066,
+        "Anisotropic": 0.5,
+        "Anisotropic Rotation": 0.25
+      },
+      "source_strand_micro_normal": {
+        "strength": 0.2199999988079071,
+        "distance_m": 0.00018000000272877514
+      }
+    },
+    "binding": "UNRIGGED DIAGNOSTIC ONLY, not original character binary",
+    "method": "Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement."
+  },
+  "rays": [
+    {
+      "x_m": -0.046632,
+      "z_m": 1.467,
+      "foreground_hair_intersection": false
+    },
+    {
+      "x_m": -0.046632,
+      "z_m": 1.47326,
+      "foreground_hair_intersection": false
+    },
+    {
+      "x_m": -0.046632,
+      "z_m": 1.479,
+      "foreground_hair_intersection": false
+    },
+    {
+      "x_m": 0.046632,
+      "z_m": 1.467,
+      "foreground_hair_intersection": false
+    },
+    {
+      "x_m": 0.046632,
+      "z_m": 1.47326,
+      "foreground_hair_intersection": false
+    },
+    {
+      "x_m": 0.046632,
+      "z_m": 1.479,
+      "foreground_hair_intersection": false
+    }
+  ],
+  "runtime_note": "bpy4.5.0 from PyPI; seven missing native desktop libraries built locally from pinned public sources after Debian/package and portable binary acquisition were unavailable. No system replacement or bundled binary distribution. CPU only; GPU/OpenGL contexts not certified.",
+  "dependency_source_pins": {
+    "render": {
+      "repository": "freedesktop-unofficial-mirror/xorg__lib__libXrender",
+      "commit": "7887382e59b7a06d6b02501205d543fdf76c8249",
+      "tarball_sha256": "d3924597c5c385a80bcb793af317bb609392c41570366eb23c5af572268c7ee3"
+    },
+    "fixes": {
+      "repository": "freedesktop-unofficial-mirror/xorg__lib__libXfixes",
+      "commit": "1702cdfe45c9bdd7dacfc8f27a49f89fcd1d02c3",
+      "tarball_sha256": "2da7c627a79f46c4e564193436f34bd04ed6a8231b159582d9aa7ed7c741a0af"
+    },
+    "xi": {
+      "repository": "mirror/libXi",
+      "commit": "e05da79a98775edb91ffe3de3b413f156bc4d6e7"
+    },
+    "sm": {
+      "repository": "freedesktop-unofficial-mirror/xorg__lib__libSM",
+      "commit": "29ea6247434a85934986e7d4fc60862231c5d77d",
+      "tarball_sha256": "7d8627c29eefcff06433530f8742bd8e7d86fbd7c595bb3adb4d4e654a746efb"
+    },
+    "ice": {
+      "repository": "freedesktop-unofficial-mirror/xorg__lib__libICE",
+      "commit": "8a511dad53774693ed818d54d7896e1663942b18",
+      "tarball_sha256": "12959cc0ee9794d66e51381e1e0beeab1c0210abbea5e106a4aad13a116e2c92"
+    },
+    "x11": {
+      "repository": "mirror/libX11",
+      "commit": "ff8706a5eae25b8bafce300527079f68a201d27f",
+      "tarball_sha256": "c6e1ed2a906fb9f5abedb9c9c8ef7352fbe62ab67097c60e83f37cd989957489"
+    },
+    "xext": {
+      "repository": "freedesktop-unofficial-mirror/xorg__lib__libXext",
+      "commit": "efdcbb7634501e1117d422636a0a75d7ea84b16b",
+      "tarball_sha256": "59ab8d117a42cbe615ecf526dc518fb4247c8c959742216834e8a94d3e3e540c"
+    },
+    "proto": {
+      "repository": "Unilang/xorg-xorgproto",
+      "commit": "f61f9a3ee1aa77ebcc67730cda9bfde88e4e9c5f",
+      "tarball_sha256": "d15b1d6980ddd0a47f18473b2d1460a3cb4d20c979a7828cad02515fe3370426"
+    },
+    "xkb": {
+      "repository": "xkbcommon/libxkbcommon",
+      "commit": "3c9f5c7d863901fda9b71b8f77cfa86aae39846b",
+      "tarball_sha256": "090dcfe8f4f4dadd6ff576c58256bcf01db5bca12f0be580ab9b351a983e1537"
+    },
+    "gl": {
+      "repository": "NVIDIA/libglvnd",
+      "commit": "606f6627cf481ee6dcb32387edc010c502cdf38b",
+      "tarball_sha256": "765b1ccdb560ae926ba28f396b3cd2a0d8666172625858d79e3a37cfd4090335"
+    }
+  },
+  "xtrans_source_pin": "99aacae3060c7409b82101d7e873fc500e602b8b",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}
