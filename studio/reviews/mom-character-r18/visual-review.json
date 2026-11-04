@@ -1,0 +1,29 @@
+{
+  "status": "native_success_but_groom_visually_rejected",
+  "native_run": 41871456981,
+  "native_sha256": "9411af2239504c05a1d902c29358d6c46c411c341dfb0862fcf03d7e4439d99c",
+  "actual_build_frames": 9,
+  "reopened_neutral_rgb_mae_255": 0.0,
+  "compared": [
+    "canonical reference",
+    "actual R17 portrait/held-light face",
+    "R18 front/three-quarter/profile/rear",
+    "R18 bare face and clay"
+  ],
+  "improvements": [
+    "Actual licensed coherent hair surface and rear coverage; both eyes uncovered.",
+    "Physical UV albedo energy and matching body pigment under unchanged R17 light.",
+    "Bounded nasal/cheek fairing and alar volume on all25 original blocks, max2.978mm.",
+    "Wider continuous collar fold, original assigned garment weights retained."
+  ],
+  "remaining_failures": [
+    "Hair still reads as rigid outlined ribbons, especially profile and rear.",
+    "Shoulder tips are angular/flared sheets, not soft natural canonical waves.",
+    "Nose/upper lip/brow expression and skin balance still differ from canonical.",
+    "Clothing, full blink/acting and hair/cloth dynamics remain unapproved."
+  ],
+  "next_decision": "Keep acquired mesh as3D growth guide/dark coverage; generate genuine fine HAIR curves from separate original UV islands. Do not claim asset acquisition or green native checks is completed likeness.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

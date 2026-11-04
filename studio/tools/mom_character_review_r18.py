@@ -8,7 +8,7 @@ from mom_form_review import similarity,inverse_affine
 ROOT=Path(__file__).resolve().parents[2];BASE=ROOT/'studio/reviews/mom-character-r18'
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
-def register(entries,path,size=(650,780),target=((220,310),(430,310))):
+def register(entries,path,size=(880,940),target=((335,410),(545,410))):
  board=Image.new('RGB',(size[0]*len(entries),size[1]+115),'#1c2530');d=ImageDraw.Draw(board);records=[]
  for i,(label,source,anchors) in enumerate(entries):
   with Image.open(source) as image:
@@ -22,7 +22,7 @@ def main():
  if r['preview_only']:raise ValueError('Expected actual full native build')
  for f in r['images']:
   if sha(ROOT/f['path'])!=f['sha256']:raise ValueError('Native frame differs '+f['path'])
- canon=ROOT/'studio/characters/mom/master/face.png';old=ROOT/'studio/reviews/mom-character-r17';receipt={'method':'Uniform eye registration, original images retained; no local feature deformation, color grading or reference projection. Compare gray anatomy independently of material.','art_approved':False,'user_approved':False,'production_swap_allowed':False}
+ canon=ROOT/'studio/characters/mom/master/face.png';old=ROOT/'studio/reviews/mom-character-r17';receipt={'review_script_sha256':sha(__file__),'method':'Uniform eye registration, original images retained; no local feature deformation, color grading or reference projection. Compare gray anatomy independently of material.','art_approved':False,'user_approved':False,'production_swap_allowed':False}
  receipt['portrait_comparison']=register([('CANONICAL',canon,[[282,395],[489,395]]),('R17 - REJECTED',old/'portrait-front.png',pupils(old/'portrait-front.png')),('R18 - ACTUAL NATIVE',BASE/'portrait-front.png',pupils(BASE/'portrait-front.png'))],BASE/'comparison-face-hair.png')
  receipt['bare_comparison']=register([('CANONICAL',canon,[[282,395],[489,395]]),('R17 - HELD LIGHT',old/'bare-front.png',pupils(old/'bare-front.png',1.47)),('R18 - SAME LIGHT',BASE/'bare-front.png',pupils(BASE/'bare-front.png',1.47))],BASE/'comparison-held-light-face.png',(600,690),((195,260),(405,260)))
  for kind,views,dimensions in [('portrait',('front','three-quarter','profile','rear'),(480,600)),('clay',('front','three-quarter','profile'),(600,600))]:
