@@ -1,0 +1,26 @@
+{
+  "render_uv": "UVMap",
+  "domain": {
+    "origin": [
+      2.003528690338135,
+      0.010637527704238892
+    ],
+    "extent": 0.9929426193237305,
+    "original_min": [
+      2.0074689388275146,
+      0.014577776193618774
+    ],
+    "original_max": [
+      2.9925310611724854,
+      0.9928754568099976
+    ]
+  },
+  "layers": [
+    {
+      "name": "UVMap",
+      "active_render": true
+    }
+  ],
+  "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+  "method": "Original UV coordinates retained; exact packed R11 maps appended, no rebake or wrapping."
+}

@@ -1,0 +1,1006 @@
+{
+  "status": "saved_native_binary_reopened_and_rendered",
+  "new_geometry_created": false,
+  "native_blend_sha256": "e557b35c6401b795eb957fbe981854aa92b174223e530668c751683c9f656db5",
+  "verify_script_sha256": "610aa7cdf1bfcf11726c4c02f85824fbf0a972f8056990c5e87092e50cfd9ffb",
+  "source_report_sha256": "29e277e2e5f26b03e8863d2a2bff2a14e182f3d0bcdfd947821055abca3c6383",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "basis_max_coordinate_error_m": 0.0,
+  "evaluated_neutral_max_coordinate_error_m": 0.0,
+  "saved_material_state": {
+    "head_attribute_sha256": "4e0bf548fb4ab3bd20491f6efc389d46ae6d886e17d9e5991c69f3d29aeb77a9",
+    "attribute_domain": "POINT",
+    "attribute_points": 6395,
+    "materials": {
+      "GEO-rain-head": [
+        "Mom R6 skin and lips"
+      ],
+      "GEO-rain-eyebrows": [
+        "Mom R6 brows"
+      ],
+      "GEO-rain-eyelashes": [
+        "Mom R6 lashes"
+      ]
+    },
+    "eye_ramp_stops": [
+      {
+        "position": 0.0,
+        "color": [
+          0.004024717025458813,
+          0.005605391692370176,
+          0.007499032188206911,
+          1.0
+        ]
+      },
+      {
+        "position": 0.11999999731779099,
+        "color": [
+          0.05832921341061592,
+          0.06370339542627335,
+          0.06706425547599792,
+          1.0
+        ]
+      },
+      {
+        "position": 0.3799999952316284,
+        "color": [
+          0.20533081889152527,
+          0.23720882833003998,
+          0.27359676361083984,
+          1.0
+        ]
+      },
+      {
+        "position": 0.6800000071525574,
+        "color": [
+          0.43485376238822937,
+          0.4620983600616455,
+          0.47789454460144043,
+          1.0
+        ]
+      },
+      {
+        "position": 0.8999999761581421,
+        "color": [
+          0.8549926280975342,
+          0.8227857351303101,
+          0.7681511640548706,
+          1.0
+        ]
+      },
+      {
+        "position": 1.0,
+        "color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+    "active_original_uv_maps": {
+      "Base Color": {
+        "channel": null,
+        "image": "Mom R11 original UV albedo",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "1a7647f256e3f7d4921054ec0e68adab2ba8537e6d681a8f5bcc424c957cfcb2",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Roughness": {
+        "channel": "Red",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Weight": {
+        "channel": "Green",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Roughness": {
+        "channel": "Blue",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      }
+    }
+  },
+  "packed_images": [
+    {
+      "name": "Mom R11 original UV albedo",
+      "packed": true
+    },
+    {
+      "name": "Mom R11 original UV roughness",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_body_diffuse.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_body_roughness.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.000",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.002",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction_bw.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_normal.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_scarf_cavity.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_bump.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_top_bump.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_top_roughness.png",
+      "packed": true
+    }
+  ],
+  "render": {
+    "path": "studio/reviews/mom-head-form-r13/reopen/reopened-front.png",
+    "sha256": "a1f88eb218395811bd97cdaccbd566e78612066884d2c77ab1d7a73ba6d827e2",
+    "camera": {
+      "position": [
+        0,
+        -4,
+        1.5
+      ],
+      "target": [
+        0,
+        0,
+        1.47
+      ],
+      "ortho_scale": 0.48
+    },
+    "dimensions": [
+      768,
+      768
+    ],
+    "samples": 24
+  },
+  "warm_smile": {
+    "LipsUp_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 1,
+      "target": 0.12,
+      "solutions": {
+        "L": {
+          "input": 0.003000009059906006,
+          "response": 0.12000083923339844,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.4999971389770508
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.12499809265136719
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.0023437500000000003,
+              0.0937509536743164
+            ],
+            [
+              0.0027343750000000003,
+              0.10937213897705078
+            ],
+            [
+              0.0029296875,
+              0.1171875
+            ],
+            [
+              0.00302734375,
+              0.1210927963256836
+            ],
+            [
+              0.002978515625,
+              0.11913776397705078
+            ],
+            [
+              0.0030029296875,
+              0.12011528015136719
+            ],
+            [
+              0.00299072265625,
+              0.11962890625
+            ],
+            [
+              0.002996826171875,
+              0.1198720932006836
+            ],
+            [
+              0.0029998779296875003,
+              0.11999130249023438
+            ],
+            [
+              0.0030014038085937503,
+              0.12005329132080078
+            ],
+            [
+              0.0030006408691406255,
+              0.1200246810913086
+            ],
+            [
+              0.003000259399414063,
+              0.1200103759765625
+            ],
+            [
+              0.0030000686645507814,
+              0.12000083923339844
+            ],
+            [
+              0.002999973297119141,
+              0.1199960708618164
+            ],
+            [
+              0.003000020980834961,
+              0.12000083923339844
+            ],
+            [
+              0.002999997138977051,
+              0.1199960708618164
+            ],
+            [
+              0.003000009059906006,
+              0.12000083923339844
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.002999532222747803,
+          "response": 0.12000083923339844,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.5000161528587341
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.1250171661376953
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.0023437500000000003,
+              0.0937509536743164
+            ],
+            [
+              0.0027343750000000003,
+              0.10937213897705078
+            ],
+            [
+              0.0029296875,
+              0.11720657348632812
+            ],
+            [
+              0.00302734375,
+              0.12111186981201172
+            ],
+            [
+              0.002978515625,
+              0.1191568374633789
+            ],
+            [
+              0.0030029296875,
+              0.12013435363769531
+            ],
+            [
+              0.00299072265625,
+              0.11964797973632812
+            ],
+            [
+              0.002996826171875,
+              0.11989116668701172
+            ],
+            [
+              0.0029998779296875003,
+              0.1200103759765625
+            ],
+            [
+              0.00299835205078125,
+              0.11995315551757812
+            ],
+            [
+              0.002999114990234375,
+              0.11998176574707031
+            ],
+            [
+              0.0029994964599609378,
+              0.1199960708618164
+            ],
+            [
+              0.0029996871948242193,
+              0.12000560760498047
+            ],
+            [
+              0.0029995918273925783,
+              0.12000083923339844
+            ],
+            [
+              0.002999544143676758,
+              0.12000083923339844
+            ],
+            [
+              0.002999520301818848,
+              0.1199960708618164
+            ],
+            [
+              0.002999532222747803,
+              0.12000083923339844
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.12000083923339844,
+        "R": 0.12000083923339844
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "Smile_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 2,
+      "target": 0.24,
+      "solutions": {
+        "L": {
+          "input": 0.0015000462532043458,
+          "response": 0.23999974131584167,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.12000083923339844
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.6199817657470703
+            ],
+            [
+              0.003125,
+              0.3699818253517151
+            ],
+            [
+              0.0015625,
+              0.2449961006641388
+            ],
+            [
+              0.00078125,
+              0.18250077962875366
+            ],
+            [
+              0.0011718750000000002,
+              0.2137461155653
+            ],
+            [
+              0.0013671875000000001,
+              0.22937104105949402
+            ],
+            [
+              0.00146484375,
+              0.2371835708618164
+            ],
+            [
+              0.001513671875,
+              0.24108976125717163
+            ],
+            [
+              0.0014892578125,
+              0.23913666605949402
+            ],
+            [
+              0.00150146484375,
+              0.2401132881641388
+            ],
+            [
+              0.001495361328125,
+              0.2396249771118164
+            ],
+            [
+              0.0014984130859375,
+              0.23986905813217163
+            ],
+            [
+              0.0014999389648437502,
+              0.23999124765396118
+            ],
+            [
+              0.0015007019042968751,
+              0.24005219340324402
+            ],
+            [
+              0.0015003204345703128,
+              0.24002164602279663
+            ],
+            [
+              0.0015001296997070315,
+              0.2400064468383789
+            ],
+            [
+              0.0015000343322753907,
+              0.23999884724617004
+            ],
+            [
+              0.0015000820159912112,
+              0.2400025725364685
+            ],
+            [
+              0.001500058174133301,
+              0.24000078439712524
+            ],
+            [
+              0.0015000462532043458,
+              0.23999974131584167
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.0015002250671386722,
+          "response": 0.23999974131584167,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.12000083923339844
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.6199817657470703
+            ],
+            [
+              0.003125,
+              0.3699818253517151
+            ],
+            [
+              0.0015625,
+              0.2449817955493927
+            ],
+            [
+              0.00078125,
+              0.18248185515403748
+            ],
+            [
+              0.0011718750000000002,
+              0.2137318104505539
+            ],
+            [
+              0.0013671875000000001,
+              0.22935673594474792
+            ],
+            [
+              0.00146484375,
+              0.2371692657470703
+            ],
+            [
+              0.001513671875,
+              0.24107560515403748
+            ],
+            [
+              0.0014892578125,
+              0.23912236094474792
+            ],
+            [
+              0.00150146484375,
+              0.2400989830493927
+            ],
+            [
+              0.001495361328125,
+              0.2396106719970703
+            ],
+            [
+              0.0014984130859375,
+              0.23985490202903748
+            ],
+            [
+              0.0014999389648437502,
+              0.2399769425392151
+            ],
+            [
+              0.0015007019042968751,
+              0.24003788828849792
+            ],
+            [
+              0.0015003204345703128,
+              0.24000748991966248
+            ],
+            [
+              0.0015001296997070315,
+              0.2399921417236328
+            ],
+            [
+              0.0015002250671386722,
+              0.23999974131584167
+            ],
+            [
+              0.0015002727508544925,
+              0.24000361561775208
+            ],
+            [
+              0.0015002489089965825,
+              0.24000167846679688
+            ],
+            [
+              0.0015002369880676273,
+              0.24000078439712524
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.23999974131584167,
+        "R": 0.23999974131584167
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "final_keys": {
+      "Smile.L": 0.23999974131584167,
+      "Smile.R": 0.23999974131584167,
+      "LipsUp.L": 0.1199960708618164,
+      "LipsUp.R": 0.11998176574707031,
+      "LipsWide.L": 0.030000917613506317,
+      "LipsWide.R": 0.03000449389219284
+    },
+    "scope": "One authored closed-mouth smile pose, not full acting or lip-sync acceptance."
+  },
+  "warm_smile_render": {
+    "path": "studio/reviews/mom-head-form-r13/reopen/warm-smile.png",
+    "sha256": "7b0d535e588fcb33288d5a085b871190ebe5cd992212ed22ae3bfba7f80b3273",
+    "camera": {
+      "position": [
+        0,
+        -4,
+        1.5
+      ],
+      "target": [
+        0,
+        0,
+        1.47
+      ],
+      "ortho_scale": 0.48
+    },
+    "dimensions": [
+      768,
+      768
+    ],
+    "samples": 24
+  },
+  "pose_restore_error_m": 0.0,
+  "pose_helper_sha256": "0735cb109bfa8a3fcab81b0219feaa9240a249d279d74d6a3cc0e7742726e865",
+  "eyelid_control_graph": [
+    {
+      "name": "ACT-Eyelid_Upper.L",
+      "parent": "MSTR-Eye.L",
+      "constraints": [
+        {
+          "name": "Limit Location",
+          "type": "LIMIT_LOCATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        },
+        {
+          "name": "Limit Rotation",
+          "type": "LIMIT_ROTATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "ZYX"
+    },
+    {
+      "name": "ACT-Eyelid_Lower.L",
+      "parent": "MSTR-Eye.L",
+      "constraints": [
+        {
+          "name": "Limit Location",
+          "type": "LIMIT_LOCATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        },
+        {
+          "name": "Action_Lips_UpDown.L",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Lips_Corner.L",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        },
+        {
+          "name": "Limit Rotation",
+          "type": "LIMIT_ROTATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "ZYX"
+    },
+    {
+      "name": "MSTR-Eyering_Upper.L",
+      "parent": "MSTR-Eyering.L",
+      "constraints": [
+        {
+          "name": "Action_Eyebrows.L",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "MSTR-Eyebrow.L",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "XYZ"
+    },
+    {
+      "name": "MSTR-Eyering_Lower.L",
+      "parent": "MSTR-Eyering.L",
+      "constraints": [
+        {
+          "name": "Action_Lips_UpDown.L",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Lips_Corner.L",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        },
+        {
+          "name": "Action_Head_Lower_Correct.L",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "MSTR-Head_Lower",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "ROTATION_Z"
+        },
+        {
+          "name": "Action_Cheeks_Outer",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Cheek_Outer.L",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "XYZ"
+    },
+    {
+      "name": "ACT-Eyelid_Upper.R",
+      "parent": "MSTR-Eye.R",
+      "constraints": [
+        {
+          "name": "Limit Location",
+          "type": "LIMIT_LOCATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        },
+        {
+          "name": "Limit Rotation",
+          "type": "LIMIT_ROTATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "ZYX"
+    },
+    {
+      "name": "ACT-Eyelid_Lower.R",
+      "parent": "MSTR-Eye.R",
+      "constraints": [
+        {
+          "name": "Limit Location",
+          "type": "LIMIT_LOCATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        },
+        {
+          "name": "Action_Lips_UpDown.R",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Lips_Corner.R",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        },
+        {
+          "name": "Limit Rotation",
+          "type": "LIMIT_ROTATION",
+          "influence": 1.0,
+          "owner_space": "LOCAL",
+          "target_space": "WORLD"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "ZYX"
+    },
+    {
+      "name": "MSTR-Eyering_Upper.R",
+      "parent": "MSTR-Eyering.R",
+      "constraints": [
+        {
+          "name": "Action_Eyebrows.R",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "MSTR-Eyebrow.R",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "XYZ"
+    },
+    {
+      "name": "MSTR-Eyering_Lower.R",
+      "parent": "MSTR-Eyering.R",
+      "constraints": [
+        {
+          "name": "Action_Lips_UpDown.R",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Lips_Corner.R",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        },
+        {
+          "name": "Action_Head_Lower_Correct.R",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "MSTR-Head_Lower",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "ROTATION_Z"
+        },
+        {
+          "name": "Action_Cheeks_Outer",
+          "type": "ACTION",
+          "influence": 1.0,
+          "subtarget": "ACT-Cheek_Outer.R",
+          "owner_space": "WORLD",
+          "target_space": "LOCAL",
+          "transform_channel": "LOCATION_Y"
+        }
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_mode": "XYZ"
+    }
+  ],
+  "reopened_vs_original_rgb_mae_255": 0.0,
+  "reopened_vs_original_rgb_p99_255": 0.0,
+  "pixel_threshold_scope": "Binary persistence/render consistency, not likeness or image beauty. Allow tiny CPU/render variation.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Reopens real saved binary, verifies neutral geometry/keys/weights/rest/packed textures and rerenders neutral. Legacy blink remains visually blocked; balanced smile is a limited pose probe, not full acting acceptance.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}
