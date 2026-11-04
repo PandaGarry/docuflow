@@ -58,3 +58,12 @@ failed evidence and private inputs untouched. Hair/frame/body/wardrobe/full acti
 known blink/lash/rest migration are not approved. Art/user/production=false.
 
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
+
+## Actual outcome — nasal shape not accepted
+
+Native run [41805567618](https://github.com/PandaGarry/docuflow/actions/runs/41805567618)
+succeeded; [actual visual review](../studio/reviews/mom-head-form-r12/visual-review.md)
+records visible ear/closed-mouth improvement, but a flattened/angular nasal cap,
+NOT the requested rounded nose. The plan above is not an acceptance statement.
+Preserve these frozen recipes/evidence; correct the nasal surface in R13 while
+retaining R12 ear/mouth changes. Entire saved material state equals R11.
