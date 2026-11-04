@@ -35,7 +35,7 @@ Original render UVMap remains tile1003; packed linear albedo/PBR EXRs retained.
 Native rebuild saves the diagnostic neutral `.blend`, renders matched clay/color/
 smile, then uses EXACT frozen R10 portrait light/camera/96sample/1024² recipe for
 three additional views. Separate-process binary reopen still compares the saved
-neutral stage, not the portrait stage. Actual result and visual review pending.
+neutral stage, not the portrait stage. At authoring, actual result and visual review were pending; results below.
 
 Canonical masters, historical recipes/failed attempts and private inputs untouched.
 Known blink/lash failure, full rest migration, canonical hair/frame/body/wardrobe,
@@ -43,3 +43,48 @@ complete acting remain open; user/art/production=false. Technical success alone
 will not be called a finished smile or final likeness.
 
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
+
+
+## Actual native result and inspected frames
+
+[41787400559](https://github.com/PandaGarry/docuflow/actions/runs/41787400559)
+SUCCESS6m37s/job126432585562/publish84a0b4c.11primary native frames plus three
+held-light1024²/96sample views and two saved-file reopen frames. Original source,
+85control reconstruction, all25head keys/topology/weights retained. No new invalid
+drivers; eyes/cornea coordinate fingerprints unchanged.19packed images.
+
+Editable [artifact13302246689](https://github.com/PandaGarry/docuflow/actions/runs/41787400559/artifacts/13302246689)
+`mom-head-form-r11-native-wip`,89,462,906bytes, expires2026-11-18T06:49:43Z.
+Hidden `.cache/rain-v3/mom-head-form-r11.blend` is included. SHA256
+`1cdf19c71a85e110c00d35374b181c33f4b00b7a9ecb1ae5e36b3498138d023d`.
+Basis/evaluated/pixel/pose-restore errors0 after actual saved-neutral binary
+reopen. Same-worker separate-process verification, NOT an independently
+downloaded R11 artifact. Historical independent R10 verification does not
+transfer automatically to a new version.
+
+**Actual packed albedo AND RGB PBR EXR file hashes are exactly equal to R10.**
+Original UV hash/domain and all palette/paint/PBR values remain equal. Frozen
+R10 light helper/hash, lights, camera, samples and native smile0.4 are held.
+This is stronger than merely using the same named palette; visible image
+changes come from the revised geometry and its light response.
+
+- [Canonical / R10 / R11 under held portrait light](../studio/reviews/mom-head-form-r11/comparison-portrait.png)
+- [Matched neutral clay](../studio/reviews/mom-head-form-r11/comparison-form.png)
+- [Front/profile oral clay detail](../studio/reviews/mom-head-form-r11/comparison-oral-clay-detail.png)
+- [Three held-light views](../studio/reviews/mom-head-form-r11/portrait-three-views.png)
+- [Neutral colored comparison](../studio/reviews/mom-head-form-r11/comparison-identity.png)
+- [Inspected visual findings](../studio/reviews/mom-head-form-r11/visual-review.json)
+
+### Visual assessment, separate from persistence tests
+
+Held-light portrait and isolated clay show less heavy upper lip and a smoother,
+less abruptly shadowed lip-to-chin transition. Profile confirms reduced upper
+bulge; lower-lip height wasn't shrunk again. This is local visible progress,
+not a completed canonical expression or whole-character likeness result.
+Precise gentle closed-smile seam/corners, lower-lip highlight and eye/lid
+expression integration still differ. Canonical hair/frame and full acting are
+not present; blink/lash/rest migration remain open.
+
+398local tests PASS28.548s;31task validate/checklist/diff PASS. Tests verify
+source/bindings/cage/actual native data/EXR identity/held variables/persistence,
+not anatomy, exact likeness or cinema-industry quality. Art/user/production=false.

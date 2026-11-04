@@ -858,3 +858,24 @@ sample minJ.172478/maxR10delta2.62488mm и oriented triangles passed, не art s
 Новые portrait frames используют frozen R10 lights/camera/samples; не смену
 выгодного освещения. Actual frames/reopen должны подтвердить или опровергнуть
 результат. Blink/lash/rest migration/hair/frame/body/full acting всё ещё open.
+
+
+### R11 actual result: изоляция геометрии подтверждена EXR bytes, не только recipe
+
+41787400559 SUCCESS6m37s/job126432585562/publish84a0b4c. Artifact13302246689,
+89,462,906bytes, expires2026-11-18T06:49:43Z; native SHA
+1cdf19c71a85e110c00d35374b181c33f4b00b7a9ecb1ae5e36b3498138d023d.
+11primary +3held-portrait +2reopen actual frames.19packed images, geometry/
+pixel/pose-restore errors0. Same-worker separate-process reopen actual neutral
+binary, не independent download R11; предыдущий R10download не присвоен R11.
+
+Albedo EXR и RGB PBR EXR file hashes ТОЧНО как в R10, original UV/domain/palette
+сохранены. Frozen R10 portrait helper/hash/lights/camera/samples и0.4smile тоже.
+Просмотрены canonical/R10/R11 held portrait, matched clay, front/profile oral
+clay detail и three-view portrait. Upper bulge меньше, lip-to-chin transition
+плавнее/менее резко затенён. Lower-lip height не shrink ещё раз. Это локальный
+видимый geometry progress, не смена paint/lighting и не full-face acceptance.
+Closed-smile seam/corners, lower-lip highlight и eye/lid expression ещё требуют
+работы. Blink/lash/rest migration/hair/frame/body/full acting remain open.
+398local tests PASS28.548s;31task validate/checklist/diff PASS. User/art/production
+false; canonical masters/historical source/failed attempts сохранены.

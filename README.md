@@ -9,38 +9,39 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама R10: компактнее губы, точнее материал, проверенный Blender-файл
+## Текущая работа · мама R11: баланс губ и мягче переход к подбородку
 
-**[Эталон / R9 / R10 при одинаковом портретном свете](studio/reviews/mom-head-lookdev-r10/comparison-portrait.png)** ·
-[Форма без цветного материала](studio/reviews/mom-head-form-r10/comparison-form.png) ·
-[Три портретных ракурса](studio/reviews/mom-head-lookdev-r10/portrait-three-views.png) ·
-[Та же R10: вклад только освещения](studio/reviews/mom-head-lookdev-r10/comparison-lighting.png) ·
-[Editable native artifact / результат / ограничения](docs/56-MOM-R10-CLOSED-SMILE-FORM.md).
+**[Эталон / R10 / R11: тот же портретный свет](studio/reviews/mom-head-form-r11/comparison-portrait.png)** ·
+[Форма без цвета](studio/reviews/mom-head-form-r11/comparison-form.png) ·
+[Крупно: анфас/профиль в clay](studio/reviews/mom-head-form-r11/comparison-oral-clay-detail.png) ·
+[Три ракурса](studio/reviews/mom-head-form-r11/portrait-three-views.png) ·
+[Editable native artifact / результат / ограничения](docs/57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md).
 
-R10 локально уменьшает высоту/выступание губ и приподнимает закрытые уголки.
-Восемь authored targets, без нового расширения рта или усиления ACT-улыбки:
-сравнение обеих версий при прежнем amount0.4. Сохранены направление носа/щёк
-R8–R9, глаза/брови и компактные уши. Нижняя губа теплее; исходная UVMap/tile1003
-сохранена, roughness/coat/coat-roughness разделены в packed linear PBR map.
-Не paint-over кадров и не процедурная замена Rain.
+R11 локально отводит верхнюю губу назад и смягчает наружный переход под нижней
+губой, не уменьшая её высоту ещё раз. Шесть прежних oral targets и два новых
+проверенных наружных anchor6368/3117; не внутренние точки рта.85control cage
+когерентно перестроен из original Rain, все25head keys перенесены тем же map.
+Mouth width/corners и направление носа/щёк/глаз/бровей/компактных ушей сохранены.
 
-Два реальных native прохода: build/render/reopen41779442779 SUCCESS3m30s и
-independent download/reopen/portrait41780052780 SUCCESS5m1s. Второй — в чистом
-worker, без приобретения или пересборки исходного Rain. Оба опубликованных
-`.blend` R9/R10 совпали по SHA, geometry/material/UV/PBR/rest/packed bytes
-сохранены,19packed images каждый; R10 neutral RGB MAE/p99=0 после скачивания.
-Портретные кадры1024²/96samples сделаны без изменения mesh/material. Отдельная
-same-asset доска показывает, сколько видимого улучшения даёт только свет.
+**Цвет, PBR, свет и сила улыбки НЕ менялись:** фактические albedo/PBR EXR bytes
+точно совпали с R10, original UVMap/tile1003 сохранена. Те же frozen R10 lights,
+camera,1024²/96samples и native0.4smile. Это изолированная доводка геометрии,
+а не новая перекраска/выгодное освещение или paint-over кадров.
 
-Прогресс частичный: рот компактнее, но верхняя губа ещё тяжеловата, подгубная
-тень сильнее эталона, линия мягкой закрытой улыбки/блик не доведены. Моргание
-не исправлено; rest/control migration, canonical hair/body/wardrobe и full acting
-не завершены. Art/user/production=false.386local tests PASS21.468s и31task
-checks — технические проверки, не оценка likeness/киноуровня.
-Masters/history сохранены, private inputs не читаются/не публикуются.
+Actual native41787400559 SUCCESS6m37s:11primary +3portrait +2reopen frames,
+19packed images; geometry/pixel/restore errors0. Сохранённый R11 `.blend`
+повторно открыт отдельным процессом на том же worker. Не independent download
+R11; такой проход в R10 остаётся историческим результатом, не новой гарантией.
 
-[R9: локальная доводка upper lip](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md) ·
-[R8: форма и исходная UV](docs/54-MOM-R8-FORM-AND-UV-PAINT.md) ·
+Виден меньший объём верхней губы и более плавный/менее тёмный подгубный переход.
+Прогресс локальный: точная линия мягкой улыбки, нужный блик и eye/lid expression
+ещё отличаются. Blink/lash/rest migration, canonical hair/frame/body/wardrobe/full
+acting не завершены. Art/user/production=false.398local tests PASS28.548s и
+31task checks — технические проверки, не оценка likeness/киноуровня.
+Masters/history сохранены; private inputs не читаются/не публикуются.
+
+[R10: форма/PBR и independent downloaded-asset test](docs/56-MOM-R10-CLOSED-SMILE-FORM.md) ·
+[R9](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md) ·
 [Поддержанное направление R4](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 

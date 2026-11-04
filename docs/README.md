@@ -109,7 +109,7 @@ python3 studio/tools/production_status.py doctor
 
 25. [57 · Мама R11: баланс губ и наружный переход к подбородку](57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md):
     геометрия отдельно от цвета/света; material recipe R10 и portrait light сохранены.
-    Native rebuild/reopen и новые ракурсы выполняются; не приёмка лица.
+    Actual native rebuild/reopen и held-light ракурсы успешны; EXR bytes точно как R10, не приёмка лица.
 
 ## Исторические планы и технические материалы
 
