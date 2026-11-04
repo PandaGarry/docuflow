@@ -107,6 +107,10 @@ python3 studio/tools/production_status.py doctor
     actual geometry/PBR/native review; форма отдельно от света. Независимый
     downloaded-binary/portrait-light проход успешен; реальные кадры просмотрены, не приёмка лица.
 
+25. [57 · Мама R11: баланс губ и наружный переход к подбородку](57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md):
+    геометрия отдельно от цвета/света; material recipe R10 и portrait light сохранены.
+    Native rebuild/reopen и новые ракурсы выполняются; не приёмка лица.
+
 ## Исторические планы и технические материалы
 
 - [00 · Vision](00-VISION.md), [03 · Character bible](03-CHARACTER-BIBLE.md),

@@ -837,3 +837,24 @@ line нет. PBR settings не выданы за достигнутый види
 blink/lash/rest migration/full acting остаются открыты. Art/user/production=false.
 386local tests PASS21.468s;31task validate/checklist/diff PASS. Native recipe/
 frame/binary/independent persistence проверены отдельно от внешности.
+
+
+### R11: исправление баланса губ и наружных mentolabial planes без нового paint
+
+4bff7fd:392local tests PASS29.971s;31task validate/checklist/diff PASS.
+Native41787400559 выполняется, итог пока неизвестен. По actual R10 held-light
+review верхняя губа выступает слишком сильно, подгубная тень резкая. R11 меняет
+6существующих oral targets и добавляет2проверенных наружных anchors6368/3117
+(normal Y−.587/−.942, не inward3112/3113). Их targets связаны с точной R10
+интерполяцией в исходных индексах, не субъективным выбором точек в рендере.
+85control coherent cage rebuilt from original source, same25corrective transport.
+
+Upper/lower target projection difference5.6565→2.5565mm (это authored design,
+не измеренное эталонное3D). Верхняя губа назад2–2.5mm, lower+0.6mm вперёд без
+ещё одного shrink по высоте; наружный переход под ней вперёд2.5/1.8mm. Mouth
+width/corners/nose/cheek/eye/brow/ear targets retained. R10 palette/PBR/coverage/
+UV domain и native0.4smile сохранены, paint sample arrays bitwise equal. Source
+sample minJ.172478/maxR10delta2.62488mm и oriented triangles passed, не art score.
+Новые portrait frames используют frozen R10 lights/camera/samples; не смену
+выгодного освещения. Actual frames/reopen должны подтвердить или опровергнуть
+результат. Blink/lash/rest migration/hair/frame/body/full acting всё ещё open.
