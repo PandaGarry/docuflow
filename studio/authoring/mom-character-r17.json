@@ -54,8 +54,8 @@
     "lift_m": 0.0043,
     "retreat_m": 0.0022,
     "vertical_scale": 0.93,
-    "horizontal_scale": 0.98,
-    "corner_relax_m": 0.0012
+    "horizontal_scale": 0.93,
+    "corner_relax_m": 0.0017
   },
   "nose": {
     "guide_center_m": [
@@ -88,7 +88,7 @@
   "palette_srgb": {
     "skin": "#E8B48F",
     "upper_lip": "#B55348",
-    "lower_lip": "#E98576",
+    "lower_lip": "#EF7656",
     "blush": "#EC806F",
     "nose": "#CF5D49",
     "iris": "#7F9AA3",
@@ -102,7 +102,7 @@
     "eye_y": 395,
     "eye_z_m": 1.47326,
     "meters_per_pixel": 0.00045055072463768116,
-    "method": "Closed smooth shaped locks with longitudinal sculpted ridges, overlapping long flows, asymmetric parted fringe; fine native surface fibers. No single solid crown shell.",
+    "method": "Independently closed contour-authored front locks with sculpted longitudinal relief and real scalp contact, eleven rear waves; no cap or alternating color stripes.",
     "seed": 1701
   },
   "art_approved": false,
@@ -118,7 +118,7 @@
     "rim_energy_w": 18,
     "exposure": 0
   },
-  "preview_attempt": 2,
+  "preview_attempt": 3,
   "corrective_transport": "Spatial deformation reevaluated per original corrective, not locally attenuated shared residual.",
   "material_calibration": {
     "skin_red_linear_gain": 1.18,

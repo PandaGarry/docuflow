@@ -11,7 +11,7 @@ def oral_field(p,settings):
  lip=np.exp(-(x/.040)**6-((z-1.394)/.016)**6)*smoothstep(-.09,-.13,y)
  q[:,2]+=settings['lift_m']*w+(settings['vertical_scale']-1)*(z-1.3928)*lip
  q[:,2]-=settings['corner_relax_m']*smoothstep(.017,.035,ax)*lip
- q[:,1]+=settings['retreat_m']*w;q[:,0]+=(settings['horizontal_scale']-1)*x*lip
+ q[:,1]+=settings['retreat_m']*lip;q[:,0]+=(settings['horizontal_scale']-1)*x*lip
  return q
 
 def head_residual(p,spec):
@@ -22,7 +22,7 @@ def head_residual(p,spec):
  nose,weights=nose_residual(q,data,spec['nose']);q+=nose
  # Reduce the whole naris rim and its inner wall together, not only the visible
  # front skin. Smooth spatial contraction preserves wall thickness in Y.
- x,y,z=q.T;side=np.where(x<0,-1,1);w=np.exp(-((abs(x)-.014)/.011)**6-((z-1.4215)/.0075)**6)*smoothstep(-.105,-.14,y)
+ x,y,z=q.T;side=np.sign(x);w=np.exp(-((abs(x)-.014)/.011)**6-((z-1.4215)/.0075)**6)*smoothstep(-.105,-.14,y)
  factor=spec['nose']['naris_radial_scale']-1
  q[:,0]+=factor*(x-side*.013)*w;q[:,2]+=factor*(z-1.4215)*w
  return q-np.asarray(p)

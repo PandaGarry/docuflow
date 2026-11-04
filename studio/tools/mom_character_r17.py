@@ -15,7 +15,7 @@ import mom_head_cage as model
 import mom_head_lookdev_r10 as portrait
 from mom_face_finish_r7 import linear,smoothstep
 ROOT=core.ROOT;build=core.build;BASE=ROOT/'studio/reviews/mom-character-r17';OUT=BASE;SPEC=ROOT/'studio/authoring/mom-character-r17.json';NATIVE=ROOT/'.cache/r17/mom-character-r17.blend'
-SCRIPTS=('mom_character_r17.py','mom_face_anatomy_r17.py','mom_face_paint_r17.py','mom_groom_r17.py','mom_character_r15.py','mom_smile_pose_r3.py')
+SCRIPTS=('mom_character_r17.py','mom_face_anatomy_r17.py','mom_face_paint_r17.py','mom_groom_r17.py','mom_hair_contours_r17.py','mom_character_r15.py','mom_smile_pose_r3.py')
 
 def load(bpy,spec):
  bundle=ROOT/'.cache/r17-r16-source';files=list(bundle.rglob('mom-character-r16.blend'))
@@ -63,7 +63,7 @@ def main():
  import bpy
  global OUT
  preview='--preview' in sys.argv
- if preview:OUT=BASE/'preview-2'
+ if preview:OUT=BASE/'preview-3'
  OUT.mkdir(parents=True,exist_ok=True);s=json.loads(SPEC.read_text());old,before=load(bpy,s);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy)
  if build.study.sha(ROOT/s['reference']['path'])!=s['reference']['sha256']:raise ValueError('Canonical changed')
  head=bpy.data.objects['GEO-rain-head'];p=np.array(before['basis_vertices']);delta=anatomy.head_residual(p,s);tri=np.array([[f[0],f[j],f[j+1]] for f in before['polygons'] for j in range(1,len(f)-1)]);key_deltas=[]
@@ -126,7 +126,7 @@ def verify():
  if build.base.rig_signature(bpy.data.objects['RIG-rain'])!=r['candidate_rest_signature']:raise ValueError('Reopened rest differs')
  for name in r['groom']['objects']:
   obj=bpy.data.objects[name]
-  if obj.type!='MESH' or len(obj.data.vertices)!=3200:raise ValueError('Reopened sculpted lock differs')
+  if obj.type!='MESH' or len(obj.data.vertices)!=r['groom']['object_vertex_counts'][name]:raise ValueError('Reopened sculpted lock differs')
  f=frame(bpy,'reopened-neutral-front.png',size=(512,640),samples=32);a=np.asarray(Image.open(BASE/'saved-neutral-front.png'),float);b=np.asarray(Image.open(BASE/'reopened-neutral-front.png'),float);error=float(abs(a-b).mean())
  if error>.5:raise ValueError('Reopen image differs')
  packed=[{'name':i.name,'packed':bool(i.packed_file) or bool(i.packed_files)} for i in bpy.data.images if i.source in ('FILE','TILED') and i.type=='IMAGE']

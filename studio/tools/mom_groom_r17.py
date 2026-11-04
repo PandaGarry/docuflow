@@ -45,7 +45,7 @@ def lock_geometry(path,width,depth,index):
  centers=sample(path);t=np.linspace(0,1,len(centers));tangent=np.gradient(centers,axis=0);tangent/=np.linalg.norm(tangent,axis=1)[:,None]
  axis=np.stack((-tangent[:,2],np.zeros(len(t)),tangent[:,0]),axis=1);axis/=np.linalg.norm(axis,axis=1)[:,None]
  forward=np.cross(tangent,axis);forward/=np.linalg.norm(forward,axis=1)[:,None]
- profile=cubic_curve(t,[0,.05,.18,.44,.70,.88,.97,1],[.12,.48,1,.98,.95,.90,.52,.012])
+ profile=cubic_curve(t,[0,.05,.18,.44,.70,.88,.97,1],[.12,.48,1,.98,.90,.50,.12,.005])
  angle=np.linspace(0,2*np.pi,32,endpoint=False);ridge=1+.015*np.cos(10*angle+index*.63)
  rings=centers[:,None,:]+profile[:,None,None]*ridge[None,:,None]*(width*np.cos(angle)[None,:,None]*axis[:,None,:]+depth*np.sin(angle)[None,:,None]*forward[:,None,:])
  verts=rings.reshape(-1,3).tolist();faces=[];uv=[];sides=len(angle)
@@ -57,17 +57,14 @@ def lock_geometry(path,width,depth,index):
  return verts,faces,uv,(centers,axis,forward,profile)
 
 def material(bpy,color):
- m=bpy.data.materials.new('Mom R17 carved light brown locks');m.use_nodes=True;tree=m.node_tree;n=tree.nodes;p=n.get('Principled BSDF');p.inputs['Base Color'].default_value=(*linear(color),1);p.inputs['Roughness'].default_value=.45;p.inputs['Specular IOR Level'].default_value=.30;(p.inputs.get('Anisotropic IOR Level') or p.inputs['Anisotropic']).default_value=.38;p.inputs['Coat Weight'].default_value=.06;p.inputs['Coat Roughness'].default_value=.34
- tex=n.new('ShaderNodeTexCoord');sep=n.new('ShaderNodeSeparateXYZ');tree.links.new(tex.outputs['UV'],sep.inputs[0]);mul=n.new('ShaderNodeMath');mul.operation='MULTIPLY';mul.inputs[1].default_value=2*np.pi*23;tree.links.new(sep.outputs['Y'],mul.inputs[0]);wave=n.new('ShaderNodeMath');wave.operation='SINE';tree.links.new(mul.outputs[0],wave.inputs[0]);ramp=n.new('ShaderNodeValToRGB');ramp.color_ramp.elements[0].position=0;ramp.color_ramp.elements[0].color=(*linear('#885B40'),1);ramp.color_ramp.elements[1].position=.95;ramp.color_ramp.elements[1].color=(*linear('#9A7351'),1);tree.links.new(wave.outputs[0],ramp.inputs[0]);tree.links.new(ramp.outputs[0],p.inputs['Base Color']);bump=n.new('ShaderNodeBump');bump.inputs['Strength'].default_value=.06;bump.inputs['Distance'].default_value=.00010;tree.links.new(wave.outputs[0],bump.inputs['Height']);tree.links.new(bump.outputs[0],p.inputs['Normal']);return m
+ m=bpy.data.materials.new('Mom R17 soft sculpted brown hair');m.use_nodes=True;tree=m.node_tree;n=tree.nodes;p=n.get('Principled BSDF');p.inputs['Base Color'].default_value=(*linear(color),1);p.inputs['Roughness'].default_value=.44;p.inputs['Specular IOR Level'].default_value=.28;(p.inputs.get('Anisotropic IOR Level') or p.inputs['Anisotropic']).default_value=.40;p.inputs['Coat Weight'].default_value=.035;p.inputs['Coat Roughness'].default_value=.40
+ tex=n.new('ShaderNodeTexCoord');mapping=n.new('ShaderNodeVectorMath');mapping.operation='MULTIPLY';mapping.inputs[1].default_value=(5,85,1);tree.links.new(tex.outputs['UV'],mapping.inputs[0]);noise=n.new('ShaderNodeTexNoise');noise.inputs['Scale'].default_value=1;noise.inputs['Detail'].default_value=2;noise.inputs['Roughness'].default_value=.45;tree.links.new(mapping.outputs[0],noise.inputs['Vector']);bump=n.new('ShaderNodeBump');bump.inputs['Strength'].default_value=.035;bump.inputs['Distance'].default_value=.00006;tree.links.new(noise.outputs['Fac'],bump.inputs['Height']);tree.links.new(bump.outputs[0],p.inputs['Normal']);return m
 
 def build(bpy,rig,settings,color):
- mat=material(bpy,color);objects=[];fiber_paths=[];fiber_radii=[]
- for i,(name,path,w,d) in enumerate(guides(settings)):
-  verts,faces,uv,frames=lock_geometry(path,w,d,i);mesh=bpy.data.meshes.new('R17 lock '+name);mesh.from_pydata(verts,[],faces);mesh.update();layer=mesh.uv_layers.new(name='Longitudinal flow');layer.data.foreach_set('uv',np.asarray(uv).ravel())
+ import mom_hair_contours_r17 as contours
+ mat=material(bpy,color);objects,fiber,contact=contours.build(bpy,rig,settings,mat)
+ for i,(name,path,w,d) in enumerate(guides(settings)[len(FRONT):]):
+  verts,faces,uv,frames=lock_geometry(path,w,d,i);mesh=bpy.data.meshes.new('R17 rear lock '+name);mesh.from_pydata(verts,[],faces);mesh.update();layer=mesh.uv_layers.new(name='Longitudinal flow');layer.data.foreach_set('uv',np.asarray(uv).ravel())
   for p in mesh.polygons:p.use_smooth=True
-  obj=bpy.data.objects.new('HAIR-mom-R17-'+name,mesh);bpy.context.collection.objects.link(obj);mesh.materials.append(mat);world=obj.matrix_world.copy();obj.parent=rig;obj.parent_type='BONE';obj.parent_bone='DEF-Head';bpy.context.view_layer.update();obj.matrix_world=world;objects.append(obj.name)
-  centers,axis,forward,profile=frames
-  for phi in np.linspace(.18,np.pi-.18,18 if i<8 else 8):
-   ridge=1+.015*np.cos(10*phi+i*.63);p=centers+profile[:,None]*ridge*(w*np.cos(phi)*axis+(d+.00009)*np.sin(phi)*forward);fiber_paths.append(p);fiber_radii.append(.000045*profile+.000004)
- fiber=native_curves(bpy,'GROOM-mom-R17-surface-fibers',np.asarray(fiber_paths),np.asarray(fiber_radii),mat,rig)
- return {'objects':objects,'surface_fiber_object':fiber.name,'curves':len(fiber_paths),'locks':len(objects),'method':settings['method'],'single_crown_shell':False,'reference_texture_projection':False}
+  obj=bpy.data.objects.new('HAIR-mom-R17-'+name,mesh);bpy.context.scene.collection.objects.link(obj);mesh.materials.append(mat);world=obj.matrix_world.copy();obj.parent=rig;obj.parent_type='BONE';obj.parent_bone='DEF-Head';bpy.context.view_layer.update();obj.matrix_world=world;objects.append(obj.name)
+ return {'objects':objects,'object_vertex_counts':{n:len(bpy.data.objects[n].data.vertices) for n in objects},'surface_fiber_object':fiber,'curves':42,'locks':len(objects),'method':'Three independently closed contour-authored front locks and eleven overlapping rear wave locks; sculpted longitudinal relief and subtle fiber detail, no alternating painted stripes.','contact':contact,'single_crown_shell':False,'reference_texture_projection':False}
