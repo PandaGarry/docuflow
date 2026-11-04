@@ -29,3 +29,13 @@ comparison required. Actual result/visual review pending at source publication.
 Still no approved full acting, blink, hair/shoulder dynamics, cloth simulation,
 exact likeness or production swap. Rain Rig (CC) Blender Foundation |
 studio.blender.org, modified CC BY4.0. Art/user/production=false.
+
+## Actual result: native verified, appearance still needs refinement
+
+Run41827110660 SUCCESS6m59s; artifact13320506111 (95,233,769bytes), until
+2026-11-18T12:18:13Z. ACT-only restore error0; saved-native reopen pixel MAE0.
+Original head/eyes are now coherent, softer oval/ears/brows retained, vest visible
+and skin matched. But actual multiview inspection still rejects floating/gapped
+part roots, aligned lower-hair kinks/tips, tubular collar and jagged piping.
+These are not final canonical/film-quality hair/clothes. Freeze R15; next pass
+will edit appearance on this actual verified binary without rebuilding the face.
