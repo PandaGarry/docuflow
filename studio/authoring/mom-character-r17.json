@@ -76,7 +76,8 @@
       2861,
       6056,
       6375
-    ]
+    ],
+    "naris_radial_scale": 0.83
   },
   "iris": {
     "inner_radial_scale": 0.84,
@@ -106,5 +107,15 @@
   },
   "art_approved": false,
   "user_approved": false,
-  "production_swap_allowed": false
+  "production_swap_allowed": false,
+  "brows": {
+    "inner_lift_m": 0.0055,
+    "outer_lift_m": 0.0035
+  },
+  "stage": {
+    "key_energy_w": 55,
+    "fill_energy_w": 10,
+    "rim_energy_w": 18,
+    "exposure": 0
+  }
 }

@@ -20,6 +20,11 @@ def head_residual(p,spec):
  malar=np.exp(-((abs(x)-.060)/.029)**4-((z-1.438)/.024)**4)*smoothstep(-.065,-.115,y)
  q[:,1]-=.0013*malar
  nose,weights=nose_residual(q,data,spec['nose']);q+=nose
+ # Reduce the whole naris rim and its inner wall together, not only the visible
+ # front skin. Smooth spatial contraction preserves wall thickness in Y.
+ x,y,z=q.T;side=np.where(x<0,-1,1);w=np.exp(-((abs(x)-.014)/.011)**6-((z-1.4215)/.0075)**6)*smoothstep(-.105,-.14,y)
+ factor=spec['nose']['naris_radial_scale']-1
+ q[:,0]+=factor*(x-side*.013)*w;q[:,2]+=factor*(z-1.4215)*w
  return q-np.asarray(p)
 
 def iris_field(p,settings):
