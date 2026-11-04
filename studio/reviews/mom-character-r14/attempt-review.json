@@ -1,0 +1,40 @@
+{
+  "status": "rejected_first_full_groom_and_wardrobe_attempt_native_integrity_failed",
+  "native_run": 41824490914,
+  "source_commit": "73b468a",
+  "artifact_id": 13318593800,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-character-r14/portrait-front.png",
+      "sha256": "34f456fbbf9cb809495c67720f50d1a5810cf6e306610874c69dee347dee0649"
+    },
+    {
+      "path": "studio/reviews/mom-character-r14/portrait-three-quarter.png",
+      "sha256": "8bea50445aad2e72e16a3ceb419a91855121cf6e47a8aa9a5d69a6c3ba6c2192"
+    },
+    {
+      "path": "studio/reviews/mom-character-r14/portrait-profile.png",
+      "sha256": "da73205e58ab4543bd936403ff19f6f9d71acaa5919af28a41534d660b5f6ad7"
+    },
+    {
+      "path": "studio/reviews/mom-character-r14/bare-front.png",
+      "sha256": "beebdfec097557794f7b9b3b93c51f4f0797dd2eab59e2fa9db019079befc2b1"
+    }
+  ],
+  "scripts": {
+    "mom_character_r14.py": "2772cba85158f8f1433caaf369d4a2c06faa05af6c754ecd7b139a0b43c170ec",
+    "mom_face_anatomy_r14.py": "63fc4b2250d31c00cc2016041c16ad9010c06905a85c00143eb4a8b9eae6d97e",
+    "mom_groom_r14.py": "1d9d09e1436b767f00061744ec1f214835d7e2df41ab9e2c9974f4a366444426",
+    "mom_wardrobe_r14.py": "85b69b95901f6d0fb20e5cc7221690f9964041fb755a075998a654e4dab2245e"
+  },
+  "observations": [
+    "Soft oval/ear progress visible in bare face.",
+    "Eyes have unacceptable pale angular pupil/reflection artifacts after eye edits.",
+    "Hair too light, sparse, too long, stepped roots; not canonical groom.",
+    "Vest surface lies under shirt in places, folded fronts float, sleeves disconnected, body/chest skin mismatch.",
+    "Native run failed combined rig/restore integrity check after rendering. No saved-binary reopen verification."
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

@@ -54,3 +54,13 @@ Native render/visual assessment still pending at source publication. Art/user/
 production=false; 'final render' means rendered beauty frames, NOT final approval.
 
 Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
+
+## Actual first full result — rejected, not final render acceptance
+
+Run41824490914 rendered all requested views but FAILED the combined rig/restore
+integrity guard after rendering; no separate saved-binary reopen. Artifact
+13318593800 retains the actual failed attempt. See `attempt-review.json`.
+Visual inspection rejects pale angular eye artifacts, sparse/too-light/too-long
+hair with stepped roots, vest occlusion under shirt, floating collars/sleeves and
+chest skin mismatch. Face oval/ear progress retained. Frozen R14 source/evidence
+remain intact; R15 will correct these specific observed faults, not hide failure.
