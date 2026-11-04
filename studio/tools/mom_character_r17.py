@@ -38,7 +38,9 @@ def eyes(bpy,spec):
  def dots(p):
   q=p.copy()
   for side in (-1,1):
-   mask=p[:,0]*side>0;c=p[mask].mean(0)
+   mask=p[:,0]*side>0
+   if not mask.any():continue
+   c=p[mask].mean(0)
    for axis in (0,2):q[mask,axis]=c[axis]+(p[mask,axis]-c[axis])*spec['iris']['catchlight_scale']
   q[:,2]+=spec['iris']['catchlight_lift_m'];return q
  edits.append(core.edit_blocks(bpy,bpy.data.objects['GEO-rain-eye_dots'],dots))
@@ -111,7 +113,7 @@ def main():
  for n,state in hidden.items():bpy.data.objects[n].hide_render=state
  newinvalid=sorted(set(build.base.invalid_drivers(bpy))-set(invalid))
  if restore>1e-7 or rest!=build.base.rig_signature(rig) or newinvalid:raise ValueError('Rig/restoration failure')
- record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'same_residual_on_all_original_head_keys':len(set(key_deltas))==1,'original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
+ record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'actual_landmark_deltas_m':{str(i):delta[i].tolist() for i in (3150,6375,6341,486)},'same_residual_on_all_original_head_keys':len(set(key_deltas))==1,'original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
  build.study.write(OUT/'report.json',record)
 
 def verify():
