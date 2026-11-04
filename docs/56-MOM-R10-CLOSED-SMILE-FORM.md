@@ -29,3 +29,31 @@ body/wardrobe and complete acting remain open. No user/art/production approval.
 Private photos not read/published.
 
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
+
+## Actual primary native result
+
+[41779442779](https://github.com/PandaGarry/docuflow/actions/runs/41779442779)
+SUCCESS3m30s/job126407376188/publish1735308. Artifact13298308136,
+86,863,271bytes, expiry2026-11-18T05:31:42Z. `mom-head-form-r10.blend` SHA256
+`3b90652155d8d408e196cec54af76dbd45e3db6db4709d015b1cbaa82076beea`.
+19packed images; separate-process same-worker saved-binary reopen verifies
+geometry/UV/PBR channel links/packed bytes and original pose restore. Native
+success is not final appearance approval.
+
+- [Canonical / R9 / R10](../studio/reviews/mom-head-form-r10/comparison-identity.png)
+- [Isolated clay form](../studio/reviews/mom-head-form-r10/comparison-form.png)
+- [Three actual views](../studio/reviews/mom-head-form-r10/color-three-views.png)
+- [Local lip detail](../studio/reviews/mom-head-form-r10/comparison-lips.png)
+- [Inspected visual findings](../studio/reviews/mom-head-form-r10/visual-review.json)
+
+Clay confirms locally smaller lower lip/reduced projection; color is warmer and
+less chalky. Corner/expression improvement is modest; canonical closed-smile
+line, fine Cupid contour and lower highlight still differ. Do not infer a full
+smile correction from moving the authored targets.
+
+381local tests PASS20.666s;31task validate/checklist/diff PASS. A separate fresh
+worker is being prepared to download actual published R9/R10 `.blend` files,
+verify them without acquiring original Rain, independently rerender R10 neutral
+pixels, then compare both under identical 1024²/96sample portrait lighting.
+Light and material presentation must not be counted as geometry improvement.
+No altered lookdev blend or new character acceptance is implied.

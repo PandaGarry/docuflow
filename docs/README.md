@@ -103,6 +103,10 @@ python3 studio/tools/production_status.py doctor
     нос/щёки R8 сохранены, уменьшены высота/объём верхней губы и пигмента;
     actual native build/reopen успешны; color/clay/три ракурса и lip detail просмотрены, не final approval.
 
+24. [56 · Мама R10: компактнее губы и мягче линия рта](56-MOM-R10-CLOSED-SMILE-FORM.md):
+    actual geometry/PBR/native review; форма отдельно от света. Независимый
+    downloaded-binary/portrait-light проход подготавливается, не приёмка лица.
+
 ## Исторические планы и технические материалы
 
 - [00 · Vision](00-VISION.md), [03 · Character bible](03-CHARACTER-BIBLE.md),

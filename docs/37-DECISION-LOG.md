@@ -792,3 +792,24 @@ migration/canonical hair/body/wardrobe не приняты и не заверш�
 369local tests PASS18.344s;31task plan/checklist/diff PASS. R8 failed first UV
 assertion/frames preserved. Native recipe/runtime/result hashes R7/R8/R9
 проверены, frozen source/history не переписаны. Art/user/production=false.
+
+
+### R10: actual lip form/PBR, затем independent downloaded-asset check
+
+375local tests PASS20.342s/31task checks PASS before3d124fb native recipe push.
+Actual41779442779 SUCCESS3m30s/job126407376188/publish1735308; artifact13298308136
+(86,863,271bytes, expires2026-11-18T05:31:42Z), native SHA
+3b90652155d8d408e196cec54af76dbd45e3db6db4709d015b1cbaa82076beea.
+Eight oral targets only, no widening or stronger ACT pose. Lower lip back2.4mm/
+up2.1mm; corners up1.875mm. Same .4smile. Original UV/tile1003 retained; warmer
+vermilion plus RGB PBR map with explicit roughness/coat/coat-roughness channels.
+19packed images and all actual graph/bytes/geometry survive saved-file reopen.
+
+Просмотрены actual color/clay/portrait/three-view/lip-detail boards. Less pout,
+less chalky lower lip; modest corner improvement, not completed gentle canonical
+smile. Nose/cheek/eye/ear direction retained. No full-face/acting acceptance.
+381local tests PASS20.666s/31task checks PASS including native receipts.
+Separate fresh-worker download/reopen R9/R10 and identical higher-sample portrait
+light prepared; no original-source rebuild and no shader/mesh changes in that
+stage. Its result is not yet known. Existing neutral/clay boards remain primary
+form evidence; flattering light must not masquerade as a geometry improvement.

@@ -1,0 +1,46 @@
+{
+  "revision": "mom-head-form-r10",
+  "status": "partial_oral_form_and_material_progress_not_final_smile",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r10/comparison-identity.png",
+      "sha256": "326801c984d554d9096cd17f786384f4cbde201f2b5c26b00bf0ce805b03c6ee"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/comparison-form.png",
+      "sha256": "28c7033cf6f5419a095bca0a30396897a652bb4d36f7c5a4b3deac95eae1cabf"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/comparison-portrait.png",
+      "sha256": "c88f81b7b59313bad25ecd841c64cd4689a827f2672b4fd6dfb170c55ad269ee"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/color-three-views.png",
+      "sha256": "c816c6fa2ce8558d980a96e59ef6ee680112578e484a29df0d44369f10ff6f5a"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/comparison-lips.png",
+      "sha256": "491775771d70948ab79222c0978445da08dac9f244565dc223d9ef38419da0b5"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/comparison-clay.png",
+      "sha256": "527b1960b14bec81903b8d40c6fdb945b42fe8a0d64ed337e1af1d7bad15ddbd"
+    }
+  ],
+  "visual_findings": [
+    "Matched clay shows a locally smaller lower lip and reduced oral projection, without a new nose/cheek design. More restrained than R9, not a full smile correction.",
+    "Lower vermilion is warmer/deeper and less chalky; upper border remains controlled. Distinct PBR responses are persisted, but soft diagnostic light gives weak visible sheen.",
+    "Corner lift gives only modest visible expression improvement. Canonical closed-smile line, fine Cupid contour and lower-lip highlight remain different; do not call final likeness.",
+    "Front/three-quarter/profile and same-actuator .4smile inspected. Original supported eyes/brows/compact ears retained; hair/frame and full acting absent."
+  ],
+  "next": "Independently reopen downloaded R9/R10 binaries on fresh worker, verify neutral pixels before matching higher-sample portrait light. Judge light/material separately from existing clay form; preserve incomplete smile/blink status.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41779442779",
+  "artifact_id": 13298308136,
+  "known_blink_visual_failure": true,
+  "persistence_scope": "Primary build reopened on same worker; independent downloaded verification pending.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}
