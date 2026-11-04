@@ -9,43 +9,46 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама R13: уши, положение рта, закрытая улыбка и объём носа
+## Текущая работа · мама: мягче лицо, прядевые волосы, футболка и жилет — R16 WIP
 
-**[Эталон / R11 / R13 — реальные кадры при прежнем свете](studio/reviews/mom-head-form-r13/comparison-portrait.png)** ·
-[Три ракурса](studio/reviews/mom-head-form-r13/portrait-three-views.png) ·
-[Уши крупно](studio/reviews/mom-head-form-r13/comparison-ears.png) ·
-[Нос R12→R13 в clay](studio/reviews/mom-head-form-r13/comparison-oral-clay-detail.png) ·
-[Editable native artifact / результат / ограничения](docs/59-MOM-R13-NASAL-SURFACE-CURVATURE.md).
+**[Эталон / текущий настоящий Cycles-портрет](studio/reviews/mom-character-r16/comparison-character.png)** ·
+[Анфас / ¾ / профиль](studio/reviews/mom-character-r16/portrait-three-views.png) ·
+[Лицо без волос: эталон / R13 / сохранённая форма R15](studio/reviews/mom-character-r16/comparison-bare-face.png) ·
+[Editable `.blend`, результаты и ограничения](docs/62-MOM-R16-SCALP-ROOTS-AND-FITTED-COLLAR.md).
 
-После замечания о слишком мелких итерациях выполнена согласованная переработка
-R12:24изменённых контроля и2реальных угла контакта губ,87контролей всего.
-Уши уменьшены, развёрнуты и прижаты; весь рот опущен5мм, пропорции губ и линия
-закрытой улыбки пересмотрены. **Нос R12 оказался плоским/угловатым — эта часть
-результата отклонена**, а не выдана за успешное округление.
+По новому запросу выполнен цельный проход:87indexed controls,36изменённых
+таргетов щёк/челюсти/подбородка/век/губ; уши компактнее, радужка8% крупнее,
+брови толще +440native fibers. Исходная Rain-голова/25keys/weights/UV/rig сохранены.
+Добавлены13864native hair curves с пробором/волнами до плеч (не сплошной cap),
+белая футболка с рукавами и отдельный коричневый жилет. R16 меняет только
+волосы/одежду на проверенном R15 binary, не пересобирает лицо/глаза ещё раз.
 
-R13 сохраняет изменения ушей/рта и корректирует кривизну самой исходной носовой
-поверхности, с защитой краёв ноздрей/внутренних стенок. В профиль кончик стал
-округлее; анфас переходы к крыльям ещё жёсткие. Контур и выступание губ тоже
-требуют доводки. Точное сходство с эталоном и финальное лицо **не утверждены**.
+**Не выдаём сборку за финал:** пробор/рисунок прядей/концы ещё искусственные,
+воротник R16 имеет жёсткие/пересекающиеся складки и требует переработки. Нос,
+контур/выступание губ и выражение глаз тоже отличаются от эталона. Это первый
+цельный образ для разбора, не утверждённая финальная мама или киноуровень.
 
-Original Rain mesh/25head keys/weights/UV/rig сохранены. Цвет/PBR/свет/сила улыбки
-не менялись: весь saved material state совпадает с R12/R11; прежние R10 lights,
-camera,1024²/96samples. Это реальные native renders, не generated-image/paint-over.
+История сохранена честно: R14 дал блики/дефекты глаз, редкие слишком светлые
+волосы, жилет под футболкой и failure native restore — отклонён. R15 исправил
+глаза/цвет/положение одежды и прошёл native reopen, но волосы/воротник остались
+недостаточными. R16 улучшает корни/концы и сохраняет лицо; дефекты воротника
+зафиксированы, а не скрыты. Цвет/PBR лица остались R13; это реальные native
+frames, не generated image или paint-over.
 
-Native41807469868 SUCCESS6m5s:3clay +1neutral color +3portrait +2reopen frames.
-Сохранённый `.blend` открыт отдельным процессом на том же worker:19packed images,
-geometry/restore/pixel errors0. Это не independent redownload R13.423local tests
-и31task checks — техническая проверка, не доказательство likeness/киноуровня.
+Native R16:41829196725 SUCCESS8m5s;3новых Cycles-портрета +neutral +reopen.
+Четыре bare/clay кадра явно переиспользованы из R15: голова и глаза не менялись.
+Separate-process reopen на том же worker:17packed images, restore/pixel errors0.
+Это не independent R16 redownload и не художественное принятие.
 
-[Честная визуальная оценка](studio/reviews/mom-head-form-r13/visual-review.md).
-Blink/lash/rest migration, canonical hair/frame/body/wardrobe/full acting не
-завершены; art/user/production=false. Masters/history сохранены; private inputs
+[Честная визуальная оценка](studio/reviews/mom-character-r16/visual-review.md).
+Blink/lash/rest migration, полная анимация, hair/cloth dynamics и полный персонаж
+не завершены; art/user/production=false. Masters/history сохранены; private inputs
 не читаются/не публикуются. Rain Rig (CC) Blender Foundation | studio.blender.org,
 modified CC BY4.0.
 
-[R12: широкая переработка и отклонённый нос](docs/58-MOM-R12-COORDINATED-FACE-PROPORTIONS.md) ·
-[R11: прежняя локальная итерация](docs/57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md) ·
-[Поддержанное направление R4](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
+[R14: первый отклонённый groom/wardrobe](docs/60-MOM-R14-PROPORTIONS-STRAND-GROOM-WARDROBE.md) ·
+[R15: исправления глаз/одежды/restore](docs/61-MOM-R15-GROOM-WARDROBE-CORRECTION.md) ·
+[R13: нос / уши / рот](docs/59-MOM-R13-NASAL-SURFACE-CURVATURE.md).
 
 ## Актуальный план развития движка · 2026-11-03
 

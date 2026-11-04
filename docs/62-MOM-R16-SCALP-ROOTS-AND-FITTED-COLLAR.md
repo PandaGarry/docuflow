@@ -23,3 +23,28 @@ are replaced, original Rain objects remain. Head and eye fingerprints checked.
 Native result and actual visual assessment pending at source publication. Known
 blink/full acting, shoulder dynamics/cloth simulation and exact likeness remain
 unapproved. Rain Rig (CC) Blender Foundation | studio.blender.org, CC BY4.0.
+
+## Actual native result and honest assessment
+
+[Run41829196725](https://github.com/PandaGarry/docuflow/actions/runs/41829196725)
+SUCCESS8m5s. [Editable native artifact13322966803](https://github.com/PandaGarry/docuflow/actions/runs/41829196725/artifacts/13322966803),
+94,258,548bytes; retention until2026-11-18T12:33:48Z. Archive contains
+`.cache/r16/mom-character-r16.blend`; exact binary hash is in `report.json`.
+Separate-process same-worker reopen succeeded: original head/eyes/keys/weights/
+rest/material retained;17packed images; pose restore0, neutral render MAE0.
+This is NOT independent R16 redownload or production/acting certification.
+
+[Actual canonical comparison](../studio/reviews/mom-character-r16/comparison-character.png) ·
+[Three views](../studio/reviews/mom-character-r16/portrait-three-views.png) ·
+[Bare face comparison](../studio/reviews/mom-character-r16/comparison-bare-face.png) ·
+[Actual visual review](../studio/reviews/mom-character-r16/visual-review.md).
+
+**Not finished:** hair tips/root placement improve, but part gap/flow/ends remain
+artificial; the flatter collar has hard/faceted/overlapping folds and is NOT
+accepted as final. Nose/lip/eye-expression likeness and full acting still need
+work. Technical success does not override these visible failures. No more
+uninspected 'final' claim. Full bust is a WIP, not a final approved mom.
+
+Native SHA256: `439818d40c59b5edbe0b2e2271438a7fb74b77453e79e17dfd9436e77d5823e2`.
+Final validation:451local tests PASS42.416s;31task/dependency/checklist checks
+PASS. These bind recipes/frames/persistence, not likeness or cinematic quality.

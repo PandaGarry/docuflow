@@ -1,0 +1,25 @@
+{
+  "status": "coordinated_face_progress_full_look_wip_groom_and_collar_not_final",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-character-r16/comparison-character.png",
+      "sha256": "9db0eea8e3c9580daeb69935e4a5f96727c3660b313e76f1426b27f88ca93551"
+    },
+    {
+      "path": "studio/reviews/mom-character-r16/portrait-three-views.png",
+      "sha256": "45793a204b8c2aa4759154466257b22061320053b4b5a70cdb3eee9ea6480b30"
+    }
+  ],
+  "observations": [
+    "Full original Rain-based character bust now has softer oval/cheeks, smaller ears, larger iris, thicker brows, real parted strand hair and brown vest over white shirt.",
+    "R16 retains actual verified R15 face and eyes without rebuilding them. Bare/clay inputs are explicitly reused unchanged R15 frames.",
+    "Hair lower tips are less abruptly kinked than R15 and roots are on scalp, but visible center-part gap, uniform clump flow and stiff separated ends remain unlike soft canonical waves. Groom is NOT final/reference-quality.",
+    "Vest now outside shirt, with matched skin and no jagged piping; however flattened collar developed hard/faceted overlapping folds and still lacks canonical padded collar construction. Collar result NOT accepted as final.",
+    "Nose frontal bridge/ala transitions, lip contour/projection and eye expression still differ from reference. No exact likeness, cinema-quality or complete acting acceptance."
+  ],
+  "native_run": 41829196725,
+  "artifact_id": 13322966803,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

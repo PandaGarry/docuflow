@@ -12,6 +12,8 @@ on:
       - 'studio/tests/test_mom_*.py'
       - 'studio/reviews/mom-form-audit/**'
       - 'studio/reviews/mom-head-form-r*/**'
+      - 'studio/reviews/mom-character-r*/**'
+      - 'studio/authoring/mom-character-r*.json'
       - '.github/workflows/mom-form-contracts.yml'
   pull_request:
     paths:
@@ -25,6 +27,8 @@ on:
       - 'studio/tests/test_mom_*.py'
       - 'studio/reviews/mom-form-audit/**'
       - 'studio/reviews/mom-head-form-r*/**'
+      - 'studio/reviews/mom-character-r*/**'
+      - 'studio/authoring/mom-character-r*.json'
       - '.github/workflows/mom-form-contracts.yml'
 permissions:
   contents: read
@@ -66,3 +70,8 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_head_r8_results.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_head_r9_results.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_color_native_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r12*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r13*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r14.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r15*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r16*.py' -v

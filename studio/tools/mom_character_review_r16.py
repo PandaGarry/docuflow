@@ -62,7 +62,7 @@ def main():
  for row,view in enumerate(('front','three-quarter','profile')):
   for col,folder in enumerate((ROOT/'studio/reviews/mom-head-form-r13',OUT)):
    with Image.open(folder/f'clay-{view}.png') as im:image.paste(im,(col*768,35+768*row))
- d.text((18,10),'R13 / R16 - ACTUAL BARE ANATOMY, NO HAIR HIDING',fill='white',font_size=22);d.text((18,2340),CREDIT,fill='white',font_size=17);image.save(OUT/'comparison-clay.png')
- receipt.update({'script_sha256':sha(__file__),'source_report_sha256':sha(OUT/'report.json'),'method':'Only uniform pupil similarity or intact uniformly resized actual views; no retouch, face warp, generated image or reference texture projection.','art_approved':False,'user_approved':False,'production_swap_allowed':False})
+ d.text((18,10),'R13 / RETAINED R15 FACE (R16) - VERIFIED RAW ANATOMY REUSE',fill='white',font_size=22);d.text((18,2340),CREDIT,fill='white',font_size=17);image.save(OUT/'comparison-clay.png')
+ receipt.update({'script_sha256':sha(__file__),'source_report_sha256':sha(OUT/'report.json'),'method':'Only uniform pupil similarity or intact uniformly resized actual views. R16 bare/clay inputs explicitly reuse unchanged R15 anatomy; new portraits are fresh R16 Cycles renders. No retouch, face warp, generated image or reference texture projection.','art_approved':False,'user_approved':False,'production_swap_allowed':False})
  (OUT/'image-review.json').write_text(json.dumps(receipt,indent=2)+'\n')
 if __name__=='__main__':main()

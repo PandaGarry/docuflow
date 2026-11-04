@@ -1,0 +1,112 @@
+{
+  "character_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -11.086956521739125,
+        9.275362318840564
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r16/portrait-front.png",
+      "sha256": "bd1a3fc5b0c01035dfcd87243e9698ee0ace94d76238eaa4a5011f21d9c58f33",
+      "pupil_anchors_px": [
+        [
+          410.1051912568306,
+          464.7773224043716
+        ],
+        [
+          612.1146220570013,
+          463.35254027261465
+        ]
+      ],
+      "uniform_similarity": [
+        1.0395037159253333,
+        0.007331669192268832,
+        -147.89827665580756,
+        -76.14450931349813
+      ]
+    }
+  ],
+  "bare_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/portrait-front.png",
+      "sha256": "2d8d52669825ea2b7b2ba469e368aa740258ba27d8b4e133d8aff3968472bf2a",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1163873370577,
+          506.840782122905
+        ]
+      ],
+      "uniform_similarity": [
+        1.1039026114255983,
+        -0.0002737648090961928,
+        -264.75173103631556,
+        -339.3355608013526
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r16/bare-front.png",
+      "sha256": "940ed4080affe6b3d91aca68dd361e5ec28ee75e1b67bc9bd0aaa914fbc61644",
+      "pupil_anchors_px": [
+        [
+          411.7935877053524,
+          506.7188659247483
+        ],
+        [
+          611.165071770335,
+          506.89712918660285
+        ]
+      ],
+      "uniform_similarity": [
+        1.1034668530976075,
+        -0.000986638593297827,
+        -264.9005227400723,
+        -338.74118094106785
+      ]
+    }
+  ],
+  "script_sha256": "96d5f606d1d841d93fa17d9b0a67f1c3595cd3874418079500376c36c22714af",
+  "source_report_sha256": "86ab9ea34828883112b5a98553e7189b09bb4922807bbdcaaf1fdc80c903d368",
+  "method": "Only uniform pupil similarity or intact uniformly resized actual views. R16 bare/clay inputs explicitly reuse unchanged R15 anatomy; new portraits are fresh R16 Cycles renders. No retouch, face warp, generated image or reference texture projection.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}
