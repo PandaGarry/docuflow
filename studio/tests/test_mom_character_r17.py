@@ -21,13 +21,13 @@ class R17(unittest.TestCase):
    for f in faces:
     for a,b in zip(f,f[1:]+f[:1]):edge=tuple(sorted((a,b)));edges[edge]=edges.get(edge,0)+1
    self.assertTrue(all(n==2 for n in edges.values()))
- def test_explicit_front_contours_are_closed_and_outward(self):
-  flows=contours.guides(self.s['hair']);self.assertEqual(len(flows),3)
-  for i,(_,outer,inner,depth) in enumerate(flows):
-   p,faces,uv=contours.geometry(outer,inner,depth,i);self.assertTrue(np.isfinite(p).all());self.assertEqual(len(p),8192);self.assertEqual(len(uv),sum(map(len,faces)));edges={}
+ def test_actual_front_tresses_are_closed_and_outward(self):
+  flows=contours.tress_paths(self.s['hair']);self.assertEqual(len(flows),25)
+  for _,path,radius in flows:
+   p,faces,uv,_=contours.tube(path,radius);self.assertTrue(np.isfinite(p).all());self.assertEqual(len(p),3072);self.assertEqual(len(uv),sum(map(len,faces)));edges={}
    for f in faces:
     for a,b in zip(f,f[1:]+f[:1]):key=tuple(sorted((a,b)));edges[key]=edges.get(key,0)+1
-   self.assertTrue(all(v==2 for v in edges.values()));f=faces[64*64+16];a,b,c=p[list(f[:3])];self.assertLess(np.cross(b-a,c-a)[1],0)
+   self.assertTrue(all(v==2 for v in edges.values()));f=faces[64*24+6];a,b,c=p[list(f[:3])];self.assertLess(np.cross(b-a,c-a)[1],0)
  def test_spatial_oral_transport_has_positive_local_jacobian(self):
   x,y,z=np.meshgrid(np.linspace(-.07,.07,15),np.linspace(-.17,-.065,9),np.linspace(1.36,1.43,23));p=np.stack((x.ravel(),y.ravel(),z.ravel()),axis=1);h=1e-6;columns=[]
   for axis in range(3):

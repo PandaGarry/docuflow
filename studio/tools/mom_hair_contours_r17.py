@@ -8,7 +8,7 @@ import numpy as np
 from mom_head_surface_r2 import cubic_curve
 # Outer pixel X/Y, inner pixel X/Y, outer world Y, inner world Y.
 CONTOURS=[('left-continuous-wave',[
- [406,90,410,95,-.103,-.107],[350,8,411,125,.005,-.120],
+ [408,25,410,100,-.035,-.112],[350,8,411,125,.005,-.120],
  [244,24,400,180,.020,-.146],[157,97,370,245,.040,-.160],
  [118,184,324,296,.025,-.170],[93,298,258,330,.005,-.160],
  [71,384,204,385,-.020,-.146],[36,456,163,434,-.015,-.120],
@@ -17,12 +17,12 @@ CONTOURS=[('left-continuous-wave',[
  [11,771,117,780,-.005,-.095],[8,806,68,822,-.040,-.105],
  [10,812,12,812,-.080,-.082]],.025),
  ('right-swept-fringe',[
- [412,91,415,96,-.103,-.107],[463,11,414,125,.010,-.120],
+ [412,28,414,100,-.035,-.112],[463,11,414,125,.010,-.120],
  [575,53,441,188,.035,-.150],[640,151,479,251,.035,-.166],
  [678,275,516,315,.015,-.166],[710,369,577,377,-.040,-.150],
  [725,415,641,427,-.090,-.133],[718,419,716,420,-.118,-.120]],.026),
  ('right-long-wave',[
- [465,25,470,30,.025,.020],[581,65,568,135,.070,-.040],
+ [465,60,470,65,.025,.020],[581,65,568,135,.070,-.040],
  [664,180,629,246,.050,-.070],[697,300,656,367,.020,-.070],
  [731,420,640,440,-.005,-.110],[741,514,650,514,-.005,-.110],
  [703,590,628,589,.010,-.095],[710,671,636,675,.010,-.090],
@@ -65,7 +65,7 @@ def tress_paths(settings):
   for j in range(count):
    f=(j+.5)/count;path=o*(1-f)+inside*f;path[:,1]-=depth*np.sqrt(1-(2*f-1)**2)*cubic_curve(t,[0,.1,.8,1],[.1,1,1,.03])
    tangent=np.gradient(path,axis=0);tangent/=np.linalg.norm(tangent,axis=1)[:,None];separation=(inside-o)/count;perp=separation-tangent*np.einsum('ij,ij->i',separation,tangent)[:,None]
-   radius=np.clip(.65*np.linalg.norm(perp,axis=1),.00012,.011);radius*=.98+.02*np.cos(j*.9+t*3)
+   radius=np.clip(.65*np.linalg.norm(separation[:,[0,2]],axis=1),.00012,.008);radius*=cubic_curve(t,[0,.025,.08,.92,1],[.04,.65,1,1,.25]);radius*=.98+.02*np.cos(j*.9+t*3)
    result.append((name+f'-tress-{j:02}',path,radius))
  return result
 
@@ -85,10 +85,10 @@ def build(bpy,rig,settings,mat):
  head=bpy.data.objects['GEO-rain-head'];ev=head.evaluated_get(bpy.context.evaluated_depsgraph_get());skin=ev.to_mesh();bvh=BVHTree.FromPolygons([head.matrix_world@v.co for v in skin.vertices],[list(p.vertices) for p in skin.polygons]);ev.to_mesh_clear();objects=[];paths=[];radii=[];contact=0
  for i,(name,path,radius) in enumerate(tress_paths(settings)):
   for j,point in enumerate(path):
-   if point[2]<1.49:continue
+   if point[2]<1.44:continue
    hit,normal,index,distance=bvh.ray_cast(Vector((point[0],-1,point[2])),Vector((0,1,0)),2)
    if hit is not None:
-    target=hit.y-radius[j]-.004;y=point[1];path[j,1]=.5*(y+target-np.sqrt((y-target)**2+.001**2));contact+=int(y>target)
+    target=hit.y-radius[j]-.004;y=point[1];f=np.clip((point[2]-1.44)/.06,0,1);f=f*f*(3-2*f);clear=.5*(y+target-np.sqrt((y-target)**2+.001**2));path[j,1]=y+f*(clear-y);contact+=int(y>target)
   p,faces,uv,rings=tube(path,radius);mesh=bpy.data.meshes.new('R17 rounded tress '+name);mesh.from_pydata(p.tolist(),[],faces);mesh.update();layer=mesh.uv_layers.new(name='Longitudinal flow');layer.data.foreach_set('uv',np.asarray(uv).ravel())
   for poly in mesh.polygons:poly.use_smooth=True
   obj=bpy.data.objects.new('HAIR-mom-R17-'+name,mesh);bpy.context.scene.collection.objects.link(obj);mesh.materials.append(mat);world=obj.matrix_world.copy();obj.parent=rig;obj.parent_type='BONE';obj.parent_bone='DEF-Head';bpy.context.view_layer.update();obj.matrix_world=world;objects.append(obj.name)

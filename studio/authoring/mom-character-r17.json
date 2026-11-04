@@ -82,8 +82,8 @@
   "iris": {
     "inner_radial_scale": 0.84,
     "outer_radial_scale": 0.95,
-    "catchlight_scale": 1.5,
-    "catchlight_lift_m": 0.0015
+    "catchlight_scale": 2.0,
+    "catchlight_lift_m": 0.0035
   },
   "palette_srgb": {
     "skin": "#E8B48F",
@@ -102,7 +102,7 @@
     "eye_y": 395,
     "eye_z_m": 1.47326,
     "meters_per_pixel": 0.00045055072463768116,
-    "method": "25 independently rounded contour-guided front tresses +11 rear wave locks; no broad shell, no crown cap, no painted stripes.",
+    "method": "25 individually rounded contour-flow front tresses plus11 rear wave locks. Smooth clearance and stable crossflow radii. No broad shell or painted stripes.",
     "seed": 1701
   },
   "art_approved": false,
@@ -124,6 +124,8 @@
     "skin_red_linear_gain": 1.18,
     "temperature_mix": 0.18,
     "nose_peak_mix": 0.9,
-    "hair_shader_srgb": "#886242"
-  }
+    "hair_shader_srgb": "#886242",
+    "skin_specular_ior_level": 0.28
+  },
+  "render_scope": "final"
 }

@@ -31,7 +31,7 @@ def paint_samples(points,top,bottom,palette):
     rgba[:,:3]=skin*(1-lip[:,None])+pigment*lip[:,None]
     # Independent surface responses packed into a linear RGB map; alpha opaque.
     rough=np.ones((len(p),4),dtype=np.float32)
-    rough[:,0]=.48-(.10+.10*ratio)*lip
+    rough[:,0]=.53-(.15+.10*ratio)*lip
     rough[:,1]=(.05+.12*ratio)*lip
     rough[:,2]=.22
     return rgba,rough
@@ -91,6 +91,6 @@ def apply(bpy,data,palette):
  color_image,color_sha=save_packed_map(bpy,color,'Mom R17 original UV albedo',folder/'mom-r17-albedo.exr');rough_image,rough_sha=save_packed_map(bpy,rough,'Mom R17 original UV PBR',folder/'mom-r17-pbr.exr')
  tree=mesh.materials[0].node_tree;shader=tree.nodes['Principled BSDF'];shader.inputs['Base Color'].links[0].from_node.image=color_image
  separate=shader.inputs['Roughness'].links[0].from_node;separate.inputs['Color'].links[0].from_node.image=rough_image
- shader.inputs['Subsurface Weight'].default_value=.09;shader.inputs['Subsurface Scale'].default_value=.008
- receipt.update({'original_uv_sha256':hashlib.sha256(uv.tobytes()).hexdigest(),'albedo_exr_sha256':color_sha,'pbr_exr_sha256':rough_sha,'reference_projection':False,'palette_srgb':palette,'skin_sss_weight':.09,'skin_sss_scale_m':.008})
+ shader.inputs['Specular IOR Level'].default_value=.28;shader.inputs['Subsurface Weight'].default_value=.09;shader.inputs['Subsurface Scale'].default_value=.008
+ receipt.update({'original_uv_sha256':hashlib.sha256(uv.tobytes()).hexdigest(),'albedo_exr_sha256':color_sha,'pbr_exr_sha256':rough_sha,'reference_projection':False,'palette_srgb':palette,'skin_specular_ior_level':.28,'skin_sss_weight':.09,'skin_sss_scale_m':.008})
  return receipt

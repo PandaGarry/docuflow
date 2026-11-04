@@ -66,6 +66,12 @@ def main():
  if preview:OUT=BASE/'preview-4'
  OUT.mkdir(parents=True,exist_ok=True);s=json.loads(SPEC.read_text());old,before=load(bpy,s);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy)
  if build.study.sha(ROOT/s['reference']['path'])!=s['reference']['sha256']:raise ValueError('Canonical changed')
+ baseline_images=[]
+ if not preview:
+  stage(bpy,s);hide=[old['groom']['object']]+old['wardrobe']['objects']+['GEO-rain-body',old['brows']['fiber_object']];states={n:bpy.data.objects[n].hide_render for n in hide}
+  for n in hide:bpy.data.objects[n].hide_render=True
+  baseline_images.append(frame(bpy,'source-r16-held-light-bare-front.png',size=(768,768),samples=32,bare=True))
+  for n,v in states.items():bpy.data.objects[n].hide_render=v
  head=bpy.data.objects['GEO-rain-head'];p=np.array(before['basis_vertices']);delta=anatomy.head_residual(p,s);tri=np.array([[f[0],f[j],f[j+1]] for f in before['polygons'] for j in range(1,len(f)-1)]);key_deltas=[]
  limiter={'method':'Continuous spatial deformation reevaluated on each original corrective; no shared vertex-wise attenuation. Strict orientation check on every block remains enabled.'}
  def head_field(p):
@@ -91,7 +97,7 @@ def main():
  camera.location=(0,-4,1.5);camera.rotation_euler=(Vector((0,0,1.455))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.ortho_scale=.48
  bpy.context.scene.render.resolution_x=512;bpy.context.scene.render.resolution_y=640;bpy.context.scene.cycles.samples=32
  bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(NATIVE.resolve()),compress=True)
- images=[]
+ images=list(baseline_images)
  if not preview:images.append(frame(bpy,'saved-neutral-front.png',size=frame_config,samples=32))
  act={n:rig.pose.bones[n].location.copy() for n in ('ACT-Lips_Corner.L','ACT-Lips_Corner.R')};neutral=build.base.head_geometry(bpy);smile=build.warm_pose.set_warm_smile(bpy,rig,s['portrait_smile_amount'])
  for view in (('front','three-quarter') if preview else ('front','three-quarter','profile')):
@@ -111,8 +117,12 @@ def main():
  for n,state in hidden.items():bpy.data.objects[n].hide_render=state
  newinvalid=sorted(set(build.base.invalid_drivers(bpy))-set(invalid))
  if restore>1e-7 or rest!=build.base.rig_signature(rig) or newinvalid:raise ValueError('Rig/restoration failure')
- record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'actual_landmark_deltas_m':{str(i):delta[i].tolist() for i in (3150,6375,6341,486)},'corrective_transport':'Smooth spatial deformation reevaluated for every original block; original key names/weights/drivers retained, corrective deltas deliberately transported.','original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
+ record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'canonical_face_sha256':s['reference']['sha256'],'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'corrective_orientation_limiter':limiter,'actual_landmark_deltas_m':{str(i):delta[i].tolist() for i in (3150,6375,6341,486)},'corrective_transport':'Smooth spatial deformation reevaluated for every original block; original key names/weights/drivers retained, corrective deltas deliberately transported.','original_head_key_count':len(key_deltas),'original_topology_weights_and_key_names_retained':True,'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact, 14 days'},'groom':hair,'wardrobe':old['wardrobe'],'wardrobe_unchanged_from_r16':True,'eye_finish':eye,'eye_coordinate_hashes':build.eye_fingerprints(bpy),'uv_paint':paint_receipt,'saved_skin_shader':skin_shader_state(bpy),'saved_material_state':build.finish.saved_material_state(bpy),'stage':s['stage'],'images':images,'smile':smile,'pose_restore_error_m':restore,'candidate_rest_signature':rest,'new_invalid_drivers':newinvalid,'known_blink_visual_failure':True,'blink_visual_approved':False,'embedded_python_executed':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'scope':'Head identity and new sculpted hair. Clothes unchanged; full acting/blink/lip-sync and hair dynamics are not approved. Actual render must be visually reviewed, no automatic likeness certification.','credit':'Rain Rig (CC) Blender Foundation | studio.blender.org','license':'CC-BY-4.0'}
  build.study.write(OUT/'report.json',record)
+
+def skin_shader_state(bpy):
+ shader=bpy.data.objects['GEO-rain-head'].data.materials[0].node_tree.nodes['Principled BSDF']
+ return {k:float(shader.inputs[k].default_value) for k in ('Specular IOR Level','Subsurface Weight','Subsurface Scale')}
 
 def verify():
  import bpy
@@ -122,6 +132,7 @@ def verify():
  bpy.context.preferences.filepaths.use_scripts_auto_execute=False;bpy.ops.wm.open_mainfile(filepath=str(NATIVE.resolve()),use_scripts=False);bpy.context.view_layer.update();actual=build.diagnostic.head_data(bpy);expected=json.loads(gzip.decompress((BASE/'head-edit-data.json.gz').read_bytes()))
  for k in ('basis_vertices','polygons','vertex_weights','shape_keys','related_rest_bones'):
   if actual[k]!=expected[k]:raise ValueError('Reopened head differs '+k)
+ if skin_shader_state(bpy)!=r['saved_skin_shader']:raise ValueError('Reopened skin response differs')
  if build.finish.saved_material_state(bpy)!=r['saved_material_state'] or build.eye_fingerprints(bpy)!=r['eye_coordinate_hashes']:raise ValueError('Reopened materials/eyes differ')
  if build.base.rig_signature(bpy.data.objects['RIG-rain'])!=r['candidate_rest_signature']:raise ValueError('Reopened rest differs')
  for name in r['groom']['objects']:
