@@ -29,7 +29,7 @@ def pupils(path,target_z=1.455,scale=.48):
   result.append(max(candidates,key=lambda a:a[0])[1].tolist())
  return result
 
-def register(entries,output,size=(700,870),target=((245,400),(455,400))):
+def register(entries,output,size=(800,900),target=((295,400),(505,400))):
  board=Image.new('RGB',(size[0]*len(entries),size[1]+110),'#1c2530');d=ImageDraw.Draw(board);inputs=[]
  for i,(label,path,anchors) in enumerate(entries):
   with Image.open(path) as im:
@@ -45,6 +45,13 @@ def main(preview=False):
  canon=ROOT/'studio/characters/mom/master/face.png';comparison_output=out/'comparison-face-hair.png'
  receipt={'comparison_inputs':register([('CANONICAL MOM',canon,[[282,395],[489,395]]),('R17 - ACTUAL CYCLES',out/'portrait-front.png',pupils(out/'portrait-front.png'))],comparison_output),'method':'Uniform eye alignment only, intact native frame. Head/hair crop; clothes explicitly unchanged and unapproved. No canonical texture projection, no render retouch.','art_approved':False,'user_approved':False,'production_swap_allowed':False}
  bare_output=out/'comparison-bare-face.png';receipt['bare_inputs']=register([('CANONICAL MOM',canon,[[282,395],[489,395]]),('R17 - UNOBSCURED FACE',out/'bare-front.png',pupils(out/'bare-front.png',1.47))],bare_output,(650,710),((220,260),(430,260)))
+ if not preview:
+  receipt['held_light_face_inputs']=register([('CANONICAL MOM',canon,[[282,395],[489,395]]),('R16 - SAME R17 LIGHT',out/'source-r16-held-light-bare-front.png',pupils(out/'source-r16-held-light-bare-front.png',1.47)),('R17 - SAME LIGHT',out/'bare-front.png',pupils(out/'bare-front.png',1.47))],out/'comparison-held-light-face.png',(600,710),((195,260),(405,260)))
+  clay=Image.new('RGB',(1800,665),'#1c2530');cd=ImageDraw.Draw(clay)
+  for i,v in enumerate(('front','three-quarter','profile')):
+   with Image.open(out/f'clay-{v}.png') as im:clay.paste(im.resize((600,600),Image.Resampling.LANCZOS),(600*i,35))
+   cd.text((600*i+16,10),'R17 CLAY - '+v.upper(),fill='white',font_size=20)
+  cd.text((16,643),'Actual unobscured original-head geometry; gray material, same held portrait light. Not an acting certificate.',fill='white',font_size=16);clay.save(out/'clay-views.png')
  views=('front','three-quarter') if preview else ('front','three-quarter','profile');board=Image.new('RGB',(512*len(views),700),'#1c2530');draw=ImageDraw.Draw(board)
  for i,v in enumerate(views):
   with Image.open(out/f'portrait-{v}.png') as im:board.paste(im.resize((512,640),Image.Resampling.LANCZOS),(512*i,35))

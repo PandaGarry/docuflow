@@ -33,6 +33,8 @@ class R17(unittest.TestCase):
   for axis in range(3):
    v=np.zeros(3);v[axis]=h;columns.append((face.oral_field(p+v,self.s['mouth'])-face.oral_field(p-v,self.s['mouth']))/(2*h))
   jac=np.stack(columns,axis=2);self.assertGreater(np.linalg.det(jac).min(),.35)
+ def test_original_eye_depth_is_held(self):
+  inspection=json.loads((ROOT/'studio/reviews/mom-character-r14/inspection.json').read_text());p=np.array(next(o for o in inspection['objects'] if o['name']=='GEO-rain-eyes')['basis_vertices']);q=face.iris_field(p,self.s['iris']);np.testing.assert_array_equal(p[:,1],q[:,1]);self.assertTrue(np.isfinite(q).all())
  def test_no_automatic_art_approval(self):
   self.assertFalse(self.s['art_approved']);self.assertFalse(self.s['production_swap_allowed'])
 if __name__=='__main__':unittest.main()

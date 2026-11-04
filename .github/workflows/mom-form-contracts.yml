@@ -75,3 +75,4 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_character_r14.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_character_r15*.py' -v
           python -m unittest discover -s studio/tests -p 'test_mom_character_r16*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r17*.py' -v
