@@ -1,0 +1,11 @@
+{
+  "revision": "mom-character-r19",
+  "render_scope": "final",
+  "source_run": 41871456981,
+  "source_binary_sha256": "9411af2239504c05a1d902c29358d6c46c411c341dfb0862fcf03d7e4439d99c",
+  "fitting_spec_sha256": "32a3d6399c709b946b816ebb09d0b64e96f8695efbc4b650c497a41ccc60a2ca",
+  "fine_hair_curves": 16000,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}
