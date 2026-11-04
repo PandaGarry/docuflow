@@ -1,0 +1,10 @@
+{
+  "pose_restore_error_m": 0.0,
+  "restored_controls": [
+    "ACT-Lips_Corner.L",
+    "ACT-Lips_Corner.R"
+  ],
+  "invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ]
+}
