@@ -1,0 +1,17 @@
+Read blend: "/home/runner/work/docuflow/docuflow/.cache/r17-r16-source/.cache/r16/mom-character-r16.blend"
+scripts disabled for "/home/runner/work/docuflow/docuflow/.cache/r17-r16-source/.cache/r16/mom-character-r16.blend", skipping 'cloudrig.py'
+scripts disabled for "/home/runner/work/docuflow/docuflow/.cache/r17-r16-source/.cache/r16/mom-character-r16.blend", skipping 'rain_shading.py'
+Traceback (most recent call last):
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r17.py", line 132, in <module>
+    if __name__=='__main__':verify() if '--verify' in sys.argv else main()
+                                                                    ^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r17.py", line 72, in main
+    edits=[core.edit_blocks(bpy,head,head_field)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r15.py", line 21, in edit_blocks
+    p=build.base.transform_points(build.base.point_array(block),world);q=field(p);maximum=max(maximum,float(np.linalg.norm(q-p,axis=1).max()))
+                                                                         ^^^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r17.py", line 70, in head_field
+    if (np.einsum('ij,ij->i',na[valid],nb[valid])<=0).any():raise ValueError('Residual reverses original corrective triangle')
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Residual reverses original corrective triangle
