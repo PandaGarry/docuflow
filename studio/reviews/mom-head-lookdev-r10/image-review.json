@@ -1,0 +1,113 @@
+{
+  "script_sha256": "d00cba15f4db0016729281a08ad1bcb128676a5953e7d8b5a27e4fb882ef8058",
+  "source_report_sha256": "2860bc33b8f1f3b271ed2dce12560d192334572f0584ed19b463feea6b1f6a64",
+  "portrait_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/r9-warm-front.png",
+      "sha256": "57120b040c91e599d20d9f1637175e57c0395d64cf36994fd4c248dcbe473cff",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1442786069651,
+          506.8308457711443
+        ]
+      ],
+      "similarity": [
+        1.1037481651945253,
+        -0.00021866520164741745,
+        -264.66020245066125,
+        -339.2799800969728
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/r10-warm-front.png",
+      "sha256": "ab6551aa74d494bf8859165d3cc3f6d0a707cd187e524758f29384284102b29a",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1442786069651,
+          506.8308457711443
+        ]
+      ],
+      "similarity": [
+        1.1037481651945253,
+        -0.00021866520164741745,
+        -264.66020245066125,
+        -339.2799800969728
+      ]
+    }
+  ],
+  "lighting_inputs": [
+    {
+      "path": "studio/reviews/mom-head-form-r10/candidate-front.png",
+      "sha256": "8b807fd28e4f82d8e0fe055c9d493b43a7a4c7cd6568deda00660d41fd53ef5d",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/r10-neutral-front.png",
+      "sha256": "bb12fce01d60571c20d6a1650eaa388d72e7f81d4e574acf51f9ccc109c9edfc",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1442786069651,
+          506.8308457711443
+        ]
+      ],
+      "similarity": [
+        1.1037481651945253,
+        -0.00021866520164741745,
+        -264.66020245066125,
+        -339.2799800969728
+      ]
+    }
+  ],
+  "anchor_method": "Same-version unchanged-eye primary clay pupil anchors; explicit 768-to-1024 pixel-center scale, not beauty-glint tracking.",
+  "method": "Only uniform similarity alignment or whole-frame uniform thumbnail scale, no face warp or pixel recolor.",
+  "new_geometry_created_by_lookdev": false,
+  "art_approved": false,
+  "production_swap_allowed": false
+}

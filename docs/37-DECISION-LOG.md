@@ -813,3 +813,27 @@ Separate fresh-worker download/reopen R9/R10 and identical higher-sample portrai
 light prepared; no original-source rebuild and no shader/mesh changes in that
 stage. Its result is not yet known. Existing neutral/clay boards remain primary
 form evidence; flattering light must not masquerade as a geometry improvement.
+
+
+### R10 independent download действительно выполнен; вклад света отделён
+
+41780052780 SUCCESS5m1s/job126409296083/publish5ffc609. Fresh worker скачал
+именно опубликованные R9/R10 `.blend`, не приобретал/не пересобирал Rain.
+Native SHA обоих совпал; actual geometry error0, pose restore0,19packed images
+каждый, UV/PBR channel links/packed bytes/rest/weights/keys сохранены. R10
+independent neutral RGB MAE/p99=0 до изменения света. Artifact13298852829,
+4,775,568bytes, expires2026-11-18T05:39:08Z (кадры/receipt).
+
+Пять actual portrait frames1024²/96samples: R9 same0.4smile front; R10 neutral
+front и same0.4smile front/three-quarter/profile. Mesh/material/sourcefile bytes
+не изменены lookdev-проходом. Добавлены inspected canonical/R9/R10 portrait,
+SAME R10 diagnostic/portrait neutral и portrait-three-view boards. Только
+uniform alignment/whole-frame scale, без warp/repaint.
+
+Свет делает planes читаемее; warmer lower pigment и меньшее выступание видны
+при одинаковом свете обеих версий, но progress modest. Верхняя губа ещё heavy/
+projecting, under-lip shadow stronger than canon, нужного блика/closed-smile
+line нет. PBR settings не выданы за достигнутый видимый результат. Hair/frame,
+blink/lash/rest migration/full acting остаются открыты. Art/user/production=false.
+386local tests PASS21.468s;31task validate/checklist/diff PASS. Native recipe/
+frame/binary/independent persistence проверены отдельно от внешности.

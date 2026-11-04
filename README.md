@@ -9,31 +9,39 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама: форма носа/щёк/губ и точнее цвет лица
+## Текущая работа · мама R10: компактнее губы, точнее материал, проверенный Blender-файл
 
-**[Эталон / R7 / текущая R9](studio/reviews/mom-head-form-r9/comparison-identity.png)** ·
-[Форма без цветного материала](studio/reviews/mom-head-form-r9/comparison-form.png) ·
-[Три ракурса](studio/reviews/mom-head-form-r9/color-three-views.png) ·
-[Локальная доводка губы R8→R9](studio/reviews/mom-head-form-r9/comparison-lips.png) ·
-[Editable native artifact / результат / ограничения](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md).
+**[Эталон / R9 / R10 при одинаковом портретном свете](studio/reviews/mom-head-lookdev-r10/comparison-portrait.png)** ·
+[Форма без цветного материала](studio/reviews/mom-head-form-r10/comparison-form.png) ·
+[Три портретных ракурса](studio/reviews/mom-head-lookdev-r10/portrait-three-views.png) ·
+[Та же R10: вклад только освещения](studio/reviews/mom-head-lookdev-r10/comparison-lighting.png) ·
+[Editable native artifact / результат / ограничения](docs/56-MOM-R10-CLOSED-SMILE-FORM.md).
 
-После R7 сделаны реальные изменения original Rain mesh: круглее/выше нос,
-уточнены положение рта и передние плоскости щёк; направление глаз/бровей и
-компактные уши сохранены. R9 локально уменьшает тяжёлую верхнюю губу после
-просмотра actual R8 frames. На исходной UV-развёртке — packed2048² albedo и
-roughness EXR; исходные UV-координаты не переписаны, paint-over кадров нет.
+R10 локально уменьшает высоту/выступание губ и приподнимает закрытые уголки.
+Восемь authored targets, без нового расширения рта или усиления ACT-улыбки:
+сравнение обеих версий при прежнем amount0.4. Сохранены направление носа/щёк
+R8–R9, глаза/брови и компактные уши. Нижняя губа теплее; исходная UVMap/tile1003
+сохранена, roughness/coat/coat-roughness разделены в packed linear PBR map.
+Не paint-over кадров и не процедурная замена Rain.
 
-Native R9 build/render/reopen41728933536 SUCCESS5m2s:19packed images,
-geometry/pixel/restore errors0. Это same-worker persistence pass, не приёмка
-внешности или полной мимики. Видимый прогресс частичный: нижняя губа/свет кожи
-и линия мягкой закрытой улыбки ещё не как в эталоне. Моргание не исправлено;
-full facial migration/acting/canonical hair/body/wardrobe не завершены.
-Production swap=false. Masters/history сохранены, private inputs не читаются.
+Два реальных native прохода: build/render/reopen41779442779 SUCCESS3m30s и
+independent download/reopen/portrait41780052780 SUCCESS5m1s. Второй — в чистом
+worker, без приобретения или пересборки исходного Rain. Оба опубликованных
+`.blend` R9/R10 совпали по SHA, geometry/material/UV/PBR/rest/packed bytes
+сохранены,19packed images каждый; R10 neutral RGB MAE/p99=0 после скачивания.
+Портретные кадры1024²/96samples сделаны без изменения mesh/material. Отдельная
+same-asset доска показывает, сколько видимого улучшения даёт только свет.
 
-[R8: форма и исходная UV, сохранённый failed attempt](docs/54-MOM-R8-FORM-AND-UV-PAINT.md) ·
-[R7: первый цвет губ/глаз](docs/53-MOM-R7-LOWER-LIP-COLOR.md) ·
-[R4: поддержанное приближение формы](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
-Технические тесты не оценивают likeness/киноуровень.
+Прогресс частичный: рот компактнее, но верхняя губа ещё тяжеловата, подгубная
+тень сильнее эталона, линия мягкой закрытой улыбки/блик не доведены. Моргание
+не исправлено; rest/control migration, canonical hair/body/wardrobe и full acting
+не завершены. Art/user/production=false.386local tests PASS21.468s и31task
+checks — технические проверки, не оценка likeness/киноуровня.
+Masters/history сохранены, private inputs не читаются/не публикуются.
+
+[R9: локальная доводка upper lip](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md) ·
+[R8: форма и исходная UV](docs/54-MOM-R8-FORM-AND-UV-PAINT.md) ·
+[Поддержанное направление R4](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
 Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03

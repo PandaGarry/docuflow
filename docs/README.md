@@ -105,7 +105,7 @@ python3 studio/tools/production_status.py doctor
 
 24. [56 · Мама R10: компактнее губы и мягче линия рта](56-MOM-R10-CLOSED-SMILE-FORM.md):
     actual geometry/PBR/native review; форма отдельно от света. Независимый
-    downloaded-binary/portrait-light проход подготавливается, не приёмка лица.
+    downloaded-binary/portrait-light проход успешен; реальные кадры просмотрены, не приёмка лица.
 
 ## Исторические планы и технические материалы
 
