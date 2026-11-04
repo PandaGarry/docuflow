@@ -3,11 +3,11 @@
   "preview_only": false,
   "source_run": 41843580496,
   "source_binary_sha256": "eb89540f5994323ee3c086a6e773fcf22e893452260f92fb8d0ebf574069f4d1",
-  "spec_sha256": "ee807fec6ca4bb868bbb900beac1d75bf6d3571fddf2bf311121a9f5d930a156",
+  "spec_sha256": "32a3d6399c709b946b816ebb09d0b64e96f8695efbc4b650c497a41ccc60a2ca",
   "scripts": {
-    "mom_character_r18.py": "bbdd6ed41ce70814893db6a8d7d337e9bdaeeffe197bcf0b385bc4c36bd292a1",
-    "mom_face_finish_r18.py": "1e839cc98733655e9aec256bec46fbb9300c80918cb15e4a155ca8bfad103927",
-    "mom_hair_asset_r18.py": "d882cdb68e2f7fea4f0f6cae182acf71fb03e8644ffe0dbcb6cd389ee927d72e",
+    "mom_character_r18.py": "d19fba80c0823c2ef1df1e1de6ef51a00f5f9029c0e1ee11636315b69113b6d2",
+    "mom_face_finish_r18.py": "7559492d7d0b4d19f2138b9b231c8b4a443cdd59862bc733aaa9a2574a76e3ae",
+    "mom_hair_asset_r18.py": "3f057349f6cff3802c444588fcd0f5abff62e6e91b788126f85adf34498d34eb",
     "mom_face_paint_r17.py": "6ff3736ab37b12ca8f787aabd55cab380c13bec4ea96c9aebdddb98903274607",
     "mom_face_paint_r18.py": "91cd477c4e7be3fef644d45310838a30040198aa8891240c1db2531f6e7de6c0",
     "mom_wardrobe_finish_r18.py": "1969c79461da777d18a975ac0cdc2e84d228d74b9bff8f976d54dc28fe8abcee",
@@ -17,15 +17,15 @@
   "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
   "native_artifact": {
     "filename": "mom-character-r18.blend",
-    "sha256": "f283bd2f82afa17990fbe41f562dbec48d2716f98be3f2e3f27b72382f1ad540",
+    "sha256": "9411af2239504c05a1d902c29358d6c46c411c341dfb0862fcf03d7e4439d99c",
     "storage": "GitHub Actions artifact 14 days"
   },
-  "head_edit_data_sha256": "bb4c2f0b37a0f2abc500a768fb537bb839e59de1fc96f39aace6cad44c0f5f9b",
+  "head_edit_data_sha256": "c654b7159b3799c47d8dafe11a65010aa3fdb924d2d0f5d6d5584eee390ceaf7",
   "edits": [
     {
       "object": "GEO-rain-head",
       "original_blocks": 25,
-      "max_change_m": 0.0017347727492063314
+      "max_change_m": 0.002977560671227897
     }
   ],
   "source_albedo_probe": {
@@ -63,17 +63,17 @@
     "samples": {
       "6341": {
         "original_uv_texel_linear_rgb": [
-          0.4720551073551178,
-          0.10045269131660461,
-          0.05985727533698082
+          0.44624441862106323,
+          0.10531231760978699,
+          0.07841930538415909
         ],
         "uv_loop_samples": 4
       },
       "6375": {
         "original_uv_texel_linear_rgb": [
-          0.583139568567276,
-          0.20594210177659988,
-          0.11777560412883759
+          0.5714676082134247,
+          0.20813969522714615,
+          0.12616963684558868
         ],
         "uv_loop_samples": 4
       },
@@ -111,7 +111,7 @@
     },
     "method": "Actual EXR pigment energy changed before rendering, held illumination. No beauty-image adjustment.",
     "linear_albedo_energy_scale": 0.72,
-    "albedo_exr_sha256": "aafcae0d9e63b85c857a7cbac6a3e451fee54001223dcdd41c9aa9b9d77d0044",
+    "albedo_exr_sha256": "bcf55e5109cbee4d3f274aaaa1aaf2393069ddb58605dcb581543da7a91004bc",
     "pbr_exr_sha256": "5aa951d5c203ae3b49a06e6d94e0dcaf88b5e3d277b958ae1373306ae09133ec",
     "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
     "reference_projection": false,
@@ -120,7 +120,7 @@
       "upper_lip": "#B95749",
       "lower_lip": "#E77B64",
       "blush": "#EC806F",
-      "nose": "#CF5D49",
+      "nose": "#C96057",
       "iris": "#7F9AA3",
       "brows": "#79523C",
       "lashes": "#38241F",
@@ -160,6 +160,61 @@
         "fringe_lift_m": 0.095,
         "part_shift_m": 0.04
       },
+      "saved_appearance_state": {
+        "coordinate_sha256": "ecc118b29c61e63d966cc0deb6b8d057c83c31e83fd58569c334c7814e52224f",
+        "polygon_sha256": "967c9af94f1b7ac81e518e53bda31bad386ed689f06ff77ea0a9d6c9df5f1a74",
+        "loop_uv_sha256": "c385d7ebcca8e75f9794bcadc113909f0d42fbb003db8e182c17b7d6e60c8bf5",
+        "packed_texture_sha256": "968e6c9a522ec3ab5888121ad732448f52098a273913d3ac47a0cce51e887d87",
+        "texture_colorspace": "sRGB",
+        "brown_ramp": [
+          {
+            "position": 0.0,
+            "linear_rgba": [
+              0.044120900332927704,
+              0.021750429645180702,
+              0.008797961287200451,
+              1.0
+            ]
+          },
+          {
+            "position": 0.10000000149011612,
+            "linear_rgba": [
+              0.0891161561012268,
+              0.04525548964738846,
+              0.02327127568423748,
+              1.0
+            ]
+          },
+          {
+            "position": 0.44999998807907104,
+            "linear_rgba": [
+              0.1777287721633911,
+              0.10330142825841904,
+              0.05118243023753166,
+              1.0
+            ]
+          },
+          {
+            "position": 1.0,
+            "linear_rgba": [
+              0.24793218076229095,
+              0.14423786103725433,
+              0.07157506048679352,
+              1.0
+            ]
+          }
+        ],
+        "shader": {
+          "Roughness": 0.6000000238418579,
+          "Specular IOR Level": 0.07999999821186066,
+          "Anisotropic": 0.5,
+          "Anisotropic Rotation": 0.25
+        },
+        "source_strand_micro_normal": {
+          "strength": 0.2199999988079071,
+          "distance_m": 0.00018000000272877514
+        }
+      },
       "binding": "Original DEF-Head; no hair/shoulder dynamics certification",
       "method": "Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement."
     },
@@ -182,6 +237,61 @@
         "depth_scale": 1.3,
         "fringe_lift_m": 0.095,
         "part_shift_m": 0.04
+      },
+      "saved_appearance_state": {
+        "coordinate_sha256": "e1360a8b4bbc53bfa2717babf36c6b522fc3e6f67b05231248f10a0b8e83553d",
+        "polygon_sha256": "518c555d84e8f37e509854c7c9c24c02f474c5e2717dfb281a5776556418a946",
+        "loop_uv_sha256": "507b1d95dd98c93ed90482cdaefb9d33a3de7a4c9cc1e20bc16c681ca9ff86ab",
+        "packed_texture_sha256": "5835a2695cbdd27fd2cb9f4d3fb009cb33fd76fdbdc9fcb18b91b66d571368bf",
+        "texture_colorspace": "sRGB",
+        "brown_ramp": [
+          {
+            "position": 0.0,
+            "linear_rgba": [
+              0.044120900332927704,
+              0.021750429645180702,
+              0.008797961287200451,
+              1.0
+            ]
+          },
+          {
+            "position": 0.10000000149011612,
+            "linear_rgba": [
+              0.0891161561012268,
+              0.04525548964738846,
+              0.02327127568423748,
+              1.0
+            ]
+          },
+          {
+            "position": 0.44999998807907104,
+            "linear_rgba": [
+              0.1777287721633911,
+              0.10330142825841904,
+              0.05118243023753166,
+              1.0
+            ]
+          },
+          {
+            "position": 1.0,
+            "linear_rgba": [
+              0.24793218076229095,
+              0.14423786103725433,
+              0.07157506048679352,
+              1.0
+            ]
+          }
+        ],
+        "shader": {
+          "Roughness": 0.6000000238418579,
+          "Specular IOR Level": 0.07999999821186066,
+          "Anisotropic": 0.5,
+          "Anisotropic Rotation": 0.25
+        },
+        "source_strand_micro_normal": {
+          "strength": 0.2199999988079071,
+          "distance_m": 0.00018000000272877514
+        }
       },
       "binding": "Original DEF-Head; no hair/shoulder dynamics certification",
       "method": "Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement."
@@ -275,7 +385,7 @@
           2048
         ],
         "colorspace": "Non-Color",
-        "packed_file_sha256": "aafcae0d9e63b85c857a7cbac6a3e451fee54001223dcdd41c9aa9b9d77d0044",
+        "packed_file_sha256": "bcf55e5109cbee4d3f274aaaa1aaf2393069ddb58605dcb581543da7a91004bc",
         "uv_map": "UVMap",
         "domain_origin": [
           2.003528594970703,
@@ -364,7 +474,7 @@
   "images": [
     {
       "path": "studio/reviews/mom-character-r18/portrait-front.png",
-      "sha256": "e705e413ead0ac908eb25835d22cf112044c49eedb82a9fce759725fe360378a",
+      "sha256": "b686ac5ad3a532367af422610d5caf94cc40e12b12ad39112d24097e660cf8f1",
       "camera": {
         "position": [
           0,
@@ -387,7 +497,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/portrait-three-quarter.png",
-      "sha256": "9a4bf5f4bf0da3c18c222196e50ceb80a0171320532ca8fbf4a4ad84131bfb40",
+      "sha256": "61063741b6e70a653a3b8e3fa4b8187245df863936ff638d49a0b92e0eee2fc2",
       "camera": {
         "position": [
           2.2,
@@ -410,7 +520,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/portrait-profile.png",
-      "sha256": "f5ef3049a0c038125818fbe0d8819204ec9929f3ca2c97a1e214cdf964ba28a9",
+      "sha256": "fc76a778d1cc0a50d704449eb377c0382a0e5ea62480dea926d4b6ccfc12118d",
       "camera": {
         "position": [
           4,
@@ -433,7 +543,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/portrait-rear.png",
-      "sha256": "256fa27c40bf2b7a2dddb204974a08bfb80b85552e5720bd1863d3b8a4725302",
+      "sha256": "aba8c83c2379ee4b015c5bb28d9e2a14261d6ae95e820100a5f6d1e91a5a7c0e",
       "camera": {
         "position": [
           0,
@@ -456,7 +566,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/bare-front.png",
-      "sha256": "4e8174e6115a58b4edd782812bc89913cb5956d5817fb1ac68bb4cf47b64536b",
+      "sha256": "84fbb94cb1e4ca578cb44e9ba81165d2b3520663fe9c454c6b8f9a0aaf8f7942",
       "camera": {
         "position": [
           0,
@@ -479,7 +589,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/clay-front.png",
-      "sha256": "bcfa5c2082688fc1ad8421829c087f2da409db01c73ceee1056f99aa889e2549",
+      "sha256": "28079c38b2013fe3590451931aa6d75bc827e19eb73eabe08b55e6b86b43a60d",
       "camera": {
         "position": [
           0,
@@ -502,7 +612,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/clay-three-quarter.png",
-      "sha256": "d0d224a52572892500111c01fc8bf87e161cdeb5881e6f36e1dc59babc78981e",
+      "sha256": "50dfc5cc046a5c4ee244e4984a7c797e32c08a0c43d83f219f5741ed345c1890",
       "camera": {
         "position": [
           2.2,
@@ -525,7 +635,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/clay-profile.png",
-      "sha256": "f8ba9a0dcda04d60587fc90f74edd969fde7de941561c36bd6cb1f7e4ddf3780",
+      "sha256": "597d81cbb1a6cee301d15eaeb7b66ba4c0fd467e8e9a57118c6e5cfdb32497e5",
       "camera": {
         "position": [
           4,
@@ -548,7 +658,7 @@
     },
     {
       "path": "studio/reviews/mom-character-r18/saved-neutral-front.png",
-      "sha256": "a6c157e5268c6b8945ea0b8add93285520a019d0ec1a44cfa5954f7194a7c61d",
+      "sha256": "f709ea2e49aef05429f5872f5f7119412a50ab19a494f07fba617a8c1fab5f83",
       "camera": {
         "position": [
           0,
@@ -1069,6 +1179,136 @@
   "user_approved": false,
   "production_swap_allowed": false,
   "embedded_python_executed": false,
+  "visible_geometry_inventory": [
+    {
+      "object": "GROOM-mom-R17-brow-fibers",
+      "type": "CURVES",
+      "materials": [
+        "Mom R15 light brown strand fiber"
+      ]
+    },
+    {
+      "object": "GEO-mom-R16-shirt-sleeve--1",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 white cotton shirt"
+      ]
+    },
+    {
+      "object": "GEO-mom-R16-shirt-sleeve-1",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 white cotton shirt"
+      ]
+    },
+    {
+      "object": "GEO-mom-R16-open-brown-vest",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 brown vest"
+      ]
+    },
+    {
+      "object": "GEO-mom-R16-folded-collar--1",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 brown vest"
+      ]
+    },
+    {
+      "object": "GEO-mom-R16-folded-collar-1",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 brown vest"
+      ]
+    },
+    {
+      "object": "HAIR-mom-R18-asset-bob02",
+      "type": "MESH",
+      "materials": [
+        "Mom R18 CC0 textured hair bob02"
+      ]
+    },
+    {
+      "object": "GEO-rain-gums_upper",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.gums",
+        "MAT-rain.teeth"
+      ]
+    },
+    {
+      "object": "GEO-rain-gums_lower",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.gums",
+        "MAT-rain.teeth"
+      ]
+    },
+    {
+      "object": "GEO-rain-tongue",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.tongue"
+      ]
+    },
+    {
+      "object": "GEO-rain-eyebrows",
+      "type": "MESH",
+      "materials": [
+        "Mom R6 brows"
+      ]
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "type": "MESH",
+      "materials": [
+        "Mom R6 lashes"
+      ]
+    },
+    {
+      "object": "GEO-rain-head",
+      "type": "MESH",
+      "materials": [
+        "Mom R6 skin and lips"
+      ]
+    },
+    {
+      "object": "GEO-rain-body",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 matching body skin"
+      ]
+    },
+    {
+      "object": "GEO-rain-eyes",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.eyes"
+      ]
+    },
+    {
+      "object": "GEO-rain-eye_cornea",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.cornea"
+      ]
+    },
+    {
+      "object": "GEO-rain-eye_dots",
+      "type": "MESH",
+      "materials": [
+        "MAT-rain.eyedot"
+      ]
+    },
+    {
+      "object": "GEO-rain-top",
+      "type": "MESH",
+      "materials": [
+        "Mom R16 white cotton shirt"
+      ]
+    }
+  ],
   "native_runtime": {
     "blender": "4.5.0",
     "render_engine": "CYCLES",
