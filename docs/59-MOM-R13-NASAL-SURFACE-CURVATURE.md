@@ -33,3 +33,30 @@ Known blink/lash failure and full facial/ear rest migration remain unresolved.
 Hair/body/clothes and complete character not approved. Art/user/production=false.
 
 Rain Rig (CC) Blender Foundation | studio.blender.org; modified CC BY4.0.
+
+## Actual result and editable native file
+
+[Run41807469868](https://github.com/PandaGarry/docuflow/actions/runs/41807469868)
+SUCCESS6m5s. [Download native artifact13310084470](https://github.com/PandaGarry/docuflow/actions/runs/41807469868/artifacts/13310084470)
+(86,744,972bytes; retention until2026-11-18T09:32:03Z). Archive includes
+`.cache/rain-v3/mom-head-form-r13.blend`, SHA256
+`e557b35c6401b795eb957fbe981854aa92b174223e530668c751683c9f656db5`.
+Original indexed head/25keys/weights/UV and native rig retained, textures packed;
+not a production-approved or fully migrated facial rig.
+
+[Actual portrait comparison](../studio/reviews/mom-head-form-r13/comparison-portrait.png) ·
+[Three views](../studio/reviews/mom-head-form-r13/portrait-three-views.png) ·
+[Ear detail](../studio/reviews/mom-head-form-r13/comparison-ears.png) ·
+[R12→R13 nasal clay detail](../studio/reviews/mom-head-form-r13/comparison-oral-clay-detail.png) ·
+[Honest visual assessment](../studio/reviews/mom-head-form-r13/visual-review.md).
+
+Ears and mouth show coordinated progress versus R11. R13 nasal profile is now
+visibly rounder than R12, but frontal bridge/ala transitions and lip
+contour/projection still differ from the canonical portrait. Not final likeness.
+Entire saved material state equals R12/R11, no lighting/palette trick. Separate
+native process reopen succeeded with geometry/restore/pixel errors0;19packed
+images. Native orientation check passed on all25 original head keys. No new
+blink visual approval or independent current-binary redownload is implied.
+
+Final local validation:423tests PASS and31task/dependency checks PASS. These
+checks bind actual frames/recipes/geometry and persistence, not artistic quality.

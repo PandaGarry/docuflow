@@ -1,0 +1,33 @@
+{
+  "status": "visible_coordinated_progress_not_final_canonical_likeness",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r13/comparison-portrait.png",
+      "sha256": "d23d5fdea193ef23b81997b926af2cc78b058df3035a3144ee9adc8e8bd70938"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/comparison-ears.png",
+      "sha256": "e078893fbedbbedad2af713c8b9485533d1823aa2a928e4db637ecfb64938dd0"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/comparison-oral-clay-detail.png",
+      "sha256": "1fbae07f1a4c6b8881ed007c3ef9a15a5133057045191420115ba24fc1d34f0a"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/portrait-three-views.png",
+      "sha256": "559a5851f08e2710beea8e001ae492c4fd1e9158c2d1d5fd9242e019a2102b10"
+    }
+  ],
+  "observations": [
+    "R11-to-R13 frontal ear protrusion visibly reduced; profile folds retained.",
+    "Whole mouth lower and true closed smiling line more coherent than R11. Lip contour/projection still differs from canonical portrait.",
+    "R12-to-R13 nasal cap is visibly rounded in profile rather than triangular/flattened; frontal bridge-to-ala transitions remain hard, not final reference nose.",
+    "Supported eye direction retained, but complete eye/lid expression and canonical hair/frame still differ."
+  ],
+  "comparison_scope": "Main boards R11 versus R13 show coordinated pass; nasal clay detail R12 versus R13 isolates surface correction. Uniform pupil alignment or identical fixed crops only; no generated replacement or facial retouch.",
+  "native_run": 41807469868,
+  "artifact_id": 13310084470,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

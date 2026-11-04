@@ -9,41 +9,43 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама R11: баланс губ и мягче переход к подбородку
+## Текущая работа · мама R13: уши, положение рта, закрытая улыбка и объём носа
 
-**[Эталон / R10 / R11: тот же портретный свет](studio/reviews/mom-head-form-r11/comparison-portrait.png)** ·
-[Форма без цвета](studio/reviews/mom-head-form-r11/comparison-form.png) ·
-[Крупно: анфас/профиль в clay](studio/reviews/mom-head-form-r11/comparison-oral-clay-detail.png) ·
-[Три ракурса](studio/reviews/mom-head-form-r11/portrait-three-views.png) ·
-[Editable native artifact / результат / ограничения](docs/57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md).
+**[Эталон / R11 / R13 — реальные кадры при прежнем свете](studio/reviews/mom-head-form-r13/comparison-portrait.png)** ·
+[Три ракурса](studio/reviews/mom-head-form-r13/portrait-three-views.png) ·
+[Уши крупно](studio/reviews/mom-head-form-r13/comparison-ears.png) ·
+[Нос R12→R13 в clay](studio/reviews/mom-head-form-r13/comparison-oral-clay-detail.png) ·
+[Editable native artifact / результат / ограничения](docs/59-MOM-R13-NASAL-SURFACE-CURVATURE.md).
 
-R11 локально отводит верхнюю губу назад и смягчает наружный переход под нижней
-губой, не уменьшая её высоту ещё раз. Шесть прежних oral targets и два новых
-проверенных наружных anchor6368/3117; не внутренние точки рта.85control cage
-когерентно перестроен из original Rain, все25head keys перенесены тем же map.
-Mouth width/corners и направление носа/щёк/глаз/бровей/компактных ушей сохранены.
+После замечания о слишком мелких итерациях выполнена согласованная переработка
+R12:24изменённых контроля и2реальных угла контакта губ,87контролей всего.
+Уши уменьшены, развёрнуты и прижаты; весь рот опущен5мм, пропорции губ и линия
+закрытой улыбки пересмотрены. **Нос R12 оказался плоским/угловатым — эта часть
+результата отклонена**, а не выдана за успешное округление.
 
-**Цвет, PBR, свет и сила улыбки НЕ менялись:** фактические albedo/PBR EXR bytes
-точно совпали с R10, original UVMap/tile1003 сохранена. Те же frozen R10 lights,
-camera,1024²/96samples и native0.4smile. Это изолированная доводка геометрии,
-а не новая перекраска/выгодное освещение или paint-over кадров.
+R13 сохраняет изменения ушей/рта и корректирует кривизну самой исходной носовой
+поверхности, с защитой краёв ноздрей/внутренних стенок. В профиль кончик стал
+округлее; анфас переходы к крыльям ещё жёсткие. Контур и выступание губ тоже
+требуют доводки. Точное сходство с эталоном и финальное лицо **не утверждены**.
 
-Actual native41787400559 SUCCESS6m37s:11primary +3portrait +2reopen frames,
-19packed images; geometry/pixel/restore errors0. Сохранённый R11 `.blend`
-повторно открыт отдельным процессом на том же worker. Не independent download
-R11; такой проход в R10 остаётся историческим результатом, не новой гарантией.
+Original Rain mesh/25head keys/weights/UV/rig сохранены. Цвет/PBR/свет/сила улыбки
+не менялись: весь saved material state совпадает с R12/R11; прежние R10 lights,
+camera,1024²/96samples. Это реальные native renders, не generated-image/paint-over.
 
-Виден меньший объём верхней губы и более плавный/менее тёмный подгубный переход.
-Прогресс локальный: точная линия мягкой улыбки, нужный блик и eye/lid expression
-ещё отличаются. Blink/lash/rest migration, canonical hair/frame/body/wardrobe/full
-acting не завершены. Art/user/production=false.398local tests PASS28.548s и
-31task checks — технические проверки, не оценка likeness/киноуровня.
-Masters/history сохранены; private inputs не читаются/не публикуются.
+Native41807469868 SUCCESS6m5s:3clay +1neutral color +3portrait +2reopen frames.
+Сохранённый `.blend` открыт отдельным процессом на том же worker:19packed images,
+geometry/restore/pixel errors0. Это не independent redownload R13.423local tests
+и31task checks — техническая проверка, не доказательство likeness/киноуровня.
 
-[R10: форма/PBR и independent downloaded-asset test](docs/56-MOM-R10-CLOSED-SMILE-FORM.md) ·
-[R9](docs/55-MOM-R9-UPPER-LIP-REFINEMENT.md) ·
+[Честная визуальная оценка](studio/reviews/mom-head-form-r13/visual-review.md).
+Blink/lash/rest migration, canonical hair/frame/body/wardrobe/full acting не
+завершены; art/user/production=false. Masters/history сохранены; private inputs
+не читаются/не публикуются. Rain Rig (CC) Blender Foundation | studio.blender.org,
+modified CC BY4.0.
+
+[R12: широкая переработка и отклонённый нос](docs/58-MOM-R12-COORDINATED-FACE-PROPORTIONS.md) ·
+[R11: прежняя локальная итерация](docs/57-MOM-R11-UPPER-LIP-AND-CHIN-TRANSITION.md) ·
 [Поддержанное направление R4](docs/50-MOM-R4-CANONICAL-LIKENESS.md).
-Credit: Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY4.0.
 
 ## Актуальный план развития движка · 2026-11-03
 
