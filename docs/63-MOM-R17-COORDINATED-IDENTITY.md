@@ -7,7 +7,8 @@ Rain asset**, not another reconstruction from an obsolete source or a new head.
 ## Design corrections
 
 - Raise the oral region ~4.3 mm, reduce projection ~2.2 mm and relax the corners;
-  transport the same neutral residual across all 25 original head blocks.
+  reevaluate the smooth spatial deformation on all 25 original head blocks.
+  A shared, locally attenuated displacement was visually rejected in preview 1.
 - Contract the physical pupil/iris surface **only in XZ** with a smooth held
   sclera boundary. Preserve original cornea, UVs, sampled eye texture and Y.
   Lighter blue-gray iris response and larger original catchlight geometry.
@@ -17,7 +18,7 @@ Rain asset**, not another reconstruction from an obsolete source or a new head.
 - Author new 2048px packed floating-point original-UV albedo/PBR maps: soft rosy
   nasal tip/cheeks, coral-pink lips, separate roughness and controlled skin SSS.
   The canonical portrait is **never loaded as a model texture**.
-- Replace R16's sparse cable-like groom with 17 independent **closed sculpted
+- Replace R16's sparse cable-like groom with 19 independent **closed sculpted
   locks**, asymmetric broad fringe and overlapping long wave flows. Longitudinal
   ridges, UV strand detail and fine native surface fibers follow these volumes.
   There is **no single solid crown/cap object**. This is authored geometry, not
@@ -57,3 +58,19 @@ CC BY 4.0. Original reference art is a design guide, not a reusable texture.
   Both logs are preserved under `studio/reviews/mom-character-r17/attempts/`.
 - Lightweight full suite at source development checkpoint: **455 tests passed**,
   40.279 s. This does not certify native execution or artistic likeness.
+
+## Actual preview inspection and corrective transport change
+
+`41838585578` produced the real first preview successfully. It was **visually
+rejected**, not promoted: the shared residual limiter left visible lip folds,
+and the hair had ribbon-like volumes, inadequate inner fringe and abrupt layer
+intersections. See the frozen `preview/visual-review.md` and native frames.
+
+The next candidate reevaluates the continuous spatial sculpt for each original
+corrective, rather than applying discontinuous per-vertex attenuation. The
+strict native orientation check still runs against each original block; original
+key names, topology, weights, drivers and rig rest remain. Corrective coordinate
+deltas are intentionally transported, not claimed bit-identical. Additional
+inner fringe, corrected layer depths/outward wave ends, softer strand response
+and source-UV pigment calibration address the actual observed errors. The
+second preview uses a separate `preview-2/` directory; preview 1 stays intact.

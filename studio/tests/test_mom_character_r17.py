@@ -20,6 +20,11 @@ class R17(unittest.TestCase):
    for f in faces:
     for a,b in zip(f,f[1:]+f[:1]):edge=tuple(sorted((a,b)));edges[edge]=edges.get(edge,0)+1
    self.assertTrue(all(n==2 for n in edges.values()))
+ def test_spatial_oral_transport_has_positive_local_jacobian(self):
+  x,y,z=np.meshgrid(np.linspace(-.07,.07,15),np.linspace(-.17,-.065,9),np.linspace(1.36,1.43,23));p=np.stack((x.ravel(),y.ravel(),z.ravel()),axis=1);h=1e-6;columns=[]
+  for axis in range(3):
+   v=np.zeros(3);v[axis]=h;columns.append((face.oral_field(p+v,self.s['mouth'])-face.oral_field(p-v,self.s['mouth']))/(2*h))
+  jac=np.stack(columns,axis=2);self.assertGreater(np.linalg.det(jac).min(),.35)
  def test_no_automatic_art_approval(self):
   self.assertFalse(self.s['art_approved']);self.assertFalse(self.s['production_swap_allowed'])
 if __name__=='__main__':unittest.main()
