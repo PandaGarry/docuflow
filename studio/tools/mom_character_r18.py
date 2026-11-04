@@ -5,12 +5,13 @@ import numpy as np
 import mom_character_r17 as prior
 import mom_character_r15 as core
 import mom_face_finish_r18 as face
-import mom_face_paint_r17 as paint
+import mom_face_paint_r17 as source_paint
+import mom_face_paint_r18 as paint
 import mom_hair_asset_r18 as hair
 import mom_head_cage as model
 from mom_face_finish_r7 import linear
 ROOT=core.ROOT;build=core.build;BASE=ROOT/'studio/reviews/mom-character-r18';OUT=BASE;SPEC=ROOT/'studio/authoring/mom-character-r18.json';NATIVE=ROOT/'.cache/r18/mom-character-r18.blend'
-SCRIPTS=('mom_character_r18.py','mom_face_finish_r18.py','mom_hair_asset_r18.py','mom_face_paint_r17.py','mom_character_r15.py')
+SCRIPTS=('mom_character_r18.py','mom_face_finish_r18.py','mom_hair_asset_r18.py','mom_face_paint_r17.py','mom_face_paint_r18.py','mom_wardrobe_finish_r18.py','mom_character_r15.py')
 
 def load(bpy,s):
  bundle=ROOT/'.cache/r18-r17-source';paths=list(bundle.rglob('mom-character-r17.blend'));r=json.loads((ROOT/'studio/reviews/mom-character-r17/report.json').read_text())
@@ -23,7 +24,7 @@ def load(bpy,s):
  return r,actual
 
 def probe_albedo(bpy):
- mesh=bpy.data.objects['GEO-rain-head'].data;shader=mesh.materials[0].node_tree.nodes['Principled BSDF'];node=shader.inputs['Base Color'].links[0].from_node;im=node.image;scale=node.inputs['Vector'].links[0].from_node;subtract=scale.inputs[0].links[0].from_node;uv=paint.render_uv(mesh);pixels=np.empty(len(im.pixels),np.float32);im.pixels.foreach_get(pixels);pixels=pixels.reshape(im.size[1],im.size[0],4);out={}
+ mesh=bpy.data.objects['GEO-rain-head'].data;shader=mesh.materials[0].node_tree.nodes['Principled BSDF'];node=shader.inputs['Base Color'].links[0].from_node;im=node.image;scale=node.inputs['Vector'].links[0].from_node;subtract=scale.inputs[0].links[0].from_node;uv=source_paint.render_uv(mesh);pixels=np.empty(len(im.pixels),np.float32);im.pixels.foreach_get(pixels);pixels=pixels.reshape(im.size[1],im.size[0],4);out={}
  for i in (6341,6375,3150):
   values=[]
   for loop in mesh.loops:
@@ -43,7 +44,9 @@ def main():
  if preview:OUT=BASE/'preview'
  OUT.mkdir(parents=True,exist_ok=True);old,before=load(bpy,s);source_probe=probe_albedo(bpy);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy);eyes=build.eye_fingerprints(bpy)
  head=bpy.data.objects['GEO-rain-head'];edits=[core.edit_blocks(bpy,head,lambda p:face.fair(p,before['polygons'],s['fairing']))]
- original=json.loads(gzip.decompress(model.DATA.read_bytes()))['official-source'];paint_receipt=paint.apply(bpy,original,s['palette_srgb']);candidate_probe=probe_albedo(bpy)
+ original=json.loads(gzip.decompress(model.DATA.read_bytes()))['official-source'];paint_receipt=paint.apply(bpy,original,s['palette_srgb'],s['linear_albedo_energy_scale']);candidate_probe=probe_albedo(bpy)
+ import mom_wardrobe_finish_r18 as wardrobe
+ wardrobe_receipt=wardrobe.apply(bpy)
  brow=bpy.data.objects['GEO-rain-eyebrows'].data.materials[0];brow.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(*linear(s['palette_srgb']['brows']),1)
  for name in old['groom']['objects']+[old['groom']['surface_fiber_object']]:prior.prior.remove_added_object(bpy,name)
  candidates={};objects={}
@@ -81,7 +84,7 @@ def main():
  camera=scene.camera;camera.location=(0,-4,1.5);camera.rotation_euler=(Vector((0,0,1.455))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.ortho_scale=.48;scene.render.resolution_x=512;scene.render.resolution_y=640;scene.cycles.samples=32
  NATIVE.parent.mkdir(parents=True,exist_ok=True);bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(NATIVE.resolve()),compress=True)
  if not preview:images.append(frame(bpy,'saved-neutral-front.png',size=(512,640),samples=32))
- record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'asset_manifest_sha256':build.study.sha(hair.ASSETS/'manifest.json'),'canonical_face_sha256':build.study.sha(ROOT/'studio/characters/mom/master/face.png'),'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact 14 days'},'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'source_albedo_probe':source_probe,'candidate_albedo_probe':candidate_probe,'uv_paint':paint_receipt,'candidates':candidates,'selected_hair_asset':s['selected_hair_asset'],'source_eyes_retained':True,'eye_coordinate_hashes':eyes,'saved_material_state':state,'saved_skin_shader':prior.skin_shader_state(bpy),'candidate_rest_signature':rest,'new_invalid_drivers':[],'pose_restore_error_m':restore,'images':images,'smile':smile,'wardrobe':old['wardrobe'],'wardrobe_unchanged':True,'known_blink_visual_failure':True,'blink_visual_approved':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'embedded_python_executed':False,'credit':'Rain Rig (CC) Blender Foundation | studio.blender.org - modified CC BY4.0. Hair MakeHuman CC0 system assets; pinned conversion by HumanGen Web.','scope':'Actual original Rain with acquired fitted hair assets. Full acting/blink/cloth/hair dynamics not approved; visual review required.'}
+ record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'asset_manifest_sha256':build.study.sha(hair.ASSETS/'manifest.json'),'canonical_face_sha256':build.study.sha(ROOT/'studio/characters/mom/master/face.png'),'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact 14 days'},'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'source_albedo_probe':source_probe,'candidate_albedo_probe':candidate_probe,'uv_paint':paint_receipt,'candidates':candidates,'selected_hair_asset':s['selected_hair_asset'],'source_eyes_retained':True,'eye_coordinate_hashes':eyes,'saved_material_state':state,'saved_skin_shader':prior.skin_shader_state(bpy),'candidate_rest_signature':rest,'new_invalid_drivers':[],'pose_restore_error_m':restore,'images':images,'smile':smile,'wardrobe':old['wardrobe'],'wardrobe_unchanged':False,'collar_finish':wardrobe_receipt,'known_blink_visual_failure':True,'blink_visual_approved':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'embedded_python_executed':False,'native_runtime':{'blender':bpy.app.version_string,'render_engine':scene.render.engine,'cycles_device':scene.cycles.device},'credit':'Rain Rig (CC) Blender Foundation | studio.blender.org - modified CC BY4.0. Hair MakeHuman CC0 system assets; pinned conversion by HumanGen Web.','scope':'Actual original Rain with acquired fitted hair assets. Full acting/blink/cloth/hair dynamics not approved; visual review required.'}
  build.study.write(OUT/'report.json',record)
 
 def verify():

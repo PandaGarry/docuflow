@@ -2,7 +2,7 @@ name: Mom R18 CC0 hair fitting and original Rain face finish
 on:
   push:
     branches: ['arena/4c8ed03c-docuflow']
-    paths: ['.github/workflows/mom-character-r18.yml', 'studio/tools/mom_character_r18.py', 'studio/tools/mom_face_finish_r18.py', 'studio/tools/mom_hair_asset_r18.py', 'studio/authoring/mom-character-r18.json']
+    paths: ['.github/workflows/mom-character-r18.yml', 'studio/tools/mom_character_r18.py', 'studio/tools/mom_face_finish_r18.py', 'studio/tools/mom_face_paint_r18.py', 'studio/tools/mom_wardrobe_finish_r18.py', 'studio/tools/mom_hair_asset_r18.py', 'studio/authoring/mom-character-r18.json']
   workflow_dispatch:
     inputs:
       quality:

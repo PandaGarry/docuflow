@@ -3,7 +3,7 @@ import numpy as np
 from mom_face_finish_r7 import smoothstep
 
 def fair(p,polygons,settings):
- p=np.asarray(p);q=p.copy();x,y,z=p.T;w=np.exp(-(x/.045)**4-((z-1.430)/.027)**4)*smoothstep(-.095,-.135,y)
+ p=np.asarray(p);q=p.copy();x,y,z=p.T;w=np.exp(-(x/.060)**4-((z-1.438)/.034)**4)*smoothstep(-.095,-.135,y)
  edges=set()
  for face in polygons:
   for a,b in zip(face,face[1:]+face[:1]):edges.add(tuple(sorted((a,b))))

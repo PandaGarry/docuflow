@@ -30,7 +30,7 @@ def main():
  records=[]
  for name in ('long01','bob02'):
   raw=get(f'data/proxies/hair/{name}.json');data=json.loads(raw);verts=fitted(base,data);mapping=np.array(data['map']);faces=np.asarray(data['quads']).reshape(-1,4)
-  path=OUT/f'{name}.npz';np.savez_compressed(path,vertices=verts[mapping],polygons=faces,uv=np.array(data['uv']).reshape(-1,2),source_eye_centers=np.array(centers))
+  path=OUT/f'{name}.npz';np.savez_compressed(path,vertices=verts[mapping],render_to_source=mapping,polygons=faces,uv=np.array(data['uv']).reshape(-1,2),source_eye_centers=np.array(centers))
   texture=get(f'data/proxies/hair/{name}.webp');(OUT/f'{name}.webp').write_bytes(texture)
   records.append({'name':name,'vertices':len(mapping),'quads':len(faces),'bounds_source_dm':[verts.min(0).tolist(),verts.max(0).tolist()],'mesh_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'texture_sha256':hashlib.sha256(texture).hexdigest(),'upstream_fit_json_sha256':hashlib.sha256(raw).hexdigest(),'upstream_asset_path':f'data/proxies/hair/{name}.json','source_normal_map':data.get('normal',False)})
  license_text=subprocess.check_output(['gh','api','repos/makehumancommunity/mpfb2/contents/LICENSE.ASSETS.md','--jq','.content']);license_bytes=base64.b64decode(license_text);(OUT/'LICENSE.ASSETS.md').write_bytes(license_bytes)
