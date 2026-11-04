@@ -56,24 +56,43 @@ def geometry(outer,inner,depth,index):
   faces=[tuple(reversed(f)) for f in faces];uv=reordered
  return vertices,faces,uv
 
+def tress_paths(settings):
+ """Use the envelope as flow guidance, never as a wide shell surface."""
+ result=[]
+ for i,(name,outer,inner,depth) in enumerate(guides(settings)):
+  center=(outer+inner)/2;s=np.r_[0,np.cumsum(np.linalg.norm(np.diff(center,axis=0),axis=1))];s/=s[-1];t=np.linspace(0,1,128)
+  o=np.stack([cubic_curve(t,s,outer[:,k]) for k in range(3)],1);inside=np.stack([cubic_curve(t,s,inner[:,k]) for k in range(3)],1);count=(9,9,7)[i]
+  for j in range(count):
+   f=(j+.5)/count;path=o*(1-f)+inside*f;path[:,1]-=depth*np.sqrt(1-(2*f-1)**2)*cubic_curve(t,[0,.1,.8,1],[.1,1,1,.03])
+   tangent=np.gradient(path,axis=0);tangent/=np.linalg.norm(tangent,axis=1)[:,None];separation=(inside-o)/count;perp=separation-tangent*np.einsum('ij,ij->i',separation,tangent)[:,None]
+   radius=np.clip(.65*np.linalg.norm(perp,axis=1),.00012,.011);radius*=.98+.02*np.cos(j*.9+t*3)
+   result.append((name+f'-tress-{j:02}',path,radius))
+ return result
+
+def tube(path,radius):
+ t=np.gradient(path,axis=0);t/=np.linalg.norm(t,axis=1)[:,None];axis=np.stack((-t[:,2],np.zeros(len(t)),t[:,0]),1);axis/=np.linalg.norm(axis,axis=1)[:,None];front=np.cross(t,axis);front/=np.linalg.norm(front,axis=1)[:,None]
+ a=np.linspace(0,2*np.pi,24,endpoint=False);relief=1+.015*np.cos(8*a);rings=path[:,None,:]+radius[:,None,None]*relief[None,:,None]*(np.cos(a)[None,:,None]*axis[:,None,:]+.78*np.sin(a)[None,:,None]*front[:,None,:]);vertices=rings.reshape(-1,3);faces=[];uv=[];n=len(a)
+ for j in range(len(t)-1):
+  for k in range(n):
+   kk=(k+1)%n;faces.append((j*n+k,j*n+kk,(j+1)*n+kk,(j+1)*n+k));uv.extend([(j/(len(t)-1),k/n),(j/(len(t)-1),(k+1)/n),((j+1)/(len(t)-1),(k+1)/n),((j+1)/(len(t)-1),k/n)])
+ faces.extend([tuple(reversed(range(n))),tuple((len(t)-1)*n+k for k in range(n))]);uv.extend([(0,k/n) for k in reversed(range(n))]+[(1,k/n) for k in range(n)])
+ return vertices,faces,uv,rings
+
 def build(bpy,rig,settings,mat):
  from mathutils import Vector
  from mathutils.bvhtree import BVHTree
  from mom_groom_r16 import native_curves
  head=bpy.data.objects['GEO-rain-head'];ev=head.evaluated_get(bpy.context.evaluated_depsgraph_get());skin=ev.to_mesh();bvh=BVHTree.FromPolygons([head.matrix_world@v.co for v in skin.vertices],[list(p.vertices) for p in skin.polygons]);ev.to_mesh_clear();objects=[];paths=[];radii=[];contact=0
- for i,(name,outer,inner,depth) in enumerate(guides(settings)):
-  p,faces,uv=geometry(outer,inner,depth,i)
-  for j in range(len(p)):
-   angle=(j%64)*2*np.pi/64
-   if p[j,2]<1.49 or np.sin(angle)<0:continue
-   hit,normal,index,distance=bvh.ray_cast(Vector((p[j,0],-1,p[j,2])),Vector((0,1,0)),2)
+ for i,(name,path,radius) in enumerate(tress_paths(settings)):
+  for j,point in enumerate(path):
+   if point[2]<1.49:continue
+   hit,normal,index,distance=bvh.ray_cast(Vector((point[0],-1,point[2])),Vector((0,1,0)),2)
    if hit is not None:
-    target=hit.y-.005;y=p[j,1];p[j,1]=.5*(y+target-np.sqrt((y-target)**2+.002**2));contact+=int(y>target)
-  mesh=bpy.data.meshes.new('R17 continuous flow '+name);mesh.from_pydata(p.tolist(),[],faces);mesh.update();layer=mesh.uv_layers.new(name='Longitudinal flow');layer.data.foreach_set('uv',np.asarray(uv).ravel())
+    target=hit.y-radius[j]-.004;y=point[1];path[j,1]=.5*(y+target-np.sqrt((y-target)**2+.001**2));contact+=int(y>target)
+  p,faces,uv,rings=tube(path,radius);mesh=bpy.data.meshes.new('R17 rounded tress '+name);mesh.from_pydata(p.tolist(),[],faces);mesh.update();layer=mesh.uv_layers.new(name='Longitudinal flow');layer.data.foreach_set('uv',np.asarray(uv).ravel())
   for poly in mesh.polygons:poly.use_smooth=True
   obj=bpy.data.objects.new('HAIR-mom-R17-'+name,mesh);bpy.context.scene.collection.objects.link(obj);mesh.materials.append(mat);world=obj.matrix_world.copy();obj.parent=rig;obj.parent_type='BONE';obj.parent_bone='DEF-Head';bpy.context.view_layer.update();obj.matrix_world=world;objects.append(obj.name)
-  rings=p.reshape(128,64,3)
-  for k in range(3,30,2):
-   q=rings[:,k].copy();q[:,1]-=.00006;paths.append(q);radii.append(np.linspace(.000045,.000006,128))
+  for k in (3,6,9):
+   q=rings[:,k].copy();q[:,1]-=.00004;paths.append(q);radii.append(np.minimum(radius*.012,.00004))
  fiber=native_curves(bpy,'GROOM-mom-R17-contour-surface-fibers',np.array(paths),np.array(radii),mat,rig)
- return objects,fiber.name,{'scalp_front_surface_contacts':contact,'source':'Independent sculpted long-lock edge contours with authored 3D depths; actual head BVH contact, no canonical texture projection.'}
+ return objects,fiber.name,{'scalp_front_surface_contacts':contact,'front_tresses':len(objects),'source':'Contour-guided individually rounded volumetric tresses, independently authored depth and actual scalp clearance. NO broad shell mesh; no canonical texture projection.'}

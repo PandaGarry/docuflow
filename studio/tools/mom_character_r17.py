@@ -63,7 +63,7 @@ def main():
  import bpy
  global OUT
  preview='--preview' in sys.argv
- if preview:OUT=BASE/'preview-3'
+ if preview:OUT=BASE/'preview-4'
  OUT.mkdir(parents=True,exist_ok=True);s=json.loads(SPEC.read_text());old,before=load(bpy,s);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy)
  if build.study.sha(ROOT/s['reference']['path'])!=s['reference']['sha256']:raise ValueError('Canonical changed')
  head=bpy.data.objects['GEO-rain-head'];p=np.array(before['basis_vertices']);delta=anatomy.head_residual(p,s);tri=np.array([[f[0],f[j],f[j+1]] for f in before['polygons'] for j in range(1,len(f)-1)]);key_deltas=[]

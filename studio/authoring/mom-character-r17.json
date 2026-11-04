@@ -102,7 +102,7 @@
     "eye_y": 395,
     "eye_z_m": 1.47326,
     "meters_per_pixel": 0.00045055072463768116,
-    "method": "Independently closed contour-authored front locks with sculpted longitudinal relief and real scalp contact, eleven rear waves; no cap or alternating color stripes.",
+    "method": "25 independently rounded contour-guided front tresses +11 rear wave locks; no broad shell, no crown cap, no painted stripes.",
     "seed": 1701
   },
   "art_approved": false,
@@ -118,11 +118,12 @@
     "rim_energy_w": 18,
     "exposure": 0
   },
-  "preview_attempt": 3,
+  "preview_attempt": 4,
   "corrective_transport": "Spatial deformation reevaluated per original corrective, not locally attenuated shared residual.",
   "material_calibration": {
     "skin_red_linear_gain": 1.18,
     "temperature_mix": 0.18,
-    "nose_peak_mix": 0.9
+    "nose_peak_mix": 0.9,
+    "hair_shader_srgb": "#886242"
   }
 }
