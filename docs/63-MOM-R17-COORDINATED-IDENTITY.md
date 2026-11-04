@@ -46,3 +46,14 @@ Canonical and private inputs are not modified. Historical R8–R16 packages froz
 
 Credit: **Rain Rig (CC) Blender Foundation | studio.blender.org**, modified,
 CC BY 4.0. Original reference art is a design guide, not a reusable texture.
+
+## Native development checks
+
+- `41837832725`: correctly stopped by an original corrective orientation check;
+  no frame was produced. Basis-only pure checks did not detect that corrective.
+- `41838231030`: jointly bounded against all 25 original blocks (174 locally
+  attenuated vertices, minimum signed area ratio .058), then stopped on Blender's
+  actual anisotropy socket name before rendering. No visual success claimed.
+  Both logs are preserved under `studio/reviews/mom-character-r17/attempts/`.
+- Lightweight full suite at source development checkpoint: **455 tests passed**,
+  40.279 s. This does not certify native execution or artistic likeness.
