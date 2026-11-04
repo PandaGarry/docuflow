@@ -14,7 +14,6 @@ on:
       - 'studio/tools/mom_face_controls.py'
       - 'studio/tools/mom_face_probe.py'
       - 'studio/tools/mom_smile_pose_r3.py'
-      - 'studio/tools/verify_mom_head_r13_native.py'
       - 'studio/authoring/mom-character-r14.json'
       - '.github/workflows/mom-character-r14.yml'
   workflow_dispatch:
@@ -53,6 +52,7 @@ jobs:
           python -m unittest discover -s studio/tests -p 'test_mom_native_audit_receipts.py' -q
           python -m unittest discover -s studio/tests -p 'test_mom_face_controls.py' -q
           python -m unittest discover -s studio/tests -p 'test_mom_head_r13.py' -q
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r14.py' -q
           python studio/tools/production_status.py validate
       - name: Download actual editable R13 baseline
         uses: actions/download-artifact@v4
@@ -66,6 +66,23 @@ jobs:
           OMP_NUM_THREADS: '2'
           OPENBLAS_NUM_THREADS: '2'
         run: python studio/tools/mom_character_probe_r14.py
+      - name: Build original-mesh R14 and real Cycles anatomy/groom/wardrobe frames
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          set +e
+          timeout 1000 python studio/tools/mom_character_r14.py > .cache/mom-head-form.log 2>&1
+          result=$?
+          tail -n 70 .cache/mom-head-form.log
+          exit "$result"
+      - name: Reopen actual saved groomed and clothed native binary
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          python studio/tools/mom_character_r14.py --verify > .cache/mom-r14-reopen.log 2>&1
+          tail -n 30 .cache/mom-r14-reopen.log
       - name: Keep bounded failure evidence
         if: failure()
         run: |
