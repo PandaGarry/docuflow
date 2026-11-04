@@ -1,0 +1,152 @@
+{
+  "comparison_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        8.913043478260875,
+        -0.7246376811594359
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/portrait-front.png",
+      "sha256": "f0f5328de3e980f14588fc11cbc27818c04a629434148f0264aab0b6eef04ad3",
+      "pupils_px": [
+        [
+          386.9487825356843,
+          596.4424853064652
+        ],
+        [
+          635.7081218274112,
+          596.3620981387479
+        ]
+      ],
+      "uniform_similarity": [
+        0.8441893223713922,
+        0.00027280177233072436,
+        -31.49531995414959,
+        -103.61593781805084
+      ]
+    }
+  ],
+  "method": "Uniform eye alignment only, intact native frame. Head/hair crop; clothes explicitly unchanged and unapproved. No canonical texture projection, no render retouch.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "bare_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -66.08695652173913,
+        -140.72463768115944
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/bare-front.png",
+      "sha256": "3f690d2c3ff8175492764dddf9ca62ef7704fd6888392b80036f22deee2cc819",
+      "pupils_px": [
+        [
+          411.50555555555553,
+          508.0722222222222
+        ],
+        [
+          610.9246298788695,
+          508.1022880215343
+        ]
+      ],
+      "uniform_similarity": [
+        1.0530587203814423,
+        -0.00015876641819900108,
+        -213.42017857009645,
+        -274.96455093156453
+      ]
+    }
+  ],
+  "held_light_face_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -91.08695652173913,
+        -140.72463768115944
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/source-r16-held-light-bare-front.png",
+      "sha256": "b68c429e3a07675f858841980f40cdac1f2652bb68ba6312b3faf93df3eecb9c",
+      "pupils_px": [
+        [
+          308.3874813710879,
+          379.63040238450077
+        ],
+        [
+          458.07848837209303,
+          379.38517441860466
+        ]
+      ],
+      "uniform_similarity": [
+        1.4028861226389435,
+        0.002298247016511241,
+        -236.76003357141784,
+        -273.2869738460447
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/bare-front.png",
+      "sha256": "3f690d2c3ff8175492764dddf9ca62ef7704fd6888392b80036f22deee2cc819",
+      "pupils_px": [
+        [
+          411.50555555555553,
+          508.0722222222222
+        ],
+        [
+          610.9246298788695,
+          508.1022880215343
+        ]
+      ],
+      "uniform_similarity": [
+        1.0530587203814423,
+        -0.00015876641819900108,
+        -238.42017857009645,
+        -274.96455093156453
+      ]
+    }
+  ]
+}

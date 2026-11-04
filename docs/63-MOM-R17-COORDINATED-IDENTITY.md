@@ -1,6 +1,7 @@
 # R17 — coordinated original Rain head / skin / hair work
 
-The full-evidence native run is pending at this source checkpoint. The workflow
+Full-evidence native run **41843580496 succeeded technically (worker 9m44s)**.
+**Hair is visually REJECTED; canonical identity is not finished.** The workflow
 word `final` means full render scope + reopen, **not final art acceptance**.
 Several real previews below were visually rejected despite technical success.
 
@@ -86,3 +87,27 @@ Raw native frames, JSON receipts and review boards are committed durably.
 
 Credit: **Rain Rig (CC) Blender Foundation | studio.blender.org**, modified,
 CC BY4.0. Reference art guides design only, never becomes a projected texture.
+
+## Actual full-evidence result — visual rejection remains
+
+See [manual actual-frame review](../studio/reviews/mom-character-r17/visual-review.md).
+New front/3quarter/profile and fresh held-light R16 face, bare/clay views expose
+the result: face/eye/material changes are real, but the hair is a stiff spaced
+comb/cage in3D with exposed scalp and unnatural junctions. This construction is
+not a completed groom and should not be promoted or cosmetically rebranded as
+finished. Nose/lip shape and color distribution still differ from canonical.
+
+Source commit `0a7b505`; all9build frames are fresh, not reused anatomy. Separate
+process reopened neutral RGB MAE0, ACT restore0m,17packed images. Canonical hash
+unchanged. No production swap, user/art approval or PR merge.
+
+[Download actual native artifact](https://github.com/PandaGarry/docuflow/actions/runs/41843580496/artifacts/13329943726):
+`mom-character-r17-final-native`,109284716bytes, expires2026-11-18T14:11:44Z.
+Native SHA-256 `eb89540f5994323ee3c086a6e773fcf22e893452260f92fb8d0ebf574069f4d1`.
+This is the actual work file with rejected hair, NOT a ready production model.
+Binary is external/temporary; committed raw images/receipts/reviews are durable.
+
+Post-evidence lightweight suite: **462 tests passed, 40.052s**, including4new
+actual-native receipt/source/frame-integrity checks. Planning validator31tasks
+valid. These checks explicitly preserve the manual hair/identity rejection;
+they do not turn a successful native save/reopen into artistic acceptance.

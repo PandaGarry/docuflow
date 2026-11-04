@@ -9,45 +9,43 @@
 ригам, походке и артикуляции ещё предстоит; готовность подтверждается
 контрольными сценами, а не наличием кода или плана.
 
-## Текущая работа · мама: мягче лицо, прядевые волосы, футболка и жилет — R16 WIP
+## Текущая работа · мама R17: лицо переработано, волосы отклонены
 
-**[Эталон / текущий настоящий Cycles-портрет](studio/reviews/mom-character-r16/comparison-character.png)** ·
-[Анфас / ¾ / профиль](studio/reviews/mom-character-r16/portrait-three-views.png) ·
-[Лицо без волос: эталон / R13 / сохранённая форма R15](studio/reviews/mom-character-r16/comparison-bare-face.png) ·
-[Editable `.blend`, результаты и ограничения](docs/62-MOM-R16-SCALP-ROOTS-AND-FITTED-COLLAR.md).
+**Запрос на полностью готовое лицо/волосы/кожу по эталону пока не выполнен.**
+Технически успешный native-прогон не означает художественно готового персонажа.
 
-По новому запросу выполнен цельный проход:87indexed controls,36изменённых
-таргетов щёк/челюсти/подбородка/век/губ; уши компактнее, радужка8% крупнее,
-брови толще +440native fibers. Исходная Rain-голова/25keys/weights/UV/rig сохранены.
-Добавлены13864native hair curves с пробором/волнами до плеч (не сплошной cap),
-белая футболка с рукавами и отдельный коричневый жилет. R16 меняет только
-волосы/одежду на проверенном R15 binary, не пересобирает лицо/глаза ещё раз.
+**[Эталон / фактический R17 Cycles](studio/reviews/mom-character-r17/comparison-face-hair.png)** ·
+[Анфас / ¾ / профиль — дефекты волос не скрыты](studio/reviews/mom-character-r17/portrait-views.png) ·
+[Эталон / R16 / R17 при одинаковом свете](studio/reviews/mom-character-r17/comparison-held-light-face.png) ·
+[Новая геометрия без волос, серый материал](studio/reviews/mom-character-r17/clay-views.png).
 
-**Не выдаём сборку за финал:** пробор/рисунок прядей/концы ещё искусственные,
-воротник R16 имеет жёсткие/пересекающиеся складки и требует переработки. Нос,
-контур/выступание губ и выражение глаз тоже отличаются от эталона. Это первый
-цельный образ для разбора, не утверждённая финальная мама или киноуровень.
+На настоящем сохранённом R16 Rain-ассете переработаны положение/выступание губ,
+перенос деформации на каждый из 25 исходных ключей, соотношение зрачка/радужки,
+исходный блик, брови и original-UV цвет/PBR кожи, носа и губ. Исходная голова,
+топология, веса, UV и rest рига сохранены; координаты корректировок перенесены.
+Это не новая подставная голова, не проекция эталона и не ретушь рендера.
 
-История сохранена честно: R14 дал блики/дефекты глаз, редкие слишком светлые
-волосы, жилет под футболкой и failure native restore — отклонён. R15 исправил
-глаза/цвет/положение одежды и прошёл native reopen, но волосы/воротник остались
-недостаточными. R16 улучшает корни/концы и сохраняет лицо; дефекты воротника
-зафиксированы, а не скрыты. Цвет/PBR лица остались R13; это реальные native
-frames, не generated image или paint-over.
+**Волосы R17 отклонены:** новый объёмный procedural groom в ¾ и профиль
+распадается на жёсткую расчёску/каркас, оставляет кожу головы открытой и имеет
+неестественные стыки. Фронтальный силуэт не доказывает пригодность причёски.
+Нос, контур губ и распределение цвета тоже ещё отличаются от эталона. Одежда
+осталась R16 и не закончена. Эта сборка не заменяет мастер и не принята в production.
 
-Native R16:41829196725 SUCCESS8m5s;3новых Cycles-портрета +neutral +reopen.
-Четыре bare/clay кадра явно переиспользованы из R15: голова и глаза не менялись.
-Separate-process reopen на том же worker:17packed images, restore/pixel errors0.
-Это не independent R16 redownload и не художественное принятие.
+[Фактическая визуальная оценка](studio/reviews/mom-character-r17/visual-review.md) ·
+[Метод, сохранённые неудачные пробы, editable `.blend` и ограничения](docs/63-MOM-R17-COORDINATED-IDENTITY.md).
 
-[Честная визуальная оценка](studio/reviews/mom-character-r16/visual-review.md).
-Blink/lash/rest migration, полная анимация, hair/cloth dynamics и полный персонаж
-не завершены; art/user/production=false. Masters/history сохранены; private inputs
-не читаются/не публикуются. Rain Rig (CC) Blender Foundation | studio.blender.org,
-modified CC BY4.0.
+Native run `41843580496`: SUCCESS, worker 9м44с; 9 новых кадров + reopen.
+Сохранённый `.blend` открыт отдельным процессом: 17 packed images, ошибки
+возврата позы и совпадения нейтрального кадра — 0. Это не independent redownload
+и не художественное принятие. Полный acting/blink/lash/rest migration и
+hair/cloth dynamics не сертифицированы; art/user/production=false.
 
-[R14: первый отклонённый groom/wardrobe](docs/60-MOM-R14-PROPORTIONS-STRAND-GROOM-WARDROBE.md) ·
-[R15: исправления глаз/одежды/restore](docs/61-MOM-R15-GROOM-WARDROBE-CORRECTION.md) ·
+История R8–R16, четыре отклонённых настоящих R17 preview и ранние технические
+ошибки сохранены. Canonical/private inputs не изменены; private не публикуются.
+Rain Rig (CC) Blender Foundation | studio.blender.org, modified CC BY 4.0.
+
+[R16: сохранённый предыдущий образ](docs/62-MOM-R16-SCALP-ROOTS-AND-FITTED-COLLAR.md) ·
+[R15: глаза/одежда/restore](docs/61-MOM-R15-GROOM-WARDROBE-CORRECTION.md) ·
 [R13: нос / уши / рот](docs/59-MOM-R13-NASAL-SURFACE-CURVATURE.md).
 
 ## Актуальный план развития движка · 2026-11-03
