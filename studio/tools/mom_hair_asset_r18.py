@@ -18,7 +18,7 @@ def fit(name,settings):
  front=smoothstep(-.070,-.130,q[:,1]);center=np.exp(-(q[:,0]/.085)**6)
  q[:,2]+=settings['fringe_lift_m']*front*center*smoothstep(1.63,1.44,q[:,2])
  q[:,0]-=settings['part_shift_m']*smoothstep(1.48,1.63,q[:,2])*np.exp(-(q[:,0]/.09)**4)
- q[:,0]*=1+1.2*smoothstep(1.34,settings['tip_z'],q[:,2])
+ if name=='bob02':q[:,0]*=1+1.2*smoothstep(1.34,settings['tip_z'],q[:,2])
  t=np.clip((1.52-q[:,2])/(1.52-settings['tip_z']),0,1);wave=.035*np.sin(1.5*np.pi*t)+.055*t**6
  q[:,0]+=np.sign(q[:,0])*wave
  q[:,1]+=.008*np.sin(2*np.pi*t)*smoothstep(.07,.12,abs(q[:,0]))
@@ -45,4 +45,9 @@ def build(bpy,rig,name,settings):
  sub=obj.modifiers.new('Smooth original asset surfaces','SUBSURF');sub.levels=1;sub.render_levels=1
  if rig is not None:
   world=obj.matrix_world.copy();obj.parent=rig;obj.parent_type='BONE';obj.parent_bone='DEF-Head';bpy.context.view_layer.update();obj.matrix_world=world
- return obj,{'object':obj.name,'asset':name,'source_license':'CC0-1.0','source_commit':json.loads((ASSETS/'manifest.json').read_text())['source_commit'],'source_mesh_sha256':record['mesh_sha256'],'source_texture_sha256':record['texture_sha256'],'vertices':len(source_p),'render_vertices':render_count,'polygons':len(polys),'original_uv_sha256':hashlib.sha256(np.asarray(uv,dtype=np.float32).tobytes()).hexdigest(),'fit':settings,'binding':'Original DEF-Head; no hair/shoulder dynamics certification' if rig is not None else 'UNRIGGED DIAGNOSTIC ONLY, not original character binary','method':'Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement.'}
+ return obj,{'object':obj.name,'asset':name,'source_license':'CC0-1.0','source_commit':json.loads((ASSETS/'manifest.json').read_text())['source_commit'],'source_mesh_sha256':record['mesh_sha256'],'source_texture_sha256':record['texture_sha256'],'vertices':len(source_p),'render_vertices':render_count,'polygons':len(polys),'original_uv_sha256':hashlib.sha256(np.asarray(uv,dtype=np.float32).tobytes()).hexdigest(),'fit':settings,'saved_appearance_state':fingerprint(obj),'binding':'Original DEF-Head; no hair/shoulder dynamics certification' if rig is not None else 'UNRIGGED DIAGNOSTIC ONLY, not original character binary','method':'Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement.'}
+
+
+def fingerprint(obj):
+ mesh=obj.data;p=np.empty(len(mesh.vertices)*3,np.float32);mesh.vertices.foreach_get('co',p);uv=np.empty(len(mesh.uv_layers.active.data)*2,np.float32);mesh.uv_layers.active.data.foreach_get('uv',uv);tree=mesh.materials[0].node_tree;shader=tree.nodes['Principled BSDF'];ramp=tree.nodes['R18 bounded warm brown, source strand luminance'].color_ramp;tex=next(n for n in tree.nodes if n.type=='TEX_IMAGE');bump=next(n for n in tree.nodes if n.type=='BUMP')
+ return {'coordinate_sha256':hashlib.sha256(p.tobytes()).hexdigest(),'polygon_sha256':hashlib.sha256(json.dumps([list(f.vertices) for f in mesh.polygons],separators=(',',':')).encode()).hexdigest(),'loop_uv_sha256':hashlib.sha256(uv.tobytes()).hexdigest(),'packed_texture_sha256':hashlib.sha256(bytes(tex.image.packed_file.data)).hexdigest(),'texture_colorspace':tex.image.colorspace_settings.name,'brown_ramp':[{'position':float(e.position),'linear_rgba':list(e.color)} for e in ramp.elements],'shader':{k:float(shader.inputs[k].default_value) for k in ('Roughness','Specular IOR Level','Anisotropic','Anisotropic Rotation')},'source_strand_micro_normal':{'strength':float(bump.inputs['Strength'].default_value),'distance_m':float(bump.inputs['Distance'].default_value)}}

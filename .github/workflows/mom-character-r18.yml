@@ -53,6 +53,7 @@ jobs:
           path: .cache/r18-r17-source
       - name: Build and render actual asset-based R18
         env:
+          R18_RENDER_SCOPE: ${{ steps.scope.outputs.quality }}
           OPENBLAS_NUM_THREADS: '2'
           OMP_NUM_THREADS: '2'
         run: |

@@ -1,5 +1,5 @@
 """Actual R17 -> fitted CC0 hair assets and bounded original-head finish."""
-import gzip,json,sys,hashlib
+import gzip,json,sys,hashlib,os
 from pathlib import Path
 import numpy as np
 import mom_character_r17 as prior
@@ -40,7 +40,7 @@ def frame(bpy,name,view='front',size=(1024,1280),samples=64,bare=False):
 def main():
  import bpy
  global OUT
- s=json.loads(SPEC.read_text());preview=s['render_scope']=='preview'
+ s=json.loads(SPEC.read_text());scope=os.environ.get('R18_RENDER_SCOPE',s['render_scope']);assert scope in ('preview','final');preview=scope=='preview'
  if preview:OUT=BASE/'preview'
  OUT.mkdir(parents=True,exist_ok=True);old,before=load(bpy,s);source_probe=probe_albedo(bpy);rig=bpy.data.objects['RIG-rain'];rest=build.base.rig_signature(rig);invalid=build.base.invalid_drivers(bpy);eyes=build.eye_fingerprints(bpy)
  head=bpy.data.objects['GEO-rain-head'];edits=[core.edit_blocks(bpy,head,lambda p:face.fair(p,before['polygons'],s['fairing']))]
@@ -84,7 +84,7 @@ def main():
  camera=scene.camera;camera.location=(0,-4,1.5);camera.rotation_euler=(Vector((0,0,1.455))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.ortho_scale=.48;scene.render.resolution_x=512;scene.render.resolution_y=640;scene.cycles.samples=32
  NATIVE.parent.mkdir(parents=True,exist_ok=True);bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(NATIVE.resolve()),compress=True)
  if not preview:images.append(frame(bpy,'saved-neutral-front.png',size=(512,640),samples=32))
- record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'asset_manifest_sha256':build.study.sha(hair.ASSETS/'manifest.json'),'canonical_face_sha256':build.study.sha(ROOT/'studio/characters/mom/master/face.png'),'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact 14 days'},'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'source_albedo_probe':source_probe,'candidate_albedo_probe':candidate_probe,'uv_paint':paint_receipt,'candidates':candidates,'selected_hair_asset':s['selected_hair_asset'],'source_eyes_retained':True,'eye_coordinate_hashes':eyes,'saved_material_state':state,'saved_skin_shader':prior.skin_shader_state(bpy),'candidate_rest_signature':rest,'new_invalid_drivers':[],'pose_restore_error_m':restore,'images':images,'smile':smile,'wardrobe':old['wardrobe'],'wardrobe_unchanged':False,'collar_finish':wardrobe_receipt,'known_blink_visual_failure':True,'blink_visual_approved':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'embedded_python_executed':False,'native_runtime':{'blender':bpy.app.version_string,'render_engine':scene.render.engine,'cycles_device':scene.cycles.device},'credit':'Rain Rig (CC) Blender Foundation | studio.blender.org - modified CC BY4.0. Hair MakeHuman CC0 system assets; pinned conversion by HumanGen Web.','scope':'Actual original Rain with acquired fitted hair assets. Full acting/blink/cloth/hair dynamics not approved; visual review required.'}
+ record={'revision':s['revision'],'preview_only':preview,'source_run':s['source_run'],'source_binary_sha256':s['source_binary_sha256'],'spec_sha256':build.study.sha(SPEC),'scripts':{n:build.study.sha(ROOT/'studio/tools'/n) for n in SCRIPTS},'asset_manifest_sha256':build.study.sha(hair.ASSETS/'manifest.json'),'canonical_face_sha256':build.study.sha(ROOT/'studio/characters/mom/master/face.png'),'native_artifact':{'filename':NATIVE.name,'sha256':build.study.sha(NATIVE),'storage':'GitHub Actions artifact 14 days'},'head_edit_data_sha256':build.study.sha(OUT/'head-edit-data.json.gz'),'edits':edits,'source_albedo_probe':source_probe,'candidate_albedo_probe':candidate_probe,'uv_paint':paint_receipt,'candidates':candidates,'selected_hair_asset':s['selected_hair_asset'],'source_eyes_retained':True,'eye_coordinate_hashes':eyes,'saved_material_state':state,'saved_skin_shader':prior.skin_shader_state(bpy),'candidate_rest_signature':rest,'new_invalid_drivers':[],'pose_restore_error_m':restore,'images':images,'smile':smile,'wardrobe':old['wardrobe'],'wardrobe_unchanged':False,'collar_finish':wardrobe_receipt,'known_blink_visual_failure':True,'blink_visual_approved':False,'art_approved':False,'user_approved':False,'production_swap_allowed':False,'embedded_python_executed':False,'visible_geometry_inventory':[{'object':o.name,'type':o.type,'materials':[m.name for m in o.data.materials if m]} for o in bpy.context.scene.objects if o.type in ('MESH','CURVE','CURVES') and not o.hide_render],'native_runtime':{'blender':bpy.app.version_string,'render_engine':scene.render.engine,'cycles_device':scene.cycles.device},'credit':'Rain Rig (CC) Blender Foundation | studio.blender.org - modified CC BY4.0. Hair MakeHuman CC0 system assets; pinned conversion by HumanGen Web.','scope':'Actual original Rain with acquired fitted hair assets. Full acting/blink/cloth/hair dynamics not approved; visual review required.'}
  build.study.write(OUT/'report.json',record)
 
 def verify():
@@ -99,7 +99,9 @@ def verify():
  if build.base.rig_signature(bpy.data.objects['RIG-rain'])!=r['candidate_rest_signature']:raise ValueError('Reopened rig differs')
  for a in r['candidates'].values():
   obj=bpy.data.objects[a['object']]
-  if len(obj.data.vertices)!=a['vertices'] or obj.parent_bone!='DEF-Head':raise ValueError('Reopened hair differs')
+  if len(obj.data.vertices)!=a['vertices'] or obj.parent_bone!='DEF-Head' or hair.fingerprint(obj)!=a['saved_appearance_state']:raise ValueError('Reopened hair differs')
+ body=bpy.data.objects['GEO-rain-body'].data.materials[0].node_tree.nodes['Principled BSDF']
+ if list(body.inputs['Base Color'].default_value)!=r['uv_paint']['matching_body_skin_after']:raise ValueError('Reopened neck/body pigment differs')
  f=frame(bpy,'reopened-neutral-front.png',size=(512,640),samples=32);a=np.asarray(Image.open(BASE/'saved-neutral-front.png'),float);b=np.asarray(Image.open(BASE/'reopened-neutral-front.png'),float);err=float(abs(a-b).mean())
  if err>.5:raise ValueError('Reopened image differs')
  packed=[{'name':i.name,'packed':bool(i.packed_file) or bool(i.packed_files)} for i in bpy.data.images if i.source in ('FILE','TILED') and i.type=='IMAGE']
