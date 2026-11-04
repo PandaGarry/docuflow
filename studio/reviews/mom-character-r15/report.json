@@ -1,0 +1,1162 @@
+{
+  "revision": "mom-character-r15",
+  "source_run": 41807469868,
+  "downloaded_r13_binary_sha256": "e557b35c6401b795eb957fbe981854aa92b174223e530668c751683c9f656db5",
+  "spec_sha256": "eb0ae958c5050b816eaa521b2d754021c11cb63ba75d6536dcf301afa8963354",
+  "inherited_r14_spec_sha256": "e5f07950b11f281798f598208cc693102249f0d5d5aa39d091cbeb9e281be4df",
+  "scripts": {
+    "mom_character_r15.py": "7ff1b4105c7c78b0b530b5018097ab35b6a58c89e300255abb62f1cc5bc03d1a",
+    "mom_character_probe_r14.py": "968a1c224f3f402000410e8e94868f916ff5f3883dae306eb1b24d708a6faf1c",
+    "mom_face_anatomy_r15.py": "d4c787e28b4e0df7a5601195e9698618fb908d6afcbf9b024674aeff57fcf5ef",
+    "mom_groom_r15.py": "c9c14398f7d753b604d652a316ad2d41e8da0d5e507b7ed3411c48337f87ca4d",
+    "mom_wardrobe_r15.py": "d02eb90b8107352657dc6bd0e673308fe1bfdfbafb6dca966698d378d2c473f3",
+    "mom_head_lookdev_r10.py": "552a1a6a913740cb49e6641f54de8986b1bba187fca67b112457b21756d63329",
+    "mom_head_cage.py": "0cc7052d984a50f5901a267e15107911c49bc49be51ab4b1fc5afee2205c5977",
+    "mom_face_anatomy_r12.py": "000c8fbac819c51934d7224eb38076c07a11343aa7f1a7086cae347f303b2603",
+    "mom_smile_pose_r3.py": "0735cb109bfa8a3fcab81b0219feaa9240a249d279d74d6a3cc0e7742726e865"
+  },
+  "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+  "head_edit_data_sha256": "a72e7d3c72848ca6363eb29b8ba8e17f94edac1e9ef53b6d8fd8ef05c550843f",
+  "native_artifact": {
+    "filename": "mom-character-r15.blend",
+    "sha256": "359690e5751950ff18fd2955fcc28b622c8148f0cbda888487f75b5bee6bc046",
+    "storage": "GitHub Actions artifact 14 days"
+  },
+  "edits": [
+    {
+      "object": "GEO-rain-head",
+      "original_blocks": 25,
+      "max_change_m": 0.008483075986338743
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "original_blocks": 2,
+      "max_change_m": 0.0008444654183685465
+    },
+    {
+      "object": "GEO-rain-eyes",
+      "original_blocks": 7,
+      "max_change_m": 0.0011770602585537296
+    }
+  ],
+  "eye_finish": {
+    "existing_image": "TEX-rain_eyes.png.000",
+    "image_packed_sha256": "fb2d509abe4bfa3aa4093272e81a25ddd9bbc3e4d03248fe7f213f9cda38a005",
+    "original_uv_layer_unchanged": true,
+    "original_uv_sampler_retained": true,
+    "iris_radial_scale": 1.08,
+    "cornea_and_dots_unchanged": true
+  },
+  "brows": {
+    "object": "GEO-rain-eyebrows",
+    "original_blocks": 1,
+    "max_change_m": 0.0027497534858758445,
+    "fiber_object": "GROOM-mom-R15-brow-fibers",
+    "fibers": 440,
+    "strip_transverse_scale_relative_to_r13": 1.3750000000000002
+  },
+  "groom": {
+    "object": "GROOM-mom-R15-parted-waves",
+    "type": "CURVES",
+    "curves": 13864,
+    "points": 610016,
+    "bounds_min_m": [
+      -0.16076712082511252,
+      -0.1634579173703551,
+      1.26071836406382
+    ],
+    "bounds_max_m": [
+      0.16076712082511252,
+      0.15243477170717967,
+      1.6549189400688973
+    ],
+    "guide_groups": [
+      {
+        "name": "curtain--1-0",
+        "first_curve": 0,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-1",
+        "first_curve": 300,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-2",
+        "first_curve": 600,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-3",
+        "first_curve": 900,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-4",
+        "first_curve": 1200,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-5",
+        "first_curve": 1500,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-6",
+        "first_curve": 1800,
+        "curves": 300
+      },
+      {
+        "name": "curtain--1-7",
+        "first_curve": 2100,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-0",
+        "first_curve": 2400,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-1",
+        "first_curve": 2700,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-2",
+        "first_curve": 3000,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-3",
+        "first_curve": 3300,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-4",
+        "first_curve": 3600,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe--1-5",
+        "first_curve": 3900,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-0",
+        "first_curve": 4200,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-1",
+        "first_curve": 4500,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-2",
+        "first_curve": 4800,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-3",
+        "first_curve": 5100,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-4",
+        "first_curve": 5400,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-5",
+        "first_curve": 5700,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-6",
+        "first_curve": 6000,
+        "curves": 300
+      },
+      {
+        "name": "curtain-1-7",
+        "first_curve": 6300,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-0",
+        "first_curve": 6600,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-1",
+        "first_curve": 6900,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-2",
+        "first_curve": 7200,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-3",
+        "first_curve": 7500,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-4",
+        "first_curve": 7800,
+        "curves": 300
+      },
+      {
+        "name": "swept-fringe-1-5",
+        "first_curve": 8100,
+        "curves": 300
+      },
+      {
+        "name": "back-0",
+        "first_curve": 8400,
+        "curves": 300
+      },
+      {
+        "name": "back-1",
+        "first_curve": 8700,
+        "curves": 300
+      },
+      {
+        "name": "back-2",
+        "first_curve": 9000,
+        "curves": 300
+      },
+      {
+        "name": "back-3",
+        "first_curve": 9300,
+        "curves": 300
+      },
+      {
+        "name": "back-4",
+        "first_curve": 9600,
+        "curves": 300
+      },
+      {
+        "name": "back-5",
+        "first_curve": 9900,
+        "curves": 300
+      },
+      {
+        "name": "back-6",
+        "first_curve": 10200,
+        "curves": 300
+      },
+      {
+        "name": "back-7",
+        "first_curve": 10500,
+        "curves": 300
+      },
+      {
+        "name": "back-8",
+        "first_curve": 10800,
+        "curves": 300
+      },
+      {
+        "name": "back-9",
+        "first_curve": 11100,
+        "curves": 300
+      },
+      {
+        "name": "back-10",
+        "first_curve": 11400,
+        "curves": 300
+      },
+      {
+        "name": "back-11",
+        "first_curve": 11700,
+        "curves": 300
+      },
+      {
+        "name": "back-12",
+        "first_curve": 12000,
+        "curves": 300
+      },
+      {
+        "name": "back-13",
+        "first_curve": 12300,
+        "curves": 300
+      },
+      {
+        "name": "back-14",
+        "first_curve": 12600,
+        "curves": 300
+      },
+      {
+        "name": "back-15",
+        "first_curve": 12900,
+        "curves": 300
+      },
+      {
+        "name": "back-16",
+        "first_curve": 13200,
+        "curves": 300
+      },
+      {
+        "name": "back-17",
+        "first_curve": 13500,
+        "curves": 300
+      },
+      {
+        "name": "fine crown flyaways",
+        "first_curve": 13800,
+        "curves": 64
+      }
+    ],
+    "solid_crown_cap": false,
+    "attachment": "Original DEF-Head bone; rigid groom, shoulder dynamics not certified",
+    "method": "Native HAIR curves, swept center part, layered clumped waves and independently tapered strand tips; original Rain short hair retained hidden."
+  },
+  "wardrobe": {
+    "objects": [
+      "GEO-mom-R15-shirt-sleeve--1",
+      "GEO-mom-R15-shirt-sleeve-1",
+      "GEO-mom-R15-open-brown-vest",
+      "GEO-mom-R15-folded-collar--1",
+      "GEO-mom-R15-folded-collar-1",
+      "GEO-mom-R15-vest-seam--1-1.056",
+      "GEO-mom-R15-vest-seam--1-1.151",
+      "GEO-mom-R15-vest-seam-1-1.056",
+      "GEO-mom-R15-vest-seam-1-1.151"
+    ],
+    "shirt_source": "GEO-rain-top",
+    "vest_source": "Fitted offset original shirt surface with open front and cropped hem; separate rolled collars, plackets and piping",
+    "binding": "Original Rain armature, nearest original garment/body weights; seams torso parented",
+    "cloth_simulation_validated": false,
+    "wardrobe_approved": false
+  },
+  "arm_pose": [
+    {
+      "control": "FK-Upperarm.L",
+      "world_y_degrees": 72,
+      "ik_property": "ik_arm_left"
+    },
+    {
+      "control": "FK-Upperarm.R",
+      "world_y_degrees": -72,
+      "ik_property": "ik_arm_right"
+    }
+  ],
+  "images": [
+    {
+      "path": "studio/reviews/mom-character-r15/clay-front.png",
+      "sha256": "d8c75257a89c5bfd1d66f853c5d835230e14e47bdf1f428193b67a83fa42dde8",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/clay-three-quarter.png",
+      "sha256": "5e81b19b3a9890ba05fbf7d4a15cf9951910135cfc8ca51105a2e8e7a2ddfe36",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/clay-profile.png",
+      "sha256": "5273fa6219d7a0e84141e799471b451ba9097a1a5301a7fcef33da07f23facd4",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/bare-front.png",
+      "sha256": "940ed4080affe6b3d91aca68dd361e5ec28ee75e1b67bc9bd0aaa914fbc61644",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "samples": 96,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/saved-neutral-front.png",
+      "sha256": "cb64eb149cb338d5e80eb8c83a1ff081313d66b808cadf67a192f9adaf20d24f",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.39
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        512,
+        640
+      ],
+      "samples": 32,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/portrait-front.png",
+      "sha256": "79d907ea5cfc014f173647c45034f71baddd449ccedc539077db1b0a5d8c7307",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.39
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        1024,
+        1280
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/portrait-three-quarter.png",
+      "sha256": "82112cb0455f0122333ddab66f85279d749be14fe291e965cb21186316b43499",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.39
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        960
+      ],
+      "samples": 48,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/portrait-profile.png",
+      "sha256": "47a7e5aafddfbbd54da19b8a101428872ec6b850ff9361a383d28685036ad9ef",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.39
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        960
+      ],
+      "samples": 48,
+      "engine": "CYCLES"
+    }
+  ],
+  "smile": {
+    "LipsUp_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 1,
+      "target": 0.12,
+      "solutions": {
+        "L": {
+          "input": 0.003000009059906006,
+          "response": 0.12000083923339844,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.4999971389770508
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.12499809265136719
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.0023437500000000003,
+              0.0937509536743164
+            ],
+            [
+              0.0027343750000000003,
+              0.10937213897705078
+            ],
+            [
+              0.0029296875,
+              0.1171875
+            ],
+            [
+              0.00302734375,
+              0.1210927963256836
+            ],
+            [
+              0.002978515625,
+              0.11913776397705078
+            ],
+            [
+              0.0030029296875,
+              0.12011528015136719
+            ],
+            [
+              0.00299072265625,
+              0.11962890625
+            ],
+            [
+              0.002996826171875,
+              0.1198720932006836
+            ],
+            [
+              0.0029998779296875003,
+              0.11999130249023438
+            ],
+            [
+              0.0030014038085937503,
+              0.12005329132080078
+            ],
+            [
+              0.0030006408691406255,
+              0.1200246810913086
+            ],
+            [
+              0.003000259399414063,
+              0.1200103759765625
+            ],
+            [
+              0.0030000686645507814,
+              0.12000083923339844
+            ],
+            [
+              0.002999973297119141,
+              0.1199960708618164
+            ],
+            [
+              0.003000020980834961,
+              0.12000083923339844
+            ],
+            [
+              0.002999997138977051,
+              0.1199960708618164
+            ],
+            [
+              0.003000009059906006,
+              0.12000083923339844
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.002999532222747803,
+          "response": 0.12000083923339844,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.5000161528587341
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.1250171661376953
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.0023437500000000003,
+              0.0937509536743164
+            ],
+            [
+              0.0027343750000000003,
+              0.10937213897705078
+            ],
+            [
+              0.0029296875,
+              0.11720657348632812
+            ],
+            [
+              0.00302734375,
+              0.12111186981201172
+            ],
+            [
+              0.002978515625,
+              0.1191568374633789
+            ],
+            [
+              0.0030029296875,
+              0.12013435363769531
+            ],
+            [
+              0.00299072265625,
+              0.11964797973632812
+            ],
+            [
+              0.002996826171875,
+              0.11989116668701172
+            ],
+            [
+              0.0029998779296875003,
+              0.1200103759765625
+            ],
+            [
+              0.00299835205078125,
+              0.11995315551757812
+            ],
+            [
+              0.002999114990234375,
+              0.11998176574707031
+            ],
+            [
+              0.0029994964599609378,
+              0.1199960708618164
+            ],
+            [
+              0.0029996871948242193,
+              0.12000560760498047
+            ],
+            [
+              0.0029995918273925783,
+              0.12000083923339844
+            ],
+            [
+              0.002999544143676758,
+              0.12000083923339844
+            ],
+            [
+              0.002999520301818848,
+              0.1199960708618164
+            ],
+            [
+              0.002999532222747803,
+              0.12000083923339844
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.12000083923339844,
+        "R": 0.12000083923339844
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "Smile_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 2,
+      "target": 0.24,
+      "solutions": {
+        "L": {
+          "input": 0.0015000462532043458,
+          "response": 0.23999974131584167,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.12000083923339844
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.6199817657470703
+            ],
+            [
+              0.003125,
+              0.3699818253517151
+            ],
+            [
+              0.0015625,
+              0.2449961006641388
+            ],
+            [
+              0.00078125,
+              0.18250077962875366
+            ],
+            [
+              0.0011718750000000002,
+              0.2137461155653
+            ],
+            [
+              0.0013671875000000001,
+              0.22937104105949402
+            ],
+            [
+              0.00146484375,
+              0.2371835708618164
+            ],
+            [
+              0.001513671875,
+              0.24108976125717163
+            ],
+            [
+              0.0014892578125,
+              0.23913666605949402
+            ],
+            [
+              0.00150146484375,
+              0.2401132881641388
+            ],
+            [
+              0.001495361328125,
+              0.2396249771118164
+            ],
+            [
+              0.0014984130859375,
+              0.23986905813217163
+            ],
+            [
+              0.0014999389648437502,
+              0.23999124765396118
+            ],
+            [
+              0.0015007019042968751,
+              0.24005219340324402
+            ],
+            [
+              0.0015003204345703128,
+              0.24002164602279663
+            ],
+            [
+              0.0015001296997070315,
+              0.2400064468383789
+            ],
+            [
+              0.0015000343322753907,
+              0.23999884724617004
+            ],
+            [
+              0.0015000820159912112,
+              0.2400025725364685
+            ],
+            [
+              0.001500058174133301,
+              0.24000078439712524
+            ],
+            [
+              0.0015000462532043458,
+              0.23999974131584167
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.0015002250671386722,
+          "response": 0.23999974131584167,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.12000083923339844
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.6199817657470703
+            ],
+            [
+              0.003125,
+              0.3699818253517151
+            ],
+            [
+              0.0015625,
+              0.2449817955493927
+            ],
+            [
+              0.00078125,
+              0.18248185515403748
+            ],
+            [
+              0.0011718750000000002,
+              0.2137318104505539
+            ],
+            [
+              0.0013671875000000001,
+              0.22935673594474792
+            ],
+            [
+              0.00146484375,
+              0.2371692657470703
+            ],
+            [
+              0.001513671875,
+              0.24107560515403748
+            ],
+            [
+              0.0014892578125,
+              0.23912236094474792
+            ],
+            [
+              0.00150146484375,
+              0.2400989830493927
+            ],
+            [
+              0.001495361328125,
+              0.2396106719970703
+            ],
+            [
+              0.0014984130859375,
+              0.23985490202903748
+            ],
+            [
+              0.0014999389648437502,
+              0.2399769425392151
+            ],
+            [
+              0.0015007019042968751,
+              0.24003788828849792
+            ],
+            [
+              0.0015003204345703128,
+              0.24000748991966248
+            ],
+            [
+              0.0015001296997070315,
+              0.2399921417236328
+            ],
+            [
+              0.0015002250671386722,
+              0.23999974131584167
+            ],
+            [
+              0.0015002727508544925,
+              0.24000361561775208
+            ],
+            [
+              0.0015002489089965825,
+              0.24000167846679688
+            ],
+            [
+              0.0015002369880676273,
+              0.24000078439712524
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.23999974131584167,
+        "R": 0.23999974131584167
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "final_keys": {
+      "Smile.L": 0.23999974131584167,
+      "Smile.R": 0.23999974131584167,
+      "LipsUp.L": 0.1199960708618164,
+      "LipsUp.R": 0.11998176574707031,
+      "LipsWide.L": 0.030000917613506317,
+      "LipsWide.R": 0.03000449389219284
+    },
+    "scope": "One authored closed-mouth smile pose, not full acting or lip-sync acceptance."
+  },
+  "pose_restore_error_m": 0.0,
+  "source_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "candidate_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "original_head_topology_weights_keys_retained": true,
+  "saved_material_state": {
+    "head_attribute_sha256": "4e0bf548fb4ab3bd20491f6efc389d46ae6d886e17d9e5991c69f3d29aeb77a9",
+    "attribute_domain": "POINT",
+    "attribute_points": 6395,
+    "materials": {
+      "GEO-rain-head": [
+        "Mom R6 skin and lips"
+      ],
+      "GEO-rain-eyebrows": [
+        "Mom R6 brows"
+      ],
+      "GEO-rain-eyelashes": [
+        "Mom R6 lashes"
+      ]
+    },
+    "eye_ramp_stops": [
+      {
+        "position": 0.0,
+        "color": [
+          0.004024717025458813,
+          0.005605391692370176,
+          0.007499032188206911,
+          1.0
+        ]
+      },
+      {
+        "position": 0.11999999731779099,
+        "color": [
+          0.05832921341061592,
+          0.06370339542627335,
+          0.06706425547599792,
+          1.0
+        ]
+      },
+      {
+        "position": 0.3799999952316284,
+        "color": [
+          0.20533081889152527,
+          0.23720882833003998,
+          0.27359676361083984,
+          1.0
+        ]
+      },
+      {
+        "position": 0.6800000071525574,
+        "color": [
+          0.43485376238822937,
+          0.4620983600616455,
+          0.47789454460144043,
+          1.0
+        ]
+      },
+      {
+        "position": 0.8999999761581421,
+        "color": [
+          0.8549926280975342,
+          0.8227857351303101,
+          0.7681511640548706,
+          1.0
+        ]
+      },
+      {
+        "position": 1.0,
+        "color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+    "active_original_uv_maps": {
+      "Base Color": {
+        "channel": null,
+        "image": "Mom R11 original UV albedo",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "1a7647f256e3f7d4921054ec0e68adab2ba8537e6d681a8f5bcc424c957cfcb2",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Roughness": {
+        "channel": "Red",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Weight": {
+        "channel": "Green",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Roughness": {
+        "channel": "Blue",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      }
+    }
+  },
+  "new_invalid_drivers": [],
+  "known_blink_visual_failure": true,
+  "blink_visual_approved": false,
+  "embedded_python_executed": false,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Actual coordinated face + first strand groom/wardrobe study, not final likeness/full acting/cloth or hair dynamics acceptance. Bare anatomy remains visible in separate frames.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}
