@@ -1,0 +1,487 @@
+{
+  "schema_version": 2,
+  "kind": "asset_package",
+  "asset_id": "dad-body-rig",
+  "revision": "r5",
+  "art_status": "unreviewed",
+  "coordinate_system": "RH_Z_UP_METERS",
+  "forward_axis": "+Y",
+  "rotation_unit": "radian",
+  "blend": {
+    "path": "studio/out/dad-handfix-r5/dad-handfix.blend",
+    "sha256": "bffbf66fd05e785cc0039d2286b81c22d64c552c5b1751892230d8629c31b818",
+    "collection": "DadLookdevR4"
+  },
+  "provenance": {
+    "authoring_script": "studio/tools/build_dad_handfix.py",
+    "script_sha256": "5b61e50f620848cbcae0889e05900df4460acb4eac3e4b86aa8c7c808f12db9e",
+    "license": "project-original",
+    "dependencies": [
+      {
+        "path": "studio/tools/build_dad_blockout.py",
+        "sha256": "f3dfc33495f756e61c0c57dff723f1341c9ab66db9f4d8d72be84f55a597dae3"
+      },
+      {
+        "path": "studio/tools/build_dad_rig.py",
+        "sha256": "cc57838147a39d073c2641c3ce10d24c546a3d91ff58a639e8f95f39573c3c8c"
+      },
+      {
+        "path": "studio/tools/build_dad_refined.py",
+        "sha256": "7150397e22260bd7303bb97937a2ad06f980390f9958d93554e1fa792fbe34c6"
+      },
+      {
+        "path": "studio/authoring/mesh.py",
+        "sha256": "db3bc77a53a8530ec5780f65e4c51c86532dd9f82b5fff8435f5d3615f01d262"
+      },
+      {
+        "path": "studio/authoring/refined_body.py",
+        "sha256": "3c7db7125e61fa64400c913d3f58d925091e0ced62d1dfb631617a55d138b926"
+      },
+      {
+        "path": "studio/authoring/lookdev.py",
+        "sha256": "8f7e120275d955bb0733f69a7ae5058abe26c23c065fbe5787d36f019d80d83f"
+      },
+      {
+        "path": "studio/tools/build_dad_lookdev.py",
+        "sha256": "12b11a8f98b5dca403a3b322779b1ce24bbf06df959750fc7bee21830b549df9"
+      },
+      {
+        "path": "studio/authoring/refined_hands.py",
+        "sha256": "6a19c9b26f22f3e4428a2bdc84e9d00fa0c25952bfda695317e01eb031f66d92"
+      }
+    ]
+  },
+  "bindings": {
+    "arm.L.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadHandTargetL"
+    },
+    "arm.R.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadHandTargetR"
+    },
+    "head.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "head"
+    },
+    "body.translation": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadRig"
+    },
+    "body.pelvis.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pelvis"
+    },
+    "body.spine.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "spine"
+    },
+    "body.chest.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "chest"
+    },
+    "body.neck.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "neck"
+    },
+    "foot.R.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadFootTargetR"
+    },
+    "foot.R.rotation": {
+      "type": "OBJECT_ROTATION",
+      "object": "DadFootTargetR"
+    },
+    "wrist.R.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "hand.R"
+    },
+    "finger.R.index.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.01.R"
+    },
+    "finger.R.index.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.02.R"
+    },
+    "finger.R.index.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.03.R"
+    },
+    "finger.R.middle.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.01.R"
+    },
+    "finger.R.middle.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.02.R"
+    },
+    "finger.R.middle.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.03.R"
+    },
+    "finger.R.ring.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.01.R"
+    },
+    "finger.R.ring.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.02.R"
+    },
+    "finger.R.ring.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.03.R"
+    },
+    "finger.R.pinky.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.01.R"
+    },
+    "finger.R.pinky.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.02.R"
+    },
+    "finger.R.pinky.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.03.R"
+    },
+    "finger.R.thumb.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.01.R"
+    },
+    "finger.R.thumb.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.02.R"
+    },
+    "finger.R.thumb.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.03.R"
+    },
+    "foot.L.target": {
+      "type": "OBJECT_LOCATION",
+      "object": "DadFootTargetL"
+    },
+    "foot.L.rotation": {
+      "type": "OBJECT_ROTATION",
+      "object": "DadFootTargetL"
+    },
+    "wrist.L.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "hand.L"
+    },
+    "finger.L.index.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.01.L"
+    },
+    "finger.L.index.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.02.L"
+    },
+    "finger.L.index.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "index.03.L"
+    },
+    "finger.L.middle.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.01.L"
+    },
+    "finger.L.middle.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.02.L"
+    },
+    "finger.L.middle.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "middle.03.L"
+    },
+    "finger.L.ring.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.01.L"
+    },
+    "finger.L.ring.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.02.L"
+    },
+    "finger.L.ring.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "ring.03.L"
+    },
+    "finger.L.pinky.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.01.L"
+    },
+    "finger.L.pinky.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.02.L"
+    },
+    "finger.L.pinky.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "pinky.03.L"
+    },
+    "finger.L.thumb.01": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.01.L"
+    },
+    "finger.L.thumb.02": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.02.L"
+    },
+    "finger.L.thumb.03": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "thumb.03.L"
+    },
+    "clavicle.R.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "clavicle.R"
+    },
+    "clavicle.L.rotation": {
+      "type": "POSE_ROTATION",
+      "object": "DadRig",
+      "target": "clavicle.L"
+    }
+  },
+  "ik_checks": [
+    {
+      "armature": "DadRig",
+      "bone": "forearm.L",
+      "target": "DadHandTargetL"
+    },
+    {
+      "armature": "DadRig",
+      "bone": "forearm.R",
+      "target": "DadHandTargetR"
+    },
+    {
+      "armature": "DadRig",
+      "bone": "shin.R",
+      "target": "DadFootTargetR"
+    },
+    {
+      "armature": "DadRig",
+      "bone": "shin.L",
+      "target": "DadFootTargetL"
+    }
+  ],
+  "contact_probes": [
+    {
+      "id": "sole.R",
+      "object": "DadShoeR2R",
+      "vertex_indices": [
+        0,
+        6,
+        12,
+        18
+      ],
+      "ground_z": 0
+    },
+    {
+      "id": "sole.L",
+      "object": "DadShoeR2L",
+      "vertex_indices": [
+        0,
+        6,
+        12,
+        18
+      ],
+      "ground_z": 0
+    }
+  ],
+  "fingertip_probes": [
+    {
+      "id": "finger.R.index",
+      "object": "DadHandR4R",
+      "vertex_indices": [
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.R"
+    },
+    {
+      "id": "finger.R.middle",
+      "object": "DadHandR4R",
+      "vertex_indices": [
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653,
+        654
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.R"
+    },
+    {
+      "id": "finger.R.ring",
+      "object": "DadHandR4R",
+      "vertex_indices": [
+        839,
+        840,
+        841,
+        842,
+        843,
+        844,
+        845,
+        846
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.R"
+    },
+    {
+      "id": "finger.R.pinky",
+      "object": "DadHandR4R",
+      "vertex_indices": [
+        1031,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.R"
+    },
+    {
+      "id": "finger.R.thumb",
+      "object": "DadHandR4R",
+      "vertex_indices": [
+        1223,
+        1224,
+        1225,
+        1226,
+        1227,
+        1228,
+        1229,
+        1230
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.R"
+    },
+    {
+      "id": "finger.L.index",
+      "object": "DadHandR4L",
+      "vertex_indices": [
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.L"
+    },
+    {
+      "id": "finger.L.middle",
+      "object": "DadHandR4L",
+      "vertex_indices": [
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653,
+        654
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.L"
+    },
+    {
+      "id": "finger.L.ring",
+      "object": "DadHandR4L",
+      "vertex_indices": [
+        839,
+        840,
+        841,
+        842,
+        843,
+        844,
+        845,
+        846
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.L"
+    },
+    {
+      "id": "finger.L.pinky",
+      "object": "DadHandR4L",
+      "vertex_indices": [
+        1031,
+        1032,
+        1033,
+        1034,
+        1035,
+        1036,
+        1037,
+        1038
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.L"
+    },
+    {
+      "id": "finger.L.thumb",
+      "object": "DadHandR4L",
+      "vertex_indices": [
+        1223,
+        1224,
+        1225,
+        1226,
+        1227,
+        1228,
+        1229,
+        1230
+      ],
+      "armature": "DadRig",
+      "reference_bone": "hand.L"
+    }
+  ]
+}

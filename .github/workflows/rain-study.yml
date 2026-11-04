@@ -1,0 +1,99 @@
+name: Native Rain study (not artistic acceptance)
+
+on:
+  push:
+    branches: ['arena/4c8ed03c-docuflow']
+    paths:
+      - 'studio/tools/rain_study.py'
+      - 'studio/tools/rain_mom_pass.py'
+      - 'studio/tools/rain_mom_pass_a2.py'
+      - 'studio/tools/rain_mom_pass_a3.py'
+      - 'studio/tools/rain_mom_pass_a4.py'
+      - 'studio/tools/rain_mom_pass_a5.py'
+      - 'studio/tools/rain_mom_pass_a6.py'
+      - 'studio/tools/rain_mom_pass_a7.py'
+      - '.github/workflows/rain-study.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rain-study-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  native-study:
+    if: github.ref == 'refs/heads/arena/4c8ed03c-docuflow'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/4c8ed03c-docuflow
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install native dependencies from Ubuntu and pinned Python packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
+          python -m pip install -r studio/production/blender-requirements.lock
+      - name: Test edit field, safe acquisition and native-control solver contracts
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_*pipeline*.py' -q
+          python -m unittest discover -s studio/tests -p 'test_rain_study.py' -q
+          python -m unittest discover -s studio/tests -p 'test_rain_face.py' -q
+          python -m unittest discover -s studio/tests -p 'test_rain_photo_refinement.py' -q
+          python studio/tools/production_status.py validate
+      - name: Probe fresh native groom shader sockets before asset acquisition
+        run: |
+          python -c "import sys; sys.path.insert(0, 'studio/tools'); import bpy; import rain_mom_pass_a6 as a6; a6.revise_material(a6.previous.groom_material(bpy)); print('Fresh native groom shader created')"
+      - name: Build actual Rain mom candidate and native expression diagnostics
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '2'
+        run: |
+          if [ ! -f studio/reviews/rain-study/source-face.png ]; then
+            timeout 600 python studio/tools/rain_study.py
+          fi
+          mkdir -p .cache
+          set +e
+          timeout 900 python studio/tools/rain_mom_pass_a7.py > .cache/rain-native-worker.log 2>&1
+          result=$?
+          tail -n 80 .cache/rain-native-worker.log
+          exit "$result"
+      - name: Keep editable native candidate with packed textures (14 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rain-mom-a7-native
+          path: |
+            .cache/rain-v3/rain-mom-a7.blend
+            studio/reviews/rain-mom-a7/report.json
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+      - name: Preserve bounded native diagnostic on failure
+        if: failure()
+        run: |
+          mkdir -p studio/reviews/rain-mom-a7
+          if [ -f .cache/rain-native-worker.log ]; then
+            tail -n 100 .cache/rain-native-worker.log > studio/reviews/rain-mom-a7/native-failure.txt
+          else
+            echo 'Native worker did not start; inspect preceding workflow steps.' > studio/reviews/rain-mom-a7/native-failure.txt
+          fi
+      - name: Publish actual PNGs and inspection to the same working branch
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Native asset loading has finished before a write token is exposed.
+          gh auth setup-git
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add studio/reviews/rain-study studio/reviews/rain-mom-a7
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish real Rain mom A7 temple coverage and soft root correction, native expression checks and provenance'
+          # A concurrent branch update fails safely; never force-push or merge it away.
+          git push origin arena/4c8ed03c-docuflow

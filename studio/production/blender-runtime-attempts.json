@@ -1,0 +1,44 @@
+{
+  "recorded_date": "2026-11-02",
+  "scope": "diagnostic attempts; not completed scene acceptance",
+  "initial_import": {
+    "bpy": "4.5.0",
+    "result": "failed",
+    "error": "ImportError: libXrender.so.1",
+    "missing_sonames": [
+      "libXrender.so.1",
+      "libXfixes.so.3",
+      "libXi.so.6",
+      "libxkbcommon.so.0",
+      "libSM.so.6",
+      "libICE.so.6",
+      "libGL.so.1"
+    ]
+  },
+  "preflight_640x360": {
+    "result": "passed",
+    "rendered_frames": 2,
+    "encoded_frames": 2,
+    "samples": 2,
+    "denoise": true,
+    "audio_rate": 48000,
+    "scope": "small preflight, NOT G1"
+  },
+  "cancelled_native_trial": {
+    "job_id": "8416c3e215b1a74318628a3ba4ee9eefe8833465240408b39856084ac92aefa1",
+    "result": "cancelled_for_smoke_cost_tuning",
+    "samples": 12,
+    "threads": 2,
+    "completed_frames": 6,
+    "completed_frame_seconds": [
+      58.38,
+      61.62,
+      63.92,
+      67.17,
+      54.57,
+      62.64
+    ],
+    "success_manifest_created": false,
+    "note": "Not an engine failure or accepted 24-frame sequence. Final smoke uses 4 samples/8 threads; no claim of production render quality."
+  }
+}

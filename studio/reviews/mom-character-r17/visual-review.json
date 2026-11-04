@@ -1,0 +1,19 @@
+{
+  "revision": "mom-character-r17",
+  "native_run": 41843580496,
+  "native_source_commit": "0a7b505",
+  "native_technical_success": true,
+  "visual_status": "head_progress_hair_rejected_canonical_identity_not_finished",
+  "visible_head_progress": ["oral placement and per-corrective transport", "pupil/iris ratio and original catchlight", "original-UV skin/lip/nose material authoring"],
+  "critical_rejections": ["stiff spaced comb/cage hair in three-quarter/profile", "exposed scalp and unnatural lock junctions", "nasal/alar and lip contours still unlike canonical", "skin/color distribution not a final match"],
+  "held_light_r16_baseline": "source-r16-held-light-bare-front.png",
+  "hair_accepted": false,
+  "canonical_identity_finished": false,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "wardrobe_changed": false,
+  "known_blink_visual_failure": true,
+  "asset_storage": {"artifact_id": 13329943726, "bytes": 109284716, "expires_at": "2026-11-18T14:11:44Z"},
+  "scope": "Manual inspection of actual native multiview, held-light comparison and unobscured clay. Not a numerical likeness score. Full render-scope final is not artistic final."
+}

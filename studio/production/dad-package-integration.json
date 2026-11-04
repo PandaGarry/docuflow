@@ -1,0 +1,80 @@
+{
+  "recorded_date": "2026-11-03",
+  "scope": "actual external asset pipeline integration; unreviewed blockout",
+  "pause_resume": {
+    "pause_command": ".cache/blender-venv/bin/python -m studio.pipeline.render_package --native-dir .cache/blender-native --max-new-chunks 1",
+    "pause_exit_code": 75,
+    "job_id": "499a3dc9eb281ac1b83130cc0309787cd1014b16703b72f984946d2de65475fe",
+    "complete_chunks_before_resume": 1,
+    "final_manifest_before_resume": false,
+    "first_checkpoint_path": "chunks/000000-000004/chunk.json",
+    "checkpoint_mtime_before_resume_ns": 1793656262788725403,
+    "pause_stdout": "CHUNK_COMPLETE 0 4 820797440\nPACKAGE_PAUSED 499a3dc9eb281ac1b83130cc0309787cd1014b16703b72f984946d2de65475fe\n",
+    "resume_exit_code": 0,
+    "first_checkpoint_mtime_unchanged": true,
+    "full_sequence_complete": true,
+    "reused_chunks": 1,
+    "new_chunks": 11,
+    "unique_worker_pids": 12,
+    "decoded_frames": 48
+  },
+  "negative_worker_probes": [
+    {
+      "case": "missing_collection",
+      "exit_code": 1,
+      "complete_manifest": false,
+      "complete_chunk": false,
+      "png_count": 0,
+      "stderr": "ERROR: worker exited 1; see /home/user/docuflow/.cache/package-negative-probes/missing_collection/jobs/07a07878fe9d4794235e2b24c2703e043009b92c163b5ea43edda5856a43536f/chunks/000000-000004/attempt-e2e58017ad2d4efe92703c6e7ba2f9ad/worker.log\n",
+      "worker_log_tail": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/user/docuflow/studio/pipeline/backends/package_worker.py\", line 140, in <module>\n    args=parser.parse_args();run(args.job,args.output,args.first,args.end)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/docuflow/studio/pipeline/backends/package_worker.py\", line 86, in run\n    objects=append_package(bpy,a)\n            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/docuflow/studio/pipeline/packages.py\", line 91, in append_package\n    raise ContractError(f'package collection absent: {name}')\nstudio.pipeline.contracts.ContractError: package collection absent: ABSENT_COLLECTION\n"
+    },
+    {
+      "case": "missing_binding",
+      "exit_code": 1,
+      "complete_manifest": false,
+      "complete_chunk": false,
+      "png_count": 0,
+      "stderr": "ERROR: worker exited 1; see /home/user/docuflow/.cache/package-negative-probes/missing_binding/jobs/f811bd0337a82d8acf6e6e550773fbe124c2dc0260c112581129751392ea849a/chunks/000000-000004/attempt-ec1a3e547bab4f3db9ea981898eec3a1/worker.log\n",
+      "worker_log_tail": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/user/docuflow/studio/pipeline/backends/package_worker.py\", line 140, in <module>\n    args=parser.parse_args();run(args.job,args.output,args.first,args.end)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/docuflow/studio/pipeline/backends/package_worker.py\", line 87, in run\n    bindings=bind(objects,a)\n             ^^^^^^^^^^^^^^^\n  File \"/home/user/docuflow/studio/pipeline/packages.py\", line 123, in bind\n    raise ContractError(f'missing package object: {b[\"object\"]}')\nstudio.pipeline.contracts.ContractError: missing package object: ABSENT_CONTROL\n"
+    },
+    {
+      "case": "rss_limit",
+      "exit_code": 1,
+      "complete_manifest": false,
+      "complete_chunk": false,
+      "png_count": 0,
+      "stderr": "ERROR: worker RSS limit exceeded: 76832768 > 67108864 bytes\n",
+      "worker_log_tail": ""
+    }
+  ],
+  "long_preview_validation": {
+    "passed": true,
+    "producer_code_sha256": "f8493267ba9c0b19208e6f1b737804c7f18277265ade40b539abfc2e980d28ed",
+    "current_code_sha256": "2f3910af440ee4b04bf0247a110dfd840cafff987c12bd342f66877345bdcce6",
+    "note": "Long render preceded the zero-byte diagnostic schema fix; its complete manifest is revalidated with the current validator. A separate current-source 4-frame live regression covers the fix."
+  },
+  "completed_cache_integrity": {
+    "scope": "current-source short regression cache; main 48-frame preview untouched",
+    "cache_exit_code": 0,
+    "tamper_exit_code": 1,
+    "restored_cache_exit_code": 0,
+    "tamper_stderr": "ERROR: artifact missing or changed: frames/000002.png\n",
+    "restored_exact_original_bytes": true,
+    "full_cache_hit_without_render": true
+  },
+  "export_reload": {
+    "result": "passed",
+    "source": "actual preview-scene.blend from first chunk",
+    "frames": [
+      0,
+      3,
+      4,
+      12,
+      22,
+      37,
+      47
+    ],
+    "max_control_error": 1.4305114737211966e-07,
+    "python_controls_applied_after_reload": false
+  }
+}

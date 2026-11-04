@@ -1,0 +1,29 @@
+{
+  "status": "partial_progress_nasal_shape_rejected",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r12/comparison-portrait.png",
+      "sha256": "39d6b1b8ee5428c65bab85d2afb05c979b655838bd0e3c8e3658e425b913e1ca"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/comparison-ears.png",
+      "sha256": "b94fe97d068af9a5a5ba549649a64cf1dfa4391a2f271c7df6220c63b55f2b88"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/comparison-oral-clay-detail.png",
+      "sha256": "40abb32320b091175fe0ba4b74eafe1e12fbac6c191590d626a4646aa1d91cd3"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/portrait-three-views.png",
+      "sha256": "c280aead6349de8231b77c5966ecd7ebff34f51aefc81e24f9f44af21de505f1"
+    }
+  ],
+  "observations": [
+    "Ears less protruding; preserve.",
+    "Lowered mouth and true contact smile improved; preserve.",
+    "Nose shortened but flattened/angular, not rounded; reject nasal result."
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

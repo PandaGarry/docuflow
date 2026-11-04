@@ -1,0 +1,1079 @@
+{
+  "revision": "mom-character-r18",
+  "preview_only": false,
+  "source_run": 41843580496,
+  "source_binary_sha256": "eb89540f5994323ee3c086a6e773fcf22e893452260f92fb8d0ebf574069f4d1",
+  "spec_sha256": "ee807fec6ca4bb868bbb900beac1d75bf6d3571fddf2bf311121a9f5d930a156",
+  "scripts": {
+    "mom_character_r18.py": "bbdd6ed41ce70814893db6a8d7d337e9bdaeeffe197bcf0b385bc4c36bd292a1",
+    "mom_face_finish_r18.py": "1e839cc98733655e9aec256bec46fbb9300c80918cb15e4a155ca8bfad103927",
+    "mom_hair_asset_r18.py": "d882cdb68e2f7fea4f0f6cae182acf71fb03e8644ffe0dbcb6cd389ee927d72e",
+    "mom_face_paint_r17.py": "6ff3736ab37b12ca8f787aabd55cab380c13bec4ea96c9aebdddb98903274607",
+    "mom_face_paint_r18.py": "91cd477c4e7be3fef644d45310838a30040198aa8891240c1db2531f6e7de6c0",
+    "mom_wardrobe_finish_r18.py": "1969c79461da777d18a975ac0cdc2e84d228d74b9bff8f976d54dc28fe8abcee",
+    "mom_character_r15.py": "7ff1b4105c7c78b0b530b5018097ab35b6a58c89e300255abb62f1cc5bc03d1a"
+  },
+  "asset_manifest_sha256": "bba81996c1a89a981c4336014539463020b48ccb26ed997c9bb3a509e696c1d7",
+  "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+  "native_artifact": {
+    "filename": "mom-character-r18.blend",
+    "sha256": "f283bd2f82afa17990fbe41f562dbec48d2716f98be3f2e3f27b72382f1ad540",
+    "storage": "GitHub Actions artifact 14 days"
+  },
+  "head_edit_data_sha256": "bb4c2f0b37a0f2abc500a768fb537bb839e59de1fc96f39aace6cad44c0f5f9b",
+  "edits": [
+    {
+      "object": "GEO-rain-head",
+      "original_blocks": 25,
+      "max_change_m": 0.0017347727492063314
+    }
+  ],
+  "source_albedo_probe": {
+    "active_image": "Mom R17 original UV albedo",
+    "samples": {
+      "6341": {
+        "original_uv_texel_linear_rgb": [
+          0.6556320786476135,
+          0.14269492775201797,
+          0.08737822249531746
+        ],
+        "uv_loop_samples": 4
+      },
+      "6375": {
+        "original_uv_texel_linear_rgb": [
+          0.8099160492420197,
+          0.3047078996896744,
+          0.188519649207592
+        ],
+        "uv_loop_samples": 4
+      },
+      "3150": {
+        "original_uv_texel_linear_rgb": [
+          0.6473832130432129,
+          0.13023681938648224,
+          0.07785790041089058
+        ],
+        "uv_loop_samples": 4
+      }
+    },
+    "method": "Actual active packed EXR texels sampled using original render UV and actual shader domain transform; not a beauty-frame color score."
+  },
+  "candidate_albedo_probe": {
+    "active_image": "Mom R18 original UV albedo",
+    "samples": {
+      "6341": {
+        "original_uv_texel_linear_rgb": [
+          0.4720551073551178,
+          0.10045269131660461,
+          0.05985727533698082
+        ],
+        "uv_loop_samples": 4
+      },
+      "6375": {
+        "original_uv_texel_linear_rgb": [
+          0.583139568567276,
+          0.20594210177659988,
+          0.11777560412883759
+        ],
+        "uv_loop_samples": 4
+      },
+      "3150": {
+        "original_uv_texel_linear_rgb": [
+          0.4537452608346939,
+          0.10280540212988853,
+          0.06819987669587135
+        ],
+        "uv_loop_samples": 4
+      }
+    },
+    "method": "Actual active packed EXR texels sampled using original render UV and actual shader domain transform; not a beauty-frame color score."
+  },
+  "uv_paint": {
+    "resolution": 2048,
+    "covered_texels": 2988448,
+    "rasterized_triangles": 12508,
+    "coverage_fraction": 0.7125015258789062,
+    "padding_texels": 6,
+    "original_uv_domain": {
+      "origin": [
+        2.003528690338135,
+        0.010637527704238892
+      ],
+      "extent": 0.9929426193237305,
+      "original_min": [
+        2.0074689388275146,
+        0.014577776193618774
+      ],
+      "original_max": [
+        2.9925310611724854,
+        0.9928754568099976
+      ]
+    },
+    "method": "Actual EXR pigment energy changed before rendering, held illumination. No beauty-image adjustment.",
+    "linear_albedo_energy_scale": 0.72,
+    "albedo_exr_sha256": "aafcae0d9e63b85c857a7cbac6a3e451fee54001223dcdd41c9aa9b9d77d0044",
+    "pbr_exr_sha256": "5aa951d5c203ae3b49a06e6d94e0dcaf88b5e3d277b958ae1373306ae09133ec",
+    "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+    "reference_projection": false,
+    "palette_srgb": {
+      "skin": "#E8AD82",
+      "upper_lip": "#B95749",
+      "lower_lip": "#E77B64",
+      "blush": "#EC806F",
+      "nose": "#CF5D49",
+      "iris": "#7F9AA3",
+      "brows": "#79523C",
+      "lashes": "#38241F",
+      "hair": "#9A7856"
+    },
+    "matching_body_skin_before": [
+      0.8069522380828857,
+      0.4564110338687897,
+      0.2746773064136505,
+      1.0
+    ],
+    "matching_body_skin_after": [
+      0.68558669090271,
+      0.30087727308273315,
+      0.16072413325309753,
+      1.0
+    ]
+  },
+  "candidates": {
+    "bob02": {
+      "object": "HAIR-mom-R18-asset-bob02",
+      "asset": "bob02",
+      "source_license": "CC0-1.0",
+      "source_commit": "a8ee33f96791ed15534246ac88cc8b20f9da8f6a",
+      "source_mesh_sha256": "a350204755e9c23d54e1c69f6ac2d30e776974e46ad2bc66cd8842a7cab45437",
+      "source_texture_sha256": "968e6c9a522ec3ab5888121ad732448f52098a273913d3ac47a0cce51e887d87",
+      "vertices": 1653,
+      "render_vertices": 1759,
+      "polygons": 1124,
+      "original_uv_sha256": "c8dfdfae8905d0ef6937e449e16b5f027a247d74b2feadbdb94c6b3c3de8d1ae",
+      "fit": {
+        "eye_z": 1.47326,
+        "crown_z": 1.65,
+        "tip_z": 1.28,
+        "half_width": 0.153,
+        "depth_scale": 1.3,
+        "fringe_lift_m": 0.095,
+        "part_shift_m": 0.04
+      },
+      "binding": "Original DEF-Head; no hair/shoulder dynamics certification",
+      "method": "Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement."
+    },
+    "long01": {
+      "object": "HAIR-mom-R18-asset-long01",
+      "asset": "long01",
+      "source_license": "CC0-1.0",
+      "source_commit": "a8ee33f96791ed15534246ac88cc8b20f9da8f6a",
+      "source_mesh_sha256": "07b9d80e54da5ea2980370f2acb08780b2b31958aa66c210bb44844b02b11978",
+      "source_texture_sha256": "5835a2695cbdd27fd2cb9f4d3fb009cb33fd76fdbdc9fcb18b91b66d571368bf",
+      "vertices": 3239,
+      "render_vertices": 3314,
+      "polygons": 2054,
+      "original_uv_sha256": "b8fbe7056de792ebf02f900d42b617c80cab56cdbf952640871e1c14aae96193",
+      "fit": {
+        "eye_z": 1.47326,
+        "crown_z": 1.65,
+        "tip_z": 1.28,
+        "half_width": 0.153,
+        "depth_scale": 1.3,
+        "fringe_lift_m": 0.095,
+        "part_shift_m": 0.04
+      },
+      "binding": "Original DEF-Head; no hair/shoulder dynamics certification",
+      "method": "Acquired coherent mesh and original alpha strand texture, smooth3D height/width/depth + wave fit. No canonical texture sampling, no Rain head replacement."
+    }
+  },
+  "selected_hair_asset": "bob02",
+  "source_eyes_retained": true,
+  "eye_coordinate_hashes": {
+    "GEO-rain-eyes": "068bf45daaa99d80838b718b856905caf406c89401ad8a43a7fe9ecdeea9123b",
+    "GEO-rain-eye_cornea": "3264a3a8671024c5a442787d140ca7c61c7bf5d33d0112660c4b545423fc4a20",
+    "GEO-rain-eye_dots": "00ca814d11855fae1a471c4614899d5c53b6152fa60cee3f91325529037c0ccc"
+  },
+  "saved_material_state": {
+    "head_attribute_sha256": "4e0bf548fb4ab3bd20491f6efc389d46ae6d886e17d9e5991c69f3d29aeb77a9",
+    "attribute_domain": "POINT",
+    "attribute_points": 6395,
+    "materials": {
+      "GEO-rain-head": [
+        "Mom R6 skin and lips"
+      ],
+      "GEO-rain-eyebrows": [
+        "Mom R6 brows"
+      ],
+      "GEO-rain-eyelashes": [
+        "Mom R6 lashes"
+      ]
+    },
+    "eye_ramp_stops": [
+      {
+        "position": 0.0,
+        "color": [
+          0.005605391692370176,
+          0.011612244881689548,
+          0.01599629409611225,
+          1.0
+        ]
+      },
+      {
+        "position": 0.11999999731779099,
+        "color": [
+          0.13286831974983215,
+          0.19120168685913086,
+          0.22696587443351746,
+          1.0
+        ]
+      },
+      {
+        "position": 0.3799999952316284,
+        "color": [
+          0.2622506618499756,
+          0.3762621283531189,
+          0.40724021196365356,
+          1.0
+        ]
+      },
+      {
+        "position": 0.6800000071525574,
+        "color": [
+          0.43415364623069763,
+          0.5149176716804504,
+          0.533276379108429,
+          1.0
+        ]
+      },
+      {
+        "position": 0.8999999761581421,
+        "color": [
+          0.8549926280975342,
+          0.8227857351303101,
+          0.7681511640548706,
+          1.0
+        ]
+      },
+      {
+        "position": 1.0,
+        "color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+    "active_original_uv_maps": {
+      "Base Color": {
+        "channel": null,
+        "image": "Mom R18 original UV albedo",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "aafcae0d9e63b85c857a7cbac6a3e451fee54001223dcdd41c9aa9b9d77d0044",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Roughness": {
+        "channel": "Red",
+        "image": "Mom R18 original UV PBR",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "5aa951d5c203ae3b49a06e6d94e0dcaf88b5e3d277b958ae1373306ae09133ec",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Weight": {
+        "channel": "Green",
+        "image": "Mom R18 original UV PBR",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "5aa951d5c203ae3b49a06e6d94e0dcaf88b5e3d277b958ae1373306ae09133ec",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Roughness": {
+        "channel": "Blue",
+        "image": "Mom R18 original UV PBR",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "5aa951d5c203ae3b49a06e6d94e0dcaf88b5e3d277b958ae1373306ae09133ec",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      }
+    }
+  },
+  "saved_skin_shader": {
+    "Specular IOR Level": 0.2800000011920929,
+    "Subsurface Weight": 0.09000000357627869,
+    "Subsurface Scale": 0.00800000037997961
+  },
+  "candidate_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "new_invalid_drivers": [],
+  "pose_restore_error_m": 0.0,
+  "images": [
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-front.png",
+      "sha256": "e705e413ead0ac908eb25835d22cf112044c49eedb82a9fce759725fe360378a",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.455
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        1024,
+        1280
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-three-quarter.png",
+      "sha256": "9a4bf5f4bf0da3c18c222196e50ceb80a0171320532ca8fbf4a4ad84131bfb40",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.455
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        960
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-profile.png",
+      "sha256": "f5ef3049a0c038125818fbe0d8819204ec9929f3ca2c97a1e214cdf964ba28a9",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.455
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        960
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-rear.png",
+      "sha256": "256fa27c40bf2b7a2dddb204974a08bfb80b85552e5720bd1863d3b8a4725302",
+      "camera": {
+        "position": [
+          0,
+          4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.455
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        960
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/bare-front.png",
+      "sha256": "4e8174e6115a58b4edd782812bc89913cb5956d5817fb1ac68bb4cf47b64536b",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "samples": 64,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/clay-front.png",
+      "sha256": "bcfa5c2082688fc1ad8421829c087f2da409db01c73ceee1056f99aa889e2549",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 32,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/clay-three-quarter.png",
+      "sha256": "d0d224a52572892500111c01fc8bf87e161cdeb5881e6f36e1dc59babc78981e",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 32,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/clay-profile.png",
+      "sha256": "f8ba9a0dcda04d60587fc90f74edd969fde7de941561c36bd6cb1f7e4ddf3780",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 32,
+      "engine": "CYCLES"
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/saved-neutral-front.png",
+      "sha256": "a6c157e5268c6b8945ea0b8add93285520a019d0ec1a44cfa5954f7194a7c61d",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.455
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        512,
+        640
+      ],
+      "samples": 32,
+      "engine": "CYCLES"
+    }
+  ],
+  "smile": {
+    "LipsUp_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 1,
+      "target": 0.036,
+      "solutions": {
+        "L": {
+          "input": 0.0008999943733215333,
+          "response": 0.03600120544433594,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.4999971389770508
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.12499809265136719
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.00078125,
+              0.031232833862304688
+            ],
+            [
+              0.0011718750000000002,
+              0.04687309265136719
+            ],
+            [
+              0.0009765625,
+              0.0390625
+            ],
+            [
+              0.00087890625,
+              0.035157203674316406
+            ],
+            [
+              0.000927734375,
+              0.03710746765136719
+            ],
+            [
+              0.0009033203125,
+              0.03612995147705078
+            ],
+            [
+              0.0008911132812500001,
+              0.035643577575683594
+            ],
+            [
+              0.0008972167968750001,
+              0.03588676452636719
+            ],
+            [
+              0.0009002685546875,
+              0.0360107421875
+            ],
+            [
+              0.0008987426757812501,
+              0.035948753356933594
+            ],
+            [
+              0.000899505615234375,
+              0.03597736358642578
+            ],
+            [
+              0.0008998870849609375,
+              0.035996437072753906
+            ],
+            [
+              0.0009000778198242187,
+              0.03600120544433594
+            ],
+            [
+              0.0008999824523925782,
+              0.035996437072753906
+            ],
+            [
+              0.0009000301361083984,
+              0.03600120544433594
+            ],
+            [
+              0.0009000062942504883,
+              0.03600120544433594
+            ],
+            [
+              0.0008999943733215333,
+              0.03600120544433594
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.0008999943733215333,
+          "response": 0.03600120544433594,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              0.5000161528587341
+            ],
+            [
+              0.00625,
+              0.2500009536743164
+            ],
+            [
+              0.003125,
+              0.1250171661376953
+            ],
+            [
+              0.0015625,
+              0.062499046325683594
+            ],
+            [
+              0.00078125,
+              0.03125190734863281
+            ],
+            [
+              0.0011718750000000002,
+              0.04687309265136719
+            ],
+            [
+              0.0009765625,
+              0.0390625
+            ],
+            [
+              0.00087890625,
+              0.035157203674316406
+            ],
+            [
+              0.000927734375,
+              0.03710746765136719
+            ],
+            [
+              0.0009033203125,
+              0.03612995147705078
+            ],
+            [
+              0.0008911132812500001,
+              0.035643577575683594
+            ],
+            [
+              0.0008972167968750001,
+              0.03588676452636719
+            ],
+            [
+              0.0009002685546875,
+              0.0360107421875
+            ],
+            [
+              0.0008987426757812501,
+              0.035948753356933594
+            ],
+            [
+              0.000899505615234375,
+              0.03597736358642578
+            ],
+            [
+              0.0008998870849609375,
+              0.035996437072753906
+            ],
+            [
+              0.0009000778198242187,
+              0.03600120544433594
+            ],
+            [
+              0.0008999824523925782,
+              0.035996437072753906
+            ],
+            [
+              0.0009000301361083984,
+              0.03600120544433594
+            ],
+            [
+              0.0009000062942504883,
+              0.03600120544433594
+            ],
+            [
+              0.0008999943733215333,
+              0.03600120544433594
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.03600120544433594,
+        "R": 0.03600120544433594
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "Smile_policy": {
+      "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+      "axis": 2,
+      "target": 0.072,
+      "solutions": {
+        "L": {
+          "input": 0.0004499912261962891,
+          "response": 0.07200047373771667,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.03600120544433594
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.5359823703765869
+            ],
+            [
+              0.003125,
+              0.2859964966773987
+            ],
+            [
+              0.0015625,
+              0.16099631786346436
+            ],
+            [
+              0.00078125,
+              0.09850114583969116
+            ],
+            [
+              0.000390625,
+              0.06725117564201355
+            ],
+            [
+              0.0005859375000000001,
+              0.08287608623504639
+            ],
+            [
+              0.00048828125,
+              0.07506370544433594
+            ],
+            [
+              0.000439453125,
+              0.07115736603736877
+            ],
+            [
+              0.0004638671875,
+              0.07311046123504639
+            ],
+            [
+              0.00045166015625,
+              0.07213398814201355
+            ],
+            [
+              0.00044555664062500004,
+              0.07164567708969116
+            ],
+            [
+              0.00044860839843750003,
+              0.07188975811004639
+            ],
+            [
+              0.00045013427734375,
+              0.07201194763183594
+            ],
+            [
+              0.00044937133789062504,
+              0.07195085287094116
+            ],
+            [
+              0.0004497528076171875,
+              0.07198140025138855
+            ],
+            [
+              0.00044994354248046876,
+              0.07199659943580627
+            ],
+            [
+              0.00045003890991210935,
+              0.07200419902801514
+            ],
+            [
+              0.0004499912261962891,
+              0.07200047373771667
+            ],
+            [
+              0.00044996738433837895,
+              0.07199853658676147
+            ],
+            [
+              0.000449979305267334,
+              0.0719994306564331
+            ]
+          ]
+        },
+        "R": {
+          "input": 0.000449979305267334,
+          "response": 0.07199957966804504,
+          "trials": [
+            [
+              -0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.03600120544433594
+            ],
+            [
+              0.05,
+              1.0
+            ],
+            [
+              0.025,
+              1.0
+            ],
+            [
+              0.0125,
+              1.0
+            ],
+            [
+              0.00625,
+              0.5360012054443359
+            ],
+            [
+              0.003125,
+              0.28600171208381653
+            ],
+            [
+              0.0015625,
+              0.16100168228149414
+            ],
+            [
+              0.00078125,
+              0.09850144386291504
+            ],
+            [
+              0.000390625,
+              0.06725132465362549
+            ],
+            [
+              0.0005859375000000001,
+              0.08287623524665833
+            ],
+            [
+              0.00048828125,
+              0.07506370544433594
+            ],
+            [
+              0.000439453125,
+              0.07115751504898071
+            ],
+            [
+              0.0004638671875,
+              0.07311061024665833
+            ],
+            [
+              0.00045166015625,
+              0.07213413715362549
+            ],
+            [
+              0.00044555664062500004,
+              0.0716458261013031
+            ],
+            [
+              0.00044860839843750003,
+              0.07188990712165833
+            ],
+            [
+              0.00045013427734375,
+              0.07201194763183594
+            ],
+            [
+              0.00044937133789062504,
+              0.0719510018825531
+            ],
+            [
+              0.0004497528076171875,
+              0.07198154926300049
+            ],
+            [
+              0.00044994354248046876,
+              0.07199674844741821
+            ],
+            [
+              0.00045003890991210935,
+              0.07200434803962708
+            ],
+            [
+              0.0004499912261962891,
+              0.07200062274932861
+            ],
+            [
+              0.00044996738433837895,
+              0.07199868559837341
+            ],
+            [
+              0.000449979305267334,
+              0.07199957966804504
+            ]
+          ]
+        }
+      },
+      "final_key_values": {
+        "L": 0.07200047373771667,
+        "R": 0.07199957966804504
+      },
+      "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+    },
+    "final_keys": {
+      "Smile.L": 0.07200047373771667,
+      "Smile.R": 0.07199957966804504,
+      "LipsUp.L": 0.03600120544433594,
+      "LipsUp.R": 0.03600120544433594,
+      "LipsWide.L": 0.008999817073345184,
+      "LipsWide.R": 0.008999593555927277
+    },
+    "scope": "One authored closed-mouth smile pose, not full acting or lip-sync acceptance."
+  },
+  "wardrobe": {
+    "objects": [
+      "GEO-mom-R16-shirt-sleeve--1",
+      "GEO-mom-R16-shirt-sleeve-1",
+      "GEO-mom-R16-open-brown-vest",
+      "GEO-mom-R16-folded-collar--1",
+      "GEO-mom-R16-folded-collar-1"
+    ],
+    "shirt_source": "GEO-rain-top",
+    "vest_source": "Fitted offset original shirt surface with open front and cropped hem; separate rolled collars, plackets and fitted folded fronts",
+    "binding": "Original Rain armature, nearest original garment/body weights; seams torso parented",
+    "cloth_simulation_validated": false,
+    "wardrobe_approved": false
+  },
+  "wardrobe_unchanged": false,
+  "collar_finish": {
+    "objects": [
+      {
+        "object": "GEO-mom-R16-folded-collar--1",
+        "vertices": 168,
+        "topology_weights_modifiers_retained": true,
+        "width_m": 0.05
+      },
+      {
+        "object": "GEO-mom-R16-folded-collar-1",
+        "vertices": 168,
+        "topology_weights_modifiers_retained": true,
+        "width_m": 0.05
+      }
+    ],
+    "method": "Wider explicit continuous standing fold, no discontinuous nearest-surface Y jumps. Existing original-rig binding retained.",
+    "wardrobe_approved": false,
+    "cloth_simulation_validated": false
+  },
+  "known_blink_visual_failure": true,
+  "blink_visual_approved": false,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "embedded_python_executed": false,
+  "native_runtime": {
+    "blender": "4.5.0",
+    "render_engine": "CYCLES",
+    "cycles_device": "CPU"
+  },
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org - modified CC BY4.0. Hair MakeHuman CC0 system assets; pinned conversion by HumanGen Web.",
+  "scope": "Actual original Rain with acquired fitted hair assets. Full acting/blink/cloth/hair dynamics not approved; visual review required."
+}

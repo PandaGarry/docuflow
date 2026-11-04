@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-02",
+  "scope": "planning and traceability tools only; no animation engine acceptance",
+  "result": "passed",
+  "tests_passed": 28,
+  "checks": [
+    {
+      "command": "python3 -m unittest discover -s studio/tests -p test_production_status.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py validate",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py checklist --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m compileall -q studio/tools/production_status.py studio/tests/test_production_status.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    "studio/tools/production_status.py": "8535fcb2cf313dd43289d81d043c05c2f7b332619042c4d6908decf844dccf15",
+    "studio/tests/test_production_status.py": "053ea20af41afef789525985f4045dc7c85e7be1a3771852b6ad88336dd1a2cc",
+    "studio/production/plan.json": "e672a0eb071881a1ba10f773a06a001a156b23cee94151e159365be64a2fd2e1",
+    "docs/36-PRODUCTION-TRACKER.md": "502a4c13b864f2d6cff6913a1aaf5407e51d23d387655ae3d880361f39054c6f"
+  },
+  "animation_engine_tests": "not_run_in_this_planning_iteration; runtime dependencies absent in inventory",
+  "blender_smoke_test": "not_run",
+  "github_actions_execution": "not_run; workflow added, local equivalent commands checked"
+}

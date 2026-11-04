@@ -1,0 +1,39 @@
+name: Production plan consistency
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'studio/production/**'
+      - 'studio/tools/production_status.py'
+      - 'studio/tests/test_production_status.py'
+      - '.github/workflows/production-plan.yml'
+      - 'README.md'
+  push:
+    paths:
+      - 'docs/**'
+      - 'studio/production/**'
+      - 'studio/tools/production_status.py'
+      - 'studio/tests/test_production_status.py'
+      - '.github/workflows/production-plan.yml'
+      - 'README.md'
+
+permissions:
+  contents: read
+
+jobs:
+  planning-contracts:
+    name: Planning contracts (not rendered animation)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate task state and evidence
+        run: python3 studio/tools/production_status.py validate
+      - name: Check generated tracker is current
+        run: python3 studio/tools/production_status.py checklist --check
+      - name: Run stdlib planning regression tests
+        run: python3 -m unittest discover -s studio/tests -p test_production_status.py -v

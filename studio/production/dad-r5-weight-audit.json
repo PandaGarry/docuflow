@@ -1,0 +1,20 @@
+{
+  "revision": "r5",
+  "scope": "weight-only technical correction; no art/anatomy acceptance",
+  "changes": [
+    {
+      "object": "DadHandR4R",
+      "vertices": 19586,
+      "vertices_with_changed_weights": 619,
+      "geometry_unchanged": true,
+      "tip_ids_unchanged": true
+    },
+    {
+      "object": "DadHandR4L",
+      "vertices": 19586,
+      "vertices_with_changed_weights": 619,
+      "geometry_unchanged": true,
+      "tip_ids_unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "face_and_eye_progress_native_verified_groom_and_collar_still_require_correction",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-character-r15/comparison-character.png",
+      "sha256": "d425d0530e4da197a69b2e056ee52446c75afd8f5d8b0b8043bb52fd88c07084"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/portrait-three-views.png",
+      "sha256": "561c0d3c43c436754c3e1938a59ff70b0f7b0343737faf0553b06a51edd6ef53"
+    },
+    {
+      "path": "studio/reviews/mom-character-r15/comparison-bare-face.png",
+      "sha256": "b3204cbbfb772a0d7f10dcf2ee9461df3157034d8b8b2ba8d4081a8951e16011"
+    }
+  ],
+  "observations": [
+    "Softer cheek/jaw proportions and smaller ears retained; pupils restored without R14 pale angular artifacts.",
+    "Brown dense strand groom now visible, but part roots float/gap and aligned lower-strand kinks/tips look artificial.",
+    "Vest now visible over shirt and chest skin matches, but tubular/floating collar and jagged nearest-vertex piping are not reference-quality.",
+    "Not final canonical likeness, anatomy or cinema-quality acceptance."
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

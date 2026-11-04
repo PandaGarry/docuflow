@@ -1,0 +1,69 @@
+{
+  "review_script_sha256": "1a473923ec6496bb65d278ae8d0673fa67e8fb4c489c11d53100b448991a9668",
+  "method": "Intact actual native frames; uniform eye registration only. No local feature/skin/hair image warp or color retouch. R19 original face/eyes unchanged from R18; bare/clay frames explicitly reused.",
+  "comparison": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        48.913043478260875,
+        9.275362318840564
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r18/portrait-front.png",
+      "sha256": "b686ac5ad3a532367af422610d5caf94cc40e12b12ad39112d24097e660cf8f1",
+      "pupils_px": [
+        [
+          386.9302904564315,
+          596.2348547717843
+        ],
+        [
+          635.7960917587086,
+          596.3627867459643
+        ]
+      ],
+      "uniform_similarity": [
+        0.843828052737602,
+        -0.00043377831783349813,
+        8.238732706618068,
+        -92.95185450584864
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r19/portrait-front.png",
+      "sha256": "fd218e80667c0afa685cbf6743521d770b5792d0b4457b1dfa4c05e755ad0d47",
+      "pupils_px": [
+        [
+          386.9265070189926,
+          596.2369942196532
+        ],
+        [
+          635.7960917587086,
+          596.3627867459643
+        ]
+      ],
+      "uniform_similarity": [
+        0.8438152318521288,
+        -0.0004265111378133311,
+        8.2512180512234,
+        -92.94882905151422
+      ]
+    }
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

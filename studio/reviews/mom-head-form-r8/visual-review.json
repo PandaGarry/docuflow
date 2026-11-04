@@ -1,0 +1,46 @@
+{
+  "revision": "mom-head-form-r8",
+  "status": "real_form_progress_upper_lip_still_too_heavy",
+  "new_geometry_created": true,
+  "geometry_changed_since_r7": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r8/comparison-identity.png",
+      "sha256": "90aa058078f15dd13c8166b32ebd83cfa3d434ceec5444b1e647408fc84e12ff"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r8/comparison-form.png",
+      "sha256": "75802f3cdb6e9d136f329de3be602e9d4bead44e8e2c3953f2f51ce58d1d0b6a"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r8/comparison-portrait.png",
+      "sha256": "bf7ecfd7174ae002558f60652c90a11e4949deb9dee22943518741347de8458f"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r8/color-three-views.png",
+      "sha256": "bad0a8227736bc3f8c329ed1203f90408ad739834f5791acd5b8dd32d717859f"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r8/comparison-clay.png",
+      "sha256": "837054c123543c4977fccefcd7b0f3d8d5340db23a683774a6e7adaae104faa5"
+    }
+  ],
+  "visual_findings": [
+    "Neutral clay shows higher/rounder nasal dome, raised mouth complex and fuller anterior cheek planes. Partial visible likeness progress, not a calibrated score.",
+    "Original-UV maps give more definite pigment border and warmer cheek/nasal color. Skin/lighting still less warm/contrasty than portrait.",
+    "More defined paint exposes upper vermilion as too tall/heavy relative to restrained canonical lip. Needs local geometry/paint thinning, not more mouth widening.",
+    "Compact ears and authored eye/brow direction retained. Native profile inspected; no complete anatomy/acting certification."
+  ],
+  "next": "R9 local upper-lip/Cupid volume and pigment-height reduction; retain R8 nose/cheeks and feature placement. Distinguish geometry from color in matched clay views.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41727603994",
+  "failed_first_attempt": "https://github.com/PandaGarry/docuflow/actions/runs/41726684266",
+  "artifact_id": 13273758418,
+  "original_uv_fact": "Actual source render UVMap is in tile1003 (U2.007\u20132.993). Explicit uniform atlas domain retains original coordinates; do not assume normalized0\u20131.",
+  "known_blink_visual_failure": true,
+  "scope": "Form/material work in progress; no finished-face/exact-likeness/hair/acting/production approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

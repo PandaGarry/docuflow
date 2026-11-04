@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "project",
+  "project_id": "family-studio-backend-probe",
+  "purpose": "technical_smoke",
+  "fps": {
+    "num": 24,
+    "den": 1
+  },
+  "resolution": [
+    1920,
+    1080
+  ],
+  "audio_sample_rate": 48000,
+  "coordinate_system": "RH_Z_UP_METERS",
+  "forward_axis": "+Y",
+  "render": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "samples": 4,
+    "threads": 8,
+    "denoise": true,
+    "view_transform": "AgX",
+    "seed": 29
+  }
+}

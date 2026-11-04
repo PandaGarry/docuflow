@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-03",
+  "revision": "r4",
+  "approved": false,
+  "production_swap_allowed": false,
+  "reviewer": "agent visual self-review, not user or industry approval",
+  "canonical": {
+    "path": "studio/2p5d/dad/master-front-v2.png",
+    "sha256": "91e0da74d0a7d705e3a9e1535de60d642f450f6739988e5a0ecd415c58fb0a13"
+  },
+  "inspected_final_images": [
+    {
+      "view": "hero",
+      "path": "studio/reviews/dad-r4/hero.png",
+      "sha256": "e6c695833973124c53a1dcb357d1800baf4c1c8e8295aa352448d9502373b5c4",
+      "native_source": "studio/out/dad-r4-review/hero.png"
+    },
+    {
+      "view": "front",
+      "path": "studio/reviews/dad-r4/front.png",
+      "sha256": "bb344b917d97988aa359dc02c965e4f74eb4a03037b84ee1dd37149ac634e3de",
+      "native_source": "studio/out/dad-r4-review/front.png"
+    },
+    {
+      "view": "hand_open",
+      "path": "studio/reviews/dad-r4/hand_open.png",
+      "sha256": "549f7e69c49c63fb9fa5eb013a5255d02b8d3eaf198ec4d12e39a689a25180a6",
+      "native_source": "studio/out/dad-r4-review/hand_open.png"
+    },
+    {
+      "view": "hand_curl",
+      "path": "studio/reviews/dad-r4/hand_curl.png",
+      "sha256": "c5376c431ab49afb41500e5e8c22e6606b07a26283ad4040289834a2c32c7b6f",
+      "native_source": "studio/out/dad-r4-review/hand_curl.png"
+    },
+    {
+      "view": "full",
+      "path": "studio/reviews/dad-r4/full.png",
+      "sha256": "c5dfb1f6b9d9f4388f66624f58e3e9473c2685e79bd3bbe47112bead40511aa9",
+      "native_source": "studio/out/dad-r4-review/full.png"
+    }
+  ],
+  "visible_blockers": [
+    "Hair still reads as a helmet rather than the canonical directional quiff.",
+    "Artificial eyelid transition, static thin mouth, insufficient facial volumes/likeness.",
+    "Rectangular palm, tube-like digits, over-segmented curled joints; anatomy not approved.",
+    "Wax-like skin, streaky beard, insufficient clothing/shoe detail and silhouette match."
+  ],
+  "technical_gate": {
+    "status": "failed",
+    "static_poses_passed": 15,
+    "static_poses_total": 17,
+    "animated_frames_passed": 56,
+    "animated_frames_total": 72,
+    "max_area_ratio": 7.452020595468684,
+    "limit_max_area_ratio": 6,
+    "thresholds_relaxed": false,
+    "reports": [
+      "studio/production/dad-r4-extremes.json",
+      "studio/production/dad-r4-animated.json"
+    ]
+  },
+  "unsupported": [
+    "Facial acting/blink/lipsync",
+    "Mouth cavity, teeth and tongue",
+    "Exhaustive anatomy, collision, walking/cloth acceptance"
+  ],
+  "documentation": "docs/42-LOOKDEV-REVIEW-R4.md"
+}

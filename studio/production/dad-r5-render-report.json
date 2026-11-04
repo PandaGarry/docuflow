@@ -1,0 +1,220 @@
+{
+  "scope": "native stills, not approval",
+  "asset": {
+    "path": "studio/out/dad-handfix-r5/dad-handfix.blend",
+    "sha256": "bffbf66fd05e785cc0039d2286b81c22d64c552c5b1751892230d8629c31b818",
+    "collection": "DadLookdevR4"
+  },
+  "runtime": {
+    "bpy_module_sha256": "812a7217e4aad144ec76bc8d202c1fb0ce1af0ff6f04192a3fc2acd7f040c336",
+    "ocio_sha256": "aa4142b29b5a472aa5cb895020aa8cb673c95a31660eeee451f8a820694d3b16",
+    "python": "3.11.2",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "libc": [
+      "glibc",
+      "2.36"
+    ],
+    "packages": {
+      "attrs": "26.1.0",
+      "bpy": "4.5.0",
+      "certifi": "2026.10.23",
+      "charset-normalizer": "3.5.2",
+      "Cython": "3.3.1",
+      "idna": "3.20",
+      "imageio-ffmpeg": "0.6.0",
+      "jsonschema": "4.25.1",
+      "jsonschema-specifications": "2025.9.1",
+      "numpy": "1.26.4",
+      "pillow": "11.3.0",
+      "psutil": "7.0.0",
+      "referencing": "0.37.0",
+      "requests": "2.34.2",
+      "rpds-py": "2026.9.1",
+      "typing_extensions": "4.16.0",
+      "urllib3": "2.8.0",
+      "zstandard": "0.25.0"
+    },
+    "native": {
+      "provider": "isolated_distro_mirror_experiment",
+      "production_approved": false,
+      "lock_sha256": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+      "note": "Pinned mirror blobs, NOT official distro signatures or a production base image"
+    }
+  },
+  "renders": [
+    {
+      "view": "hand_open",
+      "revision": "r5",
+      "blend_sha256": "bffbf66fd05e785cc0039d2286b81c22d64c552c5b1751892230d8629c31b818",
+      "render_script_sha256": "06bfecc15387f724e6a1e1d57f8333ae766c3b8dbca102ea64c70362f13edbd3",
+      "png_sha256": "c353bb09723d693dc7c922be634304e9d24d8a2c55835fa6e913d28213737975",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "samples": 48,
+      "threads": 2,
+      "camera": {
+        "position": [
+          1.0399999618530273,
+          0.8399999737739563,
+          1.2000000476837158
+        ],
+        "target": [
+          0.75,
+          0.02,
+          1.035
+        ],
+        "type": "PERSP",
+        "lens_mm": 80.0
+      },
+      "lighting": [
+        [
+          "Key",
+          [
+            -3,
+            4.5,
+            5
+          ],
+          720,
+          3.5,
+          [
+            1,
+            0.86,
+            0.73
+          ]
+        ],
+        [
+          "Fill",
+          [
+            4,
+            3,
+            3.2
+          ],
+          230,
+          3,
+          [
+            0.67,
+            0.79,
+            1
+          ]
+        ],
+        [
+          "Rim",
+          [
+            -1,
+            -3,
+            4
+          ],
+          850,
+          2.5,
+          [
+            0.77,
+            0.86,
+            1
+          ]
+        ]
+      ],
+      "blender_version": "4.5.0",
+      "color_management": {
+        "view": "AgX",
+        "look": "AgX - Medium High Contrast",
+        "exposure": -0.25
+      },
+      "scope": "native static lookdev; no artistic/anatomical approval or full face rig claim",
+      "process": {
+        "pid": 1762,
+        "exit_code": 0,
+        "wall_seconds": 99.5783,
+        "observed_peak_rss_bytes": 1426841600
+      }
+    },
+    {
+      "view": "hand_curl",
+      "revision": "r5",
+      "blend_sha256": "bffbf66fd05e785cc0039d2286b81c22d64c552c5b1751892230d8629c31b818",
+      "render_script_sha256": "06bfecc15387f724e6a1e1d57f8333ae766c3b8dbca102ea64c70362f13edbd3",
+      "png_sha256": "aa2c813d7f22a35148daffbbad19145983c576d353ab2819971c8b2821ee7717",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "samples": 48,
+      "threads": 2,
+      "camera": {
+        "position": [
+          1.0399999618530273,
+          0.8399999737739563,
+          1.2000000476837158
+        ],
+        "target": [
+          0.75,
+          0.02,
+          1.035
+        ],
+        "type": "PERSP",
+        "lens_mm": 80.0
+      },
+      "lighting": [
+        [
+          "Key",
+          [
+            -3,
+            4.5,
+            5
+          ],
+          720,
+          3.5,
+          [
+            1,
+            0.86,
+            0.73
+          ]
+        ],
+        [
+          "Fill",
+          [
+            4,
+            3,
+            3.2
+          ],
+          230,
+          3,
+          [
+            0.67,
+            0.79,
+            1
+          ]
+        ],
+        [
+          "Rim",
+          [
+            -1,
+            -3,
+            4
+          ],
+          850,
+          2.5,
+          [
+            0.77,
+            0.86,
+            1
+          ]
+        ]
+      ],
+      "blender_version": "4.5.0",
+      "color_management": {
+        "view": "AgX",
+        "look": "AgX - Medium High Contrast",
+        "exposure": -0.25
+      },
+      "scope": "native static lookdev; no artistic/anatomical approval or full face rig claim",
+      "process": {
+        "pid": 1799,
+        "exit_code": 0,
+        "wall_seconds": 107.3672,
+        "observed_peak_rss_bytes": 1427046400
+      }
+    }
+  ]
+}

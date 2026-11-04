@@ -1,0 +1,59 @@
+{
+  "inputs": [
+    {
+      "path": "studio/reviews/mom-head-form-r8/candidate-front.png",
+      "sha256": "c7ac336d137840d61c6490415ed387735ef28f32120cf8fcf8ea22e055a8fbd7",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/candidate-front.png",
+      "sha256": "fd2256b8f53fcb45dfb61b970522da6f3950be2851162a7519730abed36a861c",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "crop_px": [
+    275,
+    420,
+    493,
+    570
+  ],
+  "uniform_scale": 3,
+  "script_sha256": "f142845203618bfb2c943177ee5af42ea3e1072d28efe8e41bcc784c7bf07c84",
+  "scope": "Local shape plus pigment/roughness changes; not a geometry-only or likeness score.",
+  "art_approved": false,
+  "production_swap_allowed": false
+}

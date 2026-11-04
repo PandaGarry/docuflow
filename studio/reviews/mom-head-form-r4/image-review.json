@@ -1,0 +1,143 @@
+{
+  "revision": "mom-head-form-r4",
+  "script_sha256": "1575e1dd6dbc96b95ef67a02effc7551fae6a66d23d27900908189d2f3f3c3f6",
+  "neutral_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ],
+      "anchor_uncertainty_px": 4
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-front.png",
+      "sha256": "42f91e633c45f3b0d41903816953ecd968220f942b0ec28cd1651f91e303c495",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.25373134328356,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.471462214829512,
+        -0.0002914735684901548,
+        -264.4138098885085,
+        -339.01932751953984
+      ],
+      "anchor_uncertainty_px": 3
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-front.png",
+      "sha256": "e06226fb3fb32c1ccc09dc529e9340bfdeb44e275721f9b89f38ed011fa7453a",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.25373134328356,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.471462214829512,
+        -0.0002914735684901548,
+        -264.4138098885085,
+        -339.01932751953984
+      ],
+      "anchor_uncertainty_px": 3
+    }
+  ],
+  "warm_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ],
+      "anchor_uncertainty_px": 4
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/reopen/warm-smile.png",
+      "sha256": "6e012d325c58e83022c9d1d137683f38ad558332e2bc51a6e532dd76a3badbd2",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.25794392523363,
+          380.0018691588785
+        ]
+      ],
+      "similarity": [
+        1.4714207410344393,
+        -0.0003282126117154555,
+        -264.4149648413192,
+        -338.992225875614
+      ],
+      "anchor_uncertainty_px": 3
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/warm-front.png",
+      "sha256": "e4f23263a9065065653caa153ed38428ae58dfe7f12fb150d8e755c97f45c2ff",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.25794392523363,
+          380.0018691588785
+        ]
+      ],
+      "similarity": [
+        1.4714207410344393,
+        -0.0003282126117154555,
+        -264.4149648413192,
+        -338.992225875614
+      ],
+      "anchor_uncertainty_px": 3
+    }
+  ],
+  "method": "Uniform pupil-anchor scale/rotation/translation, no anisotropic resizing, facial warp or retouch.",
+  "limitations": [
+    "Reference camera/depth unknown; positions are diagnostic, not calibrated 3D targets.",
+    "Clothes/hair/material and expression differences remain; no automated likeness score."
+  ],
+  "new_geometry_created": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

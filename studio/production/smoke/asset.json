@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "kind": "asset",
+  "asset_id": "rig-probe-01",
+  "revision": "1",
+  "role": "synthetic_rig_probe",
+  "approved_for_character_production": false,
+  "coordinate_system": "RH_Z_UP_METERS",
+  "source": {
+    "type": "procedural",
+    "generator": "rig_probe_v1",
+    "license": "project-original"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "kind": "package_preview_report",
+  "status": "passed",
+  "scope": "unreviewed rig blockout only",
+  "recorded_at": "2026-11-02T21:59:27.760928+00:00",
+  "job_id": "44d10281b81870110f47245477f43ae816dcb3b9e4b852188592da14cef4bc1e",
+  "identity": {
+    "inputs": "aa164ba0ba14f0ff445950ab9f0542c4844b396b4d47cd09d90b4524133035e4",
+    "code": "2f3910af440ee4b04bf0247a110dfd840cafff987c12bd342f66877345bdcce6",
+    "runtime": "bceb89537b50ec69e7e3bd066605c27701d56d3984699f46cdb4011b9fb1ab70"
+  },
+  "asset_id": "dad-blockout",
+  "asset_revision": "r1",
+  "art_status": "unreviewed",
+  "package_sha256": "a2ae57516d14976d215811a3c8cd7f09a96726b33c7b3ca8c43860a5266bdb54",
+  "runtime": {
+    "bpy_module_sha256": "812a7217e4aad144ec76bc8d202c1fb0ce1af0ff6f04192a3fc2acd7f040c336",
+    "ocio_sha256": "aa4142b29b5a472aa5cb895020aa8cb673c95a31660eeee451f8a820694d3b16",
+    "python": "3.11.2",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "libc": [
+      "glibc",
+      "2.36"
+    ],
+    "packages": {
+      "attrs": "26.1.0",
+      "bpy": "4.5.0",
+      "certifi": "2026.10.23",
+      "charset-normalizer": "3.5.2",
+      "Cython": "3.3.1",
+      "idna": "3.20",
+      "imageio-ffmpeg": "0.6.0",
+      "jsonschema": "4.25.1",
+      "jsonschema-specifications": "2025.9.1",
+      "numpy": "1.26.4",
+      "pillow": "11.3.0",
+      "psutil": "7.0.0",
+      "referencing": "0.37.0",
+      "requests": "2.34.2",
+      "rpds-py": "2026.9.1",
+      "typing_extensions": "4.16.0",
+      "urllib3": "2.8.0",
+      "zstandard": "0.25.0"
+    },
+    "native": {
+      "provider": "isolated_distro_mirror_experiment",
+      "production_approved": false,
+      "lock_sha256": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+      "note": "Pinned mirror blobs, NOT official distro signatures or a production base image"
+    }
+  },
+  "frame_range": [
+    0,
+    4
+  ],
+  "chunks": 2,
+  "reused_chunks_this_invocation": 1,
+  "new_chunks_this_invocation": 1,
+  "worker_processes": [
+    {
+      "pid": 11740,
+      "exit_code": 0,
+      "wall_seconds": 19.2619,
+      "observed_peak_rss_bytes": 829538304
+    },
+    {
+      "pid": 11754,
+      "exit_code": 0,
+      "wall_seconds": 19.7096,
+      "observed_peak_rss_bytes": 820551680
+    }
+  ],
+  "effective_threads": [
+    2
+  ],
+  "peak_worker_rss_bytes": 829538304,
+  "peak_observed_group_rss_bytes": 829538304,
+  "max_ik_error_m": 2.7638220710387567e-05,
+  "skin_vertex_span_m": 0.7058923937960978,
+  "wall_seconds_this_invocation": 20.2112,
+  "media": {
+    "encode": {
+      "pid": 11767,
+      "exit_code": 0,
+      "wall_seconds": 0.1581,
+      "observed_peak_rss_bytes": 46612480
+    },
+    "decode": {
+      "pid": 11781,
+      "exit_code": 0,
+      "wall_seconds": 0.0534,
+      "observed_peak_rss_bytes": 4558848
+    },
+    "decoded_frames": 4,
+    "resolution": [
+      960,
+      540
+    ],
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "silent_preview": true
+  },
+  "limitations": [
+    "Not approved likeness/topology/face rig, walking, lip sync or artistic acting.",
+    "Preview is silent, native preview resolution, not 1080p delivery.",
+    "RSS guard is sampled, not a hard OS memory sandbox; only trusted local packages.",
+    "Native mirror remains experimental; no official production image or 960-frame stress proof."
+  ],
+  "artifact_cache_directory": "studio/out/package-short-regression/44d10281b81870110f47245477f43ae816dcb3b9e4b852188592da14cef4bc1e",
+  "manifest_sha256": "f83959238aab3a630c75ac984842b1db3f9d7b094f1665e4d3db8fe7d40caa12"
+}

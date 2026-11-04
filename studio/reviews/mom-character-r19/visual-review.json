@@ -1,0 +1,29 @@
+{
+  "status": "fine_strand_finish_improved_macro_groom_and_identity_not_approved",
+  "native_run": 41902535932,
+  "native_sha256": "c0b83d504951d646e91b035c723c76966d00d69548807fd8d5f0feac7592d43b",
+  "fresh_frames": 6,
+  "reused_anatomy_frames": 4,
+  "reopened_neutral_rgb_mae_255": 0.0,
+  "actually_compared": [
+    "canonical reference",
+    "R18 frontal original native frame",
+    "R19 front/three-quarter/profile/rear native frames"
+  ],
+  "actual_improvement": [
+    "Genuine fine native hair layer,16000 curves/640000 points,1374 surface guides/26 UV islands.",
+    "Strand-scale warm-brown absorption/reflection and visible fine texture; less pale sheet-like surface than R18.",
+    "Original R18 Rain head, eye/cornea coordinates,25 keys, UV, weights/rest and skin maps unchanged."
+  ],
+  "remaining_failures": [
+    "Underlying bob-derived large forms still too rigid and do not match canonical soft shoulder S-waves.",
+    "Part/crown and rear flow show discontinuities; shoulder tips remain thin pointed sheets.",
+    "Hair is darker and banded compared to canonical; increasing fiber count will not fix guide design.",
+    "R18 nose/lip/brow/skin identity differences remain, no new face improvement claimed in R19.",
+    "Wardrobe and full blink/acting/dynamics are unapproved."
+  ],
+  "decision": "Retain fine-curve rendering/attachment as useful verified groundwork, but do not accept this as the completed requested character. Next design work must reshape large primary wave guides/root-to-tip continuity, not another density/color micro-iteration.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

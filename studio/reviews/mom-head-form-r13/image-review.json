@@ -1,0 +1,433 @@
+{
+  "neutral_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/candidate-front.png",
+      "sha256": "2bdec7369da0f6f6981c4950027c191ef7dbcc263d953fec78af66bd1f35eead",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.2290502793296,
+          379.99441340782124
+        ]
+      ],
+      "similarity": [
+        1.4717051751902706,
+        -0.0002549370905400266,
+        -264.47493938878773,
+        -339.1229251748025
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/candidate-front.png",
+      "sha256": "e092fcb622570cf882d1db3f7479a9d05fce159c91dc95bd2b56f32a68cb83f3",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.2122905027933,
+          380.00558659217876
+        ]
+      ],
+      "similarity": [
+        1.471870148567465,
+        -0.0003650197454615906,
+        -264.56770164027665,
+        -339.15162266025015
+      ]
+    }
+  ],
+  "form_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/clay-front.png",
+      "sha256": "377950d7709cba97b59a809cc47c4118fe944947331e61bf5b4a6382b6548d2d",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.2290502793296,
+          379.99441340782124
+        ]
+      ],
+      "similarity": [
+        1.4717051751902706,
+        -0.0002549370905400266,
+        -264.47493938878773,
+        -339.1229251748025
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/clay-front.png",
+      "sha256": "e85af8524e7ea89b482ec26e1009ad1909589e7a46fe9943f225a5c426e55c2b",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.2122905027933,
+          380.00558659217876
+        ]
+      ],
+      "similarity": [
+        1.471870148567465,
+        -0.0003650197454615906,
+        -264.56770164027665,
+        -339.15162266025015
+      ]
+    }
+  ],
+  "portrait_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/portrait-front.png",
+      "sha256": "cbce44023111c7782ec4b2d001e15aebf8d942f15532a55229539aa2b06c44bb",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1387337057728,
+          506.8258845437617
+        ]
+      ],
+      "similarity": [
+        1.103778881392703,
+        -0.0001912028179051249,
+        -264.65893440282287,
+        -339.3068564545649
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r13/portrait-front.png",
+      "sha256": "2d8d52669825ea2b7b2ba469e368aa740258ba27d8b4e133d8aff3968472bf2a",
+      "pupil_anchors_px": [
+        [
+          411.82345679012343,
+          506.79135802469136
+        ],
+        [
+          611.1163873370577,
+          506.840782122905
+        ]
+      ],
+      "similarity": [
+        1.1039026114255983,
+        -0.0002737648090961928,
+        -264.75173103631556,
+        -339.3355608013526
+      ]
+    }
+  ],
+  "ear_inputs": [
+    {
+      "view": "front",
+      "crop_px": [
+        455,
+        290,
+        630,
+        500
+      ],
+      "uniform_scale": 3,
+      "inputs": [
+        {
+          "path": "studio/reviews/mom-head-form-r11/clay-front.png",
+          "sha256": "377950d7709cba97b59a809cc47c4118fe944947331e61bf5b4a6382b6548d2d",
+          "camera": {
+            "position": [
+              0,
+              -4,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        },
+        {
+          "path": "studio/reviews/mom-head-form-r13/clay-front.png",
+          "sha256": "e85af8524e7ea89b482ec26e1009ad1909589e7a46fe9943f225a5c426e55c2b",
+          "camera": {
+            "position": [
+              0,
+              -4,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "view": "profile",
+      "crop_px": [
+        280,
+        290,
+        455,
+        500
+      ],
+      "uniform_scale": 3,
+      "inputs": [
+        {
+          "path": "studio/reviews/mom-head-form-r11/clay-profile.png",
+          "sha256": "66ad43a33220f3c224e1363b203456c7bdf155deaebd5413ba3f7758d22deca7",
+          "camera": {
+            "position": [
+              4,
+              0,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        },
+        {
+          "path": "studio/reviews/mom-head-form-r13/clay-profile.png",
+          "sha256": "7e01f8c1d9fe98ebae1f4c033475d947955a35533b1651d0c276cabad6706448",
+          "camera": {
+            "position": [
+              4,
+              0,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        }
+      ]
+    }
+  ],
+  "design_review_sha256": "e4decfcebf01feda296b66b38b393fd03c445685ccca98da80db7e94c464f14e",
+  "detail_inputs": [
+    {
+      "view": "front",
+      "crop_px": [
+        275,
+        420,
+        493,
+        570
+      ],
+      "uniform_scale": 3,
+      "inputs": [
+        {
+          "path": "studio/reviews/mom-head-form-r12/clay-front.png",
+          "sha256": "7e0d141ec199e5491e652ae219deb83ae146258987952f15d64c9c795d74faae",
+          "camera": {
+            "position": [
+              0,
+              -4,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        },
+        {
+          "path": "studio/reviews/mom-head-form-r13/clay-front.png",
+          "sha256": "e85af8524e7ea89b482ec26e1009ad1909589e7a46fe9943f225a5c426e55c2b",
+          "camera": {
+            "position": [
+              0,
+              -4,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        }
+      ]
+    },
+    {
+      "view": "profile",
+      "crop_px": [
+        85,
+        415,
+        303,
+        565
+      ],
+      "uniform_scale": 3,
+      "inputs": [
+        {
+          "path": "studio/reviews/mom-head-form-r12/clay-profile.png",
+          "sha256": "6929f1eb49a4a36aa76a9746ef6f6c6314f2ba552fa2872391336bf372fde3f6",
+          "camera": {
+            "position": [
+              4,
+              0,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        },
+        {
+          "path": "studio/reviews/mom-head-form-r13/clay-profile.png",
+          "sha256": "7e01f8c1d9fe98ebae1f4c033475d947955a35533b1651d0c276cabad6706448",
+          "camera": {
+            "position": [
+              4,
+              0,
+              1.5
+            ],
+            "target": [
+              0,
+              0,
+              1.47
+            ],
+            "ortho_scale": 0.48
+          },
+          "dimensions": [
+            768,
+            768
+          ],
+          "samples": 24
+        }
+      ]
+    }
+  ],
+  "script_sha256": "161482b64c476df41f261c4246c34f6a6127c2c768b87bb07db6ce4f9383fb3d",
+  "new_geometry_created": true,
+  "geometry_changed_since_r11": true,
+  "material_and_light_values_held": true,
+  "packed_exr_hashes_equal_r11": {
+    "albedo_exr_sha256": true,
+    "roughness_exr_sha256": true
+  },
+  "method": "Uniform pupil alignment only; same-version unchanged-eye clay anchors scaled by pixel-center formula for 1024 portrait frames. Detail uses same crop and 3x uniform scale.",
+  "limitations": [
+    "No calibrated reference camera/depth or likeness score.",
+    "Held lighting/palette does not certify anatomy, expression, corrective shapes or full rig rest migration."
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

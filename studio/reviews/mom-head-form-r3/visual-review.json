@@ -1,0 +1,73 @@
+{
+  "revision": "mom-head-form-r3",
+  "status": "user_supported_direction_precise_refinement",
+  "new_geometry_created": true,
+  "user_supports_r2_direction": true,
+  "art_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r3/comparison-identity.png",
+      "sha256": "cc5b2d9068f3bc2349a5fb531ff62a56ceae27e1aa0785d30d4c8555e7c6ad2a"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/comparison-clay.png",
+      "sha256": "ade8b9ad5fb338bfd41003815d799a25d23b6809b6cbad756f478214f7f92ce9"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/comparison-smile.png",
+      "sha256": "b3f94637220bc415505e449a15aa11a7454d26beacebcc98b67181c52cb4d3b3"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/source-smile-diagnosis.png",
+      "sha256": "5ce57d0c2d7f8cf246d78e1473f209944719669f021337f4c03f62710f9fa463"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-front.png",
+      "sha256": "42f91e633c45f3b0d41903816953ecd968220f942b0ec28cd1651f91e303c495"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-three-quarter.png",
+      "sha256": "dea7987016df43e8fb84254155e61f41f53e5aa27adff2574128da11dbe38ddd"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-profile.png",
+      "sha256": "028c142fe5be144980414d04f23cdb1d8a9b3918a2e533c42cfa1fe25ee4f6d2"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-blink.png",
+      "sha256": "7baed903c757235ffab0a18bf03560e8f6e1f38b3b837457a22a2858193b38bf"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/source-blink-70-30.png",
+      "sha256": "64f760ad0631d60fa24b56d789aa8ee13ee7901d5dfdbd2dab6ab8fc1504176f"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/reopen/warm-smile.png",
+      "sha256": "6e012d325c58e83022c9d1d137683f38ad558332e2bc51a6e532dd76a3badbd2"
+    }
+  ],
+  "changes": [
+    "R2 proportions/brow design preserved. Only three upper-lip/philtrum control targets softened by0.7-1.2mm; cage-difference regression bounded below2mm.",
+    "Asymmetric smile diagnostic traced to different axes activating different native auxiliary keys. Reproduced on original source and corrected with consistent bilateral axis policy.",
+    "Balanced closed-mouth pose controls both Smile and LipsUp rather than treating Smile alone as a complete expression; final bilateral key readback verified."
+  ],
+  "visual_findings": [
+    "R3 retains the R2 character direction and has softer upper-lip relief. No broad redesign or likeness reset.",
+    "Balanced smile image no longer has the strong one-sided R2 sneer; limited pleasant closed-mouth pose. Not complete emotional acting or lip-sync approval.",
+    "Lip/philtrum/cheek secondary planes and expression transitions still need refinement; no exact reference or cinema-quality claim."
+  ],
+  "blink_status": {
+    "visually_approved": false,
+    "source_control_test": "Legacy70/30 reproduces problematic lid/lash shape on unmodified Rain too; actual EyelidsClose key=0.7, not1.0.",
+    "next": "Inspect real eyelid ACT/MSTR/ROT/DEF action/constraint chain and evaluated deformation on paired source/candidate; include action-slot/runtime compatibility checks before changing geometry. Do not erase the user-liked eyes to compensate for a control problem."
+  },
+  "native_runs": {
+    "build": "https://github.com/PandaGarry/docuflow/actions/runs/41703583542",
+    "reopen_and_pose": "https://github.com/PandaGarry/docuflow/actions/runs/41704930106"
+  },
+  "saved_binary": "Actual R3 artifact hash matched; neutral basis/evaluated errors=0m, packed dependencies checked, neutral pixels identical, warm-pose restore=0m. This verifies persistence, not complete rig adaptation.",
+  "scope": "Neutral primary head and limited pose work. No hair/body/wardrobe/skin-lookdev acceptance; full facial migration remains open.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

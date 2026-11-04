@@ -1,0 +1,76 @@
+{
+  "revision": "mom-r12-design-review",
+  "reason": "User rejects slow tiny changes; coordinated ear/nose/philtrum/lip/smile redesign.",
+  "reference": {
+    "path": "studio/characters/mom/master/face.png",
+    "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+    "manual_landmarks_px": {
+      "pupil.L": [
+        282,
+        395
+      ],
+      "pupil.R": [
+        489,
+        395
+      ],
+      "subnasale": [
+        385,
+        514
+      ],
+      "upper_vermilion_center": [
+        386,
+        550
+      ],
+      "closed_seam_center": [
+        386,
+        569
+      ],
+      "closed_corner.L": [
+        309,
+        561
+      ],
+      "closed_corner.R": [
+        463,
+        561
+      ],
+      "lower_vermilion_border": [
+        386,
+        596
+      ],
+      "chin": [
+        387,
+        677
+      ]
+    },
+    "manual_uncertainty_px": 4,
+    "chin_uncertainty_px": 6
+  },
+  "r11_projection": {
+    "source_frame": "studio/reviews/mom-head-form-r11/candidate-front.png",
+    "frame_sha256": "2bdec7369da0f6f6981c4950027c191ef7dbcc263d953fec78af66bd1f35eead",
+    "method": "Indexed world points projected with existing orthographic camera, normalized using actual unchanged-eye pupil anchors. No face warp or calibrated 3D reference inference.",
+    "pupil_y_px": 379.97,
+    "pupil_distance_px": 149.49,
+    "normalized_vertical_from_eyes": {
+      "columella6375": 0.5706,
+      "upper_surface6333": 0.6731,
+      "seam3150": 0.7838,
+      "lower_border3177": 0.8962,
+      "chin3153": 1.3487
+    }
+  },
+  "reference_normalized_vertical_from_eyes": {
+    "subnasale": 0.5748792270531401,
+    "upper_vermilion_center": 0.748792270531401,
+    "closed_seam_center": 0.8405797101449275,
+    "closed_corner.L": 0.8019323671497585,
+    "closed_corner.R": 0.8019323671497585,
+    "lower_vermilion_border": 0.9710144927536232,
+    "chin": 1.3623188405797102
+  },
+  "finding": "Nose base already near reference eye-normalized height; mouth/upper vermilion too high. Move mouth DOWN, not another upward lip tweak. Lower vermilion should not be indiscriminately shrunk. True commissure contact differs from upper-border69/3264.",
+  "scope": "Manual uncertain 2D design guidance, not an exact 3D fitting target, likeness percentage or art acceptance.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

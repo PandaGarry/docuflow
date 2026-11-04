@@ -1,0 +1,33 @@
+{
+  "revision": "mom-head-form-r6",
+  "status": "upper_border_and_iris_improved_lower_lip_color_needs_correction",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r6/comparison-identity.png",
+      "sha256": "514d2c9ea99c34c55fe0a2523c8bdf78ba8ae25dbb1827324d10b79a3c644f0b"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r6/comparison-portrait.png",
+      "sha256": "c3d0d98bb6f6b8daa9011eca8ad8cf5010517b863648fadc32e085c3b52c1b68"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r6/color-three-views.png",
+      "sha256": "c79b5e7c775873edbfefa2dbda71e56e93915facebeb1fdba35dfe9f179b7a40"
+    }
+  ],
+  "visual_findings": [
+    "Upper-lip pigment is more shaped and gray-blue iris less saturated than R5. Compact original ears retained.",
+    "Lower vermilion reads too pale: lower lip chart cutoff removed needed pigment. This is not finished reference color.",
+    "Skin remains less warm/contrasty than canonical portrait. No exact likeness or film-quality claim."
+  ],
+  "next": "R7 color-only restores anatomical lower lip mask below seam while keeping R6 upper boundary. Use separate FLOAT roughness attribute and opaque color alpha. Preserve all R6 geometry.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41718122007",
+  "artifact_id": 13272070247,
+  "known_blink_visual_failure": true,
+  "verification_scope": "Actual saved file reopened in separate process; geometry/pixel/pose-restore errors zero, packed textures and actual material state persisted. Persistence does not establish color quality.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

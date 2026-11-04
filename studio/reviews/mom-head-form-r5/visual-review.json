@@ -1,0 +1,38 @@
+{
+  "revision": "mom-head-form-r5",
+  "status": "ears_retained_first_color_pass_requires_revision",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r5/comparison-identity.png",
+      "sha256": "f59d6ad81ed0225942daddddff6fc368253e1c74e761cd67addc44ccef592e69"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r5/comparison-portrait.png",
+      "sha256": "1ab1068827a76ed3ccab023357371e9bd65181605f20192da4047037f013864c"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r5/color-three-views.png",
+      "sha256": "308c670cb788e0a153e75b21aa95104e8f4a6122b45828304f3afb96fb16b9ff"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r5/comparison-clay.png",
+      "sha256": "f2a123f831a93cf88222577ae88c66b048e728500519ef2322793ff0ed0b882a"
+    }
+  ],
+  "visual_findings": [
+    "Original ears are visibly smaller/less projecting; retain this measured direction.",
+    "Lip pigment overspills upper-lip boundary and creates a broad trapezoid; deform weights alone do not define a finished vermilion border.",
+    "Skin reads too pale/beige and iris too chromatic blue compared to canonical portrait.",
+    "Material and geometry progress are not equivalent; upper-lip/philtrum still not a completed likeness."
+  ],
+  "next": "R6 correct attached lip color border using external source surface chart, add warmth and lip roughness response, reduce iris chroma. Preserve smaller ears and R5 native evidence.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41716230087",
+  "artifact_id": 13270168708,
+  "known_blink_visual_failure": true,
+  "verification_scope": "Actual same-worker saved binary reopened in separate process. Geometry/pixel/restore errors zero and material attribute/assignments persisted. This does not fix visual color errors.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

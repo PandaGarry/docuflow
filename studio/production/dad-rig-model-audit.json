@@ -1,0 +1,38 @@
+{
+  "DadSweaterR2": {
+    "vertices": 746,
+    "faces": 708,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9943502824858758
+  },
+  "DadPantsR2": {
+    "vertices": 499,
+    "faces": 467,
+    "components": 1,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9935760171306209
+  },
+  "DadHandR2R": {
+    "vertices": 1314,
+    "faces": 1260,
+    "components": 6,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9904761904761905
+  },
+  "DadHandR2L": {
+    "vertices": 1314,
+    "faces": 1260,
+    "components": 6,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "quad_fraction": 0.9904761904761905
+  },
+  "bone_count": 49,
+  "unweighted_vertices": 0,
+  "max_weight_sum_error": 2.9802322387695312e-08,
+  "hand_surface_components_note": "6 closed intersecting surfaces per hand; not final continuous hand topology"
+}

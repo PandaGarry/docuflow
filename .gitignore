@@ -1,5 +1,7 @@
 # служебное
 .venv/
+.venv-blender
+.cache/
 __pycache__/
 *.pyc
 .DS_Store
@@ -11,6 +13,16 @@ studio/out/preview_*.jpg
 studio/out/_*.mp4
 studio/out/*-silent.mp4
 
+# out — производные результаты; в Git только актуальный ролик и постер.
+# Исходники и библиотеки персонажей хранятся вне out.
+studio/out/*
+!studio/out/README.md
+!studio/out/pilot-letter-p.mp4
+!studio/out/pilot-letter-p-poster.jpg
+
 # личные референсы семьи: только локально (см. studio/reference/README.md)
 studio/reference/*
 !studio/reference/README.md
+
+# Native worker logs are derived; durable JSON receipts retain gate results.
+studio/production/*.log

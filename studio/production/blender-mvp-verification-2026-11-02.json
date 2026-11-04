@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-02",
+  "recorded_at": "2026-11-02T21:20:02.582176+00:00",
+  "scope": "planning tools and technical Blender MVP only; NOT production characters/acting/lipsync/episode acceptance",
+  "result": "passed",
+  "tests_passed": 98,
+  "unit_suites": {
+    "planning": 28,
+    "pipeline_mvp": 70
+  },
+  "checks": [
+    {
+      "command": "python3 -m unittest discover -s studio/tests -p test_production_status.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m unittest discover -s studio/tests -p test_pipeline.py -v",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py validate",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/production_status.py checklist --check",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m pip check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 studio/tools/prepare_blender_native.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".cache/blender-venv/bin/python -m studio.pipeline.run_probe --native-dir .cache/blender-native --resume",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m compileall -q studio/pipeline studio/tools/prepare_blender_native.py studio/tools/production_status.py studio/tests/test_pipeline.py studio/tests/test_production_status.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "trailing whitespace audit of new implementation sources, schemas, reports and active docs",
+      "exit_code": 0
+    }
+  ],
+  "source_sha256": {
+    ".github/workflows/pipeline-contracts.yml": "9cd3eab4666385837be50b855953b8cf38a99d3183f2cdb112f282816b5a0a2c",
+    ".github/workflows/production-plan.yml": "1ac4aa26ea6ac327a5b49241ec7837502c7062a5db5a0d3ec70d030c19f4326d",
+    "README.md": "3e404fb7da6969db82f43732f7b3a82b7c593537b28b391f21fffd51c3d3092b",
+    "docs/33-PRODUCTION-PLAN.md": "76941d0ece9eb95ba1a1ebabd8f44ab9fd0bb66f97cc8fcb48327970afbfb4ce",
+    "docs/34-ENGINE-ARCHITECTURE.md": "03d62d07b03fc52c7788cdc89313d07826d88417b5c0aac2e526b28e55eb2189",
+    "docs/35-QUALITY-GATES.md": "1f7d18ae5024547f19cce7624e28417ed65faffac2122d843cbc38deab6d1000",
+    "docs/36-PRODUCTION-TRACKER.md": "02414525515e47d761e14ea42b36814d7462762ac43d0e2f1d673e776f021e73",
+    "docs/37-DECISION-LOG.md": "d155ffd1e27b3c9b1fc077fd46c82417a5a90c3968d0b2706f03eec76b9438f6",
+    "docs/38-BLENDER-MVP.md": "ccf4c164c65c288957ca8196d1ac8da16009f847de42c638b3270ce0e7046985",
+    "docs/README.md": "8128d1beab6f0430c79755e77951e1594fcf50af7a5e12defcfdc9113d789380",
+    "studio/pipeline/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/__init__.py": "39d04689492661a11f40ad4e941b1a736179ff1ff9e4e4ad416d655b14992885",
+    "studio/pipeline/backends/blender_worker.py": "4c009f787f2303d3d939d6cf6cb36d1428b51eb4a73197db92dba57d5551feaa",
+    "studio/pipeline/backends/rig_probe.py": "d7b44b12fa61ac0d623a97206bbcdc6311b915857d0de7bb4dde584398c1d4e5",
+    "studio/pipeline/contracts.py": "8694cf4707b53c3fc1e3f226c6192048f94ac37cc88c4a6188261c4590f66c70",
+    "studio/pipeline/run_probe.py": "0a4dc9413268fd84262eb63c91cd66e98fc9b5daab12390462e98a54627e8ea3",
+    "studio/pipeline/timeline.py": "f4d06ca85396da68ca4a814c650619a6c4e3d7e45fcbd41faaa927bd167588a0",
+    "studio/production/blender-hardware-inventory.json": "0bb36c5ae8a5feef84a89e2d77e1e4868f8925ea5bac0b2b0990b95cfe54135d",
+    "studio/production/blender-negative-probes.json": "df49cb02c017810b0d0135c3adb75b3d9546710d0b96a95a29f47234cd1d9775",
+    "studio/production/blender-requirements.lock": "1275775534f5f2ebec7d54538b4869eb457f1e33baf4fa930ab9315f2a641f1b",
+    "studio/production/blender-runtime-attempts.json": "6d7580747b10b966288251ad55f92665a7974cb69acfbf5e212f5cddc5288161",
+    "studio/production/blender-scene-reload.json": "5adadf992a3963217d28c6c38ab1ef98401dc9d1e4ffd91dc6afcff899fecc8f",
+    "studio/production/blender-smoke-report.json": "7a47a0bc4523c843c31bb24f43174c22ec0d36a918212d2b633d88d57e2b2dc8",
+    "studio/production/plan.json": "ed2d113b1199eb6fb99c3eb5ac17f0f43655d29006ea8bbbace33d7f2fb51411",
+    "studio/production/sandbox-native-libs.lock.json": "7d29b8cf1b60c6de824cab991d0f2b1286867bda67f8192c01f65c202e495c65",
+    "studio/production/sandbox-native-notices.json": "d67d626b031b2391256f66c072fc925f7c5a40adc0cbfd4b61fe9a1b99bb22b5",
+    "studio/production/smoke/asset.json": "3a4c051e3edb40da8b2aa2191d4d6a6c0ef6bff143ec626811322833dd831b2b",
+    "studio/production/smoke/project.json": "014be5f83888529c11f76512335414ef189bda7a705a746e564e613833093f6e",
+    "studio/production/smoke/rig.json": "973c5fae9823062e25756e55822a3a1831b7e81f4fcd84b38a03fa13d81d50a9",
+    "studio/production/smoke/shot.json": "2a34adf6c6bcddf3aaefd8111eaa8158162d3cb25f9f7a2ca28366607c6a7d85",
+    "studio/schemas/asset.schema.json": "db1ad5f910d8900784e2b9254eb5fd1813b3924d3096bba965a1fb830d24aeb9",
+    "studio/schemas/manifest.schema.json": "1b31b7819e7196828398c2621952bdfcc1ee90149ea607a53f8b0fceef1f15b4",
+    "studio/schemas/project.schema.json": "281d300d33e9830d27bb2f99f68869c9280c31b89f11f3fe29035a61183bc5b2",
+    "studio/schemas/report.schema.json": "885f4b8f3a0c3d95f262a4b87ef2c78c13d8489a0c1c77832c48d7939ddfe712",
+    "studio/schemas/rig.schema.json": "e926e4954ed9e30a1f44b6ecb95072b4808733b4f458554de8ce4af87ff66382",
+    "studio/schemas/shot.schema.json": "5d1bc1a1108824cd9768942c98991469c634ca94562695ded1184fc29c412896",
+    "studio/schemas/speech.schema.json": "20673c6d80b0f5dccdefe8bb675b2085b444a38b2c0c6cb76b20cbc36bd6141a",
+    "studio/tests/test_pipeline.py": "bf2066d335a38a0f346b52de63c3ada1a50ea711ddb59f243283d7ac4ff69ecd",
+    "studio/tests/test_production_status.py": "6b8181492a6d577858cafcaf61b8950dd16ddbf5c84876b9e5a2e168fbcbf15b",
+    "studio/tools/prepare_blender_native.py": "84563cf67b816642fd04c42accef2736948a6fb1c68122d846aab809931f8a33",
+    "studio/tools/production_status.py": "8535fcb2cf313dd43289d81d043c05c2f7b332619042c4d6908decf844dccf15"
+  },
+  "blender_smoke_test": {
+    "result": "passed",
+    "checks_passed": 14,
+    "source": "studio/production/blender-smoke-report.json",
+    "job_id": "41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0",
+    "scope": "actual 24-frame CPU smoke; experimental native provenance; full G1 not closed"
+  },
+  "legacy_pilot_engine_suites": "not_rerun_in_this_iteration",
+  "github_actions_execution": "not_run; workflows added and local equivalent unit commands passed",
+  "remaining_work": [
+    "production external model/rig package contracts and importer",
+    "official supported OS/native dependencies and patch/integrity/security review",
+    "memory profiling, RSS limits, bounded worker chunks and long-run stability",
+    "family canon/models, body/face rig, audio phone alignment and 8/12/40-second acceptance scenes"
+  ]
+}

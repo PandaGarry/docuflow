@@ -1,0 +1,26 @@
+{
+  "revision": "r5",
+  "approved": false,
+  "scope": "Technical thumb-root fix only; identical R4 rest geometry and art.",
+  "inspected_final_images": [
+    {
+      "view": "hand_open",
+      "path": "studio/reviews/dad-r5/hand_open.png",
+      "sha256": "c353bb09723d693dc7c922be634304e9d24d8a2c55835fa6e913d28213737975"
+    },
+    {
+      "view": "hand_curl",
+      "path": "studio/reviews/dad-r5/hand_curl.png",
+      "sha256": "aa2c813d7f22a35148daffbbad19145983c576d353ab2819971c8b2821ee7717"
+    }
+  ],
+  "native_strain_gate": "passed 17 static poses and 72 intermediate frames under original limits",
+  "visible_limitations": [
+    "Palm remains rectangular and digits tube-like.",
+    "Curl joints remain over-segmented.",
+    "The visual effect of this local weight-only correction is small; no artistic improvement is claimed.",
+    "Head, facial rig, groom and clothing issues from R4 remain open."
+  ],
+  "production_approval": false,
+  "documentation": "docs/43-THUMB-WEB-REGRESSION.md"
+}

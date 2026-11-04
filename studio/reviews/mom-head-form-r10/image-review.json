@@ -1,0 +1,219 @@
+{
+  "color_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ],
+      "anchor_uncertainty_px": 4,
+      "anchor_source": "manual canonical picks"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/candidate-front.png",
+      "sha256": "fd2256b8f53fcb45dfb61b970522da6f3950be2851162a7519730abed36a861c",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/candidate-front.png",
+      "sha256": "8b807fd28e4f82d8e0fe055c9d493b43a7a4c7cd6568deda00660d41fd53ef5d",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    }
+  ],
+  "form_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ],
+      "anchor_uncertainty_px": 4,
+      "anchor_source": "manual canonical picks"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/clay-front.png",
+      "sha256": "00474b4fa9b0c105ca4f89e323a98dd58511d8b7b3362393309f248fe680b1f4",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/clay-front.png",
+      "sha256": "e23638116c77c7e166f4e10ca1a9e4591b6563d0a626af1eba4195979e463cec",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    }
+  ],
+  "portrait_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupil_anchors_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "similarity": [
+        1.0628019323671498,
+        0.0,
+        -109.71014492753625,
+        -199.8067632850242
+      ],
+      "anchor_uncertainty_px": 4,
+      "anchor_source": "manual canonical picks"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r9/warm-front.png",
+      "sha256": "d08419491e13607f9f70382c3b539c96331eb0f766bef21920ed0dc4a25f00fc",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r10/warm-front.png",
+      "sha256": "4c3d0d357c56e02b1980646b9be76134edd2f16ecbedf107985f619ca8f5727f",
+      "pupil_anchors_px": [
+        [
+          308.7425925925926,
+          379.9685185185185
+        ],
+        [
+          458.23320895522386,
+          379.9981343283582
+        ]
+      ],
+      "similarity": [
+        1.4716642202593673,
+        -0.00029155360219641676,
+        -264.4762079789286,
+        -339.0960585136407
+      ],
+      "anchor_uncertainty_px": 3,
+      "anchor_source": "same-version native clay frame; original eye geometry unchanged"
+    }
+  ],
+  "revision": "mom-head-form-r10",
+  "script_sha256": "e9e600969955dcd42403b57ae954fa6c68708eb326b53259b00e9692b1721261",
+  "new_geometry_created": true,
+  "geometry_changed_since_r9": true,
+  "method": "Uniform pupil alignment only; each version uses its own unchanged-globe clay anchors for color/neutral/pose. Matched clay views isolate geometry from original-UV material changes.",
+  "limitations": [
+    "Reference camera/depth not calibrated; visual diagnostic, not a 3D fitting target or likeness score.",
+    "R10 also changes material. Do not attribute all colored-image differences to geometry.",
+    "Hair/frame/acting incomplete; single smile-helper comparison does not certify full rig migration."
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

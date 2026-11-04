@@ -1,0 +1,62 @@
+{
+  "revision": "mom-head-form-r2",
+  "status": "primary_form_in_progress_not_likeness_approved",
+  "new_geometry_created": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r2/comparison-identity.png",
+      "sha256": "3f10b89b107ce31a296f848db32ccb45cabdfa6e300c50b4a0e2599dcc86e166"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r2/comparison-clay.png",
+      "sha256": "d7270e2b175c5a6646ea8cc5014c8756cdf6a2b3e31cac736dfb06e8ea1d1169"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r2/candidate-three-quarter.png",
+      "sha256": "5323e8fc83225732bbe236809dbc7e4dd92ab9dce459b22903d5b99c2eea6493"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r2/candidate-profile.png",
+      "sha256": "0a03604c0c59afac82eda603a1b713b772e3b3a3cf115bbd1a321eca2395e200"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r2/candidate-blink.png",
+      "sha256": "551627bcf89005bba59b30b544b95093f6dd94a537bb93e189f06755e07005b8"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r2/candidate-smile.png",
+      "sha256": "9e6758b8a0f7f776395539bd4a0549793ac8faca312c53d81a2184db882a8c5c"
+    }
+  ],
+  "visible_progress_vs_r1": [
+    "Brow strips now follow a softer, tapered authored arch on the actual new head surface rather than the hard R1 source-derived profile.",
+    "R1 overlong/angular chin reduced and jaw transition softened; not a return to the shortened broad A7 low face.",
+    "External lip bindings corrected; upper lip volume and Cupid contour are now visibly distinct, lower lip less bulbous.",
+    "Nose tip projection/rounding revised; actual geometric difference visible in profile."
+  ],
+  "remaining_primary_form_work": [
+    "Still not the canonical mom identity: cheek/jaw/eye-brow-mouth relationships and warm relaxed expression require further artistic work. No claim of a likeness pass.",
+    "Upper-lip/Cupid contour now too emphatic in places and muzzle/philtrum transitions still need sculptural refinement; do not compensate using a lip-color shader.",
+    "Brow form is softer than R1 but too uniform/symmetrical and not yet the reference character.",
+    "Nose/lid/cheek secondary planes remain source-like/simplified. Skull/ears are partly unobservable under reference hair, not measured or approved.",
+    "Hair/body/skin lookdev/wardrobe intentionally not rebuilt in this head study."
+  ],
+  "animation_visual_blockers": [
+    "Closed-eye image retains large blank/bulging lid patches and lash discontinuity. Blink visually FAIL, not fixed by this neutral-form revision.",
+    "A symmetric Smile.L/Smile.R target of .6 produced an asymmetric visible mouth. Both per-step key responses are near .6, but end-to-end control/skeletal/corrective response needs paired-source diagnosis. Do not call this an accepted symmetric smile or attribute it to only one cause without investigation.",
+    "Original rest/attachments remain provisional; all old key coordinates being transported is not a complete facial rig migration."
+  ],
+  "technical_limits": [
+    "306 local tests passed; geometric safety, native persistence and receipt integrity are separate from visible quality.",
+    "Source rig rest/topology and eye geometry preserved, new invalid drivers=[], neutral restore=0m, nine finite ACT blink samples; these do not certify anatomy or acting.",
+    "Actual uploaded R2 blend independently reopened and rendered in run41695889273/2786ca9; geometry errors=0m, all17images packed, neutral pixel RGB MAE=0. This does not accept the known blink/asymmetric smile or likeness."
+  ],
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41694165082",
+  "native_publish_commit": "6a54ee6",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0",
+  "saved_binary_verification": "studio/reviews/mom-head-form-r2/reopen/verification.json"
+}

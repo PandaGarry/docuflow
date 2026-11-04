@@ -1,0 +1,104 @@
+name: Mom R17 original-head sculpt and reference-flow locks
+on:
+  push:
+    branches: ['arena/4c8ed03c-docuflow']
+    paths: ['.github/workflows/mom-character-r17.yml', 'studio/tools/mom_character_r17.py', 'studio/tools/mom_face_anatomy_r17.py', 'studio/tools/mom_face_paint_r17.py', 'studio/tools/mom_groom_r17.py', 'studio/tools/mom_hair_contours_r17.py', 'studio/authoring/mom-character-r17.json']
+  workflow_dispatch:
+    inputs:
+      quality:
+        description: Native render scope (not artistic approval)
+        type: choice
+        options: [preview, final]
+        default: preview
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: mom-character-r17-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  native:
+    if: github.ref == 'refs/heads/arena/4c8ed03c-docuflow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Select explicit native render scope
+        id: scope
+        env:
+          REQUESTED_QUALITY: ${{ inputs.quality }}
+        run: |
+          quality=$(python -c "import json,os; q=os.environ.get('REQUESTED_QUALITY') or json.load(open('studio/authoring/mom-character-r17.json')).get('render_scope','preview'); assert q in ('preview','final'); print(q)")
+          echo "quality=$quality" >> "$GITHUB_OUTPUT"
+      - name: Install pinned native runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libxrender1 libxfixes3 libxi6 libxkbcommon0 libsm6 libice6 libgl1
+          python -m pip install -r studio/production/blender-requirements.lock
+      - name: Check source geometry contracts (not art approval)
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+        run: python -m unittest discover -s studio/tests -p 'test_mom_character_r17.py' -q
+      - name: Download actual verified R16 native asset
+        uses: actions/download-artifact@v4
+        with:
+          name: mom-character-r16-native-wip
+          run-id: 41829196725
+          github-token: ${{ github.token }}
+          path: .cache/r17-r16-source
+      - name: Build and render actual coordinated R17
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: |
+          set +e
+          if [ '${{ steps.scope.outputs.quality }}' = 'final' ]; then
+            timeout 1350 python studio/tools/mom_character_r17.py > .cache/r17-native.log 2>&1
+          else
+            timeout 750 python studio/tools/mom_character_r17.py --preview > .cache/r17-native.log 2>&1
+          fi
+          result=$?
+          tail -n 70 .cache/r17-native.log
+          exit "$result"
+      - name: Reopen final native asset in separate process
+        if: steps.scope.outputs.quality == 'final'
+        env:
+          OPENBLAS_NUM_THREADS: '2'
+          OMP_NUM_THREADS: '2'
+        run: |
+          python studio/tools/mom_character_r17.py --verify > .cache/r17-reopen.log 2>&1
+          tail -n 30 .cache/r17-reopen.log
+      - name: Preserve bounded native failure evidence
+        if: failure()
+        run: |
+          mkdir -p studio/reviews/mom-character-r17
+          tail -n 100 .cache/r17-native.log > studio/reviews/mom-character-r17/native-failure.txt || true
+          if [ -f .cache/r17-reopen.log ]; then tail -n 70 .cache/r17-reopen.log >> studio/reviews/mom-character-r17/native-failure.txt; fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: mom-character-r17-${{ steps.scope.outputs.quality }}-native
+          path: |
+            .cache/r17/mom-character-r17.blend
+            studio/reviews/mom-character-r17/
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
+      - name: Publish actual native frames on the current branch
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add studio/reviews/mom-character-r17
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish actual native R17 render evidence (not art approval)'
+          git pull --rebase origin arena/4c8ed03c-docuflow
+          git push origin arena/4c8ed03c-docuflow

@@ -1,0 +1,1171 @@
+{
+  "revision": "rain-mom-a1",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "script_sha256": "75707fa8e9c3c526a733773c60095c3ba273276a6c015f963e3a46600e252a69",
+  "render_helper_sha256": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+  "reference_sha256": "6a0c7477453f16be6e57d87f2104fdfd4d1454a5afa623b142193db96a7b0db4",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0",
+  "changes": "A1 skin color lift, softer waist/cheeks/chin/nose/brows. Original wardrobe/haircut retained.",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "head_shape_key_drivers": [
+    {
+      "path": "key_blocks[\"LipsWide.L\"].value",
+      "expression": "Z*20",
+      "variables": [
+        {
+          "name": "Z",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "transform": "LOC_Z",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"LipsUp.L\"].value",
+      "expression": "Y*40",
+      "variables": [
+        {
+          "name": "Y",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Smile.L\"].value",
+      "expression": "(Z*20)*4 + (Y*20)*2",
+      "variables": [
+        {
+          "name": "Z",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "transform": "LOC_Z",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "Y",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"CheekPuff.L\"].value",
+      "expression": "userY*50",
+      "variables": [
+        {
+          "name": "localY",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "SK-Cheek_Puff.L",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "userY",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"SK-Cheek_Puff.L\"].location[1]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"LipsWide.R\"].value",
+      "expression": "Z*20",
+      "variables": [
+        {
+          "name": "Z",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "transform": "LOC_Z",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"LipsUp.R\"].value",
+      "expression": "Y*40",
+      "variables": [
+        {
+          "name": "Y",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Smile.R\"].value",
+      "expression": "(Z*20)*4 + (Y*20)*2",
+      "variables": [
+        {
+          "name": "Z",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "transform": "LOC_Z",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "Y",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"LipsPuff_Upper\"].value",
+      "expression": "localY*100",
+      "variables": [
+        {
+          "name": "localY",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "SK-Lip_Puff_Upper",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "userY",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"SK-Lip_Puff_Upper\"].location[1]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"LipsPuff_Lower\"].value",
+      "expression": "localY*100",
+      "variables": [
+        {
+          "name": "localY",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "SK-Lip_Puff_Lower",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "userY",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"SK-Lip_Puff_Lower\"].location[1]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyebrowsTogether.L\"].value",
+      "expression": "(rest_length - length)/0.015",
+      "variables": [
+        {
+          "name": "rest_length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Together.L\"].bone.length"
+            }
+          ]
+        },
+        {
+          "name": "length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Together.L\"].length"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyebrowsTogether.R\"].value",
+      "expression": "(rest_length - length)/0.01",
+      "variables": [
+        {
+          "name": "rest_length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Together.R\"].bone.length"
+            }
+          ]
+        },
+        {
+          "name": "length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Together.R\"].length"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyebrowsDown.L\"].value",
+      "expression": "(rest_length - length)/0.015",
+      "variables": [
+        {
+          "name": "rest_length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Down.L\"].bone.length"
+            }
+          ]
+        },
+        {
+          "name": "length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Down.L\"].length"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyebrowsDown.R\"].value",
+      "expression": "(rest_length - length)/0.015",
+      "variables": [
+        {
+          "name": "rest_length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Down.R\"].bone.length"
+            }
+          ]
+        },
+        {
+          "name": "length",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"MCH-Eyebrows_Down.R\"].length"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyelidsClose.L\"].value",
+      "expression": "var*-25",
+      "variables": [
+        {
+          "name": "var",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"EyelidsClose.R\"].value",
+      "expression": "var*-25",
+      "variables": [
+        {
+          "name": "var",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"CheekPuff.R\"].value",
+      "expression": "userY*50",
+      "variables": [
+        {
+          "name": "localY",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "SK-Cheek_Puff.R",
+              "transform": "LOC_Y",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        },
+        {
+          "name": "userY",
+          "type": "SINGLE_PROP",
+          "targets": [
+            {
+              "bone": "",
+              "transform": "LOC_X",
+              "space": "WORLD_SPACE",
+              "data_path": "pose.bones[\"SK-Cheek_Puff.R\"].location[1]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Lips_Corner_In.L\"].value",
+      "expression": "X*40",
+      "variables": [
+        {
+          "name": "X",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "transform": "LOC_X",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Lips_Corner_In.R\"].value",
+      "expression": "X*-40",
+      "variables": [
+        {
+          "name": "X",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "transform": "LOC_X",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Head_Back\"].value",
+      "expression": "pow(max(0, -var)/1.5, 2.5)",
+      "variables": [
+        {
+          "name": "var",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "HLP-Head2",
+              "transform": "ROT_X",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "key_blocks[\"Head_Forward\"].value",
+      "expression": "pow(max(0, var)*1.5, 2)",
+      "variables": [
+        {
+          "name": "var",
+          "type": "TRANSFORMS",
+          "targets": [
+            {
+              "bone": "HLP-Head2",
+              "transform": "ROT_X",
+              "space": "LOCAL_SPACE",
+              "data_path": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rig_rest_signature_before": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "source_invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ],
+  "meshes": [
+    {
+      "object": "GEO-rain-body",
+      "vertices": 10256,
+      "shape_key_blocks_transformed": 72,
+      "maximum_rest_displacement_m": 0.022174296970690555
+    },
+    {
+      "object": "GEO-rain-body_nomask",
+      "vertices": 10256,
+      "shape_key_blocks_transformed": 79,
+      "maximum_rest_displacement_m": 0.021517518314538745
+    },
+    {
+      "object": "GEO-rain-eye_cornea",
+      "vertices": 642,
+      "shape_key_blocks_transformed": 3,
+      "maximum_rest_displacement_m": 0.0038071929169841436
+    },
+    {
+      "object": "GEO-rain-eye_dots",
+      "vertices": 32,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 0.0008041346147148741
+    },
+    {
+      "object": "GEO-rain-eyebrows",
+      "vertices": 148,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 0.005750498046497422
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "vertices": 120,
+      "shape_key_blocks_transformed": 2,
+      "maximum_rest_displacement_m": 0.0015451282486475984
+    },
+    {
+      "object": "GEO-rain-eyes",
+      "vertices": 1418,
+      "shape_key_blocks_transformed": 7,
+      "maximum_rest_displacement_m": 0.003683175045989794
+    },
+    {
+      "object": "GEO-rain-eyes_viewport",
+      "vertices": 1348,
+      "shape_key_blocks_transformed": 6,
+      "maximum_rest_displacement_m": 0.003742924901403344
+    },
+    {
+      "object": "GEO-rain-gums_lower",
+      "vertices": 1542,
+      "shape_key_blocks_transformed": 3,
+      "maximum_rest_displacement_m": 0.0038723055498958298
+    },
+    {
+      "object": "GEO-rain-gums_upper",
+      "vertices": 1542,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 0.003431235954030389
+    },
+    {
+      "object": "GEO-rain-hair_main",
+      "vertices": 2204,
+      "shape_key_blocks_transformed": 2,
+      "maximum_rest_displacement_m": 0.005951278901518636
+    },
+    {
+      "object": "GEO-rain-hair_ponytail",
+      "vertices": 579,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 1.447888284951729e-06
+    },
+    {
+      "object": "GEO-rain-hair_strand",
+      "vertices": 400,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 0.002557414831671938
+    },
+    {
+      "object": "GEO-rain-hairband",
+      "vertices": 480,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 2.8192192946435864e-07
+    },
+    {
+      "object": "GEO-rain-head",
+      "vertices": 6395,
+      "shape_key_blocks_transformed": 25,
+      "maximum_rest_displacement_m": 0.00830074063959333
+    },
+    {
+      "object": "GEO-rain-jeans",
+      "vertices": 4531,
+      "shape_key_blocks_transformed": 9,
+      "maximum_rest_displacement_m": 0.02292936294108091
+    },
+    {
+      "object": "GEO-rain-scarf",
+      "vertices": 1285,
+      "shape_key_blocks_transformed": 0,
+      "maximum_rest_displacement_m": 0.01039587445076373
+    },
+    {
+      "object": "GEO-rain-shoes",
+      "vertices": 6634,
+      "shape_key_blocks_transformed": 9,
+      "maximum_rest_displacement_m": 0.0
+    },
+    {
+      "object": "GEO-rain-tongue",
+      "vertices": 275,
+      "shape_key_blocks_transformed": 2,
+      "maximum_rest_displacement_m": 0.0030668987606126494
+    },
+    {
+      "object": "GEO-rain-top",
+      "vertices": 1632,
+      "shape_key_blocks_transformed": 17,
+      "maximum_rest_displacement_m": 0.02364019771706966
+    }
+  ],
+  "materials": [
+    {
+      "material": "MAT-rain.body",
+      "skin_target_srgb": "#E8B48F",
+      "value_multiplier": 1.45,
+      "saturation_multiplier": 0.95,
+      "target_mix": 0.1,
+      "note": "Albedo adjustment, not an exact displayed pixel-color match. Texture and lip variation retained."
+    },
+    {
+      "material": "MAT-rain.hands",
+      "skin_target_srgb": "#E8B48F",
+      "value_multiplier": 1.45,
+      "saturation_multiplier": 0.95,
+      "target_mix": 0.1,
+      "note": "Albedo adjustment, not an exact displayed pixel-color match. Texture and lip variation retained."
+    },
+    {
+      "material": "MAT-rain.eyebrows",
+      "base_color_srgb": "#88684D"
+    }
+  ],
+  "art_approved": false,
+  "production_swap_allowed": false,
+  "images": [
+    {
+      "path": "studio/reviews/rain-mom-a1/candidate-full.png",
+      "sha256": "2830a1f029b1672973de4289c03e0a92b33313f4c2e1af15efccd57cdc29fda7",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.05
+        ],
+        "target": [
+          0,
+          0,
+          0.85
+        ],
+        "ortho_scale": 1.95
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/rain-mom-a1/candidate-face.png",
+      "sha256": "760651fe09fe4feb6bbaccb498ba6eb131fb4e5fa02229accb2bb3b0a8738c45",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.45
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/rain-mom-a1/candidate-three-quarter.png",
+      "sha256": "7e1f2f255078206e457c532b74d646eaa9566d8e5b496a8e7777299b2336b8d0",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.45
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/rain-mom-a1/candidate-blink.png",
+      "sha256": "c59e051cb5d489b5ab43f015640f3d8f7f7c6d17cec895d86c0ee81a0819e6c7",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.45
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/rain-mom-a1/candidate-smile.png",
+      "sha256": "1fcbafd31bdcdf105b03fe9366c66ac6207f6ab8fb336dece65935087ccd1956",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.45
+        ],
+        "ortho_scale": 0.6
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "expressions": [
+    {
+      "expression": "blink",
+      "controls": [
+        {
+          "key": "EyelidsClose.L",
+          "status": "actuated",
+          "target": 1.0,
+          "actual_key_value": 1.0,
+          "selected": {
+            "bone": "ACT-Eyelid_Upper.L",
+            "axis": 1,
+            "input": -0.1,
+            "key_value": 1.0
+          },
+          "trials": [
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": -1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": -0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": -0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 0.25,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 0.75,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.L",
+              "axis": 1,
+              "input": 1,
+              "key_value": 0.0
+            }
+          ],
+          "driver_expression": "var*-25"
+        },
+        {
+          "key": "EyelidsClose.R",
+          "status": "actuated",
+          "target": 1.0,
+          "actual_key_value": 1.0,
+          "selected": {
+            "bone": "ACT-Eyelid_Upper.R",
+            "axis": 1,
+            "input": -0.1,
+            "key_value": 1.0
+          },
+          "trials": [
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": -1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": -0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": -0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 0.25,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 0.75,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Eyelid_Upper.R",
+              "axis": 1,
+              "input": 1,
+              "key_value": 0.0
+            }
+          ],
+          "driver_expression": "var*-25"
+        }
+      ],
+      "finite_head_vertices": true,
+      "head_displacement_max_m": 0.039484844382600026,
+      "scope": "Native actuator smoke test + image for review, not full animation or anatomical certification."
+    },
+    {
+      "expression": "smile",
+      "controls": [
+        {
+          "key": "Smile.L",
+          "status": "partial-actuation",
+          "target": 0.5,
+          "actual_key_value": 0.0,
+          "selected": {
+            "bone": "ACT-Lips_Corner.L",
+            "axis": 2,
+            "input": 0,
+            "key_value": 0.0
+          },
+          "trials": [
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": -1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": -0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": -0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 0.25,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 0.75,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2,
+              "input": 1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": -1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": -0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": -0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 0.25,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 0.75,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1,
+              "input": 1,
+              "key_value": 1.0
+            }
+          ],
+          "driver_expression": "(Z*20)*4 + (Y*20)*2"
+        },
+        {
+          "key": "Smile.R",
+          "status": "partial-actuation",
+          "target": 0.5,
+          "actual_key_value": 0.0,
+          "selected": {
+            "bone": "ACT-Lips_Corner.R",
+            "axis": 2,
+            "input": 0,
+            "key_value": 0.0
+          },
+          "trials": [
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": -1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": -0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": -0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 0.25,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 0.75,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2,
+              "input": 1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": -1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": -0.5,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": -0.1,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 0,
+              "key_value": 0.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 0.1,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 0.25,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 0.5,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 0.75,
+              "key_value": 1.0
+            },
+            {
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1,
+              "input": 1,
+              "key_value": 1.0
+            }
+          ],
+          "driver_expression": "(Z*20)*4 + (Y*20)*2"
+        }
+      ],
+      "finite_head_vertices": true,
+      "head_displacement_max_m": 0.0,
+      "scope": "Native actuator smoke test + image for review, not full animation or anatomical certification."
+    }
+  ],
+  "rig_rest_signature_after": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "topology_unchanged": true,
+  "candidate_invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ],
+  "pose_restored_max_head_error_m": 0.0,
+  "new_invalid_drivers": [],
+  "native_artifact": {
+    "filename": "rain-mom-a1.blend",
+    "sha256": "f1937b5c7cf5eaa1ff0218d07fe14898f42325daca0720db10ed123221a13f75",
+    "textures_packed": true,
+    "storage": "GitHub Actions artifact; reconstruct with this script. Not committed to Git."
+  }
+}

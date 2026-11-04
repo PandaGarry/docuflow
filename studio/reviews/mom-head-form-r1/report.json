@@ -1,0 +1,796 @@
+{
+  "revision": "mom-head-form-r1",
+  "status": "new_primary_form_requires_visual_review",
+  "new_geometry_created": true,
+  "source_url": "https://studio.blender.org/download-source/files/ee/a7/eea73e55dba1cea31c09848df6a794b2-4.zip",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "archive_sha256": "80217f163f6392dc829233d63c2cfb5e1376775bc34101ad14f39631fea70d24",
+  "scripts": {
+    "mom_head_form_r1.py": "282c22211e62d524501b13fd13febceb3d12ad9a0fea5c42953c4629233c669a",
+    "mom_head_cage.py": "0cc7052d984a50f5901a267e15107911c49bc49be51ab4b1fc5afee2205c5977",
+    "mom_native_form_audit.py": "05ed336dac22cf2e01431cde56a50bd8ed836540134f79c86cf2409c9f95bcff",
+    "rain_study.py": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+    "rain_mom_pass.py": "75707fa8e9c3c526a733773c60095c3ba273276a6c015f963e3a46600e252a69",
+    "rain_mom_pass_a2.py": "6c394cb7cd754960d091d417d632fa31ae91ecef20bb8fce2230321a76a4158d",
+    "rain_mom_pass_a3.py": "0d226c94a917c178eef80d3ec0a5594cf2044d09b91e987da9e71b9910d8fa5e"
+  },
+  "spec_sha256": "7b720778c8dff5709a416092363b2e2644e6f2dbf95d9dadd264a0b778c77a6a",
+  "indexed_source_sha256": "a26af1afba1639a4e4b84becc3fe00a70345bf3f3f55c4019d0afd6231c8f5db",
+  "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "base": "Official original Rain head; A1-A7 face/groom deformations are NOT applied.",
+  "change_notice": "Authored oval/jaw/chin and convex cheeks, lower brow frame with thinner strips, smaller supported lid aperture around UNCHANGED globes, rounded dimensional nose with narrowed alae, original narrower lip span / restored volumes. No new hair/body/wardrobe.",
+  "edits": [
+    {
+      "object": "GEO-rain-head",
+      "vertices": 6395,
+      "transformed_original_key_blocks": 25,
+      "max_change_m": 0.010000000151152,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.6443226237537496
+    },
+    {
+      "object": "GEO-rain-eyebrows",
+      "vertices": 148,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.013138025917476877,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.7509895098009095
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "vertices": 120,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.0032135411786092466,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.7039031707563469
+    },
+    {
+      "object": "GEO-rain-gums_upper",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.004913739697926536,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.7289740201283348
+    },
+    {
+      "object": "GEO-rain-gums_lower",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 3,
+      "max_change_m": 0.004154157865754354,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.9591698628965912
+    },
+    {
+      "object": "GEO-rain-tongue",
+      "vertices": 275,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.0029672037255911487,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.9570729638927752
+    }
+  ],
+  "cage_safety": {
+    "controls": 82,
+    "condition_number": 564.4503468556919,
+    "min_sampled_jacobian_determinant": 0.6443232288713984,
+    "max_sampled_jacobian_determinant": 1.251789720602995,
+    "maximum_basis_change_m": 0.010000000000000009,
+    "control_interpolation_error_m": 6.938893903907228e-18,
+    "scope": "Sampled mathematical safety only, not continuous invertibility, anatomy, likeness or pose approval."
+  },
+  "images": [
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-front.png",
+      "sha256": "b0d60a92632b0f9bece72b08d40c5199d3b7405ff5817cad510ae6942fa5205b",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-three-quarter.png",
+      "sha256": "9a69417acdd855ed8e0ef1dc7a91e3fb52243a5e588b8cb78ad8c64ee57261c6",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-profile.png",
+      "sha256": "f515b7909ea351a6cd8884730db2c03fc6159be5ae68ca31216b89c5c589e0df",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-blink-half.png",
+      "sha256": "f206dc05f652b1844da605b8494e515286d0cb8338e168d8f8ef1e3b3c25b12b",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-blink.png",
+      "sha256": "a30b25868e421c2f0b8575df3b6f31e7562c6548371bfb82dc15a00d7b340cd6",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-smile.png",
+      "sha256": "25034fad7902940d8006c291aecb5fa196458dcea484a0c96afd94b5d5c4869c",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "poses": [
+    {
+      "pose": "blink-half",
+      "actuators": [
+        {
+          "bone": "ACT-Eyelid_Upper.L",
+          "local_y": -0.013999999999999999
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.L",
+          "local_y": 0.006
+        },
+        {
+          "bone": "ACT-Eyelid_Upper.R",
+          "local_y": -0.013999999999999999
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.R",
+          "local_y": 0.006
+        }
+      ]
+    },
+    {
+      "pose": "blink",
+      "actuators": [
+        {
+          "bone": "ACT-Eyelid_Upper.L",
+          "local_y": -0.027999999999999997
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.L",
+          "local_y": 0.012
+        },
+        {
+          "bone": "ACT-Eyelid_Upper.R",
+          "local_y": -0.027999999999999997
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.R",
+          "local_y": 0.012
+        }
+      ]
+    },
+    {
+      "pose": "smile",
+      "actuators": [
+        {
+          "key": "Smile.L",
+          "target": 0.6,
+          "actual": 0.5999995470046997,
+          "status": "actuated",
+          "bone": "ACT-Lips_Corner.L",
+          "axis": 2,
+          "input": 0.0074999809265136694,
+          "expression": "(Z*20)*4 + (Y*20)*2",
+          "solutions": [
+            {
+              "input": 0.0074999809265136694,
+              "response": 0.5999995470046997,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.5000011324882507
+                ],
+                [
+                  0.009375000000000001,
+                  0.7499821186065674
+                ],
+                [
+                  0.0078125,
+                  0.6249867677688599
+                ],
+                [
+                  0.00703125,
+                  0.562501072883606
+                ],
+                [
+                  0.007421875,
+                  0.5937511920928955
+                ],
+                [
+                  0.0076171875,
+                  0.6093763113021851
+                ],
+                [
+                  0.007519531249999999,
+                  0.601563572883606
+                ],
+                [
+                  0.0074707031249999995,
+                  0.5976574420928955
+                ],
+                [
+                  0.007495117187499999,
+                  0.5996106863021851
+                ],
+                [
+                  0.007507324218749999,
+                  0.600587010383606
+                ],
+                [
+                  0.007501220703124999,
+                  0.6000988483428955
+                ],
+                [
+                  0.007498168945312499,
+                  0.5998547077178955
+                ],
+                [
+                  0.007499694824218748,
+                  0.599976658821106
+                ],
+                [
+                  0.0075004577636718734,
+                  0.600037693977356
+                ],
+                [
+                  0.00750007629394531,
+                  0.6000072956085205
+                ],
+                [
+                  0.007499885559082029,
+                  0.5999921560287476
+                ],
+                [
+                  0.0074999809265136694,
+                  0.5999995470046997
+                ],
+                [
+                  0.00750002861022949,
+                  0.6000034809112549
+                ],
+                [
+                  0.007500004768371579,
+                  0.6000016927719116
+                ],
+                [
+                  0.007499992847442624,
+                  0.6000005006790161
+                ]
+              ],
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 2
+            },
+            {
+              "input": 0.014999961853027339,
+              "response": 0.5999994277954102,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  0.49999773502349854
+                ],
+                [
+                  0.018750000000000003,
+                  0.7499974966049194
+                ],
+                [
+                  0.015625,
+                  0.625
+                ],
+                [
+                  0.0140625,
+                  0.5625015497207642
+                ],
+                [
+                  0.01484375,
+                  0.5937528610229492
+                ],
+                [
+                  0.015234375,
+                  0.6093740463256836
+                ],
+                [
+                  0.015039062499999999,
+                  0.6015640497207642
+                ],
+                [
+                  0.014941406249999999,
+                  0.5976581573486328
+                ],
+                [
+                  0.014990234374999998,
+                  0.5996131896972656
+                ],
+                [
+                  0.015014648437499998,
+                  0.6005865335464478
+                ],
+                [
+                  0.015002441406249997,
+                  0.6000995635986328
+                ],
+                [
+                  0.014996337890624998,
+                  0.5998563766479492
+                ],
+                [
+                  0.014999389648437497,
+                  0.5999755859375
+                ],
+                [
+                  0.015000915527343747,
+                  0.6000375747680664
+                ],
+                [
+                  0.01500015258789062,
+                  0.6000089645385742
+                ],
+                [
+                  0.014999771118164059,
+                  0.5999946594238281
+                ],
+                [
+                  0.014999961853027339,
+                  0.5999994277954102
+                ],
+                [
+                  0.01500005722045898,
+                  0.6000041961669922
+                ],
+                [
+                  0.015000009536743159,
+                  0.6000041961669922
+                ],
+                [
+                  0.014999985694885249,
+                  0.5999994277954102
+                ],
+                [
+                  0.014999997615814203,
+                  0.5999994277954102
+                ]
+              ],
+              "bone": "ACT-Lips_Corner.L",
+              "axis": 1
+            }
+          ]
+        },
+        {
+          "key": "Smile.R",
+          "target": 0.6,
+          "actual": 0.6000000238418579,
+          "status": "actuated",
+          "bone": "ACT-Lips_Corner.R",
+          "axis": 1,
+          "input": 0.01499989032745361,
+          "expression": "(Z*20)*4 + (Y*20)*2",
+          "solutions": [
+            {
+              "input": 0.007500219345092772,
+              "response": 0.5999995470046997,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.499982088804245
+                ],
+                [
+                  0.009375000000000001,
+                  0.7500011920928955
+                ],
+                [
+                  0.0078125,
+                  0.6249819993972778
+                ],
+                [
+                  0.00703125,
+                  0.5624819993972778
+                ],
+                [
+                  0.007421875,
+                  0.5937321186065674
+                ],
+                [
+                  0.0076171875,
+                  0.6093568801879883
+                ],
+                [
+                  0.007519531249999999,
+                  0.6015444993972778
+                ],
+                [
+                  0.0074707031249999995,
+                  0.5976383686065674
+                ],
+                [
+                  0.007495117187499999,
+                  0.5995912551879883
+                ],
+                [
+                  0.007507324218749999,
+                  0.6005679368972778
+                ],
+                [
+                  0.007501220703124999,
+                  0.6000797748565674
+                ],
+                [
+                  0.007498168945312499,
+                  0.5998356342315674
+                ],
+                [
+                  0.007499694824218748,
+                  0.5999575853347778
+                ],
+                [
+                  0.0075004577636718734,
+                  0.6000186204910278
+                ],
+                [
+                  0.00750007629394531,
+                  0.5999882221221924
+                ],
+                [
+                  0.007500267028808592,
+                  0.6000034809112549
+                ],
+                [
+                  0.007500171661376951,
+                  0.5999957323074341
+                ],
+                [
+                  0.007500219345092772,
+                  0.5999995470046997
+                ],
+                [
+                  0.0075002431869506826,
+                  0.600001335144043
+                ],
+                [
+                  0.007500231266021727,
+                  0.6000005006790161
+                ]
+              ],
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 2
+            },
+            {
+              "input": 0.01499989032745361,
+              "response": 0.6000000238418579,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  0.5000161528587341
+                ],
+                [
+                  0.018750000000000003,
+                  0.7499980926513672
+                ],
+                [
+                  0.015625,
+                  0.625
+                ],
+                [
+                  0.0140625,
+                  0.5625009536743164
+                ],
+                [
+                  0.01484375,
+                  0.5937528610229492
+                ],
+                [
+                  0.015234375,
+                  0.6093746423721313
+                ],
+                [
+                  0.015039062499999999,
+                  0.6015634536743164
+                ],
+                [
+                  0.014941406249999999,
+                  0.5976587533950806
+                ],
+                [
+                  0.014990234374999998,
+                  0.5996137857437134
+                ],
+                [
+                  0.015014648437499998,
+                  0.6005859375
+                ],
+                [
+                  0.015002441406249997,
+                  0.6001001596450806
+                ],
+                [
+                  0.014996337890624998,
+                  0.599856972694397
+                ],
+                [
+                  0.014999389648437497,
+                  0.5999761819839478
+                ],
+                [
+                  0.015000915527343747,
+                  0.6000381708145142
+                ],
+                [
+                  0.01500015258789062,
+                  0.600009560585022
+                ],
+                [
+                  0.014999771118164059,
+                  0.5999952554702759
+                ],
+                [
+                  0.014999961853027339,
+                  0.6000000238418579
+                ],
+                [
+                  0.0149998664855957,
+                  0.5999952554702759
+                ],
+                [
+                  0.01499991416931152,
+                  0.6000000238418579
+                ],
+                [
+                  0.01499989032745361,
+                  0.6000000238418579
+                ],
+                [
+                  0.014999878406524655,
+                  0.5999952554702759
+                ]
+              ],
+              "bone": "ACT-Lips_Corner.R",
+              "axis": 1
+            }
+          ]
+        }
+      ],
+      "finite": true
+    }
+  ],
+  "blink_sweep": [
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008505501227482544
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016645697047331792
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024610737705230434
+    },
+    {
+      "amplitude": 1,
+      "finite": true,
+      "max_displacement_m": 0.03223300313549092
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024610737705230434
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016645697047331792
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008505501227482544
+    },
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    }
+  ],
+  "source_topology_unchanged": true,
+  "source_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "candidate_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "source_invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ],
+  "new_invalid_drivers": [],
+  "neutral_restore_error_m": 0.0,
+  "diagnostic_visibility_driver_mutes": [
+    "GEO-rain-scarf"
+  ],
+  "pose_and_shape_drivers_muted": false,
+  "eye_globes_and_cornea_unchanged": true,
+  "eye_coordinate_hashes": {
+    "GEO-rain-eyes": "c496a2f444446dd69816c49ebe23bf05b46c23b5a0d55c57491b8a5c0b3b26ec",
+    "GEO-rain-eye_cornea": "3264a3a8671024c5a442787d140ca7c61c7bf5d33d0112660c4b545423fc4a20",
+    "GEO-rain-eye_dots": "963b0f00e8b85c649fd251c72f9e5a982bcdcace00c50d6e431590dbe2c831a9"
+  },
+  "rig_migration_status": "pending primary-form review; original rest is not an art constraint. Finite ACT diagnostics do not certify the moved lids/brows/correctives.",
+  "native_artifact": {
+    "filename": "mom-head-form-r1.blend",
+    "sha256": "389761ec5d9f1c8483257f5fbe3e7d044936e2d09a0d91bee9c398033765106d",
+    "textures_packed": true,
+    "storage": "GitHub Actions artifact, 14 days"
+  },
+  "indexed_candidate_sha256": "012d8706c4a3f9169fc2a09f23a83f7cb794e78dd341803c5db9d4f6ac3330a8",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Neutral primary head work-in-progress. Not exact likeness, final anatomy, complete character, full acting or production rig approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}

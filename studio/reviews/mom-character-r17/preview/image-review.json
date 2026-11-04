@@ -1,0 +1,90 @@
+{
+  "comparison_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -41.086956521739125,
+        -0.7246376811594359
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/preview/portrait-front.png",
+      "sha256": "acd4b4cec907602ae9463627093a9add15da15bd9d18bbb0a3ecee6eb2e25bb2",
+      "pupils_px": [
+        [
+          241.44897959183675,
+          371.76326530612243
+        ],
+        [
+          397.03877551020406,
+          371.71836734693875
+        ]
+      ],
+      "uniform_similarity": [
+        1.3497027955701162,
+        0.00038947863301657743,
+        -80.73956889427679,
+        -101.86395769246292
+      ]
+    }
+  ],
+  "method": "Uniform eye alignment only, intact native frame. Head/hair crop; clothes explicitly unchanged and unapproved. No canonical texture projection, no render retouch.",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "bare_inputs": [
+    {
+      "path": "studio/characters/mom/master/face.png",
+      "sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+      "pupils_px": [
+        [
+          282,
+          395
+        ],
+        [
+          489,
+          395
+        ]
+      ],
+      "uniform_similarity": [
+        1.0144927536231885,
+        0.0,
+        -66.08695652173913,
+        -140.72463768115944
+      ]
+    },
+    {
+      "path": "studio/reviews/mom-character-r17/preview/bare-front.png",
+      "sha256": "9f163fda88358a125a4644ea2694bba0d937eb661aa3eb9e39944923199a5a49",
+      "pupils_px": [
+        [
+          256.8990228013029,
+          316.4299674267101
+        ],
+        [
+          381.55374592833874,
+          316.6970684039088
+        ]
+      ],
+      "uniform_similarity": [
+        1.6846456401197665,
+        -0.003609734837331179,
+        -213.92604699023917,
+        -272.1450276763647
+      ]
+    }
+  ]
+}

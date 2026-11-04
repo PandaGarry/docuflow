@@ -1,0 +1,1067 @@
+{
+  "revision": "mom-head-form-r3",
+  "status": "new_primary_form_requires_visual_review",
+  "new_geometry_created": true,
+  "source_url": "https://studio.blender.org/download-source/files/ee/a7/eea73e55dba1cea31c09848df6a794b2-4.zip",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "archive_sha256": "80217f163f6392dc829233d63c2cfb5e1376775bc34101ad14f39631fea70d24",
+  "scripts": {
+    "mom_head_form_r3.py": "76f927013b66eae4bafb4196f03115ba7cfbc42d8bcbb73359ea690f042f898b",
+    "mom_face_controls.py": "796fe0ebea8ef61ec2e4a537e2262a7fe09e891786078a6b37ad63331bea4c39",
+    "mom_face_probe.py": "b5d18b2ed9bf27af8a7e515103856c6163cfba8c2e8bdb62b45c0b2beb488d54",
+    "mom_head_surface_r2.py": "6304b5c0bc5a4c71d0566fd60b43f9cf1c19cde65d291086a23a9f232ea89f8d",
+    "mom_head_cage.py": "0cc7052d984a50f5901a267e15107911c49bc49be51ab4b1fc5afee2205c5977",
+    "mom_native_form_audit.py": "05ed336dac22cf2e01431cde56a50bd8ed836540134f79c86cf2409c9f95bcff",
+    "rain_study.py": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+    "rain_mom_pass.py": "75707fa8e9c3c526a733773c60095c3ba273276a6c015f963e3a46600e252a69",
+    "rain_mom_pass_a2.py": "6c394cb7cd754960d091d417d632fa31ae91ecef20bb8fce2230321a76a4158d",
+    "rain_mom_pass_a3.py": "0d226c94a917c178eef80d3ec0a5594cf2044d09b91e987da9e71b9910d8fa5e"
+  },
+  "spec_sha256": "d4dd65e777d94b91c16721915e6d7b1afc17c498ecca5fbd7590a17ab82d4eab",
+  "indexed_source_sha256": "a26af1afba1639a4e4b84becc3fe00a70345bf3f3f55c4019d0afd6231c8f5db",
+  "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "base": "Official original Rain head; A1-A7 and R1 deformations are NOT stacked. Revised indexed cage rebuilt from source.",
+  "change_notice": "Preserve user-liked R2 design: only three upper-lip/Cupid/philtrum control targets softened by .7-1.2mm; all other authored targets and brow design unchanged. Symmetric smile now uses the same Z actuator axis bilaterally with final readback, plus paired original-source diagnostics. No new hair/body/wardrobe.",
+  "edits": [
+    {
+      "object": "GEO-rain-head",
+      "vertices": 6395,
+      "transformed_original_key_blocks": 25,
+      "max_change_m": 0.011623737569709936,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.5847500063213773
+    },
+    {
+      "object": "GEO-rain-eyebrows",
+      "vertices": 148,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.024267289197295372,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.7100895187041062
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "vertices": 120,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.0033748293080274766,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.6847002893739411
+    },
+    {
+      "object": "GEO-rain-gums_upper",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.0046397647331950145,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.6502440815431364
+    },
+    {
+      "object": "GEO-rain-gums_lower",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 3,
+      "max_change_m": 0.00309577159791567,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.9255279301331373
+    },
+    {
+      "object": "GEO-rain-tongue",
+      "vertices": 275,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.002716888739925614,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.9489051909214913
+    }
+  ],
+  "cage_safety": {
+    "controls": 83,
+    "condition_number": 1174.6669317439396,
+    "min_sampled_jacobian_determinant": 0.606672667959987,
+    "max_sampled_jacobian_determinant": 1.2372735438825664,
+    "maximum_basis_change_m": 0.01162373763186614,
+    "control_interpolation_error_m": 2.7755575615628914e-17,
+    "scope": "Sampled mathematical safety only, not continuous invertibility, anatomy, likeness or pose approval."
+  },
+  "images": [
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-front.png",
+      "sha256": "42f91e633c45f3b0d41903816953ecd968220f942b0ec28cd1651f91e303c495",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-three-quarter.png",
+      "sha256": "dea7987016df43e8fb84254155e61f41f53e5aa27adff2574128da11dbe38ddd",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-profile.png",
+      "sha256": "028c142fe5be144980414d04f23cdb1d8a9b3918a2e533c42cfa1fe25ee4f6d2",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-blink-half.png",
+      "sha256": "0f31acc37ca9e0077f67b809b1bebbe4d020a221bb0656e4e2e9281a446519ef",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-blink.png",
+      "sha256": "7baed903c757235ffab0a18bf03560e8f6e1f38b3b837457a22a2858193b38bf",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r3/candidate-smile.png",
+      "sha256": "72f53e2e2dce5ed1430f1fbcd72a73104d39d369ec01af3645ffc84c59557a0f",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "poses": [
+    {
+      "pose": "blink-half",
+      "actuators": [
+        {
+          "bone": "ACT-Eyelid_Upper.L",
+          "local_y": -0.013999999999999999
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.L",
+          "local_y": 0.006
+        },
+        {
+          "bone": "ACT-Eyelid_Upper.R",
+          "local_y": -0.013999999999999999
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.R",
+          "local_y": 0.006
+        }
+      ]
+    },
+    {
+      "pose": "blink",
+      "actuators": [
+        {
+          "bone": "ACT-Eyelid_Upper.L",
+          "local_y": -0.027999999999999997
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.L",
+          "local_y": 0.012
+        },
+        {
+          "bone": "ACT-Eyelid_Upper.R",
+          "local_y": -0.027999999999999997
+        },
+        {
+          "bone": "ACT-Eyelid_Lower.R",
+          "local_y": 0.012
+        }
+      ]
+    },
+    {
+      "pose": "smile",
+      "actuators": {
+        "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+        "axis": 2,
+        "target": 0.6,
+        "solutions": {
+          "L": {
+            "input": 0.0074999809265136694,
+            "response": 0.5999995470046997,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                1.0
+              ],
+              [
+                0.00625,
+                0.5000011324882507
+              ],
+              [
+                0.009375000000000001,
+                0.7499821186065674
+              ],
+              [
+                0.0078125,
+                0.6249867677688599
+              ],
+              [
+                0.00703125,
+                0.562501072883606
+              ],
+              [
+                0.007421875,
+                0.5937511920928955
+              ],
+              [
+                0.0076171875,
+                0.6093763113021851
+              ],
+              [
+                0.007519531249999999,
+                0.601563572883606
+              ],
+              [
+                0.0074707031249999995,
+                0.5976574420928955
+              ],
+              [
+                0.007495117187499999,
+                0.5996106863021851
+              ],
+              [
+                0.007507324218749999,
+                0.600587010383606
+              ],
+              [
+                0.007501220703124999,
+                0.6000988483428955
+              ],
+              [
+                0.007498168945312499,
+                0.5998547077178955
+              ],
+              [
+                0.007499694824218748,
+                0.599976658821106
+              ],
+              [
+                0.0075004577636718734,
+                0.600037693977356
+              ],
+              [
+                0.00750007629394531,
+                0.6000072956085205
+              ],
+              [
+                0.007499885559082029,
+                0.5999921560287476
+              ],
+              [
+                0.0074999809265136694,
+                0.5999995470046997
+              ],
+              [
+                0.00750002861022949,
+                0.6000034809112549
+              ],
+              [
+                0.007500004768371579,
+                0.6000016927719116
+              ],
+              [
+                0.007499992847442624,
+                0.6000005006790161
+              ]
+            ]
+          },
+          "R": {
+            "input": 0.007500219345092772,
+            "response": 0.5999995470046997,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                1.0
+              ],
+              [
+                0.00625,
+                0.499982088804245
+              ],
+              [
+                0.009375000000000001,
+                0.7500011920928955
+              ],
+              [
+                0.0078125,
+                0.6249819993972778
+              ],
+              [
+                0.00703125,
+                0.5624819993972778
+              ],
+              [
+                0.007421875,
+                0.5937321186065674
+              ],
+              [
+                0.0076171875,
+                0.6093568801879883
+              ],
+              [
+                0.007519531249999999,
+                0.6015444993972778
+              ],
+              [
+                0.0074707031249999995,
+                0.5976383686065674
+              ],
+              [
+                0.007495117187499999,
+                0.5995912551879883
+              ],
+              [
+                0.007507324218749999,
+                0.6005679368972778
+              ],
+              [
+                0.007501220703124999,
+                0.6000797748565674
+              ],
+              [
+                0.007498168945312499,
+                0.5998356342315674
+              ],
+              [
+                0.007499694824218748,
+                0.5999575853347778
+              ],
+              [
+                0.0075004577636718734,
+                0.6000186204910278
+              ],
+              [
+                0.00750007629394531,
+                0.5999882221221924
+              ],
+              [
+                0.007500267028808592,
+                0.6000034809112549
+              ],
+              [
+                0.007500171661376951,
+                0.5999957323074341
+              ],
+              [
+                0.007500219345092772,
+                0.5999995470046997
+              ],
+              [
+                0.0075002431869506826,
+                0.600001335144043
+              ],
+              [
+                0.007500231266021727,
+                0.6000005006790161
+              ]
+            ]
+          }
+        },
+        "final_key_values": {
+          "L": 0.5999995470046997,
+          "R": 0.5999995470046997
+        },
+        "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry.",
+        "bones": {
+          "L": "ACT-Lips_Corner.L",
+          "R": "ACT-Lips_Corner.R"
+        },
+        "final_locations": {
+          "L": [
+            0.0,
+            0.0,
+            0.007499980740249157
+          ],
+          "R": [
+            0.0,
+            0.0,
+            0.0075002191588282585
+          ]
+        }
+      },
+      "finite": true
+    }
+  ],
+  "blink_sweep": [
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008523221616989868
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016652220651340848
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024620727863417968
+    },
+    {
+      "amplitude": 1,
+      "finite": true,
+      "max_displacement_m": 0.032247133745387326
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024620727863417968
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016652220651340848
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008523221616989868
+    },
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    }
+  ],
+  "smile_displacement_symmetry": {
+    "unique_mirrored_mouth_pairs": 509,
+    "mean_displacement_asymmetry_m": 8.837033660092131e-06,
+    "max_displacement_asymmetry_m": 7.446462247255372e-05,
+    "scope": "Mirrored actuator displacement diagnostic, not anatomy/likeness/artistic symmetry approval."
+  },
+  "paired_source_diagnostics": {
+    "images": [
+      {
+        "path": "studio/reviews/mom-head-form-r3/source-legacy-mixed-smile.png",
+        "sha256": "c0132ae07b61948a56ccce9d9a67fd40c4bf8fcf323fb825591de2274e937481",
+        "camera": {
+          "position": [
+            0,
+            -4,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          768,
+          768
+        ],
+        "samples": 24
+      },
+      {
+        "path": "studio/reviews/mom-head-form-r3/source-paired-z-smile.png",
+        "sha256": "146ae7cdcc9568757e1289281594706ac4b4d9ad895e4b1eb11d209f28e90f7f",
+        "camera": {
+          "position": [
+            0,
+            -4,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          768,
+          768
+        ],
+        "samples": 24
+      },
+      {
+        "path": "studio/reviews/mom-head-form-r3/source-blink-70-30.png",
+        "sha256": "64f760ad0631d60fa24b56d789aa8ee13ee7901d5dfdbd2dab6ab8fc1504176f",
+        "camera": {
+          "position": [
+            0,
+            -4,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          768,
+          768
+        ],
+        "samples": 24
+      }
+    ],
+    "poses": [
+      {
+        "pose": "legacy-mixed-smile",
+        "controls": {
+          "policy": "Reproduce R2 mixed-axis solver choice, L:Z .0075 / R:Y .015"
+        },
+        "final_keys": {
+          "Basis": 0.0,
+          "mouth_open": 0.0,
+          "LipsAdjust": 1.0,
+          "LipsWide.L": 0.15000027418136597,
+          "LipsUp.L": 0.0,
+          "Smile.L": 0.6000010967254639,
+          "CheekPuff.L": 0.0,
+          "LipsWide.R": 0.0,
+          "LipsUp.R": 0.5999994277954102,
+          "Smile.R": 0.6000000238418579,
+          "CheekPuff.R": 0.0,
+          "LipsPuff_Upper": 0.0,
+          "LipsPuff_Lower": 0.0,
+          "EyebrowsTogether.L": 0.0,
+          "EyebrowsTogether.R": 0.0,
+          "EyebrowsDown.L": 0.0,
+          "EyebrowsDown.R": 0.0,
+          "EyelidsClose.L": 0.0,
+          "EyelidsClose.R": 0.0,
+          "LipsPuff_Upper_bkp": 0.0,
+          "LipsPuff_Lower_bkp": 0.0,
+          "Lips_Corner_In.L": 0.0,
+          "Lips_Corner_In.R": 0.0,
+          "Head_Back": 0.0,
+          "Head_Forward": 0.0010725966421887279
+        },
+        "mouth_displacement_symmetry": {
+          "unique_mirrored_mouth_pairs": 509,
+          "mean_displacement_asymmetry_m": 0.005747876774581901,
+          "max_displacement_asymmetry_m": 0.01838313059873111,
+          "scope": "Mirrored actuator displacement diagnostic, not anatomy/likeness/artistic symmetry approval."
+        }
+      },
+      {
+        "pose": "paired-z-smile",
+        "controls": {
+          "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+          "axis": 2,
+          "target": 0.6,
+          "solutions": {
+            "L": {
+              "input": 0.0074999809265136694,
+              "response": 0.5999995470046997,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.5000011324882507
+                ],
+                [
+                  0.009375000000000001,
+                  0.7499821186065674
+                ],
+                [
+                  0.0078125,
+                  0.6249867677688599
+                ],
+                [
+                  0.00703125,
+                  0.562501072883606
+                ],
+                [
+                  0.007421875,
+                  0.5937511920928955
+                ],
+                [
+                  0.0076171875,
+                  0.6093763113021851
+                ],
+                [
+                  0.007519531249999999,
+                  0.601563572883606
+                ],
+                [
+                  0.0074707031249999995,
+                  0.5976574420928955
+                ],
+                [
+                  0.007495117187499999,
+                  0.5996106863021851
+                ],
+                [
+                  0.007507324218749999,
+                  0.600587010383606
+                ],
+                [
+                  0.007501220703124999,
+                  0.6000988483428955
+                ],
+                [
+                  0.007498168945312499,
+                  0.5998547077178955
+                ],
+                [
+                  0.007499694824218748,
+                  0.599976658821106
+                ],
+                [
+                  0.0075004577636718734,
+                  0.600037693977356
+                ],
+                [
+                  0.00750007629394531,
+                  0.6000072956085205
+                ],
+                [
+                  0.007499885559082029,
+                  0.5999921560287476
+                ],
+                [
+                  0.0074999809265136694,
+                  0.5999995470046997
+                ],
+                [
+                  0.00750002861022949,
+                  0.6000034809112549
+                ],
+                [
+                  0.007500004768371579,
+                  0.6000016927719116
+                ],
+                [
+                  0.007499992847442624,
+                  0.6000005006790161
+                ]
+              ]
+            },
+            "R": {
+              "input": 0.007500219345092772,
+              "response": 0.5999995470046997,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.499982088804245
+                ],
+                [
+                  0.009375000000000001,
+                  0.7500011920928955
+                ],
+                [
+                  0.0078125,
+                  0.6249819993972778
+                ],
+                [
+                  0.00703125,
+                  0.5624819993972778
+                ],
+                [
+                  0.007421875,
+                  0.5937321186065674
+                ],
+                [
+                  0.0076171875,
+                  0.6093568801879883
+                ],
+                [
+                  0.007519531249999999,
+                  0.6015444993972778
+                ],
+                [
+                  0.0074707031249999995,
+                  0.5976383686065674
+                ],
+                [
+                  0.007495117187499999,
+                  0.5995912551879883
+                ],
+                [
+                  0.007507324218749999,
+                  0.6005679368972778
+                ],
+                [
+                  0.007501220703124999,
+                  0.6000797748565674
+                ],
+                [
+                  0.007498168945312499,
+                  0.5998356342315674
+                ],
+                [
+                  0.007499694824218748,
+                  0.5999575853347778
+                ],
+                [
+                  0.0075004577636718734,
+                  0.6000186204910278
+                ],
+                [
+                  0.00750007629394531,
+                  0.5999882221221924
+                ],
+                [
+                  0.007500267028808592,
+                  0.6000034809112549
+                ],
+                [
+                  0.007500171661376951,
+                  0.5999957323074341
+                ],
+                [
+                  0.007500219345092772,
+                  0.5999995470046997
+                ],
+                [
+                  0.0075002431869506826,
+                  0.600001335144043
+                ],
+                [
+                  0.007500231266021727,
+                  0.6000005006790161
+                ]
+              ]
+            }
+          },
+          "final_key_values": {
+            "L": 0.5999995470046997,
+            "R": 0.5999995470046997
+          },
+          "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry.",
+          "bones": {
+            "L": "ACT-Lips_Corner.L",
+            "R": "ACT-Lips_Corner.R"
+          },
+          "final_locations": {
+            "L": [
+              0.0,
+              0.0,
+              0.007499980740249157
+            ],
+            "R": [
+              0.0,
+              0.0,
+              0.0075002191588282585
+            ]
+          }
+        },
+        "final_keys": {
+          "Basis": 0.0,
+          "mouth_open": 0.0,
+          "LipsAdjust": 1.0,
+          "LipsWide.L": 0.14999988675117493,
+          "LipsUp.L": 0.0,
+          "Smile.L": 0.5999995470046997,
+          "CheekPuff.L": 0.0,
+          "LipsWide.R": 0.15000465512275696,
+          "LipsUp.R": 0.0,
+          "Smile.R": 0.5999995470046997,
+          "CheekPuff.R": 0.0,
+          "LipsPuff_Upper": 0.0,
+          "LipsPuff_Lower": 0.0,
+          "EyebrowsTogether.L": 0.0,
+          "EyebrowsTogether.R": 0.0,
+          "EyebrowsDown.L": 0.0,
+          "EyebrowsDown.R": 0.0,
+          "EyelidsClose.L": 0.0,
+          "EyelidsClose.R": 0.0,
+          "LipsPuff_Upper_bkp": 0.0,
+          "LipsPuff_Lower_bkp": 0.0,
+          "Lips_Corner_In.L": 0.0,
+          "Lips_Corner_In.R": 0.0,
+          "Head_Back": 0.0,
+          "Head_Forward": 0.0010725966421887279
+        },
+        "mouth_displacement_symmetry": {
+          "unique_mirrored_mouth_pairs": 509,
+          "mean_displacement_asymmetry_m": 8.504656614258664e-06,
+          "max_displacement_asymmetry_m": 7.108037703916812e-05,
+          "scope": "Mirrored actuator displacement diagnostic, not anatomy/likeness/artistic symmetry approval."
+        }
+      },
+      {
+        "pose": "blink-70-30",
+        "controls": [
+          {
+            "bone": "ACT-Eyelid_Upper.L",
+            "local_y": -0.027999999999999997
+          },
+          {
+            "bone": "ACT-Eyelid_Lower.L",
+            "local_y": 0.012
+          },
+          {
+            "bone": "ACT-Eyelid_Upper.R",
+            "local_y": -0.027999999999999997
+          },
+          {
+            "bone": "ACT-Eyelid_Lower.R",
+            "local_y": 0.012
+          }
+        ],
+        "final_keys": {
+          "Basis": 0.0,
+          "mouth_open": 0.0,
+          "LipsAdjust": 1.0,
+          "LipsWide.L": 0.0,
+          "LipsUp.L": 0.0,
+          "Smile.L": 0.0,
+          "CheekPuff.L": 0.0,
+          "LipsWide.R": 0.0,
+          "LipsUp.R": 0.0,
+          "Smile.R": 0.0,
+          "CheekPuff.R": 0.0,
+          "LipsPuff_Upper": 0.0,
+          "LipsPuff_Lower": 0.0,
+          "EyebrowsTogether.L": 0.0,
+          "EyebrowsTogether.R": 0.0,
+          "EyebrowsDown.L": 0.0,
+          "EyebrowsDown.R": 0.0,
+          "EyelidsClose.L": 0.699999988079071,
+          "EyelidsClose.R": 0.7000089287757874,
+          "LipsPuff_Upper_bkp": 0.0,
+          "LipsPuff_Lower_bkp": 0.0,
+          "Lips_Corner_In.L": 0.0,
+          "Lips_Corner_In.R": 0.0,
+          "Head_Back": 0.0,
+          "Head_Forward": 0.0010725966421887279
+        },
+        "mouth_displacement_symmetry": {
+          "unique_mirrored_mouth_pairs": 509,
+          "mean_displacement_asymmetry_m": 1.0996325232221554e-08,
+          "max_displacement_asymmetry_m": 2.236067978557103e-07,
+          "scope": "Mirrored actuator displacement diagnostic, not anatomy/likeness/artistic symmetry approval."
+        }
+      }
+    ],
+    "eyelid_driver_metadata": [
+      {
+        "object": "GEO-rain-head",
+        "path": "key_blocks[\"EyelidsClose.L\"].value",
+        "expression": "var*-25",
+        "variables": [
+          {
+            "name": "var",
+            "targets": [
+              {
+                "bone": "ACT-Eyelid_Upper.L",
+                "transform": "LOC_Y",
+                "path": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "GEO-rain-head",
+        "path": "key_blocks[\"EyelidsClose.R\"].value",
+        "expression": "var*-25",
+        "variables": [
+          {
+            "name": "var",
+            "targets": [
+              {
+                "bone": "ACT-Eyelid_Upper.R",
+                "transform": "LOC_Y",
+                "path": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "scope": "Original unmodified Rain geometry. Source scripts OFF; diagnostic source control/visibility changes discarded by reopening source before candidate build."
+  },
+  "source_topology_unchanged": true,
+  "source_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "candidate_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "source_invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ],
+  "new_invalid_drivers": [],
+  "neutral_restore_error_m": 0.0,
+  "diagnostic_visibility_driver_mutes": [
+    "GEO-rain-scarf"
+  ],
+  "pose_and_shape_drivers_muted": false,
+  "eye_globes_and_cornea_unchanged": true,
+  "eye_coordinate_hashes": {
+    "GEO-rain-eyes": "c496a2f444446dd69816c49ebe23bf05b46c23b5a0d55c57491b8a5c0b3b26ec",
+    "GEO-rain-eye_cornea": "3264a3a8671024c5a442787d140ca7c61c7bf5d33d0112660c4b545423fc4a20",
+    "GEO-rain-eye_dots": "963b0f00e8b85c649fd251c72f9e5a982bcdcace00c50d6e431590dbe2c831a9"
+  },
+  "known_blink_visual_failure": true,
+  "blink_visual_approved": false,
+  "rig_migration_status": "pending primary-form review; original rest is not an art constraint. Finite ACT diagnostics do not certify the moved lids/brows/correctives.",
+  "native_artifact": {
+    "filename": "mom-head-form-r3.blend",
+    "sha256": "83c5d3e5796c849bfa5552e3de274f32118c3302081af9937302c8e24c90ab75",
+    "textures_packed": true,
+    "storage": "GitHub Actions artifact, 14 days"
+  },
+  "indexed_candidate_sha256": "f5257a855443f58ead7180ac0cc838afd1d7a8a5bdcc05f493261aa4cfc03f04",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Neutral primary head work-in-progress. Not exact likeness, final anatomy, complete character, full acting or production rig approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "speech"
+    },
+    "speech_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "speaker": {
+      "type": "string",
+      "minLength": 1
+    },
+    "take_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audio_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "audio_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sample_rate": {
+      "const": 48000
+    },
+    "sample_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "transcript": {
+      "type": "string",
+      "minLength": 1
+    },
+    "alignment_source": {
+      "enum": [
+        "manual",
+        "forced_aligner",
+        "test_fixture"
+      ]
+    },
+    "phones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_sample": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_sample": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reviewed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "symbol",
+          "start_sample",
+          "end_sample",
+          "reviewed"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "speech_id",
+    "speaker",
+    "take_revision",
+    "audio_path",
+    "audio_sha256",
+    "sample_rate",
+    "sample_count",
+    "transcript",
+    "alignment_source",
+    "phones"
+  ],
+  "additionalProperties": false
+}

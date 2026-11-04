@@ -1,0 +1,1010 @@
+{
+  "schema_version": 1,
+  "project": "family_studio",
+  "updated": "2026-11-03",
+  "target": "персонажная анимация в стиле B; готовность подтверждается контрольными сценами",
+  "next_task": "PIPE-01",
+  "stages": [
+    {
+      "id": "P0",
+      "title": "План, среда и инфраструктура"
+    },
+    {
+      "id": "P1",
+      "title": "Канон, модели и риги"
+    },
+    {
+      "id": "P2",
+      "title": "Речь и актёрское движение"
+    },
+    {
+      "id": "P3",
+      "title": "Контрольные сцены"
+    },
+    {
+      "id": "P4",
+      "title": "Серия и воспроизводимый выпуск"
+    }
+  ],
+  "gates": [
+    {
+      "id": "G0",
+      "title": "План и стартовый срез"
+    },
+    {
+      "id": "G1",
+      "title": "Среда и backend"
+    },
+    {
+      "id": "G2",
+      "title": "Канон и модель"
+    },
+    {
+      "id": "G3",
+      "title": "Тело и контакты"
+    },
+    {
+      "id": "G4",
+      "title": "Лицо"
+    },
+    {
+      "id": "G5",
+      "title": "Артикуляция по аудио"
+    },
+    {
+      "id": "G6",
+      "title": "Соло-срез"
+    },
+    {
+      "id": "G7",
+      "title": "Два героя"
+    },
+    {
+      "id": "G8",
+      "title": "Серия и выпуск"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "DOC-01",
+      "title": "Аудит и последовательный план реализации",
+      "stage": "P0",
+      "gate": "G0",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [],
+      "deliverables": [
+        "docs/33-PRODUCTION-PLAN.md"
+      ],
+      "acceptance": [
+        "отделены имеющиеся функции от планируемых",
+        "у этапов есть зависимости, выходы и условия остановки"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/33-PRODUCTION-PLAN.md"
+        }
+      ]
+    },
+    {
+      "id": "DOC-02",
+      "title": "Архитектура и границы модулей",
+      "stage": "P0",
+      "gate": "G0",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "DOC-01"
+      ],
+      "deliverables": [
+        "docs/34-ENGINE-ARCHITECTURE.md"
+      ],
+      "acceptance": [
+        "определены DCC adapter, данные, время, координаты и invalidation",
+        "проектируемые модули не выданы за готовые"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/34-ENGINE-ARCHITECTURE.md"
+        }
+      ]
+    },
+    {
+      "id": "DOC-03",
+      "title": "Измеримые шлюзы и художественная приёмка",
+      "stage": "P0",
+      "gate": "G0",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "DOC-02"
+      ],
+      "deliverables": [
+        "docs/35-QUALITY-GATES.md"
+      ],
+      "acceptance": [
+        "разделены технические допуски и решение пользователя",
+        "определены тестовые реплики, опоры и контрольные сцены"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/35-QUALITY-GATES.md"
+        }
+      ]
+    },
+    {
+      "id": "OPS-01",
+      "title": "Единый tracker, валидатор и регрессионные тесты",
+      "stage": "P0",
+      "gate": "G0",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "DOC-03"
+      ],
+      "deliverables": [
+        "studio/production/plan.json",
+        "studio/tools/production_status.py",
+        "studio/tests/test_production_status.py",
+        "docs/36-PRODUCTION-TRACKER.md",
+        ".github/workflows/production-plan.yml"
+      ],
+      "acceptance": [
+        "проверены DAG, evidence, статусы и защита от ложного approval",
+        "Markdown воспроизводим из JSON без ручных статусов"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/tools/production_status.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tests/test_production_status.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/verification.json"
+        },
+        {
+          "kind": "file",
+          "path": ".github/workflows/production-plan.yml"
+        }
+      ]
+    },
+    {
+      "id": "ENV-01",
+      "title": "Снимок фактически доступной среды",
+      "stage": "P0",
+      "gate": "G0",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "DOC-02"
+      ],
+      "deliverables": [
+        "studio/production/environment.json"
+      ],
+      "acceptance": [
+        "зафиксированы обнаруженные бинарники и Python-пакеты",
+        "непроверенные GPU и headless runtime отмечены как not_probed/not_run"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/production/environment.json"
+        }
+      ]
+    },
+    {
+      "id": "ENV-02",
+      "title": "Headless Blender и FFmpeg smoke test",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-01"
+      ],
+      "deliverables": [
+        "runtime lock и environment report",
+        "24 кадра 1080p и полностью декодируемый MP4"
+      ],
+      "acceptance": [
+        "реально проверены IK, shape key, lighting и frame export",
+        "сохранены версии, exit codes, время и peak RAM"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/production/blender-smoke-report.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/blender-requirements.lock"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/blender-hardware-inventory.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/blender-negative-probes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/blender-scene-reload.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/38-BLENDER-MVP.md"
+        }
+      ]
+    },
+    {
+      "id": "ENV-04",
+      "title": "Подготовить проверяемое production-окружение без mirror fallback",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-02"
+      ],
+      "deliverables": [
+        "поддерживаемая OS/base image с официальными системными зависимостями",
+        "проверенные patch versions, licenses/security review и чистый повторный smoke test"
+      ],
+      "acceptance": [
+        "native libraries получены из официального проверяемого источника, а не из экспериментального distro mirror",
+        "на чистой среде повторены реальные 24 кадра и decode без sandbox fallback",
+        "version pins усилены проверкой wheel/image integrity; ограничения и результаты записаны",
+        "профилирована память на длинной последовательности; CPU/thread budget соответствует фактическому affinity, не числу запрошенных потоков"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "PIPE-01",
+      "title": "Реализовать версионированные контракты",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "in_progress",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "DOC-02"
+      ],
+      "deliverables": [
+        "schemas для project/asset/rig/speech/shot/render manifest",
+        "валидатор и негативные fixtures"
+      ],
+      "acceptance": [
+        "есть миграция или явный отказ несовместимой схемы",
+        "frame/sample timebase и оси проверены тестами",
+        "контракты поддерживают внешний production character/rig package, не только synthetic probe"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/pipeline/contracts.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tests/test_pipeline.py"
+        },
+        {
+          "kind": "file",
+          "path": "docs/38-BLENDER-MVP.md"
+        }
+      ]
+    },
+    {
+      "id": "PIPE-02",
+      "title": "Реальный Blender render adapter",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-02",
+        "PIPE-01"
+      ],
+      "deliverables": [
+        "backend subprocess adapter",
+        "тестовая scene/frame sequence"
+      ],
+      "acceptance": [
+        "отсутствующий канал и сбой renderer не скрываются",
+        "frame count, color config и hashes входят в manifest",
+        "внешняя модель/риг загружаются из asset package; probe не подставляется вместо персонажа",
+        "для длинных jobs есть ограничение RSS и безопасное разбиение/restart worker; 24-кадровый smoke не считается доказательством стабильности 960 кадров"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/pipeline/run_probe.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/pipeline/backends/blender_worker.py"
+        },
+        {
+          "kind": "file",
+          "path": "docs/38-BLENDER-MVP.md"
+        }
+      ]
+    },
+    {
+      "id": "PIPE-04",
+      "title": "Внешний 3D-preview: bounded workers и chunk-resume",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-02",
+        "DOC-02"
+      ],
+      "deliverables": [
+        "версионированный внешний .blend package с hash/collection/bindings",
+        "ограниченные worker-процессы и проверяемые chunk checkpoints",
+        "нативный 48-кадровый preview неутверждённого блокинга"
+      ],
+      "acceptance": [
+        "реально отрендерен внешний пакет без процедурного fallback",
+        "настоящий Blender прерывается по низкому RSS budget; missing collection/control — явная ошибка",
+        "pause/resume сохраняет первый complete chunk без повторного рендера; corrupt cache отклоняется",
+        "полный MP4 декодирован, frame count/PTS/timebase/resolution совпадают",
+        "нет художественного approval и заявлений о походке/lipsync/production-ready модели"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/pipeline/packages.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/pipeline/resources.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/pipeline/render_package.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tests/test_package_pipeline.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-package-integration.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/39-EXTERNAL-PACKAGES-AND-BOUNDED-WORKERS.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-preview-report.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/package-empty-log-regression.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/package-short-regression-report.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tools/build_dad_blockout.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-preview-manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "QA-01",
+      "title": "Реализовать отчёты измерений и gate harness",
+      "stage": "P0",
+      "gate": "G1",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "PIPE-01"
+      ],
+      "deliverables": [
+        "quality reports и тестовые fixtures",
+        "схема approval record"
+      ],
+      "acceptance": [
+        "вычисление slip и временных residuals проверено на искусственных ошибках",
+        "художественное одобрение не выводится из метрик"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/tools/check_body_extremes.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r3-animated-strain.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tests/test_refinement_pipeline.py"
+        },
+        {
+          "kind": "file",
+          "path": "docs/42-LOOKDEV-REVIEW-R4.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r4-visual-review.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/43-THUMB-WEB-REGRESSION.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-animated.json"
+        }
+      ]
+    },
+    {
+      "id": "ART-01",
+      "title": "Утвердить единый канон семьи",
+      "stage": "P1",
+      "gate": "G2",
+      "status": "planned",
+      "owner": "производство ассетов + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "DOC-01"
+      ],
+      "deliverables": [
+        "approved turnaround, пропорции и palette reference",
+        "approval record с revision"
+      ],
+      "acceptance": [
+        "внешность сопоставлена с пользовательскими референсами",
+        "пользователь принял конкретную версию"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ART-02",
+      "title": "Создать deformation-ready модель папы",
+      "stage": "P1",
+      "gate": "G2",
+      "status": "planned",
+      "owner": "производство ассетов + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "ART-01",
+        "ENV-02"
+      ],
+      "deliverables": [
+        "модель папы с материалами, глазами, ртом, зубами и языком",
+        "контрольные рендеры и asset manifest"
+      ],
+      "acceptance": [
+        "модель узнаваема в повороте и пригодна для рига",
+        "проверены topology, scale, скрытые поверхности и provenance"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "docs/42-LOOKDEV-REVIEW-R4.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r4-visual-review.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/reviews/dad-r4/manifest.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-visual-review.json"
+        }
+      ]
+    },
+    {
+      "id": "ART-03",
+      "title": "Собрать сцену и контактные поверхности",
+      "stage": "P1",
+      "gate": "G2",
+      "status": "planned",
+      "owner": "производство ассетов",
+      "requires_approval": false,
+      "depends_on": [
+        "ART-01",
+        "ENV-02"
+      ],
+      "deliverables": [
+        "гостиная, свет, пол и prop proxies",
+        "стандартные камеры тестов"
+      ],
+      "acceptance": [
+        "поверхности заданы в мировых единицах",
+        "свет и цвет воспроизводимы между планами"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "RIG-00",
+      "title": "Технический body-прототип r2: IK ног, пальцы и sole probes",
+      "stage": "P1",
+      "gate": "G3",
+      "status": "done",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-02",
+        "PIPE-04"
+      ],
+      "deliverables": [
+        "независимая r2 recipe, цельная одежда и 49-костный прототип",
+        "3 s technical fixture, evaluated sole/fingertip reports и негативные проверки"
+      ],
+      "acceptance": [
+        "свитер/брюки — по одной замкнутой indexed surface; веса нормализованы",
+        "IK ног и сгибание всех пяти пальцев проверены на evaluated geometry",
+        "восстановление batched render и native-key replay воспроизводят short fixture",
+        "это не закрывает ART-02/RIG-01/MOT-01 или полную приёмку G3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-pose-report.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-integration.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tests/test_rig_pipeline.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/tools/build_dad_rig.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-model-audit.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-native-replay.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-preview-report.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-rig-preview-manifest.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/40-BODY-RIG-AND-CONTACT-PROBES.md"
+        }
+      ]
+    },
+    {
+      "id": "RIG-01",
+      "title": "Тело: IK/FK, пальцы, стопа и correctives",
+      "stage": "P1",
+      "gate": "G3",
+      "status": "planned",
+      "owner": "риг/анимация + агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ART-02",
+        "PIPE-01"
+      ],
+      "deliverables": [
+        "body rig package и binding",
+        "extreme-pose suite"
+      ],
+      "acceptance": [
+        "нет сломанных плеч/коленей и отрыва одежды",
+        "контакты и длины костей проходят G3"
+      ],
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "studio/tools/build_dad_refined.py"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r3-model-audit.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r3-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r3-visual-review.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r4-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r4-animated.json"
+        },
+        {
+          "kind": "file",
+          "path": "docs/43-THUMB-WEB-REGRESSION.md"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-extremes.json"
+        },
+        {
+          "kind": "file",
+          "path": "studio/production/dad-r5-animated.json"
+        }
+      ]
+    },
+    {
+      "id": "RIG-02",
+      "title": "Лицевой риг и артикуляционные формы",
+      "stage": "P1",
+      "gate": "G4",
+      "status": "planned",
+      "owner": "риг/анимация + агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ART-02",
+        "PIPE-01"
+      ],
+      "deliverables": [
+        "face rig, viseme shapes и correctives",
+        "крупные планы тестовых сочетаний"
+      ],
+      "acceptance": [
+        "проверены смыкание глаз/губ и jaw/teeth",
+        "эмоция не ломает обязательные closures"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ENV-03",
+      "title": "Проверить русский forced aligner и права на модель",
+      "stage": "P2",
+      "gate": "G5",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "ENV-01"
+      ],
+      "deliverables": [
+        "aligner/model compatibility report",
+        "проверенный phoneme inventory и fallback"
+      ],
+      "acceptance": [
+        "установленная версия и веса реально доступны и лицензии записаны",
+        "иначе выбран и явно обозначен ручной phone-alignment workflow"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AUD-01",
+      "title": "Утвердить голос и записать тестовые реплики",
+      "stage": "P2",
+      "gate": "G5",
+      "status": "planned",
+      "owner": "озвучка + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "DOC-01"
+      ],
+      "deliverables": [
+        "три immutable dialogue take и точный transcript",
+        "speaker/take/checksum metadata"
+      ],
+      "acceptance": [
+        "достаточно closures и переходов для G5",
+        "голос папы выбран пользователем; старый narrator не переименован в папу"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "AUD-02",
+      "title": "Получить и проверить интервалы фонем",
+      "stage": "P2",
+      "gate": "G5",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "AUD-01",
+        "ENV-03",
+        "PIPE-01"
+      ],
+      "deliverables": [
+        "phone spans в audio samples",
+        "ручные landmarks и ошибки выравнивания"
+      ],
+      "acceptance": [
+        "разметка относится к checksum финального дубля",
+        "ASR words и буквенные тайминги не выданы за phone alignment"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "LIP-01",
+      "title": "Коартикуляция и привязка речи к лицу",
+      "stage": "P2",
+      "gate": "G5",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "AUD-02",
+        "RIG-02"
+      ],
+      "deliverables": [
+        "speech curves и rig binding",
+        "front/3-4 артикуляционные тесты"
+      ],
+      "acceptance": [
+        "выполнены временные допуски G5",
+        "closures сохраняются при улыбке; нет дрожи зубов"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "MOT-01",
+      "title": "Походка: старт, шаги, остановка и опоры",
+      "stage": "P2",
+      "gate": "G3",
+      "status": "planned",
+      "owner": "анимация + агент",
+      "requires_approval": false,
+      "depends_on": [
+        "RIG-01",
+        "ART-03",
+        "QA-01"
+      ],
+      "deliverables": [
+        "walk-start-stop clip и path/contact tracks",
+        "численный contact report"
+      ],
+      "acceptance": [
+        "виден перенос веса и обе ноги",
+        "slip измерен относительно поверхности, допуски G3 соблюдены"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ACT-01",
+      "title": "Жесты и контакт кисти с целью",
+      "stage": "P2",
+      "gate": "G3",
+      "status": "planned",
+      "owner": "анимация + агент",
+      "requires_approval": false,
+      "depends_on": [
+        "RIG-01",
+        "ART-03",
+        "QA-01"
+      ],
+      "deliverables": [
+        "point и touch gestures с фазами",
+        "contact targets и отчёт"
+      ],
+      "acceptance": [
+        "есть preparation, stroke, hold, recovery",
+        "движение руки непрерывно и контакт не проваливается в лицо"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "FACE-01",
+      "title": "Взгляд, эмоции и реакция по смысловым beats",
+      "stage": "P2",
+      "gate": "G4",
+      "status": "planned",
+      "owner": "анимация + агент",
+      "requires_approval": false,
+      "depends_on": [
+        "RIG-02"
+      ],
+      "deliverables": [
+        "face performance clips",
+        "просмотр neutral-to-reaction"
+      ],
+      "acceptance": [
+        "нет бессмысленной случайной дрожи",
+        "эмоция, моргание и взгляд образуют читаемую реакцию"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "SHOT-01",
+      "title": "Принять соло-срез с папой, 8 секунд",
+      "stage": "P3",
+      "gate": "G6",
+      "status": "planned",
+      "owner": "агент + анимация + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "PIPE-02",
+        "QA-01",
+        "LIP-01",
+        "MOT-01",
+        "ACT-01",
+        "FACE-01"
+      ],
+      "deliverables": [
+        "192 кадра: walk-stop-speak-gesture",
+        "QC и approval record"
+      ],
+      "acceptance": [
+        "пройден G6 на полном росте и крупном плане",
+        "пользователь принял кандидата; движения не скрыты монтажом"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ART-04",
+      "title": "Модель и собственный риг сына для реакции",
+      "stage": "P3",
+      "gate": "G7",
+      "status": "planned",
+      "owner": "производство ассетов + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "SHOT-01",
+        "ART-01"
+      ],
+      "deliverables": [
+        "son asset/face rig package",
+        "identity и reaction tests"
+      ],
+      "acceptance": [
+        "сохранены детские пропорции, не уменьшенная копия взрослого",
+        "пользователь принял внешность и реакцию"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "SHOT-02",
+      "title": "Принять двухгеройный срез, 12 секунд",
+      "stage": "P3",
+      "gate": "G7",
+      "status": "planned",
+      "owner": "агент + анимация + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "SHOT-01",
+        "ART-04"
+      ],
+      "deliverables": [
+        "288 кадров: папа действует, сын реагирует",
+        "eyeline/staging QC и approval"
+      ],
+      "acceptance": [
+        "пройден G7 с одним согласованным пространством",
+        "сын имеет реальную мимику, не статичную PNG-вставку"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "ART-05",
+      "title": "Довести маму и нужные действия всей семьи",
+      "stage": "P4",
+      "gate": "G8",
+      "status": "planned",
+      "owner": "производство ассетов + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "SHOT-02",
+        "ART-01"
+      ],
+      "deliverables": [
+        "mom asset/body/face rig package",
+        "набор действий для выбранного сценария"
+      ],
+      "acceptance": [
+        "все действующие герои прошли применимые G2–G5",
+        "масштабы, характер походки и внешность приняты"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "PIPE-03",
+      "title": "Инкрементальная сборка и безопасный resume",
+      "stage": "P4",
+      "gate": "G8",
+      "status": "planned",
+      "owner": "агент",
+      "requires_approval": false,
+      "depends_on": [
+        "PIPE-02"
+      ],
+      "deliverables": [
+        "content-hash job/cache layer",
+        "resume/invalidation/partial-failure tests"
+      ],
+      "acceptance": [
+        "меняются только зависимые результаты",
+        "недостающие кадры не заменяются старыми, worker count проверен по памяти"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "EP-01",
+      "title": "Произвести 40-секундную серию по этапам",
+      "stage": "P4",
+      "gate": "G8",
+      "status": "planned",
+      "owner": "производство + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "SHOT-02",
+        "ART-05",
+        "PIPE-03"
+      ],
+      "deliverables": [
+        "script/dialogue/blocking/polish/light approvals",
+        "960 кадров, mix, SRT и poster"
+      ],
+      "acceptance": [
+        "согласованы сценарий и этапы; нет batch на непринятом риге",
+        "пройден G8, включая художественные замечания"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "REL-01",
+      "title": "Воспроизводимый выпуск и финальная приёмка",
+      "stage": "P4",
+      "gate": "G8",
+      "status": "planned",
+      "owner": "агент + пользователь",
+      "requires_approval": true,
+      "depends_on": [
+        "EP-01",
+        "QA-01"
+      ],
+      "deliverables": [
+        "delivery manifest, QC и release candidate",
+        "measured loudness/frame count и approval record"
+      ],
+      "acceptance": [
+        "чистая пересборка проверена на заявленном worker",
+        "пользователь принял финал; publish-ready не выставлен автоматически"
+      ],
+      "evidence": []
+    }
+  ]
+}

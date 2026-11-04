@@ -1,0 +1,57 @@
+{
+  "source_repository": "https://github.com/NastyFFM/HumanGenWeb",
+  "source_commit": "a8ee33f96791ed15534246ac88cc8b20f9da8f6a",
+  "source_asset_license": "CC0-1.0",
+  "upstream_conversion_code_license": "MIT (not incorporated)",
+  "original_asset_pack": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+  "source_mesh_binary_sha256": "a3ed97a28e13534c6fba5eafd6f7e3a61f709c34f888d9dc2a3c7124abc4f935",
+  "readme_sha256": "15608bf7f898a1f92e66d2e91b3826732536127741a33a17b08c89a5df53f368",
+  "license_sha256": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c",
+  "method": "Reconstructed original hair only from CC0 fit data and original CC0 base coordinates. No head/body asset imported into Rain. Source .npz retains original render topology and UV.",
+  "assets": [
+    {
+      "name": "long01",
+      "vertices": 3314,
+      "quads": 2054,
+      "bounds_source_dm": [
+        [
+          -1.3415199428896383,
+          0.942255062862121,
+          -0.8797964244995935
+        ],
+        [
+          1.34169635549115,
+          8.53517029001261,
+          1.4525464412412892
+        ]
+      ],
+      "mesh_sha256": "07b9d80e54da5ea2980370f2acb08780b2b31958aa66c210bb44844b02b11978",
+      "texture_sha256": "5835a2695cbdd27fd2cb9f4d3fb009cb33fd76fdbdc9fcb18b91b66d571368bf",
+      "upstream_fit_json_sha256": "6ab4db48c79e9919e6fb620fca05d27c4d98706e0da7d574030bdae4a9b8dbae",
+      "upstream_asset_path": "data/proxies/hair/long01.json",
+      "source_normal_map": false
+    },
+    {
+      "name": "bob02",
+      "vertices": 1759,
+      "quads": 1124,
+      "bounds_source_dm": [
+        [
+          -0.9665060864982304,
+          6.126863700912404,
+          -0.5861557018106001
+        ],
+        [
+          0.9868073915458954,
+          8.577917364088094,
+          1.6701854337023014
+        ]
+      ],
+      "mesh_sha256": "a350204755e9c23d54e1c69f6ac2d30e776974e46ad2bc66cd8842a7cab45437",
+      "texture_sha256": "968e6c9a522ec3ab5888121ad732448f52098a273913d3ac47a0cce51e887d87",
+      "upstream_fit_json_sha256": "f4dce6963ef6d36dda1f83e5a3774bd7aa9791869b2ec16cca765b9b9763ec93",
+      "upstream_asset_path": "data/proxies/hair/bob02.json",
+      "source_normal_map": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "pose_restore_error_m": 0.0,
+  "rest_matches": true,
+  "new_invalid_drivers": [],
+  "restored_controls": [
+    "ACT-Lips_Corner.L",
+    "ACT-Lips_Corner.R"
+  ],
+  "method": "Restore only the two ACT locations changed by the calibrated smile. Do not rewrite 2166 driven/constraint bones."
+}

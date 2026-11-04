@@ -1,0 +1,45 @@
+{
+  "revision": "mom-head-form-r1",
+  "status": "partial_form_experiment_requires_rework",
+  "new_geometry_created": true,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r1/comparison-identity.png",
+      "sha256": "62190bbb78999904055cc9bfafef9cadf23dad51ab16b44e341e7d7f12ae35c7"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/comparison-clay.png",
+      "sha256": "197e8cf0d8b97b6a078746055e0a60440365c969aefdd26676f7c51c60a27f56"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-three-quarter.png",
+      "sha256": "9a69417acdd855ed8e0ef1dc7a91e3fb52243a5e588b8cb78ad8c64ee57261c6"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-profile.png",
+      "sha256": "f515b7909ea351a6cd8884730db2c03fc6159be5ae68ca31216b89c5c589e0df"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r1/candidate-blink.png",
+      "sha256": "a30b25868e421c2f0b8575df3b6f31e7562c6548371bfb82dc15a00d7b340cd6"
+    }
+  ],
+  "visible_changes": [
+    "A7 low-face shortening and cheek widening discarded; original head rebuilt using indexed 3D controls.",
+    "Lower brow frame, different cheek/jaw/chin volume and nose projection; original narrower mouth and lid changes visible in actual clay."
+  ],
+  "visible_failures": [
+    "Brow shape too hard/angular in expression, inner/arch balance and strip profile still source-like.",
+    "Lower face/chin overextended and too angular rather than a soft adult oval.",
+    "Lip upper/lower volume balance still poor. Inspection of original topology normals found first-pass nearest-point controls for central upper/lower lip were bound to inward-facing mouth vertices; corrected outer-surface binding required.",
+    "Closed-eye frame has broad blank lid bulges and lash discontinuities. Nine finite ACT samples do NOT constitute a blink pass.",
+    "Still visibly far from the canonical identity; no likeness milestone accepted. Source ears/skull partly hidden by hair in canon; do not pretend they were fitted from the portrait."
+  ],
+  "next_step": "Second neutral form study: correct brow centerline/taper, soften jaw/chin, bind lip controls to actual outward-facing surface and revise rounded nose. Rig/lid corrective migration remains open; no hair/lookdev polishing yet.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41692351109",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

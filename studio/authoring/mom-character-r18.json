@@ -1,0 +1,38 @@
+{
+  "revision": "mom-character-r18",
+  "source_run": 41843580496,
+  "source_binary_sha256": "eb89540f5994323ee3c086a6e773fcf22e893452260f92fb8d0ebf574069f4d1",
+  "render_scope": "final",
+  "selected_hair_asset": "bob02",
+  "hair_fit": {
+    "eye_z": 1.47326,
+    "crown_z": 1.65,
+    "tip_z": 1.28,
+    "half_width": 0.153,
+    "depth_scale": 1.3,
+    "fringe_lift_m": 0.095,
+    "part_shift_m": 0.04
+  },
+  "palette_srgb": {
+    "skin": "#E8AD82",
+    "upper_lip": "#B95749",
+    "lower_lip": "#E77B64",
+    "blush": "#EC806F",
+    "nose": "#C96057",
+    "iris": "#7F9AA3",
+    "brows": "#79523C",
+    "lashes": "#38241F",
+    "hair": "#9A7856"
+  },
+  "fairing": {
+    "cycles": 24,
+    "maximum_delta_m": 0.0035,
+    "ala_roundness_m": 0.0035
+  },
+  "smile_amount": 0.12,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "linear_albedo_energy_scale": 0.72,
+  "attempt": 2
+}

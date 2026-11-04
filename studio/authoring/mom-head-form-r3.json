@@ -1,0 +1,1288 @@
+{
+  "revision": "mom-head-form-r3",
+  "base": "official Rain v3 head, NOT stacked A1-A7 face edits",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "indexed_data_sha256": "a26af1afba1639a4e4b84becc3fe00a70345bf3f3f55c4019d0afd6231c8f5db",
+  "space": "World meters, Blender Z up, front -Y; sides L/R use Rain convention. Manual authored design control, not measured reference 3D.",
+  "support_radius_m": 0.105,
+  "method": "Compact C2 Wendland anatomical control cage, exact interpolation at actual original vertex IDs. One coherent deformation, all original head corrective blocks transported. Eyes fixed, no procedural replacement.",
+  "reference_policy": "Tracked canonical face portrait is the identity reference, turnaround adds silhouette/profile. No private inputs read or published. 2D uncertain ratios are not hard 3D fit targets.",
+  "controls": [
+    {
+      "name": "neck-mid-1.28--0.025",
+      "source_vertex": 3159,
+      "source_world_m": [
+        0.0,
+        -0.0540527,
+        1.2854343
+      ],
+      "target_world_m": [
+        0.0,
+        -0.0540527,
+        1.2854343
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "neck-side-1.28--0.025.L",
+      "source_vertex": 3108,
+      "source_world_m": [
+        0.0489121,
+        -0.0365536,
+        1.288312
+      ],
+      "target_world_m": [
+        0.0489121,
+        -0.0365536,
+        1.288312
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-side-1.28--0.025.R",
+      "source_vertex": 6303,
+      "source_world_m": [
+        -0.0489121,
+        -0.0365535,
+        1.2883119
+      ],
+      "target_world_m": [
+        -0.0489121,
+        -0.0365535,
+        1.2883119
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-mid-1.28-0.03",
+      "source_vertex": 3189,
+      "source_world_m": [
+        0.0,
+        0.0363467,
+        1.2924216
+      ],
+      "target_world_m": [
+        0.0,
+        0.0363467,
+        1.2924216
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "neck-side-1.28-0.03.L",
+      "source_vertex": 12,
+      "source_world_m": [
+        0.0337815,
+        0.0342402,
+        1.2960141
+      ],
+      "target_world_m": [
+        0.0337815,
+        0.0342402,
+        1.2960141
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-side-1.28-0.03.R",
+      "source_vertex": 3207,
+      "source_world_m": [
+        -0.0337815,
+        0.0342402,
+        1.296014
+      ],
+      "target_world_m": [
+        -0.0337815,
+        0.0342402,
+        1.296014
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-mid-1.32--0.025",
+      "source_vertex": 2997,
+      "source_world_m": [
+        0.001408,
+        -0.0313808,
+        1.3177025
+      ],
+      "target_world_m": [
+        0.001408,
+        -0.0313808,
+        1.3177025
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "neck-side-1.32--0.025.L",
+      "source_vertex": 3059,
+      "source_world_m": [
+        0.0429895,
+        -0.0233873,
+        1.3174411
+      ],
+      "target_world_m": [
+        0.0429895,
+        -0.0233873,
+        1.3174411
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-side-1.32--0.025.R",
+      "source_vertex": 6254,
+      "source_world_m": [
+        -0.0429895,
+        -0.0233873,
+        1.317441
+      ],
+      "target_world_m": [
+        -0.0429895,
+        -0.0233873,
+        1.317441
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-mid-1.32-0.03",
+      "source_vertex": 6380,
+      "source_world_m": [
+        0.0,
+        0.0260019,
+        1.3169302
+      ],
+      "target_world_m": [
+        0.0,
+        0.0260019,
+        1.3169302
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "neck-side-1.32-0.03.L",
+      "source_vertex": 3086,
+      "source_world_m": [
+        0.0391004,
+        0.0211878,
+        1.3126476
+      ],
+      "target_world_m": [
+        0.0391004,
+        0.0211878,
+        1.3126476
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "neck-side-1.32-0.03.R",
+      "source_vertex": 6281,
+      "source_world_m": [
+        -0.0391004,
+        0.0211878,
+        1.3126475
+      ],
+      "target_world_m": [
+        -0.0391004,
+        0.0211878,
+        1.3126475
+      ],
+      "purpose": "neck boundary"
+    },
+    {
+      "name": "occiput",
+      "source_vertex": 3192,
+      "source_world_m": [
+        0.0,
+        0.0899472,
+        1.5065254
+      ],
+      "target_world_m": [
+        0.0,
+        0.0899472,
+        1.5065254
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "fixed-0.07-0.05-1.54.L",
+      "source_vertex": 1152,
+      "source_world_m": [
+        0.076124,
+        0.0498854,
+        1.5411068
+      ],
+      "target_world_m": [
+        0.076124,
+        0.0498854,
+        1.5411068
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.07-0.05-1.54.R",
+      "source_vertex": 4347,
+      "source_world_m": [
+        -0.076124,
+        0.0498854,
+        1.5411067
+      ],
+      "target_world_m": [
+        -0.076124,
+        0.0498854,
+        1.5411067
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.09-0.02-1.58.L",
+      "source_vertex": 983,
+      "source_world_m": [
+        0.0795589,
+        0.0200776,
+        1.5736627
+      ],
+      "target_world_m": [
+        0.0795589,
+        0.0200776,
+        1.5736627
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.09-0.02-1.58.R",
+      "source_vertex": 4178,
+      "source_world_m": [
+        -0.0795589,
+        0.0200776,
+        1.5736625
+      ],
+      "target_world_m": [
+        -0.0795589,
+        0.0200776,
+        1.5736625
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.07--0.07-1.59.L",
+      "source_vertex": 884,
+      "source_world_m": [
+        0.0726102,
+        -0.0647652,
+        1.5936618
+      ],
+      "target_world_m": [
+        0.0726102,
+        -0.0647652,
+        1.5936618
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.07--0.07-1.59.R",
+      "source_vertex": 4079,
+      "source_world_m": [
+        -0.0726102,
+        -0.0647652,
+        1.5936617
+      ],
+      "target_world_m": [
+        -0.0726102,
+        -0.0647652,
+        1.5936617
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.085--0.11-1.55.L",
+      "source_vertex": 1978,
+      "source_world_m": [
+        0.085923,
+        -0.1055985,
+        1.5478553
+      ],
+      "target_world_m": [
+        0.085923,
+        -0.1055985,
+        1.5478553
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.085--0.11-1.55.R",
+      "source_vertex": 5173,
+      "source_world_m": [
+        -0.085923,
+        -0.1055985,
+        1.5478552
+      ],
+      "target_world_m": [
+        -0.085923,
+        -0.1055985,
+        1.5478552
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.1-0.02-1.46.L",
+      "source_vertex": 1564,
+      "source_world_m": [
+        0.1026417,
+        0.0029354,
+        1.4611216
+      ],
+      "target_world_m": [
+        0.1026417,
+        0.0029354,
+        1.4611216
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.1-0.02-1.46.R",
+      "source_vertex": 4759,
+      "source_world_m": [
+        -0.1026417,
+        0.0029354,
+        1.4611215
+      ],
+      "target_world_m": [
+        -0.1026417,
+        0.0029354,
+        1.4611215
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.13-0.0-1.47.L",
+      "source_vertex": 1468,
+      "source_world_m": [
+        0.1373762,
+        -0.0002013,
+        1.4686344
+      ],
+      "target_world_m": [
+        0.1373762,
+        -0.0002013,
+        1.4686344
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.13-0.0-1.47.R",
+      "source_vertex": 4663,
+      "source_world_m": [
+        -0.1373762,
+        -0.0002013,
+        1.4686343
+      ],
+      "target_world_m": [
+        -0.1373762,
+        -0.0002013,
+        1.4686343
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.125-0.01-1.43.L",
+      "source_vertex": 1048,
+      "source_world_m": [
+        0.1225398,
+        0.0060276,
+        1.4412724
+      ],
+      "target_world_m": [
+        0.1225398,
+        0.0060276,
+        1.4412724
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "fixed-0.125-0.01-1.43.R",
+      "source_vertex": 4243,
+      "source_world_m": [
+        -0.1225398,
+        0.0060276,
+        1.4412723
+      ],
+      "target_world_m": [
+        -0.1225398,
+        0.0060276,
+        1.4412723
+      ],
+      "purpose": "unobserved skull/ear boundary"
+    },
+    {
+      "name": "crown",
+      "source_vertex": 3183,
+      "source_world_m": [
+        0.0,
+        -0.0230474,
+        1.623896
+      ],
+      "target_world_m": [
+        0.0,
+        -0.0230474,
+        1.623896
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "forehead-high",
+      "source_vertex": 6351,
+      "source_world_m": [
+        0.0,
+        -0.1361224,
+        1.5725417
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1361224,
+        1.5725417
+      ],
+      "purpose": "boundary"
+    },
+    {
+      "name": "temple.L",
+      "source_vertex": 1883,
+      "source_world_m": [
+        0.1000958,
+        -0.0543069,
+        1.4852945
+      ],
+      "target_world_m": [
+        0.0960958,
+        -0.0543069,
+        1.4852945
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "temple.R",
+      "source_vertex": 5078,
+      "source_world_m": [
+        -0.1000958,
+        -0.0543069,
+        1.4852944
+      ],
+      "target_world_m": [
+        -0.0960958,
+        -0.0543069,
+        1.4852944
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "zygomatic-contour.L",
+      "source_vertex": 819,
+      "source_world_m": [
+        0.0979074,
+        -0.0486682,
+        1.4424583
+      ],
+      "target_world_m": [
+        0.0939074,
+        -0.0496682,
+        1.4424583
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "zygomatic-contour.R",
+      "source_vertex": 4014,
+      "source_world_m": [
+        -0.0979074,
+        -0.0486682,
+        1.4424582
+      ],
+      "target_world_m": [
+        -0.0939074,
+        -0.0496682,
+        1.4424582
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "cheek-contour.L",
+      "source_vertex": 616,
+      "source_world_m": [
+        0.093201,
+        -0.0607062,
+        1.4169823
+      ],
+      "target_world_m": [
+        0.087201,
+        -0.0617062,
+        1.4169823
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "cheek-contour.R",
+      "source_vertex": 3811,
+      "source_world_m": [
+        -0.093201,
+        -0.0607062,
+        1.4169822
+      ],
+      "target_world_m": [
+        -0.087201,
+        -0.0617062,
+        1.4169822
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "jaw-angle.L",
+      "source_vertex": 700,
+      "source_world_m": [
+        0.0751955,
+        -0.0479324,
+        1.3892861
+      ],
+      "target_world_m": [
+        0.0731955,
+        -0.0479324,
+        1.3892861
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "jaw-angle.R",
+      "source_vertex": 3895,
+      "source_world_m": [
+        -0.0751955,
+        -0.0479324,
+        1.389286
+      ],
+      "target_world_m": [
+        -0.0731955,
+        -0.0479324,
+        1.389286
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "jaw-chin-transition.L",
+      "source_vertex": 696,
+      "source_world_m": [
+        0.0499445,
+        -0.0854751,
+        1.3613493
+      ],
+      "target_world_m": [
+        0.0509445,
+        -0.0854751,
+        1.3613493
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "jaw-chin-transition.R",
+      "source_vertex": 3891,
+      "source_world_m": [
+        -0.0499445,
+        -0.0854751,
+        1.3613491
+      ],
+      "target_world_m": [
+        -0.0509445,
+        -0.0854751,
+        1.3613491
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "chin-tip",
+      "source_vertex": 3153,
+      "source_world_m": [
+        0.0,
+        -0.1115037,
+        1.3456532
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1115037,
+        1.3453532
+      ],
+      "purpose": "chin length / projection"
+    },
+    {
+      "name": "chin-corner.L",
+      "source_vertex": 629,
+      "source_world_m": [
+        0.0195349,
+        -0.1152107,
+        1.3473081
+      ],
+      "target_world_m": [
+        0.0220349,
+        -0.1152107,
+        1.3473081
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "chin-corner.R",
+      "source_vertex": 3824,
+      "source_world_m": [
+        -0.0195349,
+        -0.1152107,
+        1.347308
+      ],
+      "target_world_m": [
+        -0.0220349,
+        -0.1152107,
+        1.347308
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "malar-front.L",
+      "source_vertex": 439,
+      "source_world_m": [
+        0.0625932,
+        -0.1254595,
+        1.4397773
+      ],
+      "target_world_m": [
+        0.0615932,
+        -0.1279595,
+        1.4397773
+      ],
+      "purpose": "convex upper cheek volume"
+    },
+    {
+      "name": "malar-front.R",
+      "source_vertex": 3634,
+      "source_world_m": [
+        -0.0625932,
+        -0.1254595,
+        1.4397772
+      ],
+      "target_world_m": [
+        -0.0615932,
+        -0.1279595,
+        1.4397772
+      ],
+      "purpose": "convex upper cheek volume"
+    },
+    {
+      "name": "lower-cheek-front.L",
+      "source_vertex": 109,
+      "source_world_m": [
+        0.0623674,
+        -0.1254675,
+        1.4086429
+      ],
+      "target_world_m": [
+        0.0603674,
+        -0.1269675,
+        1.4076429
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "lower-cheek-front.R",
+      "source_vertex": 3304,
+      "source_world_m": [
+        -0.0623674,
+        -0.1254675,
+        1.4086428
+      ],
+      "target_world_m": [
+        -0.0603674,
+        -0.1269675,
+        1.4076428
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "bridge-high",
+      "source_vertex": 6389,
+      "source_world_m": [
+        0.0,
+        -0.1473485,
+        1.4657638
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1458485,
+        1.4657638
+      ],
+      "purpose": "nose bridge"
+    },
+    {
+      "name": "bridge-low",
+      "source_vertex": 6330,
+      "source_world_m": [
+        0.0,
+        -0.1627395,
+        1.4414262
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1577395,
+        1.4424262
+      ],
+      "purpose": "nose bridge / tip transition"
+    },
+    {
+      "name": "tip",
+      "source_vertex": 6341,
+      "source_world_m": [
+        0.0,
+        -0.1722781,
+        1.4282817
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1677781,
+        1.4302817
+      ],
+      "purpose": "rounded tip projection"
+    },
+    {
+      "name": "tip-shoulder.L",
+      "source_vertex": 492,
+      "source_world_m": [
+        0.0136219,
+        -0.1668705,
+        1.4281222
+      ],
+      "target_world_m": [
+        0.0121219,
+        -0.1628705,
+        1.4301222
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "tip-shoulder.R",
+      "source_vertex": 3687,
+      "source_world_m": [
+        -0.0136219,
+        -0.1668705,
+        1.4281221
+      ],
+      "target_world_m": [
+        -0.0121219,
+        -0.1628705,
+        1.4301221
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "ala.L",
+      "source_vertex": 486,
+      "source_world_m": [
+        0.0262446,
+        -0.1471639,
+        1.4200237
+      ],
+      "target_world_m": [
+        0.0212446,
+        -0.1461639,
+        1.4200237
+      ],
+      "purpose": "nasal base width"
+    },
+    {
+      "name": "ala.R",
+      "source_vertex": 3681,
+      "source_world_m": [
+        -0.0262446,
+        -0.1471639,
+        1.4200236
+      ],
+      "target_world_m": [
+        -0.0212446,
+        -0.1461639,
+        1.4200236
+      ],
+      "purpose": "nasal base width"
+    },
+    {
+      "name": "nostril-support.L",
+      "source_vertex": 2861,
+      "source_world_m": [
+        0.020173,
+        -0.1538588,
+        1.4182906
+      ],
+      "target_world_m": [
+        0.018173,
+        -0.1528588,
+        1.4182906
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "nostril-support.R",
+      "source_vertex": 6056,
+      "source_world_m": [
+        -0.020173,
+        -0.1538588,
+        1.4182905
+      ],
+      "target_world_m": [
+        -0.018173,
+        -0.1528588,
+        1.4182905
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "columella",
+      "source_vertex": 6375,
+      "source_world_m": [
+        0.0,
+        -0.1585615,
+        1.4136289
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1565615,
+        1.4136289
+      ],
+      "purpose": "nose underside support"
+    },
+    {
+      "name": "mouth-corner.L",
+      "source_vertex": 69,
+      "source_world_m": [
+        0.0295517,
+        -0.1388972,
+        1.3930506
+      ],
+      "target_world_m": [
+        0.0307517,
+        -0.1378972,
+        1.3950506
+      ],
+      "purpose": "closed relaxed corners"
+    },
+    {
+      "name": "mouth-corner.R",
+      "source_vertex": 3264,
+      "source_world_m": [
+        -0.0295517,
+        -0.1388972,
+        1.3930505
+      ],
+      "target_world_m": [
+        -0.0307517,
+        -0.1378972,
+        1.3950505
+      ],
+      "purpose": "closed relaxed corners"
+    },
+    {
+      "name": "cupid-peak.L",
+      "source_vertex": 55,
+      "source_world_m": [
+        0.0147251,
+        -0.1557042,
+        1.4009406
+      ],
+      "target_world_m": [
+        0.0152251,
+        -0.1547042,
+        1.4042406
+      ],
+      "purpose": "upper lip volume",
+      "binding_kind": "verified outward-facing lip surface"
+    },
+    {
+      "name": "cupid-peak.R",
+      "source_vertex": 3250,
+      "source_world_m": [
+        -0.0147251,
+        -0.1557042,
+        1.4009405
+      ],
+      "target_world_m": [
+        -0.0152251,
+        -0.1547042,
+        1.4042405
+      ],
+      "purpose": "upper lip volume",
+      "binding_kind": "verified outward-facing lip surface"
+    },
+    {
+      "name": "upper-lip-center",
+      "source_vertex": 3194,
+      "source_world_m": [
+        0.0,
+        -0.1612982,
+        1.4013409
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1592982,
+        1.4028409
+      ],
+      "purpose": "cupid center",
+      "binding_kind": "verified outward-facing lip surface"
+    },
+    {
+      "name": "mouth-seam",
+      "source_vertex": 3150,
+      "source_world_m": [
+        0.0,
+        -0.1569187,
+        1.3907166
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1559187,
+        1.3907166
+      ],
+      "purpose": "closed seam"
+    },
+    {
+      "name": "lower-lip-volume",
+      "source_vertex": 6343,
+      "source_world_m": [
+        0.0,
+        -0.1561167,
+        1.3814706
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1546167,
+        1.3824706
+      ],
+      "purpose": "lower lip convexity",
+      "binding_kind": "verified outward-facing lip surface"
+    },
+    {
+      "name": "mentolabial",
+      "source_vertex": 6374,
+      "source_world_m": [
+        0.0,
+        -0.1296882,
+        1.3682123
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1296882,
+        1.3682123
+      ],
+      "purpose": "lip/chin transition"
+    },
+    {
+      "name": "canthus-outer.L",
+      "source_vertex": 2109,
+      "source_world_m": [
+        0.0816358,
+        -0.1113798,
+        1.4696915
+      ],
+      "target_world_m": [
+        0.0796358,
+        -0.1113798,
+        1.4696915
+      ],
+      "purpose": "lateral canthus"
+    },
+    {
+      "name": "canthus-outer.R",
+      "source_vertex": 5304,
+      "source_world_m": [
+        -0.0816358,
+        -0.1113798,
+        1.4696914
+      ],
+      "target_world_m": [
+        -0.0796358,
+        -0.1113798,
+        1.4696914
+      ],
+      "purpose": "lateral canthus"
+    },
+    {
+      "name": "canthus-inner.L",
+      "source_vertex": 2710,
+      "source_world_m": [
+        0.025378,
+        -0.1236326,
+        1.4620544
+      ],
+      "target_world_m": [
+        0.025878,
+        -0.1236326,
+        1.4620544
+      ],
+      "purpose": "medial canthus"
+    },
+    {
+      "name": "canthus-inner.R",
+      "source_vertex": 5905,
+      "source_world_m": [
+        -0.025378,
+        -0.1236326,
+        1.4620543
+      ],
+      "target_world_m": [
+        -0.025878,
+        -0.1236326,
+        1.4620543
+      ],
+      "purpose": "medial canthus"
+    },
+    {
+      "name": "upper-lid-mid.L",
+      "source_vertex": 2126,
+      "source_world_m": [
+        0.0484931,
+        -0.1293242,
+        1.4874077
+      ],
+      "target_world_m": [
+        0.0484931,
+        -0.1293242,
+        1.4854077
+      ],
+      "purpose": "upper aperture"
+    },
+    {
+      "name": "upper-lid-mid.R",
+      "source_vertex": 5321,
+      "source_world_m": [
+        -0.0484931,
+        -0.1293242,
+        1.4874076
+      ],
+      "target_world_m": [
+        -0.0484931,
+        -0.1293242,
+        1.4854076
+      ],
+      "purpose": "upper aperture"
+    },
+    {
+      "name": "upper-lid-outer.L",
+      "source_vertex": 2322,
+      "source_world_m": [
+        0.0678562,
+        -0.1238092,
+        1.4836145
+      ],
+      "target_world_m": [
+        0.0668562,
+        -0.1238092,
+        1.4821145
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "upper-lid-outer.R",
+      "source_vertex": 5517,
+      "source_world_m": [
+        -0.0678562,
+        -0.1238092,
+        1.4836144
+      ],
+      "target_world_m": [
+        -0.0668562,
+        -0.1238092,
+        1.4821144
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "lower-lid-mid.L",
+      "source_vertex": 2125,
+      "source_world_m": [
+        0.0540547,
+        -0.125227,
+        1.4554177
+      ],
+      "target_world_m": [
+        0.0540547,
+        -0.125727,
+        1.4579177
+      ],
+      "purpose": "lower aperture / globe coverage"
+    },
+    {
+      "name": "lower-lid-mid.R",
+      "source_vertex": 5320,
+      "source_world_m": [
+        -0.0540547,
+        -0.125227,
+        1.4554175
+      ],
+      "target_world_m": [
+        -0.0540547,
+        -0.125727,
+        1.4579175
+      ],
+      "purpose": "lower aperture / globe coverage"
+    },
+    {
+      "name": "lower-lid-outer.L",
+      "source_vertex": 2295,
+      "source_world_m": [
+        0.0703054,
+        -0.1198567,
+        1.4590518
+      ],
+      "target_world_m": [
+        0.0693054,
+        -0.1203567,
+        1.4605518
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "lower-lid-outer.R",
+      "source_vertex": 5490,
+      "source_world_m": [
+        -0.0703054,
+        -0.1198567,
+        1.4590516
+      ],
+      "target_world_m": [
+        -0.0693054,
+        -0.1203567,
+        1.4605516
+      ],
+      "purpose": "primary form"
+    },
+    {
+      "name": "brow-inner.L",
+      "source_vertex": 573,
+      "source_world_m": [
+        0.0239821,
+        -0.1535558,
+        1.5082716
+      ],
+      "target_world_m": [
+        0.0239821,
+        -0.1535558,
+        1.5032716
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "brow-inner.R",
+      "source_vertex": 3768,
+      "source_world_m": [
+        -0.0239821,
+        -0.1535557,
+        1.5082715
+      ],
+      "target_world_m": [
+        -0.0239821,
+        -0.1535557,
+        1.5032715
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "brow-arch.L",
+      "source_vertex": 580,
+      "source_world_m": [
+        0.0426306,
+        -0.1493396,
+        1.5205823
+      ],
+      "target_world_m": [
+        0.0426306,
+        -0.1493396,
+        1.5090823
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "brow-arch.R",
+      "source_vertex": 3775,
+      "source_world_m": [
+        -0.0426306,
+        -0.1493396,
+        1.5205822
+      ],
+      "target_world_m": [
+        -0.0426306,
+        -0.1493396,
+        1.5090822
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "brow-outer.L",
+      "source_vertex": 587,
+      "source_world_m": [
+        0.0776325,
+        -0.1331774,
+        1.5130523
+      ],
+      "target_world_m": [
+        0.0766325,
+        -0.1331774,
+        1.5070523
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "brow-outer.R",
+      "source_vertex": 3782,
+      "source_world_m": [
+        -0.0776325,
+        -0.1331774,
+        1.5130521
+      ],
+      "target_world_m": [
+        -0.0766325,
+        -0.1331774,
+        1.5070521
+      ],
+      "purpose": "brow frame"
+    },
+    {
+      "name": "upper-lip-border",
+      "source_vertex": 3156,
+      "source_world_m": [
+        0.0,
+        -0.1561507,
+        1.4075226
+      ],
+      "target_world_m": [
+        0.0,
+        -0.1556507,
+        1.4083226
+      ],
+      "purpose": "external upper lip / philtrum transition",
+      "binding_kind": "verified outward-facing lip surface"
+    }
+  ],
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "rig_policy": "Original rig retained. Source rest unchanged for initial neutral form test, NOT a design constraint or animation approval. Facial attachment/rest/control migration pending after form review.",
+  "revises": "User praised R2 and asked to continue. Preserve R2 face/brows/eyes/jaw/nose; only soften excessive Cupid/philtrum relief.",
+  "brow_curve": {
+    "abscissae_m": [
+      0.019,
+      0.034,
+      0.051,
+      0.068,
+      0.08
+    ],
+    "heights_m": [
+      1.502,
+      1.5075,
+      1.509,
+      1.5055,
+      1.498
+    ],
+    "source_tail_x_m": 0.09,
+    "target_tail_x_m": 0.08,
+    "transverse_scale": 0.48,
+    "method": "Shape-preserving C1 cubic centerline, narrower tail, tapered original mesh strip. Geometry, not shading."
+  },
+  "known_animation_blocker": "Blink/lash surface fails visual review; original ACT diagnostics and migrated corrective coordinates are not final facial-rig acceptance."
+}

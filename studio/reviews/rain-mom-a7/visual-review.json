@@ -1,0 +1,47 @@
+{
+  "revision": "rain-mom-a7",
+  "review_date": "2026-11-03",
+  "approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "reference_policy": "User private photos/screen references assessed locally only. No private images, crops, attachment filenames or photo hashes in Git/CI/packed blend. Public review compares existing canonical art and native frames.",
+  "inspected_images": [
+    {
+      "path": "studio/reviews/rain-mom-a7/comparison-reference.png",
+      "sha256": "0c8fabdd54eb765b65f9ed171106dd28402def597b4f3af4c858f4d5339ffac0"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a7/candidate-three-quarter.png",
+      "sha256": "bf8cb0f4fcf0229d21d1008eca47376f6e0aaca7a9f4ff89700161bff30f3b01"
+    },
+    {
+      "path": "studio/reviews/rain-mom-a7/candidate-profile.png",
+      "sha256": "618eccc52ab1a14a93759101fecb6b716a4d9e3f206918644f16bf7ce905c16f"
+    }
+  ],
+  "visible_progress": [
+    "Crown no longer has A5 ridged/nubbed source-crown overlap; coherent parted surface used.",
+    "Darker, less golden/blond palette and lower fiber bump; slimmer asymmetric bangs plus small wisps.",
+    "A6 large temple gap reduced by lower side-cap coverage and buried/thinner upper curtain roots in A7.",
+    "Minor face edits: relaxed upper-lid aperture, slightly fuller midface/lips/nasal base without changing stylized direction."
+  ],
+  "visible_limitations": [
+    "Side cap-to-clump joins remain visible as cuts/steps, especially in profile; do not claim a seamless professional groom.",
+    "Large plank-like locks and overly regular longitudinal texture remain; curl/strand layering insufficiently natural compared with style references.",
+    "Crown still helmet-like and some tiny dark seams remain at front/temple; part and root integration require further authored work.",
+    "Face resemblance remains partial; soft facial planes, eye presentation, lip/cheek identity and skin variation still need work. Not an exact photo fit or a photoreal conversion.",
+    "No full head/body acting, speech, shoulder collision or hair dynamics acceptance. One pre-existing spine driver remains invalid; finite blink samples are not artistic/anatomical certification."
+  ],
+  "technical_observations": {
+    "original_mesh_topology_unchanged": true,
+    "rig_rest_unchanged": true,
+    "new_invalid_drivers": [],
+    "neutral_head_restore_error_m": 0.0,
+    "finite_blink_samples": 9
+  },
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41642309803",
+  "native_artifact": "https://github.com/PandaGarry/docuflow/actions/runs/41642309803/artifacts/13233013751",
+  "artifact_expires_at": "2026-11-17T13:15:55Z",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/"
+}

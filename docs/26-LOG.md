@@ -389,3 +389,102 @@
   (холст куска расширяется до радиуса вокруг шарнира) и капсула плеча
   утаскивала кусок груди (вычитание середины торса). Подъём руки ещё даёт
   артефакт на стыке плеча — риг в роликах пока не используется.
+
+
+## 2026-11-02 · Новый план production-перехода
+
+- Проведён аудит текущего кода: limited animation, экспериментальные 3D/2D-риги,
+  текстовый липсинк и facefx не приравниваются к готовому production-ригу семьи.
+- Актуальные документы: `33-PRODUCTION-PLAN.md`, `34-ENGINE-ARCHITECTURE.md`,
+  `35-QUALITY-GATES.md`, `36-PRODUCTION-TRACKER.md`, `37-DECISION-LOG.md`.
+- Выбран путь проверки DCC/Blender + Python orchestration вместо очередного
+  самодельного физического renderer. Runtime-проба ещё не выполнена.
+- Добавлен JSON-план с зависимостями, evidence и отдельной художественной
+  приёмкой. Плановые задачи не отмечаются как готовые модули.
+- Снимок среды и результаты новых служебных тестов: `studio/production/`.
+  Эти тесты не означают нового проходящего 3D-ролика.
+- Следующий шаг: ENV-02, проверка реального backend; затем контрольный срез
+  папы 8 с и двухгеройная сцена 12 с, а не немедленный новый сезон.
+
+## 2026-11-02 · Начата реализация Blender pipeline
+
+- После планового этапа реально заработал `studio/pipeline/`: schemas,
+  semantic tracks, binding и отдельный официальный bpy worker.
+- Cycles CPU отрендерил 24 кадра 1920×1080, 24 fps; H.264/AAC MP4 полностью
+  декодирован; 14 smoke checks и 98 unit tests (70 MVP + 28 tracker) прошли.
+- Это диагностический robot/IK/shape-key тест, не новая модель семьи и не
+  полноценная артикуляция. Время 875.2 s, peak renderer RSS ~2.54 GiB на 2 CPU:
+  ресурсов/стабильности длинной серии это не подтверждает.
+- Native mirror fallback явно экспериментальный; полный G1 остаётся открытым.
+  Документация, команды, реальные результаты и ограничения: `38-BLENDER-MVP.md`,
+  `37-DECISION-LOG.md`, `studio/production/`. Текущие статусы — checklist 36.
+
+## 2026-11-03 · Внешний 3D-пакет и bounded worker
+
+- Создан неутверждённый объёмный блокинг папы и отдельный `.blend` package.
+- Renderer импортирует его, а не подставляет технического робота: 48 настоящих
+  кадров 960×540, 24 fps, 2 s, 12 worker-процессов по 4 кадра.
+- Реально проверены pause/resume, низкий RSS budget, missing collection/control,
+  полное декодирование, Blender keyframes после повторного открытия сцены.
+- Peak worker RSS ~795 MiB при budget 1536 MiB; это sampled guard, не hard
+  sandbox или доказательство исправления native leak.
+- 149 unit/process tests пройдены; ART/RIG/полноценная артикуляция не приняты.
+  Фактические отчёты и ограничения — `39-EXTERNAL-PACKAGES-AND-BOUNDED-WORKERS.md`.
+
+
+## 2026-11-03 — Body-прототип r2: ноги, пальцы, опорные точки
+
+- Реализованы отдельная recipe r2 и pure indexed garments: цельные свитер и
+  брюки, 49-костный body prototype, two-bone leg IK и articulated fingers.
+- Добавлены strict optional geometry probes, hand-local finger checks,
+  per-sole-point stance slip/height/penetration и bone-length gate.
+- Реальная ошибка root-parenting поймана sole probes и исправлена; реальный
+  negative с frozen fingers правильно отвергнут. Native replay всех 72 кадров
+  без apply совпал с direct probe и render-worker measurements.
+- Выпущен настоящий silent MP4: 3 s, 72 кадра 640×360/24 fps, 91 486 bytes,
+  18 bounded workers, pause/resume/cache verified; peak RSS ~627.4 MiB.
+- 35 новых тестов; вместе 184 unit/process tests (legacy pilot не включён).
+  Docs40/README/архитектура/ADR010/tracker/evidence обновлены. RIG-00 done
+  только как прототип; production ART/RIG/MOT, full face/lipsync и сцены
+  8/12/40 s остаются открыты. Картинки канона не менялись. Remote CI не запускался.
+
+
+## 2026-11-03 — R3: деформации проверены, art review не принят
+
+- Связные all-quad кисти, исправленная зеркальная анатомия, калибровка elbow
+  rest planes, Hermite sleeves/armpit clearance и две elbow helper bones.
+- Реальные провалы strain сохранены. После исправлений прошли 17 poses и
+  все 72 motion frames; допуски не ослаблялись. Native replay/rendered data
+  совпадают; frozen-finger negative правильно отказал.
+- Новый silent MP4 3 s/640×360/72 frames, 18 workers, full decode/cache OK.
+  Сделаны native before/after и hand close-up; плоская ладонь, wrist/cuff,
+  голова и волосы отмечены как незавершённые, `approved=false`.
+- 19 новых pure tests, вместе 203. Docs41, навигация, journal, tracker evidence
+  и verification обновлены. Production ART/RIG/G3 не закрыты. R1/R2 recipes
+  и канонические картинки сохранены. Remote CI не запускался.
+
+## 2026-11-03 — R4: native кадры, отрицательная самопроверка
+
+- Новый отдельный рецепт головы/глаз/ушей/волос/бороды и формы кисти/wrist;
+  R1–R3 и канон сохранены, неподдерживаемые старые jaw/blink controls удалены.
+- 5 настоящих Cycles PNG 1024×1024/48 samples, review-board и постоянный
+  архив `studio/reviews/dad-r4`, hashes/camera/runtime/process receipts.
+- 222 unit tests passed. Native R4: 15/17 static, 56/72 animated, **FAILED**
+  по local area stretch >6; допуски не изменялись, coordinator exit 1.
+- Visual approval=false: форма ладони/суставов, helmet hair, веки, материалы,
+  сходство и facial readiness пока не отвечают киноуровню. Зелёный R3 не
+  перенесён на R4. Docs42/ADR012/evidence обновлены без закрытия production gates.
+
+## 2026-11-03 — Частые push и техническое исправление R5
+
+- Опубликованы накопленные изменения и кадры в PR #3 без force-push; сохранены
+  ранние коммиты пилота. Отдельно опубликована локализация дефекта/failed trial.
+- Ошибка локализована у thumb/palm transition. Геометрически взвешенное
+  сглаживание исходных weights исправило регрессию: 17/17 + 72/72 native pass,
+  прежние limits и те же motion tracks. 235 unit/process tests passed.
+- Новые 1024px hand PNG сохранены в studio/reviews/dad-r5 и просмотрены.
+  Художественная/анатомическая приёмка по-прежнему отрицательная; production
+  default не менялся. Новый результат не переписывает R4 failure history.
+- Правило небольших частых commit/push закреплено в AGENTS.md. Docs43,
+  tracker evidence и latest verification обновлены. Следующий приоритет —
+  сама форма ладони/webbing/суставов и затем лицо/groom, не длительность.

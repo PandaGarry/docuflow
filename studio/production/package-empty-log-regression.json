@@ -1,0 +1,13 @@
+{
+  "recorded_date": "2026-11-03",
+  "scope": "post-fix 4-frame live regression, not user preview or 1080p delivery",
+  "pause_exit_code": 75,
+  "resume_exit_code": 0,
+  "job_id": "44d10281b81870110f47245477f43ae816dcb3b9e4b852188592da14cef4bc1e",
+  "empty_diagnostic_artifact_hashed": {
+    "path": "failure-history/empty-diagnostic.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "note": "The long preview completed before allowing zero-byte diagnostic logs in the v2 manifest. This current-source two-chunk run validates the follow-up fix without silently claiming a second 48-frame render."
+}

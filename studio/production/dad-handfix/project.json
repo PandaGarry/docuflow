@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "kind": "project",
+  "project_id": "dad-r5-inherited-stress",
+  "purpose": "rig_preview",
+  "fps": {
+    "num": 24,
+    "den": 1
+  },
+  "resolution": [
+    640,
+    360
+  ],
+  "render": {
+    "samples": 6,
+    "threads": 2,
+    "denoise": true,
+    "seed": 67
+  },
+  "resources": {
+    "chunk_frames": 4,
+    "rss_limit_mb": 2048,
+    "timeout_seconds": 300
+  }
+}

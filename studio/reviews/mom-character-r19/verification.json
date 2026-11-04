@@ -1,0 +1,111 @@
+{
+  "status": "actual_saved_binary_reopened_in_separate_process",
+  "native_sha256": "c0b83d504951d646e91b035c723c76966d00d69548807fd8d5f0feac7592d43b",
+  "report_sha256": "171aa3638863673abae839bab7830c34958df6f48a57c349cc89b12265a6641f",
+  "rgb_mae_255": 0.0,
+  "packed_images": [
+    {
+      "name": "bob02.webp",
+      "packed": true
+    },
+    {
+      "name": "long01.webp",
+      "packed": true
+    },
+    {
+      "name": "Mom R18 original UV albedo",
+      "packed": true
+    },
+    {
+      "name": "Mom R18 original UV PBR",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_body_diffuse.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_body_roughness.1001.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.000",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_eyes.png.002",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hair_direction_bw.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_hands_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_diffuse.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_normal.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_jeans_roughness.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_scarf_cavity.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_bump.png",
+      "packed": true
+    },
+    {
+      "name": "TEX-rain_socks_roughness.png",
+      "packed": true
+    }
+  ],
+  "render": {
+    "path": "studio/reviews/mom-character-r19/reopened-neutral-front.png",
+    "sha256": "2314901d2453ff98e5c426e152b2e4ea6095cd8faa9bac883cc5dcf264496fa2",
+    "camera": {
+      "position": [
+        0,
+        -4,
+        1.5
+      ],
+      "target": [
+        0,
+        0,
+        1.455
+      ],
+      "ortho_scale": 0.48
+    },
+    "dimensions": [
+      512,
+      640
+    ],
+    "samples": 32,
+    "engine": "CYCLES"
+  },
+  "independent_redownload": false,
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false
+}

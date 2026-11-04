@@ -1,0 +1,38 @@
+{
+  "revision": "mom-head-form-r11",
+  "status": "visible_local_upper_lip_and_mentolabial_progress_not_final_likeness",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-form-r11/comparison-portrait.png",
+      "sha256": "4bedd0dc496234fb39f68176a4ab6cd725564f43d56b14865bb28b2e420255e1"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/comparison-form.png",
+      "sha256": "e51a4022d16c023c35ae053d98ee6e64221096df86172e9a9343325b61786c9c"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/comparison-oral-clay-detail.png",
+      "sha256": "cd7b97b6ce9151bcd4b7c243ebdb35380ecbadd27446807c79451c9108a7abbd"
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r11/portrait-three-views.png",
+      "sha256": "e1d59ebebfdaac40ffe8e86474f8d106714e646eb3549431be4a381933349527"
+    }
+  ],
+  "visual_findings": [
+    "Held-light portrait shows less heavy upper vermilion and less abrupt/dark under-lip transition compared with R10. This is a visible local shape improvement, not a complete likeness result.",
+    "Matched neutral clay front/profile detail confirms reduced upper bulge and smoother lip-to-chin contour. Lower-lip height preserved rather than another general lip shrink.",
+    "Actual albedo and packed RGB PBR EXR file SHA256 values are EXACTLY equal to R10. Palette/UV/roughness/coat/held lights/smile amount unchanged: these differences are not a new paint or lighting pass.",
+    "Canonical gentle closed-smile seam/corners and lower-lip highlight remain different. Eyes/lids/brows and canonical hair/frame still need further work; supported design direction not reset.",
+    "All three portrait angles inspected. No final anatomy/corrective/acting or cinema-quality approval. Known blink/lash failure and facial rest/control migration remain open."
+  ],
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41787400559",
+  "artifact_id": 13302246689,
+  "persistence_scope": "Actual R11 binary saved at neutral diagnostic stage and reopened separately on same worker; NOT independently redownloaded R11 artifact. Independent R10 result remains historical only.",
+  "next": "Refine closed-smile seam/corner character and eye/lid expression integration without resetting supported nose/cheek/ear form. Validate blink/lash/rest migration before acting approval; do not hide geometry defects with new paint or light.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

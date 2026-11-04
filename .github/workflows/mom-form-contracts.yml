@@ -1,0 +1,78 @@
+name: Mom audit evidence contracts (not art approval)
+on:
+  push:
+    paths:
+      - 'studio/tools/mom_*review*.py'
+      - 'studio/tools/mom_native_form_audit.py'
+      - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_face_*.py'
+      - 'studio/tools/mom_head_surface_r2.py'
+      - 'studio/authoring/mom-head-form-*.json'
+      - 'studio/tools/rain*.py'
+      - 'studio/tests/test_mom_*.py'
+      - 'studio/reviews/mom-form-audit/**'
+      - 'studio/reviews/mom-head-form-r*/**'
+      - 'studio/reviews/mom-character-r*/**'
+      - 'studio/authoring/mom-character-r*.json'
+      - '.github/workflows/mom-form-contracts.yml'
+  pull_request:
+    paths:
+      - 'studio/tools/mom_*review*.py'
+      - 'studio/tools/mom_native_form_audit.py'
+      - 'studio/tools/mom_head_cage.py'
+      - 'studio/tools/mom_face_*.py'
+      - 'studio/tools/mom_head_surface_r2.py'
+      - 'studio/authoring/mom-head-form-*.json'
+      - 'studio/tools/rain*.py'
+      - 'studio/tests/test_mom_*.py'
+      - 'studio/reviews/mom-form-audit/**'
+      - 'studio/reviews/mom-head-form-r*/**'
+      - 'studio/reviews/mom-character-r*/**'
+      - 'studio/authoring/mom-character-r*.json'
+      - '.github/workflows/mom-form-contracts.yml'
+permissions:
+  contents: read
+jobs:
+  evidence:
+    name: Alignment, public inputs, indexed geometry and frame integrity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Stdlib audit contracts only; no renderer, no private images
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_mom_form_audit.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_native_audit_receipts.py' -v
+      - name: Install lightweight numerical and image readers
+        run: python -m pip install numpy==1.26.4 pillow==11.3.0
+      - name: Test indexed deformation controls (not anatomy approval)
+        run: |
+          python -m unittest discover -s studio/tests -p 'test_mom_head_cage.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_surface_r2.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_controls.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r4.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r4_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r5.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r6.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_finish_r7.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_paint_r8.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_paint_r9.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_face_paint_r10.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r10_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r11.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r11_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_lookdev_r10_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r8_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r9_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_color_native_results.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r12*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_head_r13*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r14.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r15*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r16*.py' -v
+          python -m unittest discover -s studio/tests -p 'test_mom_character_r17*.py' -v

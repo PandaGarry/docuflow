@@ -1,0 +1,100 @@
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:02:06.09 | Remaining:00:38.18 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 49/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:02:26.22 | Remaining:00:17.79 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 57/64
+Fra:1 Mem:1070.21M (Peak 1135.21M) | Time:02:55.82 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 64/64
+Fra:1 Mem:1070.21M (Peak 1135.21M) | Time:02:55.82 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Finished
+Saved: '/home/runner/work/docuflow/docuflow/studio/reviews/mom-character-r14/portrait-three-quarter.png'
+Time: 02:55.97 (Saving: 00:00.12)
+
+Fra:1 Mem:531.91M (Peak 537.64M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyes
+Fra:1 Mem:533.83M (Peak 537.64M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eye_cornea
+Fra:1 Mem:534.58M (Peak 537.64M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eye_dots
+Fra:1 Mem:541.82M (Peak 541.82M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-gums_upper
+Fra:1 Mem:557.16M (Peak 557.16M) | Time:00:00.34 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-gums_lower
+Fra:1 Mem:565.85M (Peak 566.90M) | Time:00:00.34 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-tongue
+Fra:1 Mem:568.34M (Peak 568.34M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyebrows
+Fra:1 Mem:569.59M (Peak 569.59M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-eyelashes
+Fra:1 Mem:597.15M (Peak 597.15M) | Time:00:00.45 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-head
+Fra:1 Mem:638.68M (Peak 638.68M) | Time:00:00.57 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-body
+Fra:1 Mem:670.12M (Peak 670.12M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-rain-top
+Fra:1 Mem:671.32M (Peak 671.32M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-vest-seam--1-1.056
+Fra:1 Mem:671.35M (Peak 671.35M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-vest-seam--1-1.151
+Fra:1 Mem:671.37M (Peak 671.37M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-vest-seam-1-1.056
+Fra:1 Mem:671.39M (Peak 671.39M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-vest-seam-1-1.151
+Fra:1 Mem:671.41M (Peak 671.41M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-folded-collar-1
+Fra:1 Mem:676.60M (Peak 676.60M) | Time:00:00.63 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-folded-collar--1
+Fra:1 Mem:678.50M (Peak 678.50M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-open-brown-vest
+Fra:1 Mem:684.26M (Peak 684.26M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GROOM-mom-R14-brow-fibers
+Fra:1 Mem:684.29M (Peak 684.29M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | PortraitKey
+Fra:1 Mem:684.29M (Peak 684.29M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | PortraitFill
+Fra:1 Mem:684.29M (Peak 684.29M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | PortraitRim
+Fra:1 Mem:684.29M (Peak 684.29M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GROOM-mom-R14-parted-waves
+Fra:1 Mem:688.90M (Peak 688.90M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-shirt-sleeve--1
+Fra:1 Mem:689.72M (Peak 689.72M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Synchronizing object | GEO-mom-R14-shirt-sleeve-1
+Fra:1 Mem:690.53M (Peak 690.53M) | Time:00:00.64 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Initializing
+Fra:1 Mem:569.54M (Peak 690.53M) | Time:00:00.66 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading TEX-rain_scarf_cavity.png
+Fra:1 Mem:569.54M (Peak 690.53M) | Time:00:00.66 | Mem:0.00M, Peak:0.00M | Scene, View Layer | Updating Images | Loading TEX-rain_eyes.png.000
+Fra:1 Mem:649.56M (Peak 690.53M) | Time:00:00.71 | Mem:16.00M, Peak:16.00M | Scene, View Layer | Updating Images | Loading Mom R11 original UV albedo
+Fra:1 Mem:713.56M (Peak 713.56M) | Time:00:00.75 | Mem:80.00M, Peak:80.00M | Scene, View Layer | Updating Images | Loading Mom R11 original UV roughness
+Fra:1 Mem:841.57M (Peak 841.57M) | Time:00:00.79 | Mem:144.00M, Peak:144.00M | Scene, View Layer | Updating Images | Loading TEX-rain_body_diffuse.1001.png
+Fra:1 Mem:809.57M (Peak 873.58M) | Time:00:00.83 | Mem:208.00M, Peak:208.00M | Scene, View Layer | Updating Images | Loading TEX-rain_body_roughness.1001.png
+Fra:1 Mem:857.56M (Peak 873.58M) | Time:00:00.84 | Mem:224.00M, Peak:224.00M | Scene, View Layer | Updating Images | Loading TEX-rain_body_diffuse.1001.png
+Fra:1 Mem:989.57M (Peak 1053.58M) | Time:00:01.04 | Mem:292.00M, Peak:292.00M | Scene, View Layer | Updating Images | Loading TEX-rain_body_roughness.1001.png
+Fra:1 Mem:902.35M (Peak 1053.58M) | Time:00:01.11 | Mem:376.00M, Peak:376.00M | Scene, View Layer | Waiting for render to start
+Fra:1 Mem:902.35M (Peak 1053.58M) | Time:00:01.11 | Mem:376.00M, Peak:376.00M | Scene, View Layer | Updating Scene
+Fra:1 Mem:902.35M (Peak 1053.58M) | Time:00:01.11 | Mem:376.00M, Peak:376.00M | Scene, View Layer | Updating Shaders
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.00M, Peak:376.00M | Scene, View Layer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Procedurals
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Background
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Camera
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Meshes Flags
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Objects
+Fra:1 Mem:902.50M (Peak 1053.58M) | Time:00:01.11 | Mem:376.07M, Peak:376.07M | Scene, View Layer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:902.51M (Peak 1053.58M) | Time:00:01.11 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Particle Systems
+Fra:1 Mem:902.51M (Peak 1053.58M) | Time:00:01.11 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:902.51M (Peak 1053.58M) | Time:00:01.11 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Meshes
+Fra:1 Mem:902.51M (Peak 1053.58M) | Time:00:01.11 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:902.51M (Peak 1053.58M) | Time:00:01.11 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Mesh | Computing attributes
+Fra:1 Mem:921.51M (Peak 1053.58M) | Time:00:01.12 | Mem:376.08M, Peak:376.08M | Scene, View Layer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.12 | Mem:395.07M, Peak:395.07M | Scene, View Layer | Updating Geometry BVH Mesh 2/2 | Building BVH
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.12 | Mem:401.24M, Peak:401.24M | Scene, View Layer | Updating Geometry BVH Mesh 2/2 | Building BVH 0%
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.13 | Mem:401.89M, Peak:401.89M | Scene, View Layer | Updating Geometry BVH Mesh 3/2 | Building BVH
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.18 | Mem:420.20M, Peak:429.17M | Scene, View Layer | Updating Scene BVH | Building
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.18 | Mem:420.20M, Peak:429.17M | Scene, View Layer | Updating Scene BVH | Building BVH
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.35 | Mem:478.52M, Peak:490.96M | Scene, View Layer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:921.50M (Peak 1053.58M) | Time:00:01.35 | Mem:478.52M, Peak:490.96M | Scene, View Layer | Updating Mesh | Computing normals
+Fra:1 Mem:943.93M (Peak 1053.58M) | Time:00:01.36 | Mem:478.52M, Peak:490.96M | Scene, View Layer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:943.93M (Peak 1053.58M) | Time:00:01.36 | Mem:500.95M, Peak:500.95M | Scene, View Layer | Updating Mesh | Copying Curves to device
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.19M, Peak:506.19M | Scene, View Layer | Updating Objects Flags
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.19M, Peak:506.19M | Scene, View Layer | Updating Primitive Offsets
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.19M, Peak:506.19M | Scene, View Layer | Updating Images
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.19M, Peak:506.19M | Scene, View Layer | Updating Camera Volume
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.19M, Peak:506.19M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.27M, Peak:506.27M | Scene, View Layer | Updating Lights
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.27M, Peak:506.27M | Scene, View Layer | Updating Lights | Computing distribution
+Fra:1 Mem:949.17M (Peak 1053.58M) | Time:00:01.36 | Mem:506.28M, Peak:506.28M | Scene, View Layer | Updating Integrator
+Fra:1 Mem:950.17M (Peak 1053.58M) | Time:00:01.36 | Mem:507.28M, Peak:507.28M | Scene, View Layer | Updating Film
+Fra:1 Mem:950.18M (Peak 1053.58M) | Time:00:01.36 | Mem:507.19M, Peak:507.28M | Scene, View Layer | Updating Lookup Tables
+Fra:1 Mem:950.18M (Peak 1053.58M) | Time:00:01.36 | Mem:507.28M, Peak:507.28M | Scene, View Layer | Updating Baking
+Fra:1 Mem:950.18M (Peak 1053.58M) | Time:00:01.36 | Mem:507.28M, Peak:507.28M | Scene, View Layer | Updating Device | Writing constant memory
+Fra:1 Mem:950.18M (Peak 1053.58M) | Time:00:01.36 | Mem:507.28M, Peak:507.28M | Scene, View Layer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:950.18M (Peak 1053.58M) | Time:00:01.36 | Mem:507.28M, Peak:507.28M | Scene, View Layer | Sample 0/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:00:04.08 | Remaining:02:51.20 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 1/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:00:23.59 | Remaining:02:15.86 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 9/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:01:02.31 | Remaining:01:35.07 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 25/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:01:40.58 | Remaining:00:55.66 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 41/64
+Fra:1 Mem:1025.20M (Peak 1053.58M) | Time:02:18.09 | Remaining:00:16.79 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 57/64
+Fra:1 Mem:1070.21M (Peak 1135.21M) | Time:02:47.29 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Sample 64/64
+Fra:1 Mem:1070.21M (Peak 1135.21M) | Time:02:47.29 | Mem:582.29M, Peak:582.29M | Scene, View Layer | Finished
+Saved: '/home/runner/work/docuflow/docuflow/studio/reviews/mom-character-r14/portrait-profile.png'
+Time: 02:47.45 (Saving: 00:00.12)
+
+Info: No new files have been packed
+Info: Saved as "mom-character-r14.blend"
+Traceback (most recent call last):
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r14.py", line 134, in <module>
+    verify() if '--verify' in sys.argv else main()
+                                            ^^^^^^
+  File "/home/runner/work/docuflow/docuflow/studio/tools/mom_character_r14.py", line 108, in main
+    if restore>1e-7 or rest!=build.base.rig_signature(rig) or set(build.base.invalid_drivers(bpy))-set(invalid):raise ValueError('Rig/restore integrity failure')
+                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Rig/restore integrity failure

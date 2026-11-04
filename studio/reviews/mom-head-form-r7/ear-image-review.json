@@ -1,0 +1,148 @@
+{
+  "inputs": [
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-front.png",
+      "sha256": "e06226fb3fb32c1ccc09dc529e9340bfdeb44e275721f9b89f38ed011fa7453a",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-front.png",
+      "sha256": "b0734c9713ddc267e632a604847c1a9165e5c21ce2ad5eb8677fec1bd66c14ba",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-three-quarter.png",
+      "sha256": "8dc44624f806d30e2828f78a15621c00ebd70316e3686282a55ed5e90895df5c",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-three-quarter.png",
+      "sha256": "66daee6e1d6c5db73e7478be7b3e82c8a1cb0e0305b5b7c75518e442082445a6",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r4/candidate-profile.png",
+      "sha256": "24eabbadb585face4452d4c5c0fffb314860b579df743f53ad8f24f8cd648a6b",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r7/clay-profile.png",
+      "sha256": "b8df80050343ec93bbbbbe8dd9f7ace20ee3b0860d554ecc3e604c7d55e4522d",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "crop_px": [
+    130,
+    290,
+    638,
+    610
+  ],
+  "uniform_scale": 1.25,
+  "script_sha256": "91e7acc267d707e766c61fc267802b94e527adae2df4dc3abfe98aba80338c91",
+  "method": "Identical matched-camera crop and uniform enlargement of actual native clay frames. No repaint/warp.",
+  "limitations": "R4 to R7 also includes documented lip refinements; not an ear-only geometric ablation. Reference ears obscured; no calibrated target ear size.",
+  "art_approved": false,
+  "production_swap_allowed": false
+}

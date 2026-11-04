@@ -1,0 +1,33 @@
+{
+  "revision": "mom-head-lookdev-r10",
+  "status": "independent_asset_persistence_pass_partial_likeness_only",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "inspected_images": [
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/comparison-portrait.png",
+      "sha256": "821ba6cc1b02bea644df96b5a6ffaff5e1ae2f222f996c22192373021ed2ebd8"
+    },
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/comparison-lighting.png",
+      "sha256": "232948ada382c8310d8259cd619f7453d1eaefd2e06e6d6ebc8d70eb9fbf8daf"
+    },
+    {
+      "path": "studio/reviews/mom-head-lookdev-r10/portrait-three-views.png",
+      "sha256": "321804d1cc074e26a8ad0836b2a72c868b48952fc9700604a8d31cdb5d53fc3e"
+    }
+  ],
+  "visual_findings": [
+    "Identically lit R9/R10 portrait comparison retains visible local lip-height/projection reduction and warmer lower pigment. The change is modest, not a completed canonical smile.",
+    "Portrait key/fill/rim and higher sampling reveal cheek and nasal volume more clearly. Same-R10 neutral diagnostic/portrait board proves much of the apparent warmth/contrast is lighting, not a new shape or material change.",
+    "Upper lip still reads too heavy/protruding and under-lip shadow stronger than canonical. Gentle closed-smile line and target lower-lip highlight are not yet achieved. Do not claim the localized PBR settings alone solved the visible response.",
+    "Profile/three-quarter inspected; supported eye/brow/compact-ear direction retained. Canonical hair/frame and full acting are still absent."
+  ],
+  "independent_verification": "Fresh worker downloaded actual published R9/R10 binaries, no original Rain acquisition or rebuild. Binary hashes/material UV/PBR links/packed bytes/rest/geometry/pose restore pass. R10 independent neutral RGB MAE/p99=0.",
+  "native_run": "https://github.com/PandaGarry/docuflow/actions/runs/41780052780",
+  "artifact_id": 13298852829,
+  "next": "Refine remaining upper-lip projection/closed-smile seam and perioral transitions against reference; keep matched clay and held lighting. Resolve blink/lash/rest migration before any full acting approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0"
+}

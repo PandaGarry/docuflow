@@ -1,0 +1,36 @@
+{
+  "recorded_date": "2026-11-02",
+  "scope": "actual exported blend reload without Python timeline application; no additional render",
+  "result": "passed",
+  "blender": "4.5.0",
+  "scene_path": "studio/out/blender-smoke/41d29f0ae277446e35d1eb5d0941316eb23b91ef461e616a96a96eaae2d2f3d0/scene.blend",
+  "samples": [
+    {
+      "frame": 0,
+      "ik_target_location": [
+        1.3799999952316284,
+        0.0,
+        1.7799999713897705
+      ],
+      "jaw_open": 0.0
+    },
+    {
+      "frame": 12,
+      "ik_target_location": [
+        1.059999942779541,
+        0.1599999964237213,
+        2.299999952316284
+      ],
+      "jaw_open": 1.0
+    },
+    {
+      "frame": 23,
+      "ik_target_location": [
+        1.3799999952316284,
+        0.0,
+        1.7799999713897705
+      ],
+      "jaw_open": 0.0
+    }
+  ]
+}
