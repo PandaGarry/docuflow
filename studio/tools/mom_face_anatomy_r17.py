@@ -27,6 +27,20 @@ def head_residual(p,spec):
  q[:,0]+=factor*(x-side*.013)*w;q[:,2]+=factor*(z-1.4215)*w
  return q-np.asarray(p)
 
+def safe_residual(blocks,delta,triangles):
+ """One common residual limited against EVERY original corrective, not Basis only.
+
+ Never disable the final orientation check. Only attenuate affected vertices;
+ report the attenuation rather than claiming unmodified corrective acceptance.
+ """
+ blocks=np.asarray(blocks);tri=np.asarray(triangles);a=blocks[:,tri];na=np.cross(a[:,:,1]-a[:,:,0],a[:,:,2]-a[:,:,0]);area=np.einsum('kij,kij->ki',na,na);valid=area>1e-24;scale=np.ones(len(delta))
+ for iteration in range(96):
+  b=(blocks+delta*scale[:,None])[:,tri];nb=np.cross(b[:,:,1]-b[:,:,0],b[:,:,2]-b[:,:,0]);ratio=np.einsum('kij,kij->ki',na,nb)/np.maximum(area,1e-30);bad=valid&(ratio<.05)
+  if not bad.any():break
+  scale[np.unique(tri[np.any(bad,axis=0)])]*=.65
+ else:raise ValueError('Joint corrective orientation limiter failed')
+ return delta*scale[:,None],{'iterations':iteration,'attenuated_vertices':int((scale<1).sum()),'minimum_scale':float(scale.min()),'minimum_signed_area_ratio':float(ratio[valid].min()),'checked_blocks':len(blocks),'method':'One identical residual jointly limited against all source corrective orientations; no guard relaxed.'}
+
 def iris_field(p,settings):
  p=np.asarray(p);q=p.copy();c=np.tile([.046632,-.0903,1.47326],(len(p),1));c[:,0]*=np.sign(p[:,0]);v=p-c;r=np.linalg.norm(v[:,[0,2]],axis=1)
  factor=settings['inner_radial_scale']+(settings['outer_radial_scale']-settings['inner_radial_scale'])*smoothstep(.009,.018,r)+(1-settings['outer_radial_scale'])*smoothstep(.018,.027,r)
