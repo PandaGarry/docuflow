@@ -1,0 +1,1567 @@
+{
+  "revision": "mom-head-form-r12",
+  "status": "new_primary_form_requires_visual_review",
+  "new_geometry_created": true,
+  "source_url": "https://studio.blender.org/download-source/files/ee/a7/eea73e55dba1cea31c09848df6a794b2-4.zip",
+  "source_blend_sha256": "831ab6d837c679040285862b15dc9ee5180b018442a88aeaf92aaa7509b80258",
+  "archive_sha256": "80217f163f6392dc829233d63c2cfb5e1376775bc34101ad14f39631fea70d24",
+  "scripts": {
+    "mom_head_form_r12.py": "18eda600f7a4ff2a33289ec50bc6755e01f19091305901831fdc4fdde1903ebb",
+    "mom_face_paint_r12.py": "6fbb895205e0729bfee6bddd33dc216e1d70b33ece3439c28a708d5b3c1a7156",
+    "mom_face_anatomy_r12.py": "000c8fbac819c51934d7224eb38076c07a11343aa7f1a7086cae347f303b2603",
+    "mom_face_paint_r11.py": "4749d228641305b3d297cfef1f9cc9919c6a4d785f26b886acbf6f418c8b86ad",
+    "mom_head_lookdev_r10.py": "552a1a6a913740cb49e6641f54de8986b1bba187fca67b112457b21756d63329",
+    "mom_face_finish_r7.py": "457b712a7bf4d0b2e36a587567d8cba5918a53df6cd26a9ce612a21959443c5b",
+    "mom_face_finish_r6.py": "cb46213b26763629446959fa015b6fecd6208536d7bd9e9b5529ba1068421667",
+    "mom_face_finish_r5.py": "8fb3f19f5496ef68ab5ac5a5bd9451d031b611d202dcc17f987c00df265b0e20",
+    "mom_face_controls.py": "796fe0ebea8ef61ec2e4a537e2262a7fe09e891786078a6b37ad63331bea4c39",
+    "mom_smile_pose_r3.py": "0735cb109bfa8a3fcab81b0219feaa9240a249d279d74d6a3cc0e7742726e865",
+    "mom_face_probe.py": "b5d18b2ed9bf27af8a7e515103856c6163cfba8c2e8bdb62b45c0b2beb488d54",
+    "mom_head_surface_r2.py": "6304b5c0bc5a4c71d0566fd60b43f9cf1c19cde65d291086a23a9f232ea89f8d",
+    "mom_head_cage.py": "0cc7052d984a50f5901a267e15107911c49bc49be51ab4b1fc5afee2205c5977",
+    "mom_native_form_audit.py": "05ed336dac22cf2e01431cde56a50bd8ed836540134f79c86cf2409c9f95bcff",
+    "rain_study.py": "492eb2a2fbbc67a2c9d5d821b15b14d560979708bc7483a8ef18779daad8c457",
+    "rain_mom_pass.py": "75707fa8e9c3c526a733773c60095c3ba273276a6c015f963e3a46600e252a69",
+    "rain_mom_pass_a2.py": "6c394cb7cd754960d091d417d632fa31ae91ecef20bb8fce2230321a76a4158d",
+    "rain_mom_pass_a3.py": "0d226c94a917c178eef80d3ec0a5594cf2044d09b91e987da9e71b9910d8fa5e"
+  },
+  "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+  "materials": {
+    "palette_srgb": {
+      "skin": "#E8B48F",
+      "upper_lip": "#B95C49",
+      "lower_lip": "#E17A60",
+      "blush": "#EC806F",
+      "iris": "#73879A",
+      "brows": "#79523C",
+      "lashes": "#38241F"
+    },
+    "head_albedo_attribute": "Mom R6 attached albedo",
+    "head_albedo_sha256": "4e0bf548fb4ab3bd20491f6efc389d46ae6d886e17d9e5991c69f3d29aeb77a9",
+    "attribute_alpha_usage": "one/opaque; roughness is a separate FLOAT mesh attribute",
+    "lip_border_chart_source": "Indexed external lip rows; source-rest upper/lower chart and deform weights, same attached vertex values for every pose.",
+    "lip_mask_max": 1.0,
+    "lip_mask_nonzero_vertices": 410,
+    "method": "Exact original-UV albedo/PBR bytes from downloaded R11 artifact, not a new face-color pass.",
+    "iris_method": "Original texture luminance mapped to gray-blue ramp, preserving texture/UVs; pupil and sclera endpoints neutral.",
+    "roughness_attribute": "Mom R7 roughness",
+    "roughness_sha256": "542526e61ca39836d93f7502ef7a8f12a22ff2412810ea9bfb05907c2c9056e3",
+    "review_correction": "Retain R6 explicit upper lip boundary; restore lower lip color with original deform-weight mask below seam. Separate lip roughness .39 from skin .47, no color-alpha reuse.",
+    "uv_paint": {
+      "resolution": 2048,
+      "covered_texels": 2988448,
+      "rasterized_triangles": 12508,
+      "coverage_fraction": 0.7125015258789062,
+      "padding_texels": 6,
+      "original_uv_domain": {
+        "origin": [
+          2.003528690338135,
+          0.010637527704238892
+        ],
+        "extent": 0.9929426193237305,
+        "original_min": [
+          2.0074689388275146,
+          0.014577776193618774
+        ],
+        "original_max": [
+          2.9925310611724854,
+          0.9928754568099976
+        ]
+      },
+      "method": "Original UV triangle rasterization, source-rest anatomical strokes. No reference-image projection or output-frame retouch.",
+      "uv_layer": "UVMap",
+      "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+      "albedo_exr_sha256": "1a7647f256e3f7d4921054ec0e68adab2ba8537e6d681a8f5bcc424c957cfcb2",
+      "roughness_exr_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+      "color_space": "Packed floating-point EXR contains linear data, Non-Color input; no sRGB double transform.",
+      "pbr_channels": {
+        "R": "Roughness",
+        "G": "Coat Weight",
+        "B": "Coat Roughness"
+      },
+      "active_material_source": "original-UV image textures; R7 vertex albedo/roughness retained only as fallback data",
+      "reuse": {
+        "source_run": 41787400559,
+        "downloaded_binary_sha256": "1cdf19c71a85e110c00d35374b181c33f4b00b7a9ecb1ae5e36b3498138d023d",
+        "method": "Append only two exact packed images from actual published R11 blend. No geometry-dependent rebake, rig/scene import or embedded script execution."
+      }
+    },
+    "held_material_library": {
+      "source_run": 41787400559,
+      "downloaded_binary_sha256": "1cdf19c71a85e110c00d35374b181c33f4b00b7a9ecb1ae5e36b3498138d023d",
+      "method": "Append only two exact packed images from actual published R11 blend. No geometry-dependent rebake, rig/scene import or embedded script execution."
+    },
+    "head_albedo_attribute_is_fallback": true
+  },
+  "saved_material_state": {
+    "head_attribute_sha256": "4e0bf548fb4ab3bd20491f6efc389d46ae6d886e17d9e5991c69f3d29aeb77a9",
+    "attribute_domain": "POINT",
+    "attribute_points": 6395,
+    "materials": {
+      "GEO-rain-head": [
+        "Mom R6 skin and lips"
+      ],
+      "GEO-rain-eyebrows": [
+        "Mom R6 brows"
+      ],
+      "GEO-rain-eyelashes": [
+        "Mom R6 lashes"
+      ]
+    },
+    "eye_ramp_stops": [
+      {
+        "position": 0.0,
+        "color": [
+          0.004024717025458813,
+          0.005605391692370176,
+          0.007499032188206911,
+          1.0
+        ]
+      },
+      {
+        "position": 0.11999999731779099,
+        "color": [
+          0.05832921341061592,
+          0.06370339542627335,
+          0.06706425547599792,
+          1.0
+        ]
+      },
+      {
+        "position": 0.3799999952316284,
+        "color": [
+          0.20533081889152527,
+          0.23720882833003998,
+          0.27359676361083984,
+          1.0
+        ]
+      },
+      {
+        "position": 0.6800000071525574,
+        "color": [
+          0.43485376238822937,
+          0.4620983600616455,
+          0.47789454460144043,
+          1.0
+        ]
+      },
+      {
+        "position": 0.8999999761581421,
+        "color": [
+          0.8549926280975342,
+          0.8227857351303101,
+          0.7681511640548706,
+          1.0
+        ]
+      },
+      {
+        "position": 1.0,
+        "color": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "original_uv_sha256": "4b6698acfa5a62558d1aa86a4f490d2f965665282109915a765ed075a6f10533",
+    "active_original_uv_maps": {
+      "Base Color": {
+        "channel": null,
+        "image": "Mom R11 original UV albedo",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "1a7647f256e3f7d4921054ec0e68adab2ba8537e6d681a8f5bcc424c957cfcb2",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Roughness": {
+        "channel": "Red",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Weight": {
+        "channel": "Green",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      },
+      "Coat Roughness": {
+        "channel": "Blue",
+        "image": "Mom R11 original UV roughness",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "packed_file_sha256": "fc31a6f3c36a3c2e5b7973936f42b13b1085f1a0738111c7b04255664e848a28",
+        "uv_map": "UVMap",
+        "domain_origin": [
+          2.003528594970703,
+          0.010637527331709862,
+          0.0
+        ],
+        "uniform_domain_scale": [
+          1.0071074962615967,
+          1.0071074962615967,
+          1.0
+        ]
+      }
+    }
+  },
+  "ear_finish": {
+    "pivot_m": [
+      0.1,
+      0,
+      1.459
+    ],
+    "scale_xyz": [
+      0.78,
+      0.72,
+      0.8
+    ],
+    "adduction_degrees": 30,
+    "lateral_tuck_m": 0.01,
+    "posterior_tuck_m": 0.003,
+    "mask": "Original ear weights times wider .087-.124m lateral transition; same mask/affine on25keys. Central face protected. Ear rest migration still pending."
+  },
+  "portrait_smile_amount": 0.4,
+  "spec_sha256": "dc75089091c3672a13d27a00db66adf4b54dd130ed4a276212e122761c96c869",
+  "indexed_source_sha256": "a26af1afba1639a4e4b84becc3fe00a70345bf3f3f55c4019d0afd6231c8f5db",
+  "canonical_face_sha256": "0367e15e5bf6d633970228e2dcdd203fde629990540faaee116e44f675be4288",
+  "blender_version": "4.5.0",
+  "embedded_python_executed": false,
+  "base": "Official original Rain head; A1-A7 and R1 deformations are NOT stacked. Revised indexed cage rebuilt from source.",
+  "change_notice": "R12 coordinated proportion pass after explicit user rejection of tiny iterations: ear adduction30deg/stronger tuck, reduced tip projection/rounded cap, mouth complex down5mm with upper/lower balance and true closed-commissure anchors. 24 existing targets plus2new. Exact downloaded R11 packed maps and frozen R10 portrait light, no cosmetic hiding. Supported globe/brow direction retained. Known blink/lash/rest migration pending.",
+  "edits": [
+    {
+      "object": "GEO-rain-head",
+      "vertices": 6395,
+      "transformed_original_key_blocks": 25,
+      "max_change_m": 0.02762638225364258,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.15646154219103406
+    },
+    {
+      "object": "GEO-rain-eyebrows",
+      "vertices": 148,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.024343818951825736,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.704080543784339
+    },
+    {
+      "object": "GEO-rain-eyelashes",
+      "vertices": 120,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.0032576711780189886,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.7071192111318881
+    },
+    {
+      "object": "GEO-rain-gums_upper",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 0,
+      "max_change_m": 0.00949004832032697,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.3369748781282378
+    },
+    {
+      "object": "GEO-rain-gums_lower",
+      "vertices": 1542,
+      "transformed_original_key_blocks": 3,
+      "max_change_m": 0.011083169185009992,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.5054267991843974
+    },
+    {
+      "object": "GEO-rain-tongue",
+      "vertices": 275,
+      "transformed_original_key_blocks": 2,
+      "max_change_m": 0.010290713508625397,
+      "min_sampled_cage_jacobian_det_at_original_key_coordinates": 0.8266125290555536
+    }
+  ],
+  "cage_safety": {
+    "controls": 87,
+    "condition_number": 1334.1074361072224,
+    "min_sampled_jacobian_determinant": 0.09128496579887817,
+    "max_sampled_jacobian_determinant": 1.366792388400616,
+    "maximum_basis_change_m": 0.011692963965876364,
+    "control_interpolation_error_m": 2.220446049250313e-16,
+    "scope": "Sampled mathematical safety only, not continuous invertibility, anatomy, likeness or pose approval."
+  },
+  "images": [
+    {
+      "path": "studio/reviews/mom-head-form-r12/clay-front.png",
+      "sha256": "7e0d141ec199e5491e652ae219deb83ae146258987952f15d64c9c795d74faae",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/clay-three-quarter.png",
+      "sha256": "07d0999c068bf59c723225201dadfe8e273bd524e34a3210e7b184122bb1378a",
+      "camera": {
+        "position": [
+          2.2,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/clay-profile.png",
+      "sha256": "6929f1eb49a4a36aa76a9746ef6f6c6314f2ba552fa2872391336bf372fde3f6",
+      "camera": {
+        "position": [
+          4,
+          0,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    },
+    {
+      "path": "studio/reviews/mom-head-form-r12/candidate-front.png",
+      "sha256": "8ec81a031c23d28ebf756146303dbcd99584563626d2027435f1a172b645e8d6",
+      "camera": {
+        "position": [
+          0,
+          -4,
+          1.5
+        ],
+        "target": [
+          0,
+          0,
+          1.47
+        ],
+        "ortho_scale": 0.48
+      },
+      "dimensions": [
+        768,
+        768
+      ],
+      "samples": 24
+    }
+  ],
+  "poses": [
+    {
+      "pose": "smile",
+      "actuators": {
+        "LipsUp_policy": {
+          "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+          "axis": 1,
+          "target": 0.12,
+          "solutions": {
+            "L": {
+              "input": 0.003000009059906006,
+              "response": 0.12000083923339844,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  0.4999971389770508
+                ],
+                [
+                  0.00625,
+                  0.2500009536743164
+                ],
+                [
+                  0.003125,
+                  0.12499809265136719
+                ],
+                [
+                  0.0015625,
+                  0.062499046325683594
+                ],
+                [
+                  0.0023437500000000003,
+                  0.0937509536743164
+                ],
+                [
+                  0.0027343750000000003,
+                  0.10937213897705078
+                ],
+                [
+                  0.0029296875,
+                  0.1171875
+                ],
+                [
+                  0.00302734375,
+                  0.1210927963256836
+                ],
+                [
+                  0.002978515625,
+                  0.11913776397705078
+                ],
+                [
+                  0.0030029296875,
+                  0.12011528015136719
+                ],
+                [
+                  0.00299072265625,
+                  0.11962890625
+                ],
+                [
+                  0.002996826171875,
+                  0.1198720932006836
+                ],
+                [
+                  0.0029998779296875003,
+                  0.11999130249023438
+                ],
+                [
+                  0.0030014038085937503,
+                  0.12005329132080078
+                ],
+                [
+                  0.0030006408691406255,
+                  0.1200246810913086
+                ],
+                [
+                  0.003000259399414063,
+                  0.1200103759765625
+                ],
+                [
+                  0.0030000686645507814,
+                  0.12000083923339844
+                ],
+                [
+                  0.002999973297119141,
+                  0.1199960708618164
+                ],
+                [
+                  0.003000020980834961,
+                  0.12000083923339844
+                ],
+                [
+                  0.002999997138977051,
+                  0.1199960708618164
+                ],
+                [
+                  0.003000009059906006,
+                  0.12000083923339844
+                ]
+              ]
+            },
+            "R": {
+              "input": 0.002999532222747803,
+              "response": 0.12000083923339844,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  0.5000161528587341
+                ],
+                [
+                  0.00625,
+                  0.2500009536743164
+                ],
+                [
+                  0.003125,
+                  0.1250171661376953
+                ],
+                [
+                  0.0015625,
+                  0.062499046325683594
+                ],
+                [
+                  0.0023437500000000003,
+                  0.0937509536743164
+                ],
+                [
+                  0.0027343750000000003,
+                  0.10937213897705078
+                ],
+                [
+                  0.0029296875,
+                  0.11720657348632812
+                ],
+                [
+                  0.00302734375,
+                  0.12111186981201172
+                ],
+                [
+                  0.002978515625,
+                  0.1191568374633789
+                ],
+                [
+                  0.0030029296875,
+                  0.12013435363769531
+                ],
+                [
+                  0.00299072265625,
+                  0.11964797973632812
+                ],
+                [
+                  0.002996826171875,
+                  0.11989116668701172
+                ],
+                [
+                  0.0029998779296875003,
+                  0.1200103759765625
+                ],
+                [
+                  0.00299835205078125,
+                  0.11995315551757812
+                ],
+                [
+                  0.002999114990234375,
+                  0.11998176574707031
+                ],
+                [
+                  0.0029994964599609378,
+                  0.1199960708618164
+                ],
+                [
+                  0.0029996871948242193,
+                  0.12000560760498047
+                ],
+                [
+                  0.0029995918273925783,
+                  0.12000083923339844
+                ],
+                [
+                  0.002999544143676758,
+                  0.12000083923339844
+                ],
+                [
+                  0.002999520301818848,
+                  0.1199960708618164
+                ],
+                [
+                  0.002999532222747803,
+                  0.12000083923339844
+                ]
+              ]
+            }
+          },
+          "final_key_values": {
+            "L": 0.12000083923339844,
+            "R": 0.12000083923339844
+          },
+          "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+        },
+        "Smile_policy": {
+          "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+          "axis": 2,
+          "target": 0.24,
+          "solutions": {
+            "L": {
+              "input": 0.0015000462532043458,
+              "response": 0.23999974131584167,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.12000083923339844
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.6199817657470703
+                ],
+                [
+                  0.003125,
+                  0.3699818253517151
+                ],
+                [
+                  0.0015625,
+                  0.2449961006641388
+                ],
+                [
+                  0.00078125,
+                  0.18250077962875366
+                ],
+                [
+                  0.0011718750000000002,
+                  0.2137461155653
+                ],
+                [
+                  0.0013671875000000001,
+                  0.22937104105949402
+                ],
+                [
+                  0.00146484375,
+                  0.2371835708618164
+                ],
+                [
+                  0.001513671875,
+                  0.24108976125717163
+                ],
+                [
+                  0.0014892578125,
+                  0.23913666605949402
+                ],
+                [
+                  0.00150146484375,
+                  0.2401132881641388
+                ],
+                [
+                  0.001495361328125,
+                  0.2396249771118164
+                ],
+                [
+                  0.0014984130859375,
+                  0.23986905813217163
+                ],
+                [
+                  0.0014999389648437502,
+                  0.23999124765396118
+                ],
+                [
+                  0.0015007019042968751,
+                  0.24005219340324402
+                ],
+                [
+                  0.0015003204345703128,
+                  0.24002164602279663
+                ],
+                [
+                  0.0015001296997070315,
+                  0.2400064468383789
+                ],
+                [
+                  0.0015000343322753907,
+                  0.23999884724617004
+                ],
+                [
+                  0.0015000820159912112,
+                  0.2400025725364685
+                ],
+                [
+                  0.001500058174133301,
+                  0.24000078439712524
+                ],
+                [
+                  0.0015000462532043458,
+                  0.23999974131584167
+                ]
+              ]
+            },
+            "R": {
+              "input": 0.0015002250671386722,
+              "response": 0.23999974131584167,
+              "trials": [
+                [
+                  -0.05,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.12000083923339844
+                ],
+                [
+                  0.05,
+                  1.0
+                ],
+                [
+                  0.025,
+                  1.0
+                ],
+                [
+                  0.0125,
+                  1.0
+                ],
+                [
+                  0.00625,
+                  0.6199817657470703
+                ],
+                [
+                  0.003125,
+                  0.3699818253517151
+                ],
+                [
+                  0.0015625,
+                  0.2449817955493927
+                ],
+                [
+                  0.00078125,
+                  0.18248185515403748
+                ],
+                [
+                  0.0011718750000000002,
+                  0.2137318104505539
+                ],
+                [
+                  0.0013671875000000001,
+                  0.22935673594474792
+                ],
+                [
+                  0.00146484375,
+                  0.2371692657470703
+                ],
+                [
+                  0.001513671875,
+                  0.24107560515403748
+                ],
+                [
+                  0.0014892578125,
+                  0.23912236094474792
+                ],
+                [
+                  0.00150146484375,
+                  0.2400989830493927
+                ],
+                [
+                  0.001495361328125,
+                  0.2396106719970703
+                ],
+                [
+                  0.0014984130859375,
+                  0.23985490202903748
+                ],
+                [
+                  0.0014999389648437502,
+                  0.2399769425392151
+                ],
+                [
+                  0.0015007019042968751,
+                  0.24003788828849792
+                ],
+                [
+                  0.0015003204345703128,
+                  0.24000748991966248
+                ],
+                [
+                  0.0015001296997070315,
+                  0.2399921417236328
+                ],
+                [
+                  0.0015002250671386722,
+                  0.23999974131584167
+                ],
+                [
+                  0.0015002727508544925,
+                  0.24000361561775208
+                ],
+                [
+                  0.0015002489089965825,
+                  0.24000167846679688
+                ],
+                [
+                  0.0015002369880676273,
+                  0.24000078439712524
+                ]
+              ]
+            }
+          },
+          "final_key_values": {
+            "L": 0.23999974131584167,
+            "R": 0.23999974131584167
+          },
+          "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+        },
+        "final_keys": {
+          "Smile.L": 0.23999974131584167,
+          "Smile.R": 0.23999974131584167,
+          "LipsUp.L": 0.1199960708618164,
+          "LipsUp.R": 0.11998176574707031,
+          "LipsWide.L": 0.030000917613506317,
+          "LipsWide.R": 0.03000449389219284
+        },
+        "scope": "One authored closed-mouth smile pose, not full acting or lip-sync acceptance."
+      },
+      "finite": true
+    }
+  ],
+  "blink_sweep": [
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008500013701443043
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016643814155121346
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024608933561609772
+    },
+    {
+      "amplitude": 1,
+      "finite": true,
+      "max_displacement_m": 0.03223182020472286
+    },
+    {
+      "amplitude": 0.75,
+      "finite": true,
+      "max_displacement_m": 0.024608933561609772
+    },
+    {
+      "amplitude": 0.5,
+      "finite": true,
+      "max_displacement_m": 0.016643814155121346
+    },
+    {
+      "amplitude": 0.25,
+      "finite": true,
+      "max_displacement_m": 0.008500013701443043
+    },
+    {
+      "amplitude": 0,
+      "finite": true,
+      "max_displacement_m": 0.0
+    }
+  ],
+  "smile_displacement_symmetry": {
+    "unique_mirrored_mouth_pairs": 509,
+    "mean_displacement_asymmetry_m": 4.200455113702082e-05,
+    "max_displacement_asymmetry_m": 0.0008498020651892161,
+    "scope": "Mirrored actuator displacement diagnostic, not anatomy/likeness/artistic symmetry approval."
+  },
+  "paired_source_diagnostics": {
+    "historical_report": "studio/reviews/mom-head-form-r3/report.json",
+    "scope": "Original-source controller ambiguity already reproduced in R3; no new source pose claim."
+  },
+  "source_topology_unchanged": true,
+  "source_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "candidate_rest_signature": "086185b548ad27cfa3f82855f25ea46908f778cb951fef9133c2d8c3f378a28a",
+  "source_invalid_drivers": [
+    "objects:RIG-rain:pose.bones[\"DEF-Spine3\"].bbone_easeout:0"
+  ],
+  "new_invalid_drivers": [],
+  "neutral_restore_error_m": 0.0,
+  "diagnostic_visibility_driver_mutes": [
+    "GEO-rain-scarf"
+  ],
+  "pose_and_shape_drivers_muted": false,
+  "eye_globes_and_cornea_unchanged": true,
+  "eye_coordinate_hashes": {
+    "GEO-rain-eyes": "c496a2f444446dd69816c49ebe23bf05b46c23b5a0d55c57491b8a5c0b3b26ec",
+    "GEO-rain-eye_cornea": "3264a3a8671024c5a442787d140ca7c61c7bf5d33d0112660c4b545423fc4a20",
+    "GEO-rain-eye_dots": "963b0f00e8b85c649fd251c72f9e5a982bcdcace00c50d6e431590dbe2c831a9"
+  },
+  "known_blink_visual_failure": true,
+  "blink_visual_approved": false,
+  "blink_visual_review_scope": "Historical unresolved failure, not newly rendered or approved in R12; only finite/restore sweep rerun.",
+  "rig_migration_status": "pending primary-form review; original rest is not an art constraint. Finite ACT diagnostics do not certify the moved lids/brows/correctives.",
+  "native_artifact": {
+    "filename": "mom-head-form-r12.blend",
+    "sha256": "89bf2feb7e13bf42b37a9993fd6d5113e2a413f582c8b13b4f4f95ca498659a5",
+    "textures_packed": true,
+    "storage": "GitHub Actions artifact, 14 days"
+  },
+  "indexed_candidate_sha256": "1990ed0b1b89d8570ec89a79ab561337064b6d211f6a9ee662a67d3028173fc4",
+  "art_approved": false,
+  "user_approved": false,
+  "production_swap_allowed": false,
+  "scope": "Neutral primary head work-in-progress. Not exact likeness, final anatomy, complete character, full acting or production rig approval.",
+  "credit": "Rain Rig (CC) Blender Foundation | studio.blender.org",
+  "license": "CC-BY-4.0 https://creativecommons.org/licenses/by/4.0/",
+  "held_portrait": {
+    "images": [
+      {
+        "path": "studio/reviews/mom-head-form-r12/portrait-front.png",
+        "sha256": "fec8c473aec8346ad9dbbd6c636ab6ab9057bfae45c5faa568b533a82a73ccd8",
+        "camera": {
+          "position": [
+            0,
+            -4,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "samples": 96,
+        "view_transform": "AgX",
+        "look": "AgX - Medium High Contrast",
+        "scope": "Controlled portrait illumination only; not a form-only or calibrated likeness comparison."
+      },
+      {
+        "path": "studio/reviews/mom-head-form-r12/portrait-three-quarter.png",
+        "sha256": "0c4526323bf20b40b3b8e447c26df36858434d80558bccb9b4a13c3a083a4869",
+        "camera": {
+          "position": [
+            2.2,
+            -4,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "samples": 96,
+        "view_transform": "AgX",
+        "look": "AgX - Medium High Contrast",
+        "scope": "Controlled portrait illumination only; not a form-only or calibrated likeness comparison."
+      },
+      {
+        "path": "studio/reviews/mom-head-form-r12/portrait-profile.png",
+        "sha256": "74de83dd9023bb08de4ffe9a8936ae944dd66dc4ed59626cada26305d0e56507",
+        "camera": {
+          "position": [
+            4,
+            0,
+            1.5
+          ],
+          "target": [
+            0,
+            0,
+            1.47
+          ],
+          "ortho_scale": 0.48
+        },
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "samples": 96,
+        "view_transform": "AgX",
+        "look": "AgX - Medium High Contrast",
+        "scope": "Controlled portrait illumination only; not a form-only or calibrated likeness comparison."
+      }
+    ],
+    "lights": [
+      {
+        "name": "PortraitKey",
+        "energy": 45,
+        "size": 0.75,
+        "position": [
+          -0.8,
+          -1.1,
+          2.15
+        ],
+        "color": [
+          1,
+          0.83,
+          0.7
+        ]
+      },
+      {
+        "name": "PortraitFill",
+        "energy": 8,
+        "size": 1.3,
+        "position": [
+          0.95,
+          -0.85,
+          1.75
+        ],
+        "color": [
+          0.75,
+          0.85,
+          1
+        ]
+      },
+      {
+        "name": "PortraitRim",
+        "energy": 18,
+        "size": 0.8,
+        "position": [
+          0.5,
+          0.6,
+          2
+        ],
+        "color": [
+          1,
+          0.88,
+          0.75
+        ]
+      }
+    ],
+    "smile": {
+      "LipsUp_policy": {
+        "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+        "axis": 1,
+        "target": 0.12,
+        "solutions": {
+          "L": {
+            "input": 0.003000009059906006,
+            "response": 0.12000083923339844,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                0.4999971389770508
+              ],
+              [
+                0.00625,
+                0.2500009536743164
+              ],
+              [
+                0.003125,
+                0.12499809265136719
+              ],
+              [
+                0.0015625,
+                0.062499046325683594
+              ],
+              [
+                0.0023437500000000003,
+                0.0937509536743164
+              ],
+              [
+                0.0027343750000000003,
+                0.10937213897705078
+              ],
+              [
+                0.0029296875,
+                0.1171875
+              ],
+              [
+                0.00302734375,
+                0.1210927963256836
+              ],
+              [
+                0.002978515625,
+                0.11913776397705078
+              ],
+              [
+                0.0030029296875,
+                0.12011528015136719
+              ],
+              [
+                0.00299072265625,
+                0.11962890625
+              ],
+              [
+                0.002996826171875,
+                0.1198720932006836
+              ],
+              [
+                0.0029998779296875003,
+                0.11999130249023438
+              ],
+              [
+                0.0030014038085937503,
+                0.12005329132080078
+              ],
+              [
+                0.0030006408691406255,
+                0.1200246810913086
+              ],
+              [
+                0.003000259399414063,
+                0.1200103759765625
+              ],
+              [
+                0.0030000686645507814,
+                0.12000083923339844
+              ],
+              [
+                0.002999973297119141,
+                0.1199960708618164
+              ],
+              [
+                0.003000020980834961,
+                0.12000083923339844
+              ],
+              [
+                0.002999997138977051,
+                0.1199960708618164
+              ],
+              [
+                0.003000009059906006,
+                0.12000083923339844
+              ]
+            ]
+          },
+          "R": {
+            "input": 0.002999532222747803,
+            "response": 0.12000083923339844,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                0.5000161528587341
+              ],
+              [
+                0.00625,
+                0.2500009536743164
+              ],
+              [
+                0.003125,
+                0.1250171661376953
+              ],
+              [
+                0.0015625,
+                0.062499046325683594
+              ],
+              [
+                0.0023437500000000003,
+                0.0937509536743164
+              ],
+              [
+                0.0027343750000000003,
+                0.10937213897705078
+              ],
+              [
+                0.0029296875,
+                0.11720657348632812
+              ],
+              [
+                0.00302734375,
+                0.12111186981201172
+              ],
+              [
+                0.002978515625,
+                0.1191568374633789
+              ],
+              [
+                0.0030029296875,
+                0.12013435363769531
+              ],
+              [
+                0.00299072265625,
+                0.11964797973632812
+              ],
+              [
+                0.002996826171875,
+                0.11989116668701172
+              ],
+              [
+                0.0029998779296875003,
+                0.1200103759765625
+              ],
+              [
+                0.00299835205078125,
+                0.11995315551757812
+              ],
+              [
+                0.002999114990234375,
+                0.11998176574707031
+              ],
+              [
+                0.0029994964599609378,
+                0.1199960708618164
+              ],
+              [
+                0.0029996871948242193,
+                0.12000560760498047
+              ],
+              [
+                0.0029995918273925783,
+                0.12000083923339844
+              ],
+              [
+                0.002999544143676758,
+                0.12000083923339844
+              ],
+              [
+                0.002999520301818848,
+                0.1199960708618164
+              ],
+              [
+                0.002999532222747803,
+                0.12000083923339844
+              ]
+            ]
+          }
+        },
+        "final_key_values": {
+          "L": 0.12000083923339844,
+          "R": 0.12000083923339844
+        },
+        "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+      },
+      "Smile_policy": {
+        "policy": "Same native actuator axis on both sides, all other channels retained at neutral; final readback after BOTH commits.",
+        "axis": 2,
+        "target": 0.24,
+        "solutions": {
+          "L": {
+            "input": 0.0015000462532043458,
+            "response": 0.23999974131584167,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.12000083923339844
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                1.0
+              ],
+              [
+                0.00625,
+                0.6199817657470703
+              ],
+              [
+                0.003125,
+                0.3699818253517151
+              ],
+              [
+                0.0015625,
+                0.2449961006641388
+              ],
+              [
+                0.00078125,
+                0.18250077962875366
+              ],
+              [
+                0.0011718750000000002,
+                0.2137461155653
+              ],
+              [
+                0.0013671875000000001,
+                0.22937104105949402
+              ],
+              [
+                0.00146484375,
+                0.2371835708618164
+              ],
+              [
+                0.001513671875,
+                0.24108976125717163
+              ],
+              [
+                0.0014892578125,
+                0.23913666605949402
+              ],
+              [
+                0.00150146484375,
+                0.2401132881641388
+              ],
+              [
+                0.001495361328125,
+                0.2396249771118164
+              ],
+              [
+                0.0014984130859375,
+                0.23986905813217163
+              ],
+              [
+                0.0014999389648437502,
+                0.23999124765396118
+              ],
+              [
+                0.0015007019042968751,
+                0.24005219340324402
+              ],
+              [
+                0.0015003204345703128,
+                0.24002164602279663
+              ],
+              [
+                0.0015001296997070315,
+                0.2400064468383789
+              ],
+              [
+                0.0015000343322753907,
+                0.23999884724617004
+              ],
+              [
+                0.0015000820159912112,
+                0.2400025725364685
+              ],
+              [
+                0.001500058174133301,
+                0.24000078439712524
+              ],
+              [
+                0.0015000462532043458,
+                0.23999974131584167
+              ]
+            ]
+          },
+          "R": {
+            "input": 0.0015002250671386722,
+            "response": 0.23999974131584167,
+            "trials": [
+              [
+                -0.05,
+                0.0
+              ],
+              [
+                0.0,
+                0.12000083923339844
+              ],
+              [
+                0.05,
+                1.0
+              ],
+              [
+                0.025,
+                1.0
+              ],
+              [
+                0.0125,
+                1.0
+              ],
+              [
+                0.00625,
+                0.6199817657470703
+              ],
+              [
+                0.003125,
+                0.3699818253517151
+              ],
+              [
+                0.0015625,
+                0.2449817955493927
+              ],
+              [
+                0.00078125,
+                0.18248185515403748
+              ],
+              [
+                0.0011718750000000002,
+                0.2137318104505539
+              ],
+              [
+                0.0013671875000000001,
+                0.22935673594474792
+              ],
+              [
+                0.00146484375,
+                0.2371692657470703
+              ],
+              [
+                0.001513671875,
+                0.24107560515403748
+              ],
+              [
+                0.0014892578125,
+                0.23912236094474792
+              ],
+              [
+                0.00150146484375,
+                0.2400989830493927
+              ],
+              [
+                0.001495361328125,
+                0.2396106719970703
+              ],
+              [
+                0.0014984130859375,
+                0.23985490202903748
+              ],
+              [
+                0.0014999389648437502,
+                0.2399769425392151
+              ],
+              [
+                0.0015007019042968751,
+                0.24003788828849792
+              ],
+              [
+                0.0015003204345703128,
+                0.24000748991966248
+              ],
+              [
+                0.0015001296997070315,
+                0.2399921417236328
+              ],
+              [
+                0.0015002250671386722,
+                0.23999974131584167
+              ],
+              [
+                0.0015002727508544925,
+                0.24000361561775208
+              ],
+              [
+                0.0015002489089965825,
+                0.24000167846679688
+              ],
+              [
+                0.0015002369880676273,
+                0.24000078439712524
+              ]
+            ]
+          }
+        },
+        "final_key_values": {
+          "L": 0.23999974131584167,
+          "R": 0.23999974131584167
+        },
+        "scope": "Consistent actuator selection, not proof of geometric or artistic symmetry."
+      },
+      "final_keys": {
+        "Smile.L": 0.23999974131584167,
+        "Smile.R": 0.23999974131584167,
+        "LipsUp.L": 0.1199960708618164,
+        "LipsUp.R": 0.11998176574707031,
+        "LipsWide.L": 0.030000917613506317,
+        "LipsWide.R": 0.03000449389219284
+      },
+      "scope": "One authored closed-mouth smile pose, not full acting or lip-sync acceptance."
+    },
+    "pose_restore_error_m": 0.0,
+    "lighting_script_sha256": "552a1a6a913740cb49e6641f54de8986b1bba187fca67b112457b21756d63329",
+    "scope": "Exact frozen R10 light/camera/sample recipe. No palette/PBR changes. Not final likeness or acting approval."
+  }
+}
